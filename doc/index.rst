@@ -6,7 +6,7 @@
 Slip Transmission Matlab toolbox
 ================================
 
-.. figure:: ./_pictures/GUIs/EBSD_map2.png
+.. figure:: ./_pictures/GUIs/EBSD_map2.PNG
    :scale: 50 %
    :align: right
    
