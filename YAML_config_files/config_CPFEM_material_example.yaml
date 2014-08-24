@@ -1,0 +1,62 @@
+# Be careful : only absolute paths and put a space after the comma in a list (e.g. [x, y, z]) !!!
+# material.config for DAMASK (cp-Ti (alpha))
+
+# Material and Constitutive Laws
+material: cpTi-alpha
+elasticity: hooke
+plasticity: phenopowerlaw
+
+# Outputs for the constitutive Laws
+output1: resistance_slip
+output2: shearrate_slip
+output3: resolvedstress_slip
+output4: totalshear
+output5: resistance_twin
+output6: shearrate_twin
+output7: resolvedstress_twin
+output8: totalvolfrac
+
+# Crystal properties
+lattice_structure: hex
+# c/a ratio automatically calculated by using the Matlab file : "latt_param"
+# M. Levy, Handbook of Elastic Properties of Solids, Liquids, and Gases (2001)
+c11:    160e9
+c12:    90e9
+c13:    66e9
+# c22
+# c23
+c33:    181.7e9
+c44:    46.5e9
+c66:    35e9 # =0.5*(c11-c12)
+
+# Slip systems
+# C. Zambaldi, "Orientation informed nanoindentation of a-titanium: Indentation pileup in hexagonal metals deforming by prismatic slip", J. Mater. Res., Vol. 27, No. 1, Jan 14, 2012
+nslip:  '3 3 0 6 0 0' # number of slips per family
+gdot0_slip: 0.001
+n_slip: 20
+tau0_slip: '349e6 150e6 0 1107.9e6 0 0' # per family
+tausat_slip: '568e6 1502.2e6 0 3420e6 0 0' # per family
+a_slip: 2.0
+
+# Twin systems
+ntwin:  '0 0 0 0' # number of twins per family
+gdot0_twin: 0.001
+n_twin: 20
+tau0_twin: '31e6 0 0 0' # per family
+s_pr: 0 # push-up factor for slip saturation due to twinning
+twin_b: 0
+twin_c: 0
+twin_d: 0
+twin_e: 0
+h0_slipslip: 200.0e6
+h0_sliptwin: 0
+h0_twinslip: 0
+h0_twintwin: 0
+atol_resistance: 1
+#atol_shear: 1e-6
+#atol_twinfrac: 1e-7
+interaction_slipslip: '1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1'
+interaction_sliptwin: '1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1'
+interaction_twinslip: '1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1'
+interaction_twintwin: '1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1'
+# nonschmid_coefficients

@@ -1,0 +1,36 @@
+% Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
+% $Id: plotGB_Bicrystal_slip_def.m 1201 2014-08-05 12:39:38Z d.mercier $
+function [hprop, valprop] = plotGB_Bicrystal_slip_def(prop_str, prop_val, pos, callback, varargin)
+%% Function to create txt boxes and editable txt boxes
+% prop_str: Title of the popupmenu
+% prop_val: List of values/string to fill the popup menu
+% pos: Position of the popup menu
+% callback: Callback for the popup menu
+
+% authors: d.mercier@mpie.de / c.zambaldi@mpie.de
+
+if nargin == 0
+    prop_str = 'test';
+    prop_val = 2;
+    pos = [0 0 0];
+    callback = '';
+end
+
+parent = gcf;
+
+hprop = uicontrol('Parent', parent,...
+    'Units', 'normalized',...
+    'Style', 'text',...
+    'Position', pos,...
+    'HorizontalAlignment', 'center',...
+    'String', prop_str);
+
+valprop = uicontrol('Parent', parent,...
+    'Units','normalized',...
+    'Style', 'edit',...
+    'Position', [pos(1)+0.08 pos(2) pos(3)+0.19 pos(4)],...
+    'BackgroundColor', [0.9 0.9 0.9],...
+    'String', prop_val,...
+    'Callback', callback);
+
+end

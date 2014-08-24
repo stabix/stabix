@@ -1,0 +1,20 @@
+# Header: Validation File with 7 grains
+# 
+# Column 1: Integer identifying grain
+# Column 2-4: Average orientation (phi1, PHI, phi2) in degrees
+# Column 5-6: Average Position (x, y) in microns
+# Column 7: Average Image Quality (IQ)
+# Column 8: Average Confidence Index (CI)
+# Column 9: Average Fit (degrees)
+# Column 10: An integer identifying the phase
+#           1 -  Titanium (alpha)
+#           2 -  Tantalum (bcc)
+# Column 11: Edge grain (1) or interior grain (0)
+# Column 12: Diameter of grain in microns
+     1  000.000   00.000  000.000   -0.833   -1.200  3183.9  0.782  0.61   1 0    125.44 
+     2  010.000   00.000  000.000    0.833   -1.200  3183.9  0.782  0.61   1 0    125.44 
+     3  010.000   10.000  000.000   -1.200    0.000  3183.9  0.782  0.61   2 0    125.44 
+     4  030.000   30.000  000.000    0.000    0.000  3183.9  0.782  0.61   2 1    125.44 
+     5  030.000   30.000  030.000    1.200    0.000  3183.9  0.782  0.61   1 0    125.44 
+     6  045.000   45.000  030.000   -0.833    1.200  3183.9  0.782  0.61   2 0    125.44 
+     7  045.000   45.000  045.000    0.833    1.200  3183.9  0.782  0.61   2 0    125.44 

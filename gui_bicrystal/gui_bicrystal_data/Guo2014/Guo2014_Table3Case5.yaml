@@ -1,0 +1,28 @@
+# Be careful : only absolute paths and put a space after the comma in a list (e.g. [x, y, z]) !!!
+
+#GB definition
+GB_Number: 1
+
+#Grains definition
+GrainA: 1
+Material_A: Ti
+Phase_A: hcp
+GrainB: 2
+Material_B: Ti
+Phase_B: hcp
+eulerA: [48, 27, 132]
+eulerB: [253, 125, 249]
+#Misorientation_angle: 40 # misorientation in degrees
+#Misorientation_axis: [1, -2, 1, -3]
+
+#Specific slips for RBV calculation
+SlipA_norm: [0 0 0 1]
+SlipA_dir: [2 -1 -1 0]
+SlipB_norm: [0 0 0 1]
+SlipB_dir: [2 -1 -1 0]
+
+#mprime value
+mprime_pripri: 0.84
+mprime_pribas: 0.45
+mprime_pripyr_a: 0.9
+mprime_pripyr_ac: 0.66

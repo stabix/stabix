@@ -1,0 +1,26 @@
+# Be careful : only absolute paths and put a space after the comma in a list (e.g. [x, y, z]) !!!
+# This config. file is for 
+
+# the CPFEM code that you want to use, e.g. GENMAT or DAMASK
+#simulation_code: GENMAT
+simulation_code: DAMASK
+
+# the FEM software that you want to use, e.g. Mentat2012 or Mentat2013
+#fem_software: 2012
+fem_software: Mentat_2013.1
+
+# path to the python folder on your mwn2 repository
+# msc_module_path: /Users/<username>/Documents/mwn2/python #for MAC
+msc_module_path: D:\mwn2\python #for PC
+
+# path to your python executable
+#python_executable: /Library/Frameworks/Python.framework/Versions/2.7/bin/python #for MAC
+#python_executable: D:\WinPython-64bit-2.7.3.1\scripts\python.bat #for PC
+
+# Setting the PYTHONPATH environment variable(optional)
+#pythonpath: /usr/local/lib/python2.7/site-packages:/Users/dunlapb2/Documents/DAMASK/lib #for MAC
+
+# where you want the mentat procedure file written
+#proc_file_path: /Users/<username>/Documents/mwn2/matlab #for MAC
+proc_file_path: \\mufs4\home\<username> # for PC
+

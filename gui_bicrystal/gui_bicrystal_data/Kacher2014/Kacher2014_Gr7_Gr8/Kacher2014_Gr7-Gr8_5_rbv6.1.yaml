@@ -1,0 +1,25 @@
+# Be careful : only absolute paths and put a space after the comma in a list (e.g. [x, y, z]) !!!
+
+#GB definition
+GB_Number: 4
+
+#Grains definition
+GrainA: 7
+Material_A: Ti
+Phase_A: hcp
+GrainB: 8
+Material_B: Ti
+Phase_B: hcp
+eulerA: [154, 28, 9]
+eulerB: [137, 52, 10]
+Misorientation_angle: 9 # misorientation in degrees
+#Misorientation_axis: [5, 2, -7, 2]
+
+#Specific slips for RBV calculation
+SlipA_norm: [0, 0, 0, 1]
+SlipA_dir: [-2, 1, 1, 0]
+SlipB_norm: [0, -1, 1, 1]
+SlipB_dir: [-1, 2, -1, 3]
+
+# Residual Burgers Value
+rbv: 6.1

@@ -1,0 +1,11 @@
+# Be careful : only absolute paths and put a space after the comma in a list (e.g. [x, y, z]) !!!
+
+#Sample and Material definition
+Sample_IDs: [DMe_Alb_cpTi_Area1, DMe_Alb_cpTi_Area2, DMe_Ti5Al2.5Sn_Area1, DMe_Mo_Area1]
+Sample_ID: DMe_Alb_cpTi_Area1
+Material_IDs: [DMe_Alb_cpTi, DMe_Ti5Al2.5Sn, DMe_Mo]
+Material_ID: DMe_Alb_cpTi
+
+# path to your default data files (optional)
+#default_grain_file_type2: MPIE_cpTi_grain_file_type2_2013.txt
+#default_reconstructed_boundaries_file: MPIE_cpTi_reconstructed_boundaries_2013.txt

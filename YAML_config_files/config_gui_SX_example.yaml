@@ -1,0 +1,15 @@
+# Be careful : only absolute paths and put a space after the comma in a list (e.g. [x, y, z]) !!!
+
+filenameGF2_BC: 'random_inputs'
+filenameRB_BC: 'random_inputs'
+
+#Grain definition (number and Euler angles in  degree)
+Material_A: 'Ti'
+Phase_A: 'hcp'
+GrainA: 1
+activeGrain: 1
+eulerA: [205.8, 41.56, 46.47]
+
+#Specific slips
+Slip_norm: [0, -1, 1]
+Slip_dir: [-1, 1, 1]
