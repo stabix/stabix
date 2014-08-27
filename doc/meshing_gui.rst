@@ -5,6 +5,10 @@ The preCPFE GUI has been created to enable rapid transfer of experimental data i
 so that a statistically significant number of indents can be assessed. A parameterized visualization of the bicrystal
 indentation model through the GUI allows tuning the geometry and finite element discretization and the size of the sample and the indenter.
 
+The Matlab function used to run the preCPFE GUI for SX indentation is: `A_femproc_windows_indentation_setting_SX.m <../../../gui_preCPFE/A_femproc_windows_indentation_setting_SX.m>`_
+
+The Matlab function used to run the preCPFE GUI for BX indentation is: `A_femproc_windows_indentation_setting_BX.m <../../../gui_preCPFE/A_femproc_windows_indentation_setting_BX.m>`_
+
 This includes:
 
 * :ref:`single_crystal_indentation`
