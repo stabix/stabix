@@ -13,7 +13,7 @@ end
 configYAML = sprintf('config_Matlab_%s.yaml', username);
 
 if exist(configYAML, 'file') == 0
-    config_Matlab.matlab_opengl = 'autoselect';
+    config_Matlab = ReadYaml('config_Matlab_example.yaml');
 else
     config_Matlab = ReadYaml(configYAML);
 end
