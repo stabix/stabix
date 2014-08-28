@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plotGB_Bicrystal_get_struct.m 1201 2014-08-05 12:39:38Z d.mercier $
 function plotGB_Bicrystal_get_struct
 %% Script to update the lists of slip systems for both grains
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de

@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: interface_map_MTEX_plotGrainsStat.m 1233 2014-08-14 12:28:10Z d.mercier $
 function interface_map_MTEX_plotGrainsStat(ebsd)
 %% Visualization of grains statistics (grain size, distribution...) with MTEX Toolbox
 % ebsd : Name of the structure variable created after importing EBSD data

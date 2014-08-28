@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plotGB_Bicrystal.m 1254 2014-08-20 18:46:55Z d.mercier $
 function plotGB_Bicrystal
 %% Function used to generate bicrystal interface
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de

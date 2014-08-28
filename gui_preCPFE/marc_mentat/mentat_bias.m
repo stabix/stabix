@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: mentat_bias.m 1200 2014-08-05 09:52:15Z d.mercier $
 function t_star_true = mentat_bias(x0, xN, N, bias, varargin)
 %% Function used to calculate the bias for a segment (based on bias used in Marc Mentat)
 % x0 : First point

@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: triad.m 1204 2014-08-05 13:29:53Z d.mercier $
 function h_trd = triad(sz, pos, col, dim, varargin)
 %% Function used to plots triad
 % sz: Size of the triad

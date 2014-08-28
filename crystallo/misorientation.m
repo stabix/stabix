@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: misorientation.m 1215 2014-08-07 09:10:29Z d.mercier $
 function [misor_angle, misor_axis] = misorientation(euler1, euler2, struct1, struct2, varargin)
 %% Function used to calculate misorientation between 2 grains.
 % From Kamp A. - Master Thesis (06/2007) -  Delft Universit of Technology

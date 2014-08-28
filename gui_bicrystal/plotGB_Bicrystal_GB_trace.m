@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plotGB_Bicrystal_GB_trace.m 1201 2014-08-05 12:39:38Z d.mercier $
 function [gb_vec_norm, gb_vec, GB_arrow] = plotGB_Bicrystal_GB_trace(GB_trace_angle, varargin)
 %% Function to update GB plot for a new GB trace
 % GB_trace_angle: Trace angle of the grain boundary (in degrees)

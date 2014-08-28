@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: femproc_save_data.m 1202 2014-08-05 12:58:13Z d.mercier $
 function femproc_save_data(interface)
 %% Function used to save active data for the generation of procedure file for Marc Mentat
 % interface: type of interface (1 for SX or 2 for BX meshing interface)

@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: coordinate_convention.m 1221 2014-08-12 08:23:37Z d.mercier $
 function coordinate_convention_matrix = coordinate_convention(coordinate_angle, varargin)
 % coordinate_angle: Angle to rotate coordinate system of EBSD system
 

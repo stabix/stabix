@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plotGB_Bicrystal_mprime_calculator_bc.m 1218 2014-08-08 15:04:06Z d.mercier $
 function plotGB_Bicrystal_mprime_calculator_all(listslipA, listslipB)
 %% Script used to calculate m' parameter values for all a bicrystal
 % listslipA: list of slip systems for grainA from popup menu

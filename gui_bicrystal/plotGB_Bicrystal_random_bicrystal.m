@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plotGB_Bicrystal_random_bicrystal.m 1232 2014-08-14 12:14:10Z d.mercier $
 function plotGB_Bicrystal_random_bicrystal
 %% Function to set a new random bicrystal;
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de

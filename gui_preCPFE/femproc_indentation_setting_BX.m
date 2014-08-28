@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: femproc_indentation_setting_BX.m 1255 2014-08-20 19:00:11Z d.mercier $
 function femproc_indentation_setting_BX
 %% Function to set BX indentation inputs (tip radius, indentation depth...) and plot of meshing
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de

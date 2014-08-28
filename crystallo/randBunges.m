@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: randBunges.m 1198 2014-08-05 09:13:00Z d.mercier $
 function eulers = randBunges(N, varargin)
 %% Function used to give random Euler angles in degrees (Bunge notation)
 % returns N rows of random Bunge Euler angles in degrees

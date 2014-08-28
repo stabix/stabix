@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: femproc_indentation_number_elements_BX.m 1202 2014-08-05 12:58:13Z d.mercier $
 function femproc_indentation_number_elements_BX
 %% Calculation of the number of elements in the modelling of bicrystal indentation
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de

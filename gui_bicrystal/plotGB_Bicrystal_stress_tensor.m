@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plotGB_Bicrystal_stress_tensor.m 1201 2014-08-05 12:39:38Z d.mercier $
 function plotGB_Bicrystal_stress_tensor
 %% Script to set the stress tensor for Schmid factor calculation
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de

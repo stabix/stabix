@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plot_slip_trace.m 1198 2014-08-05 09:13:00Z d.mercier $
 function h = plot_slip_trace(slip_plane_normal, plot_plane_normal, shiftXYZ, length_trace, trace_frac, varargin)
 %% Function to plot the slip trace
 % slip_plane_normal : Normal of the slip

@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: mprime.m 657 2014-01-16 10:49:43Z d.mercier $
 function n_fact = N_factor(n1, d1, n2, d2, varargin)
 %% Function used to calculate the N factor from Livingston and Chamlers
 % after Livingston, J.D. and Chalmers, B. - Acta Metall. (1957) 5, 322.

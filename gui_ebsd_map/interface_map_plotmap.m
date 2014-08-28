@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: interface_map_plotmap.m 1257 2014-08-21 08:41:26Z d.mercier $
 function interface_map_plotmap(run_calculation, check_calculation, varargin)
 %% Function to plot the map with all GBs and all grains
 % with a variable plotted along each GBs

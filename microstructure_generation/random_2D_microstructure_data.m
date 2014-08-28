@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: random_2D_microstructure_data.m 1244 2014-08-20 14:54:55Z d.mercier $
 function rdm_microstructure_dataset = random_2D_microstructure_data (number_of_grains, resolution, varargin)
 %% Function used to create random EBSD data based on TSL files (GF Type2 and RB file)
 % number_of_grains : Number of grains for the Voronoi tesselation

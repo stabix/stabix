@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: generalized_schmid_factor.m 1221 2014-08-12 08:23:37Z d.mercier $
 function GSF = generalized_schmid_factor(n, d, sigma, g, testFlag, varargin)
 %% Function used to calculate the generalized schmid factor
 % Calculates the generalized Schmid factor from :

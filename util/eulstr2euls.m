@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: eulstr2euls.m 1204 2014-08-05 13:29:53Z d.mercier $
 function eulers = eulstr2euls(eulerstr, varargin)
 %% Function used to convert a string containing Euler angles to a (horizontal) matrix
 % takes string or sell array of strings

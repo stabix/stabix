@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: interface_map_mprime_calculator_map.m 1254 2014-08-20 18:46:55Z d.mercier $
 function interface_map_mprime_calculator_map
 %% Function used to calculate m' parameter values for all GBs
 % Grain File Type 2

@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plotGB_Bicrystal_listslips.m 1201 2014-08-05 12:39:38Z d.mercier $
 function [listslipA, listslipB, no_slip] = plotGB_Bicrystal_listslips
 %% Script to update the lists of slip systems for both grains
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de

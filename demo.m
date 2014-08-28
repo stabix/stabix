@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: demo.m 1265 2014-08-21 16:15:00Z d.mercier $
 function gui_handle = demo
 %% Function to create the main window of the GUI (to select map, bicrystal or meshing interface)
 %% Initialization

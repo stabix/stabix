@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: interface_map_stress_tensor.m 1203 2014-08-05 13:07:41Z d.mercier $
 function interface_map_stress_tensor
 %% Function used to set stress tensor in the map interface
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de

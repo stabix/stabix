@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: interface_map_mprime_calculator_map_set.m 1203 2014-08-05 13:07:41Z d.mercier $
 function interface_map_mprime_calculator_map_set
 %% Function used to set the calculation of m' parameter values for all GBs
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de

@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: slip_systems_family_index.m 1198 2014-08-05 09:13:00Z d.mercier $
 function [ family_index ] = slip_systems_family_index(structure, varargin)
 %% Function used to return family indexation from structure
 % structure : hcp, bcc or fcc

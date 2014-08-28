@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: sort_values.m 885 2014-05-07 17:30:56Z d.mercier $
 function [pmax1, xmax1, ymax1, pmax2, xmax2, ymax2, pmax3, xmax3, ymax3,...
     pmin1, xmin1, ymin1, pmin2, xmin2, ymin2, pmin3, xmin3, ymin3] = sort_values(matrix, varargin)
 %% Function used to sort values (max and min) from a given matrix and to get indices of these values

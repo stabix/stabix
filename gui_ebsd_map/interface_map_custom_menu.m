@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: interface_map_custom_menu.m 1251 2014-08-20 18:12:08Z d.mercier $
 function interface_map_custom_menu
 %% Function to Add a custom menu item in the GUI menubar
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de

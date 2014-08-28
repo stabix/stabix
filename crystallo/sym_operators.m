@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: sym_operators.m 1231 2014-08-14 11:37:54Z d.mercier $
 function sym_op = sym_operators(structure, varargin)
 %% Function used to define the symmetry operators for cubic and hexagonal crystals
 % From the book of Kocks U. F. et al. - "Texture and Anisotropy: Preferred Orientations in

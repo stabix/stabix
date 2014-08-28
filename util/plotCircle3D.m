@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plotCircle3D.m 1204 2014-08-05 13:29:53Z d.mercier $
 function hPatch = plotCircle3D(normale, center, radius, varargin)
 % normale: Normale to the circle plane
 % center: Position of the center of the circle

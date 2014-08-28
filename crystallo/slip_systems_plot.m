@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: slip_systems_plot.m 1198 2014-08-05 09:13:00Z d.mercier $
 function slip_plot  =  slip_systems_plot(slip2plot, varargin)
 %% Function to select the slip or twin to plot
 % slip2plot: slip to plot for hcp, fcc or bcc phase

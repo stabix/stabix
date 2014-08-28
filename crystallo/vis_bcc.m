@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: vis_bcc.m 1198 2014-08-05 09:13:00Z d.mercier $
 function hPatch = vis_bcc(eulers, slip, shiftXYZ, szFac, plotAxes, fast, numph, line_width, varargin)
 %% Visualization of a bcc unit cell in a given orientation
 % eulers: Bunge Euler angles in degrees

@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: A_femproc_windows_indentation_setting_SX.m 1267 2014-08-22 11:19:07Z d.mercier $
 function gui_handle = A_femproc_windows_indentation_setting_SX(gui_bicrystal, activeGrain, varargin)
 %% Setting of indentation inputs (tip radius, indentation depth...) + setting of the mesh for a
 % single crystal indentation experiment.

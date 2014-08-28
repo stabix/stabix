@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: interface_map_read_TSL_data.m 1203 2014-08-05 13:07:41Z d.mercier $
 function gui = interface_map_read_TSL_data
 %% Function used to read TSL data (Grain File Fype 2 and Reconstructed Boundaries File)
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de

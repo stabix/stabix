@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: read_oim_grain_file_type2.m 1228 2014-08-13 14:54:04Z d.mercier $
 function GF2 = read_oim_grain_file_type2(fname, fpath, varargin)
 %% Function to read TSL-OIM grain file type 2
 % fname : Name of the grain file type 2 to read

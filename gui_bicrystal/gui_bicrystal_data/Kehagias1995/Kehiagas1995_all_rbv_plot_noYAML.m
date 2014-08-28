@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: Kehiagas1995_all_rbv_plot_noYAML.m 1254 2014-08-20 18:46:55Z d.mercier $
 %% Script used to plot all Residual Burgers Vectors calculated for bicrystals
 % given by Kehiagas et al. (1995) ==> 10.1016/0956-716X(95)00351-U and Kehiagas et al. (1996) ==> 10.1007/BF00191046
 tabularasa;

@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: interface_map_list_slips.m 1203 2014-08-05 13:07:41Z d.mercier $
 function interface_map_list_slips(pmStruct1, pmStruct2, pmlistslips1, pmlistslips2, number_phase, slip_family_1, slip_family_2, varargin)
 %% Function used to define the list of slips and twins systems used for mprime calculation
 % Definition of slip and twin systems in function of the number of phases

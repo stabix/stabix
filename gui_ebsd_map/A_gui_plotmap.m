@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: A_gui_plotmap.m 1267 2014-08-22 11:19:07Z d.mercier $
 function gui_handle = A_gui_plotmap
 %% Function used to create the GUI
 

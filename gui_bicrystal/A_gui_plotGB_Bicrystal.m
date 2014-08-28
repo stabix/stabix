@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: A_gui_plotGB_Bicrystal.m 1267 2014-08-22 11:19:07Z d.mercier $
 function gui_handle = A_gui_plotGB_Bicrystal(gui_map, varargin)
 %% Function to create the bicrystal interface
 % gui_map: handle of the gui of EBSD map

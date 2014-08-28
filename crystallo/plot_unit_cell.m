@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plot_unit_cell.m 1198 2014-08-05 09:13:00Z d.mercier $
 function plot_unit_cell(refresh_unit_cell, varargin)
 %% Function used to plot unique lattice cell with a slip system for a given grain
 % refresh_unit_cell: flag to set the refresh of the unit cell

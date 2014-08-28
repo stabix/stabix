@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plotGB_Bicrystal_update_euler.m 1201 2014-08-05 12:39:38Z d.mercier $
 function [Euler_new] = plotGB_Bicrystal_update_euler(Euler_old, theHandle)
 %% Function to update values of Euler angles
 % Euler_old = Old Euler angles values (in degree)

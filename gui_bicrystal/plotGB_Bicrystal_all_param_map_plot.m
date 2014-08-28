@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plotGB_Bicrystal_all_param_map_plot.m 1201 2014-08-05 12:39:38Z d.mercier $
 function plotGB_Bicrystal_all_param_map_plot(param2plot, title)
 %% Function to plot a map with all maximum m' values from a slip_family-slip_family matrix
 % param2plot: Slip transmission parameter to plot

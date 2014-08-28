@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: latt_param.m 1198 2014-08-05 09:13:00Z d.mercier $
 function lattice_parameters = latt_param(material, structure, varargin)
 %% Function used to give the lattice parameter in Angstrom and to calculate
 % the c/a ratio for a given material

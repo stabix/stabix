@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plot_slip_plane.m 1198 2014-08-05 09:13:00Z d.mercier $
 function hstruct = plot_slip_plane(slip_normal, slip_direction, shiftXYZ, radius, color, varargin)
 %% Returns the plot of a choosen slip by plotting the corresponding plane
 % slip_normal : slip normal (vector normal to the slip plane)

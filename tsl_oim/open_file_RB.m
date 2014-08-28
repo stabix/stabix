@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: open_file_RB.m 1200 2014-08-05 09:52:15Z d.mercier $
 function open_file_RB
 %% Function used to open Reconstructed Boundaries file (from TSL-OIM)
 %% Reconstructed Boundaries file                                                         x axis or TD Direction (Transverse)

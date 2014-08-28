@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plot_slip_traces.m 1198 2014-08-05 09:13:00Z d.mercier $
 function h_trace = plot_slip_traces(slip, euler, phase, ca_ratio, shiftXYZ, length_trace, trace_frac, varargin)
 %% Function to plot the slip traces
 % slip : slip number for the plot of the slip traces at the surface of the sample (e.g. from 1 to 57 for hcp - see in slip_systems.m)

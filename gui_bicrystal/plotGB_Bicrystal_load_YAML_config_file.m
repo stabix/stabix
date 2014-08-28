@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plotGB_Bicrystal_load_YAML_config_file.m 1256 2014-08-21 08:20:09Z d.mercier $
 function plotGB_Bicrystal_load_YAML_config_file
 %% Script to import YAML Bicrystal config. file
 % See in http://code.google.com/p/yamlmatlab/

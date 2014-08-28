@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: femproc_load_YAML_material_file.m 1230 2014-08-14 11:37:09Z d.mercier $
 function femproc_load_YAML_material_file(interface)
 %% Function to import material config file from YAML config. file
 % interface: type of interface (1 for SX or 2 for BX meshing interface)

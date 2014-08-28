@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: millerbravaisplane2cart.m 1198 2014-08-05 09:13:00Z d.mercier $
 function normal = millerbravaisplane2cart(hkil, c_over_a, varargin)
 %% Function used to transform 4 Bravais-Miller indices of slip plane into cartesian notation
 % from Hosford, "The Mechanics of Crystals and Textured Polycrystals", (1993), p. 207.

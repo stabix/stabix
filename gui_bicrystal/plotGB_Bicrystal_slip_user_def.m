@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plotGB_Bicrystal_slip_user_def.m 1201 2014-08-05 12:39:38Z d.mercier $
 function specific_slips_AB = plotGB_Bicrystal_slip_user_def(slipA_all_vect, slipB_all_vect)
 %% Script to get specific slips given by user
 % handle_getSlipA : handle of the txt box where Miller (Miller-Bravais for hcp) indices of slip for grain A are given

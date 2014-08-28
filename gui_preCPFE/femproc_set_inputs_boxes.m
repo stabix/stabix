@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: femproc_set_inputs_boxes.m 1202 2014-08-05 12:58:13Z d.mercier $
 function [string, edit_box, Struct, pmStruct, listslips, pmlistslips] = femproc_set_inputs_boxes(str, pos, val, callback, varargin)
 %% Function used to create automatically a serir of txt boxes + editable txt boxes in the GUI
 % str : string for the txt box

@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: get_slip_color.m 1231 2014-08-14 11:37:54Z d.mercier $
 function slip_color = get_slip_color(structure, slip, varargin)
 %% Function to define the color of the slip (MPIE convention)
 % struct : Phase of material (bcc, fcc or hcp)

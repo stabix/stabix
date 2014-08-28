@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: newFigure.m 1142 2014-07-09 17:06:07Z d.mercier $
 function h = newFigure(currentPosition, figWidth, maxWidth, varargin)
 %% Function to create a new figure
 % currentPosition : Position where to create the new figure

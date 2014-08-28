@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: get_slip_indices.m 1204 2014-08-05 13:29:53Z d.mercier $
 function specific_slip = get_slip_indices(specific_slip_unstrcat_str, slip_all_vect, norm_or_dir, varargin)
 %% Script to check validity of slip system given by user in a YAML file
 % specific_slip_unstrcat_str: Slip system given as a concatenated string

@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: A_femproc_windows_indentation_setting_BX.m 1267 2014-08-22 11:19:07Z d.mercier $
 function gui_handle = A_femproc_windows_indentation_setting_BX(gui_bicrystal, varargin) %'A_femproc_windows_indentation_setting_BX(0, guidata(gcf))');
 %% Setting of indentation inputs (tip radius, indentation depth...) + setting of the mesh for a
 % bicrystal indentation experiment.

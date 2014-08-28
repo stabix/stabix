@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: Kacher2012_1_plot.m 1256 2014-08-21 08:20:09Z d.mercier $
 %% Script used to plot all Residual Burgers Vectors calculated for bicrystals given by Kacher et al. (2012) : DOI ==> 10.1016/j.actamat.2012.08.036
 tabularasa;
 %installation_mtex = MTEX_check_install;

@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plotGB_Bicrystal_gbax_title_and_text.m 1232 2014-08-14 12:14:10Z d.mercier $
 function plotGB_Bicrystal_gbax_title_and_text(no_slip, shiftXYZA, shiftXYZB)
 %% Function to set the title for the bicrystal plot
 % no_slip: 1 if no slip to plot and 0 if slipA or slipB defined after calculations

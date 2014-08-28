@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: Patriarca2013_all_rbv_plot.m 1100 2014-06-25 09:40:05Z d.mercier $
 %% Script used to plot all Residual Burgers Vectors calculated for bicrystals given by Patriarca et al. (2013) : DOI ==> 10.1016/j.msea.2013.08.050
 tabularasa;
 

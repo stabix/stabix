@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: coordinate_system_apply.m 1221 2014-08-12 08:23:37Z d.mercier $
 function eulers_out = coordinate_system_apply(eulers_in, CCM, testFlag, varargin)
 %% Function used to apply the user selected coordinate system to the orientation
 % eulers_in : Euler angles in degree before modification of the coordinates sytem

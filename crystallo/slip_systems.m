@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: slip_systems.m 1227 2014-08-13 12:12:58Z d.mercier $
 function slip_syst = slip_systems(structure, slip_system, varargin)
 %% Function used to calculate normal and Burgers vectors for given slip systems and for a given grain
 % structure : hcp, bcc or fcc
