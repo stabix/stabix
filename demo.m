@@ -5,6 +5,12 @@ function gui_handle = demo
 format compact;
 tabularasa;
 
+%% Initialization
+if isempty(getenv('SLIP_TRANSFER_TBX_ROOT')) == 1
+    errordlg('Run the path_management.m script !', 'File Error');
+    return
+end
+
 % Check if MTEX is installed
 gui.flag.installation_mtex = MTEX_check_install;
 

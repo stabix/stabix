@@ -4,6 +4,12 @@ function gui_handle = A_gui_plotmap
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
+%% Initialization
+if isempty(getenv('SLIP_TRANSFER_TBX_ROOT')) == 1
+    errordlg('Run the path_management.m script !', 'File Error');
+    return
+end
+
 %% Set Matlab
 gui.config_Matlab = load_YAML_config_file;
 
