@@ -11,7 +11,7 @@ function gui_handle = A_femproc_windows_indentation_setting_SX(gui_bicrystal, ac
 gui.config_Matlab = load_YAML_config_file;
 
 %% Window Coordinates Configuration
-scrsize = screenSize;   % Get screen size
+scrsize = screenSize;    % Get screen size
 WX = 0.58 * scrsize(3);  % X Position (bottom)
 WY = 0.10 * scrsize(4);  % Y Position (left)
 WW = 0.40 * scrsize(3);  % Width
@@ -39,7 +39,7 @@ if nargin == 0
     femproc_load_YAML_BX_config_file(gui_SX.config_map.imported_YAML_GB_config_file, 1);
     gui_SX = guidata(gcf); guidata(gcf, gui_SX);
     gui_SX.GB.active_data = 'SX';
-    gui_SX.handles.gui_SX_title = strcat('Setting of indentation for random single crystal', ' - version 1.0');
+    gui_SX.handles.gui_SX_title = strcat('Setting of indentation for random single crystal', ' - version_', num2str(gui.config_Matlab.version_toolbox));
     
 else
     gui_SX.flag           = gui_bicrystal.flag;

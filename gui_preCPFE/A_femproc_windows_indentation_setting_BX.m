@@ -10,8 +10,8 @@ function gui_handle = A_femproc_windows_indentation_setting_BX(gui_bicrystal, va
 gui.config_Matlab = load_YAML_config_file;
 
 %% Window Coordinates Configuration
-scrsize = screenSize;   % Get screen size
-WX = 0.58 * scrsize(3); % X Position (bottom)
+scrsize = screenSize;    % Get screen size
+WX = 0.58 * scrsize(3);  % X Position (bottom)
 WY = 0.30 * scrsize(4);  % Y Position (left)
 WW = 0.40 * scrsize(3);  % Width
 WH = 0.60 * scrsize(4);  % Height
@@ -39,7 +39,7 @@ if nargin == 0
     gui_BX = guidata(gcf); guidata(gcf, gui_BX);
     gui_BX.GB.active_data = 'BX';
     gui_BX.GB.activeGrain = gui_BX.GB.GrainA;
-    gui_BX.handles.gui_BX_title = strcat('Setting of indentation for random bicrystal', ' - version 1.0');
+    gui_BX.handles.gui_BX_title = strcat('Setting of indentation for random bicrystal', ' - version_', num2str(gui.config_Matlab.version_toolbox));
     
 else
     gui_BX.flag           = gui_bicrystal.flag;
