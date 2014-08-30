@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: screenshot_function.m 1148 2014-07-10 14:55:45Z d.mercier $
 function SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM, varargin)
 %% Function to save screenshots of the Matlab window
 % SCREENSHOT : Name of the screenshot

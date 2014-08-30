@@ -30,13 +30,15 @@ instrumented sphero-conical indentation, and measurement of the resulting surfac
 In this way the stress and strain fields close to the grain boundary can be rapidly assessed.
 Activation and transmission of slip are interpreted based on these simulations and the mechanical resistance of grain boundaries can be quantified.
 
+`Source code is hosted at Github. <https://github.com/czambaldi/stabix>`_
+
 Contents
 ========
 .. toctree::
    :maxdepth: 3
    
    motivation
-   #getting_started
+   getting_started
    bicrystal_definition
    #slip_transmission
    slip_transmission_toolbox

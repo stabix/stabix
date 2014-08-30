@@ -104,7 +104,7 @@ The subscripts :math:`in` and :math:`out` refer to the incoming and outgoing sli
   
   The Matlab function used to calculate the residual Burgers vector is: `residual_Burgers_vector.m <../../../slip_transfer/residual_Burgers_vector.m>`_
  
-* **The intragranular misorientation or disorientation** ((:math:`IGM`) or (:math:`IGD`))  [#AustChen_1954]_, [#ClarkChalmers_1954]_ and [#WoNgan_2004]_
+* **The misorientation or disorientation** ((:math:`\Delta g`) or (:math:`\Delta g_d`))  [#AustChen_1954]_, [#ClarkChalmers_1954]_ and [#WoNgan_2004]_
 
   It has been observed during first experiments of bicrystals deformation in 1954, that the yield stress and the rate of work hardening increased with the orientation difference between the crystals [#AustChen_1954]_ and [#ClarkChalmers_1954]_.
   
@@ -185,7 +185,7 @@ Slip transmission parameters implemented in the Matlab Toolbox
    :header: "Slip transmission parameter", "Function", "Matlab function"
    :widths: 40, 40, 20
 
-   "Misorientation angle (:math:`\omega`)", ":math:`\omega = cos^{-1}((tr(IGM)-1)/2)`", `misorientation.m <../../../crystallo/misorientation.m>`_
+   "Misorientation angle (:math:`\omega`)", ":math:`\omega = cos^{-1}((tr(\Delta g)-1)/2)`", `misorientation.m <../../../crystallo/misorientation.m>`_
    "C-axis misorientation angle (for hcp material) (:math:`\omega`)", , `c-axis misorientation.m <../../../crystallo/eul2Caxismisor.m>`_
    ":math:`N` factor from Livingston and Chamlers", ":math:`N = \cos(\psi)\cdot\cos(\kappa) + \cos(\gamma)\cdot\cos(\delta)`", `N_factor.m <../../../slip_transfer/N_factor.m>`_
    ":math:`LRB` factor from Shen et al.", ":math:`LRB = \cos(\theta)\cdot\cos(\kappa)`", `LRB_parameter.m <../../../slip_transfer/LRB_parameter.m>`_

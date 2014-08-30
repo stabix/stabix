@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: femproc_generate_material_files_BX.m 1202 2014-08-05 12:58:13Z d.mercier $
 function femproc_generate_material_files_BX
 %% Generation of material config file (GENMAT OR DAMASK) for BX indentation
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de

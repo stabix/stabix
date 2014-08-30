@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: mprime_max_bicrystal.m 657 2014-01-16 10:49:43Z d.mercier $
 function [p_max_min_bc] = plotGB_Bicrystal_max_min_values_from_matrix(matrix, phase_A, phase_B, max_min, varargin)
 %% Function used to get maximum values of a parameter (e.g. : m' or RBV) from slip-slip matrix
 % matrix : slip-slip matrix

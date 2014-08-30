@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: orthogonal_vector.m 1204 2014-08-05 13:29:53Z d.mercier $
 function ov = orthogonal_vector(vIn, varargin)
 % after MTEX geometry/orth
 

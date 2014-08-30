@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: femproc_3d_conospherical_indenter.m 1202 2014-08-05 12:58:13Z d.mercier $
 function femproc_3d_conospherical_indenter(tipRadius, coneAngle, N, X_position, Y_position, Z_position, varargin)
 %% Function to plot a 3D conospherical indenter
 % tipRadius : Radius of the spherical part of the indenter.

@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: interface_map_plotmap_nodata.m 1203 2014-08-05 13:07:41Z d.mercier $
 function szFac = interface_map_plotmap_nodata
 %% Function to plot lattice cells, grains numbers, GBs number, phase...etc.on the map
 % for all GBs and all grains

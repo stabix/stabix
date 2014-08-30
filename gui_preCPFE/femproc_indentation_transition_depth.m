@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: femproc_indentation_transition_depth.m 641 2013-12-11 18:15:12Z d.mercier
 function h_trans = femproc_indentation_transition_depth(tip_radius, cone_angle, varargin)
 %% Function used to calculate the transition depth between the spherical and the conical
 % tip_radius : radius in micron of the spherical part of the tip

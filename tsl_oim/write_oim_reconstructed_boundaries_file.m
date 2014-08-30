@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: write_oim_reconstructed_boundaries_file.m 1233 2014-08-14 12:28:10Z d.mercier $
 function fdata = write_oim_reconstructed_boundaries_file(fdata, fpath, fname, varargin)
 %% Function used to write TSL-OIM reconstructed boundaries file
 % fname : Name of the reconstructed boundaries file to create

@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: save_figure.m 994 2014-05-27 13:05:39Z d.mercier $
 function save_figure(pathname_sav_fig, current_figure, varargin)
 %% Function to save figure from the GUI
 % path : path used to save the figure

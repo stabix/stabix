@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plotGB_Bicrystal_custom_menu.m 1251 2014-08-20 18:12:08Z d.mercier $
 function menuBX = plotGB_Bicrystal_custom_menu
 %% Add a custom menu item in the GUI menubar
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de

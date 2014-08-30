@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: neighbooring_edge_of_2cells.m 1255 2014-08-20 19:00:11Z d.mercier $
 function [vx vy ridx flag] = neighbooring_edge_of_2cells(x, y, varargin)
 %% Function used to give the 2 adjacents cells of an edge in a Voronoi tesselation
 % From http://www.mathworks.es/matlabcentral/newsreader/view_thread/323766

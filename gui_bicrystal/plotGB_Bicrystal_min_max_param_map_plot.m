@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plotGB_Bicrystal_min_max_param_map_plot.m 1220 2014-08-11 15:15:36Z d.mercier $
 function plotGB_Bicrystal_min_max_param_map_plot(param2plot, min_max)
 %% Function to plot a map with maximum/minimum m' values from a slip-slip matrix
 % param2plot: Slip transmission parameter to plot as a matrix in the Bicrystal GUI (minimum values)

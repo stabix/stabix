@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plotGB_Bicrystal_update_slip.m 1232 2014-08-14 12:14:10Z d.mercier $
 function [slipA, slipB] = plotGB_Bicrystal_update_slip(no_slip)
 %% Script to set slips indices based on the user selection in the popup menu
 % no_slip: Set to 1 if no slip obtained from calculations... 0 if slip to

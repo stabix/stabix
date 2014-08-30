@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: femproc_generate_indentation_model_SX.m 1202 2014-08-05 12:58:13Z d.mercier $
 function femproc_generate_indentation_model_SX
 %% Generation of procedure file and material file for CPFE modelling of SX indentation (with GENMAT or DAMASK)
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de

@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: planenormals2trace.m 1198 2014-08-05 09:13:00Z d.mercier $
 function v = planenormals2trace(n1, n2, varargin)
 %% Function to calculate the trace vector
 % n1 = normal vector of the slip

@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: A_gui_plotGB_Bicrystal.m 1267 2014-08-22 11:19:07Z d.mercier $
 function gui_handle = A_gui_plotGB_Bicrystal(gui_map, varargin)
 %% Function to create the bicrystal interface
 % gui_map: handle of the gui of EBSD map
@@ -7,6 +6,10 @@ function gui_handle = A_gui_plotGB_Bicrystal(gui_map, varargin)
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
 %% Initialization
+if isempty(getenv('SLIP_TRANSFER_TBX_ROOT')) == 1
+    errordlg('Run the path_management.m script !', 'File Error');
+    return
+end
 
 %% Set Matlab
 gui.config_Matlab = load_YAML_config_file;
@@ -51,7 +54,7 @@ WW = 0.35 * scrsize(3); % Width
 WH = 0.80 * scrsize(4); % Height
 
 %% Plot axis setting
-gui.handles.title = ['Bicrystal interface', ' (',mfilename,'.m)', ' - version 1.0'];
+gui.handles.title = ['Bicrystal interface', ' (',mfilename,'.m)', ' - version_', num2str(gui.config_Matlab.version_toolbox)];
 gui.handles.Bicrystal_interface = figure('Name', gui.handles.title,...
     'NumberTitle', 'off',...
     'PaperUnits', get(0,'defaultfigurePaperUnits'),...

@@ -1,3 +1,4 @@
+% Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function res = check_vectors_orthogonality(v1, v2, tol)
 %% Check orthogonality between 2 vectors (v1 and v2)
 

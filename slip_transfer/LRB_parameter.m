@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: mprime.m 1179 2014-07-30 17:24:20Z d.mercier $
 function LRB = LRB_parameter(l1, d1, l2, d2, varargin)
 %% Function used to calculate the geometric compatibility parameter, LRB,
 % after Shen et al. (1986) Scripta Metallurgica, 20(6), pp. 921–926.

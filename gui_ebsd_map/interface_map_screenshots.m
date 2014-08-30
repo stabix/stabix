@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: A_gui_plotmap.m 1120 2014-07-01 15:38:57Z d.mercier $
 function interface_map_screenshots
 %% Function used to generate sequential screenshots of the GUI running with given files.
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de

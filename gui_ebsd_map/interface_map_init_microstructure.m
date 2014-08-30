@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: interface_map_init_microstructure.m 1203 2014-08-05 13:07:41Z d.mercier $
 function interface_map_init_microstructure
 %% Function to extract data from TSL files
 %% Details about TSL files

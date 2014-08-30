@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plot_inclined_GB_plane.m 1198 2014-08-05 09:13:00Z d.mercier $
 function GB_inclined = plot_inclined_GB_plane(GB_endpoint_1, GB_endpoint_2, GB_trace_angle, GB_inclination, varargin)
 %% Function to update GB plot with a new inclination
 % GB_endpoint_1: Coordinate 1 of GB segment (at the sample's surface) obtained from EBSD measurement

@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: mprime.m 657 2014-01-16 10:49:43Z d.mercier $
 function rbv_norm = residual_Burgers_vector(b_in, b_out, eul_in, eul_out, varargin)
 %% Function used to calculate the norm of the residual Burgers vector
 % from Marcinkowski et al. ==> Metallurgical Transactions 1,12 (1970) pp 3397-3401

@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: triad_lines.m 1204 2014-08-05 13:29:53Z d.mercier $
 function h_struct = triad_lines(sz, shiftXYZ, varargin)
 %% Function used to plots triad lines
 % sz: Size of the triad

@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: write_oim_grain_file_type2.m 1233 2014-08-14 12:28:10Z d.mercier $
 function write_oim_grain_file_type2(fdata, fpath, fname, varargin)
 %% Function used to write TSL-OIM grain file type 2
 % fname : Name of the grain file type 2 to create

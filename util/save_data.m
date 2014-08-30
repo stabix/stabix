@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: save_data.m 1230 2014-08-14 11:37:09Z d.mercier $
 function save_data(pathname_sav_data, current_data, varargin)
 %% Function to save data as a YAML file from the GUI
 % path : path used to save the figure

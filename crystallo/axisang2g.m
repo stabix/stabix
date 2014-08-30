@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: axisang2g.m 1198 2014-08-05 09:13:00Z d.mercier $
 function g_mat = axisang2g(axis, ang, varargin)
 %% Function adapted from A.D. Rollet subroutine axisang2rot(axis,ang,rot)
 % axis: Normalized axis vector and will be normalized anyway

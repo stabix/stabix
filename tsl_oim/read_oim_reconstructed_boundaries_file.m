@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: read_oim_reconstructed_boundaries_file.m 1228 2014-08-13 14:54:04Z d.mercier $
 function RB = read_oim_reconstructed_boundaries_file(fname, fpath, varargin)
 %% Function to read TSL-OIM reconstructed boundaries file
 % fname : Name of the reconstructed boundaries file

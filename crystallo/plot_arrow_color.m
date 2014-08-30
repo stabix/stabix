@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plot_arrow_color.m 1231 2014-08-14 11:37:54Z d.mercier $
 function arrowcolor = plot_arrow_color(structure, slip, varargin)
 %% Function to define the color of the arrow (slip direction) in bicrystal plot
 % structure : structure of the given material (hcp, bcc, fcc, dia, tet or bct)

@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function axis_angle = misori_hex(eulers1, eulers2, varargin)
 %% Function used to calculate misorientation between 2 HCP grains.
 
 % eulers1 : Euler angles of the 1st crystal in degrees

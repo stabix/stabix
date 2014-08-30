@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: eul2Caxismisor.m 1198 2014-08-05 09:13:00Z d.mercier $
 function  caxis_misor = eul2Caxismisor(euler1, euler2, varargin )
 %% Function used to calculate c-axis misorientation for HCP material
 % euler1 : Euler angles of grain 1 in degrees

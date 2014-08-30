@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: date_time_string.m 885 2014-05-07 17:30:56Z d.mercier $
 %% Script used to get date and time as a string
 function timestamp = date_time_string(date, time, varargin)
 % date : Current date

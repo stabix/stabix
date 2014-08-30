@@ -1,9 +1,14 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: A_gui_plotmap.m 1267 2014-08-22 11:19:07Z d.mercier $
 function gui_handle = A_gui_plotmap
 %% Function used to create the GUI
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
+
+%% Initialization
+if isempty(getenv('SLIP_TRANSFER_TBX_ROOT')) == 1
+    errordlg('Run the path_management.m script !', 'File Error');
+    return
+end
 
 %% Set Matlab
 gui.config_Matlab = load_YAML_config_file;
@@ -95,7 +100,7 @@ WW = 0.65 * scrsize(3); % Width
 WH = 0.75 * scrsize(4); % Height
 
 %% Window configuration
-gui.handles.title = ['EBSD Map interface', ' (',mfilename,'.m)', ' - version 1.0'];
+gui.handles.title = ['EBSD Map interface', ' (',mfilename,'.m)', ' - version_', num2str(gui.config_Matlab.version_toolbox)];
 gui.handles.TSLinterfWindow   = figure('Name', gui.handles.title,...
     'NumberTitle', 'off',...
     'PaperUnits', get(0,'defaultfigurePaperUnits'),...

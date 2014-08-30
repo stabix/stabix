@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: vis_lattice.m 1198 2014-08-05 09:13:00Z d.mercier $
 function h_lattice = vis_lattice(lattice_type, eulers, slip, shiftXYZ, sz, plotAxes, fast, numph, line_width, varargin)
 %% Function to plot lattice cell for hcp, bcc and fcc crystals
 % lattice_type : hcp, bcc or fcc

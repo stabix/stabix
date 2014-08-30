@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: open_file_web.m 978 2014-05-26 14:57:32Z d.mercier $
 function open_file_web(path_file, varargin)
 %% Function to open a picture or an html file in a browser
 % path_file : path of the file to open

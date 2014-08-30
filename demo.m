@@ -1,10 +1,15 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: demo.m 1265 2014-08-21 16:15:00Z d.mercier $
 function gui_handle = demo
 %% Function to create the main window of the GUI (to select map, bicrystal or meshing interface)
 %% Initialization
 format compact;
 tabularasa;
+
+%% Initialization
+if isempty(getenv('SLIP_TRANSFER_TBX_ROOT')) == 1
+    errordlg('Run the path_management.m script !', 'File Error');
+    return
+end
 
 % Check if MTEX is installed
 gui.flag.installation_mtex = MTEX_check_install;
@@ -23,7 +28,7 @@ WW = 0.20 * scrsize(3); % Width
 WH = 0.45 * scrsize(4); % Height
 
 %% Main Window Configuration
-gui.handles.MainWindow_title = ['Main Menu', ' (',mfilename,'.m)', ' - version 1.0'];
+gui.handles.MainWindow_title = ['Main Menu', ' (',mfilename,'.m)', ' - version_', num2str(gui.config_Matlab.version_toolbox)];
 gui.handles.MainWindow = figure('Name', gui.handles.MainWindow_title,...
     'NumberTitle', 'off',...
     'PaperUnits', get(0,'defaultfigurePaperUnits'),...

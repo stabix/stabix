@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: interface_map_load_YAML_config_file.m 1230 2014-08-14 11:37:09Z d.mercier $
 function config_map = interface_map_load_YAML_config_file
 %% Importation of data from YAML config file (samples, paths...)
 % See in http://code.google.com/p/yamlmatlab/

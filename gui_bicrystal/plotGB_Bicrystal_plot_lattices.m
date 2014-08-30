@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plotGB_Bicrystal_plot_lattices.m 1201 2014-08-05 12:39:38Z d.mercier $
 function [shiftXYZA, shiftXYZB, ucgrA, ucgrB, arrow_grA, arrow_grB] = plotGB_Bicrystal_plot_lattices(slipA, slipB, no_slip)
 %% Function to plot the lattice cells for both grains
 % slipA: indice of slip to plot in unit cell for grainA

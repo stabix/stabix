@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: set_positive_values_txtbox.m 978 2014-05-26 14:57:32Z d.mercier $
 function set_positive_values_txtbox (ui_txtbox, def_str)
 %% Function used to set positive values in case of missing parameters
 % uitxtbox : name of the handle of the edit text box

@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: interface_map_setmap_TSL_data.m 1203 2014-08-05 13:07:41Z d.mercier $
 function interface_map_setmap_TSL_data
 %% Function used to set the map interface
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de

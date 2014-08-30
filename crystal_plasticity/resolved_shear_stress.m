@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: resolved_shear_stress.m 1221 2014-08-12 08:23:37Z d.mercier $
 function tau = resolved_shear_stress(eulers, d, n, T, testFlag, varargin)
 %% Function used to calculate the resolved shear stress
 % From C.N. Reid," Deformation Geometry for Materials Scientists, Pergamon Press, Oxford, United Kingdom, 1973 (p.115-133).

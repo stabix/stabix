@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: femproc_indentation_setting_SX.m 1255 2014-08-20 19:00:11Z d.mercier $
 function femproc_indentation_setting_SX
 %% Function to set SX indentation inputs (tip radius, indentation depth...) and plot of meshing
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
@@ -225,21 +224,21 @@ axis tight; % Axis tight to the sample
 axis equal; % Axis aspect ratio
 view(0,0); % X-Z view
 
-if isfield(gui_SX, 'config_map')
-    if isfield(gui_SX.config_map, 'unit_string')
-        xlabel_str = strcat('x axis_', gui_SX.config_map.unit_string);
-        zlabel_str = strcat('z axis_', gui_SX.config_map.unit_string);
-    end
-    xlabel_str = 'x axis';
-    ylabel_str = 'y axis';
-    zlabel_str = 'z axis';
-else
-    xlabel_str = 'x axis';
-    zlabel_str = 'z axis';
-end
-
-xlabel(xlabel_str);
-zlabel(zlabel_str);
+%if isfield(gui_SX, 'config_map')
+%    if isfield(gui_SX.config_map, 'unit_string')
+%        xlabel_str = strcat('x axis_', gui_SX.config_map.unit_string);
+%        zlabel_str = strcat('z axis_', gui_SX.config_map.unit_string);
+%    end
+%    xlabel_str = 'x axis';
+%    ylabel_str = 'y axis';
+%    zlabel_str = 'z axis';
+%else
+%    xlabel_str = 'x axis';
+%    zlabel_str = 'z axis';
+%end
+%
+%xlabel(xlabel_str);
+%zlabel(zlabel_str);
 
 %% Calculation of the number of elements
 guidata(gcf, gui_SX);

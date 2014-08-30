@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: femproc_load_YAML_CPFEM_config_file.m 1230 2014-08-14 11:37:09Z d.mercier $
 function femproc_load_YAML_CPFEM_config_file(YAML_CPFEM_config_file_2_import, interface)
 %% Function to import YAML CPFEM config. file file
 % YAML_CPFEM_config_file_2_import : Name of YAML CPFEM config. to import

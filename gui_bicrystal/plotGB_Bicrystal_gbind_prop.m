@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: plotGB_Bicrystal_gbind_prop.m 1201 2014-08-05 12:39:38Z d.mercier $
 function [hprop, valprop] = plotGB_Bicrystal_gbind_prop(prop_str, prop_val, pos, callback, varargin)
 %% Function to create txt boxes and editable txt boxes
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de

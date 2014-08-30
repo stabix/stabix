@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: femproc_load_YAML_BX_config_file.m 1230 2014-08-14 11:37:09Z d.mercier $
 function femproc_load_YAML_BX_config_file(YAML_GB_config_file_2_import, interface, varargin)
 %% Function to import YAML Bicrystal config. file
 % YAML_GB_config_file_2_import : Name of YAML GB config. to import

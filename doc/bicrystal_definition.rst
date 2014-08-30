@@ -9,12 +9,12 @@ A bicrystal is formed by two adjacent crystals separated by a grain boundary.
 
 The rotation between the two crystals is defined by the rotation angle :math:`\omega` and the rotation axis common to both crystals :math:`[uvw]`.
 
-Using orientation matrix of both crystals obtained by EBSD measurements, the intragranular misorientation or disorientation matrix :math:`(IGM)` or :math:`(IGD)` is calculated [#RandleEngler_2000]_ and [#Morawiec_2004]_ :
+Using orientation matrix of both crystals obtained by EBSD measurements, the misorientation or disorientation matrix :math:`(\Delta g)` or :math:`(\Delta g_d)` is calculated [#RandleEngler_2000]_ and [#Morawiec_2004]_ :
 
-  .. math:: IGM = g_{B}g_{A}^{-1} = g_{A}g_{B}^{-1}
+  .. math:: \Delta g = g_{B}g_{A}^{-1} = g_{A}g_{B}^{-1}
         :label: misorientation_matrix
         
-  .. math:: IGD = (g_{B}*CS)(CS^{-1}*g_{A}^{-1}) = (g_{A}*CS)(CS^{-1}*g_{B}^{-1})
+  .. math:: \Delta g_d = (g_{B}*CS)(CS^{-1}*g_{A}^{-1}) = (g_{A}*CS)(CS^{-1}*g_{B}^{-1})
         :label: disorientation
         
 Disorientation describes the misorientation with the smallest possible rotation angle and :math:`CS` denotes one of the symmetry operators for the material [#Kocks_2000]_.
@@ -38,15 +38,15 @@ The Matlab function used to calculate the orientation matrix from Euler angles i
 
 Ande the Matlab function used to calculate Euler angles from the orientation matrix is: `g2eulers.m <../../../crystallo/g2eulers.m>`_
         
-Then, from this misorientation matrix (:math:`IGM`), the rotation angle (:math:`\omega`) and the rotation axis :math:`[u, v, w]` can be obtained by the following equations :
+Then, from this misorientation matrix (:math:`\Delta g`), the rotation angle (:math:`\omega`) and the rotation axis :math:`[u, v, w]` can be obtained by the following equations :
   
-  .. math:: \omega = \cos^{-1}((tr(IGM)-1)/2)
+  .. math:: \omega = \cos^{-1}((tr(\Delta g)-1)/2)
         :label: misorientation_angle
         
   .. math:: 
-            u = IGM_{23} - IGM_{32} \\
-            v = IGM_{31} - IGM_{13} \\
-            w = IGM_{12} - IGM_{21}
+            u = \Delta g_{23} - \Delta g_{32} \\
+            v = \Delta g_{31} - \Delta g_{13} \\
+            w = \Delta g_{12} - \Delta g_{21}
         :label: misorientation_axis
         
 The Matlab function used to calculate the misorientation angle is: `misorientation.m <../../../crystallo/misorientation.m>`_

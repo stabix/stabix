@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: generalized_schmid_factor.m 1168 2014-07-28 12:55:36Z d.mercier $
 function test_GSF_RSS(eulers, d, n, T, testFlag, varargin)
 %% Function used to test/compare "Generalized Schmid Factor" and "Resolved Shear Stress"
 % eulers: Bunge Euler angles in degrees

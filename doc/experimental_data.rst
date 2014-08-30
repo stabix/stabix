@@ -89,3 +89,5 @@ Errors can be introduced during files exportation from TSL
 
 - "Reconstructed Boundary File" |rarr| x-axis and y-axis not corrects…
    |rarr| y coordinates is multiplied by -1 when file is imported via the GUI.
+
+All of these issues are taken into account and corrected wautomatically hen user is loading his data via the EBSD map GUI.

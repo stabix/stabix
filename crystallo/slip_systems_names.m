@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: slip_systems_names.m 1198 2014-08-05 09:13:00Z d.mercier $
 function list = slip_systems_names(lattice_type, varargin)
 %% Function used to set slip systems lists for popup menus in the GUI
 % lattice_type = hcp, bcc or fcc

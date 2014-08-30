@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: vis_hex.m 1198 2014-08-05 09:13:00Z d.mercier $
 function hPatch = vis_hex(eulers, slip, shiftXYZ, szFac, plotAxes, fast, numph, line_width, varargin)
 %% Visualization of an hexagonal unit cell in a given orientation
 % eulers: Bunge Euler angles in degrees

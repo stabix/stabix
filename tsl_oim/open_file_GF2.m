@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: open_file_GF2.m 1228 2014-08-13 14:54:04Z d.mercier $
 function open_file_GF2
 %% Function used to open Grain File Type 2 (from TSL-OIM)
 %% Grain File Type 2

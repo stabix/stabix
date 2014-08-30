@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: load_YAML_config_file.m 1251 2014-08-20 18:12:08Z d.mercier $
 function config_Matlab = load_YAML_config_file
 %% Importation of data from YAML config file (Matlab settings)
 % See in http://code.google.com/p/yamlmatlab/
@@ -14,7 +13,7 @@ end
 configYAML = sprintf('config_Matlab_%s.yaml', username);
 
 if exist(configYAML, 'file') == 0
-    config_Matlab.matlab_opengl = 'autoselect';
+    config_Matlab = ReadYaml('config_Matlab_example.yaml');
 else
     config_Matlab = ReadYaml(configYAML);
 end

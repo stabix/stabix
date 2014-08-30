@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: femproc_set_title_data.m 1202 2014-08-05 12:58:13Z d.mercier $
 function [Titlegbdata, Titlegbdatacompl] = femproc_set_title_data(config_map, GB)
 %% Script to set the title of data and files produced for CPFEM
 % config_map :Configuration from the EBSD map GUI (sample, etc...)

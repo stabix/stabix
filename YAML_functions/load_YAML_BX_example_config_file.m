@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: load_YAML_BX_example_config_file.m 1230 2014-08-14 11:37:09Z d.mercier $
 function GB = load_YAML_BX_example_config_file(GB_YAML_filename)
 %% Script to import YAML file and load data for mesh generation
 % GB_YAML_filename: Name of the YAML file containing GB data...

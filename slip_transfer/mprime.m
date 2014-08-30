@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: mprime.m 1224 2014-08-12 12:24:13Z d.mercier $
 function mp = mprime(n1, d1, n2, d2, varargin)
 %% Function used to calculate the geometric compatibility parameter, m',
 % after Luster & Morris 1995 MetallMaterTrans 26A 1745-1476

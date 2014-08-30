@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: open_file_browser.m 1204 2014-08-05 13:29:53Z d.mercier $
 function open_file_browser(loc, varargin)
 %% Function to open default file browser
 % http://stackoverflow.com/questions/16808965/how-to-open-a-directory-in-the-default-file-manager-from-matlab

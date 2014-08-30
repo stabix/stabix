@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: A_femproc_windows_indentation_setting_BX.m 1267 2014-08-22 11:19:07Z d.mercier $
 function gui_handle = A_femproc_windows_indentation_setting_BX(gui_bicrystal, varargin) %'A_femproc_windows_indentation_setting_BX(0, guidata(gcf))');
 %% Setting of indentation inputs (tip radius, indentation depth...) + setting of the mesh for a
 % bicrystal indentation experiment.
@@ -7,10 +6,19 @@ function gui_handle = A_femproc_windows_indentation_setting_BX(gui_bicrystal, va
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
+%% Initialization
+if isempty(getenv('SLIP_TRANSFER_TBX_ROOT')) == 1
+    errordlg('Run the path_management.m script !', 'File Error');
+    return
+end
+
+%% Set Matlab
+gui.config_Matlab = load_YAML_config_file;
+
 %% Window Coordinates Configuration
-scrsize = screenSize;   % Get screen size
-WX = 0.58 * scrsize(3); % X Position (bottom)
-WY = 0.20 * scrsize(4);  % Y Position (left)
+scrsize = screenSize;    % Get screen size
+WX = 0.58 * scrsize(3);  % X Position (bottom)
+WY = 0.30 * scrsize(4);  % Y Position (left)
 WW = 0.40 * scrsize(3);  % Width
 WH = 0.60 * scrsize(4);  % Height
 
@@ -37,7 +45,7 @@ if nargin == 0
     gui_BX = guidata(gcf); guidata(gcf, gui_BX);
     gui_BX.GB.active_data = 'BX';
     gui_BX.GB.activeGrain = gui_BX.GB.GrainA;
-    gui_BX.handles.gui_BX_title = strcat('Setting of indentation for random bicrystal', ' - version 1.0');
+    gui_BX.handles.gui_BX_title = strcat('Setting of indentation for random bicrystal', ' - version_', num2str(gui.config_Matlab.version_toolbox));
     
 else
     gui_BX.flag           = gui_bicrystal.flag;
@@ -45,7 +53,7 @@ else
     gui_BX.config_Matlab  = gui_bicrystal.config_Matlab;
     gui_BX.GB             = gui_bicrystal.GB;
     gui_BX.GB.active_data = 'BX';
-    gui_BX.handles.gui_BX_title = strcat('Setting of indentation for bicrystal n°', num2str(gui_BX.GB.GB_Number), ' - version 1.0');
+    gui_BX.handles.gui_BX_title = strcat('Setting of indentation for bicrystal n°', num2str(gui_BX.GB.GB_Number), ' - version_', num2str(gui.config_Matlab.version_toolbox));
 end
 guidata(gcf, gui_BX);
 

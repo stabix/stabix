@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: interface_map_plot_coordsys.m 1203 2014-08-05 13:07:41Z d.mercier $
 function XYZtxt = interface_map_plot_coordsys(CCM, scale_factor, shiftXYZ, varargin)
 %% Function used to set the coordinates system for the map interface
 % CCM : Coordinate Convention Matrix
