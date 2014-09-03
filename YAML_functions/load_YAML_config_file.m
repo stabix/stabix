@@ -4,18 +4,12 @@ function config_Matlab = load_YAML_config_file
 % See in http://code.google.com/p/yamlmatlab/
 % author : d.mercier@mpie.de
 
-if ismac
-    username = getenv('USER');
-else
-    username = getenv('USERNAME');
-end
+configYAML = sprintf('config_Matlab.yaml');
 
-configYAML = sprintf('config_Matlab_%s.yaml', username);
-
-if exist(configYAML, 'file') == 0
-    config_Matlab = ReadYaml('config_Matlab_example.yaml');
-else
+if exist(configYAML, 'file') == 2
     config_Matlab = ReadYaml(configYAML);
+else
+    warndlg('Missing YAML configuration file for Matlab...');
 end
 
 %% Setting of OpenGL
@@ -34,6 +28,13 @@ if isfield(config_Matlab, 'matlab_opengl')
 elseif ~ismac
     opengl software;
     
+end
+
+%% Get username
+if ismac
+    username = getenv('USER');
+else
+    username = getenv('USERNAME');
 end
 
 config_Matlab.username = username;

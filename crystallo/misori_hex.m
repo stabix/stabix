@@ -1,5 +1,7 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 %% Function used to calculate misorientation between 2 HCP grains.
+% see the book "Introduction to Texture Analysis: Macrotexture, Microtexture and Orientation Mapping",
+% written by Randle and Engler (2000), p.27.
 
 % eulers1 : Euler angles of the 1st crystal in degrees
 % eulers2 : Euler angles of the 2nd crystal in degrees

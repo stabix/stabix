@@ -45,7 +45,7 @@ if strcmp(gui_BX.config_CPFEM.simulation_code, 'GENMAT') == 1
     copyfile(fnameA, gui_BX.path_config_file)
     phaseB = gui_BX.GB.Phase_B;
     if iscell(phaseB)
-        phaseB = phaseB{1}
+        phaseB = phaseB{1};
     end
     fnameB = fullfile(genmat_material_dir, genmat.material_fname.(phaseB));
     copyfile(fnameB, gui_BX.path_config_file)
