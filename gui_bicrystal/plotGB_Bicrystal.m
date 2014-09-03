@@ -90,9 +90,9 @@ if ~gui.flag.error
     %% Misorientation calculation
     if strcmp(gui.GB.Phase_A, gui.GB.Phase_B) == 1
         if gui.flag.installation_mtex == 1
-            orientation_grA = MTEX_setBX_orientation(gui.GB.Phase_A, gui.GB.ca_ratio_A(1), gui.GB.eulerA); guidata(gcf, gui);
-            orientation_grB = MTEX_setBX_orientation(gui.GB.Phase_B, gui.GB.ca_ratio_B(1), gui.GB.eulerB); guidata(gcf, gui);
-            gui.GB.misorientation  = MTEX_getBX_misorientation(orientation_grB, orientation_grA); guidata(gcf, gui);
+            gui.GB.orientation_grA = MTEX_setBX_orientation(gui.GB.Phase_A, gui.GB.ca_ratio_A(1), gui.GB.eulerA); guidata(gcf, gui);
+            gui.GB.orientation_grB = MTEX_setBX_orientation(gui.GB.Phase_B, gui.GB.ca_ratio_B(1), gui.GB.eulerB); guidata(gcf, gui);
+            gui.GB.misorientation  = MTEX_getBX_misorientation(gui.GB.orientation_grB, gui.GB.orientation_grA); guidata(gcf, gui);
         elseif gui.flag.installation_mtex == 0
             gui.GB.misorientation  = misorientation(gui.GB.eulerA, gui.GB.eulerB, gui.GB.Phase_A, gui.GB.Phase_B); guidata(gcf, gui);
         end

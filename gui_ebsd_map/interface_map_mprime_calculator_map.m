@@ -388,14 +388,17 @@ else
     end
 end
 
-gui.grains    = grains;
-gui.flag      = flag;
-gui.grcen     = grcen;
-gui.results   = Results;
-gui.calculations.vect  = vect;
-gui.calculations.vect1 = vect1;
-gui.calculations.vect2 = vect2;
-
+if flag.flag_lattice == 1
+    gui.grains    = grains;
+    gui.flag      = flag;
+    gui.grcen     = grcen;
+    gui.results   = Results;
+    gui.calculations.vect  = vect;
+    gui.calculations.vect1 = vect1;
+    gui.calculations.vect2 = vect2;
+else
+    gui.flag      = flag;
+end
 guidata(gcf, gui);
 
 end

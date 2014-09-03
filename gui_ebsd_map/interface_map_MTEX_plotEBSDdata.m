@@ -28,9 +28,9 @@ hold on;
 plot(grains, 'property', 'phase');
 
 %% Plot Inverse Pole Figure
-v = vector3d(0, 0, 1);
+v = vector3d(0, 0, 1); %zvector
 figure('Name', 'IPF');
 hold on;
-plotipdf(ebsd, v);
+plotIPDF(ebsd, v);
 
 end

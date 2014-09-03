@@ -1,3 +1,5 @@
+# YAML configuration file to set materials and samples
+# Authors : D. Mercier and C. Zambaldi
 # Be careful : only absolute paths and put a space after the comma in a list (e.g. [x, y, z]) !!!
 
 #Sample and Material definition

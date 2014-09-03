@@ -1,3 +1,5 @@
+# YAML configuration file to set material properties for CPFEM
+# Authors : D. Mercier and C. Zambaldi
 # Be careful : only absolute paths and put a space after the comma in a list (e.g. [x, y, z]) !!!
 # material.config for DAMASK (cp-Ti (alpha))
 

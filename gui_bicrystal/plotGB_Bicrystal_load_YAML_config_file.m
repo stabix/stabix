@@ -24,7 +24,7 @@ else
     
     %% Fill missing fields
     
-    gui.GB.YAMLfilename = filename;
+    gui.GB.YAML.filename = filename;
     gui.GB_YAML.filenameGF2_BC = 'user_inputs';
     gui.GB_YAML.filenameRB_BC = 'user_inputs';
     gui.GB_YAML.pathnameGF2_BC = pathname;

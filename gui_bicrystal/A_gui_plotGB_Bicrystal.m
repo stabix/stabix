@@ -122,8 +122,8 @@ gui.handles.pmchoicecase = uicontrol('Parent', gui.handles.Bicrystal_interface,.
 [gui.handles.txtSlipB, gui.handles.getSlipB] = plotGB_Bicrystal_slip_def({'Slip_B'}, '1', [0.04 0.74 0.07 0.025], 'plotGB_Bicrystal');
 
 %% Setting of Grains A and B (material, structure, slip systems...)
-[gui.handles.MatA, gui.handles.pmMatA, gui.handles.StructA, gui.handles.pmStructA, gui.handles.listslipsA, gui.handles.pmlistslipsA] = interface_map_material('#A',[0.4 0.92 0.15 0.02], 'plotGB_Bicrystal_window_list_slips; plotGB_Bicrystal', 'plotGB_Bicrystal');
-[gui.handles.MatB, gui.handles.pmMatB, gui.handles.StructB, gui.handles.pmStructB, gui.handles.listslipsB, gui.handles.pmlistslipsB] = interface_map_material('#B',[0.58 0.92 0.15 0.02], 'plotGB_Bicrystal_window_list_slips; plotGB_Bicrystal', 'plotGB_Bicrystal');
+[gui.handles.MatA, gui.handles.pmMatA, gui.handles.StructA, gui.handles.pmStructA, gui.handles.listslipsA, gui.handles.pmlistslipsA] = interface_map_material('#A',[0.4 0.92 0.15 0.02], 'plotGB_Bicrystal_window_list_slips', 'plotGB_Bicrystal');
+[gui.handles.MatB, gui.handles.pmMatB, gui.handles.StructB, gui.handles.pmStructB, gui.handles.listslipsB, gui.handles.pmlistslipsB] = interface_map_material('#B',[0.58 0.92 0.15 0.02], 'plotGB_Bicrystal_window_list_slips', 'plotGB_Bicrystal');
 
 %% Legend of a bicrystal (colors used for slips plotted inside unit cells for each grain)
 gui.handles.cblegend = uicontrol('Parent', gui.handles.Bicrystal_interface,...

@@ -20,7 +20,7 @@ if gui.flag.installation_mtex == 1
     figure('Name', 'IPF');
     hold on;
     ori_bicrystal = [gui.GB.orientation_grA; gui.GB.orientation_grB];
-    plotipdf(ori_bicrystal, zvector);
+    plotIPDF(ori_bicrystal, zvector);
 %     %% Plot PF for the bicrystal
 %     figure('Name','IPF'); hold on;
 %     ori_bicrystal = [gui_data.GB.orientation_grA;gui_data.GB.orientation_grB];
