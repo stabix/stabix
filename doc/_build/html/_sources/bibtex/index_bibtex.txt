@@ -1,0 +1,41 @@
+﻿.. MWN2_matlab documentation master file, created by
+   sphinx-quickstart on Fri Apr 04 20:28:37 2014.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+   
+MWN2 Matlab tools
+=======================================
+The MATLAB\ :sup:`TM` \ toolbox **STABiX** (Slip Transmission Analysis in Bi-Crystal) provides a unique and simple way to analyse slip transmission in a bicrystal.
+A Graphical User Interfaces (GUI) is implemented in order to import EBSD results, and to represent and quantify grain boundary slip resistance.
+Key parameters, such as the number of phases, crystal structure (fcc, bcc, or hcp), and slip families for calculations, are set by the user.
+With this information, grain boundaries are plotted and color coded according to the :math:`m'` factor :cite:`luster_compatibility_1995` that quantifies the geometrical
+compatibility of the slip planes normals and Burgers vectors of incoming and outgoing slip systems.
+Other potential functions that could assess the potential to develop damage are implemented (e.g. residual Burgers vector
+:cite:`marcinkowski_dislocation_1970,bollmann_crystal_1970`, :math:`N` factor :cite:`livingston_multiple_1957`, critical resolved shear stress :cite:`bieler_role_2009`, misorientation...).
+Furthermore, the GUI provides the possibility to plot and analyze the case of a bicrystal, and to model spherical indentation performed
+close to grain boundaries (i.e. quasi bicrystal deformation).
+All of the data linked to the bicrystal indentation (indenter properties, indentation settings, grain boundary inclination, etc.) are collected through the GUI.
+A Python file can be then exported in order to carry out a fully automatic crystal plasticity finite element simulation of a bicrystal 
+indentation using one of the constitutive models available in DAMASK :cite:`zambaldi_orientation_2012,roters_damask:_2012`.
+In this way the stress and strain fields close to the grain boundary can be rapidly assessed.
+
+Keywords
+==================
+
+MATLAB\ :sup:`TM` \ toolbox; Graphical User Interfaces (GUI); EBSD; slip transmission; bicrystal; indentation; grain boundaries; crystal plasticity finite element modelling.
+
+References
+==================
+
+.. bibliography:: refs.bib
+    :all:
+        
+Contents
+==================
+
+.. toctree::
+   :maxdepth: 10
+
+Contacts
+==================
+:Authors: `David Mercier <d.mercier@mpie.de>`_, `Claudio Zambaldi <zambaldi@mpie.de>`_ and `Thomas R. Bieler <bieler@egr.msu.edu>`_

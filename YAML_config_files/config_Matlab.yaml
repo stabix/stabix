@@ -3,7 +3,7 @@
 # Be careful : only absolute paths and put a space after the comma in a list (e.g. [x, y, z]) !!!
 
 # Matlab toolbox version
-version_toolbox: '1.1'
+version_toolbox: '1.2'
 
 # setting of opengl, e.g. 'software' or 'hardware' (optional)
 matlab_opengl: software

@@ -1,0 +1,282 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Motivation of this Work &mdash; MWN2_matlab 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="top" title="MWN2_matlab 1.0.0 documentation" href="index.html" />
+    <link rel="next" title="Getting started" href="getting_started.html" />
+    <link rel="prev" title="Slip Transmission Matlab toolbox" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="getting_started.html" title="Getting started"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Slip Transmission Matlab toolbox"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">MWN2_matlab 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="motivation-of-this-work">
+<h1>Motivation of this Work<a class="headerlink" href="#motivation-of-this-work" title="Permalink to this headline">¶</a></h1>
+<p>The micromechanical behavior of grain boundaries is one of the key components in the understanding of heterogeneous deformation of metals <a class="footnote-reference" href="#bieler-2014" id="id1">[1]</a>.
+To investigate the nature of the strengthening effect of grain boundaries, slip transmission across interfaces has been investigated through
+bicrystal deformation experiments during the sixty past decades <a class="footnote-reference" href="#aust-1968" id="id2">[2]</a>, <a class="footnote-reference" href="#livingstonchalmers-1957" id="id3">[3]</a>, <a class="footnote-reference" href="#shen-1986" id="id4">[4]</a>, <a class="footnote-reference" href="#shen-1988" id="id5">[5]</a>, <a class="footnote-reference" href="#lustermorris-1995" id="id6">[6]</a>,
+<a class="footnote-reference" href="#marcinkowski-1970" id="id7">[7]</a>, <a class="footnote-reference" href="#bollmann-1970" id="id8">[8]</a>, <a class="footnote-reference" href="#limraj-1985" id="id9">[9]</a>, <a class="footnote-reference" href="#lee-1989" id="id10">[10]</a>, <a class="footnote-reference" href="#lee-1990-2" id="id11">[11]</a>, <a class="footnote-reference" href="#clark-1992" id="id12">[12]</a>, <a class="footnote-reference" href="#abuzaid-2012" id="id13">[13]</a>, <a class="footnote-reference" href="#seal-2012" id="id14">[14]</a> and <a class="footnote-reference" href="#kacher-2014" id="id15">[15]</a>.
+Originally, interactions between dislocations and grain boundaries
+have been observed in the transmission electron microscope (TEM) after strain test or in situ <a class="footnote-reference" href="#shen-1986" id="id16">[4]</a>, <a class="footnote-reference" href="#shen-1988" id="id17">[5]</a> and <a class="footnote-reference" href="#kacher-2014" id="id18">[15]</a>. Some authors observed as
+well slip transmission during indentation tests performed close to grain boundaries <a class="footnote-reference" href="#wongan-2004" id="id19">[16]</a>, <a class="footnote-reference" href="#soer-2005" id="id20">[17]</a>, <a class="footnote-reference" href="#britton-2009" id="id21">[18]</a>, <a class="footnote-reference" href="#pathak-2012" id="id22">[19]</a> and <a class="footnote-reference" href="#lawrence-2014" id="id23">[20]</a>.</p>
+<p>To better understand the role played by the grain boundaries, we developed a Matlab Toolbox with Graphical User Interfaces (GUI),
+to analyze and to quantify the micromechanics of grain boundaries.
+This toolbox aims to link experimental results to crystal plasticity finite element (CPFE) simulations.</p>
+<div class="section" id="strategy">
+<h2>Strategy<a class="headerlink" href="#strategy" title="Permalink to this headline">¶</a></h2>
+<p>Comparison of topographies of indentations at grain boundaries to simulated indentations as predicted by 3D CPFE modelling.</p>
+<p>The goals of this research are:</p>
+<p>1 - Carry out indentation within the interiors of large grains of alpha-titanium to effectively collect single crystal data coupled with extensive
+(three-dimensional) characterization of the resulting plastic defect fields surrounding the indents <a class="footnote-reference" href="#zambaldi-2012" id="id24">[21]</a>. By correlating with models of the indentation,
+a precise constitutive description of the anisotropic plasticity of single-crystalline titanium shall be developed <a class="footnote-reference" href="#roters-2010" id="id25">[22]</a> and <a class="footnote-reference" href="#damask" id="id26">[23]</a>.</p>
+<p>2 - Extension of this methodology to indentations close to grain boundaries, i.e. quasi bi-crystal deformation.</p>
+<p>3 - Comparison of the measured characteristics of indentations at grain boundaries to simulated indentations as predicted by a constitutive model
+calibrated using the single crystal indentations.</p>
+<p>4 - Based on this qualitative understanding, a grain boundary transmissivity description will be
+developed validated against the collected indent characteristics.</p>
+<table class="docutils footnote" frame="void" id="bieler-2014" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://dx.doi.org/10.1016/j.cossms.2014.05.003">T.R. Bieler et al., &#8220;Grain boundaries and interfaces in slip transfer.&#8221;, Current Opinion in Solid State and Materials Science (2014), in press.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="aust-1968" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://dx.doi.org/10.1016/0001-6160(68)90014-X">K.T. Aust et al., &#8220;Solute induced hardening near grain boundaries in zone refined metals.&#8221;, Acta Metallurgica (1968), 16(3), pp. 291-302.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="livingstonchalmers-1957" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="http://dx.doi.org/10.1016/0001-6160(57)90044-5">J.D. Livingston and B. Chalmers, &#8220;Multiple slip in bicrystal deformation.&#8221;, Acta Metallurgica (1957), 5(6), pp. 322-327.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="shen-1986" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[4]</td><td><em>(<a class="fn-backref" href="#id4">1</a>, <a class="fn-backref" href="#id16">2</a>)</em> <a class="reference external" href="http://dx.doi.org/10.1016/0036-9748(86)90467-9">Z. Shen et al., &#8220;Dislocation pile-up and grain boundary interactions in 304 stainless steel.&#8221;, Scripta Metallurgica (1986), 20(6), pp. 921–926.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="shen-1988" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[5]</td><td><em>(<a class="fn-backref" href="#id5">1</a>, <a class="fn-backref" href="#id17">2</a>)</em> <a class="reference external" href="http://dx.doi.org/10.1016/0001-6160(88)90058-2">Z. Shen et al., &#8220;Dislocation and grain boundary interactions in metals.&#8221;, Acta Metallurgica (1988), 36(12), pp. 3231–3242.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="lustermorris-1995" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[6]</a></td><td><a class="reference external" href="http://dx.doi.org/10.1007/BF02670762">J. Luster and M.A. Morris, &#8220;Compatibility of deformation in two-phase Ti-Al alloys: Dependence on microstructure and orientation relationships.&#8221;, Metal. and Mat. Trans. A (1995), 26(7), pp. 1745-1756.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="marcinkowski-1970" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[7]</a></td><td><a class="reference external" href="http://dx.doi.org/10.1007/BF03037870">M.J. Marcinkowski and W.F. Tseng, &#8220;Dislocation behavior at tilt boundaries of infinite extent.&#8221;, Metal. Trans. (1970), 1(12), pp. 3397-3401.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="bollmann-1970" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[8]</a></td><td><a class="reference external" href="http://dx.doi.org/10.1007/978-3-642-49173-3">W. Bollmann, &#8220;Crystal Defects and Crystalline Interfaces&#8221;, Springer-Verlag (1970)</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="limraj-1985" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[9]</a></td><td><a class="reference external" href="http://dx.doi.org/10.1016/0001-6160(85)90057-4">L.C. Lim and R. Raj, &#8220;Continuity of slip screw and mixed crystal dislocations across bicrystals of nickel at 573K.&#8221;, Acta Metallurgica (1985), 33, pp. 1577.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="lee-1989" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id10">[10]</a></td><td><a class="reference external" href="http://dx.doi.org/10.1016/0036-9748(89)90534-6">T.C. Lee et al., &#8220;Prediction of slip transfer mechanisms across grain boundaries.&#8221;, Scripta Metallurgica, (1989), 23(5), pp. 799–803.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="lee-1990-2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id11">[11]</a></td><td><a class="reference external" href="http://dx.doi.org/10.1007/BF02646988">T.C. Lee et al., &#8220;An In Situ transmission electron microscope deformation study of the slip transfer mechanisms in metals&#8221;, Metallurgical Transactions A (1990), 21(9), pp. 2437-2447.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="clark-1992" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id12">[12]</a></td><td><a class="reference external" href="http://dx.doi.org/10.1016/0956-716X(92)90173-C">W.A.T. Clark et al., &#8220;On the criteria for slip transmission across interfaces in polycrystals.&#8221;, Scripta Metallurgica et Materialia (1992), 26(2), pp. 203–206.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="abuzaid-2012" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id13">[13]</a></td><td><a class="reference external" href="http://dx.doi.org/10.1016/j.jmps.2012.02.001">W.Z. Abuzaid et al., &#8220;Slip transfer and plastic strain accumulation across grain boundaries in Hastelloy X.&#8221;, J. of the Mech. and Phys. of Sol. (2012), 60(6) ,pp. 1201–1220.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="seal-2012" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id14">[14]</a></td><td><a class="reference external" href="http://dx.doi.org/10.1016/j.msea.2012.04.114">J.R. Seal et al., &#8220;Analysis of slip transfer and deformation behavior across the α/β interface in Ti–5Al–2.5Sn (wt.%) with an equiaxed microstructure.&#8221;, Mater. Sc. and Eng.: A (2012), 552, pp. 61-68.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="kacher-2014" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[15]</td><td><em>(<a class="fn-backref" href="#id15">1</a>, <a class="fn-backref" href="#id18">2</a>)</em> <a class="reference external" href="http://dx.doi.org/10.1016/j.cossms.2014.05.004">J. Kacher et al., &#8220;Dislocation interactions with grain boundaries.&#8221;, Current Opinion in Solid State and Materials Science (2014), in press.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="wongan-2004" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id19">[16]</a></td><td><a class="reference external" href="http://dx.doi.org/10.1557/jmr.2004.19.1.189">P.C. Wo and A.H.W. Ngan, &#8220;Investigation of slip transmission behavior across grain boundaries in polycrystalline Ni3Al using nanoindentation.&#8221;, J. Mater. Res. (2004), 19(1), pp. 189-201.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="soer-2005" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id20">[17]</a></td><td><a class="reference external" href="http://dx.doi.org/10.1016/j.actamat.2005.07.001">W.A. Soer et al. ,&#8221;Incipient plasticity during nanoindentation at grain boundaries in body-centered cubic metals.&#8221;, Acta Materialia (2005), 53, pp. 4665–4676.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="britton-2009" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id21">[18]</a></td><td><a class="reference external" href="http://dx.doi.org/10.1557/jmr.2009.0088">T.B. Britton et al., &#8220;Nanoindentation study of slip transfer phenomenon at grain boundaries.&#8221;, J. Mater. Res., 2009, 24(3), pp. 607-615.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="pathak-2012" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id22">[19]</a></td><td><a class="reference external" href="http://dx.doi.org/10.1007/s10853-011-5859-z">S. Patthak et al., &#8220;Studying grain boundary regions in polycrystalline materials using spherical nano-indentation and orientation imaging microscopy.&#8221;, J. Mater. Sci. (2012), 47, pp. 815–823.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="lawrence-2014" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id23">[20]</a></td><td><a class="reference external" href="http://dx.doi.org/10.1007/s11837-014-1062-4">S.K. Lawrence et al., &#8220;Grain Boundary Contributions to Hydrogen-Affected Plasticity in Ni-201.&#8221;, The Journal of The Minerals, Metals &amp; Materials Society (2014), 66(8), pp. 1383-1389.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="zambaldi-2012" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id24">[21]</a></td><td><a class="reference external" href="http://dx.doi.org/10.1557/jmr.2011.334">C. Zambaldi et al., &#8220;Orientation informed nanoindentation of α-titanium: Indentation pileup in hexagonal metals deforming by prismatic slip&#8221;, J. Mater. Res. (2012), 27(01), pp. 356-367.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="roters-2010" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id25">[22]</a></td><td><a class="reference external" href="http://dx.doi.org/10.1016/j.actamat.2009.10.058">F. Roters et al., &#8220;Overview of constitutive laws, kinematics, homogenization and multiscale methods in crystal plasticity finite-element modeling: Theory, experiments, applications.&#8221;,  Acta Materialia (2010), 58(4), pp. 1152-1211.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="damask" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id26">[23]</a></td><td><a class="reference external" href="http://damask.mpie.de/">DAMASK — the Düsseldorf Advanced Material Simulation Kit</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Motivation of this Work</a><ul>
+<li><a class="reference internal" href="#strategy">Strategy</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Slip Transmission Matlab toolbox</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="getting_started.html"
+                        title="next chapter">Getting started</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/motivation.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="getting_started.html" title="Getting started"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Slip Transmission Matlab toolbox"
+             >previous</a> |</li>
+        <li><a href="index.html">MWN2_matlab 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, MPI fuer Eisenforschung, www.mpie.de.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

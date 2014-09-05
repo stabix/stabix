@@ -1,0 +1,204 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Bicrystal Definition &mdash; MWN2_matlab 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="top" title="MWN2_matlab 1.0.0 documentation" href="index.html" />
+    <link rel="next" title="Strain Transfer Across Grain Boundaries" href="slip_transmission_toolbox.html" />
+    <link rel="prev" title="Getting started" href="getting_started.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="slip_transmission_toolbox.html" title="Strain Transfer Across Grain Boundaries"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="getting_started.html" title="Getting started"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">MWN2_matlab 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="bicrystal-definition">
+<h1>Bicrystal Definition<a class="headerlink" href="#bicrystal-definition" title="Permalink to this headline">¶</a></h1>
+<p>A bicrystal is formed by two adjacent crystals separated by a grain boundary.</p>
+<dl class="docutils">
+<dt><strong>Five macroscopic degrees of freedom are required to characterize a grain boundary</strong> <a class="footnote-reference" href="#priester-2013" id="id1">[3]</a>, <a class="footnote-reference" href="#randle-2001" id="id2">[5]</a>, <a class="footnote-reference" href="#randle-2005" id="id3">[6]</a> and <a class="footnote-reference" href="#suttonballuffi-1995" id="id4">[7]</a> :</dt>
+<dd><ul class="first last simple">
+<li>3 for the rotation between the two crystals;</li>
+<li>2 for the orientation of the grain boundary plane defined by its normal <span class="math">\(n\)</span>.</li>
+</ul>
+</dd>
+</dl>
+<p>The rotation between the two crystals is defined by the rotation angle <span class="math">\(\omega\)</span> and the rotation axis common to both crystals <span class="math">\([uvw]\)</span>.</p>
+<p>Using orientation matrix of both crystals obtained by EBSD measurements, the misorientation or disorientation matrix <span class="math">\((\Delta g)\)</span> or <span class="math">\((\Delta g_d)\)</span> is calculated <a class="footnote-reference" href="#randleengler-2000" id="id5">[4]</a> and <a class="footnote-reference" href="#morawiec-2004" id="id6">[2]</a> :</p>
+<blockquote>
+<div><div class="math" id="equation-misorientation_matrix">
+<span class="eqno">(1)</span>\[\Delta g = g_{B}g_{A}^{-1} = g_{A}g_{B}^{-1}\]</div>
+<div class="math" id="equation-disorientation">
+<span class="eqno">(2)</span>\[\Delta g_d = (g_{B}*CS)(CS^{-1}*g_{A}^{-1}) = (g_{A}*CS)(CS^{-1}*g_{B}^{-1})\]</div>
+</div></blockquote>
+<p>Disorientation describes the misorientation with the smallest possible rotation angle and <span class="math">\(CS\)</span> denotes one of the symmetry operators for the material <a class="footnote-reference" href="#kocks-2000" id="id7">[1]</a>.</p>
+<p>The Matlab function used to set the symmetry operators is: <a class="reference external" href="../../../crystallo/sym_operators.m">sym_operators.m</a></p>
+<p>The orientation matrix <span class="math">\(g\)</span> of a crystal is calculated from the Euler angles (<span class="math">\(\phi_{1}\)</span>, <span class="math">\(\Phi\)</span>, <span class="math">\(\phi_{2}\)</span>) using the following equation :</p>
+<blockquote>
+<div><div class="math" id="equation-orientation_matrix">
+<span class="eqno">(3)</span>\[\begin{split}g =
+\begin{pmatrix}
+\cos(\phi_{1})\cos(\phi_{2})-\sin(\phi_{1})\sin(\phi_{2})\cos(\Phi)  &amp; \sin(\phi_{1})\cos(\phi_{2})+\cos(\phi_{1})\sin(\phi_{2})\cos(\Phi)  &amp; \sin(\phi_{2})\sin(\Phi) \\
+-\cos(\phi_{1})\sin(\phi_{2})-\sin(\phi_{1})\cos(\phi_{2})\cos(\Phi) &amp; -\sin(\phi_{1})\sin(\phi_{2})+\cos(\phi_{1})\cos(\phi_{2})\cos(\Phi) &amp; \cos(\phi_{2})\sin(\Phi) \\
+\sin(\phi_{1})\sin(\Phi)                                          &amp; -\cos(\phi_{1})\sin(\Phi)                                         &amp; \cos(\Phi) \\
+\end{pmatrix}\end{split}\]</div>
+</div></blockquote>
+<p>The orientation of a crystal (Euler angles) can be determined via electron backscatter diffraction (EBSD) measurement or via transmission electron microscopy (TEM).</p>
+<p>The Matlab function used to calculate the orientation matrix from Euler angles is: <a class="reference external" href="../../../crystallo/eulers2g.m">eulers2g.m</a></p>
+<p>Ande the Matlab function used to calculate Euler angles from the orientation matrix is: <a class="reference external" href="../../../crystallo/g2eulers.m">g2eulers.m</a></p>
+<p>Then, from this misorientation matrix (<span class="math">\(\Delta g\)</span>), the rotation angle (<span class="math">\(\omega\)</span>) and the rotation axis <span class="math">\([u, v, w]\)</span> can be obtained by the following equations :</p>
+<blockquote>
+<div><div class="math" id="equation-misorientation_angle">
+<span class="eqno">(4)</span>\[\omega = \cos^{-1}((tr(\Delta g)-1)/2)\]</div>
+<div class="math" id="equation-misorientation_axis">
+<span class="eqno">(5)</span>\[\begin{split}u = \Delta g_{23} - \Delta g_{32} \\
+    v = \Delta g_{31} - \Delta g_{13} \\
+    w = \Delta g_{12} - \Delta g_{21}\end{split}\]</div>
+</div></blockquote>
+<p>The Matlab function used to calculate the misorientation angle is: <a class="reference external" href="../../../crystallo/misorientation.m">misorientation.m</a></p>
+<p>The grain boundary plane normal <span class="math">\(n\)</span> can be determined knowing the grain boundary trace angle <span class="math">\(\alpha\)</span> and the grain boundary inclination <span class="math">\(\beta\)</span>.</p>
+<p>The grain boundary trace angle is obtained through the EBSD measurements (grain boundary endpoints coordinates) and the grain boundary inclination can be assessed
+by a serial polishing (chemical-mechanical polishing or FIB sectioning), either parallel or perpendicular to the surface of the sample.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/bicrystal.png"><img alt="_images/bicrystal.png" src="_images/bicrystal.png" style="width: 338.5px; height: 287.5px;" /></a>
+<p class="caption"><em>Figure 1 : Schematic of a bicrystal.</em></p>
+</div>
+<table class="docutils footnote" frame="void" id="kocks-2000" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[1]</a></td><td><a class="reference external" href="http://www.cambridge.org/gb/academic/subjects/engineering/materials-science/texture-and-anisotropy-preferred-orientations-polycrystals-and-their-effect-materials-properties">U.F. Kocks et al., &#8220;Texture and Anisotropy: Preferred Orientations in Polycrystals and Their Effect on Materials Properties.&#8221; Cambridge University Press (2000).</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="morawiec-2004" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[2]</a></td><td><a class="reference external" href="http://www.springer.com/materials/book/978-3-540-40734-8">A. Morawiec, &#8220;Orientations and Rotations: Computations in Crystallographic Textures.&#8221;, Springer, 2004.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="priester-2013" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[3]</a></td><td><a class="reference external" href="http://www.springer.com/materials/surfaces+interfaces/book/978-94-007-4968-9">L. Priester, &#8220;Grain Boundaries: From Theory to Engineering.&#8221;, Springer Series in Materials Science (2013).</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="randleengler-2000" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[4]</a></td><td><a class="reference external" href="http://www.crcpress.com/product/isbn/9781420063653">V. Randle and O. Engler, &#8220;Introduction to Texture Analysis: Macrotexture, Microtexture and Orientation Mapping.&#8221;, CRC Press (2000).</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="randle-2001" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[5]</a></td><td><a class="reference external" href="http://dx.doi.org/10.1016/S1359-6462(01)00975-7">V. Randle, &#8220;A methodology for grain boundary plane assessment by single-section trace analysis.&#8221;, Scripta Mater., 2001, 44, pp. 2789-2794.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="randle-2005" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[6]</a></td><td><a class="reference external" href="http://dx.doi.org/10.1111/j.1365-2818.2006.01575.x">V. Randle, &#8220;Five-parameter’ analysis of grain boundary networks by electron backscatter diffraction.&#8221;, J. Microscopy, 2005, 222, pp. 69-75.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="suttonballuffi-1995" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[7]</a></td><td><a class="reference external" href="http://ukcatalogue.oup.com/product/9780199211067.do">A.P. Sutton and R.W. Balluffi, &#8220;Interfaces in Crystalline Materials.&#8221;, OUP Oxford (1995).</a></td></tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="getting_started.html"
+                        title="previous chapter">Getting started</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="slip_transmission_toolbox.html"
+                        title="next chapter">Strain Transfer Across Grain Boundaries</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/bicrystal_definition.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="slip_transmission_toolbox.html" title="Strain Transfer Across Grain Boundaries"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="getting_started.html" title="Getting started"
+             >previous</a> |</li>
+        <li><a href="index.html">MWN2_matlab 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, MPI fuer Eisenforschung, www.mpie.de.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

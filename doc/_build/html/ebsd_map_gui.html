@@ -1,0 +1,177 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>EBSD map GUI &mdash; MWN2_matlab 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="top" title="MWN2_matlab 1.0.0 documentation" href="index.html" />
+    <link rel="next" title="Bicrystal GUI" href="bicrystal_gui.html" />
+    <link rel="prev" title="Experimental data" href="experimental_data.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="bicrystal_gui.html" title="Bicrystal GUI"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="experimental_data.html" title="Experimental data"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">MWN2_matlab 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="ebsd-map-gui">
+<h1>EBSD map GUI<a class="headerlink" href="#ebsd-map-gui" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div></div></blockquote>
+<p>This GUI allows to analyze quantitatively slip transmission across grain boundaries for an EBSD map.</p>
+<p>The Matlab function used to run the EBSD map GUI is: <a class="reference external" href="../../../gui_ebsd_map/A_gui_plotmap.m">A_gui_plotmap.m</a></p>
+<p>This includes:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#loading-smoothing-gbs"><em>Loading and Smoothing GBs segments</em></a></li>
+<li><a class="reference internal" href="#misorientation-angle"><em>Misorientation angle</em></a></li>
+<li><a class="reference internal" href="#mp-parameter"><em>m&#8217; parameter</em></a></li>
+<li><a class="reference internal" href="#residual-burgers-vector"><em>Residual Burgers vector</em></a></li>
+<li><a class="reference internal" href="#schmid-factor-slip-traces"><em>Schmid factor and slip trace analysis</em></a></li>
+</ul>
+<div class="section" id="loading-and-smoothing-gbs-segments">
+<span id="loading-smoothing-gbs"></span><h2>Loading and Smoothing GBs segments<a class="headerlink" href="#loading-and-smoothing-gbs-segments" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/EBSD_map_loading_smoothing.png"><img alt="_images/EBSD_map_loading_smoothing.png" src="_images/EBSD_map_loading_smoothing.png" style="width: 623.6px; height: 236.4px;" /></a>
+<p class="caption"><em>Figure 2 : a) Screenshot of the EBSD map GUI with an EBSD map of a Ti alloy before smoothing and b) after smoothing</em></p>
+</div>
+</div>
+<div class="section" id="misorientation-angle">
+<span id="id1"></span><h2>Misorientation angle<a class="headerlink" href="#misorientation-angle" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/EBSD_map_misor.png"><img alt="_images/EBSD_map_misor.png" src="_images/EBSD_map_misor.png" style="width: 444.4px; height: 352.8px;" /></a>
+<p class="caption"><em>Figure 3 : Screenshot of the EBSD map GUI with an EBSD map of a Ti alloy (GBs color-coded in function of the maximum misorientation angle value)</em></p>
+</div>
+</div>
+<div class="section" id="m-parameter">
+<span id="mp-parameter"></span><h2>m&#8217; parameter<a class="headerlink" href="#m-parameter" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/EBSD_map_max_mprime.png"><img alt="_images/EBSD_map_max_mprime.png" src="_images/EBSD_map_max_mprime.png" style="width: 444.4px; height: 352.8px;" /></a>
+<p class="caption"><em>Figure 4 : Screenshot of the EBSD map GUI with an EBSD map of a Ti alloy (GBs color-coded in function of the maximum m&#8217; value)</em></p>
+</div>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/EBSD_map_mprime_GSF.png"><img alt="_images/EBSD_map_mprime_GSF.png" src="_images/EBSD_map_mprime_GSF.png" style="width: 444.4px; height: 352.8px;" /></a>
+<p class="caption"><em>Figure 5 : Screenshot of the EBSD map GUI with an EBSD map of a Ti alloy (GBs color-coded in function of the maximum m&#8217; value obtained for slips with the highest generalized Schmid factor)</em></p>
+</div>
+</div>
+<div class="section" id="residual-burgers-vector">
+<span id="id2"></span><h2>Residual Burgers vector<a class="headerlink" href="#residual-burgers-vector" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/EBSD_map_minRBV.png"><img alt="_images/EBSD_map_minRBV.png" src="_images/EBSD_map_minRBV.png" style="width: 444.4px; height: 352.8px;" /></a>
+<p class="caption"><em>Figure 6 :  Screenshot of the EBSD map GUI with an EBSD map of a Ti alloy (GBs color-coded in function of the maximum residual Burgers vector value)</em></p>
+</div>
+</div>
+<div class="section" id="schmid-factor-and-slip-trace-analysis">
+<span id="schmid-factor-slip-traces"></span><h2>Schmid factor and slip trace analysis<a class="headerlink" href="#schmid-factor-and-slip-trace-analysis" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/EBSD_map_max_mprime_SF_slip_traces.png"><img alt="_images/EBSD_map_max_mprime_SF_slip_traces.png" src="_images/EBSD_map_max_mprime_SF_slip_traces.png" style="width: 476.0px; height: 378.0px;" /></a>
+<p class="caption"><em>Figure 7 :  Screenshot of the EBSD map GUI with an EBSD map of a Ti alloy (slip plane plotted inside grains in function of the maximum Schmid factor calculated with a given stress tensor and
+slip traces plotted around unit cells in function of the maximum Schmid factor calculated with a given stress tensor)</em></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">EBSD map GUI</a><ul>
+<li><a class="reference internal" href="#loading-and-smoothing-gbs-segments">Loading and Smoothing GBs segments</a></li>
+<li><a class="reference internal" href="#misorientation-angle">Misorientation angle</a></li>
+<li><a class="reference internal" href="#m-parameter">m&#8217; parameter</a></li>
+<li><a class="reference internal" href="#residual-burgers-vector">Residual Burgers vector</a></li>
+<li><a class="reference internal" href="#schmid-factor-and-slip-trace-analysis">Schmid factor and slip trace analysis</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="experimental_data.html"
+                        title="previous chapter">Experimental data</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="bicrystal_gui.html"
+                        title="next chapter">Bicrystal GUI</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/ebsd_map_gui.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="bicrystal_gui.html" title="Bicrystal GUI"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="experimental_data.html" title="Experimental data"
+             >previous</a> |</li>
+        <li><a href="index.html">MWN2_matlab 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, MPI fuer Eisenforschung, www.mpie.de.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

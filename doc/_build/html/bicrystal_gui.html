@@ -1,0 +1,145 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Bicrystal GUI &mdash; MWN2_matlab 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="top" title="MWN2_matlab 1.0.0 documentation" href="index.html" />
+    <link rel="next" title="SX and BX Indentation" href="meshing_gui.html" />
+    <link rel="prev" title="EBSD map GUI" href="ebsd_map_gui.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="meshing_gui.html" title="SX and BX Indentation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ebsd_map_gui.html" title="EBSD map GUI"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">MWN2_matlab 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="bicrystal-gui">
+<h1>Bicrystal GUI<a class="headerlink" href="#bicrystal-gui" title="Permalink to this headline">¶</a></h1>
+<p>This GUI allows to analyze quantitatively slip transmission across grain boundaries for a single bicrystal selected from the EBSD map plotted previously in the map GUI
+or set by the user (directly inside the bicrystal GUI or by loading a <a class="reference external" href="../../../gui_bicrystal/gui_bicrystal_data/Kacher2012/Kacher2012_Fig.12.yaml">YAML config. bicrystal</a> file from the menu).</p>
+<p>The Matlab function used to run the bicrystal GUI is: <a class="reference external" href="../../../gui_bicrystal/A_gui_plotGB_Bicrystal.m">A_gui_plotGB_Bicrystal.m</a></p>
+<p>This includes:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#bicrystal-from-map"><em>Plotting and analyzing a bicrystal</em></a></li>
+<li><a class="reference internal" href="#all-mprime-values"><em>Distribution of all slip transmission parameters</em></a></li>
+</ul>
+<div class="section" id="plotting-and-analyzing-a-bicrystal">
+<span id="bicrystal-from-map"></span><h2>Plotting and analyzing a bicrystal<a class="headerlink" href="#plotting-and-analyzing-a-bicrystal" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/BX2.png"><img alt="_images/BX2.png" src="_images/BX2.png" style="width: 241.6px; height: 372.8px;" /></a>
+<p class="caption"><em>Figure 1 : Screenshot of the Bicrystal GUI</em></p>
+</div>
+</div>
+<div class="section" id="distribution-of-all-slip-transmission-parameters">
+<span id="all-mprime-values"></span><h2>Distribution of all slip transmission parameters<a class="headerlink" href="#distribution-of-all-slip-transmission-parameters" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to generate a new window, in which all values of the selected slip transmission parameter are plotted in function of selected slip families.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/all_mprime_values.png"><img alt="_images/all_mprime_values.png" src="_images/all_mprime_values.png" style="width: 474.4px; height: 314.8px;" /></a>
+<p class="caption"><em>Figure 2 : Screenshot of the distribution of all slip transmission parameters (e.g. m&#8217; parameter for a 1 phase (hcp) bicrystal)</em></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Bicrystal GUI</a><ul>
+<li><a class="reference internal" href="#plotting-and-analyzing-a-bicrystal">Plotting and analyzing a bicrystal</a></li>
+<li><a class="reference internal" href="#distribution-of-all-slip-transmission-parameters">Distribution of all slip transmission parameters</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ebsd_map_gui.html"
+                        title="previous chapter">EBSD map GUI</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="meshing_gui.html"
+                        title="next chapter">SX and BX Indentation</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/bicrystal_gui.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="meshing_gui.html" title="SX and BX Indentation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ebsd_map_gui.html" title="EBSD map GUI"
+             >previous</a> |</li>
+        <li><a href="index.html">MWN2_matlab 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, MPI fuer Eisenforschung, www.mpie.de.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

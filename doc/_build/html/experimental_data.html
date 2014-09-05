@@ -1,0 +1,203 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Experimental data &mdash; MWN2_matlab 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="top" title="MWN2_matlab 1.0.0 documentation" href="index.html" />
+    <link rel="next" title="EBSD map GUI" href="ebsd_map_gui.html" />
+    <link rel="prev" title="Strain Transfer Across Grain Boundaries" href="slip_transmission_toolbox.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ebsd_map_gui.html" title="EBSD map GUI"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="slip_transmission_toolbox.html" title="Strain Transfer Across Grain Boundaries"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">MWN2_matlab 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="experimental-data">
+<h1>Experimental data<a class="headerlink" href="#experimental-data" title="Permalink to this headline">¶</a></h1>
+<p>To use the toolbox, some experimental data are required :</p>
+<ul class="simple">
+<li>average grain orientations (Euler angles (<span class="math">\(\phi_{1}\)</span>, <span class="math">\(\Phi\)</span>, <span class="math">\(\phi_{2}\)</span>) in degrees) or intragranular misorientation (misorientation axis <span class="math">\([uvw]\)</span> / angle <span class="math">\(\omega\)</span>);</li>
+<li>grains boundaries positions (optional)</li>
+<li>grains positions (optional)</li>
+<li>geometry of grain boundaries (trace angle and grain boundary inclination) (optional)</li>
+</ul>
+<p>TEM experiments can provide intragranular misorientation and EBSD measurements can provide average grain orientations, grains boundaries and grains positions, and grain boundary trace angle.</p>
+<p>Inclination of the grain boundary can be evaluated by serial polishing or focused ion beam (FIB) sectioning, either parallel or perpendicular to the surface of the sample</p>
+<div class="section" id="ebsd-measurement-rarr-tsl-oim-data-preparation">
+<h2>EBSD measurement → TSL-OIM data preparation<a class="headerlink" href="#ebsd-measurement-rarr-tsl-oim-data-preparation" title="Permalink to this headline">¶</a></h2>
+<p>Open you .osc file in the TSL-OIM Analysis Software and before everything, set the TSL coordinates system.</p>
+<p>Change the grain size or the minimum confident index (All data → Properties → Size).</p>
+<div class="highlight-rest"><div class="highlight"><pre>GSZ[&amp;;5.000,//here goes the grain size as int//,0.000,0,0,8.0,1;]&gt;0.000
+</pre></div>
+</div>
+<p>Clean up your dataset (Filename → Cleanup).</p>
+<p>In order to decrease the number of grain boundaries segments, decrease the value of the &#8220;Grain Tolerance Angle&#8221; and increase the value of the &#8220;Minimum Grain Size&#8221;.</p>
+<p>Reference : OIM ANALYSIS 6.0 (user manual)</p>
+</div>
+<div class="section" id="reconstructed-boundary-file">
+<h2>Reconstructed Boundary File<a class="headerlink" href="#reconstructed-boundary-file" title="Permalink to this headline">¶</a></h2>
+<p><strong>Export &#8220;Reconstructed Boundary File&#8221; of the cleaned dataset</strong> (All data → Export → Reconstructed Boundaries), with the following options :</p>
+<ul class="simple">
+<li>Right hand average orientation (<span class="math">\(\phi_{1}\)</span>, <span class="math">\(\Phi\)</span>, <span class="math">\(\phi_{2}\)</span>) in degrees</li>
+<li>Left hand average orientation (<span class="math">\(\phi_{1}\)</span>, <span class="math">\(\Phi\)</span>, <span class="math">\(\phi_{2}\)</span>) in degrees</li>
+<li>Trace angle (in degrees)</li>
+<li>(<span class="math">\(x,y\)</span>) coordinates of endpoints (in microns)</li>
+<li>IDs of right hand and left hand grains</li>
+</ul>
+<p>N.B : Reconstructed boundary methodology is only applied to data collected on a hexagonal grid.</p>
+<p>Example of &#8220;Reconstructed Boundary File&#8221;: <a class="reference external" href="../../../gui_ebsd_map/EBSD_data_Examples/MPIE_cpTi_reconstructed_boundaries_2013.txt">MPIE_cpTi_reconstructed_boundaries_2013.txt</a></p>
+<p>The Matlab function used to read &#8220;Reconstructed Boundary File&#8221; is: <a class="reference external" href="../../../tsl_oim/read_oim_reconstructed_boundaries_file.m">read_oim_reconstructed_boundaries_file.m</a></p>
+</div>
+<div class="section" id="grain-file-type-2">
+<h2>Grain File Type 2<a class="headerlink" href="#grain-file-type-2" title="Permalink to this headline">¶</a></h2>
+<p><strong>Export &#8220;Grain File Type 2&#8221; of the cleaned dataset</strong> (All data → Export → Grain File), with the following options :</p>
+<ul class="simple">
+<li>Integer identifying grain</li>
+<li>Average orientation (<span class="math">\(\phi_{1}\)</span>, <span class="math">\(\Phi\)</span>, <span class="math">\(\phi_{2}\)</span>) in degrees</li>
+<li>Average position (<span class="math">\(x,y\)</span>) in microns</li>
+<li>An integer identifying the phase</li>
+<li>Edge or interior grain (optional)</li>
+<li>Diameter of the grain in microns (optional)</li>
+</ul>
+<p>N.B. : Export the &#8220;Grain File Type 2&#8221; in the same location as the corresponding &#8220;Reconstructed Boundary File&#8221;.</p>
+<p>Example of &#8220;Grain Gile Type 2&#8221;: <a class="reference external" href="../../../gui_ebsd_map/EBSD_data_Examples/MPIE_cpTi_grain_file_type2_2013.txt">MPIE_cpTi_grain_file_type2_2013.txt</a></p>
+<p>The Matlab function used to read &#8220;Grain Gile Type 2&#8221; is: <a class="reference external" href="../../../tsl_oim/read_oim_grain_file_type2.m">read_oim_grain_file_type2.m</a></p>
+</div>
+<div class="section" id="scan-data-ang-file">
+<h2>Scan Data (.ang file)<a class="headerlink" href="#scan-data-ang-file" title="Permalink to this headline">¶</a></h2>
+<p><strong>Export &#8220;Scan Data (.ang file)&#8221; of the cleaned dataset</strong> (Filename → Export → Scan Data) (optional).</p>
+<p>This .ang file is useful for the <a class="reference external" href="https://code.google.com/p/mtex/">MTEX Toolbox v4.0</a></p>
+</div>
+<div class="section" id="errors-can-be-introduced-during-files-exportation-from-tsl">
+<h2>Errors can be introduced during files exportation from TSL<a class="headerlink" href="#errors-can-be-introduced-during-files-exportation-from-tsl" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>&#8220;Grain File Type 2&#8221; → Missing integer identifying grain</dt>
+<dd><p class="first last">→ Solved when file is imported via the GUI.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>&#8220;Reconstructed Boundary File&#8221; → Inversion of left and right grains for a given grain boundary</dt>
+<dd><p class="first last">→ Cross product performed between GB vector and center of grains to check (if cross product &lt; 0 : no inversion, and if cross product &gt; 0 : inversion).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>&#8220;Reconstructed Boundary File&#8221; → x-axis and y-axis not corrects…</dt>
+<dd><p class="first last">→ y coordinates is multiplied by -1 when file is imported via the GUI.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>All of these issues are taken into account and corrected wautomatically hen user is loading his data via the EBSD map GUI.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Experimental data</a><ul>
+<li><a class="reference internal" href="#ebsd-measurement-rarr-tsl-oim-data-preparation">EBSD measurement → TSL-OIM data preparation</a></li>
+<li><a class="reference internal" href="#reconstructed-boundary-file">Reconstructed Boundary File</a></li>
+<li><a class="reference internal" href="#grain-file-type-2">Grain File Type 2</a></li>
+<li><a class="reference internal" href="#scan-data-ang-file">Scan Data (.ang file)</a></li>
+<li><a class="reference internal" href="#errors-can-be-introduced-during-files-exportation-from-tsl">Errors can be introduced during files exportation from TSL</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="slip_transmission_toolbox.html"
+                        title="previous chapter">Strain Transfer Across Grain Boundaries</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ebsd_map_gui.html"
+                        title="next chapter">EBSD map GUI</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/experimental_data.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ebsd_map_gui.html" title="EBSD map GUI"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="slip_transmission_toolbox.html" title="Strain Transfer Across Grain Boundaries"
+             >previous</a> |</li>
+        <li><a href="index.html">MWN2_matlab 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, MPI fuer Eisenforschung, www.mpie.de.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
