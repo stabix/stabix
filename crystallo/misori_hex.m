@@ -1,4 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
+function axis_angle = misori_hex(eulers1, eulers2, varargin)
 %% Function used to calculate misorientation between 2 HCP grains.
 % see the book "Introduction to Texture Analysis: Macrotexture, Microtexture and Orientation Mapping",
 % written by Randle and Engler (2000), p.27.

@@ -15,8 +15,8 @@ for ng = 1:sGF2(1)
     % If only 1 phase, index = 0.
     % If 2 phases, indexes are 1 and 2.
     % So, this line of code is to have always for phase 1, index=1 !
-    if GF2(ng, 10) == 0
-        GF2(ng, 10) = 1;
+    if GF2(ng, gui.GF2_struct.col_idx.PHASE) == 0
+        GF2(ng, gui.GF2_struct.col_idx.PHASE) = 1;
         GF2_phase = 1;
     end
 end

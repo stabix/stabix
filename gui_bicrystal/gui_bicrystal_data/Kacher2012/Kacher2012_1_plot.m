@@ -3,10 +3,13 @@
 tabularasa;
 %installation_mtex = MTEX_check_install;
 installation_mtex = 0;
-plot = 1;
+plot_matlab = 1;
 
 %% Loading of GB data
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+folder_name = which('Kacher2012_1_plot');
+[pathstr,name,ext] = fileparts(folder_name);
+parent_directory = pathstr;
+
 GB(1).Misorientation_angle = 36; % in degrees
 GB(1).Misorientation_axis = [-11, -22,  -2];
 GB(1).SlipA_dir = [1, 0, -1];
@@ -161,7 +164,8 @@ for ii = 1:length(GB)
     
 end
 
-if plot
+%% Plot
+if plot_matlab
     %% Window Coordinates Configuration
     scrsize = screenSize;   % Get screen size
     WX = 0.27 * scrsize(3); % X Position (bottom)
@@ -197,3 +201,22 @@ if plot
     xticklabel_rotate([],45);
     ylabel('Misorientation in °');
 end
+
+%% Export results in a .txt file
+parent_directory_full = strcat(parent_directory, '\latex_barcharts');
+cd(parent_directory_full);
+
+for ii = 1:size(rbv,1)
+    data_to_save(ii,1) = ii;
+end
+data_to_save(:,2) = rbv(:, 6);
+data_to_save(:,3) = rbv(:, 3);
+
+fid = fopen('Data_Kacher2012.txt','w+');
+for ii = 1:size(data_to_save, 1)
+    fprintf(fid, '%6.2f %6.2f %6.2f \n',...
+        data_to_save(ii, 1), ...
+        data_to_save(ii, 2),...
+        data_to_save(ii, 3));
+end
+fclose(fid);

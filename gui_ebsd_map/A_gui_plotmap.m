@@ -67,11 +67,7 @@ gui.flag.initialization_axis = 1;
 %% Importation of data from YAML config file (samples, paths...)
 gui.config_map = interface_map_load_YAML_config_file;
 
-if ismac || isunix
-    gui.config_map.path_to_EBSD_data_examples = [startdir, ':EBSD_data_Examples'];
-else
-    gui.config_map.path_to_EBSD_data_examples = [startdir, '\EBSD_data_Examples'];
-end
+gui.config_map.path_to_EBSD_data_examples = fullfile('EBSD_data_Examples');
 
 %% Importation of data from YAML config file (paths of TSL data)
 config_YAML_TSLdata = sprintf('config_gui_EBSDmap_data_path_%s.yaml', gui.config_Matlab.username);
@@ -114,11 +110,7 @@ gui.handles.TSLinterfWindow   = figure('Name', gui.handles.title,...
 gui.handles.gcf = gui.handles.TSLinterfWindow;
 
 %% Customized menu
-if ismac || isunix
-    gui.config_map.path_picture_BXconv = '../doc/_pictures/Schemes_SlipTransmission/Bicrystal_conventions.ppt.png';
-else
-    gui.config_map.path_picture_BXconv = '..\doc\_pictures\Schemes_SlipTransmission\Bicrystal_conventions.ppt.png';
-end
+gui.config_map.path_picture_BXconv = fullfile('..', 'doc', '_pictures', 'Schemes_SlipTransmission', 'Bicrystal_conventions.ppt.png');
 
 interface_map_custom_menu;
 
