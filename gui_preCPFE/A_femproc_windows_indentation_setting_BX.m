@@ -7,29 +7,24 @@ function gui_handle = A_femproc_windows_indentation_setting_BX(gui_bicrystal, va
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
 %% Initialization
-if isempty(getenv('SLIP_TRANSFER_TBX_ROOT')) == 1
-    errordlg('Run the path_management.m script !', 'File Error');
-    return
-end
-
-%% Set Matlab
-gui.config_Matlab = load_YAML_config_file;
-
-%% Window Coordinates Configuration
-scrsize = screenSize;    % Get screen size
-WX = 0.58 * scrsize(3);  % X Position (bottom)
-WY = 0.30 * scrsize(4);  % Y Position (left)
-WW = 0.40 * scrsize(3);  % Width
-WH = 0.60 * scrsize(4);  % Height
-
+gui_BX = femproc_init;
+ 
 %% Window setting
 gui_BX.handles.gui_BX_win = figure(...
     'NumberTitle', 'off',...
-    'Position', [WX WY WW WH],...
+    'Position', femproc_figure_position([.58, .30, .9, 1]), ... %[WX WY WW WH],...
     'ToolBar', 'figure');
+guidata(gcf, gui_BX);
+
+%femproc_set_defaults; 
+%gui_BX = guidata(gcf);
+
+gui_BX.description = 'indentation of a bicrystal';
+guidata(gcf, gui_BX);
+gui_BX.title_str = femproc_set_title(gui_BX, '');
 
 %% Set Matlab and CPFEM configurations
-if nargin == 0   
+if nargin == 0
     [gui_BX.config_Matlab] = load_YAML_config_file;
     
     gui_BX.config_map.Sample_IDs   = [];
@@ -45,31 +40,27 @@ if nargin == 0
     gui_BX = guidata(gcf); guidata(gcf, gui_BX);
     gui_BX.GB.active_data = 'BX';
     gui_BX.GB.activeGrain = gui_BX.GB.GrainA;
-    gui_BX.handles.gui_BX_title = strcat('Setting of indentation for random bicrystal', ' - version_', num2str(gui.config_Matlab.version_toolbox));
-    
+    %gui_BX.handles.gui_BX_title = strcat('preCPFE - indentation of a bicrystal', ' - version_', num2str(gui_BX.config_Matlab.version_toolbox));
+    %gui_BX.title = femproc_set_title(gui_BX, 
 else
     gui_BX.flag           = gui_bicrystal.flag;
     gui_BX.config_map     = gui_bicrystal.config_map;
     gui_BX.config_Matlab  = gui_bicrystal.config_Matlab;
     gui_BX.GB             = gui_bicrystal.GB;
-    gui_BX.GB.active_data = 'BX';
-    gui_BX.handles.gui_BX_title = strcat('Setting of indentation for bicrystal n°', num2str(gui_BX.GB.GB_Number), ' - version_', num2str(gui.config_Matlab.version_toolbox));
+    gui_BX.GB.active_data = 'BX';    
+    gui_BX.title = femproc_set_title(gui_BX, ['bicrystal n°', num2str(gui_BX.GB.GB_Number)]) 
 end
 guidata(gcf, gui_BX);
-
-set(gui_BX.handles.gui_BX_win, 'Name', gui_BX.handles.gui_BX_title);
 
 %% Set path for documentation and initialization
 format compact;
 
-if ismac || isunix
-    gui_BX.config_map.path_picture_BXind = '../doc/_pictures/Schemes_SlipTransmission/BX_indentation_mesh_example.png/';
-else
-    gui_BX.config_map.path_picture_BXind = '..\doc\_pictures\Schemes_SlipTransmission\BX_indentation_mesh_example.png';
-end
+gui_BX.config_map.path_picture_BXind = fullfile(gui_BX.doc_local, ...
+    '_pictures', 'Schemes_SlipTransmission','BX_indentation_mesh_example.png');
 
 %% Customized menu
-femproc_custom_menu_BX;
+gui_BX.custom_menu = femproc_custom_menu;
+femproc_custom_menu_BX(gui_BX.custom_menu);
 
 %% Plot the mesh axis
 gui_BX.handles.hax = axes('Units', 'normalized',...
@@ -138,7 +129,7 @@ gui_BX.handles.pm_FEM_interface = uicontrol('Parent', gui_BX.handles.gui_BX_win,
     'Units', 'normalized',...
     'Position', [0.21 0.37 0.18 0.05],...
     'Style', 'popup',...
-    'String', {'Mentat_2008'; 'Mentat_2010'; 'Mentat_2012'; 'Mentat_2013'; 'Mentat_2013.1'},...
+    'String', gui_BX.defaults.fem_solvers,...
     'BackgroundColor', [0.9 0.9 0.9],...
     'FontWeight', 'bold',...
     'FontSize', 10,...
@@ -168,23 +159,23 @@ gui_BX.handles.pb_mesh_example = uicontrol('Parent', gui_BX.handles.gui_BX_win,.
     'HorizontalAlignment', 'center',...
     'Callback', 'gui_BX = guidata(gcf); open_file_web(gui_BX.config_map.path_picture_BXind);');
 
-%% Creation of string boxes and edit boxes for the calculation of the number of elements
+%% Number of elements info
 gui_BX.handles.num_elem = uicontrol('Parent', gui_BX.handles.gui_BX_win,...
     'Units', 'normalized',...
     'Position', [0.05 0.19 0.28 0.04],...
     'Style', 'text',...
-    'String', '',...
+    'String', 'Number of elements',...
     'BackgroundColor', [0.9 0.9 0.9],...
     'HorizontalAlignment', 'center',...
     'FontWeight', 'bold',...
     'FontSize', 14);
 
-%% Creation of string boxes and edit boxes for the calculation of the number of elements
+%% Transition depth info
 gui_BX.handles.trans_depth = uicontrol('Parent', gui_BX.handles.gui_BX_win,...
     'Units', 'normalized',...
     'Position', [0.05 0.13 0.28 0.04],...
     'Style', 'text',...
-    'String', '',...
+    'String', 'Transition depth',...
     'BackgroundColor', [0.9 0.9 0.9],...
     'HorizontalAlignment', 'center',...
     'FontWeight', 'bold');
@@ -201,11 +192,10 @@ gui_BX.handles.pb_CPFEM_model = uicontrol('Parent', gui_BX.handles.gui_BX_win,..
     'HorizontalAlignment', 'center',...
     'Callback', 'femproc_generate_indentation_model_BX');
 
-%% Set the GUI with a YAML file
 guidata(gcf, gui_BX);
-config_CPFEM_YAML_file = sprintf('config_CPFEM_%s.yaml', gui_BX.config_Matlab.username);
-femproc_load_YAML_CPFEM_config_file(config_CPFEM_YAML_file, 2);
-gui_BX = guidata(gcf); guidata(gcf, gui_BX);
+%% Set the GUI with a YAML file
+femproc_config_CPFEM_init;
+gui_BX = guidata(gcf);
 
 if isfield(gui_BX.config_CPFEM, 'fem_software')
     femproc_set_cpfem_interface_pm(gui_BX.handles.pm_FEM_interface, gui_BX.config_CPFEM.fem_software);

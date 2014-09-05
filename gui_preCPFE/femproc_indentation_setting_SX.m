@@ -236,7 +236,7 @@ view(0,0); % X-Z view
 %     xlabel_str = 'x axis';
 %     zlabel_str = 'z axis';
 % end
-% 
+%
 % xlabel(xlabel_str);
 % zlabel(zlabel_str);
 
@@ -245,27 +245,6 @@ guidata(gcf, gui_SX);
 femproc_indentation_number_elements_SX;
 gui_SX = guidata(gcf); guidata(gcf, gui_SX);
 
-%% Set GUI in function of user configuration
-% If no YAML user config file ==> Red button and impossible to generate a proc file
-
-if gui_SX.config_CPFEM.user_setting == 0
-    set(gui_SX.handles.pb_CPFEM_model, 'BackgroundColor', [229/256 20/256 0],...
-        'String', 'No user config. file found !', ...
-        'Callback', '');
-end
-
-if gui_SX.config_CPFEM.python_exe_path == 0
-    set(gui_SX.handles.pb_CPFEM_model, 'BackgroundColor', [229/256 20/256 0],...
-        'String', 'No Python exec. found !', ...
-        'Callback', '');
-end
-
-if gui_SX.config_CPFEM.user_setting == 1 && gui_SX.config_CPFEM.python_exe_path == 1
-    set(gui_SX.handles.pb_CPFEM_model, 'BackgroundColor', [0.2 0.8 0],...
-        'String', 'CPFE  model',...
-        'Callback', 'femproc_generate_indentation_model_SX');
-end
-
-guidata(gcf, gui_SX);
-
+%%
+femproc_config_CPFEM_updated
 end

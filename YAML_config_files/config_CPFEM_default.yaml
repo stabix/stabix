@@ -12,7 +12,7 @@ fem_software: Mentat_2013.1
 
 # path to the python folder on your mwn2 repository
 # msc_module_path: /Users/<username>/Documents/mwn2/python #for MAC
-msc_module_path: D:\mwn2\python #for PC
+# msc_module_path: D:\mwn2\python #for PC
 
 # path to your python executable
 #python_executable: /Library/Frameworks/Python.framework/Versions/2.7/bin/python #for MAC

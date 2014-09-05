@@ -36,7 +36,8 @@ fprintf(fid, 'gb_ind.doit(gb_data, proc_path=r''%s'')\n', fullfile(gui_BX.config
 fclose(fid);
 
 %% Execute the python code that we just generated
-cmd = sprintf('%s %s', gui_BX.config_CPFEM.python_executable, fullfile(pwd, scriptname_bicrystal));
+cmd = sprintf('%s %s', gui_BX.config_CPFEM.python_executable, ...
+    fullfile(pwd, scriptname_bicrystal));
 commandwindow;
 if ~ isempty(gui_BX.config_CPFEM.pythonpath)
     setenv('PYTHONPATH', gui_BX.config_CPFEM.pythonpath);
@@ -44,11 +45,7 @@ end
 system(cmd);
 
 %% Definition of path config file
-if ismac || isunix
-    gui_BX.path_config_file = strcat(gui_BX.config_CPFEM.proc_file_path, '/', gui_BX.GB.Titlegbdata, '/');
-else
-    gui_BX.path_config_file = strcat(gui_BX.config_CPFEM.proc_file_path, '\', gui_BX.GB.Titlegbdata);
-end
+gui_BX.path_config_file = fullfile(gui_BX.config_CPFEM.proc_file_path, gui_BX.GB.Titlegbdata, '');
 guidata(gcf, gui_BX);
 mkdir(gui_BX.path_config_file);
 

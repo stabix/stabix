@@ -1,0 +1,11 @@
+function pos = femproc_figure_position(lbwh) % [left, bottom, width, height]
+scr = get(0);    % Get screen size  
+scr.width = scr.ScreenSize(3);
+scr.height = scr.ScreenSize(4);
+WX = lbwh(1) * scr.width;  % horiz X Position
+WY = lbwh(2) * scr.height;  % vert Y Position
+WW = lbwh(3) * scr.width;  % Width
+WH = lbwh(4) * WW;  % Height
+WX = min([scr.width - WW, WX]);
+WY = min([scr.height - WH - 100, WY]); % leave at least 100 px for menu bar
+pos = [WX WY WW WH];

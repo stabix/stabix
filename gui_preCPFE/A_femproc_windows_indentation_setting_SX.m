@@ -8,26 +8,21 @@ function gui_handle = A_femproc_windows_indentation_setting_SX(gui_bicrystal, ac
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
 %% Initialization
-if isempty(getenv('SLIP_TRANSFER_TBX_ROOT')) == 1
-    errordlg('Run the path_management.m script !', 'File Error');
-    return
-end
+gui_SX = femproc_init;
 
-%% Set Matlab
-gui.config_Matlab = load_YAML_config_file;
-
-%% Window Coordinates Configuration
-scrsize = screenSize;    % Get screen size
-WX = 0.58 * scrsize(3);  % X Position (bottom)
-WY = 0.10 * scrsize(4);  % Y Position (left)
-WW = 0.40 * scrsize(3);  % Width
-WH = 0.60 * scrsize(4);  % Height
 
 %% Window setting
 gui_SX.handles.gui_SX_win = figure(...
     'NumberTitle', 'off',...
-    'Position', [WX WY WW WH],...
+    'Position', femproc_figure_position([.58, .30, .6, .8]), ... % [left, bottom, width, height]
     'ToolBar', 'figure');
+guidata(gcf, gui_SX);
+
+%femproc_set_defaults; gui_SX = guidata(gcf);
+
+gui_SX.description = 'indentation of a single crystal';
+gui_SX.title_str = femproc_set_title(gui_SX, '');
+guidata(gcf, gui_SX);
 
 %% Set Matlab and CPFEM configurations
 if nargin == 0  
@@ -45,7 +40,7 @@ if nargin == 0
     femproc_load_YAML_BX_config_file(gui_SX.config_map.imported_YAML_GB_config_file, 1);
     gui_SX = guidata(gcf); guidata(gcf, gui_SX);
     gui_SX.GB.active_data = 'SX';
-    gui_SX.handles.gui_SX_title = strcat('Setting of indentation for random single crystal', ' - version_', num2str(gui.config_Matlab.version_toolbox));
+    %gui_SX.handles.gui_SX_title = gui_SX.title;
     
 else
     gui_SX.flag           = gui_bicrystal.flag;
@@ -58,25 +53,21 @@ else
     elseif activeGrain == 2
         gui_SX.GB.activeGrain     = gui_SX.GB.GrainB;
     end
-    gui_SX.handles.gui_SX_title = strcat('Setting of indentation for single crystal n°', num2str(gui_SX.GB.activeGrain), ' - version_', num2str(gui.config_Matlab.version_toolbox));
+    gui_SX.title = femproc_set_title(gui_SX, num2str(gui_SX.GB.activeGrain));
 end
 guidata(gcf, gui_SX);
-
-set(gui_SX.handles.gui_SX_win, 'Name', gui_SX.handles.gui_SX_title);
 
 %% Set path for documentation and initialization
 format compact;
 
-if ismac || isunix
-    gui_SX.config_map.path_picture_SXind = '../doc/_pictures/Schemes_SlipTransmission/SX_indentation_mesh_example.png/';
-else
-    gui_SX.config_map.path_picture_SXind = '..\doc\_pictures\Schemes_SlipTransmission\SX_indentation_mesh_example.png';
-end
+gui_SX.config_map.path_picture_SXind = fullfile(gui_SX.doc_local, ...
+    '_pictures', 'Schemes_SlipTransmission', 'SX_indentation_mesh_example.png');
 
 gui_SX.config_map.imported_YAML_GB_config_file = 'config_gui_SX_example.yaml';
 
 %% Customized menu
-femproc_custom_menu_SX;
+gui_SX.custom_menu = femproc_custom_menu;
+femproc_custom_menu_SX(gui_SX.custom_menu);
 
 %% Plot the mesh axis
 gui_SX.handles.hax = axes('Units', 'normalized',...
@@ -135,7 +126,7 @@ gui_SX.handles.pm_FEM_interface = uicontrol('Parent', gui_SX.handles.gui_SX_win,
     'Units', 'normalized',...
     'Position', [0.21 0.44 0.2 0.05],...
     'Style', 'popup',...
-    'String', {'Mentat_2008'; 'Mentat_2010'; 'Mentat_2012'; 'Mentat_2013'; 'Mentat_2013.1'},...
+    'String', gui_SX.defaults.fem_solvers,...
     'BackgroundColor', [0.9 0.9 0.9],...
     'FontWeight', 'bold',...
     'FontSize', 10,...
@@ -186,20 +177,11 @@ gui_SX.handles.pb_CPFEM_model = uicontrol('Parent', gui_SX.handles.gui_SX_win,..
     'HorizontalAlignment', 'center',...
     'Callback', 'femproc_indentation_setting_SX');
 
+guidata(gcf, gui_SX);
+
 %% Set the GUI with a YAML file
-guidata(gcf, gui_SX);
-config_CPFEM_YAML_file = sprintf('config_CPFEM_%s.yaml', gui_SX.config_Matlab.username);
-femproc_load_YAML_CPFEM_config_file(config_CPFEM_YAML_file, 1);
-gui_SX = guidata(gcf); guidata(gcf, gui_SX);
-
-if isfield(gui_SX.config_CPFEM, 'fem_software')
-    femproc_set_cpfem_interface_pm(gui_SX.handles.pm_FEM_interface, gui_SX.config_CPFEM.fem_software);
-else
-    femproc_set_cpfem_interface_pm(gui_SX.handles.pm_FEM_interface);
-end
-
-%% Set GUI handle encapsulation
-guidata(gcf, gui_SX);
+femproc_config_CPFEM_init;
+gui_SX = guidata(gcf);
 
 %% Run the plot of the meshing
 femproc_indentation_setting_SX;

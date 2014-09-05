@@ -46,11 +46,12 @@ end
 system(cmd);
 
 %% Definition of path config file
-if ismac || isunix
-    gui_SX.path_config_file = strcat(gui_SX.config_CPFEM.proc_file_path, '/', gui_SX.GB.Titlegbdata, '/');
-else
-    gui_SX.path_config_file = strcat(gui_SX.config_CPFEM.proc_file_path, '\', gui_SX.GB.Titlegbdata);
-end
+% if ismac || isunix
+%     gui_SX.path_config_file = strcat(gui_SX.config_CPFEM.proc_file_path, '/', gui_SX.GB.Titlegbdata, '/');
+% else
+%     gui_SX.path_config_file = strcat(gui_SX.config_CPFEM.proc_file_path, '\', gui_SX.GB.Titlegbdata);
+% end
+gui_SX.path_config_file = fullfile(gui_SX.config_CPFEM.proc_file_path, gui_SX.GB.Titlegbdata, '');
 guidata(gcf, gui_SX);
 mkdir(gui_SX.path_config_file);
 
