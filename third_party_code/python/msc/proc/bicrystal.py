@@ -16,35 +16,35 @@ class BicrystalIndent(Indentation):
     #def preBicrystal(self,
     def __init__(self,
                  modelname='ind_bicrystal',
-                 label='', # informative label
-                 ori1=None, # orientation grain 1
-                 ori2=None, # orientation grain 2
-                 gbn=None, # grain boundary normal in xyz
-                 trace_ang=None, # 0° // X, 90° // Y
-                 inclination=None, # vertical = 90°, 0.. 90 cuts through grain 1, 90 ..180  through grain 2
-                 d=None, # distance of indent from GB
+                 label='',  # informative label
+                 ori1=None,  # orientation grain 1
+                 ori2=None,  # orientation grain 2
+                 gbn=None,  # grain boundary normal in xyz
+                 trace_ang=None,  # 0° // X, 90° // Y
+                 inclination=None,  # vertical = 90°, 0.. 90 cuts through grain 1, 90 ..180  through grain 2
+                 d=None,  # distance of indent from GB
                  len_trace=None,
-                 h_indent=0.3, # depth of the indent in µm
-                 tipRadius=1.4, # radius of the spherical indenter in µm
-                 geo='conical', # angle of the conical indenter in degree
+                 h_indent=0.3,  # depth of the indent in µm
+                 tipRadius=1.4,  # radius of the spherical indenter in µm
+                 geo='conical',  # angle of the conical indenter in degree
                  coneAngle=90.,
                  ind_size=None,
                  #lengthScale = 1.
-                 wid=4, # width of the sample
-                 hei=4, # height of the sample
-                 len=4, # length of the sample
-                 box_elm_nx=4, # number of elements in x direction
-                 box_elm_nz=4, # number of elements in z direction
-                 box_elm_ny1=6, # number of elements in y direction in the grain B
-                 box_elm_ny2_fac=7, # parameter which factorized the number of elements in y direction in the middle part
-                 box_elm_ny3=6, # number of elements in y direction in the grain A
-                 box_bias_x=-0.2, # bias in the x direction
-                 box_bias_z=0.25, # bias in the z direction
-                 box_bias_y1=0.3, # bias in y direction in the grain B
-                 box_bias_y2=0, # bias in y direction in the middle part
-                 box_bias_y3=-0.3, # bias in y direction in the grain A
-                 smv=0.01, # small values
-                 lvl=1 # mesh quality value
+                 wid=4,  # width of the sample
+                 hei=4,  # height of the sample
+                 len=4,  # length of the sample
+                 box_elm_nx=4,  # number of elements in x direction
+                 box_elm_nz=4,  # number of elements in z direction
+                 box_elm_ny1=6,  # number of elements in y direction in the grain B
+                 box_elm_ny2_fac=7,  # parameter which factorized the number of elements in y direction in the middle part
+                 box_elm_ny3=6,  # number of elements in y direction in the grain A
+                 box_bias_x=0.2,  # bias in the x (width) direction
+                 box_bias_z=0.25,  # bias in the z (height) direction
+                 box_bias_y1=0.3,  # bias in y direction in the grain B
+                 box_bias_y2=0,  # bias in y direction in the middle part
+                 box_bias_y3=0.3,  # bias in y direction in the grain A
+                 smv=0.01,  # small values
+                 lvl=1  # mesh quality value
     ):
         import math
 
@@ -116,6 +116,7 @@ class BicrystalIndent(Indentation):
 
         self.proc = []
         self.start()
+        self.proc_draw_update_manual()
         self.procNewModel()
         self.procSample()
         self.procBicrystal(label=label,
@@ -218,6 +219,7 @@ class BicrystalIndent(Indentation):
         if Dexp is not None:
             self.procExpIndent(D=Dexp, Z=h_indent)
         self.proc.append('*save_as_model %s yes' % (savename + '.mfd'))
+        self.proc_draw_update_automatic()        
         self.procfilename = savename + '.proc'
         #self.printCommands(self.proc,filename=)
         #self.define_post_vars()
@@ -459,21 +461,21 @@ class BicrystalIndent(Indentation):
 *sub_divisions
 %i %i %i''' % (np.math.ceil(box_elm_ny1 * lvl), np.math.ceil(box_elm_nx * lvl), np.math.ceil(box_elm_nz * lvl)) + '''
 *sub_bias_factors
-%f %f %f''' % (box_bias_y1, box_bias_x, box_bias_z) +'''
+%f %f %f''' % (box_bias_y1, -box_bias_x, box_bias_z) +'''
 *subdivide_elements
 1 #
 | Central block of elements
 *sub_divisions
 %i %i %i''' % (np.math.ceil(abs(d) * box_elm_ny2_fac * lvl), np.math.ceil(box_elm_nx * lvl), np.math.ceil(box_elm_nz * lvl)) + '''
 *sub_bias_factors
-%f %f %f''' % (box_bias_y2, box_bias_x,  box_bias_z) +'''
+%f %f %f''' % (box_bias_y2, -box_bias_x,  box_bias_z) +'''
 *subdivide_elements
 2 #
 | Element block with indent
 *sub_divisions
 %i %i %i''' % (np.math.ceil(box_elm_ny3 * lvl), np.math.ceil(box_elm_nx * lvl), np.math.ceil(box_elm_nz * lvl)) + '''
 *sub_bias_factors
-%f %f %f''' % (box_bias_y3, box_bias_x, box_bias_z) +'''
+%f %f %f''' % (-box_bias_y3, -box_bias_x, box_bias_z) +'''
 *subdivide_elements
 3 #
 ''')

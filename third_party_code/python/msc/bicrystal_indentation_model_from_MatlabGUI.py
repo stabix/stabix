@@ -2,11 +2,9 @@
 import os
 #execfile('d:\zambaldi\python\_startup.py')
 
-#import msc_pre;reload(msc_pre)
 from msc.proc.bicrystal import BicrystalIndent
 import msc.tools
-#from msc.proc.jobs import Jobs
-#from msc.proc.base import Proc
+
 
 def doit(gb_data, proc_path='./'):
     #BicrystalIndent.CODE='DAMASK' # use current CPFEM code 

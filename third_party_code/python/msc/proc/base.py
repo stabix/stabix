@@ -715,7 +715,12 @@ all_existing\n''')
 
     def quit_mentat(self):
         self.proc.append('*quit yes\n') # exit mentat after model is built
-
+        
+    def proc_draw_update_manual(self):
+        self.proc.append('*draw_manual\n')
+    def proc_draw_update_automatic(self):
+        self.proc.append('*draw_automatic\n')
+        
     def to_file(self, dst_path=None, dst_name=None):
         '''Write  self.proc list to file'''
         if dst_name is None:
@@ -729,4 +734,6 @@ all_existing\n''')
             self.procpath = dst_path
         else:
             self.procpath = './'
-        self.print_commands(self.proc, filename=os.path.join(self.procpath, self.procfilename))
+        filename = os.path.join(self.procpath, self.procfilename)
+        print(filename)
+        self.print_commands(self.proc, filename=filename)

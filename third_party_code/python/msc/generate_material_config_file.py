@@ -189,7 +189,7 @@ class Microstructure(Section):
     def __init__(self, data={'__order__': []}):
         Section.__init__(self, data)
 
-    def add_constituent(self, data, ):      # dict of phase,texture, and fraction
+    def add_constituent(self, data, ):      # dict of phase, texture, and fraction
 
         theData = ''
         for property in ['phase', 'texture', 'fraction']:
