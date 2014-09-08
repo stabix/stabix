@@ -69,7 +69,9 @@ for ng = 1:sGF2(1)
     %end
     
     % gui.grcen = [phase (C1) / grain center (X,Y) (C2-C3) / Euler angles(C4-C6)]
-    gui.grcen(ig,1:6) = [GF2(ng,10) GF2(ng,5:6) GF2(ng,2:4)];
+    gui.grcen(ig,1:6) = [GF2(ng,gui.GF2_struct.col_idx.PHASE) ...
+        GF2(ng,gui.GF2_struct.col_idx.AVG_POS_XY(1):gui.GF2_struct.col_idx.AVG_POS_XY(2)) ...
+        GF2(ng,gui.GF2_struct.col_idx.AVG_ORI(1):gui.GF2_struct.col_idx.AVG_ORI(3))];
     gui.grcen(ig,3)   = -gui.grcen(ig,3);
     
     if isnan(gui.grcen(ng,1)) == 1
@@ -97,12 +99,15 @@ for ng = 1:sGF2(1)
     gui.grains(ig).phase     = ph;
     gui.grains(ig).material  = materials{ng};
     gui.grains(ig).structure = structures{ng};
-    gui.grains(ig).eulers    = GF2(ng,2:4);
-    gui.grains(ig).pos_x     = +GF2(ng,5);
-    gui.grains(ig).pos_y     = -GF2(ng,6);
-    gui.grains(ig).edge_gr   = GF2(ng,11);
-    gui.grains(ig).diameter  = GF2(ng,12);
-    
+    gui.grains(ig).eulers    = GF2(ng,gui.GF2_struct.col_idx.AVG_ORI(1):gui.GF2_struct.col_idx.AVG_ORI(3));
+    gui.grains(ig).pos_x     = +GF2(ng,gui.GF2_struct.col_idx.AVG_POS_XY(1));
+    gui.grains(ig).pos_y     = -GF2(ng,gui.GF2_struct.col_idx.AVG_POS_XY(2));
+    if isfield(gui.GF2_struct.col_idx,'EDGE')
+        gui.grains(ig).edge_gr   = GF2(ng,gui.GF2_struct.col_idx.EDGE);
+    end
+    if isfield(gui.GF2_struct.col_idx,'DIAM')
+        gui.grains(ig).diameter  = GF2(ng,gui.GF2_struct.col_idx.DIAM);
+    end
 end
 
 %% Process data from Reconstructed Boundaries File

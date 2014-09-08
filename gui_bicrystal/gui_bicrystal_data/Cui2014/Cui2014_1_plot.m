@@ -2,10 +2,14 @@
 %% Script used to plot all Residual Burgers Vectors calculated for bicrystals given by Cui et al. (2014) : DOI ==> 10.1016/j.actamat.2013.11.033
 tabularasa;
 installation_mtex = MTEX_check_install;
-plot = 1;
+plot_matlab = 1;
 
 %% Loading of GB data
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+folder_name = which('Cui2014_1_plot');
+[pathstr,name,ext] = fileparts(folder_name);
+parent_directory = pathstr;
+
+% Misor = 60°
 GB(1).Misorientation_angle = 60; % in degrees
 GB(1).Misorientation_axis = -[1, 1, -1];
 GB(1).SlipA_dir = [1, 1, 0];
@@ -30,7 +34,7 @@ GB(4).SlipA_dir = [1, 1, 0];
 GB(4).SlipB_dir = [0, 1, -1];
 GB(4).rbv = 0.81;
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Misor = 40°
 GB(5).Misorientation_angle = 40; % in degrees
 GB(5).Misorientation_axis = -[1, 0, 1];
 GB(5).SlipA_dir = [0, 1, 1];
@@ -84,7 +88,7 @@ for ii = 1:length(GB)
     
 end
 
-if plot
+if plot_matlab
     %% Window Coordinates Configuration
     scrsize = screenSize;   % Get screen size
     WX = 0.27 * scrsize(3); % X Position (bottom)
@@ -120,3 +124,22 @@ if plot
     xticklabel_rotate([],45);
     ylabel('Misorientation in °');
 end
+
+%% Export results in a .txt file
+parent_directory_full = strcat(parent_directory, '\latex_barcharts');
+cd(parent_directory_full);
+
+for ii = 1:size(rbv,1)
+    data_to_save(ii,1) = ii;
+end
+data_to_save(:,2) = rbv(:, 2);
+data_to_save(:,3) = rbv(:, 1);
+
+fid = fopen('Data_Cui2014.txt','w+');
+for ii = 1:size(data_to_save, 1)
+    fprintf(fid, '%6.2f %6.2f %6.2f \n',...
+        data_to_save(ii, 1), ...
+        data_to_save(ii, 2),...
+        data_to_save(ii, 3));
+end
+fclose(fid);

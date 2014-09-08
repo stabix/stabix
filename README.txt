@@ -22,4 +22,4 @@ http://dx.doi.org/10.5281/zenodo.11561
 Keywords
 --------
 MATLAB; Graphical User Interface (GUI); Grain Boundaries; Polycrystalline Metals; Slip Transmission; Bi-Crystal (BX);
-Electron backscatter diffraction (EBSD); Instrumented indentation; Crystal Plasticity Finite Element Method (CPFEM); python\ :sup:`TM` \ Toolbox.
+Electron backscatter diffraction (EBSD); Instrumented indentation; Crystal Plasticity Finite Element Method (CPFEM); python Toolbox.

@@ -14,6 +14,8 @@ To use the toolbox, some experimental data are required :
 
 TEM experiments can provide intragranular misorientation and EBSD measurements can provide average grain orientations, grains boundaries and grains positions, and grain boundary trace angle.
 
+Inclination of the grain boundary can be evaluated by serial polishing or focused ion beam (FIB) sectioning, either parallel or perpendicular to the surface of the sample
+
 EBSD measurement |rarr| TSL-OIM data preparation
 ------------------------------------------------
 
@@ -65,6 +67,10 @@ Grain File Type 2
 
 - An integer identifying the phase
 
+- Edge or interior grain (optional)
+
+- Diameter of the grain in microns (optional)
+
 N.B. : Export the "Grain File Type 2" in the same location as the corresponding "Reconstructed Boundary File".
 
 Example of "Grain Gile Type 2": `MPIE_cpTi_grain_file_type2_2013.txt <../../../gui_ebsd_map/EBSD_data_Examples/MPIE_cpTi_grain_file_type2_2013.txt>`_
@@ -76,12 +82,12 @@ Scan Data (.ang file)
 
 **Export "Scan Data (.ang file)" of the cleaned dataset** (Filename |rarr| Export |rarr| Scan Data) (optional).
 
-This .ang file is useful for the `MTEX Toolbox <https://code.google.com/p/mtex/>`_
+This .ang file is useful for the `MTEX Toolbox v4.0 <https://code.google.com/p/mtex/>`_
 
 Errors can be introduced during files exportation from TSL
 ----------------------------------------------------------
 
-- "Grain File Type 2" ==> Missing integer identifying grain
+- "Grain File Type 2" |rarr| Missing integer identifying grain
    |rarr| Solved when file is imported via the GUI.
 
 - "Reconstructed Boundary File" |rarr| Inversion of left and right grains for a given grain boundary 

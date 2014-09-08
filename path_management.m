@@ -1,8 +1,10 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function path_management
 %% Set Matlab search path
+
 % http://www.mathworks.de/de/help/matlab/ref/addpath.html
 commandwindow;
+
 % http://stackoverflow.com/questions/2720140/find-location-of-current-m-file-in-matlab
 S = dbstack('-completenames');
 [folder, name, ext] = fileparts(S(1).file);
@@ -24,5 +26,4 @@ else
     display 'doing nothing';
 end
 
-%% Optionally display the matlab search path after modifications with the 'path' command
-%path
+end

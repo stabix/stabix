@@ -2,9 +2,13 @@
 %% Script used to plot all Residual Burgers Vectors calculated for bicrystals given by Kacher et al. (2014): DOI ==> 10.1080/14786435.2013.868942
 tabularasa;
 installation_mtex = MTEX_check_install;
-plot = 1;
+plot_matlab = 1;
 
 %% Loading of GB data
+folder_name = which('Kacher2014_all_rbv_plot_noYAML');
+[pathstr,name,ext] = fileparts(folder_name);
+parent_directory = pathstr;
+
 GB(1).Misorientation_angle = 40;  % misorientation founded with DAMASK scripts, but not with Matlab functions...
 GB(1).Misorientation_axis_uvtw = [1, -2, 1, -3];
 GB(1).SlipA_dir_BM = [-1, 2, -1, 3];
@@ -76,7 +80,8 @@ for ii = 1:length(GB)
     
 end
 
-if plot
+%% Plot
+if plot_matlab
     %% Window Coordinates Configuration
     scrsize = screenSize;   % Get screen size
     WX = 0.27 * scrsize(3); % X Position (bottom)
@@ -112,3 +117,22 @@ if plot
     xticklabel_rotate([],45);
     ylabel('Misorientation in °');
 end
+
+%% Export results in a .txt file
+parent_directory_full = strcat(parent_directory, '\latex_barcharts');
+cd(parent_directory_full);
+
+for ii = 1:size(rbv,1)
+    data_to_save(ii,1) = ii;
+end
+data_to_save(:,2) = rbv(:, 2);
+data_to_save(:,3) = rbv(:, 1);
+
+fid = fopen('Data_Kacher2014_noYAML.txt','w+');
+for ii = 1:size(data_to_save, 1)
+    fprintf(fid, '%6.2f %6.2f %6.2f \n',...
+        data_to_save(ii, 1), ...
+        data_to_save(ii, 2),...
+        data_to_save(ii, 3));
+end
+fclose(fid);

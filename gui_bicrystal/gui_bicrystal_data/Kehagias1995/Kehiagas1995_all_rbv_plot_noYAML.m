@@ -3,13 +3,16 @@
 % given by Kehiagas et al. (1995) ==> 10.1016/0956-716X(95)00351-U and Kehiagas et al. (1996) ==> 10.1007/BF00191046
 tabularasa;
 installation_mtex = MTEX_check_install;
-plot = 1;
+plot_matlab = 1;
 
 latt_param_Ti = latt_param('Ti', 'hcp');
 e_norm = sqrt(1.5)*latt_param_Ti(3)/10;
 
+folder_name = which('Kehiagas1995_all_rbv_plot_noYAML');
+[pathstr,name,ext] = fileparts(folder_name);
+parent_directory = pathstr;
+
 %% Loading of GB data
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Kehiagas et al. (1996)
 R4_1_2 = [0.97 0.17 -0.15 -0.06; -0.14 0.97 0.17 0.09; 0.17 -0.15 0.97 -0.03; 0.08 -0.08 0 0.99];
 
@@ -27,7 +30,6 @@ GB(2).SlipB_dir_BM = [1, -2, 1, 0];
 GB(2).rbv = 3*norm(((1/3)*GB(2).SlipA_dir_BM)' - R4_1_2*((1/3)*GB(2).SlipB_dir_BM)'); % RBV given in nm in the paper... ==> 0.55nm
 GB(2).rbv_norm = e_norm * GB(2).rbv/3;
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Kehiagas et al. (1995)
 R4_3_4 = [0.987 -0.065 0.078 0.127; 0.081 0.991 -0.072 -0.079; -0.068 0.074 0.994 -0.048; -0.124 0.091 0.033 0.988];
 
@@ -45,7 +47,6 @@ GB(4).SlipB_dir_BM = [1, -2, 1, 0];
 GB(4).rbv = 3*norm(((1/3)*GB(4).SlipA_dir_BM)' - R4_3_4*((1/3)*GB(4).SlipB_dir_BM)'); % RBV given in nm in the paper... ==> 0.49nm
 GB(4).rbv_norm = e_norm * GB(4).rbv/3;
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Kehiagas et al. (1995)
 R4_5_6 = [0.994 0.051 -0.045 0.085; -0.041 0.995 0.047 -0.082; 0.047 -0.045 0.998 -0.002; -0.088 0.078 0.01 0.993];
 
@@ -62,8 +63,6 @@ GB(6).SlipA_dir_BM = [1, 1, -2, 0];
 GB(6).SlipB_dir_BM = [1, -2, 1, 0];
 GB(6).rbv = 3*norm(((1/3)*GB(6).SlipA_dir_BM)' - R4_5_6*((1/3)*GB(6).SlipB_dir_BM)'); % RBV given in nm in the paper... ==> 0.52nm
 GB(6).rbv_norm = e_norm * GB(6).rbv/3;
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Calculations
 for ii = 1:length(GB)
@@ -114,7 +113,8 @@ for ii = 1:length(GB)
     
 end
 
-if plot
+%% Plot
+if plot_matlab
     %% Window Coordinates Configuration
     scrsize = screenSize;   % Get screen size
     WX = 0.27 * scrsize(3); % X Position (bottom)
@@ -150,3 +150,22 @@ if plot
     xticklabel_rotate([],45);
     ylabel('Misorientation in °');
 end
+
+%% Export results in a .txt file
+parent_directory_full = strcat(parent_directory, '\latex_barcharts');
+cd(parent_directory_full);
+
+for ii = 1:size(rbv,1)
+    data_to_save(ii,1) = ii;
+end
+data_to_save(:,2) = rbv(:, 2);
+data_to_save(:,3) = rbv(:, 1);
+
+fid = fopen('Data_Kehagias1995.txt','w+');
+for ii = 1:size(data_to_save, 1)
+    fprintf(fid, '%6.2f %6.2f %6.2f \n',...
+        data_to_save(ii, 1), ...
+        data_to_save(ii, 2),...
+        data_to_save(ii, 3));
+end
+fclose(fid);

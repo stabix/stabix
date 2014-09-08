@@ -38,7 +38,6 @@ for gb_segment_numb = 1:1:10
             if ang_degree < gui.tol.Tol_angle && (RB(gbnum,RB_grain_id1) == RB(gbnum+1,RB_grain_id1)) && (RB(gbnum,RB_grain_id2) == RB(gbnum+1,RB_grain_id2))
                 RB_new(gbnum,RB_p2x) = RB(gbnum+1,RB_p2x);
                 RB_new(gbnum,RB_p2y) = RB(gbnum+1,RB_p2y);
-
                 RB_new(gbnum+1,15) = NaN;
             elseif ang_degree < gui.tol.Tol_angle && (RB(gbnum, RB_grain_id1) == RB(gbnum+1, RB_grain_id2)) && (RB(gbnum, RB_grain_id2) == RB(gbnum+1, RB_grain_id2))
                 RB_new(gbnum,RB_p2x) = RB(gbnum+1,RB_p2x);
@@ -67,15 +66,19 @@ for ng = 1:dataGF2_smoothed.number_of_grains %length(grains)
     dataGF2_smoothed.eul_ang(ng,:)        = [grains_cleaned(ng).eulers];
     dataGF2_smoothed.x_positions(ng,:)    = [grains_cleaned(ng).pos_x];
     dataGF2_smoothed.y_positions(ng,:)    = -[grains_cleaned(ng).pos_y];
-    dataGF2_smoothed.edge_grain(ng,:)     = [grains_cleaned(ng).edge_gr];
-    dataGF2_smoothed.grain_diameter(ng,:) = [grains_cleaned(ng).diameter];
+    if isfield(grains_cleaned, 'edge_gr')
+        dataGF2_smoothed.edge_grain(ng,:)     = [grains_cleaned(ng).edge_gr];
+    end
+    if isfield(grains_cleaned, 'diameter')
+        dataGF2_smoothed.grain_diameter(ng,:) = [grains_cleaned(ng).diameter];
+    end
     
     if grains_cleaned(ng).phase_num == 1
         dataGF2_smoothed.phase(ng,:)      = 0;
     else
         dataGF2_smoothed.phase(ng,:)      = [grains_cleaned(ng).phase];
-    end    
-
+    end
+    
 end
 
 dataRB_smoothed = struct();

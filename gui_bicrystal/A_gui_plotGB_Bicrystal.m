@@ -14,11 +14,7 @@ end
 %% Set Matlab
 gui.config_Matlab = load_YAML_config_file;
 
-if ismac || isunix
-    gui.config_map.path_picture_BXconv = '../doc/_pictures/Schemes_SlipTransmission/Bicrystal_conventions.ppt.png';
-else
-    gui.config_map.path_picture_BXconv = '..\doc\_pictures\Schemes_SlipTransmission\Bicrystal_conventions.ppt.png';
-end
+gui.config_map.path_picture_BXconv = fullfile('..', 'doc', '_pictures', 'Schemes_SlipTransmission', 'Bicrystal_conventions.ppt.png');
 
 % Check if MTEX is installed
 try
