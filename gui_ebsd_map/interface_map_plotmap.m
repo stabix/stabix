@@ -35,7 +35,7 @@ elseif gui.config_map.unit_value == 3
 end
 
 %% Refresh time/date
-set(gui.handles.date_str_interface,'String', datestr(datenum(clock),'mmm.dd,yyyy HH:MM'));
+set(gui.handles.date_str_interface,'String', datestr(datenum(clock), 'mmm.dd,yyyy HH:MM'));
 
 %% Refresh pop-up menus
 guidata(gcf, gui);
@@ -393,7 +393,9 @@ if gui.flag.flag_lattice == 1
         set(gui.handles.AxisGBmap, 'ylim', gui.flag.ylim_old);
     end
     
-    zlim([-szFac*10 szFac*10])
+    if szFac > 0
+        zlim([-szFac*10 szFac*10]);
+    end
     box on;
     daspect([1 1 1]);
     view([0 0 1])

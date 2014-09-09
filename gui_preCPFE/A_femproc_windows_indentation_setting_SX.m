@@ -2,8 +2,8 @@
 function gui_handle = A_femproc_windows_indentation_setting_SX(gui_bicrystal, activeGrain, varargin)
 %% Setting of indentation inputs (tip radius, indentation depth...) + setting of the mesh for a
 % single crystal indentation experiment.
-% gui_bicrystal: handle of the Bicrystal GUI
-%activeGrain: Number of the active grain in the Bicrystal
+% gui_bicrystal: Handle of the Bicrystal GUI
+% activeGrain: Number of the active grain in the Bicrystal
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
