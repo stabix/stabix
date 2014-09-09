@@ -153,7 +153,7 @@ Stress Criteria
   The Matlab function used to calculate the generalized Schmid factor is: `generalized_schmid_factor.m <../../../crystal_plasticity/generalized_schmid_factor.m>`_
         
 * **Resolved Shear Stress** (:math:`\tau`) [#Lee_1989]_, [#Lee_1990_1]_, [#Lee_1990_2]_, [#Clark_1992]_, [#Lagow_2001]_, [#Bieler_2009]_,  [#Dewald1_2007]_, [#Dewald2_2007]_ and [#Dewald3_2011]_
-		
+  
   The resolved shear stress :math:`\tau` acting on the outgoing slip system from the piled-up dislocations should be maximized. This criterion considers the local stress state.
   
   The resolved shear stress on the grain boundary should be minimized.
@@ -248,6 +248,7 @@ References
 .. [#Ma_2006] `A. Ma et al., "On the consideration of interactions between dislocations and grain boundaries in crystal plasticity finite element modeling – Theory, experiments, and simulations.", Acta Materialia (2006), 54(8), pp.2181-2194. <http://dx.doi.org/10.1016/j.actamat.2006.01.004>`_
 .. [#Marcinkowski_1970] `M.J. Marcinkowski and W.F. Tseng, "Dislocation behavior at tilt boundaries of infinite extent.", Metal. Trans. (1970), 1(12), pp. 3397-3401. <http://dx.doi.org/10.1007/BF03037870>`_
 .. [#MisraGibala_1999] `A. Misra and R. Gibala, "Slip Transfer and Dislocation Nucleation Processes in Multiphase Ordered Ni-Fe-Al Alloys", Metallurgical and Materials Trans. A (1999), 30A, pp. 991-1001. <http://dx.doi.org/10.1007/s11661-999-0152-3>`_
+.. [#Nibur_2003] `K.A. Nibur and D.F. Bahr, "Indentation Techniques for the Study of Deformation Across Grain Boundaries.", Mat. Res. Soc. Symp. Proc. (2003), 778, pp. 129-134. <http://dx.doi.org/10.1557/PROC-778-U4.10>`_
 .. [#Ohmura_2005] `T. Ohmura et al., "Nanoindentation-Induced Deformation Behavior in the Vicinity of Single Grain Boundary of Interstitial-Free Steel.", Materials Transactions (2005), 46(9), pp. 2026-2029. <http://dx.doi.org/10.2320/matertrans.46.2026>`_
 .. [#Pathak_2009] `S. Pathak et al., "Measurement of the local mechanical properties in polycrystalline samples using spherical nanoindentation and orientation imaging microscopy.", Acta Materialia (2009), 57, pp. 3020–3028. <http://dx.doi.org/10.1016/j.actamat.2009.03.008>`_
 .. [#Pathak_2012] `S. Pathak et al., "Studying grain boundary regions in polycrystalline materials using spherical nano-indentation and orientation imaging microscopy.", J. Mater. Sci. (2012), 47, pp. 815–823. <http://dx.doi.org/10.1007/s10853-011-5859-z>`_
