@@ -5,6 +5,7 @@ function h_trans = femproc_indentation_transition_depth(tip_radius, cone_angle, 
 % cone_angle : full angle in degrees of the conical part of the tip
 % From PhD Thesis of C. Zambaldi - "Micromechanical modeling of
 % -TiAl based alloys" (2010).
+% doi : 10.2370/9783832297176
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
@@ -16,6 +17,6 @@ if nargin < 1
     tip_radius = 1; % in microns
 end
 
-h_trans = tip_radius * (1-sind(cone_angle));
+h_trans = tip_radius * (1 - sind(cone_angle));
 
 end

@@ -1,6 +1,7 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function menuFEM_mesh = femproc_custom_menu(label)
 %% Function used to add a custom menu item in the GUI menubar
+% label: String used as a label in the menu
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
 if nargin < 1
@@ -16,4 +17,5 @@ uimenu(menuFEM_mesh, 'Label', 'Load CPFEM config. file', ...
     'Separator','on');
 uimenu(menuFEM_mesh, 'Label', 'Edit YAML CPFEM config. file', ...
     'Callback', 'gui = guidata(gcf); edit(gui.config_CPFEM.filename)');
+
 end

@@ -20,6 +20,11 @@ for ng = 1:sGF2(1)
         GF2_phase = 1;
     end
 end
+if any(diff(GF2(:,gui.GF2_struct.col_idx.PHASE))~=0) == 1
+    GF2_phase = 2;
+else
+    GF2_phase = 1;
+end
 
 if GF2_phase == 1
     set(gui.handles.NumPh, 'String', 1);

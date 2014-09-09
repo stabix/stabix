@@ -57,7 +57,7 @@ sGF2 = size(GF2);
 gui.grains = struct();
 
 % Loop to set grains properties (identity, Euler angles, position)
-gui.grcen  = NaN(sGF2(1), 6);
+gui.grcen  = NaN(max(GF2(:,1)), 6);
 materials  = cellstr(num2str((NaN(1,sGF2(1))')));%{['']}%nan(sGF2(1),1);
 structures = materials;
 slip_defs  = {zeros(1,sGF2(1))};
@@ -74,25 +74,23 @@ for ng = 1:sGF2(1)
         GF2(ng,gui.GF2_struct.col_idx.AVG_ORI(1):gui.GF2_struct.col_idx.AVG_ORI(3))];
     gui.grcen(ig,3)   = -gui.grcen(ig,3);
     
-    if isnan(gui.grcen(ng,1)) == 1
-        gui.grcen(ng,:) = 0;
-    end
-    
     % If only 1 phase, index = 0. If 2 phases, indexes are 1 and 2. So, this line of code is to have always for phase 1, index = 1 !
+    % Problem with GF2 files obtained from .ctf files (hkl Oxford system). One phase give index = 1 instead of 0
     if gui.grcen(ig,1) == 0
         gui.grcen(ig,1) = 1;
-        set(gui.handles.NumPh, 'String', 1);
-        gui.grains(ig).phase_num = 1;
-    else
-        set(gui.handles.NumPh, 'String', 2);
-        gui.grains(ig).phase_num = 2;
     end
     
     % Selection of the material and the structure in function of the phase
     if gui.grcen(ig,1) == 1
-        ph = 1; materials{ng} = gui.config_data.material1; structures{ng} = gui.config_data.struct1; slip_defs{ng} = gui.config_data.slips_1;
+        ph = 1;
+        materials{ng} = gui.config_data.material1;
+        structures{ng} = gui.config_data.struct1;
+        slip_defs{ng} = gui.config_data.slips_1;
     elseif gui.grcen(ig,1) == 2
-        ph = 2; materials{ng} = gui.config_data.material2; structures{ng} = gui.config_data.struct2; slip_defs{ng} = gui.config_data.slips_2;
+        ph = 2;
+        materials{ng} = gui.config_data.material2;
+        structures{ng} = gui.config_data.struct2;
+        slip_defs{ng} = gui.config_data.slips_2;
     end
     
     gui.grains(ig).ID        = ig;
@@ -107,6 +105,26 @@ for ng = 1:sGF2(1)
     end
     if isfield(gui.GF2_struct.col_idx,'DIAM')
         gui.grains(ig).diameter  = GF2(ng,gui.GF2_struct.col_idx.DIAM);
+    end
+end
+
+% To do the following check : any(diff(gui.grcen(:,1))~=0)
+for ng = 1:max(GF2(:,1))
+    if isnan(gui.grcen(ng,1)) == 1
+        gui.grcen(ng,:) = 1;
+    end
+end
+
+% Check number of phase and set the GUI
+if any(diff(gui.grcen(:,1))~=0) == 1
+    set(gui.handles.NumPh, 'String', 2);
+    for ng = 1:max(GF2(:,1))
+        gui.grains(ng).phase_num = 2;
+    end
+else
+    set(gui.handles.NumPh, 'String', 1);
+    for ng = 1:max(GF2(:,1))
+        gui.grains(ng).phase_num = 1;
     end
 end
 

@@ -1,4 +1,9 @@
+% Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function gui = femproc_init
+%% Initialization of preCPFE GUIs
+
+% author: c.zambaldi@mpie.de
+
 get_stabix_root;
 
 %% Set Matlab
@@ -20,3 +25,5 @@ gui.defaults.fem_solvers = {'Mentat_2008'; ...
     'Mentat_2012'; ...
     'Mentat_2013'; ...
     'Mentat_2013.1'};
+
+end

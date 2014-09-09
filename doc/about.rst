@@ -1,6 +1,0 @@
-﻿About
-================
-..    include:: <isonum.txt>
-
-   
-    

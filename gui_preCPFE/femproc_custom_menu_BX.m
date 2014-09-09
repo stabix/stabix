@@ -1,6 +1,8 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function femproc_custom_menu_BX(parent)
 %% Function used to add a custom menu item in the GUI menubar
+% parent: handle of the GUI
+
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
 uimenu(parent, 'Label', 'Load CPFEM material config. file', ...
@@ -27,6 +29,5 @@ uimenu(parent, 'Label', 'Show bicrystal conventions', ...
 
 
 femproc_custom_menu_edit_gui(parent, 'A_femproc_windows_indentation_setting_BX');
-
 
 end

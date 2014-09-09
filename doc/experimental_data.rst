@@ -14,29 +14,25 @@ To use the toolbox, some experimental data are required :
 
 TEM experiments can provide intragranular misorientation and EBSD measurements can provide average grain orientations, grains boundaries and grains positions, and grain boundary trace angle.
 
-Inclination of the grain boundary can be evaluated by serial polishing or focused ion beam (FIB) sectioning, either parallel or perpendicular to the surface of the sample
+Inclination of the grain boundary can be evaluated by serial polishing or focused ion beam (FIB) sectioning, either parallel or perpendicular to the surface of the sample.
 
-EBSD measurement |rarr| TSL-OIM data preparation
-------------------------------------------------
+EBSD map GUI |rarr| TSL-OIM data preparation
+********************************************
 
-Open you .osc file in the TSL-OIM Analysis Software and before everything, set the TSL coordinates system.
+Open you .osc (or your .ctf) file in the TSL-OIM Analysis Software.
 
-Change the grain size or the minimum confident index (All data |rarr| Properties |rarr| Size).
+**Set the TSL coordinates system !**
 
-.. code-block:: rest
+Change data properties for the detection of grain boundaries (All data |rarr| Properties).
 
-   GSZ[&;5.000,//here goes the grain size as int//,0.000,0,0,8.0,1;]>0.000
-
-Clean up your dataset (Filename |rarr| Cleanup). 
-
-In order to decrease the number of grain boundaries segments, decrease the value of the "Grain Tolerance Angle" and increase the value of the "Minimum Grain Size".
+Clean up your dataset (Filename |rarr| Cleanup).
 
 Reference : OIM ANALYSIS 6.0 (user manual)
 
-Reconstructed Boundary File
----------------------------
+Reconstructed Boundaries File
+-----------------------------
 
-**Export "Reconstructed Boundary File" of the cleaned dataset** (All data |rarr| Export |rarr| Reconstructed Boundaries), with the following options :
+**Export "Reconstructed Boundaries File" of the cleaned dataset** (All data |rarr| Export |rarr| Reconstructed Boundaries), with the following options defined by default :
 
 - Right hand average orientation (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees
 
@@ -48,11 +44,16 @@ Reconstructed Boundary File
 
 - IDs of right hand and left hand grains
 
-N.B : Reconstructed boundary methodology is only applied to data collected on a hexagonal grid.
+N.B : Reconstructed boundary methodology is only applied to data collected on a hexagonal grid. It is possible to convert a square grid into an hexagonal grid in TSL-OIM software.
 
 Example of "Reconstructed Boundary File": `MPIE_cpTi_reconstructed_boundaries_2013.txt <../../../gui_ebsd_map/EBSD_data_Examples/MPIE_cpTi_reconstructed_boundaries_2013.txt>`_
 
 The Matlab function used to read "Reconstructed Boundary File" is: `read_oim_reconstructed_boundaries_file.m <../../../tsl_oim/read_oim_reconstructed_boundaries_file.m>`_
+
+If some GBs segments are missing or some wrong segments are exported, play with partition properties in the TSL-OIM software in order to export a more realistic Reconstructed Boundaries file:
+    - decrease/increase "Grain Tolerance Angle"
+    - decrease/increase "Minimum Grain Size"
+    - decrease/increase the maximum deviation between reconstructed boundary and corresponding boundary segments.
 
 Grain File Type 2
 -----------------
@@ -84,8 +85,8 @@ Scan Data (.ang file)
 
 This .ang file is useful for the `MTEX Toolbox v4.0 <https://code.google.com/p/mtex/>`_
 
-Errors can be introduced during files exportation from TSL
-----------------------------------------------------------
+Errors introduced during files exportation from TSL
+---------------------------------------------------
 
 - "Grain File Type 2" |rarr| Missing integer identifying grain
    |rarr| Solved when file is imported via the GUI.
@@ -96,4 +97,21 @@ Errors can be introduced during files exportation from TSL
 - "Reconstructed Boundary File" |rarr| x-axis and y-axis not corrects…
    |rarr| y coordinates is multiplied by -1 when file is imported via the GUI.
 
-All of these issues are taken into account and corrected wautomatically hen user is loading his data via the EBSD map GUI.
+All of these issues are taken into account and corrected automatically when user is loading his data via the EBSD map GUI.
+
+Bicrystal GUI |rarr| YAML configuration file
+********************************************
+
+The YAML configuration file provides a simple way to define a bicrystal.
+
+An example of bicrystal configuration file is given here :  `config_gui_BX_example.yaml <../../../YAML_config_files/config_gui_BX_example.yaml>`_
+
+Copy this example file and modify it with your data. Be careful to put a space after the comma in a list (e.g. [x, y, z]).
+
+Don't change fieldnames and don't round Euler angles.
+
+Load your YAML bicrystal configuration file via the menu in the bicrystal GUI.
+
+`Visit the YAML website for more informations. <http://www.yaml.org/>`_
+
+`Visit the YAML code for MATLAB. <http://code.google.com/p/yamlmatlab/>`_

@@ -1,8 +1,14 @@
+% Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function python = femproc_python_check(python_loc)
-%%
+%% Check Python installation
+% python_loc: Python executable
+
+% author: c.zambaldi@mpie.de
+
 if nargin < 1
-    python_loc = 'python'
+    python_loc = 'python';
 end
+
 python = struct;
 python.location = python_loc;
 python.exists = ~ system(sprintf('%s -c "exit()"', python_loc));
@@ -17,4 +23,6 @@ if all([python.exists, python.finds_numpy])
 else
     python.works = false;
     python
+end
+
 end

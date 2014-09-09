@@ -1,8 +1,8 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function gui_handle = A_femproc_windows_indentation_setting_BX(gui_bicrystal, varargin) %'A_femproc_windows_indentation_setting_BX(0, guidata(gcf))');
+function gui_handle = A_femproc_windows_indentation_setting_BX(gui_bicrystal, varargin)
 %% Setting of indentation inputs (tip radius, indentation depth...) + setting of the mesh for a
 % bicrystal indentation experiment.
-% gui_bicrystal: handle of the Bicrystal GUI
+% gui_bicrystal: Handle of the Bicrystal GUI
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
@@ -48,7 +48,7 @@ else
     gui_BX.config_Matlab  = gui_bicrystal.config_Matlab;
     gui_BX.GB             = gui_bicrystal.GB;
     gui_BX.GB.active_data = 'BX';    
-    gui_BX.title = femproc_set_title(gui_BX, ['bicrystal n°', num2str(gui_BX.GB.GB_Number)]) 
+    gui_BX.title = femproc_set_title(gui_BX, ['bicrystal n°', num2str(gui_BX.GB.GB_Number)]);
 end
 guidata(gcf, gui_BX);
 
