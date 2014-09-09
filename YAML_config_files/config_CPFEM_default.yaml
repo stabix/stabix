@@ -1,6 +1,7 @@
 # YAML configuration file to set crystal plasticity finite element modelling
 # Authors : D. Mercier and C. Zambaldi
-# Be careful : only absolute paths and put a space after the comma in a list (e.g. [x, y, z]) !!!
+# Give only absolute paths and put a space after the comma in a list (e.g. [x, y, z]) !!!
+# Don't modify fieldnames !
 
 # the CPFEM code that you want to use, e.g. GENMAT or DAMASK
 #simulation_code: GENMAT

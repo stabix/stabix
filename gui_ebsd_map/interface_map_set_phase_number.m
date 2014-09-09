@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function interface_map_setmap_TSL_data
+function interface_map_set_phase_number
 %% Function used to set the map interface
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
@@ -8,7 +8,6 @@ gui = guidata(gcf);
 
 GF2  = gui.GF2_struct.data;
 sGF2 = size(GF2);
-GF2_phase = 2;
 
 % Loop to set number of phases based on grain file type 2
 for ng = 1:sGF2(1)
@@ -17,7 +16,6 @@ for ng = 1:sGF2(1)
     % So, this line of code is to have always for phase 1, index=1 !
     if GF2(ng, gui.GF2_struct.col_idx.PHASE) == 0
         GF2(ng, gui.GF2_struct.col_idx.PHASE) = 1;
-        GF2_phase = 1;
     end
 end
 if any(diff(GF2(:,gui.GF2_struct.col_idx.PHASE))~=0) == 1

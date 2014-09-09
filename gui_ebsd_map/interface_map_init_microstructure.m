@@ -1,7 +1,7 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function interface_map_init_microstructure
 %% Function to extract data from TSL files
-%% Details about TSL files
+%% Details about TSL files (in function of the TSL-OIM software version)
 % Grain File Type 2
 % # Column 1: Integer identifying grain
 % # Column 2-4: Average orientation (phi1, PHI, phi2) in degrees
@@ -37,9 +37,9 @@ end
 % Get data from encapsulation
 gui = guidata(gcf);
 
-% Set interface when first run of interface or for new data imported
+% Get total phase_number
 guidata(gcf, gui);
-interface_map_setmap_TSL_data;
+interface_map_set_phase_number
 % Get data from encapsulation
 gui = guidata(gcf);
 guidata(gcf, gui);
@@ -108,23 +108,14 @@ for ng = 1:sGF2(1)
     end
 end
 
-% To do the following check : any(diff(gui.grcen(:,1))~=0)
-for ng = 1:max(GF2(:,1))
-    if isnan(gui.grcen(ng,1)) == 1
-        gui.grcen(ng,:) = 1;
-    end
-end
-
-% Check number of phase and set the GUI
-if any(diff(gui.grcen(:,1))~=0) == 1
-    set(gui.handles.NumPh, 'String', 2);
-    for ng = 1:max(GF2(:,1))
-        gui.grains(ng).phase_num = 2;
-    end
-else
-    set(gui.handles.NumPh, 'String', 1);
+% Set total number of phase
+if str2num(get(gui.handles.NumPh, 'String')) == 1
     for ng = 1:max(GF2(:,1))
         gui.grains(ng).phase_num = 1;
+    end
+else
+    for ng = 1:max(GF2(:,1))
+        gui.grains(ng).phase_num = 2;
     end
 end
 

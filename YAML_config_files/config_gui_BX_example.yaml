@@ -1,6 +1,7 @@
 # YAML configuration file to set a specific bicrystal
 # Authors : D. Mercier and C. Zambaldi
-# Be careful : only absolute paths and put a space after the comma in a list (e.g. [x, y, z]) !!!
+# Give only absolute paths and put a space after the comma in a list (e.g. [x, y, z]) !!!
+# Don't modify fieldnames !
 
 filenameGF2_BC: 'random_inputs'
 filenameRB_BC: 'random_inputs'
