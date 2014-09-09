@@ -352,7 +352,7 @@ legend(strcat('GrainA n°', num2str(gui_BX.GB.GrainA)), strcat('GrainB n°', num2s
 %   2);
 axis tight; % Axis tight to the sample
 axis equal; % Axis aspect ratio
-
+view(-65,20);
 
 % if isfield(gui_BX, 'config_map')
 %     if isfield(gui_BX.config_map, 'unit_string')

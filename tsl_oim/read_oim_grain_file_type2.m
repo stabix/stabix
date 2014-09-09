@@ -4,7 +4,7 @@ function GF2 = read_oim_grain_file_type2(fname, fpath, varargin)
 % fname : Name of the grain file type 2 to read
 % fpath : Path where is stored the grain file type 2 to read
 
-% Grain File Type 2
+% Example of headerlines of a Grain File Type 2 (TSL-OIM v6.2.0)
 % # Column 1: Integer identifying grain
 % # Column 2-4: Average orientation (phi1, PHI, phi2) in degrees
 % # Column 5-6: Average Position (x, y) in microns
@@ -30,6 +30,12 @@ if nargin == 1
 end
 
 GF2 = struct();
+GRAIN_NUMBERS_OK = false;
+EULER_ANGLES_OK = false;
+AVG_POS_XY_OK = false;
+PHASE_OK = false;
+EDGE_GRAIN_OK = false;
+DIAM_OK = false;
 
 %disp([mfilename,' file:', fname]);
 GF2.file = fullfile(fpath, fname);
@@ -41,19 +47,34 @@ while feof(fid) ~= 1
     if ln(1) == '#';
         %ln % plot headers
         header{end+1} = ln;
-        if strcmp('# Column 1: Integer identifying grain',ln)
+        if strfind(ln, 'Integer identifying grain')
             GRAIN_NUMBERS_OK = true;
         end
-        if strcmp('# Column 2-4: Average orientation (phi1, PHI, phi2) in degrees',ln)
+        if strfind(ln, 'Average orientation (phi1, PHI, phi2) in degrees')
             EULER_ANGLES_OK = true;
         end
+        if strfind(ln, 'Average Position (x, y) in microns')
+            AVG_POS_XY_OK = true;
+        end
+        if strfind(ln, 'An integer identifying the phase')
+            PHASE_OK = true;
+        end
+        if strfind(ln, 'Edge grain (1) or interior grain (0)')
+            EDGE_GRAIN_OK = true;
+        end
+        if strfind(ln, 'Diameter of grain in microns')
+            DIAM_OK = true;
+        end
     else
-        if ~(GRAIN_NUMBERS_OK && EULER_ANGLES_OK)
+        if ~(GRAIN_NUMBERS_OK && EULER_ANGLES_OK && AVG_POS_XY_OK && PHASE_OK)
             fclose(fid);
             error('Grain File Type 2 columns are wrong !')
         end
+        if ~(EDGE_GRAIN_OK && DIAM_OK)
+            warning('Missing information if edge or interior grain, and diameter of grains !')
+        end
         ii = ii + 1;
-        data(ii,:) = sscanf(ln,'%f'); %,N
+        data(ii,:) = sscanf(ln,'%f');
     end
 end
 fclose(fid);
@@ -65,8 +86,20 @@ GF2.col_idx = header2struct(header);
 if isfield(GF2.col_idx,'GRAIN_IDs')
     GF2.GRAIN_ID = data(:,GF2.col_idx.GRAIN_ID);
 end
-if isfield(GF2.col_idx,'GB_ENDPOINT_XY')
-    GF2.GB_XY = data(:,GF2.col_idx.GB_XY);
+if isfield(GF2.col_idx,'AVG_ORI')
+    GF2.AVG_ORI = data(:,GF2.col_idx.AVG_ORI);
+end
+if isfield(GF2.col_idx,'AVG_POS_XY')
+    GF2.AVG_POS_XY = data(:,GF2.col_idx.AVG_POS_XY);
+end
+if isfield(GF2.col_idx,'PHASE')
+    GF2.PHASE = data(:,GF2.col_idx.PHASE);    
+end
+if isfield(GF2.col_idx,'EDGE')
+    GF2.EDGE = data(:,GF2.col_idx.EDGE);    
+end
+if isfield(GF2.col_idx,'DIAM')
+    GF2.DIAM = data(:,GF2.col_idx.DIAM);    
 end
 
 function col_idx = header2struct(header)
@@ -91,12 +124,16 @@ for i_ln = 1:numel(header)
         desc = strtrim(desc);
         if strfind(desc, 'Integer identifying grain')
             col_idx.INT_ID_GRAIN = idx;
-        elseif strfind(desc, 'Average orientation')
+        elseif strfind(desc, 'Average orientation (phi1, PHI, phi2) in degrees')
             col_idx.AVG_ORI = idx;
         elseif strfind(desc, 'Average Position (x, y) in microns')
             col_idx.AVG_POS_XY = idx;
         elseif strfind(desc, 'An integer identifying the phase')
             col_idx.PHASE = idx;
+        elseif strfind(desc, 'Edge grain (1) or interior grain (0)')
+            col_idx.EDGE = idx;
+        elseif strfind(desc, 'Diameter of grain in microns')
+            col_idx.DIAM = idx;
         end
     end
 end

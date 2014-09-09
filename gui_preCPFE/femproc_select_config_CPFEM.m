@@ -1,5 +1,11 @@
+% Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function femproc_select_config_CPFEM
+%% Selection of CPFEM config. file
+
+% author: c.zambaldi@mpie.de
+
 gui = guidata(gcf);
+
 [config_CPFEM_file, config_CPFEM_path] = ...
     uigetfile(fullfile(gui.defaults.config_files_dir,'config_CPFEM*.yaml'), ...
     'Select CPFEM config. file');
@@ -13,6 +19,7 @@ else
     gui.config_CPFEM_file = fullfile(config_CPFEM_path, config_CPFEM_file);
     disp(['User selected :', gui.config_CPFEM_file]);
 end
+
 guidata(gcf, gui);
 
 femproc_load_YAML_CPFEM_config_file(gui.config_CPFEM_file);

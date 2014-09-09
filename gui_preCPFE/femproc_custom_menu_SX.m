@@ -1,6 +1,8 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function femproc_custom_menu_SX(parent)
 %% Function used to add a custom menu item in the GUI menubar
+% parent: handle of the GUI
+
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
 uimenu(parent, 'Label', 'Load CPFEM material config. file', ...

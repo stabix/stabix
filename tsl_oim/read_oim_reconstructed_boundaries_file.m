@@ -4,7 +4,8 @@ function RB = read_oim_reconstructed_boundaries_file(fname, fpath, varargin)
 % fname : Name of the reconstructed boundaries file
 % fpath : Path to the reconstructed boundaries file
 
-% Reconstructed Boundaries file                                                         x axis or TD Direction (Transverse)
+% Example of headerlines of a Reconstructed Boundaries file (TSL-OIM v6.2.0)
+%                                                                                    x axis or TD Direction (Transverse)
 % # Column 1-3:    right hand average orientation (phi1, PHI, phi2 in radians)       ---->
 % # Column 4-6:    left hand average orientation (phi1, PHI, phi2 in radians)      y |
 % # Column 7:      length (in microns)                                         or RD |
@@ -31,6 +32,13 @@ end
 
 RB = struct();
 
+RIGHT_ORI_OK = false;
+LEFT_ORI_OK = false;
+GB_LENGTH_OK = false;
+GB_TRACE_ANGLE_OK = false;
+GB_ENDPOINTS_COORD_OK = false;
+ID_GRAINS_OK = false;
+
 %disp([mfilename,' file:', fname]);
 RB.file = fullfile(fpath, fname);
 fid = fopen(RB.file,'r');
@@ -40,32 +48,31 @@ while feof(fid) ~= 1
     ln = fgetl(fid);
     if ln(1) == '#';
         header{end+1} = ln;
-        %
-        %         if strcmp('# Column 1-3:   right hand average orientation (phi1, PHI, phi2 in radians)',ln)
-        %             RIGHT_ORI_OK = true;
-        %         end
-        %         if strcmp('# Column 4-6:    left hand average orientation (phi1, PHI, phi2 in radians)',ln)
-        %             LEFT_ORI_OK = true;
-        %         end
-        %         if strcmp('# Column 7:      length (in microns)',ln)
-        %             GB_LENGTH_OK = true;
-        %         end
-        %         if strcmp('# Column 8:      trace angle (in degrees)',ln)
-        %             GB_TRACE_ANGLE_OK = true;
-        %         end
-        %         if strcmp('# Column 9-12:   x,y coordinates of endpoints (in microns)',ln)
-        %             GB_ENDPOINTS_COORD_OK = true;
-        %         end
-        %         if strcmp('# Column 13-14:  IDs of right hand and left hand grains',ln)
-        %             ID_GRAINS_OK = true;
-        %         end
+        if strfind(ln, 'right hand average orientation (phi1, PHI, phi2 in radians)')
+            RIGHT_ORI_OK = true;
+        end
+        if strfind(ln, 'left hand average orientation (phi1, PHI, phi2 in radians)')
+            LEFT_ORI_OK = true;
+        end
+        if strfind(ln, 'length (in microns)')
+            GB_LENGTH_OK = true;
+        end
+        if strfind(ln, 'trace angle (in degrees)')
+            GB_TRACE_ANGLE_OK = true;
+        end
+        if strfind(ln, 'x,y coordinates of endpoints (in microns)')
+            GB_ENDPOINTS_COORD_OK = true;
+        end
+        if strfind(ln, 'IDs of right hand and left hand grains')
+            ID_GRAINS_OK = true;
+        end
     else
-        %if ~(RIGHT_ORI_OK && LEFT_ORI_OK && GB_LENGTH_OK&& GB_TRACE_ANGLE_OK&& GB_ENDPOINTS_COORD_OK && ID_GRAINS_OK)
-        %    fclose(fid);
-        %    error('Reconstructed Boundaries File columns are wrong !')
-        %end
+        if ~(RIGHT_ORI_OK && LEFT_ORI_OK && GB_LENGTH_OK&& GB_TRACE_ANGLE_OK&& GB_ENDPOINTS_COORD_OK && ID_GRAINS_OK)
+           fclose(fid);
+           error('Reconstructed Boundaries File columns are wrong !')
+        end
         ii = ii + 1;
-        data(ii,:) = sscanf(ln,'%f'); %,N
+        data(ii,:) = sscanf(ln,'%f');
     end
 end
 fclose(fid);
