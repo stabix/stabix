@@ -1,9 +1,14 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function menuFEM_mesh = femproc_custom_menu
+function menuFEM_mesh = femproc_custom_menu(label)
 %% Function used to add a custom menu item in the GUI menubar
+% label: String used as a label in the menu
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
-menuFEM_mesh = uimenu('Label', 'FEM');
+if nargin < 1
+    label = 'FEM';
+end
+
+menuFEM_mesh = uimenu('Label', label);
 
 femproc_custom_menu_help(menuFEM_mesh);
 

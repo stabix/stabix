@@ -59,7 +59,7 @@ gui_BX.config_map.path_picture_BXind = fullfile(gui_BX.doc_local, ...
     '_pictures', 'Schemes_SlipTransmission','BX_indentation_mesh_example.png');
 
 %% Customized menu
-gui_BX.custom_menu = femproc_custom_menu;
+gui_BX.custom_menu = femproc_custom_menu([gui_BX.module_name,'-BX']);
 femproc_custom_menu_BX(gui_BX.custom_menu);
 
 %% Plot the mesh axis
@@ -230,6 +230,7 @@ guidata(gcf, gui_BX);
 
 %% Run the plot of the meshing
 femproc_indentation_setting_BX;
+view(-65,20);
 gui_BX = guidata(gcf); guidata(gcf, gui_BX);
 
 gui_handle = gui_BX.handles.gui_BX_win;
