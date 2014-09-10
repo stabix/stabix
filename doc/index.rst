@@ -47,7 +47,6 @@ Contents
    bicrystal_gui
    meshing_gui
    data_from_paper
-   about
    
 References
 ==========
