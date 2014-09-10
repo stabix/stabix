@@ -1,0 +1,28 @@
+# YAML configuration file to set the Matlab toolbox
+# Authors : D. Mercier and C. Zambaldi
+# Give only absolute paths and put a space after the comma in a list (e.g. [x, y, z]) !!!
+# Don't modify fieldnames !
+
+# Matlab toolbox version
+toolbox_name: 'STABiX'
+
+# Matlab toolbox version
+version_toolbox: '1.3'
+
+# Setting of opengl, e.g. 'software' or 'hardware' (optional)
+matlab_opengl: software
+
+# Path for the documentation (html)
+doc_path: 'http://zambaldi.de/software/stabix/'
+
+# Path for the documentation (pdf)
+doc_pdf_path: 'http://zambaldi.de/software/stabix/STABiX_doc.pdf'
+
+# Path for bicrystal convention
+path_picture_BXconv: 'http://zambaldi.de/software/stabix/_images/Bicrystal_conventions.png'
+
+# Path for bicrystal indentation mesh model
+path_picture_BXind: 'http://zambaldi.de/software/stabix/_images/BX_indentation_mesh_example.png'
+    
+# Path for single crystal indentation mesh model
+path_picture_SXind: 'http://zambaldi.de/software/stabix/_images/SX_indentation_mesh_example.png'

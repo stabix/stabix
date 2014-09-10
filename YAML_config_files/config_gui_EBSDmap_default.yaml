@@ -4,10 +4,10 @@
 # Don't modify fieldnames !
 
 #Sample and Material definition
-Sample_IDs: [DMe_Alb_cpTi_Area1, DMe_Alb_cpTi_Area2, DMe_Ti5Al2.5Sn_Area1, DMe_Mo_Area1]
-Sample_ID: DMe_Alb_cpTi_Area1
-Material_IDs: [DMe_Alb_cpTi, DMe_Ti5Al2.5Sn, DMe_Mo]
-Material_ID: DMe_Alb_cpTi
+Sample_IDs: [Unknown, Sample_A, Sample_B]
+Sample_ID: Unknown
+Material_IDs: [Unknown, Material_A, Material_B]
+Material_ID: Unknown
 
 # path to your default data files (optional)
 #default_grain_file_type2: MPIE_cpTi_grain_file_type2_2013.txt

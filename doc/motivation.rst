@@ -9,7 +9,7 @@ Originally, interactions between dislocations and grain boundaries
 have been observed in the transmission electron microscope (TEM) after strain test or in situ [#Shen_1986]_, [#Shen_1988]_ and [#Kacher_2014]_. Some authors observed as
 well slip transmission during indentation tests performed close to grain boundaries [#WoNgan_2004]_, [#Soer_2005]_, [#Britton_2009]_, [#Pathak_2012]_ and [#Lawrence_2014]_.
 
-To better understand the role played by the grain boundaries, we developed a Matlab Toolbox with Graphical User Interfaces (GUI),
+To better understand the role played by the grain boundaries, we developed a Matlab\ :sup:`TM` \ Toolbox with Graphical User Interfaces (GUI),
 to analyze and to quantify the micromechanics of grain boundaries.
 This toolbox aims to link experimental results to crystal plasticity finite element (CPFE) simulations.
 

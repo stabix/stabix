@@ -4,7 +4,7 @@
  
 This GUI allows to analyze quantitatively slip transmission across grain boundaries for an EBSD map.
 
-The Matlab function used to run the EBSD map GUI is: `A_gui_plotmap.m <../../../gui_ebsd_map/A_gui_plotmap.m>`_
+The Matlab\ :sup:`TM` \ function used to run the EBSD map GUI is: `A_gui_plotmap.m <../../../gui_ebsd_map/A_gui_plotmap.m>`_
 
 This includes:
 

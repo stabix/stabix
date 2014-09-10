@@ -12,20 +12,15 @@ gui_BX = femproc_init;
 %% Window setting
 gui_BX.handles.gui_BX_win = figure(...
     'NumberTitle', 'off',...
-    'Position', femproc_figure_position([.58, .30, .9, 1]), ... %[WX WY WW WH],...
+    'Position', femproc_figure_position([.58, .30, .9, 1]), ... %[left, bottom, width, height/width],...
     'ToolBar', 'figure');
 guidata(gcf, gui_BX);
 
-%femproc_set_defaults; 
-%gui_BX = guidata(gcf);
-
-gui_BX.description = 'indentation of a bicrystal';
-guidata(gcf, gui_BX);
-gui_BX.title_str = femproc_set_title(gui_BX, '');
+gui_BX.description = 'Indentation of a bicrystal - ';
 
 %% Set Matlab and CPFEM configurations
 if nargin == 0
-    [gui_BX.config_Matlab] = load_YAML_config_file;
+    [gui_BX.config] = load_YAML_config_file;
     
     gui_BX.config_map.Sample_IDs   = [];
     gui_BX.config_map.Sample_ID    = [];
@@ -33,30 +28,23 @@ if nargin == 0
     gui_BX.config_map.Material_ID  = [];
     gui_BX.config_map.default_grain_file_type2 = 'random_GF2data.txt';
     gui_BX.config_map.default_reconstructed_boundaries_file = 'random_RBdata.txt';
-    gui_BX.config_map.imported_YAML_GB_config_file = 'config_gui_BX_example.yaml';
+    gui_BX.config_map.imported_YAML_GB_config_file = 'config_gui_BX_default.yaml';
     
     guidata(gcf, gui_BX);
     femproc_load_YAML_BX_config_file(gui_BX.config_map.imported_YAML_GB_config_file, 2);
     gui_BX = guidata(gcf); guidata(gcf, gui_BX);
     gui_BX.GB.active_data = 'BX';
     gui_BX.GB.activeGrain = gui_BX.GB.GrainA;
-    %gui_BX.handles.gui_BX_title = strcat('preCPFE - indentation of a bicrystal', ' - version_', num2str(gui_BX.config_Matlab.version_toolbox));
-    %gui_BX.title = femproc_set_title(gui_BX, 
+    gui_BX.title_str = set_gui_title(gui_BX, '');
 else
     gui_BX.flag           = gui_bicrystal.flag;
     gui_BX.config_map     = gui_bicrystal.config_map;
-    gui_BX.config_Matlab  = gui_bicrystal.config_Matlab;
+    gui_BX.config  = gui_bicrystal.config;
     gui_BX.GB             = gui_bicrystal.GB;
     gui_BX.GB.active_data = 'BX';    
-    gui_BX.title = femproc_set_title(gui_BX, ['bicrystal n°', num2str(gui_BX.GB.GB_Number)]);
+    gui_BX.title_str = set_gui_title(gui_BX, ['Bicrystal n°', num2str(gui_BX.GB.GB_Number)]);
 end
 guidata(gcf, gui_BX);
-
-%% Set path for documentation and initialization
-format compact;
-
-gui_BX.config_map.path_picture_BXind = fullfile(gui_BX.doc_local, ...
-    '_pictures', 'Schemes_SlipTransmission','BX_indentation_mesh_example.png');
 
 %% Customized menu
 gui_BX.custom_menu = femproc_custom_menu([gui_BX.module_name,'-BX']);
@@ -157,7 +145,7 @@ gui_BX.handles.pb_mesh_example = uicontrol('Parent', gui_BX.handles.gui_BX_win,.
     'FontWeight', 'bold',...
     'FontSize', 10,...
     'HorizontalAlignment', 'center',...
-    'Callback', 'gui_BX = guidata(gcf); open_file_web(gui_BX.config_map.path_picture_BXind);');
+    'Callback', 'gui_BX = guidata(gcf); web(gui_BX.config.path_picture_BXind);');
 
 %% Number of elements info
 gui_BX.handles.num_elem = uicontrol('Parent', gui_BX.handles.gui_BX_win,...

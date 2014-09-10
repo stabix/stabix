@@ -14,7 +14,7 @@ if isempty(config_CPFEM_file)%isequal(YAML_CPFEM_config_file_2_import, 0) || str
     disp('User selected Cancel');
     gui.config_CPFEM_file = gui.defaults.config_CPFEM_full;
     %YAML_CPFEM_config_file_2_import = sprintf('config_CPFEM_%s.yaml', ...
-    %    gui.config_Matlab.username);
+    %    gui.config.username);
 else
     gui.config_CPFEM_file = fullfile(config_CPFEM_path, config_CPFEM_file);
     disp(['User selected :', gui.config_CPFEM_file]);

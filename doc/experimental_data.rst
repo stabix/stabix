@@ -6,11 +6,11 @@ To use the toolbox, some experimental data are required :
 
 - average grain orientations (Euler angles (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees) or intragranular misorientation (misorientation axis :math:`[uvw]` / angle :math:`\omega`);
 
-- grains boundaries positions (optional)
+- grains boundaries positions (optional for the bicrystal analysis);
 
-- grains positions (optional)
+- grains positions (optional for the bicrystal analysis);
 
-- geometry of grain boundaries (trace angle and grain boundary inclination) (optional)
+- geometry of grain boundaries (trace angle and grain boundary inclination) (optional).
 
 TEM experiments can provide intragranular misorientation and EBSD measurements can provide average grain orientations, grains boundaries and grains positions, and grain boundary trace angle.
 
@@ -48,7 +48,7 @@ N.B : Reconstructed boundary methodology is only applied to data collected on a 
 
 Example of "Reconstructed Boundary File": `MPIE_cpTi_reconstructed_boundaries_2013.txt <../../../gui_ebsd_map/EBSD_data_Examples/MPIE_cpTi_reconstructed_boundaries_2013.txt>`_
 
-The Matlab function used to read "Reconstructed Boundary File" is: `read_oim_reconstructed_boundaries_file.m <../../../tsl_oim/read_oim_reconstructed_boundaries_file.m>`_
+The Matlab\ :sup:`TM` \ function used to read "Reconstructed Boundary File" is: `read_oim_reconstructed_boundaries_file.m <../../../tsl_oim/read_oim_reconstructed_boundaries_file.m>`_
 
 If some GBs segments are missing or some wrong segments are exported, play with partition properties in the TSL-OIM software in order to export a more realistic Reconstructed Boundaries file:
     - decrease/increase "Grain Tolerance Angle"
@@ -76,7 +76,7 @@ N.B. : Export the "Grain File Type 2" in the same location as the corresponding 
 
 Example of "Grain Gile Type 2": `MPIE_cpTi_grain_file_type2_2013.txt <../../../gui_ebsd_map/EBSD_data_Examples/MPIE_cpTi_grain_file_type2_2013.txt>`_
 
-The Matlab function used to read "Grain Gile Type 2" is: `read_oim_grain_file_type2.m <../../../tsl_oim/read_oim_grain_file_type2.m>`_
+The Matlab\ :sup:`TM` \ function used to read "Grain Gile Type 2" is: `read_oim_grain_file_type2.m <../../../tsl_oim/read_oim_grain_file_type2.m>`_
 
 Scan Data (.ang file)
 ---------------------
@@ -102,7 +102,7 @@ All of these issues are taken into account and corrected automatically when user
 Bicrystal GUI |rarr| YAML configuration file
 ********************************************
 
-The YAML configuration file provides a simple way to define a bicrystal.
+**The YAML configuration file provides a simple way to define a bicrystal.**
 
 An example of bicrystal configuration file is given here :  `config_gui_BX_example.yaml <../../../YAML_config_files/config_gui_BX_example.yaml>`_
 
@@ -114,4 +114,13 @@ Load your YAML bicrystal configuration file via the menu in the bicrystal GUI.
 
 `Visit the YAML website for more informations. <http://www.yaml.org/>`_
 
-`Visit the YAML code for MATLAB. <http://code.google.com/p/yamlmatlab/>`_
+`Visit the YAML code for Matlab. <http://code.google.com/p/yamlmatlab/>`_
+
+Convention for bicrystal EBSD/indentation experiments
+*****************************************************
+
+.. figure:: ./_pictures/Schemes_SlipTransmission/Bicrystal_conventions.png
+   :scale: 50 %
+   :align: center
+   
+   *Figure 1 : Geometrical convention of a bicrystal.*

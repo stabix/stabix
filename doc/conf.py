@@ -202,8 +202,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'MWN2_matlab.tex', u'MWN2\\_matlab Documentation',
-   u'MWN2 team', 'manual'),
+  ('index', 'STABiX_doc.tex', u'STABiX Documentation',
+   u'Mercier D., Zambaldi C. and Bieler T.R.', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -232,8 +232,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'mwn2_matlab', u'MWN2_matlab Documentation',
-     [u'MWN2 team'], 1)
+    ('index', 'STABiX Documentation', u'STABiX Documentation',
+     [u'Mercier D., Zambaldi C. and Bieler T.R.'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -246,8 +246,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'MWN2_matlab', u'MWN2_matlab Documentation',
-   u'MWN2 team', 'MWN2_matlab', 'One line description of project.',
+  ('index', 'STABiX Documentation', u'STABiX Documentation',
+   u'Mercier D., Zambaldi C. and Bieler T.R.', 'MWN2_matlab', 'One line description of project.',
    'Miscellaneous'),
 ]
 

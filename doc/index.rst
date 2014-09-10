@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
    
-Slip Transmission Matlab toolbox
-================================
+Slip Transmission Matlab\ :sup:`TM` \ toolbox
+=============================================
 
 .. figure:: ./_pictures/GUIs/EBSD_map2.png
    :scale: 50 %
@@ -12,7 +12,7 @@ Slip Transmission Matlab toolbox
    
    *Slip transmission analysis for an EBSD map of near alpha phase Ti alloy.*
    
-The MATLAB\ :sup:`TM` \ toolbox **STABiX** provides a unique and simple way to analyse slip transmission in a bicrystal.
+The Matlab\ :sup:`TM` \ toolbox **STABiX** provides a unique and simple way to analyse slip transmission in a bicrystal.
 A Graphical User Interfaces (GUI) is implemented in order to import EBSD results, and to represent and quantify grain boundary slip resistance.
 Key parameters, such as the number of phases, crystal structure (fcc, bcc, or hcp), and slip families for calculations, are set by the user.
 With this information, grain boundaries are plotted and color coded according to the :math:`m'` factor [#LusterMorris_1995]_ that quantifies the geometrical
@@ -45,7 +45,7 @@ Contents
    experimental_data
    ebsd_map_gui
    bicrystal_gui
-   meshing_gui
+   preCPFE_gui
    data_from_paper
    
 References
@@ -80,5 +80,5 @@ and the `Max-Planck-Institut für Eisenforschung <http://www.mpie.de/>`_ for sup
 
 Keywords
 ========
-MATLAB\ :sup:`TM` \ Toolbox; Graphical User Interface (GUI); Grain Boundaries; Polycrystalline Metals; Slip Transmission; Bi-Crystal (BX);
+Matlab\ :sup:`TM` \ Toolbox; Graphical User Interface (GUI); Grain Boundaries; Polycrystalline Metals; Slip Transmission; Bi-Crystal (BX);
 Electron backscatter diffraction (EBSD); Instrumented indentation; Crystal Plasticity Finite Element Method (CPFEM); python\ :sup:`TM` \ Toolbox.

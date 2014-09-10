@@ -10,23 +10,18 @@ function gui_handle = A_femproc_windows_indentation_setting_SX(gui_bicrystal, ac
 %% Initialization
 gui_SX = femproc_init;
 
-
 %% Window setting
 gui_SX.handles.gui_SX_win = figure(...
     'NumberTitle', 'off',...
-    'Position', femproc_figure_position([.58, .30, .6, .8]), ... % [left, bottom, width, height]
+    'Position', femproc_figure_position([.58, .30, .6, .8]), ... % [left, bottom, width, height/width]
     'ToolBar', 'figure');
 guidata(gcf, gui_SX);
 
-%femproc_set_defaults; gui_SX = guidata(gcf);
-
-gui_SX.description = 'indentation of a single crystal';
-gui_SX.title_str = femproc_set_title(gui_SX, '');
-guidata(gcf, gui_SX);
+gui_SX.description = 'Indentation of a single crystal - ';
 
 %% Set Matlab and CPFEM configurations
 if nargin == 0  
-    [gui_SX.config_Matlab] = load_YAML_config_file;
+    [gui_SX.config] = load_YAML_config_file;
     
     gui_SX.config_map.Sample_IDs   = [];
     gui_SX.config_map.Sample_ID    = [];
@@ -34,18 +29,18 @@ if nargin == 0
     gui_SX.config_map.Material_ID  = [];
     gui_SX.config_map.default_grain_file_type2 = 'random_GF2data.txt';
     gui_SX.config_map.default_reconstructed_boundaries_file = 'random_RBdata.txt';
-    gui_SX.config_map.imported_YAML_GB_config_file = 'config_gui_BX_example.yaml';
+    gui_SX.config_map.imported_YAML_GB_config_file = 'config_gui_BX_default.yaml';
     
     guidata(gcf, gui_SX);
     femproc_load_YAML_BX_config_file(gui_SX.config_map.imported_YAML_GB_config_file, 1);
     gui_SX = guidata(gcf); guidata(gcf, gui_SX);
     gui_SX.GB.active_data = 'SX';
-    %gui_SX.handles.gui_SX_title = gui_SX.title;
+    gui_SX.title_str = set_gui_title(gui_SX, '');
     
 else
     gui_SX.flag           = gui_bicrystal.flag;
     gui_SX.config_map     = gui_bicrystal.config_map;
-    gui_SX.config_Matlab  = gui_bicrystal.config_Matlab;
+    gui_SX.config  = gui_bicrystal.config;
     gui_SX.GB             = gui_bicrystal.GB;
     gui_SX.GB.active_data = 'SX';
     if activeGrain == 1
@@ -53,17 +48,9 @@ else
     elseif activeGrain == 2
         gui_SX.GB.activeGrain     = gui_SX.GB.GrainB;
     end
-    gui_SX.title = femproc_set_title(gui_SX, num2str(gui_SX.GB.activeGrain));
+    gui_SX.title_str = set_gui_title(gui_SX, ['Crystal n°', num2str(gui_SX.GB.activeGrain)]);
 end
 guidata(gcf, gui_SX);
-
-%% Set path for documentation and initialization
-format compact;
-
-gui_SX.config_map.path_picture_SXind = fullfile(gui_SX.doc_local, ...
-    '_pictures', 'Schemes_SlipTransmission', 'SX_indentation_mesh_example.png');
-
-gui_SX.config_map.imported_YAML_GB_config_file = 'config_gui_SX_example.yaml';
 
 %% Customized menu
 gui_SX.custom_menu = femproc_custom_menu;
@@ -142,7 +129,7 @@ gui_SX.handles.pb_mesh_example = uicontrol('Parent', gui_SX.handles.gui_SX_win,.
     'FontWeight', 'bold',...
     'FontSize', 10,...
     'HorizontalAlignment', 'center',...
-    'Callback', 'gui_SX = guidata(gcf); open_file_web(gui_SX.config_map.path_picture_SXind);');
+    'Callback', 'gui_SX = guidata(gcf); web(gui_SX.config.path_picture_SXind);');
 
 %% Creation of string boxes and edit boxes for the calculation of the number of elements
 gui_SX.handles.num_elem = uicontrol('Parent', gui_SX.handles.gui_SX_win,...

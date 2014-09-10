@@ -2,16 +2,16 @@
 ===============
 ..    include:: <isonum.txt>
 
-First of all, download the source code of the Matlab toolbox.
+First of all, download the source code of the Matlab\ :sup:`TM` \ toolbox.
 
 `Source code is hosted at Github. <https://github.com/czambaldi/stabix>`_
 
-Then, run the Matlab script `path_management.m <../../../path_management.m>`_, in order to set search paths for Matlab.
+Then, run the Matlab\ :sup:`TM` \ script `path_management.m <../../../path_management.m>`_, in order to set search paths for Matlab.
 
 Finally, run one of these GUIs to play with the toolbox.
 
 .. csv-table::
-   :header: "Name of GUI", "Features", "Matlab function"
+   :header: "Name of GUI", "Features", "Matlab\ :sup:`TM` \ function"
    :widths: 40, 40, 20
   
    "Demo", "This main GUI is used to run other GUIs", `demo.m <../../../demo.m>`_
