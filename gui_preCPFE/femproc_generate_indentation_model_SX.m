@@ -40,17 +40,12 @@ fclose(fid);
 %% Execute the Python code that we just generated
 cmd = sprintf('%s %s', gui_SX.config_CPFEM.python_executable, fullfile(pwd, scriptname_bicrystal));
 commandwindow;
-if ~ isempty(gui_SX.config_CPFEM.pythonpath)
-    setenv('PYTHONPATH', gui_SX.config_CPFEM.pythonpath);
-end
+% if ~ isempty(gui_SX.config_CPFEM.pythonpath)
+%     setenv('PYTHONPATH', gui_SX.config_CPFEM.pythonpath);
+% end
 system(cmd);
 
 %% Definition of path config file
-% if ismac || isunix
-%     gui_SX.path_config_file = strcat(gui_SX.config_CPFEM.proc_file_path, '/', gui_SX.GB.Titlegbdata, '/');
-% else
-%     gui_SX.path_config_file = strcat(gui_SX.config_CPFEM.proc_file_path, '\', gui_SX.GB.Titlegbdata);
-% end
 gui_SX.path_config_file = fullfile(gui_SX.config_CPFEM.proc_file_path, gui_SX.GB.Titlegbdata, '');
 guidata(gcf, gui_SX);
 mkdir(gui_SX.path_config_file);

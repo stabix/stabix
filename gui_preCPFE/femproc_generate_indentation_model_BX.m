@@ -6,7 +6,7 @@ function femproc_generate_indentation_model_BX
 gui_BX = guidata(gcf);
 
 %% Initialization = Set bicrystal and get active GB
-if str2num(get(gui_BX.handles.ind_dist_val, 'String')) >= 0
+if str2num(get(gui_BX.handles.mesh.ind_dist_val, 'String')) >= 0
     gui_BX.GB.activeGrain = gui_BX.GB.GrainA;
 else
     gui_BX.GB.activeGrain = gui_BX.GB.GrainB;
@@ -93,9 +93,9 @@ fclose(fid);
 cmd = sprintf('%s %s', gui_BX.config_CPFEM.python_executable, ...
     fullfile(pwd, scriptname_bicrystal));
 commandwindow;
-if ~ isempty(gui_BX.config_CPFEM.pythonpath)
-    setenv('PYTHONPATH', gui_BX.config_CPFEM.pythonpath);
-end
+% if ~ isempty(gui_BX.config_CPFEM.pythonpath)
+%     setenv('PYTHONPATH', gui_BX.config_CPFEM.pythonpath);
+% end
 system(cmd);
 
 %% Definition of path config file

@@ -10,7 +10,7 @@ end
 
 menuFEM_mesh = uimenu('Label', label);
 
-femproc_custom_menu_help(menuFEM_mesh);
+custom_menu_help(menuFEM_mesh);
 
 uimenu(menuFEM_mesh, 'Label', 'Load CPFEM config. file', ...
     'Callback', 'femproc_select_config_CPFEM; femproc_config_CPFEM_updated;', ...

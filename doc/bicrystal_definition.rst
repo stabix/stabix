@@ -1,6 +1,7 @@
 ﻿Bicrystal Definition
 ====================
-..    include:: <isonum.txt>
+..  include:: <isonum.txt>
+..  |matlab| replace:: Matlab\ :sup:`TM` \
 
 Crystallographic properties of a bicrystal
 ******************************************
@@ -23,7 +24,7 @@ Using orientation matrix of both crystals obtained by EBSD measurements, the mis
         
 Disorientation describes the misorientation with the smallest possible rotation angle and :math:`CS` denotes one of the symmetry operators for the material [#Kocks_2000]_.
 
-The Matlab\ :sup:`TM` \ function used to set the symmetry operators is: `sym_operators.m <../../../crystallo/sym_operators.m>`_
+The |matlab| function used to set the symmetry operators is: `sym_operators.m <../../../crystallo/sym_operators.m>`_
         
 The orientation matrix :math:`g` of a crystal is calculated from the Euler angles (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) using the following equation :
     
@@ -38,9 +39,9 @@ The orientation matrix :math:`g` of a crystal is calculated from the Euler angle
 
 The orientation of a crystal (Euler angles) can be determined via electron backscatter diffraction (EBSD) measurement or via transmission electron microscopy (TEM).
       
-The Matlab\ :sup:`TM` \ function used to calculate the orientation matrix from Euler angles is: `eulers2g.m <../../../crystallo/eulers2g.m>`_
+The |matlab| function used to calculate the orientation matrix from Euler angles is: `eulers2g.m <../../../crystallo/eulers2g.m>`_
 
-The Matlab\ :sup:`TM` \ function used to calculate Euler angles from the orientation matrix is: `g2eulers.m <../../../crystallo/g2eulers.m>`_
+The |matlab| function used to calculate Euler angles from the orientation matrix is: `g2eulers.m <../../../crystallo/g2eulers.m>`_
         
 Then, from this misorientation matrix (:math:`\Delta g`), the rotation angle (:math:`\omega`) and the rotation axis :math:`[u, v, w]` can be obtained by the following equations :
   
@@ -53,7 +54,7 @@ Then, from this misorientation matrix (:math:`\Delta g`), the rotation angle (:m
             w = \Delta g_{12} - \Delta g_{21}
         :label: misorientation_axis
         
-The Matlab\ :sup:`TM` \ function used to calculate the misorientation angle is: `misorientation.m <../../../crystallo/misorientation.m>`_
+The |matlab| function used to calculate the misorientation angle is: `misorientation.m <../../../crystallo/misorientation.m>`_
         
 The grain boundary plane normal :math:`n` can be determined knowing the grain boundary trace angle :math:`\alpha` and the grain boundary inclination :math:`\beta`.
         

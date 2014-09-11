@@ -12,16 +12,24 @@ gui.config = load_YAML_config_file;
 gui.version_str = num2str(gui.config.version_toolbox);
 gui.module_name = 'preCPFE GUI';
 
-gui.defaults = struct;
+config_CPFEM_YAML_file = sprintf('config_CPFEM_%s.yaml', gui.config.username);
+
+if exist(config_CPFEM_YAML_file, 'file')
+    gui.defaults = ReadYaml(config_CPFEM_YAML_file);
+else
+    gui.defaults = ReadYaml('config_CPFEM_defaults.yaml');
+end
+
 gui.defaults.config_files_dir = fullfile(get_stabix_root,'YAML_config_files');
-gui.defaults.config_CPFEM_file = 'config_CPFEM_default.yaml';
+gui.defaults.config_CPFEM_file = 'config_CPFEM_defaults.yaml';
 gui.defaults.config_CPFEM_full = fullfile(gui.defaults.config_files_dir,...
     gui.defaults.config_CPFEM_file);
 
-gui.defaults.fem_solvers = {'Mentat_2008'; ...
-    'Mentat_2010'; ...
-    'Mentat_2012'; ...
-    'Mentat_2013'; ...
-    'Mentat_2013.1'};
+gui.config_CPFEM = gui.defaults;
+
+gui.confog_CPFEM.msc_module_path = femproc_get_msc_module_path;
+
+gui.config_CPFEM.python = femproc_python_check;
+%gui.config_CPFEM.pythonpath = [];
 
 end

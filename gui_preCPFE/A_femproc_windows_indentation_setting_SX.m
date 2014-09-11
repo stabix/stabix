@@ -40,7 +40,7 @@ if nargin == 0
 else
     gui_SX.flag           = gui_bicrystal.flag;
     gui_SX.config_map     = gui_bicrystal.config_map;
-    gui_SX.config  = gui_bicrystal.config;
+    gui_SX.config         = gui_bicrystal.config;
     gui_SX.GB             = gui_bicrystal.GB;
     gui_SX.GB.active_data = 'SX';
     if activeGrain == 1
@@ -62,38 +62,10 @@ gui_SX.handles.hax = axes('Units', 'normalized',...
     'Visible', 'off');
 
 %% Initialization of variables
-gui_SX.variables.coneAngle_init       = 90; % Angle of cono-spherical indenter (in °)
-gui_SX.variables.tipRadius_init       = 1; % Radius of cono-spherical indenter (in µm)
-gui_SX.variables.h_indent_init        = 0.3; % Depth of indentation (in µm)
-gui_SX.variables.r_center_frac_init   = 0.25;
-gui_SX.variables.box_xfrac_init       = 0.3;
-gui_SX.variables.box_zfrac_init       = 0.3;
-gui_SX.variables.D_sample_init        = 8;
-gui_SX.variables.h_sample_init        = 4;
-gui_SX.variables.sample_rep_init      = 24;
-gui_SX.variables.box_elm_nx_init      = 5;
-gui_SX.variables.box_elm_nz_init      = 5;
-gui_SX.variables.radial_divi_init     = 5;
-gui_SX.variables.box_bias_x_init      = 0.1;
-gui_SX.variables.box_bias_z_init      = 0.2;
-gui_SX.variables.box_bias_conv_x_init = 0.4;
+gui_SX.defaults.variables = ReadYaml('config_mesh_SX_defaults.yaml');
 
 %% Creation of string boxes and edit boxes to set indenter and indentation properties
-[gui_SX.handles.coneAngle_str, gui_SX.handles.coneAngle_val]         = femproc_set_inputs_boxes({'Full Angle of conical indenter (°)'}, [0.025 0.935 0.28 0.025],gui_SX.variables.coneAngle_init, 'femproc_indentation_setting_SX');
-[gui_SX.handles.tipRadius_str, gui_SX.handles.tipRadius_val]         = femproc_set_inputs_boxes({'Tip radius of indenter (µm)'}, [0.025 0.905 0.28 0.025],gui_SX.variables.tipRadius_init, 'femproc_indentation_setting_SX');
-[gui_SX.handles.h_indent_str,  gui_SX.handles.h_indent_val]           = femproc_set_inputs_boxes({'Indentation depth (µm)'}, [0.025 0.875 0.28 0.025],gui_SX.variables.h_indent_init, 'femproc_indentation_setting_SX');
-[gui_SX.handles.r_center_frac_str, gui_SX.handles.r_center_frac_val] = femproc_set_inputs_boxes({'r_center_frac'}, [0.025 0.845 0.28 0.025],gui_SX.variables.r_center_frac_init, 'femproc_indentation_setting_SX');
-[gui_SX.handles.box_xfrac_str, gui_SX.handles.box_xfrac_val]         = femproc_set_inputs_boxes({'box_xfrac'}, [0.025 0.815 0.28 0.025],gui_SX.variables.box_xfrac_init, 'femproc_indentation_setting_SX');
-[gui_SX.handles.box_zfrac_str, gui_SX.handles.box_zfrac_val]         = femproc_set_inputs_boxes({'box_zfrac'}, [0.025 0.785 0.28 0.025],gui_SX.variables.box_zfrac_init, 'femproc_indentation_setting_SX');
-[gui_SX.handles.D_sample_str, gui_SX.handles.D_sample_val]           = femproc_set_inputs_boxes({'D_sample (µm)'}, [0.025 0.755 0.28 0.025],gui_SX.variables.D_sample_init, 'femproc_indentation_setting_SX');
-[gui_SX.handles.h_sample_str, gui_SX.handles.h_sample_val]           = femproc_set_inputs_boxes({'h_sample (µm)'}, [0.025 0.725 0.28 0.025],gui_SX.variables.h_sample_init, 'femproc_indentation_setting_SX');
-[gui_SX.handles.sample_rep_str, gui_SX.handles.sample_rep_val]       = femproc_set_inputs_boxes({'sample_rep (8,16,24,32,48)'}, [0.025 0.695 0.28 0.025],gui_SX.variables.sample_rep_init, 'femproc_indentation_setting_SX');
-[gui_SX.handles.box_elm_nx_str, gui_SX.handles.box_elm_nx_val]       = femproc_set_inputs_boxes({'box_elm_nx'}, [0.025 0.665 0.28 0.025],gui_SX.variables.box_elm_nx_init, 'femproc_indentation_setting_SX');
-[gui_SX.handles.box_elm_nz_str, gui_SX.handles.box_elm_nz_val]       = femproc_set_inputs_boxes({'box_elm_nz'}, [0.025 0.635 0.28 0.025],gui_SX.variables.box_elm_nz_init, 'femproc_indentation_setting_SX');
-[gui_SX.handles.radial_divi_str, gui_SX.handles.radial_divi_val]     = femproc_set_inputs_boxes({'radial_divi'}, [0.025 0.605 0.28 0.025],gui_SX.variables.radial_divi_init, 'femproc_indentation_setting_SX');
-[gui_SX.handles.box_bias_x_str, gui_SX.handles.box_bias_x_val]       = femproc_set_inputs_boxes({'box_bias_x (-0.5 to 0.5)'}, [0.025 0.575 0.28 0.025],gui_SX.variables.box_bias_x_init, 'femproc_indentation_setting_SX');
-[gui_SX.handles.box_bias_z_str, gui_SX.handles.box_bias_z_val]       = femproc_set_inputs_boxes({'box_bias_z (-0.5 to 0.5)'}, [0.025 0.545 0.28 0.025],gui_SX.variables.box_bias_z_init, 'femproc_indentation_setting_SX');
-[gui_SX.handles.box_bias_conv_x_str, gui_SX.handles.box_bias_conv_x_val] = femproc_set_inputs_boxes({'box_bias_conv_x (-0.5 to 0.5)'}, [0.025 0.515 0.28 0.025],gui_SX.variables.box_bias_conv_x_init, 'femproc_indentation_setting_SX');
+gui_SX.handles.mesh = femproc_mesh_parameters_SX(gui_SX.defaults);
 
 %% Pop-up menu to set the mesh quality
 gui_SX.handles.pm_mesh_quality = uicontrol('Parent', gui_SX.handles.gui_SX_win,...
@@ -119,6 +91,12 @@ gui_SX.handles.pm_FEM_interface = uicontrol('Parent', gui_SX.handles.gui_SX_win,
     'FontSize', 10,...
     'HorizontalAlignment', 'center');
 
+if isfield(gui_SX.defaults, 'fem_solver_used')
+    femproc_set_cpfem_interface_pm(gui_SX.handles.pm_FEM_interface, gui_SX.defaults.fem_solvers, gui_SX.defaults.fem_solver_used);
+else
+    femproc_set_cpfem_interface_pm(gui_SX.handles.pm_FEM_interface, gui_SX.defaults.fem_solvers);
+end
+
 %% Button to give picture of the mesh with names of dimensions use to describe the sample and the mesh
 gui_SX.handles.pb_mesh_example = uicontrol('Parent', gui_SX.handles.gui_SX_win,...
     'Units','normalized',...
@@ -129,7 +107,7 @@ gui_SX.handles.pb_mesh_example = uicontrol('Parent', gui_SX.handles.gui_SX_win,.
     'FontWeight', 'bold',...
     'FontSize', 10,...
     'HorizontalAlignment', 'center',...
-    'Callback', 'gui_SX = guidata(gcf); web(gui_SX.config.path_picture_SXind);');
+    'Callback', 'gui_SX = guidata(gcf); web(fullfile(gui_SX.config.doc_path_root, gui_SX.config.doc_path_SXind_png));');
 
 %% Creation of string boxes and edit boxes for the calculation of the number of elements
 gui_SX.handles.num_elem = uicontrol('Parent', gui_SX.handles.gui_SX_win,...
@@ -142,7 +120,7 @@ gui_SX.handles.num_elem = uicontrol('Parent', gui_SX.handles.gui_SX_win,...
     'FontWeight', 'bold',...
     'FontSize', 14);
 
-%% Creation of string boxes and edit boxes for the calculation of the number of elements
+%% Creation of string boxes and edit boxes for the calculation of the transition depth
 gui_SX.handles.trans_depth = uicontrol('Parent', gui_SX.handles.gui_SX_win,...
     'Units', 'normalized',...
     'Position', [0.05 0.25 0.28 0.04],...
@@ -164,11 +142,8 @@ gui_SX.handles.pb_CPFEM_model = uicontrol('Parent', gui_SX.handles.gui_SX_win,..
     'HorizontalAlignment', 'center',...
     'Callback', 'femproc_indentation_setting_SX');
 
+%% Set GUI handle encapsulation
 guidata(gcf, gui_SX);
-
-%% Set the GUI with a YAML file
-femproc_config_CPFEM_init;
-gui_SX = guidata(gcf);
 
 %% Run the plot of the meshing
 femproc_indentation_setting_SX;
