@@ -8,24 +8,19 @@ function gui_handle = A_femproc_windows_indentation_setting_BX(gui_bicrystal, va
 
 %% Initialization
 gui_BX = femproc_init;
- 
+
 %% Window setting
 gui_BX.handles.gui_BX_win = figure(...
     'NumberTitle', 'off',...
-    'Position', femproc_figure_position([.58, .30, .9, 1]), ... %[WX WY WW WH],...
+    'Position', femproc_figure_position([.58, .30, .9, 1]), ... %[left, bottom, width, height/width],...
     'ToolBar', 'figure');
 guidata(gcf, gui_BX);
 
-%femproc_set_defaults; 
-%gui_BX = guidata(gcf);
-
-gui_BX.description = 'indentation of a bicrystal';
-guidata(gcf, gui_BX);
-gui_BX.title_str = femproc_set_title(gui_BX, '');
+gui_BX.description = 'Indentation of a bicrystal - ';
 
 %% Set Matlab and CPFEM configurations
 if nargin == 0
-    [gui_BX.config_Matlab] = load_YAML_config_file;
+    [gui_BX.config] = load_YAML_config_file;
     
     gui_BX.config_map.Sample_IDs   = [];
     gui_BX.config_map.Sample_ID    = [];
@@ -33,30 +28,23 @@ if nargin == 0
     gui_BX.config_map.Material_ID  = [];
     gui_BX.config_map.default_grain_file_type2 = 'random_GF2data.txt';
     gui_BX.config_map.default_reconstructed_boundaries_file = 'random_RBdata.txt';
-    gui_BX.config_map.imported_YAML_GB_config_file = 'config_gui_BX_example.yaml';
+    gui_BX.config_map.imported_YAML_GB_config_file = 'config_gui_BX_default.yaml';
     
     guidata(gcf, gui_BX);
     femproc_load_YAML_BX_config_file(gui_BX.config_map.imported_YAML_GB_config_file, 2);
     gui_BX = guidata(gcf); guidata(gcf, gui_BX);
     gui_BX.GB.active_data = 'BX';
     gui_BX.GB.activeGrain = gui_BX.GB.GrainA;
-    %gui_BX.handles.gui_BX_title = strcat('preCPFE - indentation of a bicrystal', ' - version_', num2str(gui_BX.config_Matlab.version_toolbox));
-    %gui_BX.title = femproc_set_title(gui_BX, 
+    gui_BX.title_str = set_gui_title(gui_BX, '');
 else
     gui_BX.flag           = gui_bicrystal.flag;
     gui_BX.config_map     = gui_bicrystal.config_map;
-    gui_BX.config_Matlab  = gui_bicrystal.config_Matlab;
+    gui_BX.config         = gui_bicrystal.config;
     gui_BX.GB             = gui_bicrystal.GB;
-    gui_BX.GB.active_data = 'BX';    
-    gui_BX.title = femproc_set_title(gui_BX, ['bicrystal n°', num2str(gui_BX.GB.GB_Number)]);
+    gui_BX.GB.active_data = 'BX';
+    gui_BX.title_str = set_gui_title(gui_BX, ['Bicrystal n°', num2str(gui_BX.GB.GB_Number)]);
 end
 guidata(gcf, gui_BX);
-
-%% Set path for documentation and initialization
-format compact;
-
-gui_BX.config_map.path_picture_BXind = fullfile(gui_BX.doc_local, ...
-    '_pictures', 'Schemes_SlipTransmission','BX_indentation_mesh_example.png');
 
 %% Customized menu
 gui_BX.custom_menu = femproc_custom_menu([gui_BX.module_name,'-BX']);
@@ -68,48 +56,13 @@ gui_BX.handles.hax = axes('Units', 'normalized',...
     'Visible', 'off');
 
 %% Initialization of variables
-gui_BX.variables.coneAngle_init        = 90; % Angle of cono-spherical indenter (in °)
-gui_BX.variables.tipRadius_init        = 1; % Radius of cono-spherical indenter (in µm)
-gui_BX.variables.h_indent_init         = 0.3; % Depth of indentation (in µm)
-gui_BX.variables.w_sample_init         = 4;
-gui_BX.variables.h_sample_init         = 4;
-gui_BX.variables.len_sample_init       = 6;
-gui_BX.variables.inclination_init      = gui_BX.GB.GB_Inclination; % GB inclination (in °)
-gui_BX.variables.ind_dist_init         = 1;
-gui_BX.variables.box_elm_nx_init       = 6;
-gui_BX.variables.box_elm_nz_init       = 6;
-gui_BX.variables.box_elm_ny1_init      = 6;
-gui_BX.variables.box_elm_ny2_fac_init  = 7;
-gui_BX.variables.box_elm_ny3_init      = 6;
-gui_BX.variables.box_bias_x_init       = 0.2;
-gui_BX.variables.box_bias_z_init       = 0.25;
-gui_BX.variables.box_bias_y1_init      = 0.3;
-gui_BX.variables.box_bias_y2_init      = 0;
-gui_BX.variables.box_bias_y3_init      = 0.3;
-gui_BX.variables.mesh_quality_lvl_init = 1;
+gui_BX.defaults.variables = ReadYaml('config_mesh_BX_defaults.yaml');
+if nargin > 0
+    gui_BX.defaults.variables.inclination = gui_BX.GB.GB_Inclination;
+end
 
 %% Creation of string boxes and edit boxes to set indenter and indentation properties
-[gui_BX.handles.coneAngle_str, gui_BX.handles.coneAngle_val]        = femproc_set_inputs_boxes({'Full Angle of conical indenter (°)'}, [0.025 0.965 0.28 0.025],gui_BX.variables.coneAngle_init, 'femproc_indentation_setting_BX');
-[gui_BX.handles.tipRadius_str, gui_BX.handles.tipRadius_val]        = femproc_set_inputs_boxes({'Tip radius of indenter (µm)'}, [0.025 0.935 0.28 0.025],gui_BX.variables.tipRadius_init, 'femproc_indentation_setting_BX');
-[gui_BX.handles.h_indent_str, gui_BX.handles.h_indent_val]          = femproc_set_inputs_boxes({'abs(indentation depth) (µm)'}, [0.025 0.905 0.28 0.025],gui_BX.variables.h_indent_init, 'femproc_indentation_setting_BX');
-[gui_BX.handles.w_sample_str, gui_BX.handles.w_sample_val]          = femproc_set_inputs_boxes({'w_sample (µm)'}, [0.025 0.875 0.28 0.025],gui_BX.variables.w_sample_init, 'femproc_indentation_setting_BX');
-[gui_BX.handles.h_sample_str, gui_BX.handles.h_sample_val]          = femproc_set_inputs_boxes({'h_sample (µm)'}, [0.025 0.845 0.28 0.025],gui_BX.variables.h_sample_init, 'femproc_indentation_setting_BX');
-[gui_BX.handles.len_sample_str, gui_BX.handles.len_sample_val]      = femproc_set_inputs_boxes({'len_sample (µm)'}, [0.025 0.815 0.28 0.025],gui_BX.variables.len_sample_init, 'femproc_indentation_setting_BX');
-[gui_BX.handles.inclination_str, gui_BX.handles.inclination_val]    = femproc_set_inputs_boxes({'Inclination (°)'}, [0.025 0.785 0.28 0.025],gui_BX.variables.inclination_init, 'femproc_indentation_setting_BX');
-[gui_BX.handles.ind_dist_str, gui_BX.handles.ind_dist_val]          = femproc_set_inputs_boxes({'Distance GB-indent (µm)'}, [0.025 0.755 0.28 0.025],gui_BX.variables.ind_dist_init, 'femproc_indentation_setting_BX');
-% txt boxes for subdivision
-[gui_BX.handles.box_elm_nx_str, gui_BX.handles.box_elm_nx_val]      = femproc_set_inputs_boxes({'box_elm_nx'}, [0.025 0.725 0.28 0.025],gui_BX.variables.box_elm_nx_init, 'femproc_indentation_setting_BX');
-[gui_BX.handles.box_elm_nz_str, gui_BX.handles.box_elm_nz_val]      = femproc_set_inputs_boxes({'box_elm_nz'}, [0.025 0.695 0.28 0.025],gui_BX.variables.box_elm_nz_init, 'femproc_indentation_setting_BX');
-[gui_BX.handles.box_elm_ny1_str, gui_BX.handles.box_elm_ny1_val]    = femproc_set_inputs_boxes({'box_elm_ny1'}, [0.025 0.665 0.28 0.025],gui_BX.variables.box_elm_ny1_init, 'femproc_indentation_setting_BX');
-[gui_BX.handles.box_elm_ny2_fac_str, gui_BX.handles.box_elm_ny2_fac_val]    = femproc_set_inputs_boxes({'box_elm_ny2_fac'}, [0.025 0.635 0.28 0.025],gui_BX.variables.box_elm_ny2_fac_init, 'femproc_indentation_setting_BX');
-[gui_BX.handles.box_elm_ny3_str, gui_BX.handles.box_elm_ny3_val]    = femproc_set_inputs_boxes({'box_elm_ny3'}, [0.025 0.605 0.28 0.025],gui_BX.variables.box_elm_ny3_init, 'femproc_indentation_setting_BX');
-[gui_BX.handles.mesh_quality_lvl_str, gui_BX.handles.mesh_quality_lvl_val]  = femproc_set_inputs_boxes({'lvl (mesh quality)'}, [0.025 0.575 0.28 0.025],gui_BX.variables.mesh_quality_lvl_init, 'femproc_indentation_setting_BX');
-% txt boxes for bias
-[gui_BX.handles.box_bias_x1_str, gui_BX.handles.box_bias_x_val]     = femproc_set_inputs_boxes({'box_bias_x (-0.5 to 0.5)'}, [0.025 0.545 0.28 0.025],gui_BX.variables.box_bias_x_init, 'femproc_indentation_setting_BX');
-[gui_BX.handles.box_bias_z1_str, gui_BX.handles.box_bias_z_val]     = femproc_set_inputs_boxes({'box_bias_z (-0.5 to 0.5)'}, [0.025 0.515 0.28 0.025],gui_BX.variables.box_bias_z_init, 'femproc_indentation_setting_BX');
-[gui_BX.handles.box_bias_y1_str, gui_BX.handles.box_bias_y1_val]    = femproc_set_inputs_boxes({'box_bias_y1 (-0.5 to 0.5)'}, [0.025 0.485 0.28 0.025],gui_BX.variables.box_bias_y1_init, 'femproc_indentation_setting_BX');
-[gui_BX.handles.box_bias_x2_str, gui_BX.handles.box_bias_y2_val]    = femproc_set_inputs_boxes({'box_bias_y2 (-0.5 to 0.5)'}, [0.025 0.455 0.28 0.025],gui_BX.variables.box_bias_y2_init, 'femproc_indentation_setting_BX');
-[gui_BX.handles.box_bias_z3_str, gui_BX.handles.box_bias_y3_val]    = femproc_set_inputs_boxes({'box_bias_y3 (-0.5 to 0.5)'}, [0.025 0.425 0.28 0.025],gui_BX.variables.box_bias_y3_init, 'femproc_indentation_setting_BX');
+gui_BX.handles.mesh = femproc_mesh_parameters_BX(gui_BX.defaults);
 
 %% Pop-up menu to set the mesh quality
 gui_BX.handles.pm_mesh_quality = uicontrol('Parent', gui_BX.handles.gui_BX_win,...
@@ -135,6 +88,12 @@ gui_BX.handles.pm_FEM_interface = uicontrol('Parent', gui_BX.handles.gui_BX_win,
     'FontSize', 10,...
     'HorizontalAlignment', 'center');
 
+if isfield(gui_BX.defaults, 'fem_solver_used')
+    femproc_set_cpfem_interface_pm(gui_BX.handles.pm_FEM_interface, gui_BX.defaults.fem_solvers, gui_BX.defaults.fem_solver_used);
+else
+    femproc_set_cpfem_interface_pm(gui_BX.handles.pm_FEM_interface, gui_BX.defaults.fem_solvers);
+end
+
 %% Checkbox to plot deformed indenter
 gui_BX.handles.cb_indenter_post_indentation = uicontrol('Parent', gui_BX.handles.gui_BX_win,...
     'Units', 'normalized',...
@@ -157,9 +116,9 @@ gui_BX.handles.pb_mesh_example = uicontrol('Parent', gui_BX.handles.gui_BX_win,.
     'FontWeight', 'bold',...
     'FontSize', 10,...
     'HorizontalAlignment', 'center',...
-    'Callback', 'gui_BX = guidata(gcf); open_file_web(gui_BX.config_map.path_picture_BXind);');
+    'Callback', 'gui_BX = guidata(gcf); web(fullfile(gui_BX.config.doc_path_root, gui_BX.config.doc_path_BXind_png));');
 
-%% Number of elements info
+%% Creation of string boxes and edit boxes for the calculation of the number of elements
 gui_BX.handles.num_elem = uicontrol('Parent', gui_BX.handles.gui_BX_win,...
     'Units', 'normalized',...
     'Position', [0.05 0.19 0.28 0.04],...
@@ -170,7 +129,7 @@ gui_BX.handles.num_elem = uicontrol('Parent', gui_BX.handles.gui_BX_win,...
     'FontWeight', 'bold',...
     'FontSize', 14);
 
-%% Transition depth info
+%% Creation of string boxes and edit boxes for the calculation of the transition depth
 gui_BX.handles.trans_depth = uicontrol('Parent', gui_BX.handles.gui_BX_win,...
     'Units', 'normalized',...
     'Position', [0.05 0.13 0.28 0.04],...
@@ -192,18 +151,7 @@ gui_BX.handles.pb_CPFEM_model = uicontrol('Parent', gui_BX.handles.gui_BX_win,..
     'HorizontalAlignment', 'center',...
     'Callback', 'femproc_generate_indentation_model_BX');
 
-guidata(gcf, gui_BX);
-%% Set the GUI with a YAML file
-femproc_config_CPFEM_init;
-gui_BX = guidata(gcf);
-
-if isfield(gui_BX.config_CPFEM, 'fem_software')
-    femproc_set_cpfem_interface_pm(gui_BX.handles.pm_FEM_interface, gui_BX.config_CPFEM.fem_software);
-else
-    femproc_set_cpfem_interface_pm(gui_BX.handles.pm_FEM_interface);
-end
-
-%% Pop-up menu to set the mesh quality
+%% Pop-up menu to set the color of the mesh (grey or color scale)
 gui_BX.handles.pm_mesh_color_title = uicontrol('Parent', gui_BX.handles.gui_BX_win,...
     'Units', 'normalized',...
     'Position', [0.6 0.9525 0.2 0.035],...

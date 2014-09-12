@@ -6,8 +6,9 @@ function femproc_config_CPFEM_init
 
 gui = guidata(gcf);
 
-config_CPFEM_YAML_file = sprintf('config_CPFEM_%s.yaml', gui.config_Matlab.username);
+config_CPFEM_YAML_file = sprintf('config_CPFEM_%s.yaml', gui.config.username);
 config_CPFEM_user = fullfile(gui.defaults.config_files_dir, config_CPFEM_YAML_file);
+
 if exist(config_CPFEM_user, 'file')
     femproc_load_YAML_CPFEM_config_file(config_CPFEM_user);
 else

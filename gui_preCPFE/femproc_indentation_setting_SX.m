@@ -6,21 +6,21 @@ function femproc_indentation_setting_SX
 gui_SX = guidata(gcf);
 
 %% Set positive values in case of missing parameters
-set_positive_values_txtbox(gui_SX.handles.coneAngle_val, num2str(gui_SX.variables.coneAngle_init));
-set_positive_values_txtbox(gui_SX.handles.tipRadius_val, num2str(gui_SX.variables.tipRadius_init));
-set_positive_values_txtbox(gui_SX.handles.h_indent_val, num2str(gui_SX.variables.h_indent_init));
-set_positive_values_txtbox(gui_SX.handles.r_center_frac_val, num2str(gui_SX.variables.r_center_frac_init));
-set_positive_values_txtbox(gui_SX.handles.box_xfrac_val, num2str(gui_SX.variables.box_xfrac_init));
-set_positive_values_txtbox(gui_SX.handles.box_zfrac_val, num2str(gui_SX.variables.box_zfrac_init));
-set_positive_values_txtbox(gui_SX.handles.D_sample_val, num2str(gui_SX.variables.D_sample_init));
-set_positive_values_txtbox(gui_SX.handles.h_sample_val, num2str(gui_SX.variables.h_sample_init));
-set_positive_values_txtbox(gui_SX.handles.sample_rep_val, num2str(gui_SX.variables.sample_rep_init));
-set_positive_values_txtbox(gui_SX.handles.box_elm_nx_val, num2str(gui_SX.variables.box_elm_nx_init));
-set_positive_values_txtbox(gui_SX.handles.box_elm_nz_val, num2str(gui_SX.variables.box_elm_nz_init));
-set_positive_values_txtbox(gui_SX.handles.radial_divi_val, num2str(gui_SX.variables.radial_divi_init));
-set_default_values_txtbox(gui_SX.handles.box_bias_x_val, num2str(gui_SX.variables.box_bias_x_init));
-set_default_values_txtbox(gui_SX.handles.box_bias_z_val, num2str(gui_SX.variables.box_bias_z_init));
-set_default_values_txtbox(gui_SX.handles.box_bias_conv_x_val, num2str(gui_SX.variables.box_bias_conv_x_init));
+set_positive_values_txtbox(gui_SX.handles.mesh.coneAngle_val, num2str(gui_SX.defaults.variables.coneAngle));
+set_positive_values_txtbox(gui_SX.handles.mesh.tipRadius_val, num2str(gui_SX.defaults.variables.tipRadius));
+set_positive_values_txtbox(gui_SX.handles.mesh.h_indent_val, num2str(gui_SX.defaults.variables.h_indent));
+set_positive_values_txtbox(gui_SX.handles.mesh.r_center_frac_val, num2str(gui_SX.defaults.variables.r_center_frac));
+set_positive_values_txtbox(gui_SX.handles.mesh.box_xfrac_val, num2str(gui_SX.defaults.variables.box_xfrac));
+set_positive_values_txtbox(gui_SX.handles.mesh.box_zfrac_val, num2str(gui_SX.defaults.variables.box_zfrac));
+set_positive_values_txtbox(gui_SX.handles.mesh.D_sample_val, num2str(gui_SX.defaults.variables.D_sample));
+set_positive_values_txtbox(gui_SX.handles.mesh.h_sample_val, num2str(gui_SX.defaults.variables.h_sample));
+set_positive_values_txtbox(gui_SX.handles.mesh.sample_rep_val, num2str(gui_SX.defaults.variables.sample_rep));
+set_positive_values_txtbox(gui_SX.handles.mesh.box_elm_nx_val, num2str(gui_SX.defaults.variables.box_elm_nx));
+set_positive_values_txtbox(gui_SX.handles.mesh.box_elm_nz_val, num2str(gui_SX.defaults.variables.box_elm_nz));
+set_positive_values_txtbox(gui_SX.handles.mesh.radial_divi_val, num2str(gui_SX.defaults.variables.radial_divi));
+set_default_values_txtbox(gui_SX.handles.mesh.box_bias_x_val, num2str(gui_SX.defaults.variables.box_bias_x));
+set_default_values_txtbox(gui_SX.handles.mesh.box_bias_z_val, num2str(gui_SX.defaults.variables.box_bias_z));
+set_default_values_txtbox(gui_SX.handles.mesh.box_bias_conv_x_val, num2str(gui_SX.defaults.variables.box_bias_conv_x));
 
 %% Initialization
 cla;
@@ -29,9 +29,9 @@ cla;
 gui_SX.variables.meshquality = get(gui_SX.handles.pm_mesh_quality, 'Value');
 
 if gui_SX.variables.meshquality ~= 1
-    set(gui_SX.handles.box_elm_nx_val, 'String', num2str(gui_SX.variables.box_elm_nx_init));
-    set(gui_SX.handles.box_elm_nz_val, 'String', num2str(gui_SX.variables.box_elm_nz_init));
-    set(gui_SX.handles.radial_divi_val, 'String', num2str(gui_SX.variables.radial_divi_init));
+    set(gui_SX.handles.mesh.box_elm_nx_val, 'String', num2str(gui_SX.defaults.variables.box_elm_nx));
+    set(gui_SX.handles.mesh.box_elm_nz_val, 'String', num2str(gui_SX.defaults.variables.box_elm_nz));
+    set(gui_SX.handles.mesh.radial_divi_val, 'String', num2str(gui_SX.defaults.variables.radial_divi));
     
     if gui_SX.variables.meshquality == 2
         gui_SX.variables.mesh_quality_lvl = 1;
@@ -43,37 +43,37 @@ if gui_SX.variables.meshquality ~= 1
         gui_SX.variables.mesh_quality_lvl = 4;
     end
     
-    gui_SX.variables.box_elm_nx      = round(str2num(get(gui_SX.handles.box_elm_nx_val, 'String')) * gui_SX.variables.mesh_quality_lvl);
-    gui_SX.variables.box_elm_nz      = round(str2num(get(gui_SX.handles.box_elm_nz_val, 'String')) * gui_SX.variables.mesh_quality_lvl);
-    gui_SX.variables.radial_divi     = round(str2num(get(gui_SX.handles.radial_divi_val, 'String')) * gui_SX.variables.mesh_quality_lvl);
-    set(gui_SX.handles.box_elm_nx_val, 'String', num2str(gui_SX.variables.box_elm_nx));
-    set(gui_SX.handles.box_elm_nz_val, 'String', num2str(gui_SX.variables.box_elm_nz));
-    set(gui_SX.handles.radial_divi_val, 'String', num2str(gui_SX.variables.radial_divi));
+    gui_SX.variables.box_elm_nx      = round(str2num(get(gui_SX.handles.mesh.box_elm_nx_val, 'String')) * gui_SX.variables.mesh_quality_lvl);
+    gui_SX.variables.box_elm_nz      = round(str2num(get(gui_SX.handles.mesh.box_elm_nz_val, 'String')) * gui_SX.variables.mesh_quality_lvl);
+    gui_SX.variables.radial_divi     = round(str2num(get(gui_SX.handles.mesh.radial_divi_val, 'String')) * gui_SX.variables.mesh_quality_lvl);
+    set(gui_SX.handles.mesh.box_elm_nx_val, 'String', num2str(gui_SX.variables.box_elm_nx));
+    set(gui_SX.handles.mesh.box_elm_nz_val, 'String', num2str(gui_SX.variables.box_elm_nz));
+    set(gui_SX.handles.mesh.radial_divi_val, 'String', num2str(gui_SX.variables.radial_divi));
     
     % else
-    %     gui_SX.variables.box_elm_nx       = round(str2num(get(gui_SX.handles.box_elm_nx_val, 'String')) * gui_SX.variables.mesh_quality_lvl);
-    %     gui_SX.variables.box_elm_nz       = round(str2num(get(gui_SX.handles.box_elm_nz_val, 'String')) * gui_SX.variables.mesh_quality_lvl);
+    %     gui_SX.variables.box_elm_nx       = round(str2num(get(gui_SX.handles.mesh.box_elm_nx_val, 'String')) * gui_SX.variables.mesh_quality_lvl);
+    %     gui_SX.variables.box_elm_nz       = round(str2num(get(gui_SX.handles.mesh.box_elm_nz_val, 'String')) * gui_SX.variables.mesh_quality_lvl);
     
 end
 
 %% Definition of mesh/geometry variables
 % Indenter variables
-gui_SX.variables.tipRadius = str2num(get(gui_SX.handles.tipRadius_val, 'String')); % Radius of cono-spherical indenter (in µm)
-gui_SX.variables.coneAngle = str2num(get(gui_SX.handles.coneAngle_val, 'String')); % Full Angle of cono-spherical indenter (in °)
-gui_SX.variables.h_indent  = str2num(get(gui_SX.handles.h_indent_val, 'String')); % Depth of indentation (in µm)
+gui_SX.variables.tipRadius = str2num(get(gui_SX.handles.mesh.tipRadius_val, 'String')); % Radius of cono-spherical indenter (in µm)
+gui_SX.variables.coneAngle = str2num(get(gui_SX.handles.mesh.coneAngle_val, 'String')); % Full Angle of cono-spherical indenter (in °)
+gui_SX.variables.h_indent  = str2num(get(gui_SX.handles.mesh.h_indent_val, 'String')); % Depth of indentation (in µm)
 % Sample variables
-gui_SX.variables.D_sample        = str2num(get(gui_SX.handles.D_sample_val, 'String'));
-gui_SX.variables.h_sample        = str2num(get(gui_SX.handles.h_sample_val, 'String'));
-gui_SX.variables.r_center_frac   = str2num(get(gui_SX.handles.r_center_frac_val, 'String'));
-gui_SX.variables.box_xfrac       = str2num(get(gui_SX.handles.box_xfrac_val, 'String'));
-gui_SX.variables.box_zfrac       = str2num(get(gui_SX.handles.box_zfrac_val, 'String'));
-gui_SX.variables.sample_rep      = str2num(get(gui_SX.handles.sample_rep_val, 'String'));
-gui_SX.variables.box_elm_nx      = round(str2num(get(gui_SX.handles.box_elm_nx_val, 'String')));
-gui_SX.variables.box_elm_nz      = round(str2num(get(gui_SX.handles.box_elm_nz_val, 'String')));
-gui_SX.variables.radial_divi     = round(str2num(get(gui_SX.handles.radial_divi_val, 'String')));
-gui_SX.variables.box_bias_x      = -(str2num(get(gui_SX.handles.box_bias_x_val, 'String')));
-gui_SX.variables.box_bias_z      = str2num(get(gui_SX.handles.box_bias_z_val, 'String'));
-gui_SX.variables.box_bias_conv_x = (str2num(get(gui_SX.handles.box_bias_conv_x_val, 'String')));
+gui_SX.variables.D_sample        = str2num(get(gui_SX.handles.mesh.D_sample_val, 'String'));
+gui_SX.variables.h_sample        = str2num(get(gui_SX.handles.mesh.h_sample_val, 'String'));
+gui_SX.variables.r_center_frac   = str2num(get(gui_SX.handles.mesh.r_center_frac_val, 'String'));
+gui_SX.variables.box_xfrac       = str2num(get(gui_SX.handles.mesh.box_xfrac_val, 'String'));
+gui_SX.variables.box_zfrac       = str2num(get(gui_SX.handles.mesh.box_zfrac_val, 'String'));
+gui_SX.variables.sample_rep      = str2num(get(gui_SX.handles.mesh.sample_rep_val, 'String'));
+gui_SX.variables.box_elm_nx      = round(str2num(get(gui_SX.handles.mesh.box_elm_nx_val, 'String')));
+gui_SX.variables.box_elm_nz      = round(str2num(get(gui_SX.handles.mesh.box_elm_nz_val, 'String')));
+gui_SX.variables.radial_divi     = round(str2num(get(gui_SX.handles.mesh.radial_divi_val, 'String')));
+gui_SX.variables.box_bias_x      = -(str2num(get(gui_SX.handles.mesh.box_bias_x_val, 'String')));
+gui_SX.variables.box_bias_z      = str2num(get(gui_SX.handles.mesh.box_bias_z_val, 'String'));
+gui_SX.variables.box_bias_conv_x = (str2num(get(gui_SX.handles.mesh.box_bias_conv_x_val, 'String')));
 
 % Setting of the small value (smv), when sample_rep is too high ==> Distorsion of elements...
 if gui_SX.variables.sample_rep == 32 || gui_SX.variables.sample_rep == 48
@@ -245,6 +245,6 @@ guidata(gcf, gui_SX);
 femproc_indentation_number_elements_SX;
 gui_SX = guidata(gcf); guidata(gcf, gui_SX);
 
-%%
+%% Update of the CPFEM configuration
 femproc_config_CPFEM_updated
 end

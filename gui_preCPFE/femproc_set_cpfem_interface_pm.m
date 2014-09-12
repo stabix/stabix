@@ -1,25 +1,20 @@
 %Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function femproc_set_cpfem_interface_pm(handle, software_version, varargin)
+function femproc_set_cpfem_interface_pm(handle, solvers_list, solver_used, varargin)
 %% Function used to create automatically a serir of txt boxes + editable txt boxes in the GUI
 % handle: Handle of the BX or SX meshing GUI
 % software_version: Version of the FEM software to use
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
-if nargin == 1
-    software_version = 'Mentat_2013.1';
+if nargin < 3
+    max_solver = length(solvers_list);
+    set(handle, 'Value', max_solver);
 end
 
-if strcmp(software_version, 'Mentat_2008') == 1
-    set(handle, 'Value', 1);
-elseif strcmp(software_version, 'Mentat_2010') == 1
-    set(handle, 'Value', 2);
-elseif strcmp(software_version, 'Mentat_2012') == 1
-    set(handle, 'Value', 3);
-elseif strcmp(software_version, 'Mentat_2013') == 1
-    set(handle, 'Value', 4);
-elseif strcmp(software_version, 'Mentat_2013.1') == 1
-    set(handle, 'Value', 5);
+for ii = 1:length(solvers_list)
+    if strcmp(solver_used, solvers_list(:,ii)) == 1
+        set(handle, 'Value', ii);
+    end
 end
 
 end

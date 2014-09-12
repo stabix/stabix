@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function gui_handle = A_gui_plotGB_Bicrystal(gui_map, varargin)
+function gui_handle = A_gui_plotGB_Bicrystal(gui_map, gui_cpfe, varargin)
 %% Function to create the bicrystal interface
 % gui_map: handle of the gui of EBSD map
 
@@ -11,10 +11,8 @@ if isempty(getenv('SLIP_TRANSFER_TBX_ROOT')) == 1
     return
 end
 
-%% Set Matlab
-gui.config_Matlab = load_YAML_config_file;
-
-gui.config_map.path_picture_BXconv = fullfile('..', 'doc', '_pictures', 'Schemes_SlipTransmission', 'Bicrystal_conventions.ppt.png');
+%% Set GUI
+gui = plotGB_Bicrystal_init;
 
 % Check if MTEX is installed
 try
@@ -44,15 +42,13 @@ end
 
 %% Window Coordinates Configuration
 scrsize = screenSize;   % Get screen size
-WX = 0.27 * scrsize(3); % X Position (bottom)
+WX = 0.17 * scrsize(3); % X Position (bottom)
 WY = 0.10 * scrsize(4); % Y Position (left)
-WW = 0.35 * scrsize(3); % Width
+WW = 0.40 * scrsize(3); % Width
 WH = 0.80 * scrsize(4); % Height
 
 %% Plot axis setting
-gui.handles.title = ['Bicrystal interface', ' (',mfilename,'.m)', ' - version_', num2str(gui.config_Matlab.version_toolbox)];
-gui.handles.Bicrystal_interface = figure('Name', gui.handles.title,...
-    'NumberTitle', 'off',...
+gui.handles.Bicrystal_interface = figure('NumberTitle', 'off',...
     'PaperUnits', get(0,'defaultfigurePaperUnits'),...
     'Color', [0.9 0.9 0.9],...
     'Colormap', get(0,'defaultfigureColormap'),...
@@ -217,7 +213,7 @@ gui.handles.h_gbax = subplot(4, 2, [3 6]);
 guidata(gcf, gui);
 
 %% Set stress tensor
-if nargin < 1
+if nargin < 1 || nargin > 1
     set(gui.handles.BC_ST_s11, 'String', 0);
     set(gui.handles.BC_ST_s12, 'String', 0);
     set(gui.handles.BC_ST_s13, 'String', 0);
@@ -227,7 +223,7 @@ if nargin < 1
     set(gui.handles.BC_ST_s31, 'String', 0);
     set(gui.handles.BC_ST_s32, 'String', 0);
     set(gui.handles.BC_ST_s33, 'String', 1);
-elseif nargin == 2
+elseif nargin == 1
     set(gui.handles.BC_ST_s11, 'String', num2str(gui_map.stress_tensor.sigma(1,1)));
     set(gui.handles.BC_ST_s12, 'String', num2str(gui_map.stress_tensor.sigma(1,2)));
     set(gui.handles.BC_ST_s13, 'String', num2str(gui_map.stress_tensor.sigma(1,3)));
@@ -244,8 +240,10 @@ if nargin < 1
     guidata(gcf, gui);
     plotGB_Bicrystal_random_bicrystal;
     gui = guidata(gcf);
-    gui.config_Matlab = load_YAML_config_file;
-   
+    gui.config = load_YAML_config_file;
+    gui.description = 'Analysis of Slip Transmission in a Bicrystal -';
+    gui.title_str = set_gui_title(gui, '');
+    
 elseif nargin == 1
     gui.GB.YAMLfilename    = 0;
     gui.GB.active_GB       = str2double(get(gui_map.handles.numGB2plot, 'string'));
@@ -271,9 +269,11 @@ elseif nargin == 1
     gui.GB.ca_ratio_B      = latt_param(gui.GB.Material_B, gui.GB.Phase_B);
     gui.GB.activeGrain     = gui.GB.GrainA;
     gui.config_map         = gui_map.config_map;
-    gui.config_Matlab      = gui_map.config_Matlab;
+    gui.config             = gui_map.config;
     gui.GB.slipA           = 0;
     gui.GB.slipB           = 0;
+    gui.description        = ['From: ', gui_map.config_map.filename_grain_file_type2];
+    gui.title_str          = set_gui_title(gui, '');
     guidata(gcf, gui);
     
     %% Popup menus
@@ -286,6 +286,47 @@ elseif nargin == 1
     plotGB_Bicrystal;
     gui = guidata(gcf);
     
+elseif nargin == 2
+    gui.GB.YAMLfilename    = 0;
+    gui.GB.active_GB       = gui_cpfe.GB.GB_Number;
+    gui.GB.filenameGF2_BC  = gui_cpfe.GB.filenameGF2_BC;
+    gui.GB.filenameRB_BC   = gui_cpfe.GB.pathnameRB_BC;
+    gui.GB.pathnameGF2_BC  = gui_cpfe.GB.filenameGF2_BC;
+    gui.GB.pathnameRB_BC   = gui_cpfe.GB.pathnameRB_BC;
+    gui.GB.GrainA          = gui_cpfe.GB.GrainA;
+    gui.GB.GrainB          = gui_cpfe.GB.GrainB;
+    gui.GB.eulerA          = gui_cpfe.GB.eulerA;
+    gui.GB.eulerB          = gui_cpfe.GB.eulerB;
+    gui.GB.eulerA_ori      = gui_cpfe.GB.eulerA_ori;
+    gui.GB.eulerB_ori      = gui_cpfe.GB.eulerB_ori;
+    gui.GB.Phase_A         = gui_cpfe.GB.Phase_A;
+    gui.GB.Phase_B         = gui_cpfe.GB.Phase_B;
+    gui.GB.number_phase    = gui_cpfe.GB.number_phase;
+    gui.GB.GB_Inclination  = gui_cpfe.GB.GB_Inclination;
+    gui.GB.GB_Trace_Angle  = gui_cpfe.GB.GB_Trace_Angle;
+    gui.GB.GB_Number       = gui_cpfe.GB.GB_Number;
+    gui.GB.Material_A      = gui_cpfe.GB.Material_A;
+    gui.GB.ca_ratio_A      = gui_cpfe.GB.ca_ratio_A;
+    gui.GB.Material_B      = gui_cpfe.GB.Material_B;
+    gui.GB.ca_ratio_B      = gui_cpfe.GB.ca_ratio_B;
+    gui.GB.activeGrain     = gui_cpfe.GB.activeGrain;
+    gui.config_map         = gui_cpfe.config_map;
+    gui.config             = gui_cpfe.config;
+    gui.GB.slipA           = 0;
+    gui.GB.slipB           = 0;
+    gui.description        = 'From CPFE model';
+    gui.title_str          = set_gui_title(gui, '');
+    guidata(gcf, gui); 
+    
+    %% Popup menus
+    guidata(gcf, gui);
+    plotGB_Bicrystal_setpopupmenu;
+    gui = guidata(gcf);
+    
+    %% Run calculations
+    guidata(gcf, gui);
+    plotGB_Bicrystal;
+    gui = guidata(gcf);
 end
 
 guidata(gcf, gui);

@@ -10,8 +10,8 @@ if isempty(getenv('SLIP_TRANSFER_TBX_ROOT')) == 1
     return
 end
 
-%% Set Matlab
-gui.config_Matlab = load_YAML_config_file;
+%% Set GUI
+gui = interface_map_init;
 
 % Check if MTEX is installed
 try
@@ -70,7 +70,7 @@ gui.config_map = interface_map_load_YAML_config_file;
 gui.config_map.path_to_EBSD_data_examples = fullfile('EBSD_data_Examples');
 
 %% Importation of data from YAML config file (paths of TSL data)
-config_YAML_TSLdata = sprintf('config_gui_EBSDmap_data_path_%s.yaml', gui.config_Matlab.username);
+config_YAML_TSLdata = sprintf('config_gui_EBSDmap_data_path_%s.yaml', gui.config.username);
 
 if exist(config_YAML_TSLdata, 'file') == 0
     %gui.config_map = struct();
@@ -96,9 +96,7 @@ WW = 0.65 * scrsize(3); % Width
 WH = 0.75 * scrsize(4); % Height
 
 %% Window configuration
-gui.handles.title = ['EBSD Map interface', ' (',mfilename,'.m)', ' - version_', num2str(gui.config_Matlab.version_toolbox)];
-gui.handles.TSLinterfWindow   = figure('Name', gui.handles.title,...
-    'NumberTitle', 'off',...
+gui.handles.TSLinterfWindow = figure('NumberTitle', 'off',...
     'PaperUnits', get(0,'defaultfigurePaperUnits'),...
     'Color', [0.9 0.9 0.9],...
     'Colormap', get(0,'defaultfigureColormap'),...
@@ -107,11 +105,13 @@ gui.handles.TSLinterfWindow   = figure('Name', gui.handles.title,...
     'PaperPosition', [0 7 50 15],...
     'Position', [WX WY WW WH]);
 
+gui.description = 'Analysis of Slip Transmission for an EBSD map - ';
+guidata(gcf, gui);
+gui.title_str = set_gui_title(gui, '');
+
 gui.handles.gcf = gui.handles.TSLinterfWindow;
 
 %% Customized menu
-gui.config_map.path_picture_BXconv = fullfile('..', 'doc', '_pictures', 'Schemes_SlipTransmission', 'Bicrystal_conventions.ppt.png');
-
 interface_map_custom_menu;
 
 %% Choice of material and sample
@@ -552,7 +552,7 @@ gui.handles.pbhelp = uicontrol('Parent', gui.handles.TSLinterfWindow,...
     'Style', 'pushbutton',...
     'Position', [0.02 0.09 0.19 0.05],...
     'String', 'HELP',...
-    'Callback', 'gui = guidata(gcf); open_file_web(gui.config_Matlab.doc_path);');
+    'Callback', 'gui = guidata(gcf); web(gui.config.doc_path_root);');
 
 gui.handles.pbclearall = uicontrol('Parent', gui.handles.TSLinterfWindow,...
     'Units', 'normalized',...
