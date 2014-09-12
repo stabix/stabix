@@ -20,7 +20,6 @@ else
     set(gui.handles.pb_CPFEM_model, 'BackgroundColor', [229/256 20/256 0],...
         'String', 'No python found or numpy not installed !', ...
         'Callback', 'femproc_select_config_CPFEM');
-    
 end
 
 guidata(gcf, gui);

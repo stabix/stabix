@@ -6,25 +6,25 @@ function femproc_indentation_setting_BX
 gui_BX = guidata(gcf);
 
 %% Set positive values in case of missing parameters
-set_positive_values_txtbox(gui_BX.handles.coneAngle_val, num2str(gui_BX.variables.coneAngle_init));
-set_positive_values_txtbox(gui_BX.handles.tipRadius_val, num2str(gui_BX.variables.tipRadius_init));
-set_positive_values_txtbox(gui_BX.handles.h_indent_val, num2str(gui_BX.variables.h_indent_init));
-set_positive_values_txtbox(gui_BX.handles.w_sample_val, num2str(gui_BX.variables.w_sample_init));
-set_positive_values_txtbox(gui_BX.handles.h_sample_val, num2str(gui_BX.variables.h_sample_init));
-set_positive_values_txtbox(gui_BX.handles.len_sample_val, num2str(gui_BX.variables.len_sample_init));
-set_positive_values_txtbox(gui_BX.handles.inclination_val, num2str(gui_BX.variables.inclination_init));
-set_default_values_txtbox(gui_BX.handles.ind_dist_val, num2str(gui_BX.variables.ind_dist_init));
-set_positive_values_txtbox(gui_BX.handles.box_elm_nx_val, num2str(gui_BX.variables.box_elm_nx_init));
-set_positive_values_txtbox(gui_BX.handles.box_elm_nz_val, num2str(gui_BX.variables.box_elm_nz_init));
-set_positive_values_txtbox(gui_BX.handles.box_elm_ny1_val, num2str(gui_BX.variables.box_elm_ny1_init));
-set_positive_values_txtbox(gui_BX.handles.box_elm_ny2_fac_val, num2str(gui_BX.variables.box_elm_ny2_fac_init));
-set_positive_values_txtbox(gui_BX.handles.box_elm_ny3_val, num2str(gui_BX.variables.box_elm_ny3_init));
-set_positive_values_txtbox(gui_BX.handles.mesh_quality_lvl_val, num2str(gui_BX.variables.mesh_quality_lvl_init));
-set_default_values_txtbox(gui_BX.handles.box_bias_x_val, num2str(gui_BX.variables.box_bias_x_init));
-set_default_values_txtbox(gui_BX.handles.box_bias_z_val, num2str(gui_BX.variables.box_bias_z_init));
-set_default_values_txtbox(gui_BX.handles.box_bias_y1_val, num2str(gui_BX.variables.box_bias_y1_init));
-set_default_values_txtbox(gui_BX.handles.box_bias_y2_val, num2str(gui_BX.variables.box_bias_y2_init));
-set_default_values_txtbox(gui_BX.handles.box_bias_y3_val, num2str(gui_BX.variables.box_bias_y3_init));
+set_positive_values_txtbox(gui_BX.handles.mesh.coneAngle_val, num2str(gui_BX.defaults.variables.coneAngle));
+set_positive_values_txtbox(gui_BX.handles.mesh.tipRadius_val, num2str(gui_BX.defaults.variables.tipRadius));
+set_positive_values_txtbox(gui_BX.handles.mesh.h_indent_val, num2str(gui_BX.defaults.variables.h_indent));
+set_positive_values_txtbox(gui_BX.handles.mesh.w_sample_val, num2str(gui_BX.defaults.variables.w_sample));
+set_positive_values_txtbox(gui_BX.handles.mesh.h_sample_val, num2str(gui_BX.defaults.variables.h_sample));
+set_positive_values_txtbox(gui_BX.handles.mesh.len_sample_val, num2str(gui_BX.defaults.variables.len_sample));
+set_positive_values_txtbox(gui_BX.handles.mesh.inclination_val, num2str(gui_BX.defaults.variables.inclination));
+set_default_values_txtbox(gui_BX.handles.mesh.ind_dist_val, num2str(gui_BX.defaults.variables.ind_dist));
+set_positive_values_txtbox(gui_BX.handles.mesh.box_elm_nx_val, num2str(gui_BX.defaults.variables.box_elm_nx));
+set_positive_values_txtbox(gui_BX.handles.mesh.box_elm_nz_val, num2str(gui_BX.defaults.variables.box_elm_nz));
+set_positive_values_txtbox(gui_BX.handles.mesh.box_elm_ny1_val, num2str(gui_BX.defaults.variables.box_elm_ny1));
+set_positive_values_txtbox(gui_BX.handles.mesh.box_elm_ny2_fac_val, num2str(gui_BX.defaults.variables.box_elm_ny2_fac));
+set_positive_values_txtbox(gui_BX.handles.mesh.box_elm_ny3_val, num2str(gui_BX.defaults.variables.box_elm_ny3));
+set_positive_values_txtbox(gui_BX.handles.mesh.mesh_quality_lvl_val, num2str(gui_BX.defaults.variables.mesh_quality_lvl));
+set_default_values_txtbox(gui_BX.handles.mesh.box_bias_x_val, num2str(gui_BX.defaults.variables.box_bias_x));
+set_default_values_txtbox(gui_BX.handles.mesh.box_bias_z_val, num2str(gui_BX.defaults.variables.box_bias_z));
+set_default_values_txtbox(gui_BX.handles.mesh.box_bias_y1_val, num2str(gui_BX.defaults.variables.box_bias_y1));
+set_default_values_txtbox(gui_BX.handles.mesh.box_bias_y2_val, num2str(gui_BX.defaults.variables.box_bias_y2));
+set_default_values_txtbox(gui_BX.handles.mesh.box_bias_y3_val, num2str(gui_BX.defaults.variables.box_bias_y3));
 
 %% Initialization
 cla;
@@ -33,11 +33,11 @@ cla;
 gui_BX.variables.meshquality = get(gui_BX.handles.pm_mesh_quality, 'Value');
 
 if gui_BX.variables.meshquality ~= 1
-    set(gui_BX.handles.box_elm_nx_val, 'String', num2str(gui_BX.variables.box_elm_nx_init));
-    set(gui_BX.handles.box_elm_nz_val, 'String', num2str(gui_BX.variables.box_elm_nz_init));
-    set(gui_BX.handles.box_elm_ny1_val, 'String', num2str(gui_BX.variables.box_elm_ny1_init));
-    set(gui_BX.handles.box_elm_ny2_fac_val, 'String', num2str(gui_BX.variables.box_elm_ny2_fac_init));
-    set(gui_BX.handles.box_elm_ny3_val, 'String', num2str(gui_BX.variables.box_elm_ny3_init));
+    set(gui_BX.handles.mesh.box_elm_nx_val, 'String', num2str(gui_BX.defaults.variables.box_elm_nx));
+    set(gui_BX.handles.mesh.box_elm_nz_val, 'String', num2str(gui_BX.defaults.variables.box_elm_nz));
+    set(gui_BX.handles.mesh.box_elm_ny1_val, 'String', num2str(gui_BX.defaults.variables.box_elm_ny1));
+    set(gui_BX.handles.mesh.box_elm_ny2_fac_val, 'String', num2str(gui_BX.defaults.variables.box_elm_ny2_fac));
+    set(gui_BX.handles.mesh.box_elm_ny3_val, 'String', num2str(gui_BX.defaults.variables.box_elm_ny3));
     
     if gui_BX.variables.meshquality == 2
         gui_BX.variables.mesh_quality_lvl = 1;
@@ -49,45 +49,45 @@ if gui_BX.variables.meshquality ~= 1
         gui_BX.variables.mesh_quality_lvl = 4;
     end
     
-    gui_BX.variables.box_elm_nx      = round(str2num(get(gui_BX.handles.box_elm_nx_val, 'String')) * gui_BX.variables.mesh_quality_lvl);
-    gui_BX.variables.box_elm_nz      = round(str2num(get(gui_BX.handles.box_elm_nz_val, 'String')) * gui_BX.variables.mesh_quality_lvl);
-    gui_BX.variables.box_elm_ny1     = round(str2num(get(gui_BX.handles.box_elm_ny1_val, 'String')) * gui_BX.variables.mesh_quality_lvl);
-    gui_BX.variables.box_elm_ny2_fac = str2num(get(gui_BX.handles.box_elm_ny2_fac_val, 'String'));
-    gui_BX.variables.box_elm_ny2     = round(round(abs(str2num(get(gui_BX.handles.ind_dist_val, 'String')) * gui_BX.variables.box_elm_ny2_fac * gui_BX.variables.mesh_quality_lvl)));
-    gui_BX.variables.box_elm_ny3     = round(str2num(get(gui_BX.handles.box_elm_ny3_val, 'String')) * gui_BX.variables.mesh_quality_lvl);
-    set(gui_BX.handles.box_elm_nx_val, 'String', num2str(gui_BX.variables.box_elm_nx));
-    set(gui_BX.handles.box_elm_nz_val, 'String', num2str(gui_BX.variables.box_elm_nz));
-    set(gui_BX.handles.box_elm_ny1_val, 'String', num2str(gui_BX.variables.box_elm_ny1));
-    set(gui_BX.handles.box_elm_ny2_fac_val, 'String', num2str(gui_BX.variables.box_elm_ny2_fac_init));
-    set(gui_BX.handles.box_elm_ny3_val, 'String', num2str(gui_BX.variables.box_elm_ny3));
-    set(gui_BX.handles.mesh_quality_lvl_val, 'String', num2str(gui_BX.variables.mesh_quality_lvl));
+    gui_BX.variables.box_elm_nx      = round(str2num(get(gui_BX.handles.mesh.box_elm_nx_val, 'String')) * gui_BX.variables.mesh_quality_lvl);
+    gui_BX.variables.box_elm_nz      = round(str2num(get(gui_BX.handles.mesh.box_elm_nz_val, 'String')) * gui_BX.variables.mesh_quality_lvl);
+    gui_BX.variables.box_elm_ny1     = round(str2num(get(gui_BX.handles.mesh.box_elm_ny1_val, 'String')) * gui_BX.variables.mesh_quality_lvl);
+    gui_BX.variables.box_elm_ny2_fac = str2num(get(gui_BX.handles.mesh.box_elm_ny2_fac_val, 'String'));
+    gui_BX.variables.box_elm_ny2     = round(round(abs(str2num(get(gui_BX.handles.mesh.ind_dist_val, 'String')) * gui_BX.variables.box_elm_ny2_fac * gui_BX.variables.mesh_quality_lvl)));
+    gui_BX.variables.box_elm_ny3     = round(str2num(get(gui_BX.handles.mesh.box_elm_ny3_val, 'String')) * gui_BX.variables.mesh_quality_lvl);
+    set(gui_BX.handles.mesh.box_elm_nx_val, 'String', num2str(gui_BX.variables.box_elm_nx));
+    set(gui_BX.handles.mesh.box_elm_nz_val, 'String', num2str(gui_BX.variables.box_elm_nz));
+    set(gui_BX.handles.mesh.box_elm_ny1_val, 'String', num2str(gui_BX.variables.box_elm_ny1));
+    set(gui_BX.handles.mesh.box_elm_ny2_fac_val, 'String', num2str(gui_BX.defaults.variables.box_elm_ny2_fac));
+    set(gui_BX.handles.mesh.box_elm_ny3_val, 'String', num2str(gui_BX.variables.box_elm_ny3));
+    set(gui_BX.handles.mesh.mesh_quality_lvl_val, 'String', num2str(gui_BX.variables.mesh_quality_lvl));
     
 else
-    gui_BX.variables.mesh_quality_lvl = str2num(get(gui_BX.handles.mesh_quality_lvl_val, 'String'));
-    gui_BX.variables.box_elm_nx       = round(str2num(get(gui_BX.handles.box_elm_nx_val, 'String')) * gui_BX.variables.mesh_quality_lvl);
-    gui_BX.variables.box_elm_nz       = round(str2num(get(gui_BX.handles.box_elm_nz_val, 'String')) * gui_BX.variables.mesh_quality_lvl);
-    gui_BX.variables.box_elm_ny1      = round(str2num(get(gui_BX.handles.box_elm_ny1_val, 'String')) * gui_BX.variables.mesh_quality_lvl);
-    gui_BX.variables.box_elm_ny2_fac  = str2num(get(gui_BX.handles.box_elm_ny2_fac_val, 'String'));
-    gui_BX.variables.box_elm_ny2      = round(round(abs(str2num(get(gui_BX.handles.ind_dist_val, 'String')) * gui_BX.variables.box_elm_ny2_fac * gui_BX.variables.mesh_quality_lvl)));
-    gui_BX.variables.box_elm_ny3      = round(str2num(get(gui_BX.handles.box_elm_ny3_val, 'String')) * gui_BX.variables.mesh_quality_lvl);
+    gui_BX.variables.mesh_quality_lvl = str2num(get(gui_BX.handles.mesh.mesh_quality_lvl_val, 'String'));
+    gui_BX.variables.box_elm_nx       = round(str2num(get(gui_BX.handles.mesh.box_elm_nx_val, 'String')) * gui_BX.variables.mesh_quality_lvl);
+    gui_BX.variables.box_elm_nz       = round(str2num(get(gui_BX.handles.mesh.box_elm_nz_val, 'String')) * gui_BX.variables.mesh_quality_lvl);
+    gui_BX.variables.box_elm_ny1      = round(str2num(get(gui_BX.handles.mesh.box_elm_ny1_val, 'String')) * gui_BX.variables.mesh_quality_lvl);
+    gui_BX.variables.box_elm_ny2_fac  = str2num(get(gui_BX.handles.mesh.box_elm_ny2_fac_val, 'String'));
+    gui_BX.variables.box_elm_ny2      = round(round(abs(str2num(get(gui_BX.handles.mesh.ind_dist_val, 'String')) * gui_BX.variables.box_elm_ny2_fac * gui_BX.variables.mesh_quality_lvl)));
+    gui_BX.variables.box_elm_ny3      = round(str2num(get(gui_BX.handles.mesh.box_elm_ny3_val, 'String')) * gui_BX.variables.mesh_quality_lvl);
 end
 
 %% Definition of mesh/geometry variables
 % Indenter variables
-gui_BX.variables.tipRadius = str2num(get(gui_BX.handles.tipRadius_val, 'String')); % Radius of cono-spherical indenter (in µm)
-gui_BX.variables.coneAngle = str2num(get(gui_BX.handles.coneAngle_val, 'String')); % Full Angle of cono-spherical indenter (in °)
-gui_BX.variables.h_indent  = str2num(get(gui_BX.handles.h_indent_val, 'String')); % Depth of indentation (in µm)
+gui_BX.variables.tipRadius = str2num(get(gui_BX.handles.mesh.tipRadius_val, 'String')); % Radius of cono-spherical indenter (in µm)
+gui_BX.variables.coneAngle = str2num(get(gui_BX.handles.mesh.coneAngle_val, 'String')); % Full Angle of cono-spherical indenter (in °)
+gui_BX.variables.h_indent  = str2num(get(gui_BX.handles.mesh.h_indent_val, 'String')); % Depth of indentation (in µm)
 % Samples variables
-gui_BX.variables.w_sample    = str2num(get(gui_BX.handles.w_sample_val, 'String'));
-gui_BX.variables.h_sample    = str2num(get(gui_BX.handles.h_sample_val, 'String'));
-gui_BX.variables.len_sample  = str2num(get(gui_BX.handles.len_sample_val, 'String'));
-gui_BX.variables.inclination = str2num(get(gui_BX.handles.inclination_val, 'String'));
-gui_BX.variables.ind_dist    = str2num(get(gui_BX.handles.ind_dist_val, 'String'));
-gui_BX.variables.box_bias_x  = (str2num(get(gui_BX.handles.box_bias_x_val, 'String')));
-gui_BX.variables.box_bias_z  = str2num(get(gui_BX.handles.box_bias_z_val, 'String'));
-gui_BX.variables.box_bias_y1 = str2num(get(gui_BX.handles.box_bias_y1_val, 'String'));
-gui_BX.variables.box_bias_y2 = str2num(get(gui_BX.handles.box_bias_y2_val, 'String'));
-gui_BX.variables.box_bias_y3 = (str2num(get(gui_BX.handles.box_bias_y3_val, 'String')));
+gui_BX.variables.w_sample    = str2num(get(gui_BX.handles.mesh.w_sample_val, 'String'));
+gui_BX.variables.h_sample    = str2num(get(gui_BX.handles.mesh.h_sample_val, 'String'));
+gui_BX.variables.len_sample  = str2num(get(gui_BX.handles.mesh.len_sample_val, 'String'));
+gui_BX.variables.inclination = str2num(get(gui_BX.handles.mesh.inclination_val, 'String'));
+gui_BX.variables.ind_dist    = str2num(get(gui_BX.handles.mesh.ind_dist_val, 'String'));
+gui_BX.variables.box_bias_x  = (str2num(get(gui_BX.handles.mesh.box_bias_x_val, 'String')));
+gui_BX.variables.box_bias_z  = str2num(get(gui_BX.handles.mesh.box_bias_z_val, 'String'));
+gui_BX.variables.box_bias_y1 = str2num(get(gui_BX.handles.mesh.box_bias_y1_val, 'String'));
+gui_BX.variables.box_bias_y2 = str2num(get(gui_BX.handles.mesh.box_bias_y2_val, 'String'));
+gui_BX.variables.box_bias_y3 = (str2num(get(gui_BX.handles.mesh.box_bias_y3_val, 'String')));
 
 gui_BX.GB.GB_Inclination = gui_BX.variables.inclination;
 
@@ -310,28 +310,28 @@ elseif get(gui_BX.handles.pm_mesh_color, 'Value') == 2
 end
 
 % Plot of the mesh
-gui_BX.handles.meshBX_1 = surf(gui_BX.variables_geom.top1256_x, gui_BX.variables_geom.top1256_y, gui_BX.variables_geom.top1256_z, 'FaceColor', color_grA); hold on;
-gui_BX.handles.meshBX_2 = surf(gui_BX.variables_geom.top3487_x, gui_BX.variables_geom.top3487_y, gui_BX.variables_geom.top3487_z, 'FaceColor', color_grB); hold on;
+gui_BX.handles.mesh.meshBX_1 = surf(gui_BX.variables_geom.top1256_x, gui_BX.variables_geom.top1256_y, gui_BX.variables_geom.top1256_z, 'FaceColor', color_grA); hold on;
+gui_BX.handles.mesh.meshBX_2 = surf(gui_BX.variables_geom.top3487_x, gui_BX.variables_geom.top3487_y, gui_BX.variables_geom.top3487_z, 'FaceColor', color_grB); hold on;
 
 % Plot of GB
-gui_BX.handles.plot_meshBX_GB1 = plot3(GB_coords_X, GB_coords_Y, GB_coords_Z, '-', 'Color', color_gb, 'LineWidth', 4);
+gui_BX.handles.mesh.plot_meshBX_GB1 = plot3(GB_coords_X, GB_coords_Y, GB_coords_Z, '-', 'Color', color_gb, 'LineWidth', 4);
 
 if gui_BX.variables.ind_dist ~= 0
-    gui_BX.handles.meshBX_GB2 = surf(gui_BX.variables_geom.top2376_x, gui_BX.variables_geom.top2376_y, gui_BX.variables_geom.top2376_z, 'FaceColor', color_inter_gr_gb); hold on;
-    gui_BX.handles.meshBX_GB3 = surf(gui_BX.variables_geom.top671011_x, gui_BX.variables_geom.top671011_y, gui_BX.variables_geom.top671011_z, 'FaceColor', color_inter_gr_gb); hold on;
+    gui_BX.handles.mesh.meshBX_GB2 = surf(gui_BX.variables_geom.top2376_x, gui_BX.variables_geom.top2376_y, gui_BX.variables_geom.top2376_z, 'FaceColor', color_inter_gr_gb); hold on;
+    gui_BX.handles.mesh.meshBX_GB3 = surf(gui_BX.variables_geom.top671011_x, gui_BX.variables_geom.top671011_y, gui_BX.variables_geom.top671011_z, 'FaceColor', color_inter_gr_gb); hold on;
 end
 
 if gui_BX.variables.ind_dist ~= 0
-    gui_BX.handles.meshBX_GB4 = surf(gui_BX.variables_geom.top10111514_x, gui_BX.variables_geom.top10111514_y, gui_BX.variables_geom.top10111514_z, 'FaceColor', color_inter_gr_gb); hold on;
+    gui_BX.handles.mesh.meshBX_GB4 = surf(gui_BX.variables_geom.top10111514_x, gui_BX.variables_geom.top10111514_y, gui_BX.variables_geom.top10111514_z, 'FaceColor', color_inter_gr_gb); hold on;
 end
 
 % Plot of the mesh
-gui_BX.handles.meshBX_3 = surf(gui_BX.variables_geom.top56910_x, gui_BX.variables_geom.top56910_y, gui_BX.variables_geom.top56910_z, 'FaceColor', color_grA); hold on;
-gui_BX.handles.meshBX_4 = surf(gui_BX.variables_geom.top781211_x, gui_BX.variables_geom.top781211_y, gui_BX.variables_geom.top781211_z, 'FaceColor', color_grB); hold on;
-gui_BX.handles.meshBX_5 = surf(gui_BX.variables_geom.top9101314_x, gui_BX.variables_geom.top9101314_y, gui_BX.variables_geom.top9101314_z, 'FaceColor', color_grA); hold on;
-gui_BX.handles.meshBX_6 = surf(gui_BX.variables_geom.top11121615_x, gui_BX.variables_geom.top11121615_y, gui_BX.variables_geom.top11121615_z, 'FaceColor', color_grB); hold on;
-gui_BX.handles.meshBX_7 = surf(gui_BX.variables_geom.top841817_x, gui_BX.variables_geom.top841817_y, gui_BX.variables_geom.top841817_z, 'FaceColor', color_grB); hold on;
-gui_BX.handles.meshBX_8 = surf(gui_BX.variables_geom.top8121617_x, gui_BX.variables_geom.top8121617_y, gui_BX.variables_geom.top8121617_z, 'FaceColor', color_grB); hold on;
+gui_BX.handles.mesh.meshBX_3 = surf(gui_BX.variables_geom.top56910_x, gui_BX.variables_geom.top56910_y, gui_BX.variables_geom.top56910_z, 'FaceColor', color_grA); hold on;
+gui_BX.handles.mesh.meshBX_4 = surf(gui_BX.variables_geom.top781211_x, gui_BX.variables_geom.top781211_y, gui_BX.variables_geom.top781211_z, 'FaceColor', color_grB); hold on;
+gui_BX.handles.mesh.meshBX_5 = surf(gui_BX.variables_geom.top9101314_x, gui_BX.variables_geom.top9101314_y, gui_BX.variables_geom.top9101314_z, 'FaceColor', color_grA); hold on;
+gui_BX.handles.mesh.meshBX_6 = surf(gui_BX.variables_geom.top11121615_x, gui_BX.variables_geom.top11121615_y, gui_BX.variables_geom.top11121615_z, 'FaceColor', color_grB); hold on;
+gui_BX.handles.mesh.meshBX_7 = surf(gui_BX.variables_geom.top841817_x, gui_BX.variables_geom.top841817_y, gui_BX.variables_geom.top841817_z, 'FaceColor', color_grB); hold on;
+gui_BX.handles.mesh.meshBX_8 = surf(gui_BX.variables_geom.top8121617_x, gui_BX.variables_geom.top8121617_y, gui_BX.variables_geom.top8121617_z, 'FaceColor', color_grB); hold on;
 
 % Plot of the cono-spherical indenter before and after indentation
 if (get(gui_BX.handles.cb_indenter_post_indentation,'Value')) == 1
@@ -341,7 +341,7 @@ else
 end
 
 % Plot of the sample
-gui_BX.handles.sample_patch = patch('Vertices', gui_BX.variables_geom.BX_sample_allpts,'Faces', gui_BX.variables_geom.faces_sample,'FaceAlpha',0.05);
+gui_BX.handles.mesh.sample_patch = patch('Vertices', gui_BX.variables_geom.BX_sample_allpts,'Faces', gui_BX.variables_geom.faces_sample,'FaceAlpha',0.05);
 
 % Legend
 legend(strcat('GrainA n°', num2str(gui_BX.GB.GrainA)), strcat('GrainB n°', num2str(gui_BX.GB.GrainB)), strcat('GB n°', num2str(gui_BX.GB.GB_Number)), 'Distance GB-indenter', 'Location', 'SouthOutside');
@@ -377,6 +377,6 @@ guidata(gcf, gui_BX);
 femproc_indentation_number_elements_BX;
 gui_BX = guidata(gcf); guidata(gcf, gui_BX);
 
-%%
+%% Update of the CPFEM configuration
 femproc_config_CPFEM_updated
 end

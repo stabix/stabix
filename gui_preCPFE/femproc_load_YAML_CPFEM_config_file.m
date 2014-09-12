@@ -14,7 +14,6 @@ if ~ isfield(gui, 'config_CPFEM_file')
 end
 
 if nargin > 0
-    YAML_CPFEM_config_file_2_import
     if exist(YAML_CPFEM_config_file_2_import, 'file')
         gui.config_CPFEM_file = YAML_CPFEM_config_file_2_import;
     end
@@ -40,10 +39,16 @@ if ~isfield(gui.config_CPFEM, 'simulation_code')
     gui.config_CPFEM.simulation_code = 'DAMASK';
 end
 
-%% Setting of FEM software
-if ~isfield(gui.config_CPFEM, 'fem_software')
-    warning('Missing FEM software definition in your CPFEM YAML config. file...');
-    gui.config_CPFEM.fem_software = 'Mentat_2013.1';
+%% Setting of list of FEM solvers
+if ~isfield(gui.config_CPFEM, 'fem_solvers')
+    warning('Missing FEM solvers list in your CPFEM YAML config. file...');
+    gui.config_CPFEM.fem_solvers = 'Mentat_2013.1';
+end
+
+%% Setting of FEM solvers used
+if ~isfield(gui.config_CPFEM, 'fem_solver_used')
+    warning('Missing FEM solver used in your CPFEM YAML config. file...');
+    gui.config_CPFEM.fem_solver_used = 'Mentat_2013.1';
 end
 
 %% Setting of procedure path by default
@@ -71,14 +76,8 @@ end
 
 gui.config_CPFEM.python = femproc_python_check(gui.config_CPFEM.python_executable);
 
-%% Setting the PYTHONPATH environment variable
-if ~isfield(gui.config_CPFEM, 'pythonpath')
-    warning('Missing PYTHONPATH environment variable in your CPFEM YAML config. file...');
-    gui.config_CPFEM.pythonpath = [];
-end
-
 %% Set popup menu for the FEM interface (software version)
-femproc_set_cpfem_interface_pm(gui.handles.pm_FEM_interface, gui.config_CPFEM.fem_software);
+femproc_set_cpfem_interface_pm(gui.handles.pm_FEM_interface, gui.config_CPFEM.fem_solvers, gui.config_CPFEM.fem_solver_used);
 
 guidata(gcf, gui)
 

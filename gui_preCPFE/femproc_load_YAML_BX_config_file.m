@@ -20,9 +20,9 @@ if YAML_GB_config_file_2_import == 0
     if isequal(YAML_GB_config_file_2_import, 0) || strcmp(YAML_GB_config_file_2_import, '') == 1
         disp('User selected Cancel');
         if interface == 1
-            YAML_GB_config_file_2_import = sprintf('config_gui_SX_example.yaml');
+            YAML_GB_config_file_2_import = sprintf('config_gui_SX_default.yaml');
         elseif interface == 2
-            YAML_GB_config_file_2_import = sprintf('config_gui_BX_example.yaml');
+            YAML_GB_config_file_2_import = sprintf('config_gui_BX_default.yaml');
         end
     else
         disp(['User selected :', fullfile(YAML_GB_config_file_2_import)]);

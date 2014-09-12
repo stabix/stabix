@@ -15,14 +15,9 @@ configYAML = sprintf('config_gui_EBSDmap_%s.yaml', username);
 if ~exist(configYAML, 'file')
     errordlg_str = strcat('YAML config file not found for the user : ', username, ' ! Create your YAML config file and load it from the menu...');
     errordlg(errordlg_str, 'File Error');
-    config_map.Sample_IDs   = 'Sample_A';
-    config_map.Sample_ID    = 'Sample_A';
-    config_map.Material_IDs = 'Material_A';
-    config_map.Material_ID  = 'Material_A';
+    config_map = ReadYaml('config_gui_EBSDmap_defaults.yaml');
     config_map.default_grain_file_type2            = 'validation_grain_file_type2.txt';
     config_map.default_reconstructed_boundaries_file = 'validation_reconstructed_boundaries.txt';
-    %     config_map.default_grain_file_type2 = 'random_GF2data.txt';
-    %     config_map.default_reconstructed_boundaries_file = 'random_RBdata.txt';
 else
     config_map = ReadYaml(configYAML);
 end

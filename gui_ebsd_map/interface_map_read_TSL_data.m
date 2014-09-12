@@ -96,7 +96,7 @@ set(gui.handles.FileRB, 'String', fullfile(config_map.filename_reconstructed_bou
 % Write paths in a YAML file
 config_map_TSLOIM_data_path.TSLOIM_data_path_GF2 = gui.config_map.TSLOIM_data_path_GF2;
 config_map_TSLOIM_data_path.TSLOIM_data_path_RB  = gui.config_map.TSLOIM_data_path_RB;
-config_YAML_TSLdata = sprintf('config_gui_EBSDmap_data_path_%s.yaml', gui.config_Matlab.username);
+config_YAML_TSLdata = sprintf('config_gui_EBSDmap_data_path_%s.yaml', gui.config.username);
 WriteYaml(config_YAML_TSLdata, config_map_TSLOIM_data_path);
 
 gui.config_map         = config_map;

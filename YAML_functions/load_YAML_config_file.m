@@ -1,26 +1,26 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function config_Matlab = load_YAML_config_file
+function config = load_YAML_config_file
 %% Importation of data from YAML config file (Matlab settings)
 % See in http://code.google.com/p/yamlmatlab/
 % author : d.mercier@mpie.de
 
-configYAML = sprintf('config_Matlab.yaml');
+configYAML = sprintf('config.yaml');
 
 if exist(configYAML, 'file') == 2
-    config_Matlab = ReadYaml(configYAML);
+    config = ReadYaml(configYAML);
 else
     warndlg('Missing YAML configuration file for Matlab...');
 end
 
 %% Setting of OpenGL
-if isfield(config_Matlab, 'matlab_opengl')
-    if strcmp(config_Matlab.matlab_opengl, 'software') && ~ismac  % see: "doc opengl"
+if isfield(config, 'matlab_opengl')
+    if strcmp(config.matlab_opengl, 'software') && ~ismac  % see: "doc opengl"
         opengl software;
         
-    elseif strcmp(config_Matlab.matlab_opengl, 'hardware')
+    elseif strcmp(config.matlab_opengl, 'hardware')
         opengl hardware;
         
-    elseif strcmp(config_Matlab.matlab_opengl, 'autoselect')
+    elseif strcmp(config.matlab_opengl, 'autoselect')
         opengl autoselect;
         
     end
@@ -37,6 +37,6 @@ else
     username = getenv('USERNAME');
 end
 
-config_Matlab.username = username;
+config.username = username;
 
 end
