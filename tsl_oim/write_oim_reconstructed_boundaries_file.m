@@ -92,6 +92,20 @@ if fpath_flag
         flag_missing_field = 1;
     end
     
+    if ~isfield(fdata, 'gb_length')
+        warning('No grains boundaries length found in the data to store in Reconstructed Boundaries File');
+        for ii = 1:fdata(1).number_of_grain_boundaries
+            fdata.gb_length(ii) = 1;
+        end
+    end
+    
+    if ~isfield(fdata, 'gb_trace_angle')
+        warning('No grains boundaries trace angle found in the data to store in Reconstructed Boundaries File');
+        for ii = 1:fdata(1).number_of_grain_boundaries
+            fdata.gb_trace_angle(ii) = 1;
+        end
+    end
+    
     if ~flag_missing_field
         %% Creation of the reconstructed boundaries file
         fid = fopen(fname, 'w+');

@@ -1,5 +1,4 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-% $Id: path_management.m 1265 2014-08-21 16:15:00Z d.mercier $
 function ov = perpendicular_vector(vec)
 %% after MTEX/geometry/orth
 % an arbitrary (normalized) orthogonal vector
