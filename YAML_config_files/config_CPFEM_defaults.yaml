@@ -9,11 +9,12 @@ simulation_code: DAMASK
 
 # list of FEM solvers
 fem_solvers: 
-    - Mentat_2008 
-    - Mentat_2010
-    - Mentat_2012
-    - Mentat_2013
     - Mentat_2013.1
+    - Mentat_2013
+    - Mentat_2012
+    - Mentat_2010
+    - Mentat_2008 
+    
 
 # the FEM solvers that you want to use, e.g. Mentat2012 or Mentat2013
 fem_solver_used: Mentat_2013.1

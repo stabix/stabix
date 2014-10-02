@@ -105,6 +105,7 @@ class Indentation(Indenter, Tools):
         self.start(title='INDENTATION-MODEL (%s) %s' % (modelname, label))
         self.procIndentDocCall()
         self.procNewModel()
+        self.proc_draw_update_manual() 
         if self.IndentParameters['h_sample'] is None:
             self.IndentParameters['h_sample'] = h_indent * 12.
         self.procParameters()
@@ -149,6 +150,7 @@ class Indentation(Indenter, Tools):
         savename += '_h%.3f' % self.IndentParameters['h_indent']
         savename += ['_' + label, ''][label == '']
         self.procSaveModel(modelname=savename + '.mfd') # <<< needed to update modelname (for write_dat)
+        self.proc_draw_update_automatic() 
         self.procMicronbar(posXYZ=[0., 0., 0.], height=h_indent)
         self.plot()
         if Dexp is not None:
