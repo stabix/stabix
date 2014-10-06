@@ -8,9 +8,8 @@ function custom_menu_help(parent)
 help_menu = uimenu(parent, 'Label', 'Help');
 
 uimenu(help_menu, 'Label', 'HTML Documentation', ...
-    'Callback', 'gui = guidata(gcf); web(gui.config.doc_path_root)');
+    'Callback', 'gui = guidata(gcf); webrowser(gui.config.doc_path_root)');
 
 uimenu(help_menu, 'Label', 'Download PDF Documentation', ...
-    'Callback', 'gui = guidata(gcf); web(fullfile(gui.config.doc_path_root, gui.config.doc_path_pdf));');
-
+    'Callback', 'gui = guidata(gcf); webbrowser(fullfile(gui.config.doc_path_root, gui.config.doc_path_pdf));');
 end
