@@ -30,13 +30,4 @@ elseif ~ismac
     
 end
 
-%% Get username
-if ismac
-    username = getenv('USER');
-else
-    username = getenv('USERNAME');
-end
-
-config.username = username;
-
 end

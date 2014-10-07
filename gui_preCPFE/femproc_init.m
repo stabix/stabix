@@ -8,11 +8,12 @@ get_stabix_root;
 
 %% Set the GUI
 gui.config = load_YAML_config_file;
+gui.config.username = get_username;
 
 gui.version_str = num2str(gui.config.version_toolbox);
 gui.module_name = 'preCPFE';
 
-config_files_dir = fullfile(get_stabix_root, 'YAML_config_files', '');
+config_files_dir = fullfile(get_stabix_root, 'YAML_config_files', ''); %in the same folder as default config. files
 %config_CPFEM_YAML_file = sprintf('config_CPFEM_%s.yaml', gui.config.username);
 gui.config_CPFEM_user = sprintf('config_CPFEM_%s.yaml', gui.config.username);
 gui.config_CPFEM_user_full = fullfile(config_files_dir, gui.config_CPFEM_user);
@@ -24,6 +25,7 @@ gui.defaults = ReadYaml(config_CPFEM_file);
 % leave unchanged fields untouched
 if exist(gui.config_CPFEM_user_full, 'file')
     gui.defaults.user_config = ReadYaml(gui.config_CPFEM_user);
+    %femproc_config_CPFEM_check_user_config(gui.defaults.user_config);
     fns = fieldnames(gui.defaults.user_config);
     for fn_idx = 1:numel(fns)
         fn = fns{fn_idx};

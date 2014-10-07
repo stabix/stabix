@@ -1,6 +1,8 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function gui_handle = demo
 %% Function to create the main window of the GUI (to select map, bicrystal or meshing interface)
+% author: d.mercier@mpie.de
+
 %% Initialization
 format compact;
 tabularasa;
@@ -19,6 +21,7 @@ cd(startdir);
 
 %% Set Matlab
 gui.config = load_YAML_config_file;
+gui.config.username = get_username;
 gui.description = '';
 gui.version_str = num2str(gui.config.version_toolbox);
 gui.module_name = 'Demo';
