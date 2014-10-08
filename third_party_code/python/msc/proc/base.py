@@ -14,7 +14,7 @@ import time
 
 from sketch import Sketch
 #from msc.tools import MSC_TOOLS
-from msc.tools import Tools
+from tools import Tools
 
 #class Proc(Sketch, MSC_TOOLS):
 class Proc(Sketch, Tools):
@@ -61,7 +61,7 @@ class Proc(Sketch, Tools):
         self.proc.append('''
 |+++++++++++++++++++++++++++++++++++++++++++++
 |  PROCEDURE FILE 
-|  FOR USE WITH MSC.MENTAT %i''' % self.MENTATVERSION + '''
+|  FOR USE WITH MSC.%s''' % self.MENTATVERSION + ''' 
 |=============================================
 |        TITLE: %s\n''' % (title) + '''
 |=============================================

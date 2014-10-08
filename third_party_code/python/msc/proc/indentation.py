@@ -3,8 +3,8 @@
 @author: c.zambaldi
 """
 
-from msc.tools import Tools
-from .indenter import Indenter
+from tools import Tools
+from indenter import Indenter
 
 import logging
 

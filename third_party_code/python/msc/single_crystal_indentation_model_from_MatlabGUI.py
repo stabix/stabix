@@ -6,10 +6,11 @@ import msc.tools
 #from msc.proc.base import Proc
 
 def doit(gb_data, proc_path = './'):
-    #Indentation.CODE='DAMASK' # use current CPFEM code 
-    #Indentation.CODE='GENMAT' # use 'historical' CPFEM code
-    Indentation.CODE=str(gb_data['simulation_code'][0])
-    Indentation.MENTATVERSION = float(gb_data['fem_interface'][0]) # Version as float
+    #Indentation.CODE = 'DAMASK' # use current CPFEM code 
+    #Indentation.CODE = 'GENMAT' # use 'historical' CPFEM code
+    Indentation.CODE = str(gb_data['simulation_code'][0])
+    #Indentation.MENTATVERSION = float(gb_data['fem_solver_used'][0]) # Version as float
+    Indentation.MENTATVERSION = str(gb_data['fem_solver_used'][0]) # Version as string
 
     indent = Indentation(      # 
                modelname = str(gb_data['Titlegbdata'][0]), #name of model with GB identification....usw...

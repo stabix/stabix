@@ -5,15 +5,14 @@ import os
 from msc.proc.bicrystal import BicrystalIndent
 import msc.tools
 
-
 def doit(gb_data, proc_path='./'):
-    #BicrystalIndent.CODE='DAMASK' # use current CPFEM code 
-    #BicrystalIndent.CODE='GENMAT' # use 'historical' CPFEM code
+    #BicrystalIndent.CODE = 'DAMASK' # use current CPFEM code 
+    #BicrystalIndent.CODE = 'GENMAT' # use 'historical' CPFEM code
     BicrystalIndent.CODE = str(gb_data['simulation_code'][0])
     #BicrystalIndent.MENTATVERSION = 2013.1 # Version as float
-    BicrystalIndent.MENTATVERSION = float(gb_data['fem_interface'][0]) # Version as float
+    #BicrystalIndent.MENTATVERSION = float(gb_data['fem_solver_used'][0]) # Version as float
+    BicrystalIndent.MENTATVERSION = str(gb_data['fem_solver_used'][0]) # Version as string
     
-
     indent = BicrystalIndent(#
                              modelname=str(gb_data['Titlegbdata'][0]), #name of model with GB identification....usw...
                              #label=gb_data['GB_Number'], # informative label

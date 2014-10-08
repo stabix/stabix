@@ -89,17 +89,9 @@ gui_SX = guidata(gcf); guidata(gcf, gui_SX);
 
 %% Setting of the FEM interface
 gui_SX.config_CPFEM.fem_interface_val = get(gui_SX.handles.pm_FEM_interface, 'Value');
-if gui_SX.config_CPFEM.fem_interface_val == 1
-    gui_SX.config_CPFEM.fem_interface = 2008;
-elseif gui_SX.config_CPFEM.fem_interface_val == 2
-    gui_SX.config_CPFEM.fem_interface = 2010;
-elseif gui_SX.config_CPFEM.fem_interface_val == 3
-    gui_SX.config_CPFEM.fem_interface = 2012;
-elseif gui_SX.config_CPFEM.fem_interface_val == 4
-    gui_SX.config_CPFEM.fem_interface = 2013;
-elseif gui_SX.config_CPFEM.fem_interface_val == 5
-    gui_SX.config_CPFEM.fem_interface = 2013.1;
-end
+gui_SX.config_CPFEM.fem_interface_all_str = get(gui_SX.handles.pm_FEM_interface, 'String');
+gui_SX.config_CPFEM.fem_solver_str_cell = gui_SX.config_CPFEM.fem_interface_all_str(gui_SX.config_CPFEM.fem_interface_val);
+gui_SX.config_CPFEM.fem_solver_used = gui_SX.config_CPFEM.fem_solver_str_cell{:};
 
 %% Calculation of the transition depth between spherical and conical parts of the indenter
 gui_SX.variables.h_trans = femproc_indentation_transition_depth(gui_SX.variables.tipRadius, gui_SX.variables.coneAngle/2);

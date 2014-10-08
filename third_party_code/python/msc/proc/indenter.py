@@ -3,7 +3,7 @@
 @author: c.zambaldi
 """
 
-from .base import Proc
+from base import Proc
 
 
 class Indenter(Proc):
