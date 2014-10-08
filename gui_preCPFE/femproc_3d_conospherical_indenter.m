@@ -34,7 +34,7 @@ if nargin < 1
 end
 
 %% Calculation of the transition depth between the conical and spherical part of the indenter
-h_trans = femproc_indentation_transition_depth(tipRadius,coneAngle/2);
+h_trans = femproc_indentation_transition_depth(tipRadius, coneAngle/2);
 h_trans = round(h_trans*100)/100;
 
 %% Plot of the spherical part of the indenter
@@ -55,7 +55,7 @@ surf(x_hs, y_hs, z_hs, 'Facecolor', 'w'); hold on;
 ang = 0:0.04:2 * pi;
 calRadius = (tipRadius^2 - (tipRadius - h_trans)^2)^0.5;
 dz = 0;
-deltaR = 0.05 * calRadius;
+deltaR = 0.05;
 for ii = 1:1:25
     x(ii,:) = (calRadius * cos(ang)) + X_position;
     y(ii,:) = (calRadius * sin(ang)) + Y_position;
