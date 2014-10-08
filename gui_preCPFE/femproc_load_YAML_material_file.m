@@ -7,11 +7,12 @@ function femproc_load_YAML_material_file(interface)
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
 gui = guidata(gcf);
+gui.config.username = get_username;
 
 if gui.GB.number_phase == 1
     configmatYAML = sprintf('config_CPFEM_material_%s.yaml', gui.config.username);
     
-    if exist(configmatYAML,'file') == 0
+    if exist(configmatYAML, 'file') == 0
         warndlg('YAML file for material config not found ! Default values are used', '!! Warning !!');
         configmatdefYAML = sprintf('config_CPFEM_material_default.yaml');
         gui.config_material  = ReadYaml(configmatdefYAML);

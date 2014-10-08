@@ -25,7 +25,6 @@ gui_BX.description = 'Indentation of a bicrystal - ';
 %% Set Matlab and CPFEM configurations
 if nargin == 0
     [gui_BX.config] = load_YAML_config_file;
-    gui.config.username = get_username;
     
     gui_BX.config_map.Sample_IDs   = [];
     gui_BX.config_map.Sample_ID    = [];
@@ -49,6 +48,7 @@ else
     gui_BX.GB.active_data = 'BX';
     gui_BX.title_str = set_gui_title(gui_BX, ['Bicrystal n°', num2str(gui_BX.GB.GB_Number)]);
 end
+gui_BX.config.username = get_username;
 guidata(gcf, gui_BX);
 
 %% Customized menu

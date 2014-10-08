@@ -26,7 +26,6 @@ gui_SX.description = 'Indentation of a single crystal - ';
 %% Set Matlab and CPFEM configurations
 if nargin == 0  
     [gui_SX.config] = load_YAML_config_file;
-    gui.config.username = get_username;
     
     gui_SX.config_map.Sample_IDs   = [];
     gui_SX.config_map.Sample_ID    = [];
@@ -55,6 +54,7 @@ else
     end
     gui_SX.title_str = set_gui_title(gui_SX, ['Crystal n°', num2str(gui_SX.GB.activeGrain)]);
 end
+gui_SX.config.username = get_username;
 guidata(gcf, gui_SX);
 
 %% Customized menu
