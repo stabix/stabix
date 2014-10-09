@@ -105,6 +105,7 @@ gui_BX.config_CPFEM.fem_interface_val = get(gui_BX.handles.pm_FEM_interface, 'Va
 gui_BX.config_CPFEM.fem_interface_all_str = get(gui_BX.handles.pm_FEM_interface, 'String');
 gui_BX.config_CPFEM.fem_solver_str_cell = gui_BX.config_CPFEM.fem_interface_all_str(gui_BX.config_CPFEM.fem_interface_val);
 gui_BX.config_CPFEM.fem_solver_used = gui_BX.config_CPFEM.fem_solver_str_cell{:};
+gui_BX.config_CPFEM.fem_solver_version = sscanf(gui_BX.config_CPFEM.fem_solver_used, 'Mentat_%f');
 
 %% Calculation of the transition depth between spherical and conical parts of the indenter
 gui_BX.variables.h_trans = femproc_indentation_transition_depth(gui_BX.variables.tipRadius, gui_BX.variables.coneAngle/2);

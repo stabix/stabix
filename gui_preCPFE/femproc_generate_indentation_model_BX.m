@@ -56,7 +56,7 @@ py{end+1} = sprintf('BicrystalIndent.__module__');
 py{end+1} = sprintf('import tools');
 py{end+1} = sprintf('Titlegbdata = ''%s''', gui_BX.GB.Titlegbdata);
 py{end+1} = sprintf('BicrystalIndent.CODE = ''%s''', gui_BX.config_CPFEM.simulation_code);
-%py{end+1} = sprintf('BicrystalIndent.MENTATVERSION = %.1f', gui_BX.config_CPFEM.fem_solver_used); 
+py{end+1} = sprintf('BicrystalIndent.MENTATVERSION = %.1f', gui_BX.config_CPFEM.fem_solver_version);
 py{end+1} = sprintf('BicrystalIndent.MENTATVERSION = ''%s''', gui_BX.config_CPFEM.fem_solver_used); 
 py{end+1} = 'indent = BicrystalIndent(';
 py{end+1} = sprintf('modelname = ''%s'',', gui_BX.GB.Titlegbdata);

@@ -61,7 +61,7 @@ class Proc(Sketch, Tools):
         self.proc.append('''
 |+++++++++++++++++++++++++++++++++++++++++++++
 |  PROCEDURE FILE 
-|  FOR USE WITH MSC.%s''' % self.MENTATVERSION + ''' 
+|  FOR USE WITH MSC.%s''' % self.MENTATVERSION_STR + ''' 
 |=============================================
 |        TITLE: %s\n''' % (title) + '''
 |=============================================
