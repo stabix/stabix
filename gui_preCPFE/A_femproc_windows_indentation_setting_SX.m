@@ -58,7 +58,7 @@ gui_SX.config.username = get_username;
 guidata(gcf, gui_SX);
 
 %% Customized menu
-gui_SX.custom_menu = femproc_custom_menu(gui_SX.module_name);
+gui_SX.custom_menu = femproc_custom_menu([gui_SX.module_name,'-SX']);
 femproc_custom_menu_SX(gui_SX.custom_menu);
 
 %% Plot the mesh axis
