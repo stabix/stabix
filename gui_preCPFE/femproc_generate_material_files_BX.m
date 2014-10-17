@@ -66,11 +66,7 @@ elseif strcmp(gui_BX.config_CPFEM.simulation_code, 'DAMASK') == 1
     fprintf(fid, 'import scipy.io\n');
     fprintf(fid, 'gb_data = scipy.io.loadmat(''%s'')\n', gui_BX.GB.Titlegbdata);
     fprintf(fid, 'import generate_material_config_file as damask_mat\n');
-    if ismac || isunix
-        fprintf(fid, 'damask_mat.mat_config(gb_data, proc_path=r''%s/%s'')\n', gui_BX.config_CPFEM.proc_file_path, gui_BX.GB.Titlegbdata);
-    else
-        fprintf(fid, 'damask_mat.mat_config(gb_data, proc_path=r''%s\\%s'')\n', gui_BX.config_CPFEM.proc_file_path, gui_BX.GB.Titlegbdata);
-    end
+    fprintf(fid, 'damask_mat.mat_config(gb_data, proc_path=r''%s'')\n', fullfile(gui_BX.config_CPFEM.proc_file_path, gui_BX.GB.Titlegbdata));
     fclose(fid);
     % execute the python code that we just generated
     %cmd = sprintf('%s %s"',config.python_executable, scriptname);
