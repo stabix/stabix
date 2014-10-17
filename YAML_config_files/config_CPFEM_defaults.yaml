@@ -16,9 +16,12 @@ fem_solvers:
     - Mentat_2008
     - Abaqus_2012
     
+# path to the python folder on your mwn2 repository
+python4fem_module_path: D:\mwn2\python
+
 # the FEM solvers that you want to use, e.g. Mentat2012 or Mentat2013
 fem_solver_used: Mentat_2013.1
 
-# where you want the mentat procedure file written
+# where you want the Mentat or Abaqus procedure file written
 #proc_file_path: /Users/<username>/Documents/mwn2/matlab #for MAC
-proc_file_path: \\mufs4\home\<username> # for PC
+#proc_file_path: \\mufs4\home\<username> # for PC

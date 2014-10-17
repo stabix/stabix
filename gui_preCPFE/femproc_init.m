@@ -21,6 +21,11 @@ gui.config_CPFEM_user_full = fullfile(config_files_dir, gui.config_CPFEM_user);
 config_CPFEM_file = 'config_CPFEM_defaults.yaml';
 gui.defaults = ReadYaml(config_CPFEM_file);
 gui.defaults.config_files_dir = config_files_dir;
+gui.defaults.config_CPFEM_file = config_CPFEM_file;
+
+if ~isfield(gui.defaults, 'proc_file_path')
+    gui.defaults.proc_file_path = pwd;
+end
 
 % if user config exists update defined fields with the user settings
 % leave unchanged fields untouched

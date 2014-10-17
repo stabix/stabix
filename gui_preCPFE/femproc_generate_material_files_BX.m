@@ -39,7 +39,7 @@ if strcmp(gui_BX.config_CPFEM.simulation_code, 'GENMAT') == 1
     genmat_material_dir = fullfile(getenv('SLIP_TRANSFER_TBX_ROOT'),'gui_preCPFE','genmat','');
     phaseA = gui_BX.GB.Phase_A;
     if iscell(phaseA)
-        phaseA = phaseA{1};
+        phaseA = phaseA{1}; 
     end
     fnameA = fullfile(genmat_material_dir, genmat.material_fname.(phaseA));
     copyfile(fnameA, gui_BX.path_config_file)
@@ -50,7 +50,6 @@ if strcmp(gui_BX.config_CPFEM.simulation_code, 'GENMAT') == 1
     fnameB = fullfile(genmat_material_dir, genmat.material_fname.(phaseB));
     copyfile(fnameB, gui_BX.path_config_file)
 
-    
     %% Material config file for DAMASK
 elseif strcmp(gui_BX.config_CPFEM.simulation_code, 'DAMASK') == 1
     %% Creation of the material.config file with Euler angles (for DAMASK)
