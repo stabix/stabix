@@ -11,6 +11,7 @@ import math
 #from .indenter import Indenter
 from indentation import Indentation
 
+
 class BicrystalIndent(Indentation):
     #def preBicrystal(self,
     def __init__(self,

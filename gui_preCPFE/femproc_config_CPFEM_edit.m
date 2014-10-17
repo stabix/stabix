@@ -16,7 +16,7 @@ if ~exist(gui.config_CPFEM_user_full, 'file')
 else
     % check if user only uses valid fieldnames and values
     % that correspond to the current version
-    femproc_confi_CPFEM_check_user_config();
+    femproc_config_CPFEM_check_user_config();
 end
 edit(gui.config_CPFEM_user_full);
 

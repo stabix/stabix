@@ -607,7 +607,7 @@ all_selected
 
     def procContactIndent(self):
         self.proc.append(self.header('CONTACT DEFINITION'))
-        if self.MENTATVERSION >= 2013:
+        if self.FEMSOFTWARE >= 2013:
             self.proc.append('''
 *new_cbody mesh  | mentat2013
 *contact_option state:solid | mentat2013
@@ -618,13 +618,13 @@ all_selected
 sample
 *contact_deformable
 ''')
-        if self.MENTATVERSION < 2013:
+        if self.FEMSOFTWARE < 2013:
             self.proc_friction_value() # only needed for 2010
         self.proc.append('''
 *add_contact_body_elements
 all_existing
 ''')
-        if self.MENTATVERSION >= 2013:
+        if self.FEMSOFTWARE >= 2013:
             self.proc.append('''
 *new_cbody geometry |mentat >= 2013
 *contact_option geometry_nodes:off | mentat >= 2013
@@ -682,7 +682,7 @@ indenter_motion
 *contact_table_option $ctbody1 $ctbody2 project_stress_free:on
 |*contact_table_option_all detection:default
 ''')
-#        if self.MENTATVERSION >= 2013:
+#        if self.FEMSOFTWARE >= 2013:
 #            self.proc.append('''
 #|*ctable_set_default_touch
 #''')
@@ -695,7 +695,7 @@ indenter_motion
         self.proc_friction_value()  # 2010 + 2013 account for changes in mentat2013
 
     def proc_friction_value(self):
-        if self.MENTATVERSION >= 2013:
+        if self.FEMSOFTWARE >= 2013:
             self.proc.append('''| mentat version > 2013
 |*stop
 |*new_interact mesh:geometry *interact_option state_1:solid  |2013.1
@@ -792,7 +792,7 @@ all_selected
 ''')
 
     def proc_release_cbody(self, cbody=None):
-        if self.MENTATVERSION < 2013 and (cbody is not None):
+        if self.FEMSOFTWARE < 2013 and (cbody is not None):
             self.proc.append('''| MENTAT < 2013, release contact bodies
 *add_loadcase_cbodies %s''' % cbody + '''
 ''')

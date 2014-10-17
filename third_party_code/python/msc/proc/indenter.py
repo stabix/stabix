@@ -23,7 +23,7 @@ class Indenter(Proc):
         h_indent = 0.25
         tipRadius = 1.6
 
-        # create dictonary of parameters
+        # create dictionary of parameters
         self.IndentParameters = {
             'coneAngle': coneAngle,
             'coneHalfAngle': coneAngle / 2.,

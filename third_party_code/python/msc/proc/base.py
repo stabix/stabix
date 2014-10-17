@@ -33,7 +33,8 @@ class Proc(Sketch, Tools):
     initConds = []
     CODE = 'GENMAT'
     #CODE = 'DAMASK'
-    MENTATVERSION = 2010  # default
+    FEMSOFTWAREVERSION = 2010  # default
+    FEMSOFTWARE = 'Mentat'
 
     header_line_mark = '|+++++++++++++++++++++++++++++++++++++++++++++\n'
 
@@ -61,7 +62,7 @@ class Proc(Sketch, Tools):
         self.proc.append('''
 |+++++++++++++++++++++++++++++++++++++++++++++
 |  PROCEDURE FILE 
-|  FOR USE WITH MSC.%s''' % self.MENTATVERSION_STR + ''' 
+|  FOR USE WITH MSC.%s''' % self.FEMSOFTWARE + ''' 
 |=============================================
 |        TITLE: %s\n''' % (title) + '''
 |=============================================

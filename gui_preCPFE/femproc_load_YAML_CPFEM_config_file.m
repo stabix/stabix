@@ -57,13 +57,13 @@ if ~isfield(gui.config_CPFEM, 'proc_file_path')
     gui.config_CPFEM.proc_file_path = pwd;
 end
 
-%% Setting of msc folder path by default
-if ~isfield(gui.config_CPFEM, 'msc_module_path')
+%% Setting of python folder for FEM path by default
+if ~isfield(gui.config_CPFEM, 'python4fem_module_path')
     %warning('Missing path for MSC package in your CPFEM YAML config. file...');
-    msc_module_path = fullfile(getenv('SLIP_TRANSFER_TBX_ROOT'), ...
+    python4fem_module_path = fullfile(getenv('SLIP_TRANSFER_TBX_ROOT'), ...
         'third_party_code','python','');
-    gui.config_CPFEM.msc_module_path = strrep(msc_module_path,'\','/');
-    %display(['Using ', gui.config_CPFEM.msc_module_path])
+    gui.config_CPFEM.python4fem_module_path = strrep(python4fem_module_path,'\','/');
+    %display(['Using ', gui.config_CPFEM.python4fem_module_path])
 end
 
 %% Setting of Python executable path by default
@@ -77,7 +77,8 @@ end
 gui.config_CPFEM.python = femproc_python_check(gui.config_CPFEM.python_executable);
 
 %% Set popup menu for the FEM interface (software version)
-femproc_set_cpfem_interface_pm(gui.handles.pm_FEM_interface, gui.config_CPFEM.fem_solvers, gui.config_CPFEM.fem_solver_used);
+femproc_set_cpfem_interface_pm(gui.handles.pm_FEM_interface,...
+    gui.config_CPFEM.fem_solvers, gui.config_CPFEM.fem_solver_used);
 
 guidata(gcf, gui)
 
