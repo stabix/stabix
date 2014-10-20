@@ -47,9 +47,9 @@ Reconstructed Boundaries File
 
 N.B : Reconstructed boundary methodology is only applied to data collected on a hexagonal grid. It is possible to convert a square grid into an hexagonal grid in TSL-OIM software.
 
-Example of "Reconstructed Boundary File": `MPIE_cpTi_reconstructed_boundaries_2013.txt <../../../gui_ebsd_map/EBSD_data_Examples/MPIE_cpTi_reconstructed_boundaries_2013.txt>`_
+Example of "Reconstructed Boundary File": `MPIE_cpTi_reconstructed_boundaries_2013.txt <https://github.com/czambaldi/stabix/tree/master/gui_ebsd_map/EBSD_data_Examples/MPIE_cpTi_reconstructed_boundaries_2013.txt>`_
 
-The |matlab| function used to read "Reconstructed Boundary File" is: `read_oim_reconstructed_boundaries_file.m <../../../tsl_oim/read_oim_reconstructed_boundaries_file.m>`_
+The |matlab| function used to read "Reconstructed Boundary File" is: `read_oim_reconstructed_boundaries_file.m <https://github.com/czambaldi/stabix/tree/master/tsl_oim/read_oim_reconstructed_boundaries_file.m>`_
 
 If some GBs segments are missing or some wrong segments are exported, play with partition properties in the TSL-OIM software in order to export a more realistic Reconstructed Boundaries file:
     - decrease/increase "Grain Tolerance Angle"
@@ -75,9 +75,9 @@ Grain File Type 2
 
 N.B. : Export the "Grain File Type 2" in the same location as the corresponding "Reconstructed Boundary File".
 
-Example of "Grain Gile Type 2": `MPIE_cpTi_grain_file_type2_2013.txt <../../../gui_ebsd_map/EBSD_data_Examples/MPIE_cpTi_grain_file_type2_2013.txt>`_
+Example of "Grain Gile Type 2": `MPIE_cpTi_grain_file_type2_2013.txt <https://github.com/czambaldi/stabix/tree/master/gui_ebsd_map/EBSD_data_Examples/MPIE_cpTi_grain_file_type2_2013.txt>`_
 
-The |matlab| function used to read "Grain Gile Type 2" is: `read_oim_grain_file_type2.m <../../../tsl_oim/read_oim_grain_file_type2.m>`_
+The |matlab| function used to read "Grain Gile Type 2" is: `read_oim_grain_file_type2.m <https://github.com/czambaldi/stabix/tree/master/tsl_oim/read_oim_grain_file_type2.m>`_
 
 Scan Data (.ang file)
 ---------------------
@@ -105,7 +105,7 @@ Bicrystal GUI |rarr| YAML configuration file
 
 **The YAML configuration file provides a simple way to define a bicrystal.**
 
-An example of bicrystal configuration file is given here :  `config_gui_BX_example.yaml <../../../YAML_config_files/config_gui_BX_example.yaml>`_
+An example of bicrystal configuration file is given here :  `config_gui_BX_defaults.yaml <https://github.com/czambaldi/stabix/tree/master/YAML_config_files/config_gui_BX_defaults.yaml>`_
 
 Copy this example file and modify it with your data. Be careful to put a space after the comma in a list (e.g. [x, y, z]).
 

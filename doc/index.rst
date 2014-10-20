@@ -10,7 +10,7 @@ Slip Transmission |matlab| toolbox
 ==================================
 
 .. figure:: ./_pictures/GUIs/EBSD_map2.png
-   :scale: 50 %
+   :scale: 60 %
    :align: right
    
    *Slip transmission analysis for an EBSD map of near alpha phase Ti alloy.*
@@ -33,7 +33,19 @@ instrumented sphero-conical indentation, and measurement of the resulting surfac
 In this way the stress and strain fields close to the grain boundary can be rapidly assessed.
 Activation and transmission of slip are interpreted based on these simulations and the mechanical resistance of grain boundaries can be quantified.
 
-`Source code is hosted at Github <https://github.com/czambaldi/stabix>`_ and please find here the `reference paper <http://dx.doi.org/10.5281/zenodo.11561>`_ for this toolbox.
+.. figure:: ./_pictures/download.png
+   :scale: 7 %
+   :align: left
+   :target: https://github.com/czambaldi/stabix
+   
+`Source code is hosted at Github <https://github.com/czambaldi/stabix>`_.
+
+.. figure:: ./_pictures/download.png
+   :scale: 7 %
+   :align: left
+   :target: http://dx.doi.org/10.5281/zenodo.11561
+
+`Find here the reference paper for this toolbox <http://dx.doi.org/10.5281/zenodo.11561>`_.
 
 Contents
 ========
@@ -43,7 +55,6 @@ Contents
    motivation
    getting_started
    bicrystal_definition
-   #slip_transmission
    slip_transmission_toolbox
    experimental_data
    ebsd_map_gui

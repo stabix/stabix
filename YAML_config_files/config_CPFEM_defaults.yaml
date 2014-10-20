@@ -19,6 +19,10 @@ fem_solvers:
 # the FEM solvers that you want to use, e.g. Mentat2012 or Mentat2013
 fem_solver_used: Mentat_2013.1
 
+# list of Python executables
+python_executables:
+    - 
+
 # where you want the Mentat or Abaqus procedure file written
 #proc_file_path: /Users/<username>/Documents/mwn2/matlab #for MAC
 proc_file_path: \\mufs4\home\<username> # for PC
