@@ -44,23 +44,3 @@ end
 %% Optionally display the matlab search path after modifications with the 'path' command
 %path
 end
-
-function path_cell_filtered = cellstr_filter(path_cell, extension2filter)
-
-for ii = 1:length(path_cell)
-    if strcmp(path_cell{ii}, extension2filter) == 1;
-        path_cell{ii} = {''};
-    end
-end
-path_cell_filtered = path_cell;
-end
-
-function path_list = cell2path(path_cell)
-
-path_strcat = '';
-
-for ii = 1:length(path_cell)
-    path_strcat = strcat(path_strcat, ';', path_cell{ii});
-end
-path_list = path_strcat;
-end
