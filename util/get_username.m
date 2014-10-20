@@ -2,7 +2,7 @@ function config_username = get_username
 %% Function to get username
 % author : d.mercier@mpie.de
 
-if ismac
+if ismac || isunix
     username = getenv('USER');
 else
     username = getenv('USERNAME');

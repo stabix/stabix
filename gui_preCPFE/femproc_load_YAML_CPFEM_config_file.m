@@ -54,7 +54,7 @@ end
 %% Setting of procedure path by default
 if ~isfield(gui.config_CPFEM, 'proc_file_path')
     warning('Missing path to store proc. file in your CPFEM YAML config. file...');
-    gui.config_CPFEM.proc_file_path = pwd;
+    gui.config_CPFEM.proc_file_path = getenv('SLIP_TRANSFER_TBX_ROOT');
 end
 
 %% Setting of python folder for FEM path by default
