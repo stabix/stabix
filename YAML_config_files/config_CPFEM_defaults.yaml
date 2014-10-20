@@ -16,9 +16,6 @@ fem_solvers:
     - Mentat_2008
     - Abaqus_2012
     
-# path to the python folder on your mwn2 repository
-python4fem_module_path: D:\mwn2\python
-
 # the FEM solvers that you want to use, e.g. Mentat2012 or Mentat2013
 fem_solver_used: Mentat_2013.1
 
