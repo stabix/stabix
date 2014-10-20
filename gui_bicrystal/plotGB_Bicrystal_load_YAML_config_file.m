@@ -20,7 +20,7 @@ if isequal(filename, 0) || strcmp(filename, '') == 1
 else
     disp(['User selected', fullfile(filename)]);
     
-    gui.GB_YAML = ReadYaml(filename);
+    gui.GB_YAML = ReadYaml(fullfile(pathname,filename));
     
     %% Fill missing fields
     
@@ -109,43 +109,46 @@ else
     end
     
     %% Set specific slips for grains A and B
-    if isfield(gui.GB_YAML, 'SlipA_norm') && isfield(gui.GB_YAML, 'SlipA_dir') && isfield(gui.GB_YAML, 'SlipB_norm') && isfield(gui.GB_YAML, 'SlipB_dir')
-        % Get the normal plane of slips A and B from the GUI
-        gui.GB_YAML.gui.GB_YAML_slipA_unstrcat_num_norm = cell2mat(gui.GB_YAML.SlipA_norm);
-        gui.GB_YAML.gui.GB_YAML_slipB_unstrcat_num_norm = cell2mat(gui.GB_YAML.SlipB_norm);
-        % Get the slip directions of slips A and B from the GUI
-        gui.GB_YAML.gui.GB_YAML_slipA_unstrcat_num_dir = cell2mat(gui.GB_YAML.SlipA_dir);
-        gui.GB_YAML.gui.GB_YAML_slipB_unstrcat_num_dir = cell2mat(gui.GB_YAML.SlipB_dir);
+    if isfield(gui.GB_YAML, 'SlipA_norm') && isfield(gui.GB_YAML, 'SlipA_dir')
+        % Get the normal plane and direction of slip A from the GUI
+        gui.GB_YAML.GB_YAML_slipA_unstrcat_num_norm = cell2mat(gui.GB_YAML.SlipA_norm);
+        gui.GB_YAML.GB_YAML_slipA_unstrcat_num_dir = cell2mat(gui.GB_YAML.SlipA_dir);
     end
     
-    if ~isfield(gui.GB_YAML, 'SlipA_norm') | ~isfield(gui.GB_YAML, 'SlipA_dir')
+    if isfield(gui.GB_YAML, 'SlipB_norm') && isfield(gui.GB_YAML, 'SlipB_dir')
+        % Get the normal plane and direction of slip B from the GUI
+        gui.GB_YAML.GB_YAML_slipB_unstrcat_num_norm = cell2mat(gui.GB_YAML.SlipB_norm);
+        gui.GB_YAML.GB_YAML_slipB_unstrcat_num_dir = cell2mat(gui.GB_YAML.SlipB_dir);
+    end
+    
+    if ~isfield(gui.GB_YAML, 'SlipA_norm') || ~isfield(gui.GB_YAML, 'SlipA_dir')
         if strcmp (gui.GB_YAML.Phase_A, 'hcp') == 1
-            gui.GB_YAML_slipA_unstrcat_str_norm = '0 0 0 1';
-            gui.GB_YAML_slipA_unstrcat_str_dir  = '2 -1 -1 0';
-        elseif strcmp (gui.GB_YAML.Phase_A, 'bcc') == 1
-            gui.GB_YAML_slipA_unstrcat_str_norm = '0  1  1';
-            gui.GB_YAML_slipA_unstrcat_str_dir  = '1 -1  1';
-        elseif strcmp (gui.GB_YAML.Phase_A, 'fcc') == 1
-            gui.GB_YAML_slipA_unstrcat_str_norm = '1  1  1';
-            gui.GB_YAML_slipA_unstrcat_str_dir  = ' 0  1 -1';
+            gui.GB_YAML.GB_YAML_slipA_unstrcat_num_norm = [0, 0, 0, 1];
+            gui.GB_YAML.GB_YAML_slipA_unstrcat_num_dir  = [2 -1 -1 0];
+        elseif strcmp(gui.GB_YAML.Phase_A, 'bcc') == 1
+            gui.GB_YAML.GB_YAML_slipA_unstrcat_num_norm = [0,  1,  1];
+            gui.GB_YAML.GB_YAML_slipA_unstrcat_num_dir  = [1, -1,  1];
+        elseif strcmp(gui.GB_YAML.Phase_A, 'fcc') == 1
+            gui.GB_YAML.GB_YAML_slipA_unstrcat_num_norm = [1,  1,  1];
+            gui.GB_YAML.GB_YAML_slipA_unstrcat_num_dir  = [0,  1, -1];
         end
     end
     
-    if ~isfield(gui.GB_YAML, 'SlipB_norm') | ~isfield(gui.GB_YAML, 'SlipB_dir')
+    if ~isfield(gui.GB_YAML, 'SlipB_norm') || ~isfield(gui.GB_YAML, 'SlipB_dir')
         if strcmp (gui.GB_YAML.Phase_B, 'hcp') == 1
-            gui.GB_YAML_slipB_unstrcat_str_norm = '0 0 0 1';
-            gui.GB_YAML_slipB_unstrcat_str_dir  = '2 -1 -1 0';
-        elseif strcmp (gui.GB_YAML.Phase_B, 'bcc') == 1
-            gui.GB_YAML_slipB_unstrcat_str_norm = '0  1  1';
-            gui.GB_YAML_slipB_unstrcat_str_dir  = '1 -1  1';
-        elseif strcmp (gui.GB_YAML.Phase_B, 'fcc') == 1
-            gui.GB_YAML_slipB_unstrcat_str_norm = '1  1  1';
-            gui.GB_YAML_slipB_unstrcat_str_dir  = ' 0  1 -1';
+            gui.GB_YAML.GB_YAML_slipB_unstrcat_num_norm = [0, 0, 0, 1];
+            gui.GB_YAML.GB_YAML_slipB_unstrcat_num_dir  = [2 -1 -1 0];
+        elseif strcmp(gui.GB_YAML.Phase_B, 'bcc') == 1
+            gui.GB_YAML.GB_YAML_slipB_unstrcat_num_norm = [0,  1,  1];
+            gui.GB_YAML.GB_YAML_slipB_unstrcat_num_dir  = [1, -1,  1];
+        elseif strcmp(gui.GB_YAML.Phase_B, 'fcc') == 1
+            gui.GB_YAML.GB_YAML_slipB_unstrcat_num_norm = [1,  1,  1];
+            gui.GB_YAML.GB_YAML_slipB_unstrcat_num_dir  = [0,  1, -1];
         end
     end
     
-    set(gui.handles.getSlipA, 'String', strcat('(',num2str(gui.GB_YAML.gui.GB_YAML_slipA_unstrcat_num_norm),') / [',num2str(gui.GB_YAML.gui.GB_YAML_slipA_unstrcat_num_dir), ']'));
-    set(gui.handles.getSlipB, 'String', strcat('(',num2str(gui.GB_YAML.gui.GB_YAML_slipB_unstrcat_num_norm),') / [',num2str(gui.GB_YAML.gui.GB_YAML_slipB_unstrcat_num_dir), ']'));
+    set(gui.handles.getSlipA, 'String', strcat('(',num2str(gui.GB_YAML.GB_YAML_slipA_unstrcat_num_norm),') / [',num2str(gui.GB_YAML.GB_YAML_slipA_unstrcat_num_dir), ']'));
+    set(gui.handles.getSlipB, 'String', strcat('(',num2str(gui.GB_YAML.GB_YAML_slipB_unstrcat_num_norm),') / [',num2str(gui.GB_YAML.GB_YAML_slipB_unstrcat_num_dir), ']'));
     clear slipA_all_vect slipB_all_vect;
     slipA_all_vect = slip_systems(gui.GB_YAML.Phase_A, 9);
     slipB_all_vect = slip_systems(gui.GB_YAML.Phase_B, 9);

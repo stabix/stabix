@@ -14,7 +14,7 @@ else
     answer = input('Add the above folder with subfolders to the MATLAB search path ?\n ([y](default)/n/rm(remove))','s');
 end
 
-path_to_add = genpath(folder); 
+path_to_add = genpath(folder);
 % TODO: gemove everything under .git/...
 % this will be much easier with strsplit, available from matlab2013a (8.1)
 path_cell = regexp(path_to_add, pathsep, 'split');
@@ -32,7 +32,7 @@ if strcmpi(answer, 'y') || isempty(answer)
     addpath(path_to_add);
     %rmpath(path_to_ignore)
     %savepath;
-    setenv('SLIP_TRANSFER_TBX_ROOT', folder) 
+    setenv('SLIP_TRANSFER_TBX_ROOT', folder)
 elseif strcmpi(answer, 'rm')
     display(sprintf('Removing %i entries from matlab search path', n_dirs));
     rmpath(path_to_add);
@@ -43,3 +43,24 @@ end
 
 %% Optionally display the matlab search path after modifications with the 'path' command
 %path
+end
+
+function path_cell_filtered = cellstr_filter(path_cell, extension2filter)
+
+for ii = 1:length(path_cell)
+    if strcmp(path_cell{ii}, extension2filter) == 1;
+        path_cell{ii} = {''};
+    end
+end
+path_cell_filtered = path_cell;
+end
+
+function path_list = cell2path(path_cell)
+
+path_strcat = '';
+
+for ii = 1:length(path_cell)
+    path_strcat = strcat(path_strcat, ';', path_cell{ii});
+end
+path_list = path_strcat;
+end

@@ -4,4 +4,4 @@ clear classes % not included in clear all
 close all
 commandwindow
 clc
-
+delete(findobj(allchild(0), '-regexp', 'Tag', '^Msgbox_'))

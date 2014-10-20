@@ -6,20 +6,20 @@ function femproc_indentation_setting_BX
 gui_BX = guidata(gcf);
 
 %% Set positive values in case of missing parameters
-set_positive_values_txtbox(gui_BX.handles.mesh.coneAngle_val, num2str(gui_BX.defaults.variables.coneAngle));
-set_positive_values_txtbox(gui_BX.handles.mesh.tipRadius_val, num2str(gui_BX.defaults.variables.tipRadius));
-set_positive_values_txtbox(gui_BX.handles.mesh.h_indent_val, num2str(gui_BX.defaults.variables.h_indent));
-set_positive_values_txtbox(gui_BX.handles.mesh.w_sample_val, num2str(gui_BX.defaults.variables.w_sample));
-set_positive_values_txtbox(gui_BX.handles.mesh.h_sample_val, num2str(gui_BX.defaults.variables.h_sample));
-set_positive_values_txtbox(gui_BX.handles.mesh.len_sample_val, num2str(gui_BX.defaults.variables.len_sample));
-set_positive_values_txtbox(gui_BX.handles.mesh.inclination_val, num2str(gui_BX.defaults.variables.inclination));
+set_default_values_txtbox(gui_BX.handles.mesh.coneAngle_val, num2str(gui_BX.defaults.variables.coneAngle));
+set_default_values_txtbox(gui_BX.handles.mesh.tipRadius_val, num2str(gui_BX.defaults.variables.tipRadius));
+set_default_values_txtbox(gui_BX.handles.mesh.h_indent_val, num2str(gui_BX.defaults.variables.h_indent));
+set_default_values_txtbox(gui_BX.handles.mesh.w_sample_val, num2str(gui_BX.defaults.variables.w_sample));
+set_default_values_txtbox(gui_BX.handles.mesh.h_sample_val, num2str(gui_BX.defaults.variables.h_sample));
+set_default_values_txtbox(gui_BX.handles.mesh.len_sample_val, num2str(gui_BX.defaults.variables.len_sample));
+set_default_values_txtbox(gui_BX.handles.mesh.inclination_val, num2str(gui_BX.defaults.variables.inclination));
 set_default_values_txtbox(gui_BX.handles.mesh.ind_dist_val, num2str(gui_BX.defaults.variables.ind_dist));
-set_positive_values_txtbox(gui_BX.handles.mesh.box_elm_nx_val, num2str(gui_BX.defaults.variables.box_elm_nx));
-set_positive_values_txtbox(gui_BX.handles.mesh.box_elm_nz_val, num2str(gui_BX.defaults.variables.box_elm_nz));
-set_positive_values_txtbox(gui_BX.handles.mesh.box_elm_ny1_val, num2str(gui_BX.defaults.variables.box_elm_ny1));
-set_positive_values_txtbox(gui_BX.handles.mesh.box_elm_ny2_fac_val, num2str(gui_BX.defaults.variables.box_elm_ny2_fac));
-set_positive_values_txtbox(gui_BX.handles.mesh.box_elm_ny3_val, num2str(gui_BX.defaults.variables.box_elm_ny3));
-set_positive_values_txtbox(gui_BX.handles.mesh.mesh_quality_lvl_val, num2str(gui_BX.defaults.variables.mesh_quality_lvl));
+set_default_values_txtbox(gui_BX.handles.mesh.box_elm_nx_val, num2str(gui_BX.defaults.variables.box_elm_nx));
+set_default_values_txtbox(gui_BX.handles.mesh.box_elm_nz_val, num2str(gui_BX.defaults.variables.box_elm_nz));
+set_default_values_txtbox(gui_BX.handles.mesh.box_elm_ny1_val, num2str(gui_BX.defaults.variables.box_elm_ny1));
+set_default_values_txtbox(gui_BX.handles.mesh.box_elm_ny2_fac_val, num2str(gui_BX.defaults.variables.box_elm_ny2_fac));
+set_default_values_txtbox(gui_BX.handles.mesh.box_elm_ny3_val, num2str(gui_BX.defaults.variables.box_elm_ny3));
+set_default_values_txtbox(gui_BX.handles.mesh.mesh_quality_lvl_val, num2str(gui_BX.defaults.variables.mesh_quality_lvl));
 set_default_values_txtbox(gui_BX.handles.mesh.box_bias_x_val, num2str(gui_BX.defaults.variables.box_bias_x));
 set_default_values_txtbox(gui_BX.handles.mesh.box_bias_z_val, num2str(gui_BX.defaults.variables.box_bias_z));
 set_default_values_txtbox(gui_BX.handles.mesh.box_bias_y1_val, num2str(gui_BX.defaults.variables.box_bias_y1));
@@ -32,7 +32,7 @@ cla;
 %% Set fine / coarse mesh
 gui_BX.variables.meshquality = get(gui_BX.handles.pm_mesh_quality, 'Value');
 
-if gui_BX.variables.meshquality ~= 1
+if gui_BX.variables.meshquality ~= 1 % Not free mesh defined by user
     set(gui_BX.handles.mesh.box_elm_nx_val, 'String', num2str(gui_BX.defaults.variables.box_elm_nx));
     set(gui_BX.handles.mesh.box_elm_nz_val, 'String', num2str(gui_BX.defaults.variables.box_elm_nz));
     set(gui_BX.handles.mesh.box_elm_ny1_val, 'String', num2str(gui_BX.defaults.variables.box_elm_ny1));
@@ -62,7 +62,8 @@ if gui_BX.variables.meshquality ~= 1
     set(gui_BX.handles.mesh.box_elm_ny3_val, 'String', num2str(gui_BX.variables.box_elm_ny3));
     set(gui_BX.handles.mesh.mesh_quality_lvl_val, 'String', num2str(gui_BX.variables.mesh_quality_lvl));
     
-else
+else % Free mesh defined by user
+    set(gui_BX.handles.mesh.mesh_quality_lvl_val, 'String', '1');
     gui_BX.variables.mesh_quality_lvl = str2num(get(gui_BX.handles.mesh.mesh_quality_lvl_val, 'String'));
     gui_BX.variables.box_elm_nx       = round(str2num(get(gui_BX.handles.mesh.box_elm_nx_val, 'String')) * gui_BX.variables.mesh_quality_lvl);
     gui_BX.variables.box_elm_nz       = round(str2num(get(gui_BX.handles.mesh.box_elm_nz_val, 'String')) * gui_BX.variables.mesh_quality_lvl);
@@ -83,11 +84,11 @@ gui_BX.variables.h_sample    = str2num(get(gui_BX.handles.mesh.h_sample_val, 'St
 gui_BX.variables.len_sample  = str2num(get(gui_BX.handles.mesh.len_sample_val, 'String'));
 gui_BX.variables.inclination = str2num(get(gui_BX.handles.mesh.inclination_val, 'String'));
 gui_BX.variables.ind_dist    = str2num(get(gui_BX.handles.mesh.ind_dist_val, 'String'));
-gui_BX.variables.box_bias_x  = (str2num(get(gui_BX.handles.mesh.box_bias_x_val, 'String')));
+gui_BX.variables.box_bias_x  = str2num(get(gui_BX.handles.mesh.box_bias_x_val, 'String'));
 gui_BX.variables.box_bias_z  = str2num(get(gui_BX.handles.mesh.box_bias_z_val, 'String'));
 gui_BX.variables.box_bias_y1 = str2num(get(gui_BX.handles.mesh.box_bias_y1_val, 'String'));
 gui_BX.variables.box_bias_y2 = str2num(get(gui_BX.handles.mesh.box_bias_y2_val, 'String'));
-gui_BX.variables.box_bias_y3 = (str2num(get(gui_BX.handles.mesh.box_bias_y3_val, 'String')));
+gui_BX.variables.box_bias_y3 = str2num(get(gui_BX.handles.mesh.box_bias_y3_val, 'String'));
 
 gui_BX.GB.GB_Inclination = gui_BX.variables.inclination;
 
@@ -101,16 +102,13 @@ gui_BX = guidata(gcf); guidata(gcf, gui_BX);
 
 %% Setting of the FEM interface
 gui_BX.config_CPFEM.fem_interface_val = get(gui_BX.handles.pm_FEM_interface, 'Value');
-if gui_BX.config_CPFEM.fem_interface_val == 1
-    gui_BX.config_CPFEM.fem_interface = 2008;
-elseif gui_BX.config_CPFEM.fem_interface_val == 2
-    gui_BX.config_CPFEM.fem_interface = 2010;
-elseif gui_BX.config_CPFEM.fem_interface_val == 3
-    gui_BX.config_CPFEM.fem_interface = 2012;
-elseif gui_BX.config_CPFEM.fem_interface_val == 4
-    gui_BX.config_CPFEM.fem_interface = 2013;
-elseif gui_BX.config_CPFEM.fem_interface_val == 5
-    gui_BX.config_CPFEM.fem_interface = 2013.1;
+gui_BX.config_CPFEM.fem_interface_all_str = get(gui_BX.handles.pm_FEM_interface, 'String');
+gui_BX.config_CPFEM.fem_solver_str_cell = gui_BX.config_CPFEM.fem_interface_all_str(gui_BX.config_CPFEM.fem_interface_val);
+gui_BX.config_CPFEM.fem_solver_used = gui_BX.config_CPFEM.fem_solver_str_cell{:};
+if strcmp(strtok(gui_BX.config_CPFEM.fem_solver_used, '_'), 'Abaqus') == 1
+    gui_BX.config_CPFEM.fem_solver_version = sscanf(gui_BX.config_CPFEM.fem_solver_used, 'Abaqus_%f');
+elseif strcmp(strtok(gui_BX.config_CPFEM.fem_solver_used, '_'), 'Mentat') == 1
+    gui_BX.config_CPFEM.fem_solver_version = sscanf(gui_BX.config_CPFEM.fem_solver_used, 'Mentat_%f');
 end
 
 %% Calculation of the transition depth between spherical and conical parts of the indenter

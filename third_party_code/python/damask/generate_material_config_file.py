@@ -1,5 +1,7 @@
-import re
+# Python script used to generate a material configuration file for DAMASK
+# http://damask.mpie.de/
 
+import re
 
 class Material():
     '''
@@ -245,24 +247,43 @@ def mat_config(gb_data, proc_path='./'):
 
     #--- HOMOGENIZATION
     h = Homogenization()
-    h.add_key('type', 'isostrain')
-    h.add_key('Ngrains', 1)
+    try:
+        h.add_key('type', 'isostrain')
+    except:
+        print('No Homogenization type given')
+        pass
+    try:
+        h.add_key('Ngrains', 1)
+    except:
+        print('No Homogenization parameter given')
+        pass
     mat.add_section('homogenization', 'Taylor1', h)
 
     #--- MICROSTRUCTURE
     mA = Microstructure()
-    mA.add_key('crystallite', '1')
+    try:
+        mA.add_key('crystallite', '1')
+    except:
+        print('No Microstructure A given')
+        pass
     mA.add_constituent({'phase': 1, 'texture': 1, 'fraction': 1})
     mat.add_section('microstructure', 'GrainA', mA)
 
     mB = Microstructure()
-    mB.add_key('crystallite', '1')
+    try:
+        mB.add_key('crystallite', '1')
+    except:
+        print('No Microstructure B given')
+        pass
     mB.add_constituent({'phase': 1, 'texture': 2, 'fraction': 1})
     mat.add_section('microstructure', 'GrainB', mB)
 
     #--- CRYSTALLITE
     c = Crystallite()
-    c.add_multiKey('output', ['phase', 'texture', 'volume',
+    try:
+        c.add_multiKey('output', ['phase',
+                              'texture',
+                              'volume',
                               'orientation', # quaternion
                               'eulerangles', # orientation as Bunge triple
                               'f', # deformation gradient tensor; synonyms: "defgrad"
@@ -275,6 +296,9 @@ def mat_config(gb_data, proc_path='./'):
                               'lp', # plastic velocity gradient tensor
                               'elasmatrix', # elastic stiffness matrix
     ])
+    except:
+        print('No Crystallite Output defined')
+        pass
     mat.add_section('crystallite', 'essential_output', c)
 
     #---PHASE
@@ -282,9 +306,18 @@ def mat_config(gb_data, proc_path='./'):
     phase_labelB = str(gb_data['Material_B'][0])
     if phase_labelA == phase_labelB:
         p = Phase()
-        p.add_key('elasticity', str(gb_data['elasticity'][0]))
-        p.add_key('plasticity', str(gb_data['plasticity'][0]))
-        p.add_multiKey('output', [str(gb_data['output1'][0]),
+        try:
+            p.add_key('elasticity', str(gb_data['elasticity'][0]))
+        except:
+            print('No Elasticity defined')
+            pass
+        try:
+            p.add_key('plasticity', str(gb_data['plasticity'][0]))
+        except:
+            print('No Plasticity defined')
+            pass
+        try:
+            p.add_multiKey('output', [str(gb_data['output1'][0]),
                                   str(gb_data['output2'][0]),
                                   str(gb_data['output3'][0]),
                                   str(gb_data['output4'][0]),
@@ -293,49 +326,197 @@ def mat_config(gb_data, proc_path='./'):
                                   str(gb_data['output7'][0]),
                                   str(gb_data['output8'][0])
         ])
-        p.add_key('lattice_structure', str(gb_data['lattice_structure'][0]))
-        p.add_key('covera_ratio', (gb_data['ca_ratio_A'][0][0]))
-        p.add_key('c11', (gb_data['c11'][0][0]))
-        p.add_key('c12', (gb_data['c12'][0][0]))
-        p.add_key('c13', (gb_data['c13'][0][0]))
-        p.add_key('c33', (gb_data['c33'][0][0]))
-        p.add_key('c44', (gb_data['c44'][0][0]))
-        p.add_key('c66', (gb_data['c66'][0][0]))
-        p.add_key('nslip', [gb_data['nslip'][0]])
-        p.add_key('gdot0_slip', (gb_data['gdot0_slip'][0][0]))
-        p.add_key('n_slip', (gb_data['n_slip'][0][0]))
-        p.add_key('tau0_slip', [gb_data['tau0_slip'][0]])
-        p.add_key('tausat_slip', [gb_data['tausat_slip'][0]])
-        p.add_key('a_slip', (gb_data['a_slip'][0][0]))
-        p.add_key('ntwin', [gb_data['ntwin'][0]])
-        p.add_key('gdot0_twin', (gb_data['gdot0_twin'][0][0]))
-        p.add_key('n_twin', (gb_data['n_twin'][0][0]))
-        p.add_key('tau0_twin', (gb_data['tau0_twin'][0][0]))
-        p.add_key('s_pr', (gb_data['s_pr'][0][0]))
-        p.add_key('twin_b', (gb_data['twin_b'][0][0]))
-        p.add_key('twin_c', (gb_data['twin_c'][0][0]))
-        p.add_key('twin_d', (gb_data['twin_d'][0][0]))
-        p.add_key('twin_e', (gb_data['twin_e'][0][0]))
-        p.add_key('h0_slipslip', (gb_data['h0_slipslip'][0][0]))
-        p.add_key('h0_sliptwin', (gb_data['h0_sliptwin'][0][0]))
-        p.add_key('h0_twinslip', (gb_data['h0_twinslip'][0][0]))
-        p.add_key('h0_twintwin', (gb_data['h0_twintwin'][0][0]))
-        p.add_key('atol_resistance', (gb_data['atol_resistance'][0][0]))
-        p.add_key('atol_shear', (gb_data['atol_shear'][0][0]))
-        p.add_key('interaction_slipslip', [gb_data['interaction_slipslip'][0]])
-        p.add_key('interaction_sliptwin', [gb_data['interaction_sliptwin'][0]])
-        p.add_key('interaction_twinslip', [gb_data['interaction_twinslip'][0]])
-        p.add_key('interaction_twintwin', [gb_data['interaction_twintwin'][0]])
+        except:
+            print('No Phase Output defined')
+            pass
+        try:
+            p.add_key('lattice_structure', str(gb_data['lattice_structure'][0]))
+        except:
+            print('No Lattice Structure defined')
+            pass
+        try:
+            p.add_key('covera_ratio', (gb_data['ca_ratio_A'][0][0]))
+        except:
+            print('No Lattice Parameter (c/a ratio) defined')
+            pass
+        try:
+            p.add_key('c11', (gb_data['c11'][0][0]))
+        except:
+            print('No c11 elastic constant defined')
+            pass
+        try:
+            p.add_key('c12', (gb_data['c12'][0][0]))
+        except:
+            print('No c12 elastic constant defined')
+            pass
+        try:
+            p.add_key('c13', (gb_data['c13'][0][0]))
+        except:
+            print('No c13 elastic constant defined')
+            pass
+        try:
+            p.add_key('c33', (gb_data['c33'][0][0]))
+        except:
+            print('No c33 elastic constant defined')
+            pass
+        try:
+            p.add_key('c44', (gb_data['c44'][0][0]))
+        except:
+            print('No c44 elastic constant defined')
+            pass
+        try:
+            p.add_key('c66', (gb_data['c66'][0][0]))
+        except:
+            print('No c66 elastic constant defined')
+            pass
+        try:
+            p.add_key('nslip', [gb_data['nslip'][0]])
+        except:
+            print('No nslip defined')
+            pass
+        try:
+            p.add_key('gdot0_slip', (gb_data['gdot0_slip'][0][0]))
+        except:
+            print('No gdot0_slip defined')
+            pass
+        try:
+            p.add_key('n_slip', (gb_data['n_slip'][0][0]))
+        except:
+            print('No n_slip defined')
+            pass
+        try:
+            p.add_key('tau0_slip', [gb_data['tau0_slip'][0]])
+        except:
+            print('No tau0_slip defined')
+            pass
+        try:
+            p.add_key('tausat_slip', [gb_data['tausat_slip'][0]])
+        except:
+            print('No tausat_slip defined')
+            pass
+        try:
+            p.add_key('a_slip', (gb_data['a_slip'][0][0]))
+        except:
+            print('No a_slip defined')
+            pass
+        try:
+            p.add_key('ntwin', [gb_data['ntwin'][0]])
+        except:
+            print('No ntwin defined')
+            pass
+        try:
+            p.add_key('gdot0_twin', (gb_data['gdot0_twin'][0][0]))
+        except:
+            print('No gdot0_twin defined')
+            pass
+        try:
+            p.add_key('n_twin', (gb_data['n_twin'][0][0]))
+        except:
+            print('No n_twin defined')
+            pass
+        try:
+            p.add_key('tau0_twin', (gb_data['tau0_twin'][0][0]))
+        except:
+            print('No tau0_twin defined')
+            pass
+        try:
+            p.add_key('s_pr', (gb_data['s_pr'][0][0]))
+        except:
+            print('No s_pr defined')
+            pass
+        try:
+            p.add_key('twin_b', (gb_data['twin_b'][0][0]))
+        except:
+            print('No twin_b defined')
+            pass
+        try:
+            p.add_key('twin_c', (gb_data['twin_c'][0][0]))
+        except:
+            print('No twin_c defined')
+            pass
+        try:
+            p.add_key('twin_d', (gb_data['twin_d'][0][0]))
+        except:
+            print('No twin_d defined')
+            pass
+        try:
+            p.add_key('twin_e', (gb_data['twin_e'][0][0]))
+        except:
+            print('No twin_e defined')
+            pass
+        try:
+            p.add_key('h0_slipslip', (gb_data['h0_slipslip'][0][0]))
+        except:
+            print('No h0_slipslip defined')
+            pass
+        try:
+            p.add_key('h0_sliptwin', (gb_data['h0_sliptwin'][0][0]))
+        except:
+            print('No h0_sliptwin defined')
+            pass
+        try:
+            p.add_key('h0_twinslip', (gb_data['h0_twinslip'][0][0]))
+        except:
+            print('No h0_twinslip defined')
+            pass
+        try:
+            p.add_key('h0_twintwin', (gb_data['h0_twintwin'][0][0]))
+        except:
+            print('No h0_twintwin defined')
+            pass
+        try:
+            p.add_key('atol_resistance', (gb_data['atol_resistance'][0][0]))
+        except:
+            print('No atol_resistance defined')
+            pass
+        try:
+            p.add_key('atol_shear', (gb_data['atol_shear'][0][0]))
+        except:
+            print('No atol_shear defined')
+            pass
+        try:
+            p.add_key('atol_twinfrac', (gb_data['atol_shear'][0][0]))
+        except:
+            print('No atol_twinfrac defined')
+            pass
+        try:
+            p.add_key('interaction_slipslip', [gb_data['interaction_slipslip'][0]])
+        except:
+            print('No interaction_slipslip defined')
+            pass
+        try:
+            p.add_key('interaction_sliptwin', [gb_data['interaction_sliptwin'][0]])
+        except:
+            print('No interaction_sliptwin defined')
+            pass
+        try:
+            p.add_key('interaction_twinslip', [gb_data['interaction_twinslip'][0]])
+        except:
+            print('No interaction_twinslip defined')
+            pass
+        try:
+            p.add_key('interaction_twintwin', [gb_data['interaction_twintwin'][0]])
+        except:
+            print('No interaction_twintwin defined')
+            pass
         mat.add_section('phase', phase_labelA, p)
 
     #--- TEXTURE   
     eulerA = gb_data['eulerA']
     eulerB = gb_data['eulerB']
     t1 = Texture()
-    t1.add_component('gauss', {'eulers': [eulerA[0][0], eulerA[0][1], eulerA[0][2]], 'scatter': 0, 'fraction': 1})
+    try:
+        t1.add_component('gauss', {'eulers': [eulerA[0][0], eulerA[0][1], eulerA[0][2]], 'scatter': 0, 'fraction': 1})
+    except:
+        print('No Euler angles for grain A')
+        pass
     mat.add_section('texture', 'GrainA', t1)
     t2 = Texture()
-    t2.add_component('gauss', {'eulers': [eulerB[0][0], eulerB[0][1], eulerB[0][2]], 'scatter': 0, 'fraction': 1})
+    try:
+        t2.add_component('gauss', {'eulers': [eulerB[0][0], eulerB[0][1], eulerB[0][2]], 'scatter': 0, 'fraction': 1})
+    except:
+        print('No Euler angles for grain B')
+        pass
     mat.add_section('texture', 'GrainB', t2)
 
     #print mat

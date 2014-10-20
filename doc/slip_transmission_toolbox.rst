@@ -11,7 +11,7 @@ The strain transfer across grain boundaries can be defined by the four following
 
  3) indirect transmission, and slip systems have different Burgers vector (leaving a residual boundary dislocations) (Figure 1-c);
 
- 4) no transmission and the grain boundary acts as an impenetrable boundary, which implies stress accumulations, localized rotations, pile-up of dislocations... (Figure 1-d);
+ 4) no transmission and the grain boundary acts as an impenetrable boundary, which implies stress accumulations, localized rotations, pile-up of dislocations... (Figure 1-d).
 
 .. figure:: ./_pictures/Schemes_SlipTransmission/slip_transfer.png
    :scale: 40 %
@@ -46,7 +46,8 @@ The subscripts :math:`in` and :math:`out` refer to the incoming and outgoing sli
         :label: n_factor
         
     .. math:: N = \cos(\psi)\cdot\cos(\kappa) + \cos(\gamma)\cdot\cos(\delta)
-        :label: n_factor_angle    
+        :label: n_factor_angle
+        
   Many authors referred to this criterion to analyze slip transmission [#HauserChamlers_1961]_, [#Davis_1966]_, [#HookHirth_1967_1]_, [#HookHirth_1967_2]_, [#Shen_1986]_, [#Shen_1988]_, [#Lee_1990_1]_, [#Lee_1990_2]_, [#Clark_1992]_ and [#Ueda_2002]_.
   Pond et al. proposed to compute this geometric criteria for hexagonal metals using Frank's method [#Pond_1986]_.      
 
@@ -88,6 +89,19 @@ The subscripts :math:`in` and :math:`out` refer to the incoming and outgoing sli
    
    *Figure 3 : Distribution of m' parameter in function of angles values.*
    
+  .. figure:: ./_pictures/Schemes_SlipTransmission/mprime_values_vs_misorientation.png
+   :scale: 65 %
+   :align: center
+   
+   *Figure 4 : Distribution of m' parameter calculated for prismatic <a> slip systems in function of  misorientation angle.*
+   
+   A resistance factor of the grain boundary can be described by the following equation : 
+   
+    .. math:: GB_{res_fac} = 1 - m'
+        :label: resistance_factor
+        
+  This factor is equal to 0 (grain boundary transparent if the :math:`m'` parameter is equal to 1 (when grains perfectly aligned).
+   
   The |matlab| function used to calculate the m' parameter is: `mprime.m <../../../slip_transfer/mprime.m>`_
      
 * :math:`\vec b_r` **the residual Burgers vector** [#Marcinkowski_1970]_, [#Bollmann_1970]_, [#LimRaj_1985_1]_, [#LimRaj_1985_2]_, [#Clark_1989]_, [#Lee_1990_2]_ and [#Clark_1992]_.
@@ -96,8 +110,8 @@ The subscripts :math:`in` and :math:`out` refer to the incoming and outgoing sli
         
   This magnitude of this residual Burgers vector should be minimized.
   
-  Shirokoff et al. and Kehagias et al. used the residual Burgers vector as a criterion to analyse slip transmission in cp-Ti (HCP) [#Shirokoff_1993]_, [#Kehagias_1995]_, [#Kehagias_1996]_,
-  Lagow et al. in Mo (BCC) [#Lagow_2001]_, Gemperle et al. and Gemperlova et al. in FeSi (BCC) [#Gemperle_2004]_ and [#Gemperlova_2004]_,
+  Shirokoff et al., Kehagias et al. and Kacher et al. used the residual Burgers vector as a criterion to analyse slip transmission in cp-Ti (HCP) [#Shirokoff_1993]_, [#Kehagias_1995]_, [#Kehagias_1996]_ and [#KacherRobertson_2014]_,
+  Lagow et al. in Mo (BCC) [#Lagow_2001]_, Gemperle et al. and Gemperlova et al. in FeSi (BCC) [#Gemperle_2004]_ and [#Gemperlova_2004]_, Kacher et al. in 304 stainless steel (FCC) [#KacherRobertson_2012]_,
   and Jacques et al. for semiconductors [#Jacques_1990]_.
   
   Patriarca et al. demonstrated for BCC material the role of the residual Burgers vector in predicting slip transmission, by analysing strain field across GBs determined by digital image correlation [#Patriarca_2013]_. 
@@ -106,19 +120,19 @@ The subscripts :math:`in` and :math:`out` refer to the incoming and outgoing sli
   
   The |matlab| function used to calculate the residual Burgers vector is: `residual_Burgers_vector.m <../../../slip_transfer/residual_Burgers_vector.m>`_
  
-* **The misorientation or disorientation** ((:math:`\Delta g`) or (:math:`\Delta g_d`))  [#AustChen_1954]_, [#ClarkChalmers_1954]_ and [#WoNgan_2004]_
+* **The misorientation or disorientation** (:math:`\Delta g` or :math:`\Delta g_d`)  [#AustChen_1954]_, [#ClarkChalmers_1954]_ and [#WoNgan_2004]_
 
   It has been observed during first experiments of bicrystals deformation in 1954, that the yield stress and the rate of work hardening increased with the orientation difference between the crystals [#AustChen_1954]_ and [#ClarkChalmers_1954]_.
   
   Some authors demonstrated a strong correlation between misorientation between grains in a bicrystal and the grain boundary energy through crystal plasticity finite elements modelling and
-  molecular dynamics simulations [#SuttonBalluffi_1995]_, [#Ma_2006], [#Li_2009]_, [#Bachurin_2010]_, [#Sangid_2011]_ and [#Sangid_2012]_. Some authors studied the stability of grain boundaries by the calculations
+  molecular dynamics simulations [#SuttonBalluffi_1995]_, [#Ma_2006]_, [#Li_2009]_, [#Bachurin_2010]_, [#Sangid_2011]_ and [#Sangid_2012]_. Some authors studied the stability of grain boundaries by the calculations
   of energy difference vs. misorientation angle through the hexagonal c-axis/a-axis [#Faraoun_2006]_.
  
   The |matlab| function used to calculate the misorientation angle is: `misorientation.m <../../../crystallo/misorientation.m>`_
 
 Stress Criteria
 ---------------
-* **Schmid Factor** (:math:`m`) [#Seal_2012]_ and [#Abuzaid_2012]_
+* **Schmid Factor** (:math:`m`) [#Reid_1973]_, [#Seal_2012]_ and [#Abuzaid_2012]_
 
   The Schmid's law can be expressed by the following equation:
   
@@ -184,18 +198,18 @@ Combination of Criteria
 Slip transmission parameters implemented in the |matlab| Toolbox
 ---------------------------------------------------------------------------
 .. csv-table::
-   :header: "Slip transmission parameter", "Function", "|matlab| function"
-   :widths: 40, 40, 20
+   :header: "Slip transmission parameter", "Function", "|matlab| function", "Reference"
+   :widths: 40, 40, 20, 10
 
-   "Misorientation angle (:math:`\omega`)", ":math:`\omega = cos^{-1}((tr(\Delta g)-1)/2)`", `misorientation.m <../../../crystallo/misorientation.m>`_
-   "C-axis misorientation angle (for hcp material) (:math:`\omega`)", , `c-axis misorientation.m <../../../crystallo/eul2Caxismisor.m>`_
-   ":math:`N` factor from Livingston and Chamlers", ":math:`N = \cos(\psi)\cdot\cos(\kappa) + \cos(\gamma)\cdot\cos(\delta)`", `N_factor.m <../../../slip_transfer/N_factor.m>`_
+   "Misorientation angle (:math:`\omega`)", ":math:`\omega = cos^{-1}((tr(\Delta g)-1)/2)`", `misorientation.m <../../../crystallo/misorientation.m>`_, [#SuttonBalluffi_1995]_
+   "C-axis misorientation angle (for hcp material) (:math:`\omega`)", , `c-axis misorientation.m <../../../crystallo/eul2Caxismisor.m>`_, [#SuttonBalluffi_1995]_
+   ":math:`N` factor from Livingston and Chamlers", ":math:`N = \cos(\psi)\cdot\cos(\kappa) + \cos(\gamma)\cdot\cos(\delta)`", `N_factor.m <../../../slip_transfer/N_factor.m>`_, [#LivingstonChalmers_1957]_
    ":math:`LRB` factor from Shen et al.", ":math:`LRB = \cos(\theta)\cdot\cos(\kappa)`", `LRB_parameter.m <../../../slip_transfer/LRB_parameter.m>`_
-   ":math:`m'` parameter from Luster and Morris", ":math:`m' = \cos(\psi)\cdot\cos(\kappa)`", `mprime.m <../../../slip_transfer/mprime.m>`_
-   "Residual Burgers vector (:math:`\vec b_r`)", ":math:`\vec b_r = g_{in}\cdot\vec b_{in} - g_{out}\cdot\vec b_{out}`", `residual_Burgers_vector.m <../../../slip_transfer/residual_Burgers_vector.m>`_
-   "Resolved Shear Stress (:math:`\tau^{i}`) / Schmid Factor", ":math:`\tau^{i} = \sigma : {S_0}^{i}` and :math:`\tau^{i} = \sigma : {S_0}^{i}`", `resolved_shear_stress.m <../../../crystal_plasticity/resolved_shear_stress.m>`_
-   "Grain boundary Schmid factor", ":math:`m_{GB} = m_{in} + m_{out}`", `resolved_shear_stress.m <../../../crystal_plasticity/resolved_shear_stress.m>`_
-   "Generalized Schmid Factor (:math:`GSF`)", ":math:`GSF = d \cdot g \sigma g^T \cdot n^T`", `generalized_schmid_factor.m <../../../crystal_plasticity/generalized_schmid_factor.m>`_
+   ":math:`m'` parameter from Luster and Morris", ":math:`m' = \cos(\psi)\cdot\cos(\kappa)`", `mprime.m <../../../slip_transfer/mprime.m>`_, [#LusterMorris_1995]_
+   "Residual Burgers vector (:math:`\vec b_r`)", ":math:`\vec b_r = g_{in}\cdot\vec b_{in} - g_{out}\cdot\vec b_{out}`", `residual_Burgers_vector.m <../../../slip_transfer/residual_Burgers_vector.m>`_, [#Marcinkowski_1970]_
+   "Resolved Shear Stress (:math:`\tau^{i}`) / Schmid Factor", ":math:`\tau^{i} = \sigma : {S_0}^{i}` with :math:`{S_0}^{i} = d \otimes n`", `resolved_shear_stress.m <../../../crystal_plasticity/resolved_shear_stress.m>`_, [#Reid_1973]_
+   "Grain boundary Schmid factor", ":math:`m_{GB} = m_{in} + m_{out}`", `resolved_shear_stress.m <../../../crystal_plasticity/resolved_shear_stress.m>`_, [#Abuzaid_2012]_
+   "Generalized Schmid Factor (:math:`GSF`)", ":math:`GSF = d \cdot g \sigma g^T \cdot n^T`", `generalized_schmid_factor.m <../../../crystal_plasticity/generalized_schmid_factor.m>`_, [#Reid_1973]_
 
 References
 ----------
@@ -206,9 +220,9 @@ References
 .. [#Bachurin_2010] `D.V. Bachurin et al., "Dislocation–grain boundary interaction in <111> textured thin metal films.", Acta Materialia (2010), 58, pp. 5232–5241. <http://dx.doi.org/10.1016/j.actamat.2010.05.037>`_
 .. [#Bamford_1988] `T.A. Bamford et al., "A thermodynamic model of slip propagation.", Scripta Metallurgica (1988), 22(12), pp. 1911–1916. <http://dx.doi.org/10.1016/S0036-9748(88)80237-0>`_
 .. [#Bieler_2009] `T.R. Bieler et al., "The role of heterogeneous deformation on damage nucleation at grain boundaries in single phase metals.", Int. J. of Plast. (2009), 25(9), pp. 1655–1683. <http://dx.doi.org/10.1016/j.ijplas.2008.09.002>`_
-.. [#Bieler_2014] `T.R. Bieler et al., "Grain boundaries and interfaces in slip transfer.", Current Opinion in Solid State and Materials Science (2014), in press. <http://dx.doi.org/10.1016/j.cossms.2014.05.003>`_
+.. [#Bieler_2014] `T.R. Bieler et al., "Grain boundaries and interfaces in slip transfer.", Current Opinion in Solid State and Materials Science, (2014), 18(4), pp. 212-226. <http://dx.doi.org/10.1016/j.cossms.2014.05.003>`_
 .. [#Bollmann_1970] `W. Bollmann, "Crystal Defects and Crystalline Interfaces", Springer-Verlag (1970) <http://dx.doi.org/10.1007/978-3-642-49173-3>`_
-.. [#Britton_2009] `T.B. Britton et al., "Nanoindentation study of slip transfer phenomenon at grain boundaries.", J. Mater. Res., 2009, 24(3), pp. 607-615. <http://dx.doi.org/10.1557/jmr.2009.0088>`_
+.. [#Britton_2009] `T.B. Britton et al., "Nanoindentation study of slip transfer phenomenon at grain boundaries.", J. Mater. Res., (2009), 24(3), pp. 607-615. <http://dx.doi.org/10.1557/jmr.2009.0088>`_
 .. [#Britton_2012] `T.B. Britton and A.J. Wilkinson, "Stress fields and geometrically necessary dislocation density distributions near the head of a blocked slip band.", Acta Materialia (2012), 60, pp. 5773–5782. <http://dx.doi.org/10.1016/j.actamat.2012.07.004>`_
 .. [#ClarkChalmers_1954] `W.A.T. Clark and B. Chalmers, "Mechanical deformation of aluminium bicrystals.", Acta Metallurgica (1954), 2(1), pp. 80-86. <http://dx.doi.org/10.1016/0001-6160(54)90097-8>`_
 .. [#Clark_1989] `W.A.T. Clark et al., "The use of the transmission electron microscope in analyzing slip propagation across interfaces.", Ultramicroscopy (1989), 30(1-2), pp. 76-89. <http://dx.doi.org/10.1016/0304-3991(89)90175-7>`_
@@ -227,13 +241,14 @@ References
 .. [#Gemperlova_2004] `J. Gemperlova et al.,"Slip transfer across grain boundaries in Fe–Si bicrystals.", Journal of Alloys and Compounds (2004), 378(1-2), pp. 97-101. <http://dx.doi.org/10.1016/j.jallcom.2003.10.086>`_
 .. [#Guo_2014] `Y. Guo et al., "Slip band–grain boundary interactions in commercial-purity titanium.", Acta Materialia (2014), 76, pp. 1-12. <http://dx.doi.org/10.1016/j.actamat.2014.05.015>`_
 .. [#HauserChamlers_1961] `J.J. Hauser and B. Chamlers, "The plastic deformation of bicrystals of f.c.c. metals.", Acta Metallurgica (1961), 9(9), pp. 802-818. <http://dx.doi.org/10.1016/0001-6160(61)90183-3>`_
+.. [#Herbert_2011] `F.W. Herbert et al., "Nanoindentation Induced Deformation Near Grain Boundaries of Corrosion Resistant Nickel Alloys.", Mater. Res. Soc. Symp. Proc., (2011), 1297. <http://dx.doi.org/10.1557/opl.2011>`_
 .. [#HookHirth_1967_1] `R.E. Hook and J.P. Hirth, "The deformation behavior of isoaxial bicrystals of Fe-3%Si.", Acta Metallurgica (1967), 15(3), pp. 535-551. <http://dx.doi.org/10.1016/0001-6160(67)90087-9>`_
 .. [#HookHirth_1967_2] `R.E. Hook and J.P. Hirth, "The deformation behavior of non-isoaxial bicrystals of Fe-3% Si.", Acta Metallurgica(1967), 15(7), pp. 1099-1110. <http://dx.doi.org/10.1016/0001-6160(67)90383-5>`_
 .. [#Jacques_1990] `A. Jacques et al., "New results on dislocation transmission by grain boundaries in elemental semiconductors.", Le Journal de Physique Colloques (1990), 51(C1), pp. 531-536. <http://dx.doi.org/10.1051/jphyscol:1990183>`_
 .. [#KacherRobertson_2012] `J. Kacher and I.M. Robertson, "Quasi-four-dimensional analysis of dislocation interactions with grain boundaries in 304 stainless steel.", Acta Materialia (2012), 60(19), pp. 6657–6672. <http://dx.doi.org/10.1016/j.actamat.2012.08.036>`_
 .. [#KacherRobertson_2014] `J. Kacher and I.M. Robertson, "In situ and tomographic analysis of dislocation/grain boundary interactions in α-titanium.", Philosophical Magazine (2014), 94(8), pp. 814-829. <http://dx.doi.org/10.1080/14786435.2013.868942>`_
-.. [#Kacher_2014] `J. Kacher et al., "Dislocation interactions with grain boundaries.", Current Opinion in Solid State and Materials Science (2014), in press. <http://dx.doi.org/10.1016/j.cossms.2014.05.004>`_
-.. [#Kalidindi_2014] `S.R. Kalidindi and S.J. Vachhani, "Mechanical characterization of grain boundaries using nanoindentation.", Current Opinion in Solid State and Materials Science (in press). <http://dx.doi.org/10.1016/j.cossms.2014.05.002>`_
+.. [#Kacher_2014] `J. Kacher et al., "Dislocation interactions with grain boundaries.", Current Opinion in Solid State and Materials Science, (2014), 18(4), pp. 227-243. <http://dx.doi.org/10.1016/j.cossms.2014.05.004>`_
+.. [#Kalidindi_2014] `S.R. Kalidindi and S.J. Vachhani, "Mechanical characterization of grain boundaries using nanoindentation.", Current Opinion in Solid State and Materials Science, (2014), 18(4), pp. 196–204. <http://dx.doi.org/10.1016/j.cossms.2014.05.002>`_
 .. [#Kehagias_1995] `T. Kehagias et al., "Slip transfer across low-angle grain boundaries of deformed titanium.", Interface Science (1995), 3(3), pp. 195-201. <http://dx.doi.org/10.1007/BF00191046>`_
 .. [#Kehagias_1996] `T. Kehagias et al., "Pyramidal Slip in Electron Beam Heated Deformed Titanium.", Scripta Metallurgica et Materialia (1996), 33(12), pp. 1883-1888. <http://dx.doi.org/10.1016/0956-716X(95)00351-U>`_
 .. [#Kobayashi_2005] `S. Kobayashi et al., "Grain boundary hardening and triple junction hardening in polycrystalline molybdenum.", Acta Materialia (2005), 53, pp. 1051–1057. <http://dx.doi.org/10.1016/j.actamat.2004.11.002>`_
@@ -265,12 +280,14 @@ References
 .. [#Shan_2013] `D. Shan et al., "Effect of the Σ5(310)/[001]Φ 5 53.1° grain boundary on the incipient yield of bicrystal copper: A quasicontinuum simulation and nanoindentation experiment.", J. Mater. Res. (2013), 28(5), pp. 766-773. <http://dx.doi.org/10.1557/jmr.2012.424>`_
 .. [#Shen_1986] `Z. Shen et al., "Dislocation pile-up and grain boundary interactions in 304 stainless steel.", Scripta Metallurgica (1986), 20(6), pp. 921–926. <http://dx.doi.org/10.1016/0036-9748(86)90467-9>`_
 .. [#Shen_1988] `Z. Shen et al., "Dislocation and grain boundary interactions in metals.", Acta Metallurgica (1988), 36(12), pp. 3231–3242. <http://dx.doi.org/10.1016/0001-6160(88)90058-2>`_
-.. [#Shi_2011] `J. Shi and M.A. Zikry, "Modeling of grain boundary transmission, emission, absorption and overall crystalline behavior in Σ1, Σ3, and Σ17b bicrystals.", J. Mater. Res., (2011), 26(14), pp. 1676-1687. <ttp://dx.doi.org/10.1557/jmr.2011.192>`_
+.. [#Shi_2011] `J. Shi and M.A. Zikry, "Modeling of grain boundary transmission, emission, absorption and overall crystalline behavior in Σ1, Σ3, and Σ17b bicrystals.", J. Mater. Res., (2011), 26(14), pp. 1676-1687. <http://dx.doi.org/10.1557/jmr.2011.192>`_
 .. [#Shirokoff_1993] `J. Shirokoff et al., "The Slip Transfer Process Through Grain Boundaries in HCP Ti.", MRS Online Proceedings Library (1993), 319, pp. 263-272. <http://dx.doi.org/10.1557/PROC-319-263>`_
 .. [#Soer_2005] `W.A. Soer et al. ,"Incipient plasticity during nanoindentation at grain boundaries in body-centered cubic metals.", Acta Materialia (2005), 53, pp. 4665–4676. <http://dx.doi.org/10.1016/j.actamat.2005.07.001>`_
 .. [#SoerDeHosson_2005] `W.A. Soer and J.Th.M. De Hosson, "Detection of grain-boundary resistance to slip transfer using nanoindentation.", Materials Letters (2005), 59, pp. 3192–3195. <http://dx.doi.org/10.1016/j.matlet.2005.03.075>`_
+.. [#Soifer_2002] `Y.M. Soifer et al., "Nanohardness of copper in the vicinity of grain boundaries.", Scripta Materialia (2002), 47(12), pp. 799-804. <http://dx.doi.org/10.1016/S1359-6462(02)00284-1>`_
 .. [#SpearotSangid_2014] `D.E. Spearot and M.D. Sangid, "Insights on slip transmission at grain boundaries from atomistic simulations.", Current Opinion in Solid State and Materials Science (2014), in press. <http://dx.doi.org/10.1016/j.cossms.2014.04.001>`_
 .. [#SuttonBalluffi_1995] `A.P. Sutton and R.W. Balluffi, "Interfaces in Crystalline Materials.", OUP Oxford (1995). <http://ukcatalogue.oup.com/product/9780199211067.do>`_
+.. [#Tsurekawa_2014] `S. Tsurekawa et al., "Local plastic deformation in the vicinity of grain boundaries in Fe–3 mass% Si alloy bicrystals and tricrystal.", J. Mater. Sci., (2014), 49(14), pp. 4698–4704. <http://dx.doi.org/10.1007/s10853-014-8150-2>`_
 .. [#Ueda_2002] `M. Ueda et al., "Effect of grain boundary on martensite transformation behaviour in Fe–32 at.%Ni bicrystals.", Science and Technology of Advanced Materials (2002), 3(2), pp. 171. <http://dx.doi.org/10.1016/S1468-6996(02)00004-9>`_
 .. [#WangNgan_2004] `M.G. Wang and A.H.W. Ngan,"Indentation strain burst phenomenon induced by grain boundaries in niobium.", Journal of Materials Research (2004), 19(08), pp. 2478-2486. <http://dx.doi.org/10.1557/JMR.2004.0316>`_
 .. [#Werner_1990] `E. Werner and W. Prantl, "Slip transfer across grain and phase boundaries.", Acta Metallurgica et Materialia (1990), 38(3), pp. 533-537. <http://dx.doi.org/10.1016/0956-7151(90)90159-E>`_

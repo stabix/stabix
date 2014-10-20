@@ -1,3 +1,5 @@
+# YAML configuration file to set bicrystal from Patriarca's paper (DOI ==> 10.1016/j.msea.2013.08.050)
+# Authors : D. Mercier and C. Zambaldi
 # Be careful : only absolute paths and put a space after the comma in a list (e.g. [x, y, z]) !!!
 
 #GB definition

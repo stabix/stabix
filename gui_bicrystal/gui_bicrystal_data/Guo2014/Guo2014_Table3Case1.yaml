@@ -1,3 +1,5 @@
+# YAML configuration file to set bicrystal from Guo's paper (DOI ==> 10.1016/j.actamat.2014.05.015)
+# Authors : D. Mercier and C. Zambaldi
 # Be careful : only absolute paths and put a space after the comma in a list (e.g. [x, y, z]) !!!
 
 #GB definition
@@ -10,8 +12,8 @@ Phase_A: hcp
 GrainB: 2
 Material_B: Ti
 Phase_B: hcp
-eulerA: [227, 4, 344]
-eulerB: [325, 177, 281]
+eulerA: [46.2353, 4.0588, 344.7653] #[227, 4, 344]
+eulerB: [145.0705, 176.6956, 280.7115] #[325, 177, 281]
 #Misorientation_angle: 40 # misorientation in degrees
 #Misorientation_axis: [1, -2, 1, -3]
 

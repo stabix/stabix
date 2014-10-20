@@ -126,7 +126,7 @@ if plot_matlab
 end
 
 %% Export results in a .txt file
-parent_directory_full = strcat(parent_directory, '\latex_barcharts');
+parent_directory_full = fullfile(parent_directory, 'latex_barcharts');
 cd(parent_directory_full);
 
 for ii = 1:size(rbv,1)

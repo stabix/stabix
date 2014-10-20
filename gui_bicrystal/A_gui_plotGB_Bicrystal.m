@@ -241,6 +241,7 @@ if nargin < 1
     plotGB_Bicrystal_random_bicrystal;
     gui = guidata(gcf);
     gui.config = load_YAML_config_file;
+    gui.config.username = get_username;
     gui.description = 'Analysis of Slip Transmission in a Bicrystal -';
     gui.title_str = set_gui_title(gui, '');
     

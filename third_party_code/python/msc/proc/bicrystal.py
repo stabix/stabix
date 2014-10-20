@@ -9,7 +9,7 @@ import math
 
 #from .base import Proc
 #from .indenter import Indenter
-from .indentation import Indentation
+from indentation import Indentation
 
 
 class BicrystalIndent(Indentation):

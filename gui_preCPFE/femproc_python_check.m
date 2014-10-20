@@ -21,10 +21,10 @@ python.which_all = strtrim(evalc('system(''which -a python'');'));
 if ~isempty(python.which_all)
     [tok, remain] = strtok(python.which_all);
     python.which = {tok};
-while ~isempty(remain)
-    [tok, remain] = strtok(remain);
-    python.which{end+1} = tok;
-end
+    while ~isempty(remain)
+        [tok, remain] = strtok(remain);
+        python.which{end+1} = tok;
+    end
 end
 
 %if all(cell2mat(struct2cell(python)))

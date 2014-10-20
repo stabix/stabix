@@ -7,13 +7,14 @@ function femproc_load_YAML_material_file(interface)
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
 gui = guidata(gcf);
+gui.config.username = get_username;
 
 if gui.GB.number_phase == 1
     configmatYAML = sprintf('config_CPFEM_material_%s.yaml', gui.config.username);
     
-    if exist(configmatYAML,'file') == 0
+    if ~exist(configmatYAML, 'file')
         warndlg('YAML file for material config not found ! Default values are used', '!! Warning !!');
-        configmatdefYAML = sprintf('config_CPFEM_material_default.yaml');
+        configmatdefYAML = sprintf('config_CPFEM_material_defaults.yaml');
         gui.config_material  = ReadYaml(configmatdefYAML);
         
     else
@@ -25,10 +26,10 @@ elseif gui.GB.number_phase == 2
     configmatA_YAML = sprintf('config_CPFEM_materialA_%s.yaml', gui.config.username);
     configmatB_YAML = sprintf('config_CPFEM_materialB_%s.yaml', gui.config.username);
     
-    if exist(configmatA_YAML, 'file') == 0 || exist(configmatB_YAML, 'file') == 0
+    if ~exist(configmatA_YAML, 'file') || ~exist(configmatB_YAML, 'file')
         warndlg('YAML file for material config not found ! Default values are used', '!! Warning !!');
-        configmatdefYAML_A = sprintf('config_CPFEM_materialA_default.yaml');
-        configmatdefYAML_B = sprintf('config_CPFEM_materialB_default.yaml');
+        configmatdefYAML_A = sprintf('config_CPFEM_materialA_defaults.yaml');
+        configmatdefYAML_B = sprintf('config_CPFEM_materialB_defaults.yaml');
         gui.config_materialA = ReadYaml(configmatdefYAML_A);
         gui.config_materialB = ReadYaml(configmatdefYAML_B);
         

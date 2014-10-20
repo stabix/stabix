@@ -41,20 +41,12 @@ elseif button_type == 2
         
         %% Creation of Grain File Type 2 (.txt file)
         gui.rdm_TSL_dataset.GF2filename = sprintf('random_GF2data.txt');
-        if ismac || isunix
-            gui.rdm_TSL_dataset.GF2pathname = strcat(pathname_random_TSL_files, ':', timestamp, '_random_TSL_data');
-        else
-            gui.rdm_TSL_dataset.GF2pathname = strcat(pathname_random_TSL_files, '\', timestamp, '_random_TSL_data');
-        end
+        gui.rdm_TSL_dataset.GF2pathname = fullfile(pathname_random_TSL_files, strcat(timestamp, '_random_TSL_data'));
         write_oim_grain_file_type2(gui.rdm_TSL_dataset, gui.rdm_TSL_dataset.GF2pathname, gui.rdm_TSL_dataset.GF2filename);
         
         %% Creation of Reconstructed Boundaries (.txt file)
         gui.rdm_TSL_dataset.RBfilename = sprintf('random_RBdata.txt');
-        if ismac || isunix
-            gui.rdm_TSL_dataset.RBpathname = strcat(pathname_random_TSL_files, ':', timestamp, '_random_TSL_data');
-        else
-            gui.rdm_TSL_dataset.RBpathname = strcat(pathname_random_TSL_files, '\', timestamp, '_random_TSL_data');
-        end
+        gui.rdm_TSL_dataset.RBpathname = fullfile(pathname_random_TSL_files, strcat(timestamp, '_random_TSL_data'));
         write_oim_reconstructed_boundaries_file(gui.rdm_TSL_dataset, gui.rdm_TSL_dataset.GF2pathname, gui.rdm_TSL_dataset.RBfilename);
         
         %% Set paths and flags

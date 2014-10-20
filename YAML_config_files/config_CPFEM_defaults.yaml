@@ -8,17 +8,17 @@
 simulation_code: DAMASK
 
 # list of FEM solvers
-fem_solvers: 
+fem_solvers:
     - Mentat_2013.1
     - Mentat_2013
     - Mentat_2012
     - Mentat_2010
-    - Mentat_2008 
+    - Mentat_2008
+    - Abaqus_2012
     
-
 # the FEM solvers that you want to use, e.g. Mentat2012 or Mentat2013
 fem_solver_used: Mentat_2013.1
 
-# where you want the mentat procedure file written
+# where you want the Mentat or Abaqus procedure file written
 #proc_file_path: /Users/<username>/Documents/mwn2/matlab #for MAC
 proc_file_path: \\mufs4\home\<username> # for PC

@@ -5,7 +5,7 @@ function set_default_values_txtbox (ui_txtbox, def_str)
 % def_str : default string for the corresponding variable
 
 if nargin < 2
-    def_str = '0';
+    def_str = '1';
 end
 
 if isempty(get(ui_txtbox, 'String')) == 1

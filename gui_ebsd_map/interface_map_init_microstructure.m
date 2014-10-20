@@ -108,10 +108,11 @@ for ng = 1:sGF2(1)
     end
 end
 
-% Set total number of phase
+% Set total number of phase (see interface_map_set_phase_number.m)
 if str2num(get(gui.handles.NumPh, 'String')) == 1
     for ng = 1:max(GF2(:,1))
         gui.grains(ng).phase_num = 1;
+        gui.grains(ng).phase     = 1; %Sometimes, 1 phase but phase indexation from TSL is 2 instead of 1;
     end
 else
     for ng = 1:max(GF2(:,1))

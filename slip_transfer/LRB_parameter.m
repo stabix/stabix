@@ -18,12 +18,12 @@ function LRB = LRB_parameter(l1, d1, l2, d2, varargin)
 % author: d.mercier@mpie.de
 
 if nargin == 0 % run test cases if called without arguments
-    n1 = random_direction();
-    d1 = perpendicular_vector(n1);
-    n2 = random_direction();
-    d2 = perpendicular_vector(n2);
-    LRB_test = LRB_parameter(n1,d1,n2,d2)
-    mp = NaN;
+    l1 = random_direction();
+    d1 = perpendicular_vector(l1);
+    l2 = random_direction();
+    d2 = perpendicular_vector(l2);
+    LRB_test = LRB_parameter(l1,d1,l2,d2)
+    LRB = NaN;
     return
 end
 

@@ -13,9 +13,9 @@ box_zfrac: 0.3
 D_sample: 8
 h_sample: 4
 sample_rep: 24
-box_elm_nx: 5
-box_elm_nz: 4
-radial_divi: 5
+box_elm_nx: 10
+box_elm_nz: 8
+radial_divi: 10
 box_bias_x: 0.1
 box_bias_z: 0.2
 box_bias_conv_x: 0.4
