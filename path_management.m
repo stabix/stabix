@@ -24,7 +24,6 @@ path_cell = regexp(path_to_add, pathsep, 'split');
 %try
 path_cell_genpath = path_cell;
 path_cell_f = cellstr_filter(path_cell, {'.git'});
-path_cell_f = cellstr_filter(path_cell_f, {'.pyc'});
 filtered_entries = numel(path_cell_genpath) - numel(path_cell_f)
 
 n_dirs = numel(path_cell_f);

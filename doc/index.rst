@@ -9,10 +9,15 @@
 Slip Transmission |matlab| toolbox
 ==================================
 
-.. figure:: ./_pictures/GUIs/EBSD_map2.png
-   :scale: 40 %
+.. figure:: ./_pictures/STABiX_ebsdmap.gif
+   :scale: 100 %
    :align: right
    
+   *Slip transmission analysis for an EBSD map of cp alpha-Ti.*
+
+.. comment figure:: ./_pictures/GUIs/EBSD_map2.png
+   :scale: 40 %
+   :align: right
    *Slip transmission analysis for an EBSD map of near alpha phase Ti alloy.*
    
 The |matlab| toolbox **STABiX** provides a unique and simple way to analyse slip transmission in a bicrystal.
@@ -49,12 +54,6 @@ Activation and transmission of slip are interpreted based on these simulations a
 
 Contents
 ========
-
-.. figure:: ./_pictures/STABiX_ebsdmap.gif
-   :scale: 100 %
-   :align: right
-   
-   *Slip transmission analysis for an EBSD map of cp alpha-Ti.*
    
 .. toctree::
    :maxdepth: 3
