@@ -112,7 +112,11 @@ for ng = 1:1:max(GF2(:,1))
         end
         eulers_A     = [grcen(ng,4) grcen(ng,5) grcen(ng,6)];
         eulers_vis_A = coordinate_system_apply(eulers_A, gui.COORDSYS_eulers);
-        ca_ratio_A   = latt_param(gui.grains(ng).material, gui.grains(ng).structure);
+        if ~isempty(gui.grains(ng).material) && ~isempty(gui.grains(ng).structure)
+            ca_ratio_A   = latt_param(gui.grains(ng).material, gui.grains(ng).structure);
+        else
+            ca_ratio_A = [];
+        end
         
         % Definition of slip to plot
         if gui.flag.pmparam2plot_value4Grains == 2 || gui.flag.pmparam2plot_value4Grains == 4 % Slip with highest Schmid factor
