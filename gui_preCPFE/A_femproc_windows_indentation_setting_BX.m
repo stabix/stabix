@@ -32,7 +32,7 @@ if nargin == 0
     gui_BX.config_map.Material_ID  = [];
     gui_BX.config_map.default_grain_file_type2 = 'random_GF2data.txt';
     gui_BX.config_map.default_reconstructed_boundaries_file = 'random_RBdata.txt';
-    gui_BX.config_map.imported_YAML_GB_config_file = 'config_gui_BX_default.yaml';
+    gui_BX.config_map.imported_YAML_GB_config_file = 'config_gui_BX_defaults.yaml';
     
     guidata(gcf, gui_BX);
     femproc_load_YAML_BX_config_file(gui_BX.config_map.imported_YAML_GB_config_file, 2);

@@ -1,12 +1,18 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function femproc_generate_material_files_SX
+function femproc_generate_material_files_SX(CPFEM_code)
 %% Generation of material config file (GENMAT OR DAMASK) for SX indentation
+% CPFEM_code: GENMAT or DAMASK
+
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
+
+if nargin == 0
+   CPFEM_code = 'DAMASK'; 
+end
 
 gui_SX = guidata(gcf);
 
 %% Material config file for GENMAT
-if strcmp(gui_SX.config_CPFEM.simulation_code, 'GENMAT') == 1
+if strcmp(CPFEM_code, 'GENMAT') == 1
     %% Creation of the material.mpie file with Euler angles (for GENMAT)
     % Add no comment in the material.mpie file !!! ==> Error
     % You have to remove the end of the name of the material file in order to set the
@@ -33,7 +39,7 @@ if strcmp(gui_SX.config_CPFEM.simulation_code, 'GENMAT') == 1
     copyfile(fnameB, gui_SX.path_config_file)
     
     %% Material config file for DAMASK
-elseif strcmp(gui_SX.config_CPFEM.simulation_code, 'DAMASK') == 1
+elseif strcmp(CPFEM_code, 'DAMASK') == 1
     %% Creation of the material.config file with Euler angles (for DAMASK)
     scriptname_DAMASK_materialconfig = sprintf('%s_DAMASK_materialconfig.py', gui_SX.GB.Titlegbdatacompl);
     damask_python_path = strrep(fullfile(gui_SX.config_CPFEM.python4fem_module_path, 'damask'), '\', '\\');
@@ -51,7 +57,6 @@ elseif strcmp(gui_SX.config_CPFEM.simulation_code, 'DAMASK') == 1
     fprintf(fid, 'damask_mat.mat_config(gb_data, proc_path=r''%s'')\n', fullfile(gui_SX.config_CPFEM.proc_file_path, gui_SX.GB.Titlegbdata));
     fclose(fid);
     % execute the python code that we have just generated
-    %cmd = sprintf('%s %s"',config.python_executable, scriptname);
     cmd = sprintf('%s %s', gui_SX.config_CPFEM.python_executable, fullfile(pwd, scriptname_DAMASK_materialconfig));
     commandwindow;
     system(cmd);
@@ -59,21 +64,16 @@ elseif strcmp(gui_SX.config_CPFEM.simulation_code, 'DAMASK') == 1
     try
         movefile(scriptname_DAMASK_materialconfig, gui_SX.path_config_file);
     catch err
-        errordlg(err.message);
+        %errordlg(err.message);
+        warning(err.message);
     end
     
     %% Move of material.config in the corresponding modeling folder (for DAMASK)
-    %titlegbdata=sprintf('%s.MaterialConfig',gui_SX.GB.titlegbdata);
-    %try
-    %movefile(titlegbdata,path_config_file);
-    %catch err
-    %errordlg(err.message);
-    %end
-    
     try
         movefile('material.config', gui_SX.path_config_file);
     catch err
-        errordlg(err.message);
+        %errordlg(err.message);
+        warning(err.message);
     end
     
 end
