@@ -32,16 +32,17 @@ legend_location_str(ismember(legend_location_str,' ')) = [];
 slipnormalA    = gui.calculations.vectA(slipA, 1:3, gui.GB.GrainA);
 slipnormalB    = gui.calculations.vectB(slipB, 1:3, gui.GB.GrainB);
 
-if gui.flag.flag_dir_vectA(slipB, slipA) == 0
-    slipdirectionA = gui.calculations.vectA(slipA, 4:6, gui.GB.GrainA);
-elseif gui.flag.flag_dir_vectA(slipB, slipA) == 1
-    slipdirectionA = -gui.calculations.vectA(slipA, 4:6, gui.GB.GrainA);
-end
-if gui.flag.flag_dir_vectB(slipB, slipA) == 0
-    slipdirectionB = gui.calculations.vectB(slipB, 4:6, gui.GB.GrainB);
-elseif gui.flag.flag_dir_vectB(slipB, slipA) == 1
-    slipdirectionB = -gui.calculations.vectB(slipB, 4:6, gui.GB.GrainB);
-end
+% see in plotGB_Bicrystal_mprime_calculator_bc... in RBV calculations
+%if gui.flag.flag_dir_vectA(slipB, slipA) == 0
+slipdirectionA = gui.calculations.vectA(slipA, 4:6, gui.GB.GrainA);
+%elseif gui.flag.flag_dir_vectA(slipB, slipA) == 1
+%    slipdirectionA = -gui.calculations.vectA(slipA, 4:6, gui.GB.GrainA);
+%end
+%if gui.flag.flag_dir_vectB(slipB, slipA) == 0
+slipdirectionB = gui.calculations.vectB(slipB, 4:6, gui.GB.GrainB);
+%elseif gui.flag.flag_dir_vectB(slipB, slipA) == 1
+%    slipdirectionB = -gui.calculations.vectB(slipB, 4:6, gui.GB.GrainB);
+%end
 
 %% Plot of slip plane (unit cell) for Grain A and B
 if no_slip

@@ -39,8 +39,10 @@ gui.GB.Material_B      = 'Ti';
 gui.GB.ca_ratio_B      = latt_param(gui.GB.Material_B, gui.GB.Phase_B);
 gui.GB.activeGrain     = gui.GB.GrainA;
 gui.GB.misorientation  = misorientation(gui.GB.eulerA, gui.GB.eulerB, gui.GB.Phase_A, gui.GB.Phase_B);
-gui.GB.slipA           = 0;
-gui.GB.slipB           = 0;
+gui.GB.slipA           = 1;
+gui.GB.slipB           = 1;
+gui.GB.slipA_user_spec = 1;
+gui.GB.slipB_user_spec = 1;
 
 set(gui.handles.pmMatA, 'Value', 13);
 set(gui.handles.pmMatB, 'Value', 13);

@@ -271,8 +271,10 @@ elseif nargin == 1
     gui.GB.activeGrain     = gui.GB.GrainA;
     gui.config_map         = gui_map.config_map;
     gui.config             = gui_map.config;
-    gui.GB.slipA           = 0;
-    gui.GB.slipB           = 0;
+    gui.GB.slipA           = 1;
+    gui.GB.slipB           = 1;
+    gui.GB.slipA_user_spec = gui.GB.slipA;
+    gui.GB.slipB_user_spec = gui.GB.slipB;
     gui.description        = ['From: ', gui_map.config_map.filename_grain_file_type2];
     gui.title_str          = set_gui_title(gui, '');
     guidata(gcf, gui);
@@ -313,8 +315,10 @@ elseif nargin == 2
     gui.GB.activeGrain     = gui_cpfe.GB.activeGrain;
     gui.config_map         = gui_cpfe.config_map;
     gui.config             = gui_cpfe.config;
-    gui.GB.slipA           = 0;
-    gui.GB.slipB           = 0;
+    gui.GB.slipA           = 1;
+    gui.GB.slipB           = 1;
+    gui.GB.slipA_user_spec = gui.GB.slipA;
+    gui.GB.slipB_user_spec = gui.GB.slipB;
     gui.description        = 'From CPFE model';
     gui.title_str          = set_gui_title(gui, '');
     guidata(gcf, gui); 

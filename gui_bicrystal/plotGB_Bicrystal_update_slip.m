@@ -15,111 +15,111 @@ slipA_all_vect = slip_systems (gui.GB.Phase_A, 9);
 slipB_all_vect = slip_systems (gui.GB.Phase_B, 9);
 
 if valcase == 1
-    slipA = gui.GB.results.slipA_mp_max1;
-    slipB = gui.GB.results.slipB_mp_max1;
+    slipA = gui.GB.results.y_mp_max1;
+    slipB = gui.GB.results.x_mp_max1;
     
 elseif valcase == 2
-    slipA = gui.GB.results.slipA_mp_max2;
-    slipB = gui.GB.results.slipB_mp_max2;
+    slipA = gui.GB.results.y_mp_max2;
+    slipB = gui.GB.results.x_mp_max2;
     
 elseif valcase == 3
-    slipA = gui.GB.results.slipA_mp_max3;
-    slipB = gui.GB.results.slipB_mp_max3;
+    slipA = gui.GB.results.y_mp_max3;
+    slipB = gui.GB.results.x_mp_max3;
     
 elseif valcase == 4
-    slipA = gui.GB.results.slipA_mp_min1;
-    slipB = gui.GB.results.slipB_mp_min1;
+    slipA = gui.GB.results.y_mp_min1;
+    slipB = gui.GB.results.x_mp_min1;
     
 elseif valcase == 5
-    slipA = gui.GB.results.slipA_mp_min2;
-    slipB = gui.GB.results.slipB_mp_min2;
+    slipA = gui.GB.results.y_mp_min2;
+    slipB = gui.GB.results.x_mp_min2;
     
 elseif valcase == 6
-    slipA = gui.GB.results.slipA_mp_min3;
-    slipB = gui.GB.results.slipB_mp_min3;
+    slipA = gui.GB.results.y_mp_min3;
+    slipB = gui.GB.results.x_mp_min3;
     
 elseif valcase == 7 || valcase == 14 || valcase == 21 || valcase == 28 ||  valcase == 29
     slipA = gui.GB.results.slipASFmax;
     slipB = gui.GB.results.slipBSFmax;
     
 elseif valcase == 8
-    slipA = gui.GB.results.slipA_rbv_max1;
-    slipB = gui.GB.results.slipB_rbv_max1;
+    slipA = gui.GB.results.y_rbv_max1;
+    slipB = gui.GB.results.x_rbv_max1;
     
 elseif valcase == 9
-    slipA = gui.GB.results.slipA_rbv_max2;
-    slipB = gui.GB.results.slipB_rbv_max2;
+    slipA = gui.GB.results.y_rbv_max2;
+    slipB = gui.GB.results.x_rbv_max2;
     
 elseif valcase == 10
-    slipA = gui.GB.results.slipA_rbv_max3;
-    slipB = gui.GB.results.slipB_rbv_max3;
+    slipA = gui.GB.results.y_rbv_max3;
+    slipB = gui.GB.results.x_rbv_max3;
     
 elseif valcase == 11
-    slipA = gui.GB.results.slipA_rbv_min1;
-    slipB = gui.GB.results.slipB_rbv_min1;
+    slipA = gui.GB.results.y_rbv_min1;
+    slipB = gui.GB.results.x_rbv_min1;
     
 elseif valcase == 12
-    slipA = gui.GB.results.slipA_rbv_min2;
-    slipB = gui.GB.results.slipB_rbv_min2;
+    slipA = gui.GB.results.y_rbv_min2;
+    slipB = gui.GB.results.x_rbv_min2;
     
 elseif valcase == 13
-    slipA = gui.GB.results.slipA_rbv_min3;
-    slipB = gui.GB.results.slipB_rbv_min3;
+    slipA = gui.GB.results.y_rbv_min3;
+    slipB = gui.GB.results.x_rbv_min3;
     
 elseif valcase == 15
-    slipA = gui.GB.results.slipA_nfact_max1;
-    slipB = gui.GB.results.slipB_nfact_max1;
+    slipA = gui.GB.results.y_nfact_max1;
+    slipB = gui.GB.results.x_nfact_max1;
     
 elseif valcase == 16
-    slipA = gui.GB.results.slipA_nfact_max2;
-    slipB = gui.GB.results.slipB_nfact_max2;
+    slipA = gui.GB.results.y_nfact_max2;
+    slipB = gui.GB.results.x_nfact_max2;
     
 elseif valcase == 17
-    slipA = gui.GB.results.slipA_nfact_max3;
-    slipB = gui.GB.results.slipB_nfact_max3;
+    slipA = gui.GB.results.y_nfact_max3;
+    slipB = gui.GB.results.x_nfact_max3;
     
 elseif valcase == 18
-    slipA = gui.GB.results.slipA_nfact_min1;
-    slipB = gui.GB.results.slipB_nfact_min1;
+    slipA = gui.GB.results.y_nfact_min1;
+    slipB = gui.GB.results.x_nfact_min1;
     
 elseif valcase == 19
-    slipA = gui.GB.results.slipA_nfact_min2;
-    slipB = gui.GB.results.slipB_nfact_min2;
+    slipA = gui.GB.results.y_nfact_min2;
+    slipB = gui.GB.results.x_nfact_min2;
     
 elseif valcase == 20
-    slipA = gui.GB.results.slipA_nfact_min3;
-    slipB = gui.GB.results.slipB_nfact_min3;
+    slipA = gui.GB.results.y_nfact_min3;
+    slipB = gui.GB.results.x_nfact_min3;
     
 elseif valcase == 22
-    slipA = gui.GB.results.slipA_LRBfact_max1;
-    slipB = gui.GB.results.slipB_LRBfact_max1;
+    slipA = gui.GB.results.y_LRBfact_max1;
+    slipB = gui.GB.results.x_LRBfact_max1;
     
 elseif valcase == 23
-    slipA = gui.GB.results.slipA_LRBfact_max2;
-    slipB = gui.GB.results.slipB_LRBfact_max2;
+    slipA = gui.GB.results.y_LRBfact_max2;
+    slipB = gui.GB.results.x_LRBfact_max2;
     
 elseif valcase == 24
-    slipA = gui.GB.results.slipA_LRBfact_max3;
-    slipB = gui.GB.results.slipB_LRBfact_max3;
+    slipA = gui.GB.results.y_LRBfact_max3;
+    slipB = gui.GB.results.x_LRBfact_max3;
     
 elseif valcase == 25
-    slipA = gui.GB.results.slipA_LRBfact_min1;
-    slipB = gui.GB.results.slipB_LRBfact_min1;
+    slipA = gui.GB.results.y_LRBfact_min1;
+    slipB = gui.GB.results.x_LRBfact_min1;
     
 elseif valcase == 26
-    slipA = gui.GB.results.slipA_LRBfact_min2;
-    slipB = gui.GB.results.slipB_LRBfact_min2;
+    slipA = gui.GB.results.y_LRBfact_min2;
+    slipB = gui.GB.results.x_LRBfact_min2;
     
 elseif valcase == 27
-    slipA = gui.GB.results.slipA_LRBfact_min3;
-    slipB = gui.GB.results.slipB_LRBfact_min3;
+    slipA = gui.GB.results.y_LRBfact_min3;
+    slipB = gui.GB.results.x_LRBfact_min3;
     
 elseif valcase == 30
-    if isempty(get(gui.handles.getSlipA, 'String')) || gui.GB.slipA_user_spec ~= gui.GB.slipA
+    if isempty(get(gui.handles.getSlipA, 'String'))
         set(gui.handles.getSlipA, 'String', strcat('(',num2str(slipA_all_vect(1,:,gui.GB.slipA_user_spec)),') / [',num2str(slipA_all_vect(2,:,gui.GB.slipA_user_spec)), ']'));
     end
     
-    if isempty(get(gui.handles.getSlipB, 'String')) || gui.GB.slipB_user_spec ~= gui.GB.slipB
+    if isempty(get(gui.handles.getSlipB, 'String'))
         set(gui.handles.getSlipB, 'String', strcat('(',num2str(slipB_all_vect(1,:,gui.GB.slipB_user_spec)),') / [',num2str(slipB_all_vect(2,:,gui.GB.slipB_user_spec)), ']'));
     end
     
