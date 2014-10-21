@@ -6,7 +6,10 @@ commandwindow;
 % http://stackoverflow.com/questions/2720140/find-location-of-current-m-file-in-matlab
 S = dbstack('-completenames');
 [folder, name, ext] = fileparts(S(1).file);
-display (folder);
+display (folder)
+
+% Add path for 'util' folder to use 'cells_filter' and 'cell2path' functions
+addpath(fullfile (folder, 'util'));
 
 if nargin > 0 && ischar(varargin{1})
     answer = varargin{1};
@@ -15,17 +18,17 @@ else
 end
 
 path_to_add = genpath(folder);
-% TODO: gemove everything under .git/...
+% TODO: remove everything under .git/...
 % this will be much easier with strsplit, available from matlab2013a (8.1)
 path_cell = regexp(path_to_add, pathsep, 'split');
 %try
 path_cell_genpath = path_cell;
-path_cell = cellstr_filter(path_cell, {'.git'});
-filtered_entries = numel(path_cell_genpath) - numel(path_cell)
+path_cell_f = cellstr_filter(path_cell, {'.git'});
+filtered_entries = numel(path_cell_genpath) - numel(path_cell_f)
 
-n_dirs = numel(path_cell);
+n_dirs = numel(path_cell_f);
 
-path_to_add = cell2path(path_cell);
+path_to_add = cell2path(path_cell_f);
 
 if strcmpi(answer, 'y') || isempty(answer)
     display(sprintf('Adding %i entries to matlab search path', n_dirs));
@@ -43,24 +46,4 @@ end
 
 %% Optionally display the matlab search path after modifications with the 'path' command
 %path
-end
-
-function path_cell_filtered = cellstr_filter(path_cell, extension2filter)
-
-for ii = 1:length(path_cell)
-    if strcmp(path_cell{ii}, extension2filter) == 1;
-        path_cell{ii} = {''};
-    end
-end
-path_cell_filtered = path_cell;
-end
-
-function path_list = cell2path(path_cell)
-
-path_strcat = '';
-
-for ii = 1:length(path_cell)
-    path_strcat = strcat(path_strcat, ';', path_cell{ii});
-end
-path_list = path_strcat;
 end

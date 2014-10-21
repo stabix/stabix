@@ -202,11 +202,10 @@ gui.handles.pbsavefigure = uicontrol('Parent', gui.handles.Bicrystal_interface,.
 %% Plot mprime and residual Burgers vector maps for all slip families
 gui.handles.cb_all_values_map = uicontrol('Parent', gui.handles.Bicrystal_interface,...
     'Units', 'normalized',...
-    'Style', 'checkbox',...
+    'Style', 'pushbutton',...
     'Position', [0.03 0.02 0.12 0.03],...
     'String', 'All values',...
-    'Value', 0,...
-    'Callback', 'plotGB_Bicrystal');
+    'Callback', 'gui = guidata(gcf); plotGB_Bicrystal_all_param_map_plot(gui.GB.param2plot, [''All '', gui.GB.param2plot_title,'' values / GB_#'', num2str(gui.GB.GB_Number)]);');
 
 %% Plot
 gui.handles.h_gbax = subplot(4, 2, [3 6]);
@@ -271,8 +270,10 @@ elseif nargin == 1
     gui.GB.activeGrain     = gui.GB.GrainA;
     gui.config_map         = gui_map.config_map;
     gui.config             = gui_map.config;
-    gui.GB.slipA           = 0;
-    gui.GB.slipB           = 0;
+    gui.GB.slipA           = 1;
+    gui.GB.slipB           = 1;
+    gui.GB.slipA_user_spec = gui.GB.slipA;
+    gui.GB.slipB_user_spec = gui.GB.slipB;
     gui.description        = ['From: ', gui_map.config_map.filename_grain_file_type2];
     gui.title_str          = set_gui_title(gui, '');
     guidata(gcf, gui);
@@ -313,8 +314,10 @@ elseif nargin == 2
     gui.GB.activeGrain     = gui_cpfe.GB.activeGrain;
     gui.config_map         = gui_cpfe.config_map;
     gui.config             = gui_cpfe.config;
-    gui.GB.slipA           = 0;
-    gui.GB.slipB           = 0;
+    gui.GB.slipA           = 1;
+    gui.GB.slipB           = 1;
+    gui.GB.slipA_user_spec = gui.GB.slipA;
+    gui.GB.slipB_user_spec = gui.GB.slipB;
     gui.description        = 'From CPFE model';
     gui.title_str          = set_gui_title(gui, '');
     guidata(gcf, gui); 

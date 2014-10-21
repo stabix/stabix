@@ -197,26 +197,10 @@ if ~gui.flag.error
         subplot(4,2,8, 'replace');
         axis off;
     end
-    gui = guidata(gcf); guidata(gcf, gui);
-
-    %% m' map, RBV map, N-factor map or LRB parameter map
-    
-    try
-        figure_handle_all_values_map = findobj('type','figure','name',['All ', param2plot_title,' values / GB_#', num2str(gui.GB.GB_Number)]);
-        if isempty(figure_handle_all_values_map) ~= 1 || get(gui.handles.cb_all_values_map, 'Value') == 0
-            if ishandle(figure_handle_all_values_map) == 1
-                delete (figure_handle_all_values_map);
-            end
-        end
-    catch
-    end
-    
-    if get(gui.handles.cb_all_values_map, 'Value') == 1
-        plotGB_Bicrystal_all_param_map_plot(param2plot, ['All ', param2plot_title,' values / GB_#', num2str(gui.GB.GB_Number)]);
-        gui = guidata(gcf); guidata(gcf, gui);
-    end
-    
+    gui.GB.param2plot = param2plot;
+    gui.GB.param2plot_title = param2plot_title;
     guidata(gcf, gui);
+
 end
 
 end

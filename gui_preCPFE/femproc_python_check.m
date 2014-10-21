@@ -17,6 +17,7 @@ python.finds_numpy = ~ system(sprintf('%s -c "import numpy"', python_loc));
 cmd = sprintf('%s --version', python_loc);
 python.version = strtrim(evalc('system(cmd);'));
 
+% TODO ==> which to change ?
 python.which_all = strtrim(evalc('system(''which -a python'');'));
 if ~isempty(python.which_all)
     [tok, remain] = strtok(python.which_all);

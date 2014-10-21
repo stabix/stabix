@@ -42,16 +42,16 @@ end
 
 if ~no_file
     % Initialization of parameters
-    SCREENSHOT = 1;
+    SCREENSHOT = strcat(date_time_string, 'screenshots');
     SCREENSHOT_DIR = pathnameRB;
     SCREENSHOT_NUM = 1;
     
     % Run the GUI
-    A_gui_plotmap(0);
+    A_gui_plotmap;
     gui = guidata(gcf);
     set(gui.handles.cbgbnum, 'Value', 0);
     interface_map_plotmap(1,1);
-    xlim([ 0 20]);ylim([-20 0]);
+    xlim([-1.5 1.5]);ylim([-1.5 1.5]);
     SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % Load data
@@ -75,46 +75,46 @@ if ~no_file
     set(gui.handles.pmcoordsyst, 'BackgroundColor', [0.9 0.9 0.9]);
     set(gui.handles.cbgbnum, 'Value', 0);
     interface_map_plotmap(1,1);
-    xlim([ 0 800]);ylim([-700 0]);
+    xlim([ 0 700]);ylim([-1100 0]);
     SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % Smoothing of GBs
     set(gui.handles.scale_gb_segments_bar, 'Value', 180);
     interface_map_plotmap(1,1);
-    xlim([ 0 800]);ylim([-700 0]);
+    xlim([ 0 700]);ylim([-1100 0]);
     SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % Increase of lattice cells size
-    set(gui.handles.scale_unitcell_bar, 'Value', 2);
+    set(gui.handles.scale_unitcell_bar, 'Value', 0.6);
     interface_map_plotmap(1,1);
-    xlim([ 0 800]);ylim([-700 0]);
+    xlim([ 0 700]);ylim([-1100 0]);
     SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % Misorientation calculation
     set(gui.handles.pmparam2plot4GB, 'Value', 8);
     interface_map_plotmap(1,1);
-    xlim([ 0 800]);ylim([-700 0]);
+    xlim([ 0 700]);ylim([-1100 0]);
     SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % m' calculation for basal <a>
     set(gui.handles.pmlistslips1, 'Value', 3);
     set(gui.handles.pmparam2plot4GB, 'Value', 2);
     interface_map_plotmap(1,1);
-    xlim([ 0 800]);ylim([-700 0]);
+    xlim([ 0 700]);ylim([-1100 0]);
     SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % other calculations
     for ii = 3:1:11
         set(gui.handles.pmparam2plot4GB, 'Value', ii);
         interface_map_plotmap(1,1);
-        xlim([ 0 800]);ylim([-700 0]);
+        xlim([ 0 700]);ylim([-1100 0]);
         SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     end
     
     % Plot slip with highest SF
     set(gui.handles.pmparam2plot4Grains, 'Value', 2);
     interface_map_plotmap(1,1);
-    xlim([ 0 800]);ylim([-700 0]);
+    xlim([ 0 700]);ylim([-1100 0]);
     SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % m' calculation for basal <a> and prism1 <a>
@@ -122,19 +122,19 @@ if ~no_file
     set(gui.handles.pmlistslips1, 'Value', [3 4]);
     set(gui.handles.pmparam2plot4GB, 'Value', 2);
     interface_map_plotmap(1,1);
-    xlim([ 0 800]);ylim([-700 0]);
+    xlim([ 0 700]);ylim([-1100 0]);
     SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % Plot slip with highest SF
     set(gui.handles.pmparam2plot4Grains, 'Value', 2);
     interface_map_plotmap(1,1);
-    xlim([ 0 800]);ylim([-700 0]);
+    xlim([ 0 700]);ylim([-1100 0]);
     SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     %Add GB numbers
     set(gui.handles.cbgbnum, 'Value', 1);
     interface_map_plotmap(1,1);
-    xlim([ 0 800]);ylim([-700 0]);
+    xlim([ 0 700]);ylim([-1100 0]);
     SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % Zoom on EBSD map
@@ -143,5 +143,7 @@ if ~no_file
     SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     zoom off;
 end
+
+beep;
 
 end

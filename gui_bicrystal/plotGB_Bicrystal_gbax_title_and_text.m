@@ -15,71 +15,70 @@ idgra = sprintf('gr.A #%i', gui.GB.GrainA);
 idgrb = sprintf('gr.B #%i', gui.GB.GrainB);
 idmis = sprintf('mis = %.1f°', gui.GB.misorientation);
 idcaxis_mis = sprintf('c-mis = %.1f°', gui.GB.caxis_misor);
-%gbangle = sprintf('incl. %.0f°', gui.GB.GB_Inclination);
 
 %% Selection of m' value
 valcase = get(gui.handles.pmchoicecase, 'Value');
 
 if no_slip == 0
     if valcase == 1
-        idm = sprintf('m'' = %.2f', gui.GB.results.mprime_valmax1);
+        idm = sprintf('m'' = %.2f', gui.GB.results.mp_max1);
     elseif valcase == 2
-        idm = sprintf('m'' = %.2f', gui.GB.results.mprime_valmax2);
+        idm = sprintf('m'' = %.2f', gui.GB.results.mp_max2);
     elseif valcase == 3
-        idm = sprintf('m'' = %.2f', gui.GB.results.mprime_valmax3);
+        idm = sprintf('m'' = %.2f', gui.GB.results.mp_max3);
     elseif valcase == 4
-        idm = sprintf('m'' = %.2f', gui.GB.results.mprime_valmin1);
+        idm = sprintf('m'' = %.2f', gui.GB.results.mpmin1);
     elseif valcase == 5
-        idm = sprintf('m'' = %.2f', gui.GB.results.mprime_valmin2);
+        idm = sprintf('m'' = %.2f', gui.GB.results.mpmin2);
     elseif valcase == 6
-        idm = sprintf('m'' = %.2f', gui.GB.results.mprime_valmin3);
+        idm = sprintf('m'' = %.2f', gui.GB.results.mpmin3);
     elseif valcase == 7
         idm = sprintf('m''(SF) = %.2f', gui.GB.results.mprime_SFmax);
     elseif valcase == 8
-        idm = sprintf('RBV = %.2f', gui.GB.results.rbv_valmax1);
+        idm = sprintf('RBV = %.2f', gui.GB.results.rbv_max1);
     elseif valcase == 9
-        idm = sprintf('RBV = %.2fa', gui.GB.results.rbv_valmax2);
+        idm = sprintf('RBV = %.2fa', gui.GB.results.rbv_max2);
     elseif valcase == 10
-        idm = sprintf('RBV = %.2f', gui.GB.results.rbv_valmax3);
+        idm = sprintf('RBV = %.2f', gui.GB.results.rbv_max3);
     elseif valcase == 11
-        idm = sprintf('RBV = %.2f', gui.GB.results.rbv_valmin1);
+        idm = sprintf('RBV = %.2f', gui.GB.results.rbv_min1);
     elseif valcase == 12
-        idm = sprintf('RBV = %.2f', gui.GB.results.rbv_valmin2);
+        idm = sprintf('RBV = %.2f', gui.GB.results.rbv_min2);
     elseif valcase == 13
-        idm = sprintf('RBV = %.2f', gui.GB.results.rbv_valmin3);
+        idm = sprintf('RBV = %.2f', gui.GB.results.rbv_min3);
     elseif valcase == 14
         idm = sprintf('RBV(SF) = %.2f', gui.GB.results.rbv_SFmax);
     elseif valcase == 15
-        idm = sprintf('N-fact = %.2f', gui.GB.results.nfact_valmax1);
+        idm = sprintf('N-fact = %.2f', gui.GB.results.nfact_max1);
     elseif valcase == 16
-        idm = sprintf('N-fact = %.2f', gui.GB.results.nfact_valmax2);
+        idm = sprintf('N-fact = %.2f', gui.GB.results.nfact_max2);
     elseif valcase == 17
-        idm = sprintf('N-fact = %.2f', gui.GB.results.nfact_valmax3);
+        idm = sprintf('N-fact = %.2f', gui.GB.results.nfact_max3);
     elseif valcase == 18
-        idm = sprintf('N-fact = %.2f', gui.GB.results.nfact_valmin1);
+        idm = sprintf('N-fact = %.2f', gui.GB.results.nfact_min1);
     elseif valcase == 19
-        idm = sprintf('N-fact = %.2f', gui.GB.results.nfact_valmin2);
+        idm = sprintf('N-fact = %.2f', gui.GB.results.nfact_min2);
     elseif valcase == 20
-        idm = sprintf('N-fact = %.2f', gui.GB.results.nfact_valmin3);
+        idm = sprintf('N-fact = %.2f', gui.GB.results.nfact_min3);
     elseif valcase == 21
         idm = sprintf('N-fact(SF) = %.2f', gui.GB.results.nfact_SFmax);
     elseif valcase == 22
-        idm = sprintf('LRB-fact = %.2f', gui.GB.results.LRBfact_valmax1);
+        idm = sprintf('LRB-fact = %.2f', gui.GB.results.LRBfact_max1);
     elseif valcase == 23
-        idm = sprintf('LRB-fact = %.2f', gui.GB.results.LRBfact_valmax2);
+        idm = sprintf('LRB-fact = %.2f', gui.GB.results.LRBfact_max2);
     elseif valcase == 24
-        idm = sprintf('LRB-fact = %.2f', gui.GB.results.LRBfact_valmax3);
+        idm = sprintf('LRB-fact = %.2f', gui.GB.results.LRBfact_max3);
     elseif valcase == 25
-        idm = sprintf('LRB-fact = %.2f', gui.GB.results.LRBfact_valmin1);
+        idm = sprintf('LRB-fact = %.2f', gui.GB.results.LRBfact_min1);
     elseif valcase == 26
-        idm = sprintf('LRB-fact = %.2f', gui.GB.results.LRBfact_valmin2);
+        idm = sprintf('LRB-fact = %.2f', gui.GB.results.LRBfact_min2);
     elseif valcase == 27
-        idm = sprintf('LRB-fact = %.2f', gui.GB.results.LRBfact_valmin3);
+        idm = sprintf('LRB-fact = %.2f', gui.GB.results.LRBfact_min3);
     elseif valcase == 28
         idm = sprintf('LRB-fact(SF) = %.2f', gui.GB.results.LRBfact_SFmax);
     elseif valcase == 29
         idm = sprintf('SF(GB) = %.2f', gui.GB.results.GB_Schmid_Factor_max);
-    elseif valcase == 30
+    elseif valcase > 29
         idm = sprintf('m'' = %.2f | RBV = %.2f | N-fact = %.2f | LRB-fact = %.2f', ...
             gui.GB.mprime_specific, gui.GB.rbv_specific, gui.GB.nfact_specific, gui.GB.LRBfact_specific);
     end
@@ -94,7 +93,7 @@ if valcase ~= 30
     title(sprintf('%s | %s | %s | %s | %s | %s ', idgb, idgra, idgrb, idmis, idcaxis_mis, idm),...
         'color', [0 0 0],'BackgroundColor', [1 1 1]);
 else
-    title(sprintf('%s | %s | %s | %s | %s | %s | %s', idgb, idmis, idcaxis_mis, idm),...
+    title(sprintf('%s | %s | %s | %s | %s | %s | %s ', idgb, idmis, idcaxis_mis, idm),...
         'color', [0 0 0],'BackgroundColor', [1 1 1]);
 end
 

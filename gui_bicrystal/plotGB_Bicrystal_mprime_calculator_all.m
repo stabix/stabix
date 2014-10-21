@@ -13,143 +13,14 @@ gui.calculations = struct();
 
 gui.flag.error = 0;
 
-%% Vectors calculation for GrainA
-for ig = gui.GB.GrainA                                                     % Loop to set GrainA properties (identity, Euler angles, position)
-    clear sortbvA lattice_parameters ss ss_cart ss_cart_norm slip_vec;
-    lattice_parameters_A = latt_param(gui.GB.Material_A, gui.GB.Phase_A);  % Get the lattice parameter for GrainA
-    if lattice_parameters_A(1) == 0
-        errordlg('Wrong input for material and structure !!!');
-        gui.flag.error = 1;
-    end
-    
-    if gui.flag.error == 0
-        ss_grA = slip_systems(gui.GB.Phase_A); % listslipA (see plotGB_Bicrystal_mprime_calculator_bc)
-        if strcmp(gui.GB.Phase_A, 'hcp') == 1
-            for ss_ind = 1:size(ss_grA, 3)
-                ss_cart(1,:,ss_ind) = millerbravaisplane2cart(ss_grA(1,:,ss_ind), lattice_parameters_A(1));
-                ss_cart(2,:,ss_ind) = millerbravaisdir2cart(ss_grA(2,:,ss_ind), lattice_parameters_A(1));
-                ss_cart_norm(1,:,ss_ind) = ss_cart(1,:,ss_ind)/norm(ss_cart(1,:,ss_ind));
-                ss_cart_norm(2,:,ss_ind) = ss_cart(2,:,ss_ind)/norm(ss_cart(2,:,ss_ind));
-            end
-        else
-            for ss_ind = 1:size(ss_grA, 3)
-                ss_cart(1,:,ss_ind) = ss_grA(1,:,ss_ind);
-                ss_cart(2,:,ss_ind) = ss_grA(2,:,ss_ind);
-                ss_cart_norm(1,:,ss_ind) = ss_cart(1,:,ss_ind)/norm(ss_cart(1,:,ss_ind));
-                ss_cart_norm(2,:,ss_ind) = ss_cart(2,:,ss_ind)/norm(ss_cart(2,:,ss_ind));
-            end
-        end
-    end
-end
-guidata(gcf, gui);
+[gui.calculations.vectA, gui.GB.eulerA, gui.GB.sortbvA] = plotGB_Bicrystal_vector_calculations(9, gui.GB.GrainA, gui.GB.Material_A,...
+    gui.GB.Phase_A, gui.GB.eulerA_ori, gui.handles.getEulangGrA,...
+    gui.stress_tensor.bc_sigma, gui.flag.error);
 
-if gui.flag.error == 0
-    if lattice_parameters_A(1) ~= 0
-        % Preallocation
-        sortbvA   = NaN(size(ss_grA, 3), 15, gui.GB.GrainA);
-        slip_vecA = NaN(size(ss_grA, 3), 15);
-        vectA     = NaN(size(ss_grA, 3), 16, gui.GB.GrainA);
-        g_A       = NaN(3, 3, gui.GB.GrainA);
-        
-        for ig = gui.GB.GrainA
-            % Setting of Euler angles
-            guidata(gcf, gui);
-            gui.GB.eulerA = plotGB_Bicrystal_update_euler(gui.GB.eulerA_ori, gui.handles.getEulangGrA);
-            gui = guidata(gcf);
-            g_A(:,:,ig) = eulers2g(gui.GB.eulerA);
-            
-            for ii = 1:1:size(ss_grA, 3)
-                slip_vecA(ii,1:3) = g_A(:,:,ig).'*ss_cart_norm(1,1:3,ii)';     % Plane normal (n vector normalized)
-                slip_vecA(ii,4:6) = g_A(:,:,ig).'*ss_cart_norm(2,1:3,ii)';     % Slip direction (b vector normalized)
-                % Generalized Schmid Factor
-                slip_vecA(ii,7)   = generalized_schmid_factor(ss_cart_norm(1,:,ii), ss_cart_norm(2,:,ii), gui.stress_tensor.bc_sigma, g_A(:,:,ig));
-                if isnan(slip_vecA(ii,7))
-                    slip_vecA(ii,8) = 0;
-                else
-                    slip_vecA(ii,8) = abs(slip_vecA(ii,7));                    % Abs(Generalized Schmid Factor)
-                end
-                slip_vecA(ii,9) = ii;                                          % Index of slip (number from 1 to 57 for hcp)
-                slip_vecA(ii,10:12) = ss_cart(2,1:3,ii);                       % Slip direction (b vector non normalized)
-                slip_vecA(ii,13:15) = -ss_cart(2,1:3,ii);                      % Slip direction (b vector non normalized and in the opposite direction)
-            end
-            sortbvA(:,:,ig)  = sortrows(slip_vecA, -8);                        % Sort slip systems by Generalized Schimd factor
-            gui.calculations.vectA(:,1:15,ig) = slip_vecA;                     % Matrix with slip systems, Burgers vectors, index of slips for GrainA...
-            gui.calculations.vectA(:,16,ig)   = size(ss_grA, 3);
-            gui.calculations.vectA(:,17,ig)   = sortbvA(:,8,ig);               % Highest Generalized Schmid Factor
-        end
-    end
-end
-guidata(gcf, gui);
+[gui.calculations.vectB, gui.GB.eulerB, gui.GB.sortbvA] = plotGB_Bicrystal_vector_calculations(9, gui.GB.GrainB, gui.GB.Material_B,...
+    gui.GB.Phase_B, gui.GB.eulerB_ori, gui.handles.getEulangGrB,...
+    gui.stress_tensor.bc_sigma, gui.flag.error);
 
-if gui.flag.error == 0
-    %% Vectors calculation for GrainB
-    for ig = gui.GB.GrainB                                                     % Loop to set GrainB properties (identity, Euler angles, position)
-        clear sortbvB lattice_parameters ss ss_cart ss_cart_norm slip_vec;
-        lattice_parameters_B = latt_param(gui.GB.Material_B, gui.GB.Phase_B);  % Get the lattice parameter for GrainB
-        if lattice_parameters_B(1) == 0
-            errordlg('Wrong input for material and structure !!!');
-            gui.flag.error = 1;
-        end
-        
-        if gui.flag.error == 0
-            ss_grB = slip_systems(gui.GB.Phase_B); % listslipB (see plotGB_Bicrystal_mprime_calculator_bc)
-            if strcmp(gui.GB.Phase_B, 'hcp') == 1
-                for ss_ind = 1:size(ss_grB, 3)
-                    ss_cart(1,:,ss_ind) = millerbravaisplane2cart(ss_grB(1,:,ss_ind), lattice_parameters_B(1));
-                    ss_cart(2,:,ss_ind) = millerbravaisdir2cart(ss_grB(2,:,ss_ind), lattice_parameters_B(1));
-                    ss_cart_norm(1,:,ss_ind) = ss_cart(1,:,ss_ind)/norm(ss_cart(1,:,ss_ind));
-                    ss_cart_norm(2,:,ss_ind) = ss_cart(2,:,ss_ind)/norm(ss_cart(2,:,ss_ind));
-                end
-            else
-                for ss_ind = 1:size(ss_grB, 3)
-                    ss_cart(1,:,ss_ind) = ss_grB(1,:,ss_ind);
-                    ss_cart(2,:,ss_ind) = ss_grB(2,:,ss_ind);
-                    ss_cart_norm(1,:,ss_ind) = ss_cart(1,:,ss_ind)/norm(ss_cart(1,:,ss_ind));
-                    ss_cart_norm(2,:,ss_ind) = ss_cart(2,:,ss_ind)/norm(ss_cart(2,:,ss_ind));
-                end
-            end
-        end
-    end
-    
-    guidata(gcf, gui);
-    
-    if ~gui.flag.error
-        if lattice_parameters_B(1) ~= 0
-            % Preallocation
-            sortbvB   = NaN(size(ss_grB, 3), 15, gui.GB.GrainB);
-            slip_vecB = NaN(size(ss_grB, 3), 15);
-            vectB     = NaN(size(ss_grB, 3), 16, gui.GB.GrainB);
-            g_B         = NaN(3, 3, gui.GB.GrainB);
-            
-            for ig = gui.GB.GrainB
-                % Setting of Euler angles
-                guidata(gcf, gui);
-                gui.GB.eulerB = plotGB_Bicrystal_update_euler(gui.GB.eulerB_ori, gui.handles.getEulangGrB);
-                gui = guidata(gcf);
-                g_B(:,:,ig) = eulers2g(gui.GB.eulerB);
-                
-                for ii = 1:1:size(ss_grB, 3)
-                    slip_vecB(ii,1:3) = g_B(:,:,ig).'*ss_cart_norm(1,1:3,ii)';     % Plane normal (n vector normalized)
-                    slip_vecB(ii,4:6) = g_B(:,:,ig).'*ss_cart_norm(2,1:3,ii)';     % Slip direction (b vector normalized)
-                    % Generalized Schmid Factor
-                    slip_vecB(ii,7)   = generalized_schmid_factor(ss_cart_norm(1,:,ii), ss_cart_norm(2,:,ii), gui.stress_tensor.bc_sigma, g_B(:,:,ig));
-                    if isnan(slip_vecB(ii,7))
-                        slip_vecB(ii,8) = 0;
-                    else
-                        slip_vecB(ii,8) = abs(slip_vecB(ii,7));                    % Abs(Generalized Schmid Factor)
-                    end
-                    slip_vecB(ii,9) = ii;                                          % Index of slip (number from 1 to 57 for hcp)
-                    slip_vecB(ii,10:12) = ss_cart(2,1:3,ii);                       % Slip direction (b vector non normalized)
-                    slip_vecB(ii,13:15) = -ss_cart(2,1:3,ii);                      % Slip direction (b vector non normalized and in the opposite direction)
-                end
-                sortbvB(:,:,ig)  = sortrows(slip_vecB, -8);                        % Sort slip systems by Generalized Schimd factor
-                gui.calculations.vectB(:,1:15,ig) = slip_vecB;                     % Matrix with slip systems, Burgers vectors, index of slips for grain B...
-                gui.calculations.vectB(:,16,ig)   = size(ss_grB, 3);
-                gui.calculations.vectB(:,17,ig)   = sortbvB(:,8,ig);               % Highest Generalized Schmid Factor
-            end
-        end
-    end
-end
 guidata(gcf, gui);
 
 if gui.flag.error == 0
@@ -161,7 +32,7 @@ if gui.flag.error == 0
     for jj = 1:1:gui.calculations.vectB(1,16,gui.GB.GrainB)
         for kk = 1:1:gui.calculations.vectA(1,16,gui.GB.GrainA)
             
-            if get(gui.handles.pmchoicecase, 'Value') < 8 || get(gui.handles.pmchoicecase, 'Value') > 28 % To speed up calculations
+            if get(gui.handles.pmchoicecase, 'Value') < 8 || get(gui.handles.pmchoicecase, 'Value') > 29 % To speed up calculations
                 % m prime (Luster and Morris) (abs value)
                 gui.calculations.mprime_val_bc_all(jj,kk) = mprime(gui.calculations.vectA(kk,1:3,gui.GB.GrainA), gui.calculations.vectA(kk,4:6,gui.GB.GrainA), ...
                     gui.calculations.vectB(jj,1:3,gui.GB.GrainB), gui.calculations.vectB(jj,4:6,gui.GB.GrainB));
@@ -198,10 +69,6 @@ if gui.flag.error == 0
                 % LRB paramter (Shen) (abs value)
                 gui.calculations.LRB_val_bc_all(jj,kk) = LRB_parameter(cross(gui.GB_geometry.d_gb,gui.calculations.vectA(kk,4:6,gui.GB.GrainA)), gui.calculations.vectA(kk,4:6,gui.GB.GrainA), ...
                     cross(gui.GB_geometry.d_gb,gui.calculations.vectB(jj,4:6,gui.GB.GrainB)), gui.calculations.vectB(jj,4:6,gui.GB.GrainB));
-                
-            elseif get(gui.handles.pmchoicecase, 'Value') == 29
-                %             % GB Schmid Factor (Abuzaid) % Done in plotGB_Bicrystal_mprime_calculator_bc
-                %             GB_Schmid_Factor_max = gui.calculations.vectA(1,17,gui.GB.GrainA) + gui.calculations.vectB(1,17,gui.GB.GrainB);
                 
             end
         end

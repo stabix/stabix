@@ -15,9 +15,10 @@ gui.module_name = 'preCPFE';
 
 config_files_dir = fullfile(get_stabix_root, 'YAML_config_files', ''); %in the same folder as default config. files
 gui.config_CPFEM_user = sprintf('config_CPFEM_%s.yaml', gui.config.username);
-% FIXME ==> not the same in GitHub and MWN2 repos
-gui.config_CPFEM_user_full = fullfile(config_files_dir, gui.config_CPFEM_user);
-%gui.config_CPFEM_user_full = fullfile(config_files_dir, gui.config.username, gui.config_CPFEM_user);
+gui.config_CPFEM_user_full = fullfile(config_files_dir, gui.config.username, gui.config_CPFEM_user);
+% use the next line in case YAML user config. files are in the same folder
+% as defaults YAML config files...
+%gui.config_CPFEM_user_full = fullfile(config_files_dir, gui.config_CPFEM_user);
 
 config_CPFEM_file = 'config_CPFEM_defaults.yaml';
 gui.defaults = ReadYaml(config_CPFEM_file);

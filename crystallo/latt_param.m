@@ -172,6 +172,7 @@ if ~flag_error
     else
         c = 0; a = 1;
         warning('Given material and given structure don''t match...');
+        beep;
     end
     
     lattice_parameters = [c/a c a];

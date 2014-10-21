@@ -6,9 +6,9 @@ function SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREEN
 % SCREENSHOT_NUM : Number of the screenshot if sequential screenshots...
 
 if nargin == 0
-SCREENSHOT = strcat(date_time_string, 'screenshots');
-SCREENSHOT_DIR = cd;
-SCREENSHOT_NUM = 0;
+    SCREENSHOT = strcat(date_time_string, 'screenshots');
+    SCREENSHOT_DIR = cd;
+    SCREENSHOT_NUM = 0;
 end
 
 if SCREENSHOT

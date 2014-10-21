@@ -156,10 +156,14 @@ else
     clear slipA_user_spec slipB_user_spec slipA_inv slipB_inv
     specific_slips_AB = plotGB_Bicrystal_slip_user_def(slipA_all_vect, slipB_all_vect);
     if specific_slips_AB(1) == 0
-        warndlg('Wrong inputs for slip system in grain A !')
+        %warndlg('Wrong inputs for slip system in grain A !', 'Warning');
+        warning('Wrong inputs for slip system in grain A !');
+        beep;
     end
     if specific_slips_AB(2) == 0
-        warndlg('Wrong inputs for slip system in grain B !')
+        %warndlg('Wrong inputs for slip system in grain B !', 'Warning');
+        warning('Wrong inputs for slip system in grain A !');
+        beep;
     end
     
     gui.GB.slipA_user_spec = abs(specific_slips_AB(1));
