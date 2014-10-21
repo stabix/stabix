@@ -10,7 +10,8 @@ configYAML = sprintf('config_gui_EBSDmap_%s.yaml', username);
 
 if ~exist(configYAML, 'file')
     warndlg_str = strcat('YAML config file not found for the user : ', username, ' ! Create your YAML config file and load it from the menu...');
-    warndlg(warndlg_str, 'File Error');
+    %warndlg(warndlg_str, 'File Error');
+    warning(warndlg_str);
     config_map = ReadYaml('config_gui_EBSDmap_defaults.yaml');
     config_map.default_grain_file_type2              = 'validation_grain_file_type2.txt';
     config_map.default_reconstructed_boundaries_file = 'validation_reconstructed_boundaries.txt';

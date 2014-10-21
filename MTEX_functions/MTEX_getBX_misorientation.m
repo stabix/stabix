@@ -65,7 +65,8 @@ if nargin < 1
 end
 
 if nargin == 1
-    warndlg('Missing inputs !');
+    warndlg('Missing inputs !', 'Warning');
+    warning('Missing inputs !');
     return
     
 end

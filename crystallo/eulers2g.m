@@ -34,7 +34,7 @@ g_mat(3,3) = c;
 
 if isrot(g_mat) == true
     return
-else 
+else
     warning('Not a rotation matrix');
 end
 

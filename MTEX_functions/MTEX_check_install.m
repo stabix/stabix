@@ -9,7 +9,7 @@ try
     installation_mtex = 1;
 catch
     %warndlg('MTEX not installed or check_mtex not found/failing!');
-    warning('MTEX not installed or check_mtex not found/failing!')
+    warning('MTEX not installed or check_mtex not found/failing!');
     disp('Proceeding without MTEX functionalities...');
     installation_mtex = 0;
 end

@@ -18,7 +18,7 @@ To have more details about the use of the toolbox, please have a look to :
 
    README.txt
 
-Then, in order to set search paths for Matlab, run the |matlab| script :
+Then, run the followin |matlab| script and answer 'y' or 'yes' to add path to the |matlab| search paths :
 
 .. code-block:: matlab
 
