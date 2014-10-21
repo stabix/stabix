@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function open_file_RB
+function open_file_RB(starting_folder, varargin)
 %% Function used to open Reconstructed Boundaries file (from TSL-OIM)
 %% Reconstructed Boundaries file                                                         x axis or TD Direction (Transverse)
 % # Column 1-3:    right hand average orientation (phi1, PHI, phi2 in radians)       ---->
@@ -15,8 +15,14 @@ function open_file_RB
 
 % authors: c.zambaldi@mpie.de / d.mercier@mpie.de
 
+if nargin == 0
+    starting_folder = fullfile(getenv('SLIP_TRANSFER_TBX_ROOT'), 'gui_ebsd_map', 'EBSD_data_Examples');
+end
+
 %% Get data from the GUI
 gui = guidata(gcf);
+
+cd(starting_folder);
 
 %% FileRB loading
 [filenameRB, pathnameRB] = uigetfile([gui.config_map.TSLOIM_data_path_GF2, '.txt'], 'Select the ''Reconstructed Boundary'' file');
@@ -44,7 +50,8 @@ gui.config_map.pathname_reconstructed_boundaries_file = pathnameRB;
 
 gui.flag.newDataFlag = 1;
 
-
 guidata(gcf, gui);
+
+cd(getenv('SLIP_TRANSFER_TBX_ROOT'));
 
 end

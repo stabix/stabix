@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function open_file_GF2
+function open_file_GF2(starting_folder, varargin)
 %% Function used to open Grain File Type 2 (from TSL-OIM)
 %% Grain File Type 2
 % # Column 1: Integer identifying grain
@@ -14,8 +14,14 @@ function open_file_GF2
 
 % authors: c.zambaldi@mpie.de / d.mercier@mpie.de
 
+if nargin == 0
+    starting_folder = fullfile(getenv('SLIP_TRANSFER_TBX_ROOT'), 'gui_ebsd_map', 'EBSD_data_Examples');
+end
+
 %% Get data from the GUI
 gui = guidata(gcf);
+
+cd(starting_folder);
 
 %% FileGF2 loading
 [filenameGF2, pathnameGF2] = uigetfile([gui.config_map.TSLOIM_data_path_GF2, '.txt'], 'Select the ''Grain File Type 2'' file');
@@ -44,5 +50,7 @@ gui.config_map.pathname_grain_file_type2 = pathnameGF2;
 gui.flag.newDataFlag = 1;
 
 guidata(gcf, gui);
+
+cd(getenv('SLIP_TRANSFER_TBX_ROOT'));
 
 end
