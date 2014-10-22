@@ -30,8 +30,8 @@ import os
 # ones.
 extensions = [
     'sphinx.ext.mathjax',
-    'sphinxcontrib.bibtex', #http://sphinxcontrib-bibtex.readthedocs.org/en/latest/
 ]
+#    'sphinxcontrib.bibtex', #http://sphinxcontrib-bibtex.readthedocs.org/en/latest/
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
