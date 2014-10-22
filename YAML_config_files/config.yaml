@@ -17,10 +17,10 @@ version_year: '2014'
 matlab_opengl: software
 
 # Path for the documentation (html)
-doc_path_root: 'http://zambaldi.de/software/stabix/'
+doc_path_root: 'http://stabix.readthedocs.org/en/latest/'
 
 # Path for the documentation (pdf)
-doc_path_pdf: 'STABiX_doc.pdf'
+doc_path_pdf: 'http://zambaldi.de/software/stabix/STABiX_doc.pdf'
 
 # Path for bicrystal convention
 doc_path_BXconv_png: '_images/Bicrystal_conventions.png'

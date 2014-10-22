@@ -11,5 +11,5 @@ uimenu(help_menu, 'Label', 'HTML Documentation', ...
     'Callback', 'gui = guidata(gcf); webbrowser(gui.config.doc_path_root)');
 
 uimenu(help_menu, 'Label', 'Download PDF Documentation', ...
-    'Callback', 'gui = guidata(gcf); webbrowser(fullfile(gui.config.doc_path_root, gui.config.doc_path_pdf));');
+    'Callback', 'gui = guidata(gcf); webbrowser(gui.config.doc_path_pdf);');
 end
