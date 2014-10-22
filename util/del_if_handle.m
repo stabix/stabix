@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function err = del_if_handle(h)
+%% Function to evaluate handle
 % h: string of the handle variable name
 
 try
@@ -7,5 +8,5 @@ try
         eval('delete(h)');
     end
 catch err
-    
+    display(err.message);
 end

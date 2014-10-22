@@ -18,5 +18,3 @@ titlegbdata = strcat(...
         '_',timestamp);
 
 end
-
-
