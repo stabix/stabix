@@ -3,7 +3,7 @@
 
 To get started with STABiX, clone the repository, then run Matlab, and cd into the folder containing this README file. Then add the package path to the Matlab search path by typing "path_management".
 Finally you can start the launcher by typing "demo" at the Matlab command prompt.
-See the full documentation at http://czam.de/software/stabix .
+See the full documentation at stabix.readthedocs.org .
 
 Authors
 -------
