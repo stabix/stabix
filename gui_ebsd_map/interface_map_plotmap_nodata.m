@@ -52,7 +52,7 @@ if get(gui.handles.cbphase, 'Value') == 1 && get(gui.handles.cbunitcell, 'Value'
     set(gui.handles.h_phase_txt, 'FontWeight', 'bold');
 end
 
-%% Lgend of phases
+%% Legend of phases
 % Legend for phases (Alternative solution)
 % try
 %     delete(gui.handles.LegendPhaseAxis);

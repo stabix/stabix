@@ -7,6 +7,7 @@ function gui = plotGB_Bicrystal_init
 get_stabix_root;
 
 %% Set the GUI
+gui.config = struct();
 gui.config = load_YAML_config_file;
 gui.config.username = get_username;
 

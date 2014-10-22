@@ -1,6 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-%% Script used to get date and time as a string
 function timestamp = date_time_string(date, time, varargin)
+%% Function used to get date and time as a string
 % date : Current date
 % time : Current time
 
@@ -18,17 +18,17 @@ isodate = datestr(now, 'yyyy-mm-dd');
 
 if h < 10 && mn < 10 && s < 10
     time_str = sprintf('%ih%im%is',h,mn,round(s));
-elseif h<10 && s<10
+elseif h < 10 && s < 10
     time_str = sprintf('%ih%2im%is',h,mn,round(s));
-elseif mn<10 && s<10
+elseif mn < 10 && s < 10
     time_str = sprintf('%ih%2im%2is',h,mn,round(s));
-elseif s<10
+elseif s < 10
     time_str = sprintf('%2ih%2im%is',h,mn,round(s));
-elseif h<10 && mn<10
+elseif h < 10 && mn < 10
     time_str = sprintf('%ih%im%2is',h,mn,round(s));
-elseif h<10
+elseif h < 10
     time_str = sprintf('%ih%2im%2is',h,mn,round(s));
-elseif mn<10
+elseif mn < 10
     time_str = sprintf('%2ih%im%2is',h,mn,round(s));
 else
     time_str = sprintf('%2ih%2im%2is',h,mn,round(s));

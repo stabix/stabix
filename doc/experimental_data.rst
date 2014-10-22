@@ -84,7 +84,7 @@ Scan Data (.ang file)
 
 **Export "Scan Data (.ang file)" of the cleaned dataset** (Filename |rarr| Export |rarr| Scan Data) (optional).
 
-This .ang file is useful for the `MTEX Toolbox v4.0 <https://code.google.com/p/mtex/>`_
+This .ang file is useful for the `MTEX Toolbox v4.0 <http://mtex-toolbox.github.io/>`_
 
 Errors introduced during files exportation from TSL
 ---------------------------------------------------

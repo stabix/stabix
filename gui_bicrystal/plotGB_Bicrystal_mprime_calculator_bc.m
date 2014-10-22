@@ -21,57 +21,61 @@ guidata(gcf, gui);
 
 %% m', residual Burgers vector, N-factor and SF(GB) calculations
 gui = guidata(gcf);
-gui.flag.flag_dir_vectA = NaN(gui.calculations.vectB(1,9,gui.GB.GrainB), gui.calculations.vectA(1,9,gui.GB.GrainA));           % Preallocation
-gui.flag.flag_dir_vectB = NaN(gui.calculations.vectB(1,9,gui.GB.GrainB), gui.calculations.vectA(1,9,gui.GB.GrainA));           % Preallocation
 
-for jj = 1:1:gui.calculations.vectB(1,16,gui.GB.GrainB)
-    for kk = 1:1:gui.calculations.vectA(1,16,gui.GB.GrainA)
-        
-        if get(gui.handles.pmchoicecase, 'Value') < 8
+if get(gui.handles.pmchoicecase, 'Value') < 8
+    gui.calculations.mprime_val_bc = zeros(gui.calculations.vectB(1,9,gui.GB.GrainB), gui.calculations.vectA(1,9,gui.GB.GrainA));
+    for jj = 1:1:gui.calculations.vectB(1,16,gui.GB.GrainB)
+        for kk = 1:1:gui.calculations.vectA(1,16,gui.GB.GrainA)
             % m prime (Luster and Morris)
             gui.calculations.mprime_val_bc(jj,kk) = mprime(gui.calculations.vectA(kk,1:3,gui.GB.GrainA), gui.calculations.vectA(kk,4:6,gui.GB.GrainA), ...
                 gui.calculations.vectB(jj,1:3,gui.GB.GrainB), gui.calculations.vectB(jj,4:6,gui.GB.GrainB));
-            
-        elseif get(gui.handles.pmchoicecase, 'Value') > 7 && get(gui.handles.pmchoicecase, 'Value') < 15
+        end
+    end
+elseif get(gui.handles.pmchoicecase, 'Value') > 7 && get(gui.handles.pmchoicecase, 'Value') < 15
+    gui.calculations.residual_Burgers_vector_val_bc = zeros(gui.calculations.vectB(1,9,gui.GB.GrainB), gui.calculations.vectA(1,9,gui.GB.GrainA));
+    for jj = 1:1:gui.calculations.vectB(1,16,gui.GB.GrainB)
+        for kk = 1:1:gui.calculations.vectA(1,16,gui.GB.GrainA)
             % residual Burgers vector
             rbv_bc_val(1) = residual_Burgers_vector(gui.calculations.vectA(kk,10:12,gui.GB.GrainA), gui.calculations.vectB(jj,10:12,gui.GB.GrainB), gui.GB.eulerA, gui.GB.eulerB);
             rbv_bc_val(2) = residual_Burgers_vector(gui.calculations.vectA(kk,13:15,gui.GB.GrainA), gui.calculations.vectB(jj,10:12,gui.GB.GrainB), gui.GB.eulerA, gui.GB.eulerB);
             %rbv_bc_val(3) = residual_Burgers_vector(gui.calculations.vectA(kk,10:12,GB.GrainA), gui.calculations.vectB(jj,13:15,GB.GrainB), GB.eulerA, GB.eulerB);
             %rbv_bc_val(4) = residual_Burgers_vector(gui.calculations.vectA(kk,13:15,GB.GrainA), gui.calculations.vectB(jj,13:15,GB.GrainB), GB.eulerA, GB.eulerB);
             gui.calculations.residual_Burgers_vector_val_bc(jj,kk) = min(rbv_bc_val);
-            ind = find(rbv_bc_val == min(min(rbv_bc_val)));
-            
-            % useful for plot of slip direction in the function
-            % 'plotGB_Bicrystal_plot_lattices'
-            if ind == 1
-                gui.flag.flag_dir_vectA(jj,kk) = 0;
-                gui.flag.flag_dir_vectB(jj,kk) = 0;
-            elseif ind == 0
-                gui.flag.flag_dir_vectA(jj,kk) = 1;
-                gui.flag.flag_dir_vectB(jj,kk) = 0;
-                %             elseif ind == 3
-                %                 flag_dir_gui.calculations.vectA(jj,kk) = 0;
-                %                 flag_dir_gui.calculations.vectB(jj,kk) = 1;
-                %             elseif ind == 4
-                %                 flag_dir_gui.calculations.vectA(jj,kk) = 1;
-                %                 flag_dir_gui.calculations.vectB(jj,kk) = 1;
-            end
-            
-        elseif get(gui.handles.pmchoicecase, 'Value') > 14 && get(gui.handles.pmchoicecase, 'Value') < 22
+        end
+    end
+elseif get(gui.handles.pmchoicecase, 'Value') > 14 && get(gui.handles.pmchoicecase, 'Value') < 22
+    gui.calculations.n_fact_val_bc = zeros(gui.calculations.vectB(1,9,gui.GB.GrainB), gui.calculations.vectA(1,9,gui.GB.GrainA));
+    for jj = 1:1:gui.calculations.vectB(1,16,gui.GB.GrainB)
+        for kk = 1:1:gui.calculations.vectA(1,16,gui.GB.GrainA)
             % N factor (Livingston and Chamlers)
             gui.calculations.n_fact_val_bc(jj,kk) = N_factor(gui.calculations.vectA(kk,1:3,gui.GB.GrainA), gui.calculations.vectA(kk,4:6,gui.GB.GrainA), ...
                 gui.calculations.vectB(jj,1:3,gui.GB.GrainB), gui.calculations.vectB(jj,4:6,gui.GB.GrainB));
-            
-        elseif get(gui.handles.pmchoicecase, 'Value') > 21 && get(gui.handles.pmchoicecase, 'Value') < 29
+        end
+    end
+elseif get(gui.handles.pmchoicecase, 'Value') > 21 && get(gui.handles.pmchoicecase, 'Value') < 29
+    gui.calculations.LRB_val_bc = zeros(gui.calculations.vectB(1,9,gui.GB.GrainB), gui.calculations.vectA(1,9,gui.GB.GrainA));
+    for jj = 1:1:gui.calculations.vectB(1,16,gui.GB.GrainB)
+        for kk = 1:1:gui.calculations.vectA(1,16,gui.GB.GrainA)
             % LRB paramter (Shen)
             gui.calculations.LRB_val_bc(jj,kk) = LRB_parameter(cross(gui.GB_geometry.d_gb,gui.calculations.vectA(kk,4:6,gui.GB.GrainA)), gui.calculations.vectA(kk,4:6,gui.GB.GrainA), ...
                 cross(gui.GB_geometry.d_gb,gui.calculations.vectB(jj,4:6,gui.GB.GrainB)), gui.calculations.vectB(jj,4:6,gui.GB.GrainB));
-            
-        elseif get(gui.handles.pmchoicecase, 'Value') == 29
+        end
+    end
+elseif get(gui.handles.pmchoicecase, 'Value') == 29
+    gui.calculations.GB_Schmid_Factor_max = 0;
+    for jj = 1:1:gui.calculations.vectB(1,16,gui.GB.GrainB)
+        for kk = 1:1:gui.calculations.vectA(1,16,gui.GB.GrainA)
             % GB Schmid Factor (Abuzaid)
             gui.calculations.GB_Schmid_Factor_max = gui.calculations.vectA(1,17,gui.GB.GrainA) + gui.calculations.vectB(1,17,gui.GB.GrainB);
-            
-        elseif get(gui.handles.pmchoicecase, 'Value') > 29
+        end
+    end
+elseif get(gui.handles.pmchoicecase, 'Value') > 29
+    gui.calculations.mprime_val_bc = zeros(gui.calculations.vectB(1,9,gui.GB.GrainB), gui.calculations.vectA(1,9,gui.GB.GrainA));
+    gui.calculations.residual_Burgers_vector_val_bc = zeros(gui.calculations.vectB(1,9,gui.GB.GrainB), gui.calculations.vectA(1,9,gui.GB.GrainA));
+    gui.calculations.n_fact_val_bc = zeros(gui.calculations.vectB(1,9,gui.GB.GrainB), gui.calculations.vectA(1,9,gui.GB.GrainA));
+    gui.calculations.LRB_val_bc = zeros(gui.calculations.vectB(1,9,gui.GB.GrainB), gui.calculations.vectA(1,9,gui.GB.GrainA));
+    for jj = 1:1:gui.calculations.vectB(1,16,gui.GB.GrainB)
+        for kk = 1:1:gui.calculations.vectA(1,16,gui.GB.GrainA)
             gui.calculations.mprime_val_bc(jj,kk) = mprime(gui.calculations.vectA(kk,1:3,gui.GB.GrainA), gui.calculations.vectA(kk,4:6,gui.GB.GrainA), ...
                 gui.calculations.vectB(jj,1:3,gui.GB.GrainB), gui.calculations.vectB(jj,4:6,gui.GB.GrainB));
             rbv_bc_val(1) = residual_Burgers_vector(gui.calculations.vectA(kk,10:12,gui.GB.GrainA), gui.calculations.vectB(jj,10:12,gui.GB.GrainB), gui.GB.eulerA, gui.GB.eulerB);
@@ -82,7 +86,6 @@ for jj = 1:1:gui.calculations.vectB(1,16,gui.GB.GrainB)
             gui.calculations.LRB_val_bc(jj,kk) = LRB_parameter(cross(gui.GB_geometry.d_gb,gui.calculations.vectA(kk,4:6,gui.GB.GrainA)), gui.calculations.vectA(kk,4:6,gui.GB.GrainA), ...
                 cross(gui.GB_geometry.d_gb,gui.calculations.vectB(jj,4:6,gui.GB.GrainB)), gui.calculations.vectB(jj,4:6,gui.GB.GrainB));
         end
-        
     end
 end
 

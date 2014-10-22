@@ -8,7 +8,7 @@ function misorientation = MTEX_getBX_misorientation(ori_grainA, ori_grainB, vara
 % misorientation angle distribution based on two-dimensional experimental texture measurements",
 % Materials Science and Engineering, 2010, pp. 5604–5612.
 
-% See in http://code.google.com/p/mtex/
+% See in http://mtex-toolbox.github.io/
 
 % ori_grainA / ori_grainB : defines an orientation (see MTEX documentation)
 %
@@ -47,34 +47,21 @@ function misorientation = MTEX_getBX_misorientation(ori_grainA, ori_grainB, vara
 % author: d.mercier@mpie.de
 
 if nargin < 2
-    try
-        ori_grainB = orientation('Euler', 0.7854, 0.7854, 0.7854, 'hexagonal');
-        display(ori_grainB);
-    catch
-        display('MTEX not installed');
-    end
+    ori_grainB = orientation('Euler', 0.7854, 0.7854, 0.7854, 'hexagonal');
+    display(ori_grainB);
 end
 
 if nargin < 1
-    try
-        ori_grainA = orientation('Euler', 0, 0, 0, 'hexagonal');
-        display(ori_grainA)
-    catch
-        display('MTEX not installed');
-    end
+    ori_grainA = orientation('Euler', 0, 0, 0, 'hexagonal');
+    display(ori_grainA)
 end
 
 if nargin == 1
-    warndlg('Missing inputs !', 'Warning');
     warning('Missing inputs !');
     return
-    
 end
 
 % Calculation of misorientation (in degrees)
-try
-    misorientation = angle(ori_grainA, ori_grainB)*180/pi;
-catch
-    display('MTEX not installed or wrong inputs');
-end
+misorientation = angle(ori_grainA, ori_grainB)*180/pi;
+
 end

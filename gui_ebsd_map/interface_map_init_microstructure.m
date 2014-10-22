@@ -57,8 +57,8 @@ sGF2 = size(GF2);
 gui.grains = struct();
 
 % Loop to set grains properties (identity, Euler angles, position)
-gui.grcen  = NaN(max(GF2(:,1)), 6);
-materials  = cellstr(num2str((NaN(1,sGF2(1))')));%{['']}%nan(sGF2(1),1);
+gui.grcen  = zeros(max(GF2(:,1)), 6);
+materials  = cellstr(num2str((zeros(1,sGF2(1))')));%{['']}%nan(sGF2(1),1);
 structures = materials;
 slip_defs  = {zeros(1,sGF2(1))};
 
@@ -147,10 +147,10 @@ set(gui.handles.GB_totalnumber_value, 'String', num2str(sRB(1)));
 set(gui.handles.Grain_totalnumber_value, 'String', num2str(size(GF2,1))); %Different of max(GF2(:,1))
 
 %% Fill gui.GBs
-grsA       = NaN(sRB(1),1);
-grsB       = NaN(sRB(1),1);
-grAphs     = NaN(sRB(1),1);
-grBphs     = NaN(sRB(1),1);
+grsA       = zeros(sRB(1),1);
+grsB       = zeros(sRB(1),1);
+grAphs     = zeros(sRB(1),1);
+grBphs     = zeros(sRB(1),1);
 
 ind_9_12   = gui.RB_struct.col_idx.GB_XY;
 ind_13_14  = gui.RB_struct.col_idx.GRAIN_ID;

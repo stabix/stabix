@@ -24,7 +24,7 @@ if nargin == 0
     eulers = randBunges;
 end
 
-g = eulers2g(eulers); % Calcualtion of the rotation matrix
+g = eulers2g(eulers); % Calculation of the rotation matrix
 
 if testFlag
         lattice_parameters = latt_param('Ti', 'hcp');
