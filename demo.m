@@ -13,11 +13,33 @@ if isempty(getenv('SLIP_TRANSFER_TBX_ROOT')) == 1
     return
 end
 
-% Check if MTEX is installed
-gui.flag.installation_mtex = MTEX_check_install;
-
 [startdir, f, ext] = fileparts(mfilename('fullpath'));
 cd(startdir);
+
+%% Check if MTEX is installed
+if ishandle(1) 
+    gui_main = guidata(1);
+    if isfield(gui_main, 'flag')
+        if isfield(gui_main.flag, 'installation_mtex')
+            if gui_main.flag.installation_mtex == 1
+                gui_main_flag = 1;
+                gui.flag.installation_mtex = 1;
+            else
+                gui_main_flag = 0;
+            end
+        else
+            gui_main_flag = 0;
+        end
+    else
+        gui_main_flag = 0;
+    end
+else
+    gui_main_flag = 0;
+end
+
+if ~gui_main_flag
+    gui.flag.installation_mtex = MTEX_check_install;
+end
 
 %% Set Matlab
 gui.config = load_YAML_config_file;

@@ -272,7 +272,7 @@ if gui.flag.flag_lattice == 1
                 bins = round(10000*linspace(minval, maxval, 5))/10000;
             end
             
-            Colorgb = NaN(size(RB,1), 1);
+            Colorgb = zeros(size(RB,1), 1);
             for gbnum = 1:1:size(RB,1)
                 if gui.calculations.func2plot(gbnum) >= minval && gui.calculations.func2plot(gbnum) <= maxval
                     step_vec = (gui.calculations.func2plot(gbnum) - minval);
@@ -335,6 +335,7 @@ if gui.flag.flag_lattice == 1
             structure_1 = gui.config_data.struct1;
             slip_color_1 = cell2mat(get_slip_color(structure_1, 100));
             slip_legend_1 = get_slip_legend(structure_1, 100);
+            h_slip1 = zeros(1,length(slip_color_1));
             for ii = 1:length(slip_color_1)
                 h_slip1(ii) = plot(0,0, 'Color', slip_color_1(ii,:), 'Linewidth', szFac/3);
             end
@@ -351,6 +352,8 @@ if gui.flag.flag_lattice == 1
             slip_color_2 = cell2mat(get_slip_color(structure_2, 100));
             slip_legend_1 = get_slip_legend(structure_1, 100);
             slip_legend_2 = get_slip_legend(structure_2, 100);
+            h_slip1 = zeros(1,length(slip_color_1));
+            h_slip2 = zeros(1,length(slip_color_1));
             for ii = 1:length(slip_color_1)
                 h_slip1(ii) = plot(0,0, 'Color', slip_color_1(ii,:), 'Linewidth', 5);
             end

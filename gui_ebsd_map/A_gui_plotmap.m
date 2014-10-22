@@ -13,8 +13,8 @@ end
 %% Set GUI
 gui = interface_map_init;
 
-% Check if MTEX is installed
-try
+%% Check if MTEX is installed
+if ishandle(1) 
     gui_main = guidata(1);
     if isfield(gui_main, 'flag')
         if isfield(gui_main.flag, 'installation_mtex')
@@ -30,9 +30,8 @@ try
     else
         gui_main_flag = 0;
     end
-catch err
+else
     gui_main_flag = 0;
-    display(err.message);
 end
 
 if ~gui_main_flag

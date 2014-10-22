@@ -32,11 +32,8 @@ elseif button_type == 2
         
         timestamp = date_time_string(1, 1);
         
-        if ismac || isunix
-            mkdir([pathname_random_TSL_files, ':', [timestamp, '_random_TSL_data']]);
-        else
-            mkdir([pathname_random_TSL_files, '\', [timestamp, '_random_TSL_data']]);
-        end
+        mkdir(fullfile(pathname_random_TSL_files, strcat(timestamp, '_random_TSL_data')));
+
         gui.rdm_TSL_dataset = random_2D_microstructure_data(round(get(gui.handles.scale_rdm_TSLdata, 'value')));
         
         %% Creation of Grain File Type 2 (.txt file)
