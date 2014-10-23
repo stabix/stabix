@@ -8,9 +8,9 @@ First of all, download the source code of the |matlab| toolbox.
 .. figure:: ./_pictures/download.png
    :scale: 7 %
    :align: left
-   :target: https://github.com/czambaldi/stabix
+   :target: https://github.com/stabix/stabix
 
-`Source code is hosted at Github. <https://github.com/czambaldi/stabix>`_
+`Source code is hosted at Github. <https://github.com/stabix/stabix>`_
 
 To have more details about the use of the toolbox, please have a look to :
 

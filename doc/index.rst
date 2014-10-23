@@ -41,9 +41,9 @@ Activation and transmission of slip are interpreted based on these simulations a
 .. figure:: ./_pictures/download.png
    :scale: 7 %
    :align: left
-   :target: https://github.com/czambaldi/stabix
+   :target: https://github.com/stabix/stabix
    
-`Source code is hosted at Github <https://github.com/czambaldi/stabix>`_.
+`Source code is hosted at Github <https://github.com/stabix/stabix>`_.
 
 .. figure:: ./_pictures/download.png
    :scale: 7 %
@@ -84,8 +84,8 @@ Contact
 =======
 :Authors: `David Mercier <d.mercier@mpie.de>`_ [1], `Claudio Zambaldi <c.zambaldi@mpie.de>`_ [1] and `Thomas R. Bieler <bieler@egr.msu.edu>`_ [2].
 
-1) `Max-Planck-Institut für Eisenforschung, 40237 Düsseldorf, Germany <http://www.mpie.de/>`_
-2) `Chemical Engineering and Materials Science, Michigan State University, East Lansing 48824 MI, USA <http://www.msu.edu/>`_
+[1] `Max-Planck-Institut für Eisenforschung, 40237 Düsseldorf, Germany <http://www.mpie.de/>`_
+[2] `Chemical Engineering and Materials Science, Michigan State University, East Lansing 48824 MI, USA <http://www.msu.edu/>`_
 
 
 .. image:: ./_pictures/logo_MPIE_MSU.png
