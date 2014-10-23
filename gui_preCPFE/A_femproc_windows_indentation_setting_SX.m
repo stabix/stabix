@@ -17,7 +17,7 @@ wu = 0.1; % width unit
 %% Window setting
 gui_SX.handles.gui_SX_win = figure(...
     'NumberTitle', 'off',...
-    'Position', femproc_figure_position([.58, .30, .6, .9]), ... % [left, bottom, width, height/width]
+    'Position', figure_position([.58, .30, .6, .9]), ... % [left, bottom, width, height/width]
     'ToolBar', 'figure');
 guidata(gcf, gui_SX);
 
