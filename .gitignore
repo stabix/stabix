@@ -1,5 +1,8 @@
 # matlab autosave
 *.asv
 
+# python, also see https://github.com/github/gitignore/blob/master/Python.gitignore
+*.pyc
+
 # sphinx documentation builds
 doc/_build
