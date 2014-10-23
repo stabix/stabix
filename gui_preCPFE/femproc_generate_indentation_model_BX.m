@@ -45,7 +45,7 @@ python4fem_module_path_abaqus = strrep(python4fem_module_path_abaqus, '\', '\\')
 python4fem_module_path_msc = strrep(python4fem_module_path_msc, '\', '\\');
 
 if ~isdir(gui_BX.config_CPFEM.proc_file_path)
-    gui_BX.config_CPFEM.proc_file_path = fullfile(getenv('SLIP_TRANSFER_TBX_ROOT'), '');
+    gui_BX.config_CPFEM.proc_file_path = getenv('HOME');
     beep;
     %warningdlg('Please modify proc_file_path field in config_CPFEM YAML file !');
     warning('Please modify proc_file_path field in config_CPFEM YAML file !');
