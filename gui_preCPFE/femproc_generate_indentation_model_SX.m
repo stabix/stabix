@@ -71,7 +71,7 @@ py{end+1} = sprintf('import tools');
 py{end+1} = sprintf('Titlegbdata = ''%s''', gui_SX.GB.Titlegbdata);
 py{end+1} = sprintf('Indentation.CODE = ''%s''', gui_SX.config_CPFEM.simulation_code);
 py{end+1} = sprintf('Indentation.FEMSOFTWAREVERSION = %.1f', gui_SX.config_CPFEM.fem_solver_version); 
-py{end+1} = sprintf('Indentation.FEMSOFTWARE = ''%s''', gui_SX.config_CPFEM.fem_solver_used); 
+py{end+1} = sprintf('Indentation.FEMSOFTWARE = ''%s''', strtok(gui_SX.config_CPFEM.fem_solver_used, '_')); 
 py{end+1} = 'indent = Indentation(';
 py{end+1} = sprintf('modelname = ''%s'',', gui_SX.GB.Titlegbdata);
 py{end+1} = sprintf('h_indent = %.5f,', gui_SX.variables.h_indent);
