@@ -12,11 +12,12 @@ gui = guidata(gcf);
 %         'Callback', '');
 % end
 
-if gui.config_CPFEM.python.works
+if gui.config.CPFEM.python.works
     set(gui.handles.pb_CPFEM_model, 'BackgroundColor', [0.2 0.8 0],...
         'String', 'CPFE  model',...
         'Callback', 'femproc_generate_CPFE_model');
 else
+    warning('Python not configured correctly')
     set(gui.handles.pb_CPFEM_model, 'BackgroundColor', [229/256 20/256 0],...
         'String', 'No python found or numpy not installed !', ...
         'Callback', 'femproc_select_config_CPFEM');

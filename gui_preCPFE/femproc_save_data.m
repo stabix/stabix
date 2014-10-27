@@ -7,12 +7,12 @@ function femproc_save_data(interface)
 
 gui = guidata(gcf);
 
-if strcmp(gui.config_CPFEM.simulation_code, 'GENMAT') == 1
+if strcmp(gui.config.CPFEM.simulation_code, 'GENMAT') == 1
     config_all_data                 = catstruct(gui.GB, gui.config_CPFEM, gui.variables);
     config_all_data.orientation_grA = config_all_data.eulerA;
     config_all_data.orientation_grB = config_all_data.eulerB;
     
-elseif strcmp(gui.config_CPFEM.simulation_code, 'DAMASK') == 1
+elseif strcmp(gui.config.CPFEM.simulation_code, 'DAMASK') == 1
     
     femproc_load_YAML_material_file(interface);
     gui = guidata(gcf); guidata(gcf, gui);

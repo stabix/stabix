@@ -8,16 +8,20 @@ gui = guidata(gcf);
 % if not copy the default settings
 % this is not ideal because any change in the default will be not reflected
 % in the users config, since user settings overwrite default settings.
-if ~exist(gui.config_CPFEM_user_full, 'file')
+gui.config.CPFEM.config_file_defaults_full
+[pathstr, name, ext] = fileparts(gui.config.CPFEM.config_file_user_full);
+
+if ~exist(gui.config.CPFEM.config_file_user_full, 'file')
+    [pathstr, name, ext] = fileparts(gui.config.CPFEM.config_file_user_full);
+    if ~exist(pathstr, 'dir')
+        mkdir(pathstr);
+    end
     % maybe replace by readyaml-writeyaml cycle?
     % this would allow to exclude some fieldnames from being changed
     % or do variable replacement for e.g. <usernames>
-    copyfile(gui.config_CPFEM_full, gui.config_CPFEM_user_full);
-else
-    % check if user only uses valid fieldnames and values
-    % that correspond to the current version
-    femproc_config_CPFEM_check_user_config();
+    copyfile(gui.config.CPFEM.config_file_defaults_full, ...
+        gui.config.CPFEM.config_file_user_full, 'f');
+    assert(exist(gui.config.CPFEM.config_file_user_full, 'file'))
 end
-edit(gui.config_CPFEM_user_full);
-
+edit(gui.config.CPFEM.config_file_user_full);
 end

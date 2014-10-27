@@ -67,14 +67,14 @@ if ~isfield(gui.config_CPFEM, 'python4fem_module_path')
 end
 
 %% Setting of Python executable path by default
-if ~isfield(gui.config_CPFEM, 'python_executables')
+if ~isfield(gui.config.CPFEM, 'python_executable')
     warning('Missing path for Python executable in your CPFEM YAML config. file...');
-    gui.config_CPFEM.python_executable = 'python';
+    gui.config.CPFEM.python_executable = 'python';
 % else
 %     gui.config_CPFEM.python_exe_path = gui.config_CPFEM.python_executable;
 end
 
-gui.config_CPFEM.python = femproc_python_check(gui.config_CPFEM.python_executable);
+gui.config.CPFEM.python = femproc_python_check(gui.config_CPFEM.python_executable);
 
 %% Set popup menu for the FEM interface (software version)
 femproc_set_cpfem_interface_pm(gui.handles.pm_FEM_interface,...
