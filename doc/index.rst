@@ -9,16 +9,21 @@
 Slip Transmission |matlab| toolbox
 ==================================
 
-.. figure:: ./_pictures/STABiX_ebsdmap.gif
-   :scale: 100 %
-   :align: right
-   
-   *Slip transmission analysis for an EBSD map of cp alpha-Ti.*
+.. only:: html
 
-.. comment figure:: ./_pictures/GUIs/EBSD_map2.png
-   :scale: 40 %
-   :align: right
-   *Slip transmission analysis for an EBSD map of near alpha phase Ti alloy.*
+    .. figure:: ./_pictures/STABiX_ebsdmap.gif
+        :scale: 100 %
+        :align: right
+        
+        *Slip transmission analysis for an EBSD map of cp alpha-Ti.*
+   
+.. only:: latex
+
+    .. figure:: ./_pictures/GUIs/EBSD_map.png
+        :scale: 40 %
+        :align: right
+        
+        *Slip transmission analysis for an EBSD map of near alpha phase Ti alloy.*
    
 The |matlab| toolbox **STABiX** provides a unique and simple way to analyse slip transmission in a bicrystal.
 Graphical User Interfaces (GUIs) are implemented in order to import EBSD results, and to represent and quantify grain boundary slip resistance.

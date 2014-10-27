@@ -8,7 +8,10 @@ class Tools():
                        addLineBreaks=1, run=0):
         fid = file(filename, 'w')
         with open(filename, 'w') as fid:
-            fid.write('| File written by %s' % caller)
+            if self.FEMSOFTWARE == 'Mentat':
+                fid.write('| File written by %s' % caller)
+            elif self.FEMSOFTWARE == 'Abaqus':
+                fid.write('# File written by %s' % caller)
             for cmd in cmdList:
                 fid.write(cmd)
                 if addLineBreaks:

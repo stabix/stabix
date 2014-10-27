@@ -1,6 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function cellstr_out = cellstr_filter(cellstring, filter_cell_or_str)
-% Delete all entries of a cell array of string that math the filter
+%% Delete all entries of a cell array of string that math the filter
 % filter can be string or cellstr
 % maybe could be implemented faster by using "regexprep", TODO...
 
@@ -20,7 +20,9 @@ for el_idx = 1:numel(cellstring);
     stritem = cellstring(el_idx);
     for fstr_idx = 1:numel(filter_cell)
         fstr = filter_cell(fstr_idx);
-        if strfind(stritem{1}, fstr{1})
+         % strcmpi instead of strfind to load folders in the Matlab search
+         % paths, named for instance "foldername.git"
+        if strcmpi(stritem{1}, fstr{1})
             %stritem{1}
             continue % don't add filtered elements
         else

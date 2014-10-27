@@ -67,7 +67,7 @@ py{end+1} = sprintf('import tools');
 py{end+1} = sprintf('Titlegbdata = ''%s''', gui_SX.GB.Titlegbdata);
 py{end+1} = sprintf('Indentation.CODE = ''%s''', gui_SX.config.CPFEM.simulation_code);
 py{end+1} = sprintf('Indentation.FEMSOFTWAREVERSION = %.1f', gui_SX.config.CPFEM.fem_solver_version); 
-py{end+1} = sprintf('Indentation.FEMSOFTWARE = ''%s''', gui_SX.config.CPFEM.fem_solver_used); 
+py{end+1} = sprintf('Indentation.FEMSOFTWARE = ''%s''', strtok(gui_SX.config.CPFEM.fem_solver_used, '_')); 
 py{end+1} = 'indent = Indentation(';
 py{end+1} = sprintf('modelname = ''%s'',', gui_SX.GB.Titlegbdata);
 py{end+1} = sprintf('h_indent = %.5f,', gui_SX.variables.h_indent);
@@ -104,10 +104,10 @@ end
 fclose(fid);
 
 %% Execute the Python code that we just generated
-cmd = sprintf('%s %s', gui_SX.config_CPFEM.python_executable, fullfile(pwd, scriptname_bicrystal));
+cmd = sprintf('%s %s', gui_SX.config.CPFEM.python_executable, fullfile(pwd, scriptname_bicrystal));
 commandwindow;
-% if ~ isempty(gui_SX.config_CPFEM.pythonpath)
-%     setenv('PYTHONPATH', gui_SX.config_CPFEM.pythonpath);
+% if ~ isempty(gui_SX.config.CPFEM.pythonpath)
+%     setenv('PYTHONPATH', gui_SX.config.CPFEM.pythonpath);
 % end
 system(cmd);
 
@@ -136,7 +136,7 @@ elseif gui_SX.GB.activeGrain == gui_SX.GB.GrainB
 end
 guidata(gcf, gui_SX);
 
-femproc_generate_material_files_SX(gui_SX.config_CPFEM.simulation_code);
+femproc_generate_material_files_SX(gui_SX.config.CPFEM.simulation_code);
 
 % Move .mat file
 try

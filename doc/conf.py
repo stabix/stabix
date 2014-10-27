@@ -104,7 +104,7 @@ pygments_style = 'sphinx'
 # See http://sphinx-doc.org/theming.html
 #html_theme = 'default'
 #html_theme = 'agogo' 
-html_theme = 'nature' # no option !
+#html_theme = 'nature' # no option !
 #html_theme_options{}
 
 # Theme options are theme-specific and customize the look and feel of a theme
