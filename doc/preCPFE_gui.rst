@@ -57,3 +57,18 @@ Convention for the bicrystal mesh
    :align: center
    
    *Figure 4 : Convention used to define the bicrystal mesh.*
+
+
+Adjusting the configuration settings and writing the finite element input files
+---------------------------------------------------------------------------------
+
+To write out the necessary files for finite element simulations it is likely that 
+the user wants to adjust some settings such as the used python installation or the 
+path where the files are written to. 
+This can be achieved in the custom menu of the preCPFE GUIs: ``Edit CPFEM config file``.
+This will create a copy of the default configuration YAML file and open this copy
+in the Matlab editor.
+To benefit from later changes in the default settings, the user should delete all
+configuration parameters that he does not intend to change.
+
+
