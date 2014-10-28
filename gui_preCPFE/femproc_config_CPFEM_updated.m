@@ -6,7 +6,7 @@ function femproc_config_CPFEM_updated
 
 gui = guidata(gcf);
 
-% if gui.config_CPFEM.user_setting == 0
+% if gui.config.CPFEM.user_setting == 0
 %     set(gui.handles.pb_CPFEM_model, 'BackgroundColor', [229/256 20/256 0],...
 %         'String', 'No user config. file found !', ...
 %         'Callback', '');

@@ -88,14 +88,14 @@ femproc_set_valid_inputs_SX;
 gui_SX = guidata(gcf); guidata(gcf, gui_SX);
 
 %% Setting of the FEM interface
-gui_SX.config_CPFEM.fem_interface_val = get(gui_SX.handles.pm_FEM_interface, 'Value');
-gui_SX.config_CPFEM.fem_interface_all_str = get(gui_SX.handles.pm_FEM_interface, 'String');
-gui_SX.config_CPFEM.fem_solver_str_cell = gui_SX.config_CPFEM.fem_interface_all_str(gui_SX.config_CPFEM.fem_interface_val);
-gui_SX.config_CPFEM.fem_solver_used = gui_SX.config_CPFEM.fem_solver_str_cell{:};
-if strcmp(strtok(gui_SX.config_CPFEM.fem_solver_used, '_'), 'Abaqus') == 1
-    gui_SX.config_CPFEM.fem_solver_version = sscanf(gui_SX.config_CPFEM.fem_solver_used, 'Abaqus_%f');
-elseif strcmp(strtok(gui_SX.config_CPFEM.fem_solver_used, '_'), 'Mentat') == 1
-    gui_SX.config_CPFEM.fem_solver_version = sscanf(gui_SX.config_CPFEM.fem_solver_used, 'Mentat_%f');
+gui_SX.config.CPFEM.fem_interface_val = get(gui_SX.handles.pm_FEM_interface, 'Value');
+gui_SX.config.CPFEM.fem_interface_all_str = get(gui_SX.handles.pm_FEM_interface, 'String');
+gui_SX.config.CPFEM.fem_solver_str_cell = gui_SX.config.CPFEM.fem_interface_all_str(gui_SX.config.CPFEM.fem_interface_val);
+gui_SX.config.CPFEM.fem_solver_used = gui_SX.config.CPFEM.fem_solver_str_cell{:};
+if strcmp(strtok(gui_SX.config.CPFEM.fem_solver_used, '_'), 'Abaqus') == 1
+    gui_SX.config.CPFEM.fem_solver_version = sscanf(gui_SX.config.CPFEM.fem_solver_used, 'Abaqus_%f');
+elseif strcmp(strtok(gui_SX.config.CPFEM.fem_solver_used, '_'), 'Mentat') == 1
+    gui_SX.config.CPFEM.fem_solver_version = sscanf(gui_SX.config.CPFEM.fem_solver_used, 'Mentat_%f');
 end
 
 %% Calculation of the transition depth between spherical and conical parts of the indenter

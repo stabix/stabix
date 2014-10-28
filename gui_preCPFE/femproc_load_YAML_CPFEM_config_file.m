@@ -23,47 +23,47 @@ end
 
 %% Loading YAML file
 try
-    gui.config_CPFEM = ReadYaml(gui.config_CPFEM_file);
-    gui.config_CPFEM.user_setting = 1;
-    gui.config_CPFEM.python_exe_path = 'python';
+    gui.config.CPFEM = ReadYaml(gui.config_CPFEM_file);
+    gui.config.CPFEM.user_setting = 1;
+    gui.config.CPFEM.python_exe_path = 'python';
 catch
-    gui.config_CPFEM = struct();
-    gui.config_CPFEM.user_setting = 0;
+    gui.config.CPFEM = struct();
+    gui.config.CPFEM.user_setting = 0;
 end
 
-gui.config_CPFEM.filename = gui.config_CPFEM_file;
+gui.config.CPFEM.filename = gui.config_CPFEM_file;
 
 %% Setting of CPFEM code by default
-if ~isfield(gui.config_CPFEM, 'simulation_code')
+if ~isfield(gui.config.CPFEM, 'simulation_code')
     warning('Missing CPFEM code definition in your CPFEM YAML config. file...');
-    gui.config_CPFEM.simulation_code = 'DAMASK';
+    gui.config.CPFEM.simulation_code = 'DAMASK';
 end
 
 %% Setting of list of FEM solvers
-if ~isfield(gui.config_CPFEM, 'fem_solvers')
+if ~isfield(gui.config.CPFEM, 'fem_solvers')
     warning('Missing FEM solvers list in your CPFEM YAML config. file...');
-    gui.config_CPFEM.fem_solvers = 'Mentat_2013.1';
+    gui.config.CPFEM.fem_solvers = 'Mentat_2013.1';
 end
 
 %% Setting of FEM solvers used
-if ~isfield(gui.config_CPFEM, 'fem_solver_used')
+if ~isfield(gui.config.CPFEM, 'fem_solver_used')
     warning('Missing FEM solver used in your CPFEM YAML config. file...');
-    gui.config_CPFEM.fem_solver_used = 'Mentat_2013.1';
+    gui.config.CPFEM.fem_solver_used = 'Mentat_2013.1';
 end
 
 %% Setting of procedure path by default
-if ~isfield(gui.config_CPFEM, 'proc_file_path')
+if ~isfield(gui.config.CPFEM, 'proc_file_path')
     warning('Missing path to store proc. file in your CPFEM YAML config. file...');
-    gui.config_CPFEM.proc_file_path = getenv('SLIP_TRANSFER_TBX_ROOT');
+    gui.config.CPFEM.proc_file_path = getenv('SLIP_TRANSFER_TBX_ROOT');
 end
 
 %% Setting of python folder for FEM path by default
-if ~isfield(gui.config_CPFEM, 'python4fem_module_path')
+if ~isfield(gui.config.CPFEM, 'python4fem_module_path')
     %warning('Missing path for MSC package in your CPFEM YAML config. file...');
     python4fem_module_path = fullfile(getenv('SLIP_TRANSFER_TBX_ROOT'), ...
         'third_party_code','python','');
-    gui.config_CPFEM.python4fem_module_path = strrep(python4fem_module_path,'\','/');
-    %display(['Using ', gui.config_CPFEM.python4fem_module_path])
+    gui.config.CPFEM.python4fem_module_path = strrep(python4fem_module_path,'\','/');
+    %display(['Using ', gui.config.CPFEM.python4fem_module_path])
 end
 
 %% Setting of Python executable path by default
@@ -71,14 +71,14 @@ if ~isfield(gui.config.CPFEM, 'python_executable')
     warning('Missing path for Python executable in your CPFEM YAML config. file...');
     gui.config.CPFEM.python_executable = 'python';
 % else
-%     gui.config_CPFEM.python_exe_path = gui.config_CPFEM.python_executable;
+%     gui.config.CPFEM.python_exe_path = gui.config.CPFEM.python_executable;
 end
 
-gui.config.CPFEM.python = femproc_python_check(gui.config_CPFEM.python_executable);
+gui.config.CPFEM.python = femproc_python_check(gui.config.CPFEM.python_executable);
 
 %% Set popup menu for the FEM interface (software version)
 femproc_set_cpfem_interface_pm(gui.handles.pm_FEM_interface,...
-    gui.config_CPFEM.fem_solvers, gui.config_CPFEM.fem_solver_used);
+    gui.config.CPFEM.fem_solvers, gui.config.CPFEM.fem_solver_used);
 
 guidata(gcf, gui)
 

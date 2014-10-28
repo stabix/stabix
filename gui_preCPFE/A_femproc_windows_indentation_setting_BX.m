@@ -180,7 +180,7 @@ gui_BX.handles.pm_mesh_color = uicontrol('Parent', gui_BX.handles.gui_BX_win,...
 
 %% Set GUI handle encapsulation
 guidata(gcf, gui_BX);
-gui_BX.config_CPFEM.python_executable = femproc_python_select;
+gui_BX.config.CPFEM.python_executable = femproc_python_select;
 guidata(gcf, gui_BX);
 
 %% Run the plot of the meshing

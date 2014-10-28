@@ -101,14 +101,14 @@ femproc_set_valid_inputs_BX;
 gui_BX = guidata(gcf); guidata(gcf, gui_BX);
 
 %% Setting of the FEM interface
-gui_BX.config_CPFEM.fem_interface_val = get(gui_BX.handles.pm_FEM_interface, 'Value');
-gui_BX.config_CPFEM.fem_interface_all_str = get(gui_BX.handles.pm_FEM_interface, 'String');
-gui_BX.config_CPFEM.fem_solver_str_cell = gui_BX.config_CPFEM.fem_interface_all_str(gui_BX.config_CPFEM.fem_interface_val);
-gui_BX.config_CPFEM.fem_solver_used = gui_BX.config_CPFEM.fem_solver_str_cell{:};
-if strcmp(strtok(gui_BX.config_CPFEM.fem_solver_used, '_'), 'Abaqus') == 1
-    gui_BX.config_CPFEM.fem_solver_version = sscanf(gui_BX.config_CPFEM.fem_solver_used, 'Abaqus_%f');
-elseif strcmp(strtok(gui_BX.config_CPFEM.fem_solver_used, '_'), 'Mentat') == 1
-    gui_BX.config_CPFEM.fem_solver_version = sscanf(gui_BX.config_CPFEM.fem_solver_used, 'Mentat_%f');
+gui_BX.config.CPFEM.fem_interface_val = get(gui_BX.handles.pm_FEM_interface, 'Value');
+gui_BX.config.CPFEM.fem_interface_all_str = get(gui_BX.handles.pm_FEM_interface, 'String');
+gui_BX.config.CPFEM.fem_solver_str_cell = gui_BX.config.CPFEM.fem_interface_all_str(gui_BX.config.CPFEM.fem_interface_val);
+gui_BX.config.CPFEM.fem_solver_used = gui_BX.config.CPFEM.fem_solver_str_cell{:};
+if strcmp(strtok(gui_BX.config.CPFEM.fem_solver_used, '_'), 'Abaqus') == 1
+    gui_BX.config.CPFEM.fem_solver_version = sscanf(gui_BX.config.CPFEM.fem_solver_used, 'Abaqus_%f');
+elseif strcmp(strtok(gui_BX.config.CPFEM.fem_solver_used, '_'), 'Mentat') == 1
+    gui_BX.config.CPFEM.fem_solver_version = sscanf(gui_BX.config.CPFEM.fem_solver_used, 'Mentat_%f');
 end
 
 %% Calculation of the transition depth between spherical and conical parts of the indenter
