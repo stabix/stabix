@@ -340,10 +340,10 @@ if strcmp(gui_BX.indenter_type, 'default') == 1
     end
 elseif strcmp(gui_BX.indenter_type, 'AFM') == 1
     
-    smooth_factor_value = get(gui_BX.handles.pm_indenter_mesh_quality, 'Value');
-    smooth_factor_string = get(gui_BX.handles.pm_indenter_mesh_quality, 'String');
+    smooth_factor_value = get(gui_BX.handles.indenter_topo.pm_indenter_mesh_quality, 'Value');
+    smooth_factor_string = get(gui_BX.handles.indenter_topo.pm_indenter_mesh_quality, 'String');
     smooth_factor = 2^(1 + length(smooth_factor_string) - smooth_factor_value);
-    rotation_angle = get(gui_BX.handles.rotate_loaded_indenter, 'Value');
+    rotation_angle = get(gui_BX.handles.indenter_topo.rotate_loaded_indenter, 'Value');
     
     if (get(gui_BX.handles.cb_indenter_post_indentation,'Value')) == 1
         femproc_correct_indenter_topo_AFM(gui_BX.indenter_topo, gui_BX.variables.h_indent, smooth_factor, rotation_angle);

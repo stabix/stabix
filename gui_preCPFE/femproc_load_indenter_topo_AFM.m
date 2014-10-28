@@ -35,7 +35,7 @@ else
     gui.indenter_type = 'AFM';
     [file_AFM, dir_AFM, filterindex] = uigetfile('*.txt', 'Select a Gwyddion file');
     gui.indenter_topo = read_gwyddion_ascii(fullfile(dir_AFM,file_AFM));
-    set(gui.handles.rotate_loaded_indenter, 'Value', 0);
+    set(gui.handles.indenter_topo.rotate_loaded_indenter, 'Value', 0);
 end
 
 guidata(gcf, gui);

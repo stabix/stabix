@@ -13,9 +13,9 @@ if strcmp(gui.indenter_type, 'default') == 1
     set(gui.handles.mesh.tipRadius_val, 'visible', 'on');
     set(gui.handles.mesh.h_indent_str, 'visible', 'on');
     set(gui.handles.mesh.h_indent_val, 'visible', 'on');
-    set(gui.handles.pm_indenter_mesh_quality, 'visible', 'off');
-    set(gui.handles.rotate_loaded_indenter, 'visible', 'off');
-    set(gui.handles.rotate_loaded_indenter_str, 'visible', 'off');
+    set(gui.handles.indenter_topo.pm_indenter_mesh_quality, 'visible', 'off');
+    set(gui.handles.indenter_topo.rotate_loaded_indenter, 'visible', 'off');
+    set(gui.handles.indenter_topo.rotate_loaded_indenter_str, 'visible', 'off');
     
 elseif strcmp(gui.indenter_type, 'AFM') == 1
     set(gui.handles.mesh.coneAngle_str, 'visible', 'off');
@@ -24,9 +24,9 @@ elseif strcmp(gui.indenter_type, 'AFM') == 1
     set(gui.handles.mesh.tipRadius_val, 'visible', 'off');
     set(gui.handles.mesh.h_indent_str, 'visible', 'off');
     set(gui.handles.mesh.h_indent_val, 'visible', 'off');
-    set(gui.handles.pm_indenter_mesh_quality, 'visible', 'on');
-    set(gui.handles.rotate_loaded_indenter, 'visible', 'on');
-    set(gui.handles.rotate_loaded_indenter_str, 'visible', 'on');
+    set(gui.handles.indenter_topo.pm_indenter_mesh_quality, 'visible', 'on');
+    set(gui.handles.indenter_topo.rotate_loaded_indenter, 'visible', 'on');
+    set(gui.handles.indenter_topo.rotate_loaded_indenter_str, 'visible', 'on');
     
 end
 
