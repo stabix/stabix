@@ -48,7 +48,7 @@ Bicrystal indentation
    :align: center
    
    *Figure 3 : Screenshot of the preCPFE GUI for the bicrystal indentation*
-   
+
 Convention for the bicrystal mesh
 *********************************
 
@@ -57,7 +57,24 @@ Convention for the bicrystal mesh
    :align: center
    
    *Figure 4 : Convention used to define the bicrystal mesh.*
+   
+Convention for the single crystal mesh
+**************************************
 
+It is possible to load real three-dimensional topography of the indenter.
+
+The topography has to be saved into a .txt file with a Gwyddion format.
+
+The |matlab| function used to load and read Gwyddion file is: `read_gwyddion_ascii.m <https://github.com/czambaldi/stabix/blob/master/gwyddion/read_gwyddion_ascii.m>`_
+
+`Visit the Gwyddion website for more information. <http://gwyddion.net/>`_
+
+..    include:: <isonum.txt>
+.. figure:: ./_pictures/GUIs/BX_preproc_GUI_AFM_topo_indenter.png
+   :scale: 40 %
+   :align: center
+   
+   *Figure 5 : Screenshot of the preCPFE GUI for the bicrystal indentation with loaded AFM topography of the indenter*
 
 Adjusting the configuration settings and writing the finite element input files
 ---------------------------------------------------------------------------------
