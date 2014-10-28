@@ -26,7 +26,7 @@ set_default_values_txtbox(gui_SX.handles.mesh.box_bias_conv_x_val, num2str(gui_S
 cla;
 
 %% Set fine / coarse mesh
-gui_SX.variables.meshquality = get(gui_SX.handles.pm_mesh_quality, 'Value');
+gui_SX.variables.meshquality = get(gui_SX.handles.other_setting.pm_mesh_quality, 'Value');
 
 if gui_SX.variables.meshquality ~= 1
     set(gui_SX.handles.mesh.box_elm_nx_val, 'String', num2str(gui_SX.defaults.variables.box_elm_nx));
@@ -88,8 +88,8 @@ femproc_set_valid_inputs_SX;
 gui_SX = guidata(gcf); guidata(gcf, gui_SX);
 
 %% Setting of the FEM interface
-gui_SX.config.CPFEM.fem_interface_val = get(gui_SX.handles.pm_FEM_interface, 'Value');
-gui_SX.config.CPFEM.fem_interface_all_str = get(gui_SX.handles.pm_FEM_interface, 'String');
+gui_SX.config.CPFEM.fem_interface_val = get(gui_SX.handles.other_setting.pm_FEM_interface, 'Value');
+gui_SX.config.CPFEM.fem_interface_all_str = get(gui_SX.handles.other_setting.pm_FEM_interface, 'String');
 gui_SX.config.CPFEM.fem_solver_str_cell = gui_SX.config.CPFEM.fem_interface_all_str(gui_SX.config.CPFEM.fem_interface_val);
 gui_SX.config.CPFEM.fem_solver_used = gui_SX.config.CPFEM.fem_solver_str_cell{:};
 if strcmp(strtok(gui_SX.config.CPFEM.fem_solver_used, '_'), 'Abaqus') == 1
@@ -101,7 +101,7 @@ end
 %% Calculation of the transition depth between spherical and conical parts of the indenter
 gui_SX.variables.h_trans = femproc_indentation_transition_depth(gui_SX.variables.tipRadius, gui_SX.variables.coneAngle/2);
 gui_SX.variables.h_trans = round(gui_SX.variables.h_trans*100)/100;
-set(gui_SX.handles.trans_depth , 'String', strcat('Transition depth (µm) : ',num2str(gui_SX.variables.h_trans)));
+set(gui_SX.handles.other_setting.trans_depth , 'String', strcat('Transition depth (µm) : ',num2str(gui_SX.variables.h_trans)));
 
 %% Definition of geometry points coordinates
 % Radial coordinates of points for the mesh of indenter
@@ -203,10 +203,10 @@ end
 
 %% Plot of the cono-spherical indenter before and after indentation
 if strcmp(gui_SX.indenter_type, 'default') == 1
-    if (get(gui_SX.handles.cb_indenter_post_indentation,'Value')) == 1
-        femproc_3d_conospherical_indenter (gui_SX.variables.tipRadius, gui_SX.variables.coneAngle, 50, 0, 0, gui_SX.variables.tipRadius-gui_SX.variables.h_indent);
+    if (get(gui_SX.handles.other_setting.cb_indenter_post_indentation,'Value')) == 1
+        preCPFE_3d_conospherical_indenter (gui_SX.variables.tipRadius, gui_SX.variables.coneAngle, 50, 0, 0, gui_SX.variables.tipRadius-gui_SX.variables.h_indent);
     else
-        femproc_3d_conospherical_indenter (gui_SX.variables.tipRadius, gui_SX.variables.coneAngle, 50, 0, 0, gui_SX.variables.tipRadius);
+        preCPFE_3d_conospherical_indenter (gui_SX.variables.tipRadius, gui_SX.variables.coneAngle, 50, 0, 0, gui_SX.variables.tipRadius);
     end
 elseif strcmp(gui_SX.indenter_type, 'AFM') == 1
     
@@ -215,10 +215,10 @@ elseif strcmp(gui_SX.indenter_type, 'AFM') == 1
     smooth_factor = 2^(1 + length(smooth_factor_string) - smooth_factor_value);
     rotation_angle = get(gui_SX.handles.indenter_topo.rotate_loaded_indenter, 'Value');
     
-    if (get(gui_SX.handles.cb_indenter_post_indentation,'Value')) == 1
-        femproc_correct_indenter_topo_AFM(gui_SX.indenter_topo, gui_SX.variables.h_indent, smooth_factor, rotation_angle);
+    if (get(gui_SX.handles.other_setting.cb_indenter_post_indentation,'Value')) == 1
+        preCPFE_correct_indenter_topo_AFM(gui_SX.indenter_topo, gui_SX.variables.h_indent, smooth_factor, rotation_angle);
     else
-        femproc_correct_indenter_topo_AFM(gui_SX.indenter_topo, 0, smooth_factor, rotation_angle);
+        preCPFE_correct_indenter_topo_AFM(gui_SX.indenter_topo, 0, smooth_factor, rotation_angle);
     end
     
 end

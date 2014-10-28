@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function femproc_custom_menu_visit_damask(parent)
+function preCPFE_custom_menu_visit_damask(parent)
 %% Setting of customized menu
 % parent: handle of the GUI
 

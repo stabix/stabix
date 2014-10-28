@@ -30,7 +30,7 @@ set_default_values_txtbox(gui_BX.handles.mesh.box_bias_y3_val, num2str(gui_BX.de
 cla;
 
 %% Set fine / coarse mesh
-gui_BX.variables.meshquality = get(gui_BX.handles.pm_mesh_quality, 'Value');
+gui_BX.variables.meshquality = get(gui_BX.handles.other_setting.pm_mesh_quality, 'Value');
 
 if gui_BX.variables.meshquality ~= 1 % Not free mesh defined by user
     set(gui_BX.handles.mesh.box_elm_nx_val, 'String', num2str(gui_BX.defaults.variables.box_elm_nx));
@@ -101,8 +101,8 @@ femproc_set_valid_inputs_BX;
 gui_BX = guidata(gcf); guidata(gcf, gui_BX);
 
 %% Setting of the FEM interface
-gui_BX.config.CPFEM.fem_interface_val = get(gui_BX.handles.pm_FEM_interface, 'Value');
-gui_BX.config.CPFEM.fem_interface_all_str = get(gui_BX.handles.pm_FEM_interface, 'String');
+gui_BX.config.CPFEM.fem_interface_val = get(gui_BX.handles.other_setting.pm_FEM_interface, 'Value');
+gui_BX.config.CPFEM.fem_interface_all_str = get(gui_BX.handles.other_setting.pm_FEM_interface, 'String');
 gui_BX.config.CPFEM.fem_solver_str_cell = gui_BX.config.CPFEM.fem_interface_all_str(gui_BX.config.CPFEM.fem_interface_val);
 gui_BX.config.CPFEM.fem_solver_used = gui_BX.config.CPFEM.fem_solver_str_cell{:};
 if strcmp(strtok(gui_BX.config.CPFEM.fem_solver_used, '_'), 'Abaqus') == 1
@@ -114,7 +114,7 @@ end
 %% Calculation of the transition depth between spherical and conical parts of the indenter
 gui_BX.variables.h_trans = femproc_indentation_transition_depth(gui_BX.variables.tipRadius, gui_BX.variables.coneAngle/2);
 gui_BX.variables.h_trans = round(gui_BX.variables.h_trans*100)/100;
-set(gui_BX.handles.trans_depth , 'String',strcat('Transition depth (µm) : ', num2str(gui_BX.variables.h_trans)));
+set(gui_BX.handles.other_setting.trans_depth , 'String',strcat('Transition depth (µm) : ', num2str(gui_BX.variables.h_trans)));
 
 %% Calculation of the radius of the spherical cap in the cono-spherical indenter
 gui_BX.variables.calRadius = (gui_BX.variables.tipRadius^2 - (gui_BX.variables.tipRadius - gui_BX.variables.h_trans)^2)^0.5;
@@ -293,14 +293,14 @@ gui_BX.variables_geom.top8121617_y = gui_BX.variables_geom.top8121617_x*0;
 gui_BX.variables_geom.top8121617_y(:) = gui_BX.variables.sample_coordy_rightface;
 
 %% Plot
-if get(gui_BX.handles.pm_mesh_color, 'Value') == 1
+if get(gui_BX.handles.other_setting.pm_mesh_color, 'Value') == 1
     %color_grA = [49 140 231]/255;
     color_grA = 'b';
     %color_grB = [255 215 0]/255;
     color_grB = [0 128 0]/255;
     color_inter_gr_gb = [0 128 255]/255;
     color_gb = 'r';
-elseif get(gui_BX.handles.pm_mesh_color, 'Value') == 2
+elseif get(gui_BX.handles.other_setting.pm_mesh_color, 'Value') == 2
     color_grA = [105 105 105]/255;
     color_grB = 'w';
     color_inter_gr_gb = [173 173 173]/255;
@@ -333,10 +333,10 @@ gui_BX.handles.mesh.meshBX_8 = surf(gui_BX.variables_geom.top8121617_x, gui_BX.v
 
 %% Plot of the cono-spherical indenter before and after indentation
 if strcmp(gui_BX.indenter_type, 'default') == 1
-    if (get(gui_BX.handles.cb_indenter_post_indentation,'Value')) == 1
-        femproc_3d_conospherical_indenter (gui_BX.variables.tipRadius, gui_BX.variables.coneAngle, 50, 0, 0, gui_BX.variables.tipRadius-gui_BX.variables.h_indent);
+    if (get(gui_BX.handles.other_setting.cb_indenter_post_indentation,'Value')) == 1
+        preCPFE_3d_conospherical_indenter (gui_BX.variables.tipRadius, gui_BX.variables.coneAngle, 50, 0, 0, gui_BX.variables.tipRadius-gui_BX.variables.h_indent);
     else
-        femproc_3d_conospherical_indenter (gui_BX.variables.tipRadius, gui_BX.variables.coneAngle, 50, 0, 0, gui_BX.variables.tipRadius);
+        preCPFE_3d_conospherical_indenter (gui_BX.variables.tipRadius, gui_BX.variables.coneAngle, 50, 0, 0, gui_BX.variables.tipRadius);
     end
 elseif strcmp(gui_BX.indenter_type, 'AFM') == 1
     
@@ -345,10 +345,10 @@ elseif strcmp(gui_BX.indenter_type, 'AFM') == 1
     smooth_factor = 2^(1 + length(smooth_factor_string) - smooth_factor_value);
     rotation_angle = get(gui_BX.handles.indenter_topo.rotate_loaded_indenter, 'Value');
     
-    if (get(gui_BX.handles.cb_indenter_post_indentation,'Value')) == 1
-        femproc_correct_indenter_topo_AFM(gui_BX.indenter_topo, gui_BX.variables.h_indent, smooth_factor, rotation_angle);
+    if (get(gui_BX.handles.other_setting.cb_indenter_post_indentation,'Value')) == 1
+        preCPFE_correct_indenter_topo_AFM(gui_BX.indenter_topo, gui_BX.variables.h_indent, smooth_factor, rotation_angle);
     else
-        femproc_correct_indenter_topo_AFM(gui_BX.indenter_topo, 0, smooth_factor, rotation_angle);
+        preCPFE_correct_indenter_topo_AFM(gui_BX.indenter_topo, 0, smooth_factor, rotation_angle);
     end
     
 end

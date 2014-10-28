@@ -14,7 +14,7 @@ else
 end
 
 
-set(gui_BX.handles.num_elem ,'String',strcat(num2str(gui_BX.variables.BX_num_elements),' elements'));
+set(gui_BX.handles.other_setting.num_elem ,'String',strcat(num2str(gui_BX.variables.BX_num_elements),' elements'));
 
 guidata(gcf, gui_BX);
 

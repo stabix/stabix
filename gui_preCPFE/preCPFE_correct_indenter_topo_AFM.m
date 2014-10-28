@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function [X, Y, data] = femproc_correct_indenter_topo_AFM(topo, h_indent, smooth_factor, rotation_angle, z_factor, varargin)
+function [X, Y, data] = preCPFE_correct_indenter_topo_AFM(topo, h_indent, smooth_factor, rotation_angle, z_factor, varargin)
 %% Function to correct topography from Gwyddion file
 % topo: Struct. variable imported from Gwyddion file (see
 % read_gwyddion_ascii function)

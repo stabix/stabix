@@ -58,15 +58,12 @@ Convention for the bicrystal mesh
    
    *Figure 4 : Convention used to define the bicrystal mesh.*
    
-Convention for the single crystal mesh
-**************************************
+Loading of real three-dimensional topography of the indenter
+------------------------------------------------------------
 
 It is possible to load real three-dimensional topography of the indenter.
-
 The topography has to be saved into a .txt file with a Gwyddion format.
-
 The |matlab| function used to load and read Gwyddion file is: `read_gwyddion_ascii.m <https://github.com/czambaldi/stabix/blob/master/gwyddion/read_gwyddion_ascii.m>`_
-
 `Visit the Gwyddion website for more information. <http://gwyddion.net/>`_
 
 ..    include:: <isonum.txt>

@@ -10,5 +10,5 @@ uimenu(parent, 'Label', 'Edit this GUI', ...
     'Callback', cb_string, ...
     'Separator','on');
 
-femproc_custom_menu_visit_damask(parent)
+preCPFE_custom_menu_visit_damask(parent)
 end

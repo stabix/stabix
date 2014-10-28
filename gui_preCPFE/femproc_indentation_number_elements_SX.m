@@ -18,7 +18,7 @@ end
 
 gui_SX.variables.SX_num_elements = gui_SX.variables.quarter_elements * 4;
 
-set(gui_SX.handles.num_elem ,'String',strcat(num2str(gui_SX.variables.SX_num_elements),' elements'));
+set(gui_SX.handles.other_setting.num_elem ,'String',strcat(num2str(gui_SX.variables.SX_num_elements),' elements'));
 
 guidata(gcf, gui_SX);
 
