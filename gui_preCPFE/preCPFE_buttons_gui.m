@@ -67,7 +67,7 @@ handles.trans_depth = uicontrol('Parent', parent,...
     'FontWeight', 'bold');
 
 %% Pop-up menu to set FEM software
-handles.pm_FEM_interface = femproc_solver_popup([2*x0 hu*2 wu*3 hu]);
+handles.pm_FEM_interface = preCPFE_solver_popup([2*x0 hu*2 wu*3 hu]);
 
 if isfield(gui.config.CPFEM, 'fem_solver_used')
     femproc_set_cpfem_interface_pm(handles.pm_FEM_interface, ...

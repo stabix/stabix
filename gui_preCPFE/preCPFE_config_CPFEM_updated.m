@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function femproc_config_CPFEM_updated
+function preCPFE_config_CPFEM_updated
 %% Set GUI in function of user configuration
 
 % author: c.zambaldi@mpie.de

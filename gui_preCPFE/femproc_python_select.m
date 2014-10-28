@@ -14,6 +14,6 @@ gui.config.CPFEM.python = femproc_python_check(python_executable);
 
 guidata(gcf, gui);
 
-femproc_config_CPFEM_updated;
+preCPFE_config_CPFEM_updated;
 
 end

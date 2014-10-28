@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function config_CPFEM = femproc_config_CPFEM_check(config_CPFEM)
+function config_CPFEM = preCPFE_config_CPFEM_check(config_CPFEM)
 warning('TODO: check valid fields of CPFEM user config settings');
 
 %if ~isfield(gui.config.CPFEM, 'proc_file_path')

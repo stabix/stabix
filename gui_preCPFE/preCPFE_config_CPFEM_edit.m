@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function femproc_config_CPFEM_edit()
+function preCPFE_config_CPFEM_edit()
 %% Function to edit CPFEM configuration from YAML files.
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 

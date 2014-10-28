@@ -35,7 +35,7 @@ if exist(gui.config.CPFEM.config_file_user_full, 'file')
     gui.config.CPFEM = configs_merge(gui.config.CPFEM, gui.config.CPFEM.user_config);
 end
 
-gui.config.CPFEM = femproc_config_CPFEM_check(gui.config.CPFEM);
+gui.config.CPFEM = preCPFE_config_CPFEM_check(gui.config.CPFEM);
 
 gui.config.CPFEM.python4fem_module_path = femproc_get_python4fem_module_path;
 

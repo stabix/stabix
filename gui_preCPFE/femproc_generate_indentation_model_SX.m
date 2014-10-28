@@ -43,7 +43,7 @@ python4fem_module_path_msc = fullfile(python4fem_module_path, 'msc');
 python4fem_module_path_abaqus = strrep(python4fem_module_path_abaqus, '\', '\\');
 python4fem_module_path_msc = strrep(python4fem_module_path_msc, '\', '\\');
 
-gui_SX.config.CPFEM = femproc_config_CPFEM_check(gui_SX.config.CPFEM);
+gui_SX.config.CPFEM = preCPFE_config_CPFEM_check(gui_SX.config.CPFEM);
 
 proc_path = fullfile(gui_SX.config.CPFEM.proc_file_path, gui_SX.GB.Titlegbdata, '');
 proc_path = strrep(proc_path, '\', '\\'); % to escape \r as a carriage return

@@ -261,5 +261,5 @@ femproc_indentation_number_elements_SX;
 gui_SX = guidata(gcf); guidata(gcf, gui_SX);
 
 %% Update of the CPFEM configuration
-femproc_config_CPFEM_updated
+preCPFE_config_CPFEM_updated
 end
