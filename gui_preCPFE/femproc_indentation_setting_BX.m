@@ -331,14 +331,29 @@ gui_BX.handles.mesh.meshBX_6 = surf(gui_BX.variables_geom.top11121615_x, gui_BX.
 gui_BX.handles.mesh.meshBX_7 = surf(gui_BX.variables_geom.top841817_x, gui_BX.variables_geom.top841817_y, gui_BX.variables_geom.top841817_z, 'FaceColor', color_grB); hold on;
 gui_BX.handles.mesh.meshBX_8 = surf(gui_BX.variables_geom.top8121617_x, gui_BX.variables_geom.top8121617_y, gui_BX.variables_geom.top8121617_z, 'FaceColor', color_grB); hold on;
 
-% Plot of the cono-spherical indenter before and after indentation
-if (get(gui_BX.handles.cb_indenter_post_indentation,'Value')) == 1
-    femproc_3d_conospherical_indenter (gui_BX.variables.tipRadius, gui_BX.variables.coneAngle, 50, 0, 0, gui_BX.variables.tipRadius-gui_BX.variables.h_indent);
-else
-    femproc_3d_conospherical_indenter (gui_BX.variables.tipRadius, gui_BX.variables.coneAngle, 50, 0, 0, gui_BX.variables.tipRadius);
+%% Plot of the cono-spherical indenter before and after indentation
+if strcmp(gui_BX.indenter_type, 'default') == 1
+    if (get(gui_BX.handles.cb_indenter_post_indentation,'Value')) == 1
+        femproc_3d_conospherical_indenter (gui_BX.variables.tipRadius, gui_BX.variables.coneAngle, 50, 0, 0, gui_BX.variables.tipRadius-gui_BX.variables.h_indent);
+    else
+        femproc_3d_conospherical_indenter (gui_BX.variables.tipRadius, gui_BX.variables.coneAngle, 50, 0, 0, gui_BX.variables.tipRadius);
+    end
+elseif strcmp(gui_BX.indenter_type, 'AFM') == 1
+    
+    smooth_factor_value = get(gui_BX.handles.pm_indenter_mesh_quality, 'Value');
+    smooth_factor_string = get(gui_BX.handles.pm_indenter_mesh_quality, 'String');
+    smooth_factor = 2^(1 + length(smooth_factor_string) - smooth_factor_value);
+    rotation_angle = get(gui_BX.handles.rotate_loaded_indenter, 'Value');
+    
+    if (get(gui_BX.handles.cb_indenter_post_indentation,'Value')) == 1
+        femproc_correct_indenter_topo_AFM(gui_BX.indenter_topo, gui_BX.variables.h_indent, smooth_factor, rotation_angle);
+    else
+        femproc_correct_indenter_topo_AFM(gui_BX.indenter_topo, 0, smooth_factor, rotation_angle);
+    end
+    
 end
 
-% Plot of the sample
+%% Plot of the sample
 gui_BX.handles.mesh.sample_patch = patch('Vertices', gui_BX.variables_geom.BX_sample_allpts,'Faces', gui_BX.variables_geom.faces_sample,'FaceAlpha',0.05);
 
 % Legend
@@ -350,7 +365,9 @@ legend(strcat('GrainA n°', num2str(gui_BX.GB.GrainA)), strcat('GrainB n°', num2s
 %   2);
 axis tight; % Axis tight to the sample
 axis equal; % Axis aspect ratio
+view(-65,20);
 
+% FIXME: Inversion of x-axis ans y-axis with CPFE model !!!
 % if isfield(gui_BX, 'config_map')
 %     if isfield(gui_BX.config_map, 'unit_string')
 %         xlabel_str = strcat('x axis_', gui_BX.config_map.unit_string);

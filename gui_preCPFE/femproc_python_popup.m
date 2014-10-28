@@ -1,3 +1,4 @@
+% Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function h_popup = femproc_python_popup(pos)
 gui = guidata(gcf);
 h_popup = uicontrol( ...

@@ -201,14 +201,29 @@ for iz = 1:size(gui_SX.variables.lower_x,1)
     end
 end
 
-%% Plot
-% Plot of the cono-spherical indenter
-gui_SX.handles.ind_SX_1 = plot3(gui_SX.variables.indenter_mesh_x, gui_SX.variables.indenter_mesh_y, gui_SX.variables.indenter_mesh_z); hold on;
-gui_SX.handles.ind_SX_2 = plot3(gui_SX.variables.indenter_mesh_con(:,1), gui_SX.variables.indenter_mesh_con(:,2), gui_SX.variables.indenter_mesh_con(:,3),'LineStyle','-'); hold on;
-gui_SX.handles.ind_SX_3 = plot3(gui_SX.variables.indenter_mesh_x, gui_SX.variables.indenter_mesh_y, gui_SX.variables.indenter_mesh_z_post); hold on;
-gui_SX.handles.ind_SX_4 = plot3(gui_SX.variables.indenter_mesh_con_post(:,1), gui_SX.variables.indenter_mesh_con_post(:,2), gui_SX.variables.indenter_mesh_con_post(:,3),'LineStyle','-'); hold on;
+%% Plot of the cono-spherical indenter before and after indentation
+if strcmp(gui_SX.indenter_type, 'default') == 1
+    if (get(gui_SX.handles.cb_indenter_post_indentation,'Value')) == 1
+        femproc_3d_conospherical_indenter (gui_SX.variables.tipRadius, gui_SX.variables.coneAngle, 50, 0, 0, gui_SX.variables.tipRadius-gui_SX.variables.h_indent);
+    else
+        femproc_3d_conospherical_indenter (gui_SX.variables.tipRadius, gui_SX.variables.coneAngle, 50, 0, 0, gui_SX.variables.tipRadius);
+    end
+elseif strcmp(gui_SX.indenter_type, 'AFM') == 1
+    
+    smooth_factor_value = get(gui_SX.handles.pm_indenter_mesh_quality, 'Value');
+    smooth_factor_string = get(gui_SX.handles.pm_indenter_mesh_quality, 'String');
+    smooth_factor = 2^(1 + length(smooth_factor_string) - smooth_factor_value);
+    rotation_angle = get(gui_SX.handles.rotate_loaded_indenter, 'Value');
+    
+    if (get(gui_SX.handles.cb_indenter_post_indentation,'Value')) == 1
+        femproc_correct_indenter_topo_AFM(gui_SX.indenter_topo, gui_SX.variables.h_indent, smooth_factor, rotation_angle);
+    else
+        femproc_correct_indenter_topo_AFM(gui_SX.indenter_topo, 0, smooth_factor, rotation_angle);
+    end
+    
+end
 
-% Plot of the sample
+%% Plot of the sample
 gui_SX.handles.sample_patch = patch('Vertices', gui_SX.variables.sample_allpts,'Faces', gui_SX.variables.faces_sample,'FaceAlpha',0.05);
 
 % Plot of the mesh
@@ -223,6 +238,7 @@ axis tight; % Axis tight to the sample
 axis equal; % Axis aspect ratio
 view(0,0); % X-Z view
 
+% FIXME: Inversion of x-axis ans y-axis with CPFE model !!!
 % if isfield(gui_SX, 'config_map')
 %     if isfield(gui_SX.config_map, 'unit_string')
 %         xlabel_str = strcat('x axis_', gui_SX.config_map.unit_string);
