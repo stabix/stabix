@@ -33,8 +33,8 @@ Run one of these GUIs to play with the toolbox.
    "Demo", "This main GUI is used to run other GUIs", `demo.m <https://github.com/czambaldi/stabix/blob/master/demo.m>`_
    "EBSD map GUI", "This GUI is used to analyze slip transmission across GBs for an EBSD map", `A_gui_plotmap.m <https://github.com/czambaldi/stabix/blob/master/gui_ebsd_map/A_gui_plotmap.m>`_, "config_gui_EBSDmap_default.yaml"
    "Bicrystal GUI", "This GUI is used to analyze slip transfer in a bicrystal", `A_gui_plotGB_Bicrystal.m <https://github.com/czambaldi/stabix/blob/master/gui_bicrystal/A_gui_plotGB_Bicrystal.m>`_
-   "preCPFE_SX", "This GUI is used to preprocess the CPFE model for SX indentation", `A_femproc_windows_indentation_setting_SX.m <https://github.com/czambaldi/stabix/blob/master/gui_preCPFE/A_femproc_windows_indentation_setting_SX.m>`_, "config_CPFEM_default.yaml"
-   "preCPFE_BX", "This GUI is used to preprocess the CPFE model for BX indentation", `A_femproc_windows_indentation_setting_BX.m <https://github.com/czambaldi/stabix/blob/master/gui_preCPFE/A_femproc_windows_indentation_setting_BX.m>`_, "config_CPFEM_default.yaml"
+   "preCPFE_SX", "This GUI is used to preprocess the CPFE model for SX indentation", `A_preCPFE_windows_indentation_setting_SX.m <https://github.com/czambaldi/stabix/blob/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_SX.m>`_, "config_CPFEM_default.yaml"
+   "preCPFE_BX", "This GUI is used to preprocess the CPFE model for BX indentation", `A_preCPFE_windows_indentation_setting_BX.m <https://github.com/czambaldi/stabix/blob/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_BX.m>`_, "config_CPFEM_default.yaml"
    
 Default YAML configuration files, stored in the folder "YAML_config_files", are loaded automatically to set the GUIs:
 

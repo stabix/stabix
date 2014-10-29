@@ -26,9 +26,9 @@ handles.pm_indenter_mesh_quality = uicontrol('Parent', parent,...
     'visible', 'off');
 
 if strcmp(gui.GB.active_data, 'SX') == 1
-    set(handles.pm_indenter_mesh_quality, 'Callback', 'femproc_indentation_setting_SX');
+    set(handles.pm_indenter_mesh_quality, 'Callback', 'preCPFE_indentation_setting_SX');
 elseif strcmp(gui.GB.active_data, 'BX') == 1
-    set(handles.pm_indenter_mesh_quality, 'Callback', 'femproc_indentation_setting_BX');
+    set(handles.pm_indenter_mesh_quality, 'Callback', 'preCPFE_indentation_setting_BX');
 end
 
 handles.rotate_loaded_indenter_str = uicontrol('Parent', parent,...
@@ -49,9 +49,9 @@ handles.rotate_loaded_indenter = uicontrol('Parent', parent,...
     'visible', 'off');
 
 if strcmp(gui.GB.active_data, 'SX') == 1
-    set(handles.rotate_loaded_indenter, 'Callback', 'femproc_indentation_setting_SX');
+    set(handles.rotate_loaded_indenter, 'Callback', 'preCPFE_indentation_setting_SX');
 elseif strcmp(gui.GB.active_data, 'BX') == 1
-    set(handles.rotate_loaded_indenter, 'Callback', 'femproc_indentation_setting_BX');
+    set(handles.rotate_loaded_indenter, 'Callback', 'preCPFE_indentation_setting_BX');
 end
 
 end

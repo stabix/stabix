@@ -34,7 +34,7 @@ if nargin < 1
 end
 
 %% Calculation of the transition depth between the conical and spherical part of the indenter
-h_trans = femproc_indentation_transition_depth(tipRadius, coneAngle/2);
+h_trans = preCPFE_indentation_transition_depth(tipRadius, coneAngle/2);
 h_trans = round(h_trans*100)/100;
 
 %% Plot of the spherical part of the indenter

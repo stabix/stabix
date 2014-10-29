@@ -8,9 +8,9 @@ so that a statistically significant number of indents can be assessed.
 
 A parametrized visualization of the bicrystal indentation model through the GUI allows tuning the geometry and finite element discretization and the size of the sample and the indenter.
 
-The |matlab| function used to run the preCPFE GUI for SX indentation is: `A_femproc_windows_indentation_setting_SX.m <https://github.com/czambaldi/stabix/tree/master/gui_preCPFE/A_femproc_windows_indentation_setting_SX.m>`_
+The |matlab| function used to run the preCPFE GUI for SX indentation is: `A_preCPFE_windows_indentation_setting_SX.m <https://github.com/czambaldi/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_SX.m>`_
 
-The |matlab| function used to run the preCPFE GUI for BX indentation is: `A_femproc_windows_indentation_setting_BX.m <https://github.com/czambaldi/stabix/tree/master/gui_preCPFE/A_femproc_windows_indentation_setting_BX.m>`_
+The |matlab| function used to run the preCPFE GUI for BX indentation is: `A_preCPFE_windows_indentation_setting_BX.m <https://github.com/czambaldi/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_BX.m>`_
 
 This includes:
 
