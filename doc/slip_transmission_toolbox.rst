@@ -17,7 +17,7 @@ The strain transfer across grain boundaries can be defined by the four following
    :scale: 40 %
    :align: center
    
-   *Figure 1 : Possible strain transfer across grain boundaries from Sutton and Balluffi.*
+   *Figure 1 : Possible strain transfer across grain boundaries (GB) from Sutton and Balluffi.*
    
 Several authors proposed slip transfer parameters from modellings or experiments for the last 60 years.
 A non-exhaustive list of those criteria is given in the next part of this work, including geometrical parameter, stress and energetic functions, and recent combinations of the previous parameters.
@@ -51,7 +51,7 @@ The subscripts :math:`in` and :math:`out` refer to the incoming and outgoing sli
   Many authors referred to this criterion to analyze slip transmission [#HauserChamlers_1961]_, [#Davis_1966]_, [#HookHirth_1967_1]_, [#HookHirth_1967_2]_, [#Shen_1986]_, [#Shen_1988]_, [#Lee_1990_1]_, [#Lee_1990_2]_, [#Clark_1992]_ and [#Ueda_2002]_.
   Pond et al. proposed to compute this geometric criteria for hexagonal metals using Frank's method [#Pond_1986]_.      
 
-  The |matlab| function used to calculate the N factor is: `N_factor.m <https://github.com/czambaldi/stabix/tree/master/slip_transfer/N_factor.m>`_
+  The |matlab| function used to calculate the N factor is: `N_factor.m <https://github.com/stabix/stabix/tree/master/slip_transfer/N_factor.m>`_
   
 * :math:`LRB` **factor from Shen et al. in 1986** [#Shen_1986]_ and [#Shen_1988]_
 
@@ -69,7 +69,7 @@ The subscripts :math:`in` and :math:`out` refer to the incoming and outgoing sli
   
   The inclination of the grain boundary (:math:`\beta`) is required to evaluate this factor and the :math:`LRB` or :math:`M` factor should be maximized.
   
-  The |matlab| function used to calculate the LRB factor is: `LRB_parameter.m <https://github.com/czambaldi/stabix/tree/master/slip_transfer/LRB_parameter.m>`_
+  The |matlab| function used to calculate the LRB factor is: `LRB_parameter.m <https://github.com/stabix/stabix/tree/master/slip_transfer/LRB_parameter.m>`_
 
 * :math:`m'` **parameter from Luster and Morris in 1995** [#LusterMorris_1995]_
         
@@ -97,12 +97,12 @@ The subscripts :math:`in` and :math:`out` refer to the incoming and outgoing sli
    
    A resistance factor of the grain boundary can be described by the following equation : 
    
-    .. math:: GB_{res_fac} = 1 - m'
+    .. math:: GB_resfac = 1 - m'
         :label: resistance_factor
         
   This factor is equal to 0 (grain boundary transparent if the :math:`m'` parameter is equal to 1 (when grains perfectly aligned).
    
-  The |matlab| function used to calculate the m' parameter is: `mprime.m <https://github.com/czambaldi/stabix/tree/master/slip_transfer/mprime.m>`_
+  The |matlab| function used to calculate the m' parameter is: `mprime.m <https://github.com/stabix/stabix/tree/master/slip_transfer/mprime.m>`_
      
 * :math:`\vec b_r` **the residual Burgers vector** [#Marcinkowski_1970]_, [#Bollmann_1970]_, [#LimRaj_1985_1]_, [#LimRaj_1985_2]_, [#Clark_1989]_, [#Lee_1990_2]_ and [#Clark_1992]_.
     .. math:: \vec b_r = g_{in}\cdot\vec b_{in} - g_{out}\cdot\vec b_{out}
@@ -118,7 +118,7 @@ The subscripts :math:`in` and :math:`out` refer to the incoming and outgoing sli
   
   Misra and Gibala used the residual Burgers vector to analyze slip across a fcc/bcc interphase boundary [#MisraGibala_1999]_.
   
-  The |matlab| function used to calculate the residual Burgers vector is: `residual_Burgers_vector.m <https://github.com/czambaldi/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_
+  The |matlab| function used to calculate the residual Burgers vector is: `residual_Burgers_vector.m <https://github.com/stabix/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_
  
 * **The misorientation or disorientation** (:math:`\Delta g` or :math:`\Delta g_d`)  [#AustChen_1954]_, [#ClarkChalmers_1954]_ and [#WoNgan_2004]_
 
@@ -127,8 +127,10 @@ The subscripts :math:`in` and :math:`out` refer to the incoming and outgoing sli
   Some authors demonstrated a strong correlation between misorientation between grains in a bicrystal and the grain boundary energy through crystal plasticity finite elements modelling and
   molecular dynamics simulations [#SuttonBalluffi_1995]_, [#Ma_2006]_, [#Li_2009]_, [#Bachurin_2010]_, [#Sangid_2011]_ and [#Sangid_2012]_. Some authors studied the stability of grain boundaries by the calculations
   of energy difference vs. misorientation angle through the hexagonal c-axis/a-axis [#Faraoun_2006]_.
+  
+  The misorientation and disorientation equations are given in the `crystallographic properties of a bicrystal. <bicrystal_definition.html>`_
  
-  The |matlab| function used to calculate the misorientation angle is: `misorientation.m <https://github.com/czambaldi/stabix/tree/master/crystallo/misorientation.m>`_
+  The |matlab| function used to calculate the misorientation angle is: `misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/misorientation.m>`_
 
 Stress Criteria
 ---------------
@@ -154,7 +156,7 @@ Stress Criteria
   The subscripts :math:`GB`, :math:`in` and :math:`out` refer to the grain boundary, and the incoming and outgoing slip systems, respectively.
   This GB Schmid factor (:math:`m_{GB}`) factor should be maximized.
   
-  The |matlab| function used to calculate the Schmid factor is: `resolved_shear_stress.m <https://github.com/czambaldi/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_
+  The |matlab| function used to calculate the Schmid factor is: `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_
   
 * **Generalized Schmid Factor** (:math:`GSF`) [#Reid_1973]_ and [#Bieler_2014]_
 
@@ -166,7 +168,7 @@ Stress Criteria
     
   :math:`n` and :math:`d` are respectively the slip plane normals and the slip directions of the slip system. The superscript :math:`T` is the transpose notation and :math:`g` is the orientation matrix for a given crystal.
         
-  The |matlab| function used to calculate the generalized Schmid factor is: `generalized_schmid_factor.m <https://github.com/czambaldi/stabix/tree/master/crystal_plasticity/generalized_schmid_factor.m>`_
+  The |matlab| function used to calculate the generalized Schmid factor is: `generalized_schmid_factor.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/generalized_schmid_factor.m>`_
         
 * **Resolved Shear Stress** (:math:`\tau`) [#Lee_1989]_, [#Lee_1990_1]_, [#Lee_1990_2]_, [#Clark_1992]_, [#Lagow_2001]_, [#Bieler_2009]_,  [#Dewald1_2007]_, [#Dewald2_2007]_ and [#Dewald3_2011]_
   
@@ -188,7 +190,7 @@ Stress Criteria
   Where :math:`\tau_{out}` is the shear stress at the head of the accumulated dislocations in their slip plane and
   :math:`\tau_{in}` is the shear acting on the incoming slip system [#LivingstonChalmers_1957]_,  [#HookHirth_1967_1]_ and [#HookHirth_1967_2]_.
   
-  The |matlab| function used to calculate the resolved shear stress is: `resolved_shear_stress.m <https://github.com/czambaldi/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_
+  The |matlab| function used to calculate the resolved shear stress is: `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_
 
 Combination of Criteria
 -----------------------
@@ -201,15 +203,15 @@ Slip transmission parameters implemented in the |matlab| Toolbox
    :header: "Slip transmission parameter", "Function", "|matlab| function", "Reference"
    :widths: 40, 40, 20, 10
 
-   "Misorientation angle (:math:`\omega`)", ":math:`\omega = cos^{-1}((tr(\Delta g)-1)/2)`", `misorientation.m <https://github.com/czambaldi/stabix/tree/master/crystallo/misorientation.m>`_, [#SuttonBalluffi_1995]_
-   "C-axis misorientation angle (for hcp material) (:math:`\omega`)", , `c-axis misorientation.m <https://github.com/czambaldi/stabix/tree/master/crystallo/eul2Caxismisor.m>`_, [#SuttonBalluffi_1995]_
-   ":math:`N` factor from Livingston and Chamlers", ":math:`N = \cos(\psi)\cdot\cos(\kappa) + \cos(\gamma)\cdot\cos(\delta)`", `N_factor.m <https://github.com/czambaldi/stabix/tree/master/slip_transfer/N_factor.m>`_, [#LivingstonChalmers_1957]_
-   ":math:`LRB` factor from Shen et al.", ":math:`LRB = \cos(\theta)\cdot\cos(\kappa)`", `LRB_parameter.m <https://github.com/czambaldi/stabix/tree/master/slip_transfer/LRB_parameter.m>`_
-   ":math:`m'` parameter from Luster and Morris", ":math:`m' = \cos(\psi)\cdot\cos(\kappa)`", `mprime.m <https://github.com/czambaldi/stabix/tree/master/slip_transfer/mprime.m>`_, [#LusterMorris_1995]_
-   "Residual Burgers vector (:math:`\vec b_r`)", ":math:`\vec b_r = g_{in}\cdot\vec b_{in} - g_{out}\cdot\vec b_{out}`", `residual_Burgers_vector.m <https://github.com/czambaldi/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_, [#Marcinkowski_1970]_
-   "Resolved Shear Stress (:math:`\tau^{i}`) / Schmid Factor", ":math:`\tau^{i} = \sigma : {S_0}^{i}` with :math:`{S_0}^{i} = d \otimes n`", `resolved_shear_stress.m <https://github.com/czambaldi/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_, [#Reid_1973]_
-   "Grain boundary Schmid factor", ":math:`m_{GB} = m_{in} + m_{out}`", `resolved_shear_stress.m <https://github.com/czambaldi/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_, [#Abuzaid_2012]_
-   "Generalized Schmid Factor (:math:`GSF`)", ":math:`GSF = d \cdot g \sigma g^T \cdot n^T`", `generalized_schmid_factor.m <https://github.com/czambaldi/stabix/tree/master/crystal_plasticity/generalized_schmid_factor.m>`_, [#Reid_1973]_
+   "Misorientation angle (:math:`\omega`)", ":math:`\omega = cos^{-1}((tr(\Delta g)-1)/2)`", `misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/misorientation.m>`_, [#SuttonBalluffi_1995]_
+   "C-axis misorientation angle (for hcp material) (:math:`\omega`)", , `c-axis misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/eul2Caxismisor.m>`_, [#SuttonBalluffi_1995]_
+   ":math:`N` factor from Livingston and Chamlers", ":math:`N = \cos(\psi)\cdot\cos(\kappa) + \cos(\gamma)\cdot\cos(\delta)`", `N_factor.m <https://github.com/stabix/stabix/tree/master/slip_transfer/N_factor.m>`_, [#LivingstonChalmers_1957]_
+   ":math:`LRB` factor from Shen et al.", ":math:`LRB = \cos(\theta)\cdot\cos(\kappa)`", `LRB_parameter.m <https://github.com/stabix/stabix/tree/master/slip_transfer/LRB_parameter.m>`_
+   ":math:`m'` parameter from Luster and Morris", ":math:`m' = \cos(\psi)\cdot\cos(\kappa)`", `mprime.m <https://github.com/stabix/stabix/tree/master/slip_transfer/mprime.m>`_, [#LusterMorris_1995]_
+   "Residual Burgers vector (:math:`\vec b_r`)", ":math:`\vec b_r = g_{in}\cdot\vec b_{in} - g_{out}\cdot\vec b_{out}`", `residual_Burgers_vector.m <https://github.com/stabix/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_, [#Marcinkowski_1970]_
+   "Resolved Shear Stress (:math:`\tau^{i}`) / Schmid Factor", ":math:`\tau^{i} = \sigma : {S_0}^{i}` with :math:`{S_0}^{i} = d \otimes n`", `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_, [#Reid_1973]_
+   "Grain boundary Schmid factor", ":math:`m_{GB} = m_{in} + m_{out}`", `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_, [#Abuzaid_2012]_
+   "Generalized Schmid Factor (:math:`GSF`)", ":math:`GSF = d \cdot g \sigma g^T \cdot n^T`", `generalized_schmid_factor.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/generalized_schmid_factor.m>`_, [#Reid_1973]_
 
 References
 ----------
