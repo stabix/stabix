@@ -23,7 +23,7 @@ of possible outgoing systems. Calculations are reproduced using the |matlab| too
 Patriarca et al. (2013)
 .......................
 
-Patriarca et al. analysed the deformation response of a FeCr polycrystal (bcc structure) by a combination of EBSD and DIC characterizations [#Patriarca_2013]_.
+Patriarca et al. analysed the deformation response of a FeCr polycrystal (bcc structure) by a combination of EBSD and digital image correlation (DIC) characterizations [#Patriarca_2013]_.
 The magnitude of residual dislocation Burgers vector is plotted for numerous grain boundaries, knowing incoming and outgoing slips.
 Calculations are reproduced using the |matlab| toolbox and results are compared to Patriarca's results (see Figure 2).
 
@@ -51,7 +51,7 @@ Cui et al. (2014)
 .................
 
 Cui et al. analyzed slip transfer in proton-irradiated 13Cr15Ni stainless steel (fcc structure), using in situ TEM deformation [#Cui_2014]_.
-In this work, two bicrystals with respectively a misorientation angle of 60° and 40° and a misorientation axis of [1, 1, -1] and [1, 0, 1] are characterized.
+In this work, two bicrystals with respectively a misorientation angles of 60° and 40° and a misorientation axis of [1, 1, -1] and [1, 0, 1] are characterized.
 Dislocation/grain boundary interactions are analysed and knowing the incoming system, the magnitude of residual dislocation Burgers vector is plotted in function
 of possible outgoing systems. Calculations are reproduced using the |matlab| toolbox and obtained values are compared to Cui's results (see Figure 4).
 
@@ -67,7 +67,7 @@ m' factor
 Guo et al. (2014)
 .................
 
-Guo et al. analyzed slip transfer in cp-Ti (hcp structure), by tensile test combined to in situ digital image correlation [#Guo_2014]_.
+Guo et al. analyzed slip transfer in cp-Ti (hcp structure), by tensile test combined to in situ digital image correlation (DIC) [#Guo_2014]_.
 In this work, many bicrystals are characterized and slip band–grain boundary interactions are analyzed in term of stress concentration along the slip plane direction.
 The :math:`m'` factor is used to quantify the transmissivity across the GBs and calculations are reproduced using the Matlab toolbox (see Figure 5).
 

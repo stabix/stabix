@@ -74,5 +74,5 @@ Schmid factor and slip trace analysis
    :scale: 40 %
    :align: center
    
-   *Figure 7 :  Screenshot of the EBSD map GUI with an EBSD map of a Ti alloy (slip plane plotted inside grains in function of the maximum Schmid factor calculated with a given stress tensor and 
-   slip traces plotted around unit cells in function of the maximum Schmid factor calculated with a given stress tensor)*
+   *Figure 7 :  Screenshot of the EBSD map GUI with an EBSD map of a Ti alloy (slip plane plotted inside grain and 
+   slip traces plotted around unit cells, both in function of the maximum Schmid factor calculated with a given stress tensor)*

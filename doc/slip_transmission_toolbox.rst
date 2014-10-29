@@ -128,7 +128,7 @@ The subscripts :math:`in` and :math:`out` refer to the incoming and outgoing sli
   molecular dynamics simulations [#SuttonBalluffi_1995]_, [#Ma_2006]_, [#Li_2009]_, [#Bachurin_2010]_, [#Sangid_2011]_ and [#Sangid_2012]_. Some authors studied the stability of grain boundaries by the calculations
   of energy difference vs. misorientation angle through the hexagonal c-axis/a-axis [#Faraoun_2006]_.
   
-  The misorientation and disorientation equations are given in the `crystallographic properties of a bicrystal. <bicrystal_definition.html>`_
+  The misorientation and disorientation equations are given in the `crystallographic properties of a bicrystal. <http://stabix.readthedocs.org/en/latest/bicrystal_definition.html>`_
  
   The |matlab| function used to calculate the misorientation angle is: `misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/misorientation.m>`_
 

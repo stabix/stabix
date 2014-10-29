@@ -35,4 +35,4 @@ It is possible to generate a new window, in which all values of the selected sli
    :scale: 40 %
    :align: center
    
-   *Figure 2 : Screenshot of the distribution of all slip transmission parameters (e.g. m' parameter for a 1 phase (hcp) bicrystal)*
+   *Figure 2 : Screenshot of the distribution of all slip transmission parameters (e.g.: m' parameter for a 1 phase (hcp) bicrystal)*

@@ -91,5 +91,3 @@ in the Matlab editor.
 
 To benefit from later changes in the default settings, the user should delete all
 configuration parameters that he does not intend to change.
-
-
