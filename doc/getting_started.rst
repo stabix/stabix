@@ -1,6 +1,6 @@
 ﻿Getting started
 ===============
-..  include:: <isonum.txt>
+
 ..  |matlab| replace:: Matlab\ :sup:`TM` \
 
 First of all, download the source code of the |matlab| toolbox.

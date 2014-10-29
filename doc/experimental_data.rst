@@ -1,6 +1,6 @@
 ﻿Experimental data
 =================
-..  include:: <isonum.txt>
+
 ..  |matlab| replace:: Matlab\ :sup:`TM` \
 
 To use the toolbox, some experimental data are required :
@@ -17,23 +17,23 @@ TEM experiments can provide intragranular misorientation and EBSD measurements c
 
 Inclination of the grain boundary can be evaluated by serial polishing or focused ion beam (FIB) sectioning, either parallel or perpendicular to the surface of the sample.
 
-EBSD map GUI |rarr| TSL-OIM data preparation
-********************************************
+EBSD map GUI - TSL-OIM data preparation
+***************************************
 
 Open you .osc (or your .ctf) file in the TSL-OIM Analysis Software.
 
 **Set the TSL coordinates system !**
 
-Change data properties for the detection of grain boundaries (All data |rarr| Properties).
+Change data properties for the detection of grain boundaries (All data --> Properties).
 
-Clean up your dataset (Filename |rarr| Cleanup).
+Clean up your dataset (Filename --> Cleanup).
 
 Reference : OIM ANALYSIS 6.0 (user manual) / `EDAX website <http://www.edax.com/Products/EBSD/OIM-Data-Analysis-Microstructure-Analysis.aspx>`_
 
 Reconstructed Boundaries File
 -----------------------------
 
-**Export "Reconstructed Boundaries File" of the cleaned dataset** (All data |rarr| Export |rarr| Reconstructed Boundaries), with the following options defined by default :
+**Export "Reconstructed Boundaries File" of the cleaned dataset** (All data --> Export --> Reconstructed Boundaries), with the following options defined by default :
 
 - Right hand average orientation (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees
 
@@ -59,7 +59,7 @@ If some GBs segments are missing or some wrong segments are exported, play with 
 Grain File Type 2
 -----------------
 
-**Export "Grain File Type 2" of the cleaned dataset** (All data |rarr| Export |rarr| Grain File), with the following options :
+**Export "Grain File Type 2" of the cleaned dataset** (All data --> Export --> Grain File), with the following options :
 
 - Integer identifying grain
 
@@ -82,7 +82,7 @@ The |matlab| function used to read "Grain File Type 2" is: `read_oim_grain_file_
 Scan Data (.ang file)
 ---------------------
 
-**Export "Scan Data (.ang file)" of the cleaned dataset** (Filename |rarr| Export |rarr| Scan Data) (optional).
+**Export "Scan Data (.ang file)" of the cleaned dataset** (Filename --> Export --> Scan Data) (optional).
 
 This .ang file is useful for the `MTEX Toolbox <http://mtex-toolbox.github.io/>`_
 
@@ -91,19 +91,19 @@ Example of an `.ang file. <https://github.com/stabix/stabix/blob/master/gui_ebsd
 Errors introduced during files exportation from TSL
 ---------------------------------------------------
 
-- "Grain File Type 2" |rarr| Missing integer identifying grain
-   |rarr| Solved when file is imported via the GUI.
+- "Grain File Type 2" --> Missing integer identifying grain
+   --> Solved when file is imported via the GUI.
 
-- "Reconstructed Boundary File" |rarr| Inversion of left and right grains for a given grain boundary 
-   |rarr| Cross product performed between GB vector and center of grains to check (if cross product < 0 : no inversion, and if cross product > 0 : inversion).
+- "Reconstructed Boundary File" --> Inversion of left and right grains for a given grain boundary 
+   --> Cross product performed between GB vector and center of grains to check (if cross product < 0 : no inversion, and if cross product > 0 : inversion).
 
-- "Reconstructed Boundary File" |rarr| x-axis and y-axis not corrects…
-   |rarr| y coordinates is multiplied by -1 when file is imported via the GUI.
+- "Reconstructed Boundary File" --> x-axis and y-axis not corrects…
+   --> y coordinates is multiplied by -1 when file is imported via the GUI.
 
 All of these issues are taken into account and corrected automatically when user is loading his data via the EBSD map GUI.
 
-Bicrystal GUI |rarr| YAML configuration file
-********************************************
+Bicrystal GUI - YAML configuration file
+***************************************
 
 **The YAML configuration file provides a simple way to define a bicrystal.**
 

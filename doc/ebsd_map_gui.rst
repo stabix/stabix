@@ -1,6 +1,6 @@
 ﻿EBSD map GUI
 ============
-..  include:: <isonum.txt>
+
 ..  |matlab| replace:: Matlab\ :sup:`TM` \
  
 This GUI allows to analyze quantitatively slip transmission across grain boundaries for an EBSD map.

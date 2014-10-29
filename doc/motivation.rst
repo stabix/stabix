@@ -1,6 +1,6 @@
 ﻿Motivation of this Work
 =======================
-..  include:: <isonum.txt>
+
 ..  |matlab| replace:: Matlab\ :sup:`TM` \
 
 The micromechanical behavior of grain boundaries is one of the key components in the understanding of heterogeneous deformation of metals [#Bieler_2014]_.

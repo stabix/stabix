@@ -1,6 +1,6 @@
 ﻿Analysis of literature data
 ===========================
-..  include:: <isonum.txt>
+
 ..  |matlab| replace:: Matlab\ :sup:`TM` \
 
 Residual Burgers vector

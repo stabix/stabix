@@ -1,6 +1,6 @@
 ﻿Strain Transfer Across Grain Boundaries
 =======================================
-..  include:: <isonum.txt>
+
 ..  |matlab| replace:: Matlab\ :sup:`TM` \
 
 The strain transfer across grain boundaries can be defined by the four following mechanisms (see Figure 1) [#LimRaj_1985_1]_, [#SuttonBalluffi_1995]_, [#Zaefferer_2003]_ and [#Priester_2013]_ :

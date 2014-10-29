@@ -1,6 +1,6 @@
 ﻿Bicrystal Definition
 ====================
-..  include:: <isonum.txt>
+
 ..  |matlab| replace:: Matlab\ :sup:`TM` \
 
 Crystallographic properties of a bicrystal

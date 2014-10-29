@@ -1,6 +1,6 @@
 ﻿Bicrystal GUI
 =============
-..  include:: <isonum.txt>
+
 ..  |matlab| replace:: Matlab\ :sup:`TM` \
 
 This GUI allows to analyze quantitatively slip transmission across grain boundaries for a single bicrystal selected from the EBSD map plotted previously in the map GUI

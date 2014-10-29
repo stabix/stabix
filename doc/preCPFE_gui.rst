@@ -1,6 +1,6 @@
 ﻿CPFE SX and BX Indentation models
 =================================
-..  include:: <isonum.txt>
+
 ..  |matlab| replace:: Matlab\ :sup:`TM` \
 
 The preCPFE GUI has been created to enable rapid transfer of experimental data into simulation input files,
