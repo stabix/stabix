@@ -20,7 +20,7 @@ http://dx.doi.org/10.5281/zenodo.11561
 
 Acknowledgements
 -----------------
-Parts of this work were supported under the NSF/DFG Materials World Network program (DFG ZA 523/3-1 and NSF-DMR-1108211). We also acknowledge useful discussions with Y. Su, P. Eisenlohr and M. Crimp from the Michigan State University,
+Parts of this work were supported under the NSF/DFG Materials World Network program (DFG ZA 523/3-1 and NSF-DMR-1108211). We also acknowledge useful discussions with Y. Su, P. Eisenlohr and M. Crimp from the Michigan State University.
 
 Keywords
 --------
