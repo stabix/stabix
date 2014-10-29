@@ -44,14 +44,14 @@ In this way the stress and strain fields close to the grain boundary can be rapi
 Activation and transmission of slip are interpreted based on these simulations and the mechanical resistance of grain boundaries can be quantified.
 
 .. figure:: ./_pictures/download.png
-   :scale: 7 %
+   :scale: 20 %
    :align: left
    :target: https://github.com/stabix/stabix
    
 `Source code is hosted at Github <https://github.com/stabix/stabix>`_.
 
 .. figure:: ./_pictures/download.png
-   :scale: 7 %
+   :scale: 20 %
    :align: left
    :target: http://dx.doi.org/10.5281/zenodo.11561
 
@@ -77,11 +77,11 @@ References
 ==========
 .. [#LusterMorris_1995] `J. Luster and M.A. Morris, "Compatibility of deformation in two-phase Ti-Al alloys: Dependence on microstructure and orientation relationships.", Metal. and Mat. Trans. A (1995), 26(7), pp. 1745-1756. <http://dx.doi.org/10.1007/BF02670762>`_
 .. [#Marcinkowski_1970] `M.J. Marcinkowski and W.F. Tseng, "Dislocation behavior at tilt boundaries of infinite extent.", Metal. Trans. (1970), 1(12), pp. 3397-3401. <http://dx.doi.org/10.1007/BF03037870>`_
-.. [#Bollmann_1970] `W. Bollmann, "Crystal Defects and Crystalline Interfaces", Springer-Verlag (1970) <http://dx.doi.org/10.1007/978-3-642-49173-3>`_
+.. [#Bollmann_1970] `W. Bollmann, "Crystal Defects and Crystalline Interfaces", Springer-Verlag (1970). <http://dx.doi.org/10.1007/978-3-642-49173-3>`_
 .. [#LivingstonChalmers_1957] `J.D. Livingston and B. Chalmers, "Multiple slip in bicrystal deformation.", Acta Metallurgica (1957), 5(6), pp. 322-327. <http://dx.doi.org/10.1016/0001-6160(57)90044-5>`_
 .. [#Bieler_2009] `T.R. Bieler et al., "The role of heterogeneous deformation on damage nucleation at grain boundaries in single phase metals.", Int. J. of Plast. (2009), 25(9), pp. 1655–1683. <http://dx.doi.org/10.1016/j.ijplas.2008.09.002>`_
 .. [#Roters_2010] `F. Roters et al., "Overview of constitutive laws, kinematics, homogenization and multiscale methods in crystal plasticity finite-element modeling: Theory, experiments, applications.",  Acta Materialia (2010), 58(4), pp. 1152-1211. <http://dx.doi.org/10.1016/j.actamat.2009.10.058>`_
-.. [#DAMASK] `DAMASK — the Düsseldorf Advanced Material Simulation Kit <http://damask.mpie.de/>`_
+.. [#DAMASK] `DAMASK — the Düsseldorf Advanced Material Simulation Kit. <http://damask.mpie.de/>`_
 .. [#Zambaldi_2012] `C. Zambaldi et al., "Orientation informed nanoindentation of α-titanium: Indentation pileup in hexagonal metals deforming by prismatic slip", J. Mater. Res. (2012), 27(01), pp. 356-367. <http://dx.doi.org/10.1557/jmr.2011.334>`_
 .. [#Zambaldi_SX] `C. Zambaldi, "Anisotropic indentation pile-up in single crystals". <http://zambaldi.de/sx-indent/>`_
 
@@ -90,11 +90,12 @@ Contact
 :Authors: `David Mercier <d.mercier@mpie.de>`_ [1], `Claudio Zambaldi <c.zambaldi@mpie.de>`_ [1] and `Thomas R. Bieler <bieler@egr.msu.edu>`_ [2].
 
 [1] `Max-Planck-Institut für Eisenforschung, 40237 Düsseldorf, Germany <http://www.mpie.de/>`_
-[2] `Chemical Engineering and Materials Science, Michigan State University, East Lansing 48824 MI, USA <http://www.msu.edu/>`_
 
+[2] `Chemical Engineering and Materials Science, Michigan State University, East Lansing 48824 MI, USA <http://www.msu.edu/>`_
 
 .. image:: ./_pictures/logo_MPIE_MSU.png
    :scale: 50 %
+
 
 Acknowledgements
 ================
@@ -105,5 +106,5 @@ and the `Max-Planck-Institut für Eisenforschung <http://www.mpie.de/>`_ for sup
 
 Keywords
 ========
-|matlab| Toolbox; Graphical User Interface (GUI); Grain Boundaries; Polycrystalline Metals; Slip Transmission; Bi-Crystal (BX);
+|matlab| Toolbox; Graphical User Interface (GUI); Grain Boundary (GB); Polycrystalline Metals; Slip Transmission; Bi-Crystal (BX);
 Electron backscatter diffraction (EBSD); Instrumented indentation; Crystal Plasticity Finite Element Method (CPFEM); python\ :sup:`TM` \ Toolbox.

@@ -69,13 +69,13 @@ Guo et al. (2014)
 
 Guo et al. analyzed slip transfer in cp-Ti (hcp structure), by tensile test combined to in situ digital image correlation [#Guo_2014]_.
 In this work, many bicrystals are characterized and slip band–grain boundary interactions are analyzed in term of stress concentration along the slip plane direction.
-The :math:`m'` factor is used to quantify the transmissivity across the GBs and calculations are reproduced using the Matlab toolbox (see Figure 4).
+The :math:`m'` factor is used to quantify the transmissivity across the GBs and calculations are reproduced using the Matlab toolbox (see Figure 5).
 
   .. figure:: ./_pictures/data_from_papers/Guo2014_barcharts_cropped.png
    :scale: 20 %
    :align: center
    
-   *Figure 4 : m' factor values given in Guo's paper compared to values calculated with the Matlab Toolbox for 7 different bicrystals* [#Guo_2014]_
+   *Figure 5 : m' factor values given in Guo's paper compared to values calculated with the Matlab Toolbox for 7 different bicrystals* [#Guo_2014]_
    
 .. [#Cui_2014] `B. Cui et al., "Influence of irradiation damage on slip transfer across grain boundaries.", Acta Materialia (2014), 65, pp. 150-160. <http://dx.doi.org/10.1016/j.actamat.2013.11.033>`_
 .. [#Guo_2014] `Y. Guo et al., "Slip band–grain boundary interactions in commercial-purity titanium.", Acta Materialia (2014), 76, pp. 1-12. <http://dx.doi.org/10.1016/j.actamat.2014.05.015>`_

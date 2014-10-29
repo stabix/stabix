@@ -4,9 +4,9 @@
 ..  |matlab| replace:: Matlab\ :sup:`TM` \
 
 This GUI allows to analyze quantitatively slip transmission across grain boundaries for a single bicrystal selected from the EBSD map plotted previously in the map GUI
-or set by the user (directly inside the bicrystal GUI or by loading a `YAML config. bicrystal <https://github.com/czambaldi/stabix/tree/master/gui_bicrystal/gui_bicrystal_data/Kacher2012/Kacher2012_Fig.12.yaml>`_ file from the menu).
+or set by the user (directly inside the bicrystal GUI or by loading a `YAML config. bicrystal <https://github.com/stabix/stabix/tree/master/gui_bicrystal/gui_bicrystal_data/Kacher2012/Kacher2012_Fig.12.yaml>`_ file from the menu).
 
-The |matlab| function used to run the bicrystal GUI is: `A_gui_plotGB_Bicrystal.m <https://github.com/czambaldi/stabix/tree/master/gui_bicrystal/A_gui_plotGB_Bicrystal.m>`_
+The |matlab| function used to run the bicrystal GUI is: `A_gui_plotGB_Bicrystal.m <https://github.com/stabix/stabix/tree/master/gui_bicrystal/A_gui_plotGB_Bicrystal.m>`_
 
 This includes:
 
