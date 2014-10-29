@@ -57,6 +57,8 @@ indenter_surfaces
         if geo == 'conical':
             savename += '_R%.2f' % self.IndentParameters['tipRadius']
             savename += '_cA%.1f' % self.IndentParameters['coneAngle']
+        if geo == 'AFMtopo':
+            self.procIndenterAFMtopo
         savename += '_h%.3f' % self.IndentParameters['h_indent']
         self.procSaveModel(modelname=savename + '.mfd')
         #self.procMicronbar(posXYZ=N.array([0., 0., 0.]),height=h_indent)
@@ -307,6 +309,17 @@ all_existing
 all_existing
 *store_surfaces indenter_surfaces_berko
 all_existing
+''')
+
+    def procIndenterAFMtopo(self):
+        self.proc.append('''
+|+++++++++++++++++++++++++++++++++++++++++++++
+| MODELING OF AFM INDENTER TOPOGRAPHY
+|+++++++++++++++++++++++++++++++++++++++++++++
+*expand_reset
+*set_curve_type line |arc_cpa
+*add_points
+0 0 0
 ''')
 
     def procIndenterDeformable(self,

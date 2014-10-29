@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function [X, Y, data] = preCPFE_correct_indenter_topo_AFM(topo, h_indent, smooth_factor, rotation_angle, z_factor, varargin)
+function [X, Y, data, fvc] = preCPFE_correct_indenter_topo_AFM(topo, h_indent, smooth_factor, rotation_angle, z_factor, varargin)
 %% Function to correct topography from Gwyddion file
 % topo: Struct. variable imported from Gwyddion file (see
 % read_gwyddion_ascii function)
@@ -113,6 +113,7 @@ data = topo.data_smoothed;
 
 %% 3D Plot
 surf(X, Y, data);
+fvc = surf2patch(X, Y, data); % for generation of Abaqus .inp file
 colormap gray;
 
 end

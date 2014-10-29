@@ -1,19 +1,23 @@
+% Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function patch2inp(patch_obj, inp_full_path)
-% Writes a Matlab surf or patch into Abaqus INP format
-%
-% patch_obj: graphics handle of patch or surf or patch data structure 
+%% Writes a Matlab surf or patch into Abaqus INP format
+% patch_obj: graphics handle of patch or surf or patch data structure
 %            with Faces and Vertices
+% inp_full_path: full path (foldername + filename)
 %
-% C. Zambaldi, MPIE, 2011
+% author: C. Zambaldi, MPIE, 2011
 
 if nargin < 2
     inp_full_path = fullfile(cd, 'patch2inp_test_export.inp')
 end
 if nargin == 0
-    figure; clc;
-    patch_obj = topo_plot(topo_mock);
+    [X,Y] = meshgrid(-8:.5:8);
+    R = sqrt(X.^2 + Y.^2) + eps;
+    Z = sin(R)./R;
+    figure
+    mesh(X,Y,Z)
+    patch_obj = surf2patch(X, Y, Z);
     patch2inp(patch_obj, inp_full_path);
-    %edit(inp_full_path)
     commandwindow
     return
 end
@@ -75,3 +79,4 @@ elseif length(patch_data.faces(1,:)) == 3 % Triangle
     end
 end
 fclose(fid_inp);
+end

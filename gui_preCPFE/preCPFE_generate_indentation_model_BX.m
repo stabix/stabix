@@ -148,6 +148,12 @@ catch err
     warning(err.message);
 end
 
+%% .inp file for AFM topography
+proc_path_inp = fullfile(proc_path, strcat(gui_BX.GB.Titlegbdata, '.inp'));
+if strcmp(gui_BX.indenter_type, 'AFM') == 1
+    patch2inp(gui_BX.afm_topo_indenter.fvc, proc_path_inp);
+end
+
 guidata(gcf, gui_BX);
 
 end
