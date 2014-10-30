@@ -31,8 +31,9 @@ How to use the toolbox ?
 5) Repeat the same operation for the second image obtained after serial polishing.
 5) Do the overlay
 If control points don't exist (it's the case for the 1st time you do it for a couple of measurement), a window appear 
-and it is possible to define control point. You have to define 3 control points and then you do Ctrl+W.
+and it is possible to define control point. You have to define 3 control points.
 You have to select a point on the figure on lhe left, then on the figure on the right and repeat this 2 times more.
+You can close the window for the selection of control points (Ctrl+W).
 Then, the overlay is plotted. You can save it if you want as a screenshot.
 6) Do the measurement of the distance between edges or rigdes (select before if edge or ridge) of a unique Vickers indent.
 7) Do the measurement of the distance between edges of a unique grain boundary.
@@ -40,11 +41,13 @@ Then, the overlay is plotted. You can save it if you want as a screenshot.
 
 N.B.: Distances and grain boundary inclination values are obtained with the mean scale factor of the two images...
 
-
 Reference paper
 ---------------
-V. Randle, “A methodology for grain boundary plane assessment by single-section trace analysis.”, Scripta Mater., 2001, 44, pp. 2789-2794.
+`V. Randle, "A methodology for grain boundary plane assessment by single-section trace analysis.", Scripta Mater., 2001, 44, pp. 2789-2794. <http://dx.doi.org/10.1016/S1359-6462(01)00975-7>`_ 
 
 Links
 -----
-http://www.mathworks.fr/help/images/ref/edge.html
+`Matlab - Control Point Selection Tool <http://www.mathworks.fr/help/images/ref/cpselect.html>`_
+`Matlab - Spatial transformation from control point pairs <http://www.mathworks.fr/help/images/ref/cp2tform.html>`_
+`Matlab - Edge detection <http://www.mathworks.fr/help/images/ref/edge.html>`_
+`Matlab - Distance tool <http://www.mathworks.fr/help/images/ref/imdistline.html>`_
