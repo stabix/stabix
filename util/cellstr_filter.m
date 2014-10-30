@@ -22,8 +22,8 @@ for el_idx = 1:numel(cellstring);
         fstr = filter_cell(fstr_idx);
          % strcmpi instead of strfind to load folders in the Matlab search
          % paths, named for instance "foldername.git"
-        if strcmpi(stritem{1}, fstr{1})
-            %stritem{1}
+        if strfind(stritem{1}, fstr{1})
+            %stritem{1} % show filtered item
             continue % don't add filtered elements
         else
             cellstr_out{end+1} = stritem{1};
