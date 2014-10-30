@@ -30,16 +30,16 @@ How to use the toolbox ?
 4) Do the edge detection
 5) Repeat the same operation for the second image obtained after serial polishing.
 6) Do the overlay
-If control points don't exist (it's the case for the 1st time you do it for a couple of measurement), a window appear 
-and it is possible to define control point. You have to define 3 control points.
-You have to select a point on the figure on lhe left, then on the figure on the right and repeat this 2 times more.
-You can close the window for the selection of control points (Ctrl+W).
+    If control points don't exist (it's the case for the 1st time you do it for a couple of measurement), a window appear 
+    and it is possible to define control point. You have to define 3 control points.
+    You have to select a point on the figure on lhe left, then on the figure on the right and repeat this 2 times more.
+    You can close the window for the selection of control points (Ctrl+W).
 7) Save the obtained overlay (as a screenshot) (optional).
 8) Do the measurement of the distance between edges or rigdes (select before if edge or ridge) of a unique Vickers indent.
 9) Do the measurement of the distance between edges of a unique grain boundary.
 10) The value of the grain boundary inclination is finally given.
 
-.. figure:: ./sem_pictures_serial_polishing/cpTi_before_polishing.tif_cpTi_post_polishing.tif.mat.png"
+.. figure:: ./sem_pictures_serial_polishing/cpTi_before_polishing.tif_cpTi_post_polishing.tif.mat.png
    :scale: 50 %
    :align: center
    
