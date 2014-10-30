@@ -4,14 +4,15 @@ function gui_gbinc_pictures_overlay
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
+% See: http://www.mathworks.fr/help/images/ref/cpselect.html
+% See: http://www.mathworks.fr/help/images/ref/cp2tform.html
+
 gui = guidata(gcf);
 
 calibration = 1;
 edge_detection = 1;
 
 %% Check of the presence of the 2 pictures
-
-
 if ~gui.flag.image1 || ~gui.flag.image2
     warning('Please, load image first !'); beep; commandwindow;
 end
@@ -71,19 +72,22 @@ if calibration && edge_detection
     else
         warning('Please, select correctly new control points...'); beep; commandwindow;
     end
+    guidata(gcf, gui);
     
     %% Overlay the 2 figures
     try
-        h_reg = imshow(regd); hold on;
-        h_base = imshow(ind2rgb(gray2ind(fig_base,3),[1,0,0;1,0,0;1,1,1]));
-        set(h_base, 'AlphaData', 0.5);
+        gui_gbinc_plot_overlay(regd, fig_base);
+        gui.config_map.regd = regd;
+        gui.config_map.fig_base = fig_base;
+        guidata(gcf, gui);
+        gui_gbinc_switch_plot(3);
+        set(gui.handles.switch_plot.pb3, 'Visible', 'on');
+        set(gui.handles.switch_plot.pb3, 'BackgroundColor', [0.2 0.8 0]);
+        set(gui.handles.overlay.delete_control_points, 'Visible', 'on')
+        gui.flag.overlay = 1;
     catch
         gui_gbinc_clear_control_points;
     end
-    
-    %% Overlay done !
-    gui.flag.overlay = 1;
-    set(gui.handles.overlay.delete_control_points, 'Visible', 'on')
 end
 
 guidata(gcf, gui);

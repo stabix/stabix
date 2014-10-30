@@ -31,18 +31,7 @@ end
 %% Calculations
 if calibration && edge_detection && overlay
     zoom out;
-    
-    gui.config_map.h_dist = imdistline(gca, [350 400], [150 150]);
-    api = iptgetapi(gui.config_map.h_dist);
-    
-    fcn = makeConstrainToRectFcn('imline',...
-        get(gca, 'XLim'),...
-        get(gca, 'YLim'));
-    
-    setLabelVisible(gui.config_map.h_dist, false);
-    setColor(gui.config_map.h_dist, 'green');
-    
-    api.setDragConstraintFcn(fcn);
+    gui.config_map.h_dist = set_imdistline([350 400],[150 150], 'green');
 end
 guidata(gcf, gui);
 

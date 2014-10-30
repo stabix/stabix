@@ -5,33 +5,7 @@ function gui_gbinc_scale_calibration(image_type)
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
-parent = gcf;
-
-gui = guidata(parent);
-
-if image_type == 1
-    pathnameimage = gui.config_map.pathname_image_before_polishing;
-    filenameimage = gui.config_map.filename_image_before_polishing;
-    set(gui.handles.switch_plot.pb1, 'BackgroundColor', [0.2 0.8 0]);
-    set(gui.handles.switch_plot.pb2, 'BackgroundColor', [0.9 0.9 0.9]);
-elseif image_type == 2
-    pathnameimage = gui.config_map.pathname_image_after_polishing;
-    filenameimage = gui.config_map.filename_image_after_polishing;
-    set(gui.handles.switch_plot.pb1, 'BackgroundColor', [0.9 0.9 0.9]);
-    set(gui.handles.switch_plot.pb2, 'BackgroundColor', [0.2 0.8 0]);
-end
-
-gui_gbinc_load_image(pathnameimage, filenameimage);
-
-gui.config_map.h_dist = imdistline(gca,[10 80],[750 750]);
-api    = iptgetapi(gui.config_map.h_dist);
-fcn    = makeConstrainToRectFcn('imline',...
-    get(gca, 'XLim'),...
-    get(gca, 'YLim'));
-
-setLabelVisible(gui.config_map.h_dist, false);
-
-api.setDragConstraintFcn(fcn);
+gui = guidata(gcf);
 
 %% Calculation of the calibration factor
 if image_type == 1
@@ -60,6 +34,6 @@ elseif image_type == 2
     end
 end
 
-guidata(parent, gui);
+guidata(gcf, gui);
 
 end

@@ -13,14 +13,7 @@ end
 
 zoom out;
 
-gui.config_map.h_dist = imdistline(gca, [450 500], [300 300]);
-api = iptgetapi(gui.config_map.h_dist);
-fcn = makeConstrainToRectFcn('imline', ...
-    get(gca, 'XLim'),...
-    get(gca, 'YLim'));
-
-setLabelVisible(gui.config_map.h_dist, false);
-api.setDragConstraintFcn(fcn);
+gui.config_map.h_dist = set_imdistline([450 500],[300 300], 'blue');
 
 guidata(gcf, gui);
 
