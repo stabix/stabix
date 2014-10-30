@@ -58,9 +58,10 @@ else
     
     if flag.pmparam2plot_value4GB ~= 7 || flag.pmparam2plot_value4GB ~= 8
         % Loop to set grains properties (identity, Euler angles, position)
-        vect  = zeros(size(slip_systems,3),21,max(GF2(:,1)));
-        vect1 = zeros(size(slip_systems,3),21,max(GF2(:,1)));
-        vect2 = zeros(size(slip_systems,3),21,max(GF2(:,1)));
+        %FIXME --> Problem with the preallocation of vect, vect1 and vect2
+        %vect  = zeros(size(slip_systems,3),21,max(GF2(:,1)));
+        %vect1 = zeros(size(slip_systems,3),21,max(GF2(:,1)));
+        %vect2 = zeros(size(slip_systems,3),21,max(GF2(:,1)));
         
         for ig = 1:max(GF2(:,1))
             

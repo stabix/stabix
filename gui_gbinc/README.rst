@@ -5,7 +5,7 @@ This toolbox helps to find the grain boundary inclination from two micrographs f
 At least three marks such as microindents are needed for registration of the images. 
 
 To get started with gbinc toolbox, clone the repository, then run Matlab, and cd into the folder containing this README file. Then add the package path to the Matlab search path by typing "path_management".
-Finally you can start the launcher by typing "demo" at the Matlab command prompt.
+Finally you can start the launcher by typing "demo" or "A_gui_gbinc" at the Matlab command prompt.
 
 Authors
 -------
@@ -24,17 +24,18 @@ Scanning electron microscope (SEM).
 
 How to use the toolbox ?
 ------------------------
-1) Run the function demo.m
-2) Select your first image before serial polishing
+1) Run the function "A_gui_gbinc.m".
+2) Select your first image before serial polishing.
 3) Do the calibration to get the factor scale.
-4) Do the edge detection
+4) Do the edge detection.
 5) Repeat the same operation for the second image obtained after serial polishing.
-6) Do the overlay
-    If control points don't exist (it's the case for the 1st time you do it for a couple of measurement), a window appear 
-    and it is possible to define control point. You have to define 3 control points.
-    You have to select a point on the figure on lhe left, then on the figure on the right and repeat this 2 times more.
+6) Do the overlay.
+    If control points don't exist (it's the case for the 1st time), a window appears 
+    and it is possible to define control points. You have to define 3 control points per images.
+    You have to select a point on the figure on the left, then on the figure on the right, and repeat this operation 2 times.
     You can close the window for the selection of control points (Ctrl+W).
-7) Save the obtained overlay (as a screenshot) (optional).
+    Control points are saved in .mat file (in the same folder than the 1st picture loaded).
+7) Save the overlay (see Figure 1) in the same folder than the 1st picture loaded (as a screenshot - .png) (optional).
 8) Do the measurement of the distance between edges or rigdes (select before if edge or ridge) of a unique Vickers indent.
 9) Do the measurement of the distance between edges of a unique grain boundary.
 10) The value of the grain boundary inclination is finally given.
@@ -43,7 +44,7 @@ How to use the toolbox ?
    :scale: 50 %
    :align: center
    
-   *Figure 1 : Screenshot of the gUI with the overlay after edge detection.*
+   *Figure 1 : Screenshot of the GUI with the overlay after edge detection.*
 
 N.B.: Distances and grain boundary inclination values are obtained with the mean scale factor of the two images...
 
