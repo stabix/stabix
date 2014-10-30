@@ -4,7 +4,7 @@ function config = load_YAML_config_file
 % See in http://code.google.com/p/yamlmatlab/
 % author : d.mercier@mpie.de
 
-configYAML = sprintf('config.yaml');
+configYAML = 'config.yaml';
 
 if exist(configYAML, 'file') == 2
     config = ReadYaml(configYAML);

@@ -16,6 +16,9 @@ version_year: '2014'
 # Setting of opengl, e.g. 'software' or 'hardware' (optional)
 matlab_opengl: software
 
+# Source code repository
+repository_url: 'http://github.com/stabix/stabix'
+
 # Path for the documentation (html)
 doc_path_root: 'http://stabix.readthedocs.org/en/latest/'
 
