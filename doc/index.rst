@@ -104,6 +104,9 @@ This work was supported by the DFG/NSF `Materials World Network <http://www.nsf.
 The authors are grateful to Philip Eisenlohr, Martin Crimp and Yang Su of `Michigan State University <http://www.msu.edu/>`_,
 and the `Max-Planck-Institut für Eisenforschung <http://www.mpie.de/>`_ for support.
 
+.. include:: contributors.rst
+
+
 Keywords
 ========
 |matlab| Toolbox; Graphical User Interface (GUI); Grain Boundary (GB); Polycrystalline Metals; Slip Transmission; Bi-Crystal (BX);
