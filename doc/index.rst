@@ -72,7 +72,7 @@ Contents
    bicrystal_gui
    preCPFE_gui
    data_from_paper
-   readme_link
+   gui_gbinc
    
 References
 ==========

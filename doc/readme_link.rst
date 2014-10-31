@@ -1,1 +1,0 @@
-.. include:: ../gui_gbinc/README.rst

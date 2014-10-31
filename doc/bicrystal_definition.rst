@@ -69,21 +69,11 @@ by a serial polishing (chemical-mechanical polishing or FIB sectioning), either 
    
    *Figure 1 : Schematic of a bicrystal.*
    
-.. only:: html
-
-    .. figure:: ./_pictures/GUIs/gui_gb_inc.png.gif
-       :scale: 50 %
-       :align: center
-       
-       *Figure 2 : Screenshots of the Matlab GUI used to calculate grain boundary inclination.*
-
-.. only:: latex
-
-    .. figure:: ./_pictures/GUIs/gui_gb_inc.png
-       :scale: 50 %
-       :align: center
-       
-       *Figure 2 : Screenshot of the Matlab GUI used to calculate grain boundary inclination.*
+.. figure:: ./_pictures/GUIs/gui_gb_inc.png
+   :scale: 50 %
+   :align: center
+   
+   *Figure 2 : Screenshot of the Matlab GUI used to calculate grain boundary inclination.*
 
 .. [#Kocks_2000] `U.F. Kocks et al., "Texture and Anisotropy: Preferred Orientations in Polycrystals and Their Effect on Materials Properties." Cambridge University Press (2000). <http://www.cambridge.org/gb/academic/subjects/engineering/materials-science/texture-and-anisotropy-preferred-orientations-polycrystals-and-their-effect-materials-properties>`_
 .. [#Morawiec_2004] `A. Morawiec, "Orientations and Rotations: Computations in Crystallographic Textures.", Springer, 2004. <http://www.springer.com/materials/book/978-3-540-40734-8>`_
