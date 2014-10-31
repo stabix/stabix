@@ -119,6 +119,8 @@ class Indentation(Indenter, Tools):
             self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
         if geo == 'AFM':
             self.procIndenterAFMtopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'])
+        self.procNewModel()
+        self.procParametersIndent()
         self.procSample()
         self.procSampleIndent(smv=self.IndentParameters['smv'])
         self.procBoundaryConditions()
@@ -173,7 +175,7 @@ class Indentation(Indenter, Tools):
         #return self.procfilename
 
 
-    def procParametersIndent(self):
+    def procParametersIndent(self):    
         if self.IndentParameters['D_sample'] is not None:
             dSamp = self.IndentParameters['D_sample']
         elif self.IndentParameters['Dexp'] is not None:
@@ -181,6 +183,7 @@ class Indentation(Indenter, Tools):
         else:
             dSamp = 20 * self.IndentParameters['h_indent'] # 90deg~20*
         self.proc.append('''| GEOMETRY
+*define h_indent %f''' % (self.IndentParameters['h_indent']) + '''| maximum indentation depth
 *define d_sample %f''' % dSamp + '''
 |*define d_sample 20*h_indent  | Berkovich''' + # d_samp>!7*d_indentation
                          '''|*define d_sample 16*h_indent  | CubeCorner
@@ -531,7 +534,7 @@ all_existing
 ''')
         self.proc.append('''
 *remove_surface_sets
-*merge_models %s''' % (self.IndentParameters['geo']) + '''
+*merge_models %s''' % (self.IndentParameters['Indenter']) + '''
 ''')
         if self.IndentParameters['divideMesh']:
             self.proc.append('''

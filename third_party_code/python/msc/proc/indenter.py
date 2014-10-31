@@ -324,6 +324,21 @@ all_existing
 |+++++++++++++++++++++++++++++++++++++++++++++
 *import abaqus %s ''' % (self.IndentParameters['free_mesh_inp']) +
 '''
+*face_surfaces
+all_existing
+*remove_nodes
+all_existing
+*remove_elements
+all_existing
+*remove_points
+all_existing
+*store_surfaces indenter_surfaces
+all_existing
+''')
+        self.IndentParameters['Indenter'] = 'afm_topography_of_indenter_from_inp.mfd'
+        self.proc.append('''
+*save_as_model ''' + self.IndentParameters['Indenter']
+                         + ''' yes
 ''')
 
     def procIndenterDeformable(self,
