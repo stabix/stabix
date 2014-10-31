@@ -73,6 +73,7 @@ At least three Vickers indents are needed as fixed markers. For more details, pl
    *Figure 1 : Schematic of a bicrystal.*
 
 .. only:: html
+
     .. figure:: ./_pictures/GUIs/gui_gb_inc.png.gif
        :scale: 50 %
        :align: center
@@ -80,6 +81,7 @@ At least three Vickers indents are needed as fixed markers. For more details, pl
        *Figure 2 : Screenshots of the Matlab GUI used to calculate grain boundary inclination.*
 
 .. only:: latex
+
     .. figure:: ./_pictures/GUIs/gui_gb_inc.png
        :scale: 50 %
        :align: center
