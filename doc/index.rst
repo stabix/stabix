@@ -5,7 +5,7 @@
    
 
 ..  |matlab| replace:: Matlab\ :sup:`TM` \
-   
+
 Slip Transmission |matlab| toolbox
 ==================================
 
@@ -72,6 +72,7 @@ Contents
    bicrystal_gui
    preCPFE_gui
    data_from_paper
+   readme_link
    
 References
 ==========

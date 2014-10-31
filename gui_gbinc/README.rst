@@ -1,26 +1,18 @@
 ﻿A Matlab toolbox to analyze grain boundary inclination from SEM images
 ======================================================================
 
+.. figure:: ./_pictures/download.png
+   :scale: 20 %
+   :align: left
+   :target: https://github.com/stabix/stabix
+   
+`Source code is hosted at Github <https://github.com/stabix/stabix/gui_gbinc>`_.
+
 This toolbox helps to find the grain boundary inclination from two micrographs from serial polishing.
 At least three marks such as microindents are needed for registration of the images. 
 
 To get started with gbinc toolbox, clone the repository, then run Matlab, and cd into the folder containing this README file. Then add the package path to the Matlab search path by typing "path_management".
 Finally you can start the launcher by typing "demo" or "A_gui_gbinc" at the Matlab command prompt.
-
-Authors
--------
-Written by D. Mercier [1] and C. Zambaldi [1].
-
-[1] Max-Planck-Institut für Eisenforschung, 40237 Düsseldorf, Germany
-
-Acknowledgements
------------------
-Parts of this work were supported under the NSF/DFG Materials World Network program (DFG ZA 523/3-1 and NSF-DMR-1108211). We also acknowledge useful discussions with Y. Su, P. Eisenlohr and M. Crimp from the Michigan State University.
-
-Keywords
---------
-Matlab; Graphical User Interface (GUI); Grain Boundaries; Polycrystalline Metals; Grain Boundary Inclination; Serial Polishing;
-Scanning electron microscope (SEM).
 
 How to use the toolbox ?
 ------------------------
@@ -40,7 +32,7 @@ How to use the toolbox ?
 9) Do the measurement of the distance between edges of a unique grain boundary.
 10) The value of the grain boundary inclination is finally given.
 
-.. figure:: ./sem_pictures_serial_polishing/cpTi_before_polishing.tif_cpTi_post_polishing.tif.mat.png
+.. figure:: ./_pictures/GUIs/gui_gb_inc.png
    :scale: 50 %
    :align: center
    
@@ -54,7 +46,22 @@ Reference paper
 
 Links
 -----
-`Matlab - Control Point Selection Tool <http://www.mathworks.fr/help/images/ref/cpselect.html>`_
-`Matlab - Spatial transformation from control point pairs <http://www.mathworks.fr/help/images/ref/cp2tform.html>`_
-`Matlab - Edge detection <http://www.mathworks.fr/help/images/ref/edge.html>`_
-`Matlab - Distance tool <http://www.mathworks.fr/help/images/ref/imdistline.html>`_
+- `Matlab - Control Point Selection Tool <http://www.mathworks.fr/help/images/ref/cpselect.html>`_
+- `Matlab - Spatial transformation from control point pairs <http://www.mathworks.fr/help/images/ref/cp2tform.html>`_
+- `Matlab - Edge detection <http://www.mathworks.fr/help/images/ref/edge.html>`_
+- `Matlab - Distance tool <http://www.mathworks.fr/help/images/ref/imdistline.html>`_
+
+Authors
+-------
+Written by D. Mercier [1] and C. Zambaldi [1].
+
+[1] Max-Planck-Institut für Eisenforschung, 40237 Düsseldorf, Germany
+
+Acknowledgements
+-----------------
+Parts of this work were supported under the NSF/DFG Materials World Network program (DFG ZA 523/3-1 and NSF-DMR-1108211).
+
+Keywords
+--------
+Matlab; Graphical User Interface (GUI); Grain Boundaries; Polycrystalline Metals; Grain Boundary Inclination; Serial Polishing;
+Scanning electron microscope (SEM).

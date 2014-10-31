@@ -60,18 +60,15 @@ The |matlab| function used to calculate the misorientation angle is: `misorienta
         
 The grain boundary plane normal :math:`n` can be determined knowing the grain boundary trace angle :math:`\alpha` and the grain boundary inclination :math:`\beta`.
         
-The grain boundary trace angle is obtained through the EBSD measurements (grain boundary endpoints coordinates) and the grain boundary inclination can be assessed
-by a serial polishing (chemical-mechanical polishing or FIB sectioning), either parallel or perpendicular to the surface of the sample.
-
-A `Matlab toolbox <https://github.com/stabix/stabix/tree/master/gui_gbinc>`_ has been developed to assess the grain boundary inclination by a comparison of SEM images obtained before and after a polishing step.
-At least three Vickers indents are needed as fixed markers. For more details, please see the `README file. <https://github.com/stabix/stabix/blob/master/gui_gbinc/README.rst>`_
+The grain boundary trace angle is obtained through the EBSD measurements (grain boundary endpoints coordinates) and the `grain boundary inclination <https://github.com/stabix/stabix/blob/master/gui_gbinc/README.rst>`_ can be assessed
+by a serial polishing (chemical-mechanical polishing or FIB sectioning), either parallel or perpendicular to the surface of the sample (see Figure 2).
 
 .. figure:: ./_pictures/Schemes_SlipTransmission/bicrystal.png
    :scale: 50 %
    :align: center
    
    *Figure 1 : Schematic of a bicrystal.*
-
+   
 .. only:: html
 
     .. figure:: ./_pictures/GUIs/gui_gb_inc.png.gif
