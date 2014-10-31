@@ -15,13 +15,17 @@ class Indenter(Proc):
     def procIndenterModel(self,
                           modelname='indenter',
                           h_indent=0.20,
-                          D_sample=None, geo='conical',
+                          D_sample=None,
+                          geo=None,
                           sample_rep=24, # 24, 48
                           Dexp=None,
-                          twoDimensional=False):
+                          twoDimensional=False,
+                          free_mesh_inp=None):
         coneAngle = 120.
         h_indent = 0.25
         tipRadius = 1.6
+        geo = ''
+        free_mesh_inp
 
         # create dictionary of parameters
         self.IndentParameters = {
@@ -36,7 +40,9 @@ class Indenter(Proc):
             #'dwell_time':dwell_time, # time at maximum load
             'Dexp': Dexp, # experimental remaining indent diameter
             'indAxis': 'z', # however, indDirection is -z
-            '2D': twoDimensional} #2D model flag
+            '2D': twoDimensional, #2D model flag
+            'geo': geo,
+            'free_mesh_inp': free_mesh_inp} 
         if twoDimensional: self.IndentParameters['indAxis'] = 'y'
         print(repr(self.IndentParameters))
         self.proc = []
@@ -57,8 +63,8 @@ indenter_surfaces
         if geo == 'conical':
             savename += '_R%.2f' % self.IndentParameters['tipRadius']
             savename += '_cA%.1f' % self.IndentParameters['coneAngle']
-        if geo == 'AFMtopo':
-            self.procIndenterAFMtopo
+        if geo == 'AFM':
+            self.procIndenterAFMtopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'])
         savename += '_h%.3f' % self.IndentParameters['h_indent']
         self.procSaveModel(modelname=savename + '.mfd')
         #self.procMicronbar(posXYZ=N.array([0., 0., 0.]),height=h_indent)
@@ -311,15 +317,13 @@ all_existing
 all_existing
 ''')
 
-    def procIndenterAFMtopo(self):
+    def procIndenterAFMtopo(self, free_mesh_inp):
         self.proc.append('''
 |+++++++++++++++++++++++++++++++++++++++++++++
 | MODELING OF AFM INDENTER TOPOGRAPHY
 |+++++++++++++++++++++++++++++++++++++++++++++
-*expand_reset
-*set_curve_type line |arc_cpa
-*add_points
-0 0 0
+*import abaqus %s ''' % (self.IndentParameters['free_mesh_inp']) +
+'''
 ''')
 
     def procIndenterDeformable(self,

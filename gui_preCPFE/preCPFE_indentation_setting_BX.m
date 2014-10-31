@@ -332,7 +332,7 @@ gui_BX.handles.mesh.meshBX_7 = surf(gui_BX.variables_geom.top841817_x, gui_BX.va
 gui_BX.handles.mesh.meshBX_8 = surf(gui_BX.variables_geom.top8121617_x, gui_BX.variables_geom.top8121617_y, gui_BX.variables_geom.top8121617_z, 'FaceColor', color_grB); hold on;
 
 %% Plot of the cono-spherical indenter before and after indentation
-if strcmp(gui_BX.indenter_type, 'default') == 1
+if strcmp(gui_BX.indenter_type, 'conical') == 1
     if (get(gui_BX.handles.other_setting.cb_indenter_post_indentation,'Value')) == 1
         preCPFE_3d_conospherical_indenter (gui_BX.variables.tipRadius, gui_BX.variables.coneAngle, 50, 0, 0, gui_BX.variables.tipRadius-gui_BX.variables.h_indent);
     else

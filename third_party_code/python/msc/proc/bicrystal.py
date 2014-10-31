@@ -26,7 +26,7 @@ class BicrystalIndent(Indentation):
                  len_trace=None,
                  h_indent=0.3,  # depth of the indent in µm
                  tipRadius=1.4,  # radius of the spherical indenter in µm
-                 geo='conical',  # angle of the conical indenter in degree
+                 geo=None,  # angle of the conical indenter in degree
                  coneAngle=90.,
                  ind_size=None,
                  #lengthScale = 1.
@@ -44,7 +44,8 @@ class BicrystalIndent(Indentation):
                  box_bias_y2=0,  # bias in y direction in the middle part
                  box_bias_y3=0.3,  # bias in y direction in the grain A
                  smv=0.01,  # small values
-                 lvl=1  # mesh quality value
+                 lvl=1,  # mesh quality value
+                 free_mesh_inp=''
     ):
         import math
 
@@ -162,6 +163,7 @@ class BicrystalIndent(Indentation):
         self.IndentParameters['h_sample'] = hei
         self.IndentParameters['w_sample'] = wid
         self.IndentParameters['len_sample'] = len/2
+        self.IndentParameters['free_mesh_inp'] = free_mesh_inp
         twoDimensional = False
         Dexp = None
         #self.procParametersIndent()
@@ -169,10 +171,13 @@ class BicrystalIndent(Indentation):
         self.procIndenter()
         #self.proc.append('\n*stop\n*clear_geometry\n') #indenter modeling relies on fixed numbers
         self.proc.append('\n*clear_geometry\n') #indenter modeling relies on fixed numbers
-        self.procIndenterConical(coneHalfAngle=self.IndentParameters['coneHalfAngle'])
+        if geo == 'conical':
+            self.procIndenterConical(coneHalfAngle=self.IndentParameters['coneHalfAngle'])
+        if geo == 'flatPunch':
+            self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
+        if geo == 'AFM':
+            self.procIndenterAFMtopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'])
         #self.procIndenterModel() # separate model
-        if geo == 'conical': self.procIndenterConical(coneHalfAngle=self.IndentParameters['coneHalfAngle'])
-        if geo == 'flatPunch': self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
         #self.procSample()
         #self.procSampleIndent(smv=self.IndentParameters['smv'])
         self.procBoundaryConditions()

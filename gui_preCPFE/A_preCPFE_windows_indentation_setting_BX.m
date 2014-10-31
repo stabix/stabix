@@ -84,7 +84,7 @@ gui_BX.config.CPFEM.python_executable = preCPFE_python_select;
 guidata(gcf, gui_BX);
 
 %% Run the plot of the meshing
-gui_BX.indenter_type = 'default'; guidata(gcf, gui_BX);
+gui_BX.indenter_type = 'conical'; guidata(gcf, gui_BX);
 preCPFE_indentation_setting_BX;
 view(-65,20);
 gui_BX = guidata(gcf); guidata(gcf, gui_BX);

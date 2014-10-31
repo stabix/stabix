@@ -202,7 +202,7 @@ for iz = 1:size(gui_SX.variables.lower_x,1)
 end
 
 %% Plot of the cono-spherical indenter before and after indentation
-if strcmp(gui_SX.indenter_type, 'default') == 1
+if strcmp(gui_SX.indenter_type, 'conical') == 1
     if (get(gui_SX.handles.other_setting.cb_indenter_post_indentation,'Value')) == 1
         preCPFE_3d_conospherical_indenter (gui_SX.variables.tipRadius, gui_SX.variables.coneAngle, 50, 0, 0, gui_SX.variables.tipRadius-gui_SX.variables.h_indent);
     else

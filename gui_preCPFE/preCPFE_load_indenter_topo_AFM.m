@@ -1,7 +1,7 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function preCPFE_load_indenter_topo_AFM(indenter_type, varargin)
 %% Function to import topography from Gwyddion file
-% indenter_type : 1 for default indenter and 2 for AFM topography
+% indenter_type : 1 for default conical indenter and 2 for AFM topography
 
 % Data format from Gwyddion
 % - channel: 'Height'
@@ -30,7 +30,7 @@ end
 gui = guidata(gcf);
 
 if indenter_type == 1
-    gui.indenter_type = 'default';
+    gui.indenter_type = 'conical';
 else
     gui.indenter_type = 'AFM';
     [file_AFM, dir_AFM, filterindex] = uigetfile('*.txt', 'Select a Gwyddion file');

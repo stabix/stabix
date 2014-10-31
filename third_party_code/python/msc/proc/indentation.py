@@ -35,7 +35,7 @@ class Indentation(Indenter, Tools):
                  h_indent=0.20,  # maximum simulated indentation depth
                  D_sample=2.,  # diameter of sample
                  h_sample=None,  # sample height, only for overriding default estimate
-                 geo='conical',  # indenter geometry
+                 geo=None,  # indenter geometry
                  coneAngle=90,  # full cone angle (deg)
                  tipRadius=1,  # indenter tip radius
                  friction=0.3,  # Coulomb friction coefficient
@@ -61,6 +61,7 @@ class Indentation(Indenter, Tools):
                  nSteps=800,  # LC 'indent', No of increments
                  smv=0.01,  # small value
                  label='',
+                 free_mesh_inp='', #name of the .inp file for AFM topo for indenter
                  ori_list=None):
         self.callerDict = locals()
         if r_center_frac is not 0 and sample_rep not in [8, 16, 24, 32, 40, 48, 56]:
@@ -96,7 +97,8 @@ class Indentation(Indenter, Tools):
             'outStep': outStep,  # post increment write step
             'nSteps': nSteps,  # number of increments for indentation to hmax
             'smv': smv,  # small length for node selection
-            'label': label
+            'label': label,
+            'free_mesh_inp': free_mesh_inp #name of the .inp file for AFM topo for indenter
         }
         if twoDimensional:
             self.IndentParameters['indAxis'] = 'y'
@@ -115,6 +117,8 @@ class Indentation(Indenter, Tools):
             self.procIndenterConical(coneHalfAngle=self.IndentParameters['coneHalfAngle'])
         if geo == 'flatPunch':
             self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
+        if geo == 'AFM':
+            self.procIndenterAFMtopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'])
         self.procSample()
         self.procSampleIndent(smv=self.IndentParameters['smv'])
         self.procBoundaryConditions()
@@ -527,7 +531,7 @@ all_existing
 ''')
         self.proc.append('''
 *remove_surface_sets
-*merge_models %s''' % (self.IndentParameters['Indenter']) + '''
+*merge_models %s''' % (self.IndentParameters['geo']) + '''
 ''')
         if self.IndentParameters['divideMesh']:
             self.proc.append('''

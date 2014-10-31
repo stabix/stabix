@@ -6,7 +6,7 @@ function preCPFE_gui_update
 
 gui = guidata(gcf);
 
-if strcmp(gui.indenter_type, 'default') == 1
+if strcmp(gui.indenter_type, 'conical') == 1
     set(gui.handles.mesh.coneAngle_str, 'visible', 'on');
     set(gui.handles.mesh.coneAngle_val, 'visible', 'on');
     set(gui.handles.mesh.tipRadius_str, 'visible', 'on');
