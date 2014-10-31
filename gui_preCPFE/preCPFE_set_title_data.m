@@ -6,7 +6,7 @@ function [Titlegbdata, Titlegbdatacompl] = preCPFE_set_title_data(config_map, GB
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
-timestamp = date_time_string(1, 1);
+timestamp = timestamp_make;
 
 if ~isempty(config_map.Material_ID) && ~isempty(config_map.Sample_ID)
     if strcmp(GB.active_data, 'BX') == 1

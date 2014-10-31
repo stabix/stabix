@@ -42,7 +42,7 @@ end
 
 if ~no_file
     % Initialization of parameters
-    SCREENSHOT = strcat(date_time_string, 'screenshots');
+    SCREENSHOT = strcat(timestamp_make, 'screenshots');
     SCREENSHOT_DIR = pathnameRB;
     SCREENSHOT_NUM = 1;
     

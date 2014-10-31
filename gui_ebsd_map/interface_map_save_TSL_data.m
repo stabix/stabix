@@ -5,8 +5,8 @@ function interface_map_save_TSL_data
 
 gui = guidata(gcf);
 
-FolderName_GF2_file = char(strcat(date_time_string, '_GF2_file_smoothed', '.txt'));
-FolderName_RB_file = char(strcat(date_time_string, '_RB_file_smoothed', '.txt'));
+FolderName_GF2_file = char(strcat(timestamp_make, '_GF2_file_smoothed', '.txt'));
+FolderName_RB_file = char(strcat(timestamp_make, '_RB_file_smoothed', '.txt'));
 
 % Set negative values for y coordinates in RB file (to respect EBSD setting)
 gui.RB_smoothed_struct.GBvy = -gui.RB_smoothed_struct.GBvy;

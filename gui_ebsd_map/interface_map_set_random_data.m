@@ -30,7 +30,7 @@ elseif button_type == 2
             pathname_random_TSL_files = pathname;
         end
         
-        timestamp = date_time_string(1, 1);
+        timestamp = timestamp_make;
         
         mkdir(fullfile(pathname_random_TSL_files, strcat(timestamp, '_random_TSL_data')));
 

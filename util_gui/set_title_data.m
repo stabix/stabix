@@ -7,11 +7,7 @@ if nargin == 0
     data = 'NaN';
 end
 
-isodate = datestr(now, 'yyyy-mm-dd');
-
-time_str = date_time_string;
-
-timestamp = [isodate,'_',time_str];
+timestamp = timestamp_make;
 
 titlegbdata = strcat(...
         'GB_', data,...

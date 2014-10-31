@@ -5,7 +5,7 @@ function gui_gbinc_screenshots
 
 tabularasa;
 % Initialization of parameters
-SCREENSHOT = strcat(date_time_string, 'screenshots');
+SCREENSHOT = strcat(timestamp_make, 'screenshots');
 SCREENSHOT_DIR = get_stabix_root;
 SCREENSHOT_NUM = 1;
 
