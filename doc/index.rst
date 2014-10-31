@@ -11,7 +11,7 @@ Slip Transmission |matlab| toolbox
 
 .. only:: html
 
-    .. figure:: ./_pictures/STABiX_ebsdmap.gif
+    .. figure:: ./_pictures/GUIs/STABiX_ebsdmap.gif
         :scale: 100 %
         :align: right
         

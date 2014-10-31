@@ -39,7 +39,7 @@ if calibration && edge_detection
     low0 = imread(fullpath_2);
     
     pathname1 = gui.config_map.pathname_image_before_polishing;
-    pathname2 = gui.config_map.pathname_image_after_polishing;
+    % pathname2 = gui.config_map.pathname_image_after_polishing; % not used
     filename1 = gui.config_map.filename_image_before_polishing;
     filename2 = gui.config_map.filename_image_after_polishing;
     
@@ -53,11 +53,10 @@ if calibration && edge_detection
     % Check if the control points have already been stored.
     % Delete or rename the stored points for creating new ones.
     
-    if ~exist(cp_file)
-        %[xyinput_out, xybase_out] = cpselect(high, low, 'Wait',true)  % unregistered image is the first one
+    if ~exist(cp_file, 'file')
         [xyinput_out, xybase_out] = cpselect(unreg, base, 'Wait', true);  % unregistered image is the first one
         save(cp_file, 'xyinput_out', 'xybase_out', 'filename1', 'filename2');
-    elseif exist(cp_file) == 2
+    elseif exist(cp_file, 'file') == 2
         load(cp_file, '-mat');
     end
     

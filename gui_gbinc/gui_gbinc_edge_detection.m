@@ -33,66 +33,48 @@ end
 image_loaded = imread(fullfile(pathnameimage, filenameimage));
 
 % Scale down large images
-image_loaded = im2uint16(image_loaded);
-%image_loaded = imfilter(image_loaded, fspecial('unsharp'));
-%image_loaded = adapthisteq(image_loaded);
-%image_loaded = histeq(image_loaded);
-%image_loaded = decorrstretch(image_loaded);
+correction = get(gui.handles.correction_image, 'Value');
+image_loaded = gui_gbinc_correction_image(image_loaded, correction);
 
-rawImages = false;
+image_loaded = imadjust(image_loaded, stretchlim(image_loaded));
 
-if 1 && ~rawImages % Contrast Stretch
-    image_loaded = imadjust(image_loaded, stretchlim(image_loaded));
-end
-
-if 1 && ~rawImages % Reduce noise
-    msk = [10, 10];
-    if 1
-        image_loaded = wiener2(image_loaded, msk);
-    else
-        image_loaded = medfilt2(image_loaded, msk);
-    end
-end
+msk = [10, 10];
+image_loaded = wiener2(image_loaded, msk);
+%image_loaded = medfilt2(image_loaded, msk);
 
 %% Run edge detection
-if 1 && ~rawImages
-    
-    if num_algo == 1
-        algo = 'sobel';
-    elseif num_algo == 2
-        algo = 'prewitt';
-    elseif num_algo == 3
-        algo = 'roberts';
-    elseif num_algo == 4
-        algo = 'canny';
-    elseif num_algo == 5
-        algo = 'log';
-    end
-    
-    % Set threshold for edge detection
-    if threshold >= 1 | threshold <= 0
-        warning('Please, threshold must be between 0 and 1'); beep; commandwindow;
-    end
+
+if num_algo == 1
+    algo = 'sobel';
+elseif num_algo == 2
+    algo = 'prewitt';
+elseif num_algo == 3
+    algo = 'roberts';
+elseif num_algo == 4
+    algo = 'canny';
+elseif num_algo == 5
+    algo = 'log';
 end
 
-if 0
-    image_loaded = edge(image_loaded,algo);
-else
-    image_loaded = edge(image_loaded,algo,threshold);
+% Set threshold for edge detection
+if threshold >= 1 | threshold <= 0
+    warning('Please, threshold must be between 0 and 1'); beep; commandwindow;
 end
 
-if 1
-    image_loaded = (-(image_loaded-1));
-    %image_loaded = ind2rgb(image_loaded,'summer');
-end
+image_loaded = edge(image_loaded, algo, threshold);
+
+image_loaded = (-(image_loaded-1));
+%image_loaded = ind2rgb(image_loaded,'summer');
 
 imshow(image_loaded);
 if image_type == 1
     gui.flag.edgedetection_1 = 1;
     gui.config_map.image_loaded_1 = image_loaded;
+    gui.config_map.image_loaded = image_loaded;
 elseif image_type == 2
     gui.flag.edgedetection_2 = 1;
     gui.config_map.image_loaded_2 = image_loaded;
+    gui.config_map.image_loaded = image_loaded;
 end
 
 guidata(gcf, gui);
