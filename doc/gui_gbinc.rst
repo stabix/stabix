@@ -11,12 +11,14 @@
 This toolbox helps to find the grain boundary inclination from two micrographs from serial polishing.
 At least three marks such as microindents are needed for registration of the images. 
 
+Examples of `micrographs from serial polishing. <https://github.com/stabix/stabix/tree/master/gui_gbinc/sem_pictures_serial_polishing>`_
+
 To get started with gbinc toolbox, clone the repository, then run Matlab, and cd into the folder containing this README file. Then add the package path to the Matlab search path by typing "path_management".
-Finally you can start the launcher by typing "demo" or "A_gui_gbinc" at the Matlab command prompt.
+Finally you can start the launcher by typing `demo <https://github.com/stabix/stabix/blob/master/demo.m>`_ or `A_gui_gbinc <https://github.com/stabix/stabix/blob/master/gui_gbinc/A_gui_gbinc.m>`_ at the Matlab command prompt.
 
 How to use the toolbox ?
 ------------------------
-1) Run the function "A_gui_gbinc.m".
+1) Run the function `A_gui_gbinc.m. <https://github.com/stabix/stabix/blob/master/gui_gbinc/A_gui_gbinc.m>`_
 2) Select your first image before serial polishing.
 3) Do the calibration to get the factor scale.
 4) Do the edge detection.
@@ -28,8 +30,8 @@ How to use the toolbox ?
     - Close the window for the selection of control points (Ctrl+W).
     - Control points are saved in .mat file (in the same folder than the 1st picture loaded).
 7) If the control points are not satisfying, delete them and start to set a new overlay.
-8) Save the overlay (see Figure 1) in the same folder than the 1st picture loaded (as a screenshot - .png) (optional).
-9) Do the measurement of the distance between edges or rigdes (select before if edge or ridge) of a unique Vickers indent.
+8) Save the overlay (see Figure 1) in the same folder than the 1st picture loaded (as a screenshot.png) (optional).
+9) Do the measurement of the distance between edges (Vickers faces) or ridges of a unique Vickers indent (see Figure 2).
 10) Do the measurement of the distance between edges of a unique grain boundary.
 11) The value of the grain boundary inclination is finally given.
   
@@ -48,6 +50,12 @@ How to use the toolbox ?
        :align: center
        
        *Figure 1 : Screenshot of the Matlab GUI used to calculate grain boundary inclination.*
+       
+.. figure:: ./_pictures/Schemes_SlipTransmission/Vickers_indent.png
+   :scale: 40 %
+   :align: center
+   
+   *Figure 2 : Schemes of a) the top view of a Vickers indent (before and after polishing) and of b) the cross-section view.*
 
 N.B.: Distances and grain boundary inclination values are obtained with the mean scale factor of the two images...
 
