@@ -1,7 +1,8 @@
 ﻿CPFE simulation preprocessing GUIs
 ===================================
 
-..  |matlab| replace:: Matlab\ :sup:`TM` \
+.. include:: includes.rst
+
 
 The *preCPFE* GUIs can rapidly transfer the experimental data into 
 crystal plasticity finite element (CPFE) simulation input files. 
@@ -16,21 +17,19 @@ A parametrized visualization of the bicrystal indentation model through the GUI
 allows tuning the geometry and finite element discretization and the size of the 
 sample and the indenter.
 
-The |matlab| function used to run the preCPFE GUI for SX indentation is: `A_preCPFE_windows_indentation_setting_SX.m <https://github.com/stabix/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_SX.m>`_
+Currently the following models can be written:
 
-The |matlab| function used to run the preCPFE GUI for BX indentation is: `A_preCPFE_windows_indentation_setting_BX.m <https://github.com/stabix/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_BX.m>`_
-
-This includes:
-
-    * :ref:`single_crystal_indentation`
-    * :ref:`bicrystal_indentation`
+    * :ref:`single_crystal_indentation` (Mentat)
+    * :ref:`bicrystal_indentation` (Mentat)
 
 .. _single_crystal_indentation:
 
 Single crystal (SX) indentation
 --------------------------------
 
-..    include:: <isonum.txt>
+The function used to run the preCPFE GUI for SX indentation is: `A_preCPFE_windows_indentation_setting_SX.m <https://github.com/stabix/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_SX.m>`_
+
+
 .. figure:: ./_pictures/GUIs/SX_preproc_GUI.png
    :scale: 40 %
    :align: center
@@ -51,7 +50,7 @@ Convention for the single crystal mesh
 Bicrystal (BX) indentation
 ---------------------------
 
-..    include:: <isonum.txt>
+
 .. figure:: ./_pictures/GUIs/BX_preproc_GUI.png
    :scale: 40 %
    :align: center
@@ -60,6 +59,9 @@ Bicrystal (BX) indentation
 
 Convention for the bicrystal mesh
 **********************************
+
+The function used to run the preCPFE GUI for BX indentation is: `A_preCPFE_windows_indentation_setting_BX.m <https://github.com/stabix/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_BX.m>`_
+
 
 .. figure:: ./_pictures/Schemes_SlipTransmission/BX_indentation_mesh_example.png
    :scale: 25 %
@@ -78,12 +80,21 @@ The |matlab| function used to load and read Gwyddion file is: `read_gwyddion_asc
 
 `Visit the Gwyddion website for more information. <http://gwyddion.net/>`_
 
-..    include:: <isonum.txt>
 .. figure:: ./_pictures/GUIs/BX_preproc_GUI_AFM_topo_indenter.png
    :scale: 40 %
    :align: center
    
    *Figure 5 : Screenshot of the preCPFE GUI for the bicrystal indentation with loaded AFM topography of the indenter*
+
+
+Python setup
+-------------
+
+For the generation of the CPFE preprocessing scripts an installation of Python 
+is required together with the `numpy <http://www.scipy.org/install.html>`_ package.
+To make sure that |stabix| can find the installed Python you will have to either 
+put it on the system's `PATH <http://en.wikipedia.org/wiki/PATH_%28variable%29>`_ or put it's exact location in the user configuration as detailed below.
+
 
 Adjusting the configuration settings and writing the finite element input files
 --------------------------------------------------------------------------------
@@ -93,7 +104,8 @@ the user wants to adjust some settings such as the used python installation or t
 path where the files are written to. 
 This can be achieved in the custom menu of the preCPFE GUIs: ``Edit CPFEM config file``.
 A user specific copy of the default configuration YAML file is created and 
-opened in the Matlab editor. 
+opened in the |matlab| editor. 
 To benefit from later changes in the default settings, all
 configuration parameters that are not specific to the user's setup should be deleted 
 from the user's CPFE configuration file.
+

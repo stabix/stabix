@@ -4,7 +4,8 @@
    contain the root `toctree` directive.
    
 
-..  |matlab| replace:: Matlab\ :sup:`TM` \
+.. include:: includes.rst
+
 
 Slip Transmission |matlab| toolbox
 ==================================
@@ -15,7 +16,7 @@ Slip Transmission |matlab| toolbox
         :scale: 100 %
         :align: right
         
-        *Slip transmission analysis for an EBSD map of cp alpha-Ti.*
+        *Slip transmission analysis for an EBSD map of CP alpha-Ti.*
    
 .. only:: latex
 
@@ -25,7 +26,7 @@ Slip Transmission |matlab| toolbox
         
         *Slip transmission analysis for an EBSD map of near alpha phase Ti alloy.*
    
-The |matlab| toolbox **STABiX** provides a unique and simple way to analyse slip transmission in a bicrystal.
+The |matlab| toolbox |stabix| provides a unique and simple way to analyse slip transmission in a bicrystal.
 Graphical User Interfaces (GUIs) are implemented in order to import EBSD results, and to represent and quantify grain boundary slip resistance.
 Key parameters, such as the number of phases, crystal structure (fcc, bcc, or hcp), and slip families for calculations, are set by the user.
 With this information, grain boundaries are plotted and color coded according to the :math:`m'` factor [#LusterMorris_1995]_ that quantifies the geometrical
