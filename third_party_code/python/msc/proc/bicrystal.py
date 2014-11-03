@@ -116,9 +116,44 @@ class BicrystalIndent(Indentation):
                 # length in the model is defined later in the code with the variable min_margin
 
         self.proc = []
-        self.start()
-        self.proc_draw_update_manual()
+        self.start() 
+        #self.procIndentDocCall()
         self.procNewModel()
+        self.proc_draw_update_manual()
+        self.IndentParameters = {}
+        self.IndentParameters['2D'] = False
+        self.IndentParameters['D_sample'] = False
+        self.IndentParameters['sample_rep'] = False
+        self.IndentParameters['coneHalfAngle'] = coneAngle / 2
+        self.IndentParameters['coneAngle'] = coneAngle
+        self.IndentParameters['h_indent'] = h_indent
+        self.IndentParameters['tipRadius'] = tipRadius
+        self.IndentParameters['indAxis'] = 'z'
+        self.IndentParameters['smv'] = 1e-3
+        self.IndentParameters['friction'] = 0.3
+        self.IndentParameters['nSteps'] = 800
+        self.IndentParameters['outStep'] = 5
+        self.IndentParameters['ind_time'] = 10.
+        self.IndentParameters['h_sample'] = hei
+        self.IndentParameters['w_sample'] = wid
+        self.IndentParameters['len_sample'] = len/2
+        self.IndentParameters['free_mesh_inp'] = free_mesh_inp
+        twoDimensional = False
+        Dexp = None
+        self.procParameters()
+        self.procParametersIndent()
+        self.procParametersIndentBicrystal()
+        self.procIndenter()
+        #self.proc.append('\n*stop\n*clear_geometry\n') #indenter modeling relies on fixed numbers
+        self.proc.append('\n*clear_geometry\n') #indenter modeling relies on fixed numbers
+        if geo == 'conical':
+            self.procIndenterConical(coneHalfAngle=self.IndentParameters['coneHalfAngle'])
+        if geo == 'flatPunch':
+            self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
+        if geo == 'AFM':
+            self.procIndenterAFMtopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'])
+        self.procNewModel()
+        self.procParametersIndent()
         self.procSample()
         self.procBicrystal(label=label,
                            ori1=ori1, #not used yet
@@ -148,37 +183,6 @@ class BicrystalIndent(Indentation):
         print 'length: ', len
         print 'heigth: ', hei
         print 'd: ', d
-        self.IndentParameters = {}
-        self.IndentParameters['2D'] = False
-        self.IndentParameters['coneHalfAngle'] = coneAngle / 2
-        self.IndentParameters['coneAngle'] = coneAngle
-        self.IndentParameters['h_indent'] = h_indent
-        self.IndentParameters['tipRadius'] = tipRadius
-        self.IndentParameters['indAxis'] = 'z'
-        self.IndentParameters['smv'] = 1e-3
-        self.IndentParameters['friction'] = 0.3
-        self.IndentParameters['nSteps'] = 800
-        self.IndentParameters['outStep'] = 5
-        self.IndentParameters['ind_time'] = 10.
-        self.IndentParameters['h_sample'] = hei
-        self.IndentParameters['w_sample'] = wid
-        self.IndentParameters['len_sample'] = len/2
-        self.IndentParameters['free_mesh_inp'] = free_mesh_inp
-        twoDimensional = False
-        Dexp = None
-        #self.procParametersIndent()
-        self.procParametersIndentBicrystal()
-        self.procIndenter()
-        #self.proc.append('\n*stop\n*clear_geometry\n') #indenter modeling relies on fixed numbers
-        self.proc.append('\n*clear_geometry\n') #indenter modeling relies on fixed numbers
-        if geo == 'conical':
-            self.procIndenterConical(coneHalfAngle=self.IndentParameters['coneHalfAngle'])
-        if geo == 'flatPunch':
-            self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
-        if geo == 'AFM':
-            self.procIndenterAFMtopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'])
-        #self.procIndenterModel() # separate model
-        #self.procSample()
         #self.procSampleIndent(smv=self.IndentParameters['smv'])
         self.procBoundaryConditions()
         self.procBoundaryConditionsBicrystal()
@@ -618,7 +622,10 @@ all_fixed
 side_pos side_neg end_grain1 end_grain2 bottom_surface
 |*all_selected *select_reset
 ''')
-
+        self.proc.append('''
+*remove_surface_sets
+*merge_models %s''' % (self.IndentParameters['Indenter']) + '''
+''')
 
     def procParametersIndentBicrystal(self):
         self.proc.append('''
