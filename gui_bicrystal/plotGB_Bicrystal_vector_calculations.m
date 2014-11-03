@@ -5,7 +5,7 @@ function [vect, euler, sortbv] = plotGB_Bicrystal_vector_calculations(listslip, 
 for ig = grain
     lattice_parameters = latt_param(material, phase);  % Get the lattice parameter for the grain
     if lattice_parameters(1) == 0
-        % errordlg('Wrong input for material and structure !!!', 'Error');
+        commandwindow;
         warning('Wrong input for material and structure !!!');
         flag_error = 1;
     end

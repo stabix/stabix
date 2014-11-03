@@ -1,4 +1,4 @@
-function config_username = get_username
+function config_username = username_get
 %% Function to get username
 % author : d.mercier@mpie.de
 

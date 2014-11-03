@@ -59,6 +59,7 @@ d = d/norm(d);
 sigma_n = sigma/norm(sigma,'fro');  % Frobenius normalization
         
 if dot(n,d) > tol
+    commandwindow;
     warning('n,b not perpendicular');
 end
 

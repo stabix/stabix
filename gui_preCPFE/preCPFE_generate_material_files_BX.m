@@ -82,7 +82,7 @@ elseif strcmp(CPFEM_code, 'DAMASK') == 1
     try
         movefile(scriptname_DAMASK_materialconfig, gui_BX.path_config_file);
     catch err
-        %errordlg(err.message);
+        commandwindow;
         warning(err.message);
     end
     
@@ -90,7 +90,7 @@ elseif strcmp(CPFEM_code, 'DAMASK') == 1
     try
         movefile('material.config', gui_BX.path_config_file);
     catch err
-        %errordlg(err.message);
+        commandwindow;
         warning(err.message);
     end
     

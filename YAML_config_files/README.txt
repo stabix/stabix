@@ -1,6 +1,6 @@
 How to set your user YAML configuration files ?
 
-1) In Matlab Command Window, call the function 'get_username' stored
+1) In Matlab Command Window, call the function 'username_get' stored
 in the 'util' folder of STABiX repository, to determine your username.
 
 2) Rename the folder 'username' with your own username...

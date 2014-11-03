@@ -35,6 +35,7 @@ g_mat(3,3) = c;
 if isrot(g_mat) == true
     return
 else
+    commandwindow;
     warning('Not a rotation matrix');
 end
 
@@ -56,14 +57,12 @@ end
 
 end
 
-% % further checking
-% euler
-% rotmat = g;
-% sum(rotmat.^2,1) % ! = 1
-% sum(rotmat.^2,2) % ! = 1
-% rotmat'
-% inv(rotmat)
-% EULERANGLES = g2euler(rotmat,'deg')
+%% TODO ==> further checking
+% sum(g_mat.^2,1) % ! = 1
+% sum(g_mat.^2,2) % ! = 1
+% g_mat'
+% inv(g_mat)
+% EULERANGLES = g2euler(g_mat,'deg')
 % % g2 = euler2g(EULERANGLES);
 % % sum(g2.^2,1)
 % % sum(g2.^2,2)

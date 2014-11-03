@@ -130,7 +130,7 @@ python_procedure_generation_file = strcat(gui_SX.GB.Titlegbdatacompl, '_FEM_mode
 try
     movefile(python_procedure_generation_file, gui_SX.path_config_file);
 catch err
-    %errordlg(err.message);
+    commandwindow;
     warning(err.message);
 end
 
@@ -147,7 +147,7 @@ preCPFE_generate_material_files_SX(gui_SX.config.CPFEM.simulation_code);
 try
     movefile(gui_SX.GB.Titlegbdatacompl, gui_SX.path_config_file);
 catch err
-    %errordlg(err.message);
+    commandwindow;
     warning(err.message);
 end
 

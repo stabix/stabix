@@ -18,6 +18,7 @@ if nargin < 3
     shiftXYZ = [0,0,0];
 end
 if nargin < 1
+    commandwindow;
     warning('Testing')
     %close all
     slip_normal = rand(1,3);
@@ -31,7 +32,8 @@ hPlane = plotCircle3D(slip_normal, shiftXYZ, radius);
 hold on;
 plot3(shiftXYZ(1), shiftXYZ(2), shiftXYZ(3),'.k','MarkerSize',10);
 if nargin > 1 || nargin == 0
-    hArr = arrow(shiftXYZ, shiftXYZ+slip_direction*radius, 'FaceColor', color, 'Length', 5, 'TipAngle', 45);
+    hArr = arrow(shiftXYZ, shiftXYZ+slip_direction*radius,...
+        'FaceColor', color, 'Length', 5, 'TipAngle', 45);
 end
 
 hstruct = struct();

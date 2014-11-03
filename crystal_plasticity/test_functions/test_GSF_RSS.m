@@ -35,6 +35,7 @@ if testFlag
 end
 
 if dot(n,d) > 1e-9
+    commandwindow;
     warning('n,b not perpendicular');
 end
 

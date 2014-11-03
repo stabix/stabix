@@ -13,7 +13,7 @@ end
 
 zoom out;
 
-gui.config_map.h_dist = set_imdistline([450 500],[300 300], 'blue');
+gui.config_map.h_dist = imdistline_set([450 500],[300 300], 'blue');
 
 guidata(gcf, gui);
 

@@ -31,7 +31,7 @@ end
 %% Calculations
 if calibration && edge_detection && overlay
     zoom out;
-    gui.config_map.h_dist = set_imdistline([350 400],[150 150], 'green');
+    gui.config_map.h_dist = imdistline_set([350 400],[150 150], 'green');
 end
 guidata(gcf, gui);
 

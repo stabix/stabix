@@ -2,7 +2,7 @@
 function gui_gbinc_calib_distance(image_type)
 %% Function to measure the distance of the scalebar on the SEM picture
 % before and after polishing
-% image_type: 1 for before polishing and 2 after polishing
+% image_type: 1 for image before polishing and 2 after polishing
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
@@ -24,7 +24,7 @@ gui_gbinc_load_image(pathnameimage, filenameimage);
 
 zoom out;
 
-gui.config_map.h_dist = set_imdistline([10 80],[750 750], 'red');
+gui.config_map.h_dist = imdistline_set([10 80],[750 750], 'red');
 
 guidata(gcf, gui);
 

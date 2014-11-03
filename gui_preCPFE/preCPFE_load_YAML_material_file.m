@@ -7,7 +7,7 @@ function preCPFE_load_YAML_material_file(interface)
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
 gui = guidata(gcf);
-gui.config.username = get_username;
+gui.config.username = username_get;
 
 if gui.GB.number_phase == 1
     configmatYAML = sprintf('config_CPFEM_material_%s.yaml', gui.config.username);

@@ -48,7 +48,7 @@ else
     gui_BX.GB.active_data = 'BX';
     gui_BX.title_str = set_gui_title(gui_BX, ['Bicrystal n°', num2str(gui_BX.GB.GB_Number)]);
 end
-gui_BX.config.username = get_username;
+gui_BX.config.username = username_get;
 guidata(gcf, gui_BX);
 
 %% Customized menu

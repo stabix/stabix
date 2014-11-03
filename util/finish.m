@@ -1,5 +1,7 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-%% Script to open an exit dialog box and to save all data as a .mat file before to close all figures
+function finish
+%% Function to quit
+
 pushbutton = questdlg('Ready to quit?', ...
     'Exit Dialog','Yes','No','No');
 
@@ -15,3 +17,4 @@ switch pushbutton
         quit cancel;
 end
 
+end

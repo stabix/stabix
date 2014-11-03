@@ -298,6 +298,7 @@ else
                     
                 end
             else
+                commandwindow;
                 warning('Could not calculate m'' parameter for GB n° %i !',gbnum);
             end
             

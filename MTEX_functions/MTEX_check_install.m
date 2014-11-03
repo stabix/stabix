@@ -13,6 +13,7 @@ catch
     disp('Proceeding without MTEX functionalities...');
     disp('Download MTEX here: http://mtex-toolbox.github.io/');
     installation_mtex = 0;
+    commandwindow;
 end
 
 end

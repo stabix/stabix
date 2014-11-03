@@ -37,15 +37,16 @@ if calibration && edge_detection && overlay
     gui.vickers.vick_dist     = gui.vickers.vick_dist_pix * gui.config_map.factor_calib;
     
     % Set Vickers constants (angles in degrees)
-    gui.vickers.angle_edge  = 136;
-    gui.vickers.angle_ridge = 148.1;
+    % from A.C. Fischer-Cripps "Nanoindentation" - Springer 2nd Ed. (2004)
+    gui.vickers.angle_face  = 136; %angle between opposite faces
+    gui.vickers.angle_ridge = 148; %angle between opposite edges
     
     gui.vickers.VickersChoice = get(gui.handles.vickers_indents.indent_selection, 'value');
     
     if gui.vickers.VickersChoice == 1
         gui.vickers.VickersChoice_str = 'edge';
         gui.config_map.height_polished = gui.vickers.vick_dist / ...
-            (tand(gui.vickers.angle_edge / 2));
+            (tand(gui.vickers.angle_face / 2));
     elseif VickersChoice == 2
         gui.vickers.VickersChoice_str = 'ridge';
         gui.config_map.height_polished = gui.vickers.vick_dist / ...

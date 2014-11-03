@@ -58,6 +58,7 @@ elseif  valplot == 1
         legend([ucgrA(3) ucgrB(3)], legend_slipA, legend_slipB, 'Location', legend_location_str);
     end
     if valplot > 1
+        commandwindow;
         warning('No slip systems defined !')
     end
     

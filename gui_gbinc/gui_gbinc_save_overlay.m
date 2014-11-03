@@ -7,7 +7,7 @@ function gui_gbinc_save_overlay
 gui = guidata(gcf);
 
 im = screencapture(gcf);
-imwrite(im, [gui.config_map.cpfilename, '.png'], 'png');
+imwrite(im, [timestamp_make, gui.config_map.cpfilename, '.png'], 'png');
 
 guidata(gcf, gui);
 

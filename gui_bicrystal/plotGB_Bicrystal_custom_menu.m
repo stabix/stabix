@@ -20,9 +20,7 @@ menuBX_CPFEM = uimenu('Label', 'CPFEM');
 uimenu(menuBX_CPFEM, 'Label', 'Indentation test in a bicrystal', 'Callback', 'A_preCPFE_windows_indentation_setting_BX(guidata(gcf))');
 uimenu(menuBX_CPFEM, 'Label', 'Indentation test in a Grain A',   'Callback', 'A_preCPFE_windows_indentation_setting_SX(guidata(gcf), 1)');
 uimenu(menuBX_CPFEM, 'Label', 'Indentation test in a Grain B',   'Callback', 'A_preCPFE_windows_indentation_setting_SX(guidata(gcf), 2)');
-%uimenu(menuBX_CPFEM, 'Label', 'Bending test of a cantilever',    'Callback', 'beep; warndlg('''Bending test model not yet implemented...!'', ''Warning'')');
-uimenu(menuBX_CPFEM, 'Label', 'Bending test of a cantilever',    'Callback', 'beep; warning(''Bending test model not yet implemented...!'')');
-%uimenu(menuBX_CPFEM, 'Label', 'Compression test of µ-pillar',    'Callback', 'beep; warndlg(''Compression test of µ-pillar model not yet implemented...!'', ''Warning'')');
-uimenu(menuBX_CPFEM, 'Label', 'Compression test of µ-pillar',    'Callback', 'beep; warning(''Compression test of µ-pillar model not yet implemented...!'')');
+uimenu(menuBX_CPFEM, 'Label', 'Bending test of a cantilever',    'Callback', 'commandwindow; beep; warning(''Bending test model not yet implemented...!'')');
+uimenu(menuBX_CPFEM, 'Label', 'Compression test of µ-pillar',    'Callback', 'commandwindow; beep; warning(''Compression test of µ-pillar model not yet implemented...!'')');
 
 end

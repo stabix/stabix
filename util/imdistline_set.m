@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function h_dist = set_imdistline(x_pos, y_pos, color, label, varargin)
+function h_dist = imdistline_set(x_pos, y_pos, color, label, varargin)
 %% Function to set a line on the current axis
 % x_pos: x coordinates of endpoints
 % y_pos: y coordinates of endpoints

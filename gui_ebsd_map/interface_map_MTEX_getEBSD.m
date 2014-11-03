@@ -12,7 +12,7 @@ if gui.flag.installation_mtex == 1
     set(gui.handles.pbPlotStatGrain, 'Visible', 'on');
     
 else      
-    %warndlg('MTEX is not installed !', '!! Warning !!');
+    commandwindow;
     warning('MTEX is not installed !');
     
 end

@@ -4,7 +4,7 @@ function config_map = interface_map_load_YAML_config_file
 % See in http://code.google.com/p/yamlmatlab/
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
-username = get_username;
+username = username_get;
     
 configYAML = sprintf('config_gui_EBSDmap_%s.yaml', username);
 

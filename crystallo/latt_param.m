@@ -25,6 +25,7 @@ if nargin == 0
 end
 
 if nargin == 1
+    commandwindow;
     warning('Please, give at least 1 material and 1 structure...');
     flag_error = 1;
 end
@@ -171,6 +172,7 @@ if ~flag_error
         
     else
         c = 0; a = 1;
+        commandwindow;
         warning('Given material and given structure don''t match...');
         beep;
     end
