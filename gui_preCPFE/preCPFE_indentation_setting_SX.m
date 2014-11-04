@@ -3,12 +3,25 @@ function preCPFE_indentation_setting_SX
 %% Function to set SX indentation inputs (tip radius, indentation depth...) and plot of meshing
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
+preCPFE_set_indenter;
 gui_SX = guidata(gcf);
 
+%% Store old view settings
+if isfield(gui_SX, 'h_indax')
+    [old_az, old_el] = view;
+else
+    old_az = 0; % old azimuth value
+    old_el = 0; % old elevation value
+end
+
+%% Set rotation angle value
+set(gui_SX.handles.indenter.rotate_loaded_indenter_box, ...
+    'String', get(gui_SX.handles.indenter.rotate_loaded_indenter, 'Value'));
+
 %% Set positive values in case of missing parameters
-set_default_values_txtbox(gui_SX.handles.mesh.coneAngle_val, num2str(gui_SX.defaults.variables.coneAngle));
-set_default_values_txtbox(gui_SX.handles.mesh.tipRadius_val, num2str(gui_SX.defaults.variables.tipRadius));
-set_default_values_txtbox(gui_SX.handles.mesh.h_indent_val, num2str(gui_SX.defaults.variables.h_indent));
+set_default_values_txtbox(gui_SX.handles.indenter.coneAngle_val, num2str(gui_SX.defaults.variables.coneAngle));
+set_default_values_txtbox(gui_SX.handles.indenter.tipRadius_val, num2str(gui_SX.defaults.variables.tipRadius));
+set_default_values_txtbox(gui_SX.handles.indenter.h_indent_val, num2str(gui_SX.defaults.variables.h_indent));
 set_default_values_txtbox(gui_SX.handles.mesh.box_xfrac_val, num2str(gui_SX.defaults.variables.box_xfrac));
 set_default_values_txtbox(gui_SX.handles.mesh.box_zfrac_val, num2str(gui_SX.defaults.variables.box_zfrac));
 set_default_values_txtbox(gui_SX.handles.mesh.D_sample_val, num2str(gui_SX.defaults.variables.D_sample));
@@ -43,9 +56,9 @@ if gui_SX.variables.meshquality ~= 1
         gui_SX.variables.mesh_quality_lvl = 4;
     end
     
-    gui_SX.variables.box_elm_nx      = round(str2num(get(gui_SX.handles.mesh.box_elm_nx_val, 'String')) * gui_SX.variables.mesh_quality_lvl);
-    gui_SX.variables.box_elm_nz      = round(str2num(get(gui_SX.handles.mesh.box_elm_nz_val, 'String')) * gui_SX.variables.mesh_quality_lvl);
-    gui_SX.variables.radial_divi     = round(str2num(get(gui_SX.handles.mesh.radial_divi_val, 'String')) * gui_SX.variables.mesh_quality_lvl);
+    gui_SX.variables.box_elm_nx  = round(str2num(get(gui_SX.handles.mesh.box_elm_nx_val, 'String')) * gui_SX.variables.mesh_quality_lvl);
+    gui_SX.variables.box_elm_nz  = round(str2num(get(gui_SX.handles.mesh.box_elm_nz_val, 'String')) * gui_SX.variables.mesh_quality_lvl);
+    gui_SX.variables.radial_divi = round(str2num(get(gui_SX.handles.mesh.radial_divi_val, 'String')) * gui_SX.variables.mesh_quality_lvl);
     set(gui_SX.handles.mesh.box_elm_nx_val, 'String', num2str(gui_SX.variables.box_elm_nx));
     set(gui_SX.handles.mesh.box_elm_nz_val, 'String', num2str(gui_SX.variables.box_elm_nz));
     set(gui_SX.handles.mesh.radial_divi_val, 'String', num2str(gui_SX.variables.radial_divi));
@@ -58,9 +71,9 @@ end
 
 %% Definition of mesh/geometry variables
 % Indenter variables
-gui_SX.variables.tipRadius = str2num(get(gui_SX.handles.mesh.tipRadius_val, 'String')); % Radius of cono-spherical indenter (in µm)
-gui_SX.variables.coneAngle = str2num(get(gui_SX.handles.mesh.coneAngle_val, 'String')); % Full Angle of cono-spherical indenter (in °)
-gui_SX.variables.h_indent  = str2num(get(gui_SX.handles.mesh.h_indent_val, 'String')); % Depth of indentation (in µm)
+gui_SX.variables.tipRadius = str2num(get(gui_SX.handles.indenter.tipRadius_val, 'String')); % Radius of cono-spherical indenter (in µm)
+gui_SX.variables.coneAngle = str2num(get(gui_SX.handles.indenter.coneAngle_val, 'String')); % Full Angle of cono-spherical indenter (in °)
+gui_SX.variables.h_indent  = str2num(get(gui_SX.handles.indenter.h_indent_val, 'String')); % Depth of indentation (in µm)
 % Sample variables
 gui_SX.variables.D_sample        = str2num(get(gui_SX.handles.mesh.D_sample_val, 'String'));
 gui_SX.variables.h_sample        = str2num(get(gui_SX.handles.mesh.h_sample_val, 'String'));
@@ -202,32 +215,11 @@ for iz = 1:size(gui_SX.variables.lower_x,1)
 end
 
 %% Plot of the cono-spherical indenter before and after indentation
-if strcmp(gui_SX.indenter_type, 'conical') == 1
-    if (get(gui_SX.handles.other_setting.cb_indenter_post_indentation,'Value')) == 1
-        preCPFE_3d_conospherical_indenter (gui_SX.variables.tipRadius, gui_SX.variables.coneAngle, 50, 0, 0, gui_SX.variables.tipRadius-gui_SX.variables.h_indent);
-    else
-        preCPFE_3d_conospherical_indenter (gui_SX.variables.tipRadius, gui_SX.variables.coneAngle, 50, 0, 0, gui_SX.variables.tipRadius);
-    end
-elseif strcmp(gui_SX.indenter_type, 'AFM') == 1
-    
-    smooth_factor_value = get(gui_SX.handles.indenter_topo.pm_indenter_mesh_quality, 'Value');
-    smooth_factor_string = get(gui_SX.handles.indenter_topo.pm_indenter_mesh_quality, 'String');
-    smooth_factor = 2^(1 + length(smooth_factor_string) - smooth_factor_value);
-    rotation_angle = get(gui_SX.handles.indenter_topo.rotate_loaded_indenter, 'Value');
-    
-    if (get(gui_SX.handles.other_setting.cb_indenter_post_indentation,'Value')) == 1
-        [gui_SX.afm_topo_indenter.X, gui_SX.afm_topo_indenter.Y,...
-            gui_SX.afm_topo_indenter.data, gui_SX.afm_topo_indenter.fvc] =...
-            preCPFE_correct_indenter_topo_AFM(gui_SX.indenter_topo, ...
-            gui_SX.variables.h_indent, smooth_factor, rotation_angle);
-    else
-        [gui_SX.afm_topo_indenter.X, gui_SX.afm_topo_indenter.Y,...
-            gui_SX.afm_topo_indenter.data, gui_SX.afm_topo_indenter.fvc] =...
-            preCPFE_correct_indenter_topo_AFM(gui_SX.indenter_topo, ...
-            0, smooth_factor, rotation_angle);
-    end
-    
-end
+guidata(gcf, gui_SX);
+[gui_SX.topo_indenter.fvc, gui_SX.h_indax] = preCPFE_indenter_plot;
+guidata(gcf, gui_SX);
+gui_SX  = guidata(gcf);
+guidata(gcf, gui_SX);
 
 %% Plot of the sample
 gui_SX.handles.sample_patch = patch('Vertices', gui_SX.variables.sample_allpts,'Faces', gui_SX.variables.faces_sample,'FaceAlpha',0.05);
@@ -242,7 +234,7 @@ gui_SX.handles.meshSX_5 = surf(gui_SX.variables.lower_x, zeros(size(gui_SX.varia
 % Axis setting
 axis tight; % Axis tight to the sample
 axis equal; % Axis aspect ratio
-view(0,0); % X-Z view
+view(old_az, old_el);
 
 % FIXME: Inversion of x-axis ans y-axis with CPFE model !!!
 % if isfield(gui_SX, 'config_map')

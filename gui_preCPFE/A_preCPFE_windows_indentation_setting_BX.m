@@ -65,6 +65,7 @@ gui_BX.defaults.variables = ReadYaml('config_mesh_BX_defaults.yaml');
 if nargin > 0
     gui_BX.defaults.variables.inclination = gui_BX.GB.GB_Inclination;
 end
+guidata(gcf, gui_BX);
 
 %% Creation of string boxes and edit boxes to set indenter and indentation properties
 gui_BX.handles.mesh = preCPFE_mesh_parameters_BX(gui_BX.defaults, x0, hu, wu);
@@ -73,7 +74,7 @@ gui_BX.handles.mesh = preCPFE_mesh_parameters_BX(gui_BX.defaults, x0, hu, wu);
 gui_BX.handles.pm_Python = preCPFE_python_popup([2*x0 hu*2.6 wu*3 hu]);
 
 %% Creation of popup menu and slider for loaded AFM indenter topography
-gui_BX.handles.indenter_topo = preCPFE_buttons_AFM_indenter_topo(x0, hu, wu);
+gui_BX.handles.indenter = preCPFE_buttons_indenter(x0, hu, wu);
     
 %% Creation of buttons/popup menus... (mesh quality, layout, Python, CPFEM...)
 gui_BX.handles.other_setting = preCPFE_buttons_gui(x0, hu, wu);

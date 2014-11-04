@@ -63,23 +63,26 @@ preCPFE_custom_menu_SX(gui_SX.custom_menu);
 
 %% Plot the mesh axis
 gui_SX.handles.hax = axes('Units', 'normalized',...
-    'position', [0.5 0.05 0.49 0.9],...
+    'position', [0.5 0.25 0.49 0.5],...
     'Visible', 'off');
 
 %% Initialization of variables
 gui_SX.defaults.variables = ReadYaml('config_mesh_SX_defaults.yaml');
+guidata(gcf, gui_SX);
 
 %% Creation of string boxes and edit boxes to set indenter and indentation properties
 gui_SX.handles.mesh = preCPFE_mesh_parameters_SX(gui_SX.defaults, x0, hu, wu);
 
 %% Creation of popup menu and slider for loaded AFM indenter topography
-gui_SX.handles.indenter_topo = preCPFE_buttons_AFM_indenter_topo(x0, hu, wu);
+gui_SX.handles.indenter = preCPFE_buttons_indenter(x0, hu, wu);
 
 %% Pop-up menu to select Python executable
 gui_SX.handles.pm_Python = preCPFE_python_popup([2*x0 hu*2.6 wu*3 hu]);
 
 %% Creation of buttons/popup menus... (mesh quality, layout, Python, CPFEM...)
 gui_SX.handles.other_setting = preCPFE_buttons_gui(x0, hu, wu);
+set(gui_SX.handles.other_setting.pm_mesh_color_title, 'Visible', 'off');
+set(gui_SX.handles.other_setting.pm_mesh_color, 'Visible', 'off');
 
 %% Set GUI handle encapsulation
 guidata(gcf, gui_SX);

@@ -6,11 +6,8 @@ function handles = preCPFE_mesh_parameters_SX(mesh_variables, x0, hu, wu)
 % hu: heigth unit
 % wu: width unit
 
-% authors: d.mercier@mpie.de
+% author: d.mercier@mpie.de
 
-[handles.coneAngle_str, handles.coneAngle_val]         = preCPFE_set_inputs_boxes({'Full Angle of conical indenter (°)'}, [x0 hu*18.7 wu*3 hu/2.5], mesh_variables.variables.coneAngle, 'preCPFE_indentation_setting_SX');
-[handles.tipRadius_str, handles.tipRadius_val]         = preCPFE_set_inputs_boxes({'Tip radius of indenter (µm)'}, [x0 hu*18.1 wu*3 hu/2.5], mesh_variables.variables.tipRadius, 'preCPFE_indentation_setting_SX');
-[handles.h_indent_str,  handles.h_indent_val]           = preCPFE_set_inputs_boxes({'Indentation depth (µm)'}, [x0 hu*17.5 wu*3 hu/2.5], mesh_variables.variables.h_indent, 'preCPFE_indentation_setting_SX');
 [handles.D_sample_str, handles.D_sample_val]           = preCPFE_set_inputs_boxes({'D_sample (µm)'}, [x0 hu*16.9 wu*3 hu/2.5], mesh_variables.variables.D_sample, 'preCPFE_indentation_setting_SX');
 [handles.h_sample_str, handles.h_sample_val]           = preCPFE_set_inputs_boxes({'h_sample (µm)'}, [x0 hu*16.3 wu*3 hu/2.5], mesh_variables.variables.h_sample, 'preCPFE_indentation_setting_SX');
 [handles.r_center_frac_str, handles.r_center_frac_val] = preCPFE_set_inputs_boxes({'r_center_frac'}, [x0 hu*15.7 wu*3 hu/2.5], mesh_variables.variables.r_center_frac, 'preCPFE_indentation_setting_SX');

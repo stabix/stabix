@@ -8,21 +8,21 @@ gui_SX = guidata(gcf);
 % Tip radius
 if gui_SX.variables.tipRadius < 0
     gui_SX.variables.tipRadius = abs(gui_SX.variables.tipRadius);
-    set(gui_SX.handles.mesh.tipRadius_val, 'String', num2str(gui_SX.variables.tipRadius));
+    set(gui_SX.handles.indenter.tipRadius_val, 'String', num2str(gui_SX.variables.tipRadius));
 end
 
 % Cone Angle
 if gui_SX.variables.coneAngle < 0 || gui_SX.variables.coneAngle > 180
-    set(gui_SX.handles.mesh.coneAngle_val, 'String', num2str(gui_SX.defaults.variables.coneAngle));
+    set(gui_SX.handles.indenter.coneAngle_val, 'String', num2str(gui_SX.defaults.variables.coneAngle));
     gui_SX.variables.coneAngle = gui_SX.defaults.variables.coneAngle;
 end
 
 % Indent depth
 if gui_SX.variables.h_indent < 0
-    set(gui_SX.handles.mesh.h_indent_val, 'String', num2str(abs(gui_SX.variables.h_indent)));
+    set(gui_SX.handles.indenter.h_indent_val, 'String', num2str(abs(gui_SX.variables.h_indent)));
     gui_SX.variables.h_indent = str2num(get(gui_SX.handles.mesh.h_indent_val, 'String'));
 elseif gui_SX.variables.h_indent == 0
-    set(gui_SX.handles.mesh.h_indent_val, 'String', num2str(gui_SX.defaults.variables.h_indent));
+    set(gui_SX.handles.indenter.h_indent_val, 'String', num2str(gui_SX.defaults.variables.h_indent));
     gui_SX.variables.h_indent = gui_SX.defaults.variables.h_indent;
 end
 

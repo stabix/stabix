@@ -3,12 +3,25 @@ function preCPFE_indentation_setting_BX
 %% Function to set BX indentation inputs (tip radius, indentation depth...) and plot of meshing
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
+preCPFE_set_indenter;
 gui_BX = guidata(gcf);
 
+%% Store old view settings
+if isfield(gui_BX, 'h_indax')
+    [old_az, old_el] = view;
+else
+    old_az = -65; % old azimuth value
+    old_el = 20; % old elevation value
+end
+
+%% Set rotation angle value
+set(gui_BX.handles.indenter.rotate_loaded_indenter_box, ...
+    'String', get(gui_BX.handles.indenter.rotate_loaded_indenter, 'Value'));
+
 %% Set positive values in case of missing parameters
-set_default_values_txtbox(gui_BX.handles.mesh.coneAngle_val, num2str(gui_BX.defaults.variables.coneAngle));
-set_default_values_txtbox(gui_BX.handles.mesh.tipRadius_val, num2str(gui_BX.defaults.variables.tipRadius));
-set_default_values_txtbox(gui_BX.handles.mesh.h_indent_val, num2str(gui_BX.defaults.variables.h_indent));
+set_default_values_txtbox(gui_BX.handles.indenter.coneAngle_val, num2str(gui_BX.defaults.variables.coneAngle));
+set_default_values_txtbox(gui_BX.handles.indenter.tipRadius_val, num2str(gui_BX.defaults.variables.tipRadius));
+set_default_values_txtbox(gui_BX.handles.indenter.h_indent_val, num2str(gui_BX.defaults.variables.h_indent));
 set_default_values_txtbox(gui_BX.handles.mesh.w_sample_val, num2str(gui_BX.defaults.variables.w_sample));
 set_default_values_txtbox(gui_BX.handles.mesh.h_sample_val, num2str(gui_BX.defaults.variables.h_sample));
 set_default_values_txtbox(gui_BX.handles.mesh.len_sample_val, num2str(gui_BX.defaults.variables.len_sample));
@@ -75,9 +88,9 @@ end
 
 %% Definition of mesh/geometry variables
 % Indenter variables
-gui_BX.variables.tipRadius = str2num(get(gui_BX.handles.mesh.tipRadius_val, 'String')); % Radius of cono-spherical indenter (in µm)
-gui_BX.variables.coneAngle = str2num(get(gui_BX.handles.mesh.coneAngle_val, 'String')); % Full Angle of cono-spherical indenter (in °)
-gui_BX.variables.h_indent  = str2num(get(gui_BX.handles.mesh.h_indent_val, 'String')); % Depth of indentation (in µm)
+gui_BX.variables.tipRadius = str2num(get(gui_BX.handles.indenter.tipRadius_val, 'String')); % Radius of cono-spherical indenter (in µm)
+gui_BX.variables.coneAngle = str2num(get(gui_BX.handles.indenter.coneAngle_val, 'String')); % Full Angle of cono-spherical indenter (in °)
+gui_BX.variables.h_indent  = str2num(get(gui_BX.handles.indenter.h_indent_val, 'String')); % Depth of indentation (in µm)
 % Samples variables
 gui_BX.variables.w_sample    = str2num(get(gui_BX.handles.mesh.w_sample_val, 'String'));
 gui_BX.variables.h_sample    = str2num(get(gui_BX.handles.mesh.h_sample_val, 'String'));
@@ -332,46 +345,31 @@ gui_BX.handles.mesh.meshBX_7 = surf(gui_BX.variables_geom.top841817_x, gui_BX.va
 gui_BX.handles.mesh.meshBX_8 = surf(gui_BX.variables_geom.top8121617_x, gui_BX.variables_geom.top8121617_y, gui_BX.variables_geom.top8121617_z, 'FaceColor', color_grB); hold on;
 
 %% Plot of the cono-spherical indenter before and after indentation
-if strcmp(gui_BX.indenter_type, 'conical') == 1
-    if (get(gui_BX.handles.other_setting.cb_indenter_post_indentation,'Value')) == 1
-        preCPFE_3d_conospherical_indenter (gui_BX.variables.tipRadius, gui_BX.variables.coneAngle, 50, 0, 0, gui_BX.variables.tipRadius-gui_BX.variables.h_indent);
-    else
-        preCPFE_3d_conospherical_indenter (gui_BX.variables.tipRadius, gui_BX.variables.coneAngle, 50, 0, 0, gui_BX.variables.tipRadius);
-    end
-elseif strcmp(gui_BX.indenter_type, 'AFM') == 1
-    
-    smooth_factor_value = get(gui_BX.handles.indenter_topo.pm_indenter_mesh_quality, 'Value');
-    smooth_factor_string = get(gui_BX.handles.indenter_topo.pm_indenter_mesh_quality, 'String');
-    smooth_factor = 2^(1 + length(smooth_factor_string) - smooth_factor_value);
-    rotation_angle = get(gui_BX.handles.indenter_topo.rotate_loaded_indenter, 'Value');
-    
-    if (get(gui_BX.handles.other_setting.cb_indenter_post_indentation,'Value')) == 1
-        [gui_BX.afm_topo_indenter.X, gui_BX.afm_topo_indenter.Y,...
-            gui_BX.afm_topo_indenter.data, gui_BX.afm_topo_indenter.fvc] =...
-            preCPFE_correct_indenter_topo_AFM(gui_BX.indenter_topo,...
-            gui_BX.variables.h_indent, smooth_factor, rotation_angle);
-    else
-        [gui_BX.afm_topo_indenter.X, gui_BX.afm_topo_indenter.Y,...
-            gui_BX.afm_topo_indenter.data, gui_BX.afm_topo_indenter.fvc] =...
-            preCPFE_correct_indenter_topo_AFM(gui_BX.indenter_topo,...
-            0, smooth_factor, rotation_angle);
-    end
-    
-end
+guidata(gcf, gui_BX);
+[gui_BX.topo_indenter.fvc, gui_BX.h_indax] = preCPFE_indenter_plot;
+guidata(gcf, gui_BX);
+gui_BX  = guidata(gcf);
+guidata(gcf, gui_BX);
 
 %% Plot of the sample
-gui_BX.handles.mesh.sample_patch = patch('Vertices', gui_BX.variables_geom.BX_sample_allpts,'Faces', gui_BX.variables_geom.faces_sample,'FaceAlpha',0.05);
+gui_BX.handles.mesh.sample_patch = ...
+    patch('Vertices', gui_BX.variables_geom.BX_sample_allpts, ...
+    'Faces', gui_BX.variables_geom.faces_sample,'FaceAlpha',0.05);
 
 % Legend
-legend(strcat('GrainA n°', num2str(gui_BX.GB.GrainA)), strcat('GrainB n°', num2str(gui_BX.GB.GrainB)), strcat('GB n°', num2str(gui_BX.GB.GB_Number)), 'Distance GB-indenter', 'Location', 'SouthOutside');
+legend(strcat('GrainA n°', num2str(gui_BX.GB.GrainA)), ...
+    strcat('GrainB n°', num2str(gui_BX.GB.GrainB)), ...
+    strcat('GB n°', num2str(gui_BX.GB.GB_Number)), ...
+    'Distance GB-indenter', 'Location', 'southeast');
 
 % Axis setting
 %triad(1, [gui_BX.variables.sample_coordx_frontface, ...
-%   gui_BX.variables.sample_coordy_rightface, gui_BX.variables.sample_coordz_bottomface],...
+%   gui_BX.variables.sample_coordy_rightface, ...
+%   gui_BX.variables.sample_coordz_bottomface], ...
 %   2);
 axis tight; % Axis tight to the sample
 axis equal; % Axis aspect ratio
-view(-65,20);
+view(old_az, old_el);
 
 % FIXME: Inversion of x-axis ans y-axis with CPFE model !!!
 % if isfield(gui_BX, 'config_map')

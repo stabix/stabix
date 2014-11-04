@@ -148,10 +148,12 @@ class BicrystalIndent(Indentation):
         self.proc.append('\n*clear_geometry\n') #indenter modeling relies on fixed numbers
         if geo == 'conical':
             self.procIndenterConical(coneHalfAngle=self.IndentParameters['coneHalfAngle'])
+        if geo == 'Berkovich':
+            self.procIndenterBerkovich()
         if geo == 'flatPunch':
             self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
-        if geo == 'AFM':
-            self.procIndenterAFMtopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'])
+        if geo == 'customized':
+            self.procIndenterCustomizedTopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'])
         self.procNewModel()
         self.procParametersIndent()
         self.procSample()

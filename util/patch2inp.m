@@ -10,6 +10,7 @@ function patch2inp(patch_obj, inp_full_path)
 if nargin < 2
     inp_full_path = fullfile(cd, 'patch2inp_test_export.inp')
 end
+
 if nargin == 0
     [X,Y] = meshgrid(-8:.5:8);
     R = sqrt(X.^2 + Y.^2) + eps;
@@ -79,4 +80,5 @@ elseif length(patch_data.faces(1,:)) == 3 % Triangle
     end
 end
 fclose(fid_inp);
+
 end

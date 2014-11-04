@@ -144,7 +144,6 @@ if ~gui.flag.error
     axis off;
     axis tight;
     view(old_az, old_el);
-    [old_az, old_el] = view;
     
     %% Plotting of slip transmission parameter map
     if ~no_slip

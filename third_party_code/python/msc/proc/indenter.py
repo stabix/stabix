@@ -63,8 +63,8 @@ indenter_surfaces
         if geo == 'conical':
             savename += '_R%.2f' % self.IndentParameters['tipRadius']
             savename += '_cA%.1f' % self.IndentParameters['coneAngle']
-        if geo == 'AFM':
-            self.procIndenterAFMtopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'])
+        if geo == 'customized':
+            self.procIndenterCustomizedTopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'])
         savename += '_h%.3f' % self.IndentParameters['h_indent']
         self.procSaveModel(modelname=savename + '.mfd')
         #self.procMicronbar(posXYZ=N.array([0., 0., 0.]),height=h_indent)
@@ -316,11 +316,16 @@ all_existing
 *store_surfaces indenter_surfaces_berko
 all_existing
 ''')
+        self.IndentParameters['Indenter'] = 'berkovich.mfd'
+        self.proc.append('''
+*save_as_model ''' + self.IndentParameters['Indenter']
+                         + ''' yes
+''')
 
-    def procIndenterAFMtopo(self, free_mesh_inp):
+    def procIndenterCustomizedTopo(self, free_mesh_inp): # for topography from Matlab (AFM, preCPFE_3d_polygon_indenter...)
         self.proc.append('''
 |+++++++++++++++++++++++++++++++++++++++++++++
-| MODELING OF AFM INDENTER TOPOGRAPHY
+| MODELING OF CUSTOMIZED INDENTER TOPOGRAPHY
 |+++++++++++++++++++++++++++++++++++++++++++++
 *import abaqus %s ''' % (self.IndentParameters['free_mesh_inp']) +
 '''
@@ -335,7 +340,7 @@ all_existing
 *store_surfaces indenter_surfaces
 all_existing
 ''')
-        self.IndentParameters['Indenter'] = 'afm_topography_of_indenter_from_inp.mfd'
+        self.IndentParameters['Indenter'] = 'customized_topography_of_indenter_from_inp.mfd'
         self.proc.append('''
 *save_as_model ''' + self.IndentParameters['Indenter']
                          + ''' yes

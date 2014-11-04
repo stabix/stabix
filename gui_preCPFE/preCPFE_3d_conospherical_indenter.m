@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function preCPFE_3d_conospherical_indenter(tipRadius, coneAngle, N, X_position, Y_position, Z_position, varargin)
+function [fvc, handle_indax] = preCPFE_3d_conospherical_indenter(tipRadius, coneAngle, N, X_position, Y_position, Z_position, varargin)
 %% Function to plot a 3D conospherical indenter
 % tipRadius : Radius of the spherical part of the indenter.
 % coneAngle : Full angle in degree of the conical part of the indenter.
@@ -67,7 +67,10 @@ z = z.';
 for ii = 2:1:size(x,2)
     z(:,ii) = z(:,1);
 end
-surf(x,y,z); hold on;
+handle_indax = surf(x,y,z); hold on;
 colormap white;
 
-return
+%% Get patch for generation of Abaqus .inp file
+fvc = surf2patch(x, y, z); 
+
+end

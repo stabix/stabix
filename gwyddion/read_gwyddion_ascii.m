@@ -4,6 +4,24 @@ function topo = read_gwyddion_ascii(filefullpath, varargin)
 
 % author: c.zambaldi@mpie.de
 
+% Data format from Gwyddion
+% - channel: 'Height'
+% - width: 5
+% - height: 5
+% - FEM_mode: 0
+% - data: [512x512 double]
+% - nX: 512
+% - nY: 512
+% - resX: 0.0098
+% - resY: 0.0098
+% - linX: [1x512 double]
+% - linY: [1x512 double]
+% - max: 1.9029e-06
+% - min: -7.2871e-07
+% - data_range: 2.6316e-06
+% - X: [512x512 double]
+% - Y: [512x512 double]
+
 if nargin < 1
     TESTING = 1;
     [fname, pname] = uigetfile({'*.txt;*_tip.mat'},'Choose a file');
@@ -15,6 +33,7 @@ end
 
 fid = fopen(filefullpath,'rt');
 if fid == -1
+    commandwindow;
     error(sprintf('Couldn''t open file at %s',filefullpath));
 end
 
