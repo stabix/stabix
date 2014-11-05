@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function [fvc, handle_indax] = preCPFE_indenter_plot
+function [fvc, handle_indenter] = preCPFE_indenter_plot
 %% Function to set plot of 3D indenter
 
 % author: d.mercier@mpie.de
@@ -15,24 +15,29 @@ end
 
 %% Set plot of indenter
 if strcmp(gui.indenter_type, 'conical') == 1
-    [fvc, handle_indax] = preCPFE_3d_conospherical_indenter(gui.variables.tipRadius, ...
+    [fvc, handle_indenter_sphere, handle_indenter_cone] = ...
+        preCPFE_3d_conospherical_indenter(gui.variables.tipRadius, ...
         gui.variables.coneAngle, 50, 0, 0, ...
         gui.variables.tipRadius - h_indent);
+    handle_indenter = handle_indenter_sphere;
+    % FIXME: conospherical indenter in 2 parts --> 2 handles
+    % to fix in case we want to use surf2patch or patch2inp functions...
     
 elseif strcmp(gui.indenter_type, 'Berkovich') == 1
-    [fvc, handle_indax] = preCPFE_3d_polygon_indenter(3, 65.3, ...
+    [fvc, handle_indenter] = preCPFE_3d_polygon_indenter(3, 65.3, ...
         2*gui.variables.h_indent, -h_indent);
     
 elseif strcmp(gui.indenter_type, 'Vickers') == 1
-    [fvc, handle_indax] = preCPFE_3d_polygon_indenter(4, 68, ...
+    [fvc, handle_indenter] = preCPFE_3d_polygon_indenter(4, 68, ...
         2*gui.variables.h_indent, -h_indent);
     
 elseif strcmp(gui.indenter_type, 'cubeCorner') == 1
-    [fvc, handle_indax] = preCPFE_3d_polygon_indenter(3, 35.26, ...
+    [fvc, handle_indenter] = preCPFE_3d_polygon_indenter(3, 35.26, ...
         2*gui.variables.h_indent, -h_indent);
-
+    
 elseif strcmp(gui.indenter_type, 'flatPunch') == 1
-    [fvc, handle_indax] = preCPFE_3d_flat_punch_indenter(gui.variables.tipRadius, 0, 0, ...
+    [fvc, handle_indenter] = preCPFE_3d_flat_punch_indenter(...
+        gui.variables.tipRadius, 0, 0, ...
         -h_indent, 2*gui.variables.h_indent);
     
 elseif strcmp(gui.indenter_type, 'AFM') == 1
@@ -47,7 +52,7 @@ elseif strcmp(gui.indenter_type, 'AFM') == 1
     
     [gui.afm_topo_indenter.X, gui.afm_topo_indenter.Y,...
         gui.afm_topo_indenter.data, fvc, ...
-        handle_indax] =...
+        handle_indenter] =...
         preCPFE_3d_indenter_topo_AFM(gui.indenter_topo,...
         h_indent, smooth_factor);
 end
@@ -63,10 +68,19 @@ rotation_angle = ...
 direction = [0 0 1]; % along z-axis
 origin = [0,0,0];
 
-rotate(handle_indax, direction, rotation_angle, origin);
+rotate(handle_indenter, direction, rotation_angle, origin);
 
-fvc = surf2patch(get(handle_indax, 'Xdata'), ...
-    get(handle_indax, 'Ydata'), get(handle_indax, 'Zdata'));
+% Update fvc after rotation...
+% See patch2inp function
+if strcmpi(get(handle_indenter, 'Type'), 'Surface')
+    fvc = surf2patch(handle_indenter);
+elseif strcmpi(get(handle_indenter, 'Type'), 'Patch')
+    fvc = struct;
+    fvc.faces = get(handle_indenter, 'Faces');
+    fvc.vertices = get(handle_indenter, 'Vertices');
+else
+    error('not a patch or surf handle');
+end
 
 %% Save encapsulated data
 guidata(gcf, gui);

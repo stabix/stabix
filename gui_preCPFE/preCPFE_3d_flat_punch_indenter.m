@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function [fvc, handle_indax] = preCPFE_3d_flat_punch_indenter(tipRadius, X_position, Y_position, Z_position, szFac, varargin)
+function [fvc, handle_indenter] = preCPFE_3d_flat_punch_indenter(tipRadius, X_position, Y_position, Z_position, szFac, varargin)
 %% Function to plot a 3D flat punch indenter
 % tipRadius : Radius of the flat punch indenter.
 % szFac: Factor to scale the 3D plot.
@@ -36,9 +36,13 @@ y_cyl = Y + Y_position;
 z_cyl = Z * szFac;
 z_cyl = z_cyl + Z_position;
 
-handle_indax = surf(x_cyl, y_cyl, z_cyl);
+handle_indenter = surf(x_cyl, y_cyl, z_cyl);
+colormap('white');
 
 if nargin == 0
+    close all;
+    handle_indenter = surf(x_cyl, y_cyl, z_cyl);
+    colormap('white');
     axis off;
     axis equal;
     view(0,30);

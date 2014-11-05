@@ -23,7 +23,7 @@ if nargin == 0
     return
 end
 
-if ~ ishandle(patch_obj)
+if ~ishandle(patch_obj)
     if isstruct(patch_obj)
         patch_data = struct;
         patch_data.faces = patch_obj.faces;
@@ -33,12 +33,12 @@ if ~ ishandle(patch_obj)
     end
     
 else
-    if strcmpi(get(patch_obj, 'Type'), 'Surface')
+    if strcmpi(get(patch_obj, 'Type'), 'surface')
         patch_data = surf2patch(patch_obj);
-    elseif ~ strcmpi(get(patch_obj, 'Type'), 'Patch')
+    elseif strcmpi(get(patch_obj, 'Type'), 'patch')
         patch_data = struct;
-        patch_data.faces = get(patch, 'Faces');
-        patch_data.vertices = get(patch, 'Vertices');
+        patch_data.faces = get(patch_obj, 'Faces');
+        patch_data.vertices = get(patch_obj, 'Vertices');
     else
         error('not a patch or surf handle');
     end
@@ -67,7 +67,7 @@ for i=1:size(patch_data.vertices,1)
     fprintf(fid_inp,'%5i, %9.4f, %9.4f, %9.4f\n',i,patch_data.vertices(i,:));
 end
 nFaces = size(patch_data.faces,1);
-if length(patch_data.faces(1,:))==4 % Rectangle, "Quadrilateral"
+if length(patch_data.faces(1,:)) == 4 % Rectangle, "Quadrilateral"
     %fprintf(fid_inp,'*ELEMENT, TYPE=CAX4, ELSET=Eall\n')
     fprintf(fid_inp, '*ELEMENT, TYPE=CAX4, ELSET=%s\n', fname);
     for i = 1:nFaces

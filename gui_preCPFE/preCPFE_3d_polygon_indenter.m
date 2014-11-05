@@ -1,9 +1,12 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function [ptc, handle_indax] = preCPFE_3d_polygon_indenter(N, ang, height, zShift, varargin)
+function [ptc, handle_indenter] = preCPFE_3d_polygon_indenter(N, ang, height, zShift, varargin)
 %% Function to plot a 3D polygon indenter
 % N: Number of sides of the polygon (e.g.: N = 3 ==> three-sided indenter,
-% N = 4 ==> four-sided indenter).
+% N = 4 ==> four-sided indenter). N > 2
+
 % ang: Opening angle between vertical axis and faces (in degrees).
+% 0° < ang < 90°
+
 % height: Height of the indenter.
 % zShift: Shift of the indenter along z-axis.
 
@@ -30,25 +33,50 @@ if nargin < 1
     N = 3; % Berkovich indenter
 end
 
+if N < 2
+   commandwindow;
+   warning('N should be higher than 2 !');
+end
+
+if ang <=0 || ang >=90
+   commandwindow;
+   warning('ang should be comprised between 0° and 90° ! ');
+end
+    
 deg_inc = 360/N;
 
 vts(1,:) = [0,0,0];
 sz = tand(ang) / cosd(deg_inc/2);
 
-for iN = 1:N+2
+for iN = 1:N+1
     vts(iN+1, :) = [cosd(iN * deg_inc) * sz, ...
         sind(iN * deg_inc) * sz, 1] * height;
-    if iN > 2
-        fcs(iN-2, :) = [1 iN-1 iN];
-    end
+        fcs(iN, :) = [1 iN iN+1 1];
 end
+
+% FIXME: faces with 4 vertices are needed with 2 times the same vertice
+% because only rectangular elements can be converted in surfaces in Mentat.
+
+% for iF = 1:N
+%     sNd = (iF-1)*2+2
+%     vts(sNd, :) = [cosd((sNd-1) * deg_inc) * sz, ...
+%                    sind((sNd-1) * deg_inc) * sz, ...
+%                    1] * height;
+%     vts(sNd+1, :) = [cosd(sNd * deg_inc) * sz, ...
+%                      sind(sNd * deg_inc) * sz, ...
+%                      1] * height;
+%     
+%     %if iN > 2
+%     fcs(iF, :) = [1 sNd sNd+1 1];
+%     %end
+% end
 
 vts(:,3) = vts(:,3) + zShift;
 
 ptc = struct();
 ptc.vertices = vts;
 ptc.faces = fcs;
-handle_indax = patch(ptc, 'FaceColor', 'w', 'FaceAlpha', 0.75);
+handle_indenter = patch(ptc, 'FaceColor', 'w', 'FaceAlpha', 0.75);
 
 if nargin == 0
     close all;
@@ -56,7 +84,7 @@ if nargin == 0
     rotate3d on;
     axis off;
     axis equal;
-    view(0,0);
+    view(20,10);
 end
 
 end

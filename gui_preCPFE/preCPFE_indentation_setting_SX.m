@@ -3,11 +3,10 @@ function preCPFE_indentation_setting_SX
 %% Function to set SX indentation inputs (tip radius, indentation depth...) and plot of meshing
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
-preCPFE_set_indenter;
 gui_SX = guidata(gcf);
 
 %% Store old view settings
-if isfield(gui_SX, 'h_indax')
+if isfield(gui_SX, 'handle_indenter')
     [old_az, old_el] = view;
 else
     old_az = 0; % old azimuth value
@@ -216,7 +215,7 @@ end
 
 %% Plot of the cono-spherical indenter before and after indentation
 guidata(gcf, gui_SX);
-[gui_SX.topo_indenter.fvc, gui_SX.h_indax] = preCPFE_indenter_plot;
+[gui_SX.topo_indenter.fvc, gui_SX.handle_indenter] = preCPFE_indenter_plot;
 guidata(gcf, gui_SX);
 gui_SX  = guidata(gcf);
 guidata(gcf, gui_SX);

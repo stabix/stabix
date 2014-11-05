@@ -25,9 +25,12 @@ proc_path = fullfile(gui_BX.config.CPFEM.proc_file_path, gui_BX.GB.Titlegbdata, 
 proc_path = strrep(proc_path, '\', '\\'); % to escape \r as a carriage return
 
 %% Definition of indenter
-if strcmp(gui_BX.indenter_type, 'conical') ~= 1 && ...
-        strcmp(gui_BX.indenter_type, 'flatPunch') ~= 1
-    gui_BX.indenter_type = 'customized';
+if strcmp(gui_BX.indenter_type, 'conical')
+    gui_BX.indenter_type_model = 'conical';
+elseif strcmp(gui_BX.indenter_type, 'flatPunch')
+    gui_BX.indenter_type_model = 'flatPunch';
+else
+    gui_BX.indenter_type_model = 'customized';
 end
 
 %% Creation of the python file run in the command line window to generate procedure file for the bicrystal
@@ -86,7 +89,7 @@ py{end+1} = sprintf('box_bias_y3 = %.3f,', gui_BX.variables.box_bias_y3);
 py{end+1} = sprintf('smv = %e,', gui_BX.variables.smv);
 py{end+1} = sprintf('lvl = %i,', gui_BX.variables.meshquality);
 py{end+1} = sprintf('len_trace = 1.,');
-py{end+1} = sprintf('geo = ''%s'',', gui_BX.indenter_type);
+py{end+1} = sprintf('geo = ''%s'',', gui_BX.indenter_type_model);
 py{end+1} = sprintf('free_mesh_inp = ''%s''', strcat(gui_BX.GB.Titlegbdata, '.inp'));
 py{end+1} = ')';
 py{end+1} = sprintf('proc_path = ''%s'' ', proc_path);
@@ -143,11 +146,8 @@ catch err
 end
 
 %% Generation of .inp file
-proc_path_inp = fullfile(proc_path, strcat(gui_BX.GB.Titlegbdata, '.inp'));
-if strcmp(gui_BX.indenter_type, 'conical') ~= 1 && ...
-        strcmp(gui_BX.indenter_type, 'flatPunch') ~= 1
-    patch2inp(gui_BX.topo_indenter.fvc, proc_path_inp);
-end
+preCPFE_inp_file_generation(proc_path, gui_BX.GB.Titlegbdata, ...
+    gui_BX.indenter_type_model, gui_BX.topo_indenter.fvc); %gui_BX.handle_indenter
 
 guidata(gcf, gui_BX);
 

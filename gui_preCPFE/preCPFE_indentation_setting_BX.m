@@ -3,11 +3,10 @@ function preCPFE_indentation_setting_BX
 %% Function to set BX indentation inputs (tip radius, indentation depth...) and plot of meshing
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
-preCPFE_set_indenter;
 gui_BX = guidata(gcf);
 
 %% Store old view settings
-if isfield(gui_BX, 'h_indax')
+if isfield(gui_BX, 'handle_indenter')
     [old_az, old_el] = view;
 else
     old_az = -65; % old azimuth value
@@ -346,7 +345,7 @@ gui_BX.handles.mesh.meshBX_8 = surf(gui_BX.variables_geom.top8121617_x, gui_BX.v
 
 %% Plot of the cono-spherical indenter before and after indentation
 guidata(gcf, gui_BX);
-[gui_BX.topo_indenter.fvc, gui_BX.h_indax] = preCPFE_indenter_plot;
+[gui_BX.topo_indenter.fvc, gui_BX.handle_indenter] = preCPFE_indenter_plot;
 guidata(gcf, gui_BX);
 gui_BX  = guidata(gcf);
 guidata(gcf, gui_BX);
