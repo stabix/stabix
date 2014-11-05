@@ -25,8 +25,6 @@ gui_SX.description = 'Indentation of a single crystal - ';
 
 %% Set Matlab and CPFEM configurations
 if nargin == 0  
-    %[gui_SX.config] = load_YAML_config_file; % done in init
-    
     gui_SX.config_map.Sample_IDs   = [];
     gui_SX.config_map.Sample_ID    = [];
     gui_SX.config_map.Material_IDs = [];

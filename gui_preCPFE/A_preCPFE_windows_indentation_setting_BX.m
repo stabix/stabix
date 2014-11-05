@@ -24,8 +24,6 @@ gui_BX.description = 'Indentation of a bicrystal - ';
 
 %% Set Matlab and CPFEM configurations
 if nargin == 0
-    %[gui_BX.config] = load_YAML_config_file;
-    
     gui_BX.config_map.Sample_IDs   = [];
     gui_BX.config_map.Sample_ID    = [];
     gui_BX.config_map.Material_IDs = [];
@@ -87,7 +85,6 @@ guidata(gcf, gui_BX);
 %% Run the plot of the meshing
 gui_BX.indenter_type = 'conical'; guidata(gcf, gui_BX);
 preCPFE_indentation_setting_BX;
-view(-65,20);
 gui_BX = guidata(gcf); guidata(gcf, gui_BX);
 
 gui_handle = gui_BX.handles.gui_BX_win;

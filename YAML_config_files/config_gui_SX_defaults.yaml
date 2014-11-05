@@ -6,7 +6,7 @@
 filenameGF2_BC: 'random_inputs'
 filenameRB_BC: 'random_inputs'
 
-#Grain definition (number and Euler angles in  degree)
+#Grain definition (number and Euler angles in  degrees)
 Material_A: 'Ti'
 Phase_A: 'hcp'
 GrainA: 1

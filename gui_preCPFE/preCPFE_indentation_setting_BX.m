@@ -6,10 +6,15 @@ function preCPFE_indentation_setting_BX
 gui_BX = guidata(gcf);
 
 %% Store old view settings
+% Rotation of the bicrystal based on the GB trace angle
+rotation_angle = gui_BX.GB.GB_Trace_Angle - 90; % FIXME: -90 because inversion of x and y axis with CPFE model...
+direction = [0 0 1]; % along z-axis
+origin = [0,0,0];
+
 if isfield(gui_BX, 'handle_indenter')
     [old_az, old_el] = view;
 else
-    old_az = -65; % old azimuth value
+    old_az = -65 + rotation_angle; % old azimuth value
     old_el = 20; % old elevation value
 end
 
@@ -322,26 +327,51 @@ end
 % Plot of the mesh
 gui_BX.handles.mesh.meshBX_1 = surf(gui_BX.variables_geom.top1256_x, gui_BX.variables_geom.top1256_y, gui_BX.variables_geom.top1256_z, 'FaceColor', color_grA); hold on;
 gui_BX.handles.mesh.meshBX_2 = surf(gui_BX.variables_geom.top3487_x, gui_BX.variables_geom.top3487_y, gui_BX.variables_geom.top3487_z, 'FaceColor', color_grB); hold on;
-
-% Plot of GB
-gui_BX.handles.mesh.plot_meshBX_GB1 = plot3(GB_coords_X, GB_coords_Y, GB_coords_Z, '-', 'Color', color_gb, 'LineWidth', 4);
-
-if gui_BX.variables.ind_dist ~= 0
-    gui_BX.handles.mesh.meshBX_GB2 = surf(gui_BX.variables_geom.top2376_x, gui_BX.variables_geom.top2376_y, gui_BX.variables_geom.top2376_z, 'FaceColor', color_inter_gr_gb); hold on;
-    gui_BX.handles.mesh.meshBX_GB3 = surf(gui_BX.variables_geom.top671011_x, gui_BX.variables_geom.top671011_y, gui_BX.variables_geom.top671011_z, 'FaceColor', color_inter_gr_gb); hold on;
-end
-
-if gui_BX.variables.ind_dist ~= 0
-    gui_BX.handles.mesh.meshBX_GB4 = surf(gui_BX.variables_geom.top10111514_x, gui_BX.variables_geom.top10111514_y, gui_BX.variables_geom.top10111514_z, 'FaceColor', color_inter_gr_gb); hold on;
-end
-
-% Plot of the mesh
 gui_BX.handles.mesh.meshBX_3 = surf(gui_BX.variables_geom.top56910_x, gui_BX.variables_geom.top56910_y, gui_BX.variables_geom.top56910_z, 'FaceColor', color_grA); hold on;
 gui_BX.handles.mesh.meshBX_4 = surf(gui_BX.variables_geom.top781211_x, gui_BX.variables_geom.top781211_y, gui_BX.variables_geom.top781211_z, 'FaceColor', color_grB); hold on;
 gui_BX.handles.mesh.meshBX_5 = surf(gui_BX.variables_geom.top9101314_x, gui_BX.variables_geom.top9101314_y, gui_BX.variables_geom.top9101314_z, 'FaceColor', color_grA); hold on;
 gui_BX.handles.mesh.meshBX_6 = surf(gui_BX.variables_geom.top11121615_x, gui_BX.variables_geom.top11121615_y, gui_BX.variables_geom.top11121615_z, 'FaceColor', color_grB); hold on;
 gui_BX.handles.mesh.meshBX_7 = surf(gui_BX.variables_geom.top841817_x, gui_BX.variables_geom.top841817_y, gui_BX.variables_geom.top841817_z, 'FaceColor', color_grB); hold on;
 gui_BX.handles.mesh.meshBX_8 = surf(gui_BX.variables_geom.top8121617_x, gui_BX.variables_geom.top8121617_y, gui_BX.variables_geom.top8121617_z, 'FaceColor', color_grB); hold on;
+
+rotate(gui_BX.handles.mesh.meshBX_1, ...
+    direction, rotation_angle, origin);
+rotate(gui_BX.handles.mesh.meshBX_2, ...
+    direction, rotation_angle, origin);
+rotate(gui_BX.handles.mesh.meshBX_3, ...
+    direction, rotation_angle, origin);
+rotate(gui_BX.handles.mesh.meshBX_4, ...
+    direction, rotation_angle, origin);
+rotate(gui_BX.handles.mesh.meshBX_5, ...
+    direction, rotation_angle, origin);
+rotate(gui_BX.handles.mesh.meshBX_6, ...
+    direction, rotation_angle, origin);
+rotate(gui_BX.handles.mesh.meshBX_7, ...
+    direction, rotation_angle, origin);
+rotate(gui_BX.handles.mesh.meshBX_8, ...
+    direction, rotation_angle, origin);
+
+% Plot of GB
+gui_BX.handles.mesh.meshBX_GB1 = plot3(GB_coords_X, GB_coords_Y, GB_coords_Z, '-', 'Color', color_gb, 'LineWidth', 4);
+rotate(gui_BX.handles.mesh.meshBX_GB1, ...
+    direction, rotation_angle, origin);
+
+if gui_BX.variables.ind_dist ~= 0
+    gui_BX.handles.mesh.meshBX_GB2 = surf(gui_BX.variables_geom.top2376_x, gui_BX.variables_geom.top2376_y, gui_BX.variables_geom.top2376_z, 'FaceColor', color_inter_gr_gb); hold on;
+    gui_BX.handles.mesh.meshBX_GB3 = surf(gui_BX.variables_geom.top671011_x, gui_BX.variables_geom.top671011_y, gui_BX.variables_geom.top671011_z, 'FaceColor', color_inter_gr_gb); hold on;
+    rotate(gui_BX.handles.mesh.meshBX_GB2, ...
+        direction, rotation_angle, origin);
+    
+    rotate(gui_BX.handles.mesh.meshBX_GB3, ...
+        direction, rotation_angle, origin);
+end
+
+if gui_BX.variables.ind_dist ~= 0
+    gui_BX.handles.mesh.meshBX_GB4 = surf(gui_BX.variables_geom.top10111514_x, gui_BX.variables_geom.top10111514_y, gui_BX.variables_geom.top10111514_z, 'FaceColor', color_inter_gr_gb); hold on;
+    
+    rotate(gui_BX.handles.mesh.meshBX_GB4, ...
+        direction, rotation_angle, origin);
+end
 
 %% Plot of the cono-spherical indenter before and after indentation
 guidata(gcf, gui_BX);
@@ -355,6 +385,9 @@ gui_BX.handles.mesh.sample_patch = ...
     patch('Vertices', gui_BX.variables_geom.BX_sample_allpts, ...
     'Faces', gui_BX.variables_geom.faces_sample,'FaceAlpha',0.05);
 
+rotate(gui_BX.handles.mesh.sample_patch, ...
+        direction, rotation_angle, origin);
+
 % Legend
 legend(strcat('GrainA n°', num2str(gui_BX.GB.GrainA)), ...
     strcat('GrainB n°', num2str(gui_BX.GB.GrainB)), ...
@@ -366,11 +399,14 @@ legend(strcat('GrainA n°', num2str(gui_BX.GB.GrainA)), ...
 %   gui_BX.variables.sample_coordy_rightface, ...
 %   gui_BX.variables.sample_coordz_bottomface], ...
 %   2);
+xyzlabel;
 axis tight; % Axis tight to the sample
 axis equal; % Axis aspect ratio
 view(old_az, old_el);
 
 % FIXME: Inversion of x-axis ans y-axis with CPFE model !!!
+
+% FIXME: xyz label with units... see xyzlabel function
 % if isfield(gui_BX, 'config_map')
 %     if isfield(gui_BX.config_map, 'unit_string')
 %         xlabel_str = strcat('x axis_', gui_BX.config_map.unit_string);

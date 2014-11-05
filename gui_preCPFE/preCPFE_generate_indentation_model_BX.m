@@ -147,7 +147,7 @@ end
 
 %% Generation of .inp file
 preCPFE_inp_file_generation(proc_path, gui_BX.GB.Titlegbdata, ...
-    gui_BX.indenter_type_model, gui_BX.topo_indenter.fvc); %gui_BX.handle_indenter
+    gui_BX.indenter_type_model, gui_BX.handle_indenter);
 
 guidata(gcf, gui_BX);
 
