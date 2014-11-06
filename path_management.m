@@ -1,6 +1,10 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function path_management(varargin)
 %% Set Matlab search path
+%
+%TODO: checkout addpath_recurse which mtex uses
+% http://www.mathworks.com/matlabcentral/fileexchange/21086-recursive-addpath/content/addpath_recurse.m
+%
 % http://www.mathworks.de/de/help/matlab/ref/addpath.html
 commandwindow;
 % http://stackoverflow.com/questions/2720140/find-location-of-current-m-file-in-matlab
@@ -36,14 +40,14 @@ fprintf('%s\n', folder)
 if nargin > 0 && ischar(varargin{1})
     answer = varargin{1};
 else
-    display('Add the above folder with subfolders to the MATLAB search path?')
+    display('Add the above folder with subfolders to the Matlab search path?')
     fprintf('(%i items)\n', n_dirs)
     answer = input('([y](default)/n/rm(remove))','s');
 end
 
 root_var = 'SLIP_TRANSFER_TBX_ROOT';
 if strcmpi(answer, 'y') || isempty(answer)
-    fprintf('Adding %i entries to matlab search path\n', n_dirs);
+    fprintf('Adding %i entries to the Matlab search path\n', n_dirs);
     addpath(path_to_add);
     %savepath;
     setenv(root_var, folder)
