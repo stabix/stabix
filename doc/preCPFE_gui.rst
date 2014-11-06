@@ -71,15 +71,18 @@ Indenter's geometry
 Currently the following geometries can be used for CPFE simulations :
 
     * `cono-spherical indenter <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_conospherical_indenter.m>`_ ;
-    * `Berkovich indenter <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_polygon_indenter.m>`_ 
-    * `Vickers indenter <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_polygon_indenter.m>`_ 
-    * `cube corner indenter <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_polygon_indenter.m>`_ 
-    * `flat punch <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_flat_punch_indenter.m>`_ 
+    * `Berkovich indenter <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_polygon_indenter.m>`_ ;
+    * `Vickers indenter <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_polygon_indenter.m>`_ ;
+    * `cube corner indenter <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_polygon_indenter.m>`_ ;
+    * `flat punch <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_flat_punch_indenter.m>`_ ;
     * `free topography <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_indenter_topo_AFM.m>`_ (from an AFM measurement for instance).
     
-For the Berkovich, Vickers, cube corner indenters and the free topography, the |matlab| function `surf2patch <http://www.mathworks.fr/help/matlab/ref/surf2patch.html>`_ 
-is used to return the face, vertex, and color data in the struct *fvc* from a surface object. Then the function `patch2inp <https://github.com/stabix/stabix/blob/master/util/patch2inp.m>`_
-is called to generate an *Abaqus .inp* file, which is used when the CPFE model is created in *MSC.Mentat* or *Abaqus*.
+For the Berkovich, Vickers, cube corner indenters and the free topography, the faces and vertices are saved in a structure variable from a patch object.
+For the cono-spherical and the flat punch, geometries are already implemented in the Python package for *MSC.Mentat* and *Abaqus*.
+It is possible as well to call the |matlab| function `surf2patch <http://www.mathworks.fr/help/matlab/ref/surf2patch.html>`_, to return the faces and vertices from a surface object.
+
+Then the function `patch2inp <https://github.com/stabix/stabix/blob/master/util/patch2inp.m>`_
+is used to generate an *Abaqus .inp* file, which is used when the CPFE model is created in *MSC.Mentat* or *Abaqus*.
 
 It is possible to rotate directly into the GUIs, the Berkovich, Vickers, cube corner indenters and the free topography before the generation of the *Abaqus .inp* file.
     

@@ -1,7 +1,7 @@
 ﻿Bicrystal Definition
 ====================
 
-..  |matlab| replace:: Matlab\ :sup:`TM` \
+.. include:: includes.rst
 
 Crystallographic properties of a bicrystal
 ******************************************
@@ -60,7 +60,7 @@ The |matlab| function used to calculate the misorientation angle is: `misorienta
         
 The grain boundary plane normal :math:`n` can be determined knowing the grain boundary trace angle :math:`\alpha` and the grain boundary inclination :math:`\beta`.
         
-The grain boundary trace angle is obtained through the EBSD measurements (grain boundary endpoints coordinates) and the `grain boundary inclination <https://github.com/stabix/stabix/blob/master/gui_gbinc/README.rst>`_ can be assessed
+The grain boundary trace angle is obtained through the EBSD measurements (grain boundary endpoints coordinates) and the `grain boundary inclination <http://stabix.readthedocs.org/en/latest/gui_gbinc.html>`_ can be assessed
 by a serial polishing (chemical-mechanical polishing or FIB sectioning), either parallel or perpendicular to the surface of the sample (see Figure 2).
 
 .. figure:: ./_pictures/Schemes_SlipTransmission/bicrystal.png

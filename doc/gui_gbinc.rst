@@ -1,6 +1,8 @@
 ﻿A Matlab toolbox to analyze grain boundary inclination from SEM images
 ======================================================================
 
+.. include:: includes.rst
+
 .. figure:: ./_pictures/download.png
    :scale: 20 %
    :align: left

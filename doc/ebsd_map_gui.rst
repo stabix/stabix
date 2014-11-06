@@ -1,7 +1,7 @@
 ﻿EBSD map GUI
 ============
 
-..  |matlab| replace:: Matlab\ :sup:`TM` \
+.. include:: includes.rst
  
 This GUI allows to analyze quantitatively slip transmission across grain boundaries for an EBSD map.
 

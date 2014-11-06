@@ -1,7 +1,7 @@
 ﻿Getting started
 ===============
 
-..  |matlab| replace:: Matlab\ :sup:`TM` \
+.. include:: includes.rst
 
 First of all, download the source code of the |matlab| toolbox.
 
@@ -36,7 +36,7 @@ Run one of these GUIs to play with the toolbox.
    "preCPFE_SX", "This GUI is used to preprocess the CPFE model for SX indentation", `A_preCPFE_windows_indentation_setting_SX.m <https://github.com/stabix/stabix/blob/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_SX.m>`_, "config_CPFEM_default.yaml"
    "preCPFE_BX", "This GUI is used to preprocess the CPFE model for BX indentation", `A_preCPFE_windows_indentation_setting_BX.m <https://github.com/stabix/stabix/blob/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_BX.m>`_, "config_CPFEM_default.yaml"
    
-Default YAML configuration files, stored in the folder `YAML_config_files <https://github.com/stabix/stabix/tree/master/YAML_config_files>`_ , are loaded automatically to set the GUIs:
+Default YAML configuration files, stored in the folder `YAML_config_files <https://github.com/stabix/stabix/tree/master/YAML_config_files>`_, are loaded automatically to set the GUIs:
 
 .. code-block:: yaml
 

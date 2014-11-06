@@ -1,7 +1,7 @@
 ﻿Analysis of literature data
 ===========================
 
-..  |matlab| replace:: Matlab\ :sup:`TM` \
+.. include:: includes.rst
 
 Residual Burgers vector
 -----------------------

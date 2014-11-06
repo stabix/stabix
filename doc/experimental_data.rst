@@ -1,9 +1,9 @@
 ﻿Experimental data
 =================
 
-..  |matlab| replace:: Matlab\ :sup:`TM` \
+.. include:: includes.rst
 
-To use the toolbox, some experimental data are required :
+To use the stabix toolbox, some experimental data are required :
 
 - average grain orientations (Euler angles (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees) or intragranular misorientation (misorientation axis :math:`[uvw]` / angle :math:`\omega`);
 

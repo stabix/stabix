@@ -1,7 +1,7 @@
 ﻿Motivation of this Work
 =======================
 
-..  |matlab| replace:: Matlab\ :sup:`TM` \
+.. include:: includes.rst
 
 The micromechanical behavior of grain boundaries is one of the key components in the understanding of heterogeneous deformation of metals [#Bieler_2014]_.
 To investigate the nature of the strengthening effect of grain boundaries, slip transmission across interfaces has been investigated through

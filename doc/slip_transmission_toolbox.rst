@@ -1,7 +1,7 @@
 ﻿Strain Transfer Across Grain Boundaries
 =======================================
 
-..  |matlab| replace:: Matlab\ :sup:`TM` \
+.. include:: includes.rst
 
 The strain transfer across grain boundaries can be defined by the four following mechanisms (see Figure 1) [#LimRaj_1985_1]_, [#SuttonBalluffi_1995]_, [#Zaefferer_2003]_ and [#Priester_2013]_ :
 
@@ -108,7 +108,7 @@ The subscripts :math:`in` and :math:`out` refer to the incoming and outgoing sli
     .. math:: \vec b_r = g_{in}\cdot\vec b_{in} - g_{out}\cdot\vec b_{out}
         :label: residual_burgers_vector
         
-  This magnitude of this residual Burgers vector should be minimized.
+  The magnitude of this residual Burgers vector should be minimized.
   
   Shirokoff et al., Kehagias et al. and Kacher et al. used the residual Burgers vector as a criterion to analyse slip transmission in cp-Ti (HCP) [#Shirokoff_1993]_, [#Kehagias_1995]_, [#Kehagias_1996]_ and [#KacherRobertson_2014]_,
   Lagow et al. in Mo (BCC) [#Lagow_2001]_, Gemperle et al. and Gemperlova et al. in FeSi (BCC) [#Gemperle_2004]_ and [#Gemperlova_2004]_, Kacher et al. in 304 stainless steel (FCC) [#KacherRobertson_2012]_,
