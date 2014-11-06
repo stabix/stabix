@@ -31,8 +31,8 @@ The geometry of the slip transfer event is most of the time described by the sch
 :math:`\psi` is the angle between slip plane normal directions, :math:`\gamma` is the angle between the direction of incoming slip and the plane normal of outgoing slip,
 and :math:`\delta` is between the direction of outgoing slip and the plane normal of incoming slip.
 :math:`n`, :math:`d` and :math:`l` are respectively the slip plane normals, slip directions and the lines of intersection of the slip plane and the grain boundary.
-:math:`\vec b` is the Burgers vector of the slip plane and :math:`\vec b_r` is the residual Burgers vector of the residual dislocation at the grain boundary.
-The subscripts :math:`in` and :math:`out` refer to the incoming and outgoing slip systems, respectively.
+:math:`\vec b` is the Burgers vector of the slip plane and :math:`\vec b_\text r` is the residual Burgers vector of the residual dislocation at the grain boundary.
+The subscripts 'in' and 'out' refer to the incoming and outgoing slip systems, respectively.
   
 .. figure:: ./_pictures/Schemes_SlipTransmission/slip_transmission_scheme2.png
    :scale: 45 %
@@ -42,10 +42,10 @@ The subscripts :math:`in` and :math:`out` refer to the incoming and outgoing sli
    
 * :math:`N` **factor from Livingston and Chalmers in 1957** [#LivingstonChalmers_1957]_ 
 
-    .. math:: N = (n_{in} \cdot n_{out})*(d_{in} \cdot d_{out}) + (n_{in} \cdot d_{out})*(n_{out} \cdot d_{in})
+    .. math:: N = (\vec n_\text{in} \cdot \vec n_\text{out})(\vec d_\text{in} \cdot \vec d_\text{out}) + (\vec n_\text{in} \cdot \vec d_\text{out})(\vec n_\text{out} \cdot \vec d_\text{in})
         :label: n_factor
         
-    .. math:: N = \cos(\psi)\cdot\cos(\kappa) + \cos(\gamma)\cdot\cos(\delta)
+    .. math:: N = \cos\psi\cos\kappa + \cos\gamma\cos\delta
         :label: n_factor_angle
         
   Many authors referred to this criterion to analyze slip transmission [#HauserChamlers_1961]_, [#Davis_1966]_, [#HookHirth_1967_1]_, [#HookHirth_1967_2]_, [#Shen_1986]_, [#Shen_1988]_, [#Lee_1990_1]_, [#Lee_1990_2]_, [#Clark_1992]_ and [#Ueda_2002]_.
@@ -55,15 +55,15 @@ The subscripts :math:`in` and :math:`out` refer to the incoming and outgoing sli
   
 * :math:`LRB` **factor from Shen et al. in 1986** [#Shen_1986]_ and [#Shen_1988]_
 
-    .. math:: LRB = (l_{in} \cdot l_{out})*(d_{in} \cdot d_{out})
+    .. math:: LRB = (\vec l_\text{in} \cdot \vec l_\text{out})(\vec d_\text{in} \cdot \vec d_\text{out})
         :label: LRB_factor
         
-    .. math:: LRB = \cos(\theta)\cdot\cos(\kappa)
+    .. math:: LRB = \cos\theta\cos\kappa
         :label: LRB_factor_angle
         
-  The original notation of this :math:`LRB` factor is :math:`M`, but unfortunately this notation is often used for Taylor factor [#Bieler_2014]_ .
+  The original notation of this :math:`LRB` factor is :math:`M`, but unfortunately this notation is often used for the Taylor factor [#Bieler_2014]_.
   Pond et al. proposed to compute this geometric criteria for hexagonal metals using Frank's method [#Pond_1986]_. 
-  Recently, Spearot and Sangid have plotted this parameter in function of the misorientation of the bicrystal using atomistic simulations [#SpearotSangid_2014]_.
+  Recently, Spearot and Sangid have plotted this parameter as a function of the misorientation of the bicrystal using atomistic simulations [#SpearotSangid_2014]_.
   
   [#Lee_1989]_, [#Lee_1990_1]_, [#Lee_1990_2]_, [#Clark_1992]_, [#Kehagias_1995]_, [#Kehagias_1996]_, [#Ashmawi_2001]_, [#Gemperle_2004]_, [#Gemperlova_2004]_ and [#Shi_2011]_ mentioned in their respective studies this geometrical parameter as a condition for slip transmission.
   
@@ -73,14 +73,14 @@ The subscripts :math:`in` and :math:`out` refer to the incoming and outgoing sli
 
 * :math:`m'` **parameter from Luster and Morris in 1995** [#LusterMorris_1995]_
         
-    .. math:: m' = (n_{in} \cdot n_{out})*(d_{in} \cdot d_{out}) 
+    .. math:: m' = (\vec n_\text{in} \cdot \vec n_\text{out})(\vec d_\text{in} \cdot \vec d_\text{out}) 
         :label: m_prime
         
-    .. math:: m' = \cos(\psi)\cdot\cos(\kappa)
+    .. math:: m' = \cos\psi\cos\kappa
         :label: m_prime_angle
 
-  Many authors found that this :math:`m'` parameter which takes into account the degree of coplanarity of slip systems, is promising to predict slip transmission [#WangNgan_2004]_, [#WoNgan_2004]_, [#Britton_2009]_, [#Bieler_2009]_, [#Bieler_2014]_ and [#Guo_2014]_.
-  Both :math:`m'` and :math:`LRB` can be easily assessed in computational experiments [#Bieler_2014]_ .
+  Many authors found that this :math:`m'` parameter, which takes into account the degree of coplanarity of slip systems, is promising to predict slip transmission [#WangNgan_2004]_, [#WoNgan_2004]_, [#Britton_2009]_, [#Bieler_2009]_, [#Bieler_2014]_ and [#Guo_2014]_.
+  Both :math:`m'` and :math:`LRB` can be easily assessed in computational experiments [#Bieler_2014]_.
   This :math:`m'` factor should be maximized (1 means grain boundary is transparent and 0 means grain boundary is an impenetrable boundary).
   
   .. figure:: ./_pictures/Schemes_SlipTransmission/mprime_values.png
@@ -97,21 +97,21 @@ The subscripts :math:`in` and :math:`out` refer to the incoming and outgoing sli
    
    A resistance factor of the grain boundary can be described by the following equation : 
    
-    .. math:: GB_resfac = 1 - m'
+    .. math:: GB_\text{resfac} = 1 - m'
         :label: resistance_factor
         
-  This factor is equal to 0 (grain boundary transparent if the :math:`m'` parameter is equal to 1 (when grains perfectly aligned).
+  This factor is equal to 0 (grain boundary transparent if the :math:`m'` parameter is equal to 1 (when slip perfectly aligns).
    
   The |matlab| function used to calculate the m' parameter is: `mprime.m <https://github.com/stabix/stabix/tree/master/slip_transfer/mprime.m>`_
      
-* :math:`\vec b_r` **the residual Burgers vector** [#Marcinkowski_1970]_, [#Bollmann_1970]_, [#LimRaj_1985_1]_, [#LimRaj_1985_2]_, [#Clark_1989]_, [#Lee_1990_2]_ and [#Clark_1992]_.
-    .. math:: \vec b_r = g_{in}\cdot\vec b_{in} - g_{out}\cdot\vec b_{out}
+* :math:`\vec b_\text r` **the residual Burgers vector** [#Marcinkowski_1970]_, [#Bollmann_1970]_, [#LimRaj_1985_1]_, [#LimRaj_1985_2]_, [#Clark_1989]_, [#Lee_1990_2]_ and [#Clark_1992]_.
+    .. math:: \vec b_r = \vec g_\text{in}\cdot\vec b_\text{in} - \vec g_\text{out}\cdot\vec b_\text{out}
         :label: residual_burgers_vector
         
   The magnitude of this residual Burgers vector should be minimized.
   
-  Shirokoff et al., Kehagias et al. and Kacher et al. used the residual Burgers vector as a criterion to analyse slip transmission in cp-Ti (HCP) [#Shirokoff_1993]_, [#Kehagias_1995]_, [#Kehagias_1996]_ and [#KacherRobertson_2014]_,
-  Lagow et al. in Mo (BCC) [#Lagow_2001]_, Gemperle et al. and Gemperlova et al. in FeSi (BCC) [#Gemperle_2004]_ and [#Gemperlova_2004]_, Kacher et al. in 304 stainless steel (FCC) [#KacherRobertson_2012]_,
+  Shirokoff et al., Kehagias et al., and Kacher et al. used the residual Burgers vector as a criterion to analyse slip transmission in cp-Ti (hex) [#Shirokoff_1993]_, [#Kehagias_1995]_, [#Kehagias_1996]_ and [#KacherRobertson_2014]_,
+  Lagow et al. in Mo (bcc) [#Lagow_2001]_, Gemperle et al. and Gemperlova et al. in FeSi (bcc) [#Gemperle_2004]_ and [#Gemperlova_2004]_, Kacher et al. in 304 stainless steel (fcc) [#KacherRobertson_2012]_,
   and Jacques et al. for semiconductors [#Jacques_1990]_.
   
   Patriarca et al. demonstrated for BCC material the role of the residual Burgers vector in predicting slip transmission, by analysing strain field across GBs determined by digital image correlation [#Patriarca_2013]_. 
@@ -120,7 +120,7 @@ The subscripts :math:`in` and :math:`out` refer to the incoming and outgoing sli
   
   The |matlab| function used to calculate the residual Burgers vector is: `residual_Burgers_vector.m <https://github.com/stabix/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_
  
-* **The misorientation or disorientation** (:math:`\Delta g` or :math:`\Delta g_d`)  [#AustChen_1954]_, [#ClarkChalmers_1954]_ and [#WoNgan_2004]_
+* **The misorientation or disorientation** (:math:`\Delta g` or :math:`\Delta g_\text d`)  [#AustChen_1954]_, [#ClarkChalmers_1954]_ and [#WoNgan_2004]_
 
   It has been observed during first experiments of bicrystals deformation in 1954, that the yield stress and the rate of work hardening increased with the orientation difference between the crystals [#AustChen_1954]_ and [#ClarkChalmers_1954]_.
   
@@ -138,23 +138,23 @@ Stress Criteria
 
   The Schmid's law can be expressed by the following equation:
   
-    .. math:: \tau^{i} = \sigma : {S_0}^{i}
+    .. math:: \tau^i = \sigma : {S_0}^i
         :label: schmid_factor
         
-    .. math:: {S_0}^{i} = d \otimes n
+    .. math:: {S_0}^i = \vec d^i \otimes \vec n^i
         :label: schmid_matrix
   
-  :math:`\sigma` is an arbitrary stress state and :math:`\tau^{i}` the resolved shear stress.
-  :math:`{S_0}^{i}` is the Schmid matrix defined by the dyadic product of the slip plane normals :math:`n` and the slip directions :math:`d` of the slip system :math:`i`.
+  :math:`\sigma` is an arbitrary stress state and :math:`\tau^i` the resolved shear stress on slip system :math:`i`.
+  :math:`{S_0}^i` is the Schmid matrix defined by the dyadic product of the slip plane normals :math:`\vec n` and the slip directions :math:`\vec d` of the slip system :math:`i`.
   The Schmid factor, :math:`m`, is defined as the ratio of the resolved shear stress :math:`\tau^{i}` to a given uniaxial stress.
   
   Knowing the value of the highest Schmid factor of a given slip system for both grains in a bicrystal, Abuzaid et al. [#Abuzaid_2012]_ proposed the following criterion :
 
-    .. math:: m_{GB} = m_{in} + m_{out}
+    .. math:: m_\text{GB} = m_\text{in} + m_\text{out}
         :label: schmid_factor_gb
         
-  The subscripts :math:`GB`, :math:`in` and :math:`out` refer to the grain boundary, and the incoming and outgoing slip systems, respectively.
-  This GB Schmid factor (:math:`m_{GB}`) factor should be maximized.
+  The subscripts 'GB', 'in', and 'out' refer to the grain boundary, and the incoming and outgoing slip systems, respectively.
+  This GB Schmid factor (:math:`m_\text{GB}`) factor should be maximized.
   
   The |matlab| function used to calculate the Schmid factor is: `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_
   
@@ -163,10 +163,10 @@ Stress Criteria
   The generalized Schmid factor, which describes the shear stress on a given slip system, can be
   computed from any stress tensor :math:`\sigma` based on the Frobenius norm of the tensor.
 
-    .. math:: GSF = d \cdot g \sigma g^T \cdot n^T
+    .. math:: GSF = \vec d \cdot g \sigma g^T \cdot \vec n^T
         :label: generalized_schmid_factor
     
-  :math:`n` and :math:`d` are respectively the slip plane normals and the slip directions of the slip system. The superscript :math:`T` is the transpose notation and :math:`g` is the orientation matrix for a given crystal.
+  :math:`\vec n` and :math:`\vec d` are respectively the slip plane normals and the slip directions of the slip system. The superscript :math:`T` is the transpose notation and :math:`g` is the orientation matrix for a given crystal.
         
   The |matlab| function used to calculate the generalized Schmid factor is: `generalized_schmid_factor.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/generalized_schmid_factor.m>`_
         
