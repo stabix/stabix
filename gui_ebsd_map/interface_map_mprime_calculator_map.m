@@ -35,9 +35,6 @@ RB      = gui.RB_struct.data_smoothed;
 Results = struct();
 
 %% Initialization
-[startdir, f, ext] = fileparts(mfilename('fullpath'));
-cd(startdir);
-
 numphase = str2num(get(gui.handles.NumPh,'String'));
 guidata(gcf, gui);
 

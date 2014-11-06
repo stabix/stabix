@@ -40,7 +40,6 @@ end
 
 %% Initialization
 format compact;
-[startdir, f, ext] = fileparts(mfilename('fullpath'));
 
 gui.rdm_TSL_dataset = 0;
 gui.flag.newDataFlag = 0;
@@ -65,7 +64,8 @@ gui.flag.initialization_axis = 1;
 %% Importation of data from YAML config file (samples, paths...)
 gui.config_map = interface_map_load_YAML_config_file;
 
-gui.config_map.path_to_EBSD_data_examples = fullfile(startdir, 'EBSD_data_Examples');
+gui.config_map.path_to_EBSD_data_examples = fullfile(get_stabix_root, ...
+    'A_gui_plotmap', 'EBSD_data_Examples', '');
 
 %% Importation of data from YAML config file (paths of TSL data)
 config_YAML_TSLdata = sprintf('config_gui_EBSDmap_data_path_%s.yaml', gui.config.username);
