@@ -251,40 +251,21 @@ elements_sample = final_sample.elements
 elements_selected = elements_sample.getByBoundingCylinder((0,0,-h_sample-smv),(0,0,smv), D_sample*0.5+smv)
 final_sample.Set(elements=elements_selected, name='All Elements')
 
-if subroutine == 0:
-# If the material is conventional elastoplastic (parameter "Subroutine" = 0)
-    model_name.Material(name='ElastoPlastic Material')
-    model_name.materials['ElastoPlastic Material'].Elastic(
-        table=((45000.0, 0.3), ))
-    model_name.materials['ElastoPlastic Material'].Plastic(
-        table=((10.0, 0.0), (15.0, 0.15), (17.5, 0.3), (18.0, 0.4)))
-    model_name.HomogeneousSolidSection(
-        name='Section ElastoPlastic', material='ElastoPlastic Material', 
-        thickness=None)
+
+model_name.Material(name='ElastoPlastic Material')
+model_name.materials['ElastoPlastic Material'].Elastic(table=((45000.0, 0.3), ))
+model_name.materials['ElastoPlastic Material'].Plastic(
+	table=((10.0, 0.0), (15.0, 0.15), (17.5, 0.3), (18.0, 0.4)))
+model_name.HomogeneousSolidSection(
+	name='Section ElastoPlastic', material='ElastoPlastic Material', 
+	thickness=None)
 
 # Assigning material properties
-    final_sample = model_name.parts['Final Sample']
-    region = p.sets['All Elements']
-    final_sample.SectionAssignment(region=region, sectionName='Section ElastoPlastic', 
-        offset=0.0, offsetType=MIDDLE_SURFACE, offsetField='', 
-        thicknessAssignment=FROM_SECTION)
-
-# If the IMDEA's subroutine is used (parameter "Subroutine" = 1)
-if subroutine == 1:
-    model_name.Material(name='Material IMDEA')
-    model_name.materials['Material IMDEA'].Depvar(n=dev_vars)
-    model_name.materials['Material IMDEA'].UserMaterial(
-        mechanicalConstants=(v1, v2, v3, v4, v5, v6, rotation))
-    p1 = model_name.parts['Final Sample']
-    model_name.HomogeneousSolidSection(name='Section IMDEA', 
-        material='Material IMDEA', thickness=None)
-
-    p = model_name.parts['Final Sample']
-    region = p.sets['All Elements']
-    p = model_name.parts['Final Sample']
-    p.SectionAssignment(region=region, sectionName='Section IMDEA', offset=0.0, 
-        offsetType=MIDDLE_SURFACE, offsetField='', 
-        thicknessAssignment=FROM_SECTION)''')
+final_sample = model_name.parts['Final Sample']
+region = p.sets['All Elements']
+final_sample.SectionAssignment(region=region, sectionName='Section ElastoPlastic', 
+	offset=0.0, offsetType=MIDDLE_SURFACE, offsetField='', 
+	thicknessAssignment=FROM_SECTION)''')
 
     def procMaterialElast(self, name='hypela2', els='all_existing'):
         self.header('MATERIAL DATA')

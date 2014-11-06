@@ -158,48 +158,13 @@ InstanceRoot.translate(instanceList=('indenter-1', ), vector=(0.0, 0.0, sep_ind_
 # MODELING OF FLAT PUNCH INDENTER 
 #+++++++++++++++++++++++++++++++++++++++++++++
 ''')
-        self.IndentParameters['Indenter'] = 'flat_punch_R%.2f.mfd' % (self.IndentParameters['tipRadius'])
-        self.proc.append('''
-''')
 
-    def procIndenterBerkovich(self, edgeRadius=0.0, tipRadius=0.0):
-        self.proc.append('''
+	def procIndenterCustomizedTopo(self, free_mesh_inp):
+		self.proc.append('''
 #+++++++++++++++++++++++++++++++++++++++++++++
-# PARAMETER-DEFINITION
+# MODELING OF FREE TOPOGRAPHY OF INDENTER
 #+++++++++++++++++++++++++++++++++++++++++++++
 ''')
-
-    def procIndenterDeformable(self,
-                               host=None,
-                               lCube=100, dParticle=10,
-                               divi=6,
-                               divRad=10,
-                               matrix_bias=-0.45, # radial mesh refinement of matrix: -0.5 ... 0
-                               label=None,
-                               procName='Fe3Al',
-                               nr_incr=None,
-                               eps_max=0.6,
-                               radialSplit=True,
-                               tipRadius=0.25
-    ): # radial split of matrix in fine and coarse mesh
-        dParticle = 2#tipRadius
-        procName = procName + '_dP%i_div%i' % (dParticle, divi) # also used as modelname
-        if label not in [None, '']: procName = procName + '_%s' % label
-        self.proc = ['']
-        self.start(title='Deformable Indenter',
-                   author=self.author)
-        self.procNewModel()
-        self.procParameters()
-        self.modelDim = [lCube]
-        refnd1 = 1
-        self.periodicRefPairs = [(refnd1, 2), (refnd1, 4), (refnd1, 5)] #
-        self.divi[0] = 2 * divi
-        self.projdir = './'
-        #self.procParametersTessel()
-        self.smv = lCube / 1000.
-        #if nr_incr is None: nr_incr=int(round(eps_max/0.1*200))
-        if nr_incr is None: nr_incr = int(round(eps_max / 0.1 * 100))
-        self.procParametersUniax(smv=self.smv,
-                                 nr_incr=nr_incr,
-                                 eps_max=eps_max)
-        self.procfilename = 'indenterDeformable.proc'
+    def procIndenterDeformable(self):
+		self.proc.append('''
+''')

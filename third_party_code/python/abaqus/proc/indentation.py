@@ -30,37 +30,45 @@ class Indentation(Indenter, Tools):
     """
 
     def __init__(self,
-                 modelname='indent',
-                 h_indent=0.20,  # maximum simulated indentation depth
-                 D_sample=2.,  # diameter of sample
-                 h_sample=None,  # sample height, only for overriding default estimate
-                 geo='conical',  # indenter geometry
-                 coneAngle=90,  # full cone angle (deg)
-                 tipRadius=1,  # indenter tip radius
-                 friction=0.3,  # Coulomb friction coefficient
-                 sample_rep=24,  # 16, 24, 32, 48 # number of segments,
+				modelname='indent',
+				h_indent=0.20,  # maximum simulated indentation depth
+				D_sample=2.,  # diameter of sample
+				h_sample=None,  # sample height, only for overriding default estimate
+				geo='conical',  # indenter geometry
+				coneAngle=90,  # full cone angle (deg)
+				tipRadius=1,  # indenter tip radius
+				friction=0.3,  # Coulomb friction coefficient
+				sample_rep=24,  # 16, 24, 32, 48 # number of segments,
                                  # must be dividable by 8 if used with r_center_frac != 0
-                 r_center_frac=0.25,  # if >0 ==>insert a cylindrical column of brick
+				r_center_frac=0.25,  # if >0 ==>insert a cylindrical column of brick
                                       # elements in the center to avoid collapsed elements
                                       # under the indenter
-                 box_xfrac=0.3,  # size of the finer mesh box in horizontal direction
-                 box_zfrac=0.2,  # ... in vertical dimension
-                 box_elm_nx=5,  # number of horizontal elements in box
-                 box_elm_nz=5,  # number of vertical elements in box
-                 box_bias_x=0.25,  # bias in x direction
-                 box_bias_z=0.25,  # bias in z direction
-                 box_bias_conv_x=0.25,  # bias in x direction for the outer cylinder
-                 radial_divi=5,  # radial subdivisions of the outer part of the model
-                 ind_time=10.,  # time of loading segment
-                 dwell_time=1,  # not used yet, needs Loadcase "dwell"
-                 Dexp=None,  # experimental indent diameter, for visualization purposes only
-                 twoDimensional=False,  # 2D indentation model, experimental
-                 divideMesh=False,  # subdivide each el. additionally into 8 els.
-                 outStep=5,  # write step for results
-                 nSteps=800,  # LC 'indent', No of increments
-                 smv=0.01,  # small value
-                 label='',
-                 ori_list=None):
+				box_xfrac=0.3,  # size of the finer mesh box in horizontal direction
+				box_zfrac=0.2,  # ... in vertical dimension
+				box_elm_nx=5,  # number of horizontal elements in box
+				box_elm_nz=5,  # number of vertical elements in box
+				box_bias_x=0.25,  # bias in x direction
+				box_bias_z=0.25,  # bias in z direction
+				box_bias_conv_x=0.25,  # bias in x direction for the outer cylinder
+				radial_divi=5,  # radial subdivisions of the outer part of the model
+				ind_time=10.,  # time of loading segment
+				dwell_time=3,  # not used yet, needs Loadcase "dwell" (included in Abaqus)
+				max_inc_indent=10000, # maximum number of increments allowed in the simulation (only Abaqus)
+				ini_inc_indent=0.0001, # initial increment (in seconds) of the calculation (only Abaqus)
+				min_inc_indent_time=0.000001, # minimum increment (in seconds) allowed in the calculation (only Abaqus)
+				max_inc_indent_time=0.05, # maximum increment (in seconds) allowed in the calculation (only Abaqus)
+				time_unload=2, # unload time in seconds (only Abaqus)
+				sep_ind_samp=0.0005, #Distance between the indenter and the sample before indentation (to initialize contact) (only Abaqus)
+				freq_field_output=50, #Frequency of the output request (only Abaqus)
+                Dexp=None,  # experimental indent diameter, for visualization purposes only
+                twoDimensional=False,  # 2D indentation model, experimental
+                divideMesh=False,  # subdivide each el. additionally into 8 els.
+                outStep=5,  # write step for results
+                nSteps=800,  # LC 'indent', No of increments
+                smv=0.01,  # small value
+                label='',
+				free_mesh_inp='', #name of the .inp file for AFM topo for indenter
+                ori_list=None):
         self.callerDict = locals()
         if r_center_frac is not 0 and sample_rep not in [8, 16, 24, 32, 40, 48, 56]:
             print('For r_center_frac not 0, sample_rep needs to be dividable by 8')
@@ -89,6 +97,13 @@ class Indentation(Indenter, Tools):
             'h_sample': h_sample,
             'ind_time': ind_time, # in seconds, since dotgamma_0 is in perSecond
             'dwell_time': dwell_time, # time at maximum load
+			'max_inc_indent': max_inc_indent, # maximum number of increments allowed in the simulation (only Abaqus)
+			'ini_inc_indent': ini_inc_indent, # initial increment (in seconds) of the calculation (only Abaqus)
+			'min_inc_indent_time': min_inc_indent_time, # minimum increment (in seconds) allowed in the calculation (only Abaqus)
+			'max_inc_indent_time': max_inc_indent_time, # maximum increment (in seconds) allowed in the calculation (only Abaqus)
+			'time_unload': time_unload, # unload time in seconds (only Abaqus)
+			'sep_ind_samp': sep_ind_samp, #Distance between the indenter and the sample before indentation (to initialize contact) (only Abaqus)
+			'freq_field_output': freq_field_output, #Frequency of the output request (only Abaqus)
             'Dexp': Dexp, # experimental remaining indent diameter
             'indAxis': 'z', # however, indDirection is -z
             '2D': twoDimensional, #2D model flag
@@ -96,6 +111,7 @@ class Indentation(Indenter, Tools):
             'outStep': outStep,  # post increment write step
             'nSteps': nSteps,  # number of increments for indentation to hmax
             'smv': smv,  # small length for node selection
+			'free_mesh_inp': free_mesh_inp, #name of the .inp file for AFM topo for indenter
             'label': label
         }
         if twoDimensional:
@@ -111,7 +127,9 @@ class Indentation(Indenter, Tools):
         if geo == 'conical':
             self.procIndenterConical(coneHalfAngle=self.IndentParameters['coneHalfAngle'])
         if geo == 'flatPunch':
-            self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
+			self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
+		#if geo == 'customized':
+		#	self.procIndenterCustomizedTopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'])
         self.procSample()
         self.procSampleIndent(smv=self.IndentParameters['smv'])
         self.procInstance()
@@ -180,7 +198,15 @@ sectors_45 = sample_rep/8
 # INDENTER VELOCITY, "STRAIN RATE"
 # Time used for LoadCase "indentation" (in [seconds] for model in mm)
 ind_time = %f  # in [10e-3*seconds] for model in micrometer, gamma0?!!?''' % (self.IndentParameters['ind_time']) + '''
-sep_ind_samp = 0.001 # Distance between the indenter and the sample before indentation (to initialize contact)
+max_inc_indent  = %i # maximum number of increments allowed in the simulation (only Abaqus) ''' % (self.IndentParameters['max_inc_indent']) + '''
+ini_inc_indent = %f # initial increment (in seconds) of the calculation (only Abaqus) ''' % (self.IndentParameters['ini_inc_indent']) + '''
+min_inc_indent_time = %f # minimum increment (in seconds) allowed in the calculation (only Abaqus) ''' % (self.IndentParameters['min_inc_indent_time']) + '''
+max_inc_indent_time = %f # maximum increment (in seconds) allowed in the calculation (only Abaqus) ''' % (self.IndentParameters['max_inc_indent_time']) + '''
+dwell_time = %f # dwell time in seconds (only Abaqus) ''' % (self.IndentParameters['dwell_time']) + '''
+time_unload = %f # unload time in seconds (only Abaqus) ''' % (self.IndentParameters['time_unload']) + '''
+sep_ind_samp = %f #Distance between the indenter and the sample before indentation (to initialize contact) ''' % (self.IndentParameters['sep_ind_samp']) + '''
+friction =  %f # friction coefficient between the sample and the indenter (only Abaqus)''' % (self.IndentParameters['friction']) + '''
+freq_field_output = %i #Frequency of the output request (only Abaqus) ''' % (self.IndentParameters['freq_field_output']) + '''
 
 tolerance = 0.01+(float(D_sample)/1500)
 
@@ -1561,9 +1587,10 @@ for i in range(8*sectors_45):
 InstanceRoot = model_name.rootAssembly
 faces_indenter = InstanceRoot.instances['indenter-1'].faces
 d = tipRadius/tan(coneAngle)
-x_coor = tipRadius*cos(coneAngle*pi/180)
+r = tipRadius
+x_coor = r*cos(coneAngle)
 y_coor = 0
-z_coor = tipRadius*(1-sin(coneAngle*pi/180))+sep_ind_samp
+z_coor = r*(1-sin(coneAngle))+sep_ind_samp
 side1Faces1 = faces_indenter.findAt(((0, 0, sep_ind_samp), ), ((x_coor, y_coor, z_coor), ))
 InstanceRoot.Surface(side1Faces=side1Faces1, name='Surf Indenter')
 
@@ -1597,7 +1624,7 @@ model_name.ContactProperty('Contact Properties')
 model_name.interactionProperties['Contact Properties'].TangentialBehavior(
     formulation=PENALTY, directionality=ISOTROPIC, slipRateDependency=OFF, 
     pressureDependency=OFF, temperatureDependency=OFF, dependencies=0, table=((
-    fric, ), ), shearStressLimit=None, maximumElasticSlip=FRACTION, 
+    friction, ), ), shearStressLimit=None, maximumElasticSlip=FRACTION, 
     fraction=0.005, elasticSlipStiffness=None)
     
 model_name.interactionProperties['Contact Properties'].NormalBehavior(
@@ -1661,14 +1688,14 @@ indenter.ReferencePoint(point=v.findAt(coordinates=(0.0, 0.0, 0.0)))
 
 ### Definition of the indent step
 model_name.StaticStep(name='Indent', previous='Initial', 
-    timePeriod=(ind_time+time_dwell+time_unload), maxNumInc=max_inc_indent, initialInc=ini_inc_indent, minInc=min_inc_indent_time, 
+    timePeriod=(ind_time+dwell_time+time_unload), maxNumInc=max_inc_indent, initialInc=ini_inc_indent, minInc=min_inc_indent_time, 
     maxInc=max_inc_indent_time, nlgeom=ON)
 session.viewports['Viewport: 1'].assemblyDisplay.setValues(step='Indent')
     
     
 ### Generating velocity amplitude tables
 
-model_name.TabularAmplitude(data=((0.0, 0.0), (ind_time, -(h_indent+sep_ind_samp)), (ind_time+time_dwell, -(h_indent+sep_ind_samp)), (ind_time+time_dwell+time_unload, 0)), \
+model_name.TabularAmplitude(data=((0.0, 0.0), (ind_time, -(h_indent+sep_ind_samp)), (ind_time+dwell_time, -(h_indent+sep_ind_samp)), (ind_time+dwell_time+time_unload, 0)), \
 	name='Indent_Amplitude', smooth=SOLVER_DEFAULT, timeSpan=STEP)
 
 
