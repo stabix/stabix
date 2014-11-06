@@ -41,7 +41,8 @@ class BicrystalIndent(Proc):
                  box_bias_y3 = 0.3,  # bias in y direction in the grain A
                  smv = 0.01,  # small values
                  lvl = 1,  # mesh quality value
-                 sheetSize = 200
+                 sheetSize = 200,
+				 free_mesh_inp = '' #name of the .inp file for AFM topo for indenter
     ):
         import math
 
