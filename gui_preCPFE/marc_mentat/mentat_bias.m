@@ -5,12 +5,13 @@ function t_star_true = mentat_bias(x0, xN, N, bias, varargin)
 % xn : End point
 % N : Number of intervals
 % bias : bias
+
 % authors: c.zambaldi@mpie.de / d.mercier@mpie.de
 
 if nargin == 0
-    commandwindow
-    clc
-    close all
+    commandwindow;
+    clc;
+    close all;
     x0 = 0.075;
     xN = .3;
     N = 5;
@@ -41,7 +42,9 @@ end
 
 if testing
     t_star_true
-    t_ref = [0.075,.1128,.1542,.1992,.2478,0.3]
+    t_ref = [0.075,.1128,.1542,.1992,.2478,0.3] % for x0 = 0.075, xN = .3 and N = 5
     plot(t_star_true,zeros(size(t_star_true)),'o'); hold on;
     plot(t_ref,zeros(size(t_ref)),'sr');
+end
+
 end

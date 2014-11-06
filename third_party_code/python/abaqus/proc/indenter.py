@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@authors: R. Sanchez-Martin / C.Zambaldi / D. Mercier
+@authors: R. Sanchez-Martin / C. Zambaldi / D. Mercier
 """
 
 from base import Proc

@@ -324,45 +324,19 @@ elseif get(gui_BX.handles.other_setting.pm_mesh_color, 'Value') == 2
     color_gb = 'k';
 end
 
-% Plot of the mesh
+% Plot of the mesh (part 1/2)
 gui_BX.handles.mesh.meshBX_1 = surf(gui_BX.variables_geom.top1256_x, gui_BX.variables_geom.top1256_y, gui_BX.variables_geom.top1256_z, 'FaceColor', color_grA); hold on;
 gui_BX.handles.mesh.meshBX_2 = surf(gui_BX.variables_geom.top3487_x, gui_BX.variables_geom.top3487_y, gui_BX.variables_geom.top3487_z, 'FaceColor', color_grB); hold on;
-gui_BX.handles.mesh.meshBX_3 = surf(gui_BX.variables_geom.top56910_x, gui_BX.variables_geom.top56910_y, gui_BX.variables_geom.top56910_z, 'FaceColor', color_grA); hold on;
-gui_BX.handles.mesh.meshBX_4 = surf(gui_BX.variables_geom.top781211_x, gui_BX.variables_geom.top781211_y, gui_BX.variables_geom.top781211_z, 'FaceColor', color_grB); hold on;
-gui_BX.handles.mesh.meshBX_5 = surf(gui_BX.variables_geom.top9101314_x, gui_BX.variables_geom.top9101314_y, gui_BX.variables_geom.top9101314_z, 'FaceColor', color_grA); hold on;
-gui_BX.handles.mesh.meshBX_6 = surf(gui_BX.variables_geom.top11121615_x, gui_BX.variables_geom.top11121615_y, gui_BX.variables_geom.top11121615_z, 'FaceColor', color_grB); hold on;
-gui_BX.handles.mesh.meshBX_7 = surf(gui_BX.variables_geom.top841817_x, gui_BX.variables_geom.top841817_y, gui_BX.variables_geom.top841817_z, 'FaceColor', color_grB); hold on;
-gui_BX.handles.mesh.meshBX_8 = surf(gui_BX.variables_geom.top8121617_x, gui_BX.variables_geom.top8121617_y, gui_BX.variables_geom.top8121617_z, 'FaceColor', color_grB); hold on;
-
-rotate(gui_BX.handles.mesh.meshBX_1, ...
-    direction, rotation_angle, origin);
-rotate(gui_BX.handles.mesh.meshBX_2, ...
-    direction, rotation_angle, origin);
-rotate(gui_BX.handles.mesh.meshBX_3, ...
-    direction, rotation_angle, origin);
-rotate(gui_BX.handles.mesh.meshBX_4, ...
-    direction, rotation_angle, origin);
-rotate(gui_BX.handles.mesh.meshBX_5, ...
-    direction, rotation_angle, origin);
-rotate(gui_BX.handles.mesh.meshBX_6, ...
-    direction, rotation_angle, origin);
-rotate(gui_BX.handles.mesh.meshBX_7, ...
-    direction, rotation_angle, origin);
-rotate(gui_BX.handles.mesh.meshBX_8, ...
-    direction, rotation_angle, origin);
 
 % Plot of GB
 gui_BX.handles.mesh.meshBX_GB1 = plot3(GB_coords_X, GB_coords_Y, GB_coords_Z, '-', 'Color', color_gb, 'LineWidth', 4);
-rotate(gui_BX.handles.mesh.meshBX_GB1, ...
-    direction, rotation_angle, origin);
 
 if gui_BX.variables.ind_dist ~= 0
     gui_BX.handles.mesh.meshBX_GB2 = surf(gui_BX.variables_geom.top2376_x, gui_BX.variables_geom.top2376_y, gui_BX.variables_geom.top2376_z, 'FaceColor', color_inter_gr_gb); hold on;
     gui_BX.handles.mesh.meshBX_GB3 = surf(gui_BX.variables_geom.top671011_x, gui_BX.variables_geom.top671011_y, gui_BX.variables_geom.top671011_z, 'FaceColor', color_inter_gr_gb); hold on;
-    rotate(gui_BX.handles.mesh.meshBX_GB2, ...
-        direction, rotation_angle, origin);
     
-    rotate(gui_BX.handles.mesh.meshBX_GB3, ...
+    rotate([gui_BX.handles.mesh.meshBX_GB2, ...
+        gui_BX.handles.mesh.meshBX_GB3], ...
         direction, rotation_angle, origin);
 end
 
@@ -372,6 +346,28 @@ if gui_BX.variables.ind_dist ~= 0
     rotate(gui_BX.handles.mesh.meshBX_GB4, ...
         direction, rotation_angle, origin);
 end
+
+% FIXME: Don't change the order of the plot of bicrystal model or the
+% legend will be wrong... (mesh.meshBX_1 to mesh.meshBX_8)
+% Plot of the mesh (part 2/2)
+gui_BX.handles.mesh.meshBX_3 = surf(gui_BX.variables_geom.top56910_x, gui_BX.variables_geom.top56910_y, gui_BX.variables_geom.top56910_z, 'FaceColor', color_grA); hold on;
+gui_BX.handles.mesh.meshBX_4 = surf(gui_BX.variables_geom.top781211_x, gui_BX.variables_geom.top781211_y, gui_BX.variables_geom.top781211_z, 'FaceColor', color_grB); hold on;
+gui_BX.handles.mesh.meshBX_5 = surf(gui_BX.variables_geom.top9101314_x, gui_BX.variables_geom.top9101314_y, gui_BX.variables_geom.top9101314_z, 'FaceColor', color_grA); hold on;
+gui_BX.handles.mesh.meshBX_6 = surf(gui_BX.variables_geom.top11121615_x, gui_BX.variables_geom.top11121615_y, gui_BX.variables_geom.top11121615_z, 'FaceColor', color_grB); hold on;
+gui_BX.handles.mesh.meshBX_7 = surf(gui_BX.variables_geom.top841817_x, gui_BX.variables_geom.top841817_y, gui_BX.variables_geom.top841817_z, 'FaceColor', color_grB); hold on;
+gui_BX.handles.mesh.meshBX_8 = surf(gui_BX.variables_geom.top8121617_x, gui_BX.variables_geom.top8121617_y, gui_BX.variables_geom.top8121617_z, 'FaceColor', color_grB); hold on;
+
+% Rotation of the bicrystal
+rotate([gui_BX.handles.mesh.meshBX_1, ...
+    gui_BX.handles.mesh.meshBX_2, ...
+    gui_BX.handles.mesh.meshBX_3, ...
+    gui_BX.handles.mesh.meshBX_4, ...
+    gui_BX.handles.mesh.meshBX_5, ...
+    gui_BX.handles.mesh.meshBX_6, ...
+    gui_BX.handles.mesh.meshBX_7, ...
+    gui_BX.handles.mesh.meshBX_8,...
+    gui_BX.handles.mesh.meshBX_GB1], ...
+    direction, rotation_angle, origin);
 
 %% Plot of the cono-spherical indenter before and after indentation
 guidata(gcf, gui_BX);

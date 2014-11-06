@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@authors: R. Sanchez-Martin / C.Zambaldi / D. Mercier
+@authors: R. Sanchez-Martin / C. Zambaldi / D. Mercier
 """
 
 from tools import Tools
@@ -53,11 +53,11 @@ class Indentation(Indenter, Tools):
 				radial_divi=5,  # radial subdivisions of the outer part of the model
 				ind_time=10.,  # time of loading segment
 				dwell_time=3,  # not used yet, needs Loadcase "dwell" (included in Abaqus)
+                unload_time=2, # unload time in seconds (only Abaqus)
 				max_inc_indent=10000, # maximum number of increments allowed in the simulation (only Abaqus)
 				ini_inc_indent=0.0001, # initial increment (in seconds) of the calculation (only Abaqus)
 				min_inc_indent_time=0.000001, # minimum increment (in seconds) allowed in the calculation (only Abaqus)
 				max_inc_indent_time=0.05, # maximum increment (in seconds) allowed in the calculation (only Abaqus)
-				time_unload=2, # unload time in seconds (only Abaqus)
 				sep_ind_samp=0.0005, #Distance between the indenter and the sample before indentation (to initialize contact) (only Abaqus)
 				freq_field_output=50, #Frequency of the output request (only Abaqus)
                 Dexp=None,  # experimental indent diameter, for visualization purposes only
@@ -101,7 +101,7 @@ class Indentation(Indenter, Tools):
 			'ini_inc_indent': ini_inc_indent, # initial increment (in seconds) of the calculation (only Abaqus)
 			'min_inc_indent_time': min_inc_indent_time, # minimum increment (in seconds) allowed in the calculation (only Abaqus)
 			'max_inc_indent_time': max_inc_indent_time, # maximum increment (in seconds) allowed in the calculation (only Abaqus)
-			'time_unload': time_unload, # unload time in seconds (only Abaqus)
+			'unload_time': unload_time, # unload time in seconds (only Abaqus)
 			'sep_ind_samp': sep_ind_samp, #Distance between the indenter and the sample before indentation (to initialize contact) (only Abaqus)
 			'freq_field_output': freq_field_output, #Frequency of the output request (only Abaqus)
             'Dexp': Dexp, # experimental remaining indent diameter
@@ -203,7 +203,7 @@ ini_inc_indent = %f # initial increment (in seconds) of the calculation (only Ab
 min_inc_indent_time = %f # minimum increment (in seconds) allowed in the calculation (only Abaqus) ''' % (self.IndentParameters['min_inc_indent_time']) + '''
 max_inc_indent_time = %f # maximum increment (in seconds) allowed in the calculation (only Abaqus) ''' % (self.IndentParameters['max_inc_indent_time']) + '''
 dwell_time = %f # dwell time in seconds (only Abaqus) ''' % (self.IndentParameters['dwell_time']) + '''
-time_unload = %f # unload time in seconds (only Abaqus) ''' % (self.IndentParameters['time_unload']) + '''
+unload_time = %f # unload time in seconds (only Abaqus) ''' % (self.IndentParameters['unload_time']) + '''
 sep_ind_samp = %f #Distance between the indenter and the sample before indentation (to initialize contact) ''' % (self.IndentParameters['sep_ind_samp']) + '''
 friction =  %f # friction coefficient between the sample and the indenter (only Abaqus)''' % (self.IndentParameters['friction']) + '''
 freq_field_output = %i #Frequency of the output request (only Abaqus) ''' % (self.IndentParameters['freq_field_output']) + '''
@@ -1688,14 +1688,14 @@ indenter.ReferencePoint(point=v.findAt(coordinates=(0.0, 0.0, 0.0)))
 
 ### Definition of the indent step
 model_name.StaticStep(name='Indent', previous='Initial', 
-    timePeriod=(ind_time+dwell_time+time_unload), maxNumInc=max_inc_indent, initialInc=ini_inc_indent, minInc=min_inc_indent_time, 
+    timePeriod=(ind_time+dwell_time+unload_time), maxNumInc=max_inc_indent, initialInc=ini_inc_indent, minInc=min_inc_indent_time, 
     maxInc=max_inc_indent_time, nlgeom=ON)
 session.viewports['Viewport: 1'].assemblyDisplay.setValues(step='Indent')
     
     
 ### Generating velocity amplitude tables
 
-model_name.TabularAmplitude(data=((0.0, 0.0), (ind_time, -(h_indent+sep_ind_samp)), (ind_time+dwell_time, -(h_indent+sep_ind_samp)), (ind_time+dwell_time+time_unload, 0)), \
+model_name.TabularAmplitude(data=((0.0, 0.0), (ind_time, -(h_indent+sep_ind_samp)), (ind_time+dwell_time, -(h_indent+sep_ind_samp)), (ind_time+dwell_time+unload_time, 0)), \
 	name='Indent_Amplitude', smooth=SOLVER_DEFAULT, timeSpan=STEP)
 
 

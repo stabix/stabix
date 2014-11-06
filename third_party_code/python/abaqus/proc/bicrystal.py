@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@author: c.zambaldi
+@author: C. Zambaldi
 """
 
 #import numpy as N # old
@@ -143,7 +143,8 @@ class BicrystalIndent(Proc):
                            lvl = lvl,
                            len_trace = len_trace,
                            modelname = modelname,
-                           sheetSize = sheetSize)
+                           sheetSize = sheetSize,
+                           free_mesh_inp = free_mesh_inp)
                            
     def procBicrystal(self,
                       label = '',

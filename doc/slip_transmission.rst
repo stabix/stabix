@@ -206,12 +206,12 @@ Slip transmission parameters implemented in the |matlab| Toolbox
    "Misorientation angle (:math:`\omega`)", ":math:`\omega = cos^{-1}((tr(\Delta g)-1)/2)`", `misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/misorientation.m>`_, [#SuttonBalluffi_1995]_
    "C-axis misorientation angle (for hcp material) (:math:`\omega`)", , `c-axis misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/eul2Caxismisor.m>`_, [#SuttonBalluffi_1995]_
    ":math:`N` factor from Livingston and Chamlers", ":math:`N = \cos(\psi)\cdot\cos(\kappa) + \cos(\gamma)\cdot\cos(\delta)`", `N_factor.m <https://github.com/stabix/stabix/tree/master/slip_transfer/N_factor.m>`_, [#LivingstonChalmers_1957]_
-   ":math:`LRB` factor from Shen et al.", ":math:`LRB = \cos(\theta)\cdot\cos(\kappa)`", `LRB_parameter.m <https://github.com/stabix/stabix/tree/master/slip_transfer/LRB_parameter.m>`_
+   ":math:`LRB` factor from Shen et al.", ":math:`LRB = \cos(\theta)\cdot\cos(\kappa)`", `LRB_parameter.m <https://github.com/stabix/stabix/tree/master/slip_transfer/LRB_parameter.m>`_, [#Shen_1986]_ / [#Shen_1988]_
    ":math:`m'` parameter from Luster and Morris", ":math:`m' = \cos(\psi)\cdot\cos(\kappa)`", `mprime.m <https://github.com/stabix/stabix/tree/master/slip_transfer/mprime.m>`_, [#LusterMorris_1995]_
-   "Residual Burgers vector (:math:`\vec b_r`)", ":math:`\vec b_r = g_{in}\cdot\vec b_{in} - g_{out}\cdot\vec b_{out}`", `residual_Burgers_vector.m <https://github.com/stabix/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_, [#Marcinkowski_1970]_
+   "Residual Burgers vector (:math:`\vec b_\text{r}`)", ":math:`\vec b_\text{r} = g_\text{in}\cdot\vec b_\text{in} - g_\text{out}\cdot\vec b_\text{out}`", `residual_Burgers_vector.m <https://github.com/stabix/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_, [#Marcinkowski_1970]_
    "Resolved Shear Stress (:math:`\tau^{i}`) / Schmid Factor", ":math:`\tau^{i} = \sigma : {S_0}^{i}` with :math:`{S_0}^{i} = d \otimes n`", `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_, [#Reid_1973]_
-   "Grain boundary Schmid factor", ":math:`m_{GB} = m_{in} + m_{out}`", `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_, [#Abuzaid_2012]_
-   "Generalized Schmid Factor (:math:`GSF`)", ":math:`GSF = d \cdot g \sigma g^T \cdot n^T`", `generalized_schmid_factor.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/generalized_schmid_factor.m>`_, [#Reid_1973]_
+   "Grain boundary Schmid factor", ":math:`m_\text{GB} = m_\text{in} + m_\text{out}`", `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_, [#Abuzaid_2012]_
+   "Generalized Schmid Factor (:math:`GSF`)", ":math:`GSF = d \cdot g \sigma g \cdot n`", `generalized_schmid_factor.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/generalized_schmid_factor.m>`_, [#Reid_1973]_
 
 References
 ----------

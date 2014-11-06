@@ -39,6 +39,7 @@ if dot(n,d) > 1e-9
     warning('n,b not perpendicular');
 end
 
+commandwindow;
 fprintf('Euler angles = [%.3f %.3f %.3f]\n', eulers);
 
 resolved_shear_stress(eulers, d, n, T)
