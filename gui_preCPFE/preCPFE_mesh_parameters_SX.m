@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function handles = preCPFE_mesh_parameters_SX(mesh_variables, x0, hu, wu)
+function handles = preCPFE_mesh_parameters_SX(mesh_variables, x0, hu, wu, fem_software)
 %% Function to create and fill string boxes and edit boxes to set indenter and indentation properties
 % mesh_variables: Name of mesh variables from the mesh layout
 % x0: origin of x coordinate
@@ -17,8 +17,13 @@ function handles = preCPFE_mesh_parameters_SX(mesh_variables, x0, hu, wu)
 [handles.box_elm_nx_str, handles.box_elm_nx_val]       = preCPFE_set_inputs_boxes({'box_elm_nx'}, [x0 hu*13.3 wu*3 hu/2.5], mesh_variables.variables.box_elm_nx, 'preCPFE_indentation_setting_SX');
 [handles.box_elm_nz_str, handles.box_elm_nz_val]       = preCPFE_set_inputs_boxes({'box_elm_nz'}, [x0 hu*12.7 wu*3 hu/2.5], mesh_variables.variables.box_elm_nz, 'preCPFE_indentation_setting_SX');
 [handles.radial_divi_str, handles.radial_divi_val]     = preCPFE_set_inputs_boxes({'radial_divi'}, [x0 hu*12.1 wu*3 hu/2.5], mesh_variables.variables.radial_divi, 'preCPFE_indentation_setting_SX');
-[handles.box_bias_x_str, handles.box_bias_x_val]       = preCPFE_set_inputs_boxes({'box_bias_x (-0.5 to 0.5)'}, [x0 hu*11.5 wu*3 hu/2.5], mesh_variables.variables.box_bias_x, 'preCPFE_indentation_setting_SX');
-[handles.box_bias_z_str, handles.box_bias_z_val]       = preCPFE_set_inputs_boxes({'box_bias_z (-0.5 to 0.5)'}, [x0 hu*10.9 wu*3 hu/2.5], mesh_variables.variables.box_bias_z, 'preCPFE_indentation_setting_SX');
-[handles.box_bias_conv_x_str, handles.box_bias_conv_x_val] = preCPFE_set_inputs_boxes({'box_bias_conv_x (-0.5 to 0.5)'}, [x0 hu*10.3 wu*3 hu/2.5], mesh_variables.variables.box_bias_conv_x, 'preCPFE_indentation_setting_SX');
-
+if strfind(fem_software, 'Abaqus')
+    [handles.box_bias_x_str, handles.box_bias_x_val]       = preCPFE_set_inputs_boxes({'box_bias_x (> 1)'}, [x0 hu*11.5 wu*3 hu/2.5], mesh_variables.variables.box_bias_x_abaqus, 'preCPFE_indentation_setting_SX');
+    [handles.box_bias_z_str, handles.box_bias_z_val]       = preCPFE_set_inputs_boxes({'box_bias_z (> 1)'}, [x0 hu*10.9 wu*3 hu/2.5], mesh_variables.variables.box_bias_z_abaqus, 'preCPFE_indentation_setting_SX');
+    [handles.box_bias_conv_x_str, handles.box_bias_conv_x_val] = preCPFE_set_inputs_boxes({'box_bias_conv_x (> 1)'}, [x0 hu*10.3 wu*3 hu/2.5], mesh_variables.variables.box_bias_conv_x_abaqus, 'preCPFE_indentation_setting_SX');
+elseif strfind(fem_software, 'Mentat')
+    [handles.box_bias_x_str, handles.box_bias_x_val]       = preCPFE_set_inputs_boxes({'box_bias_x (-0.5 to 0.5)'}, [x0 hu*11.5 wu*3 hu/2.5], mesh_variables.variables.box_bias_x_mentat, 'preCPFE_indentation_setting_SX');
+    [handles.box_bias_z_str, handles.box_bias_z_val]       = preCPFE_set_inputs_boxes({'box_bias_z (-0.5 to 0.5)'}, [x0 hu*10.9 wu*3 hu/2.5], mesh_variables.variables.box_bias_z_mentat, 'preCPFE_indentation_setting_SX');
+    [handles.box_bias_conv_x_str, handles.box_bias_conv_x_val] = preCPFE_set_inputs_boxes({'box_bias_conv_x (-0.5 to 0.5)'}, [x0 hu*10.3 wu*3 hu/2.5], mesh_variables.variables.box_bias_conv_x_mentat, 'preCPFE_indentation_setting_SX');
+end
 end

@@ -69,7 +69,7 @@ gui_SX.defaults.variables = ReadYaml('config_mesh_SX_defaults.yaml');
 guidata(gcf, gui_SX);
 
 %% Creation of string boxes and edit boxes to set indenter and indentation properties
-gui_SX.handles.mesh = preCPFE_mesh_parameters_SX(gui_SX.defaults, x0, hu, wu);
+gui_SX.handles.mesh = preCPFE_mesh_parameters_SX(gui_SX.defaults, x0, hu, wu, gui_SX.config.CPFEM.fem_solver_used);
 
 %% Creation of popup menu and slider for loaded AFM indenter topography
 gui_SX.handles.indenter = preCPFE_buttons_indenter(x0, hu, wu);

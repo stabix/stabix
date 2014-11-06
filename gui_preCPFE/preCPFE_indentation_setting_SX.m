@@ -13,6 +13,17 @@ else
     old_el = 0; % old elevation value
 end
 
+%% Setting of the FEM interface
+gui_SX.config.CPFEM.fem_interface_val = get(gui_SX.handles.other_setting.pm_FEM_interface, 'Value');
+gui_SX.config.CPFEM.fem_interface_all_str = get(gui_SX.handles.other_setting.pm_FEM_interface, 'String');
+gui_SX.config.CPFEM.fem_solver_str_cell = gui_SX.config.CPFEM.fem_interface_all_str(gui_SX.config.CPFEM.fem_interface_val);
+gui_SX.config.CPFEM.fem_solver_used = gui_SX.config.CPFEM.fem_solver_str_cell{:};
+if strcmp(strtok(gui_SX.config.CPFEM.fem_solver_used, '_'), 'Abaqus') == 1
+    gui_SX.config.CPFEM.fem_solver_version = sscanf(gui_SX.config.CPFEM.fem_solver_used, 'Abaqus_%f');
+elseif strcmp(strtok(gui_SX.config.CPFEM.fem_solver_used, '_'), 'Mentat') == 1
+    gui_SX.config.CPFEM.fem_solver_version = sscanf(gui_SX.config.CPFEM.fem_solver_used, 'Mentat_%f');
+end
+
 %% Set rotation angle value
 set(gui_SX.handles.indenter.rotate_loaded_indenter_box, ...
     'String', get(gui_SX.handles.indenter.rotate_loaded_indenter, 'Value'));
@@ -30,9 +41,15 @@ set_default_values_txtbox(gui_SX.handles.mesh.sample_rep_val, num2str(gui_SX.def
 set_default_values_txtbox(gui_SX.handles.mesh.box_elm_nx_val, num2str(gui_SX.defaults.variables.box_elm_nx));
 set_default_values_txtbox(gui_SX.handles.mesh.box_elm_nz_val, num2str(gui_SX.defaults.variables.box_elm_nz));
 set_default_values_txtbox(gui_SX.handles.mesh.radial_divi_val, num2str(gui_SX.defaults.variables.radial_divi));
-set_default_values_txtbox(gui_SX.handles.mesh.box_bias_x_val, num2str(gui_SX.defaults.variables.box_bias_x));
-set_default_values_txtbox(gui_SX.handles.mesh.box_bias_z_val, num2str(gui_SX.defaults.variables.box_bias_z));
-set_default_values_txtbox(gui_SX.handles.mesh.box_bias_conv_x_val, num2str(gui_SX.defaults.variables.box_bias_conv_x));
+if strfind(gui_SX.config.CPFEM.fem_solver_used, 'Abaqus')
+    set_default_values_txtbox(gui_SX.handles.mesh.box_bias_x_val, num2str(gui_SX.defaults.variables.box_bias_x_abaqus));
+    set_default_values_txtbox(gui_SX.handles.mesh.box_bias_z_val, num2str(gui_SX.defaults.variables.box_bias_z_abaqus));
+    set_default_values_txtbox(gui_SX.handles.mesh.box_bias_conv_x_val, num2str(gui_SX.defaults.variables.box_bias_conv_x_abaqus));
+elseif strfind(gui_SX.config.CPFEM.fem_solver_used, 'Mentat')
+    set_default_values_txtbox(gui_SX.handles.mesh.box_bias_x_val, num2str(gui_SX.defaults.variables.box_bias_x_mentat));
+    set_default_values_txtbox(gui_SX.handles.mesh.box_bias_z_val, num2str(gui_SX.defaults.variables.box_bias_z_mentat));
+    set_default_values_txtbox(gui_SX.handles.mesh.box_bias_conv_x_val, num2str(gui_SX.defaults.variables.box_bias_conv_x_mentat));
+end
 
 %% Initialization
 cla;
@@ -98,17 +115,6 @@ end
 guidata(gcf, gui_SX);
 preCPFE_set_valid_inputs_SX;
 gui_SX = guidata(gcf); guidata(gcf, gui_SX);
-
-%% Setting of the FEM interface
-gui_SX.config.CPFEM.fem_interface_val = get(gui_SX.handles.other_setting.pm_FEM_interface, 'Value');
-gui_SX.config.CPFEM.fem_interface_all_str = get(gui_SX.handles.other_setting.pm_FEM_interface, 'String');
-gui_SX.config.CPFEM.fem_solver_str_cell = gui_SX.config.CPFEM.fem_interface_all_str(gui_SX.config.CPFEM.fem_interface_val);
-gui_SX.config.CPFEM.fem_solver_used = gui_SX.config.CPFEM.fem_solver_str_cell{:};
-if strcmp(strtok(gui_SX.config.CPFEM.fem_solver_used, '_'), 'Abaqus') == 1
-    gui_SX.config.CPFEM.fem_solver_version = sscanf(gui_SX.config.CPFEM.fem_solver_used, 'Abaqus_%f');
-elseif strcmp(strtok(gui_SX.config.CPFEM.fem_solver_used, '_'), 'Mentat') == 1
-    gui_SX.config.CPFEM.fem_solver_version = sscanf(gui_SX.config.CPFEM.fem_solver_used, 'Mentat_%f');
-end
 
 %% Calculation of the transition depth between spherical and conical parts of the indenter
 gui_SX.variables.h_trans = preCPFE_indentation_transition_depth(gui_SX.variables.tipRadius, gui_SX.variables.coneAngle/2);
