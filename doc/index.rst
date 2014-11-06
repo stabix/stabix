@@ -67,7 +67,7 @@ Contents
    motivation
    getting_started
    bicrystal_definition
-   slip_transmission_toolbox
+   slip_transmission
    experimental_data
    ebsd_map_gui
    bicrystal_gui

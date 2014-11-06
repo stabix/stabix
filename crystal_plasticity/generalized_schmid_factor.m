@@ -63,9 +63,10 @@ if dot(n,d) > tol
     warning('n,b not perpendicular');
 end
 
-gsgT = g*sigma_n*g.';
+gsgT = g * sigma_n * g';
 
-GSF = d * gsgT * n';
+% GSF = d * gsgT * n';
+GSF = dot(d * gsgT, n);
 
 if testFlag
     fprintf('Euler angles = [%.3f %.3f %.3f]\n', eulers);

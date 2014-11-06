@@ -105,7 +105,7 @@ The subscripts 'in' and 'out' refer to the incoming and outgoing slip systems, r
   The |matlab| function used to calculate the m' parameter is: `mprime.m <https://github.com/stabix/stabix/tree/master/slip_transfer/mprime.m>`_
      
 * :math:`\vec b_\text r` **the residual Burgers vector** [#Marcinkowski_1970]_, [#Bollmann_1970]_, [#LimRaj_1985_1]_, [#LimRaj_1985_2]_, [#Clark_1989]_, [#Lee_1990_2]_ and [#Clark_1992]_.
-    .. math:: \vec b_r = \vec g_\text{in}\cdot\vec b_\text{in} - \vec g_\text{out}\cdot\vec b_\text{out}
+    .. math:: \vec b_\text{r} = \vec g_\text{in}\cdot\vec b_\text{in} - \vec g_\text{out}\cdot\vec b_\text{out}
         :label: residual_burgers_vector
         
   The magnitude of this residual Burgers vector should be minimized.
@@ -163,10 +163,10 @@ Stress Criteria
   The generalized Schmid factor, which describes the shear stress on a given slip system, can be
   computed from any stress tensor :math:`\sigma` based on the Frobenius norm of the tensor.
 
-    .. math:: GSF = \vec d \cdot g \sigma g^T \cdot \vec n^T
+    .. math:: GSF = \vec d \cdot g \sigma g \cdot \vec n
         :label: generalized_schmid_factor
     
-  :math:`\vec n` and :math:`\vec d` are respectively the slip plane normals and the slip directions of the slip system. The superscript :math:`T` is the transpose notation and :math:`g` is the orientation matrix for a given crystal.
+  :math:`\vec n` and :math:`\vec d` are respectively the slip plane normals and the slip directions of the slip system. The :math:`g` is the orientation matrix for a given crystal.
         
   The |matlab| function used to calculate the generalized Schmid factor is: `generalized_schmid_factor.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/generalized_schmid_factor.m>`_
         
@@ -184,11 +184,11 @@ Stress Criteria
   
   It is possible to assess the shear stress from the geometrical factor :math:`N` (Livingston and Chamlers) :
     
-    .. math:: \tau_{in} = \tau_{out} * N
+    .. math:: \tau_{\text{in}} = \tau_{\text{out}} * N
         :label: shear_stress_n_factor
     
-  Where :math:`\tau_{out}` is the shear stress at the head of the accumulated dislocations in their slip plane and
-  :math:`\tau_{in}` is the shear acting on the incoming slip system [#LivingstonChalmers_1957]_,  [#HookHirth_1967_1]_ and [#HookHirth_1967_2]_.
+  Where :math:`\tau_{\text{out}}` is the shear stress at the head of the accumulated dislocations in their slip plane and
+  :math:`\tau_{\text{in}}` is the shear acting on the incoming slip system [#LivingstonChalmers_1957]_,  [#HookHirth_1967_1]_ and [#HookHirth_1967_2]_.
   
   The |matlab| function used to calculate the resolved shear stress is: `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_
 

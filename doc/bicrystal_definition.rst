@@ -14,12 +14,12 @@ A bicrystal is formed by two adjacent crystals separated by a grain boundary.
 
 The rotation between the two crystals is defined by the rotation angle :math:`\omega` and the rotation axis common to both crystals :math:`[uvw]`.
 
-Using orientation matrix of both crystals obtained by EBSD measurements, the misorientation or disorientation matrix :math:`(\Delta g)` or :math:`(\Delta g_d)` is calculated [#RandleEngler_2000]_ and [#Morawiec_2004]_ :
+Using orientation matrix of both crystals obtained by EBSD measurements, the misorientation or disorientation matrix :math:`(\Delta g)` or :math:`(\Delta g_\text{d})` is calculated [#RandleEngler_2000]_ and [#Morawiec_2004]_ :
 
-  .. math:: \Delta g = g_{B}g_{A}^{-1} = g_{A}g_{B}^{-1}
+  .. math:: \Delta g = g_\text{B}g_\text{A}^{-1} = g_\text{A}g_\text{B}^{-1}
         :label: misorientation_matrix
         
-  .. math:: \Delta g_d = (g_{B}*CS)(CS^{-1}*g_{A}^{-1}) = (g_{A}*CS)(CS^{-1}*g_{B}^{-1})
+  .. math:: \Delta g_\text{d} = (g_\text{B}*CS)(CS^{-1}*g_\text{A}^{-1}) = (g_\text{A}*CS)(CS^{-1}*g_\text{B}^{-1})
         :label: disorientation
         
 Disorientation describes the misorientation with the smallest possible rotation angle and :math:`CS` denotes one of the symmetry operators for the material [#Kocks_2000]_.
