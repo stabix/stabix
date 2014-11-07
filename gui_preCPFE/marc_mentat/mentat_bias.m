@@ -1,10 +1,11 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function t_star_true = mentat_bias(x0, xN, N, bias, varargin)
+function biased_elem = mentat_bias(x0, xN, num_elements, bias, varargin)
 %% Function used to calculate the bias for a segment (based on bias used in Marc Mentat)
-% x0 : First point
-% xn : End point
-% N : Number of intervals
-% bias : bias
+% x0: First point
+% xN: End point
+% num_elements: Number of intervals
+% bias: Bias
+% biased_elem: Seed points for biased elements
 
 % authors: c.zambaldi@mpie.de / d.mercier@mpie.de
 
@@ -14,7 +15,7 @@ if nargin == 0
     close all;
     x0 = 0.075;
     xN = .3;
-    N = 5;
+    num_elements = 5;
     bias = -0.1; % bias in Mentat from -0.5 to 0.5 !
     %The sign of the bias is for the direction
     testing = 1;
@@ -23,28 +24,34 @@ else
 end
 
 % Coordinates of seed points for linearly spaced elements in the range of -1 to 1
-t = linspace(-1,1,N+1);
+t = linspace(-1,1,num_elements+1);
 
 % Coordinates of seed points for linearly spaced elements in the real range of values
-t_true = linspace(x0,xN,N+1);
+t_true = linspace(x0,xN,num_elements+1);
 
 % Calculation of coordinates of seed points for biased elements in the range of -1 to 1
-for ii = 1:N+1
+t_star = zeros(num_elements+1,1);
+for ii = 1:num_elements+1
     t_star(ii) = t(ii) + bias*(1-(t(ii))^2);
 end
 
 % Calculation of coordinates of seed points for biased elements in the real range of values
-t_star_true(1) = t_true(1);
-for j =1:N
-    ratio(j) = (t_star(j+1)-t_star(j))/(t(j+1)-t(j));
-    t_star_true(j+1) = ratio(j) * (t_true(j+1)-t_true(j)) + t_star_true(j);
+ratio = zeros(num_elements,1);
+biased_elem = zeros(num_elements,1);
+biased_elem(1) = t_true(1);
+for jj = 1:num_elements
+    ratio(jj) = (t_star(jj+1)-t_star(jj))/(t(jj+1)-t(jj));
+    biased_elem(jj+1) = ratio(jj) * (t_true(jj+1)-t_true(jj)) + biased_elem(jj);
 end
 
 if testing
-    t_star_true
-    t_ref = [0.075,.1128,.1542,.1992,.2478,0.3] % for x0 = 0.075, xN = .3 and N = 5
-    plot(t_star_true,zeros(size(t_star_true)),'o'); hold on;
+    % for x0 = 0.075, xN = .3 and N = 5
+    t_ref = [0.075,.1128,.1542,.1992,.2478,0.3];
+    display(biased_elem);
+    display(t_ref);
+    plot(biased_elem,zeros(size(biased_elem)),'ob'); hold on;
     plot(t_ref,zeros(size(t_ref)),'sr');
+    shg;
 end
 
 end

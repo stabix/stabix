@@ -133,13 +133,13 @@ end
 gui_SX.variables.coneHeight=gui_SX.variables.h_sample/4;
 
 % Coordinates of points for the mesh of indenter before indentation
-gui_SX.variables.indenter_mesh_z   = -(((gui_SX.variables.tipRadius.^2)-(gui_SX.variables.indenter_mesh_x.^2)).^0.5)+gui_SX.variables.tipRadius;
+gui_SX.variables.indenter_mesh_z = -(((gui_SX.variables.tipRadius.^2)-(gui_SX.variables.indenter_mesh_x.^2)).^0.5)+gui_SX.variables.tipRadius;
 gui_SX.variables.indenter_mesh_con = [max(gui_SX.variables.indenter_mesh_x) 0 max(gui_SX.variables.indenter_mesh_z);...
     ((max(gui_SX.variables.indenter_mesh_x)+((max(gui_SX.variables.indenter_mesh_z)+gui_SX.variables.coneHeight)/(tand(90-gui_SX.variables.coneAngle/2)))))...
     0 (max(gui_SX.variables.indenter_mesh_z)+gui_SX.variables.coneHeight)];
 
 % Coordinates of points for the mesh of indenter after indentation
-gui_SX.variables.indenter_mesh_z_post   = -(((gui_SX.variables.tipRadius.^2)-(gui_SX.variables.indenter_mesh_x.^2)).^0.5)+gui_SX.variables.tipRadius-gui_SX.variables.h_indent;
+gui_SX.variables.indenter_mesh_z_post = -(((gui_SX.variables.tipRadius.^2)-(gui_SX.variables.indenter_mesh_x.^2)).^0.5)+gui_SX.variables.tipRadius-gui_SX.variables.h_indent;
 gui_SX.variables.indenter_mesh_con_post = [max(gui_SX.variables.indenter_mesh_x) 0 max(gui_SX.variables.indenter_mesh_z_post); ...
     ((max(gui_SX.variables.indenter_mesh_x)+((max(gui_SX.variables.indenter_mesh_z_post)+gui_SX.variables.coneHeight+gui_SX.variables.h_indent)/(tand(90-gui_SX.variables.coneAngle/2)))))...
     0 (max(gui_SX.variables.indenter_mesh_z_post)+gui_SX.variables.coneHeight)];
@@ -164,24 +164,24 @@ gui_SX.variables.box_z_end   = -gui_SX.variables.box_zfrac * gui_SX.variables.h_
 %  --|-----------\|
 
 % Meshgrid for the upper cylinder (1)
-%gui_SX.variables.cyl1_x_pts = mentat_bias(0, gui_SX.variables.box_x_start, gui_SX.variables.box_elm_nx, 0);
-gui_SX.variables.cyl1_x_pts = mentat_bias(0, gui_SX.variables.box_x_start, gui_SX.variables.sample_rep/4, 0);
-gui_SX.variables.cyl1_z_pts = mentat_bias(0, gui_SX.variables.box_z_end, gui_SX.variables.box_elm_nz, -gui_SX.variables.box_bias_z);
+%gui_SX.variables.cyl1_x_pts = preCPFE_bias(gui_SX.config.CPFEM.fem_solver_used,0, gui_SX.variables.box_x_start, gui_SX.variables.box_elm_nx, 0);
+gui_SX.variables.cyl1_x_pts = preCPFE_bias(gui_SX.config.CPFEM.fem_solver_used, 0, gui_SX.variables.box_x_start, gui_SX.variables.sample_rep/4, 0);
+gui_SX.variables.cyl1_z_pts = preCPFE_bias(gui_SX.config.CPFEM.fem_solver_used, 0, gui_SX.variables.box_z_end, gui_SX.variables.box_elm_nz, -gui_SX.variables.box_bias_z);
 [gui_SX.variables.cyl1_x, gui_SX.variables.cyl1_z] = meshgrid(gui_SX.variables.cyl1_x_pts, gui_SX.variables.cyl1_z_pts);
 
 % Meshgrid for the lower cylinder (2)
-%gui_SX.variables.cyl2_x_pts = mentat_bias(0, gui_SX.variables.box_x_start, gui_SX.variables.box_elm_nx, 0);
-gui_SX.variables.cyl2_x_pts = mentat_bias(0, gui_SX.variables.box_x_start, gui_SX.variables.sample_rep/4, 0);
-gui_SX.variables.cyl2_z_pts = mentat_bias(gui_SX.variables.box_z_end, -gui_SX.variables.h_sample, gui_SX.variables.radial_divi, -gui_SX.variables.box_bias_conv_x);
+%gui_SX.variables.cyl2_x_pts = preCPFE_bias(gui_SX.config.CPFEM.fem_solver_used, 0, gui_SX.variables.box_x_start, gui_SX.variables.box_elm_nx, 0);
+gui_SX.variables.cyl2_x_pts = preCPFE_bias(gui_SX.config.CPFEM.fem_solver_used, 0, gui_SX.variables.box_x_start, gui_SX.variables.sample_rep/4, 0);
+gui_SX.variables.cyl2_z_pts = preCPFE_bias(gui_SX.config.CPFEM.fem_solver_used, gui_SX.variables.box_z_end, -gui_SX.variables.h_sample, gui_SX.variables.radial_divi, -gui_SX.variables.box_bias_conv_x);
 [gui_SX.variables.cyl2_x, gui_SX.variables.cyl2_z] = meshgrid(gui_SX.variables.cyl2_x_pts, gui_SX.variables.cyl2_z_pts);
 
 % Meshgrid for the box part (3)
-gui_SX.variables.box_x_pts = mentat_bias(gui_SX.variables.box_x_start, gui_SX.variables.box_x_end, gui_SX.variables.box_elm_nx, -gui_SX.variables.box_bias_x);
-gui_SX.variables.box_z_pts = mentat_bias(0, gui_SX.variables.box_z_end, gui_SX.variables.box_elm_nz, -gui_SX.variables.box_bias_z);
+gui_SX.variables.box_x_pts = preCPFE_bias(gui_SX.config.CPFEM.fem_solver_used, gui_SX.variables.box_x_start, gui_SX.variables.box_x_end, gui_SX.variables.box_elm_nx, -gui_SX.variables.box_bias_x);
+gui_SX.variables.box_z_pts = preCPFE_bias(gui_SX.config.CPFEM.fem_solver_used, 0, gui_SX.variables.box_z_end, gui_SX.variables.box_elm_nz, -gui_SX.variables.box_bias_z);
 [gui_SX.variables.box_x, gui_SX.variables.box_z] = meshgrid(gui_SX.variables.box_x_pts, gui_SX.variables.box_z_pts);
 
 % Meshgrid for the outer part (4)
-gui_SX.variables.outer_x_pts = mentat_bias(gui_SX.variables.box_x_end, gui_SX.variables.D_sample/2, gui_SX.variables.radial_divi, -gui_SX.variables.box_bias_conv_x);
+gui_SX.variables.outer_x_pts = preCPFE_bias(gui_SX.config.CPFEM.fem_solver_used, gui_SX.variables.box_x_end, gui_SX.variables.D_sample/2, gui_SX.variables.radial_divi, -gui_SX.variables.box_bias_conv_x);
 gui_SX.variables.outer_z_pts = gui_SX.variables.box_z_pts;
 [gui_SX.variables.outer_x, gui_SX.variables.outer_z] = meshgrid(gui_SX.variables.outer_x_pts, gui_SX.variables.outer_z_pts);
 for ix = 1:size(gui_SX.variables.outer_z,2)
@@ -194,7 +194,7 @@ end
 
 % Meshgrid for the lower part (5)
 gui_SX.variables.lower_x_pts = gui_SX.variables.box_x_pts;
-gui_SX.variables.lower_z_pts = mentat_bias(gui_SX.variables.box_z_end, -gui_SX.variables.h_sample, gui_SX.variables.radial_divi, -gui_SX.variables.box_bias_conv_x);
+gui_SX.variables.lower_z_pts = preCPFE_bias(gui_SX.config.CPFEM.fem_solver_used, gui_SX.variables.box_z_end, -gui_SX.variables.h_sample, gui_SX.variables.radial_divi, -gui_SX.variables.box_bias_conv_x);
 [gui_SX.variables.lower_x, gui_SX.variables.lower_z] = meshgrid(gui_SX.variables.lower_x_pts, gui_SX.variables.lower_z_pts);
 for iz = 1:size(gui_SX.variables.lower_x,1)
     for ix = 1:size(gui_SX.variables.lower_x,2)
