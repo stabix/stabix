@@ -1,8 +1,14 @@
 function locations = sys_which(cmd_str)
-% system-independent version of
-% - which for linux
-% - where for windows
-% cmd: string of command to look for
+% Locate executables outside of Matlab
+% uses
+% - "which" for linux
+% - "where" for windows
+%
+% cmd_str: string of command to look for
+%
+% not tested for MACs
+%
+% c.zambaldi@mpie.de
 
 if isunix || ismac
     evalc_str = sprintf('system(''which -a %s'');', cmd_str);

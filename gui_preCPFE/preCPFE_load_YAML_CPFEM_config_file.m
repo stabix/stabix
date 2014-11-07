@@ -74,7 +74,7 @@ if ~isfield(gui.config.CPFEM, 'python_executable')
 %     gui.config.CPFEM.python_exe_path = gui.config.CPFEM.python_executable;
 end
 
-gui.config.CPFEM.python = preCPFE_python_check(gui.config.CPFEM.python_executable);
+gui.config.CPFEM.python = python_check(gui.config.CPFEM.python_executable);
 
 %% Set popup menu for the FEM interface (software version)
 preCPFE_set_cpfem_interface_pm(gui.handles.pm_FEM_interface,...

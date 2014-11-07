@@ -44,6 +44,6 @@ gui.config.CPFEM.pythons.which_all = sys_which('python');
 gui.config.CPFEM.python_executables = {gui.config.CPFEM.python_executables{:}, ...
     gui.config.CPFEM.pythons.which_all{:}};
 
-gui.config.CPFEM.python = preCPFE_python_check;
+gui.config.CPFEM.python = python_check;
 
 end
