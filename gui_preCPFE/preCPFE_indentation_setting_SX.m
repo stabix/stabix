@@ -149,21 +149,6 @@ gui_SX.variables.box_x_start = gui_SX.variables.r_center_frac * gui_SX.variables
 gui_SX.variables.box_x_end   = gui_SX.variables.box_xfrac * gui_SX.variables.D_sample/2;
 gui_SX.variables.box_z_end   = -gui_SX.variables.box_zfrac * gui_SX.variables.h_sample;
 
-gui_SX.variables.sample_allpts = [0 0 0;...
-    gui_SX.variables.D_sample/2 0 0;...
-    gui_SX.variables.D_sample/2 0 -gui_SX.variables.h_sample;...
-    0 0 -gui_SX.variables.h_sample;
-    gui_SX.variables.box_x_end 0 0;
-    gui_SX.variables.box_x_end 0 gui_SX.variables.box_z_end;
-    0 0 gui_SX.variables.box_z_end;
-    gui_SX.variables.box_x_start 0 0;
-    gui_SX.variables.box_x_start 0 -gui_SX.variables.h_sample];
-
-% Set faces for the mesh of sample
-gui_SX.variables.faces_sample = [1 2 3 4;...
-    1 5 6 7;...
-    1 8 9 4;...
-    6 3 3 6];
 
 %% Meshing (Cross section view of the sample + indenter)
 %    / <--Indenter
@@ -225,21 +210,34 @@ guidata(gcf, gui_SX);
 guidata(gcf, gui_SX);
 gui_SX  = guidata(gcf);
 guidata(gcf, gui_SX);
-
+clc
 %% Plot of the sample
-gui_SX.handles.sample_patch = patch('Vertices', gui_SX.variables.sample_allpts,'Faces', gui_SX.variables.faces_sample,'FaceAlpha',0.05);
+try
+    [cylX, cylY, cylZ] = cylinder(gui_SX.variables.D_sample/2, gui_SX.variables.sample_rep);
+    cylZ = -cylZ * gui_SX.variables.h_sample;
+    gui_SX.handles.sample.cyl = surf(cylX, cylY, cylZ);
+catch id
+    display(id)
+    gui_SX.handles.sample.cyl(1) = plotCircle3D([0,0,1], [0,0,0], gui_SX.variables.D_sample/2);
+    gui_SX.handles.sample.cyl(2) = plotCircle3D([0,0,1], [0,0,-gui_SX.variables.h_sample], gui_SX.variables.D_sample/2);
+end
 
-% Plot of the mesh
-gui_SX.handles.meshSX_1 = surf(gui_SX.variables.box_x, zeros(size(gui_SX.variables.box_x)), gui_SX.variables.box_z, 'FaceColor', 'w'); hold on;
-gui_SX.handles.meshSX_2 = surf(gui_SX.variables.outer_x, zeros(size(gui_SX.variables.outer_x)), gui_SX.variables.outer_z, 'FaceColor', 'w'); hold on;
-gui_SX.handles.meshSX_3 = surf(gui_SX.variables.cyl1_x, zeros(size(gui_SX.variables.cyl1_x)), gui_SX.variables.cyl1_z, 'FaceColor', 'w'); hold on;
-gui_SX.handles.meshSX_4 = surf(gui_SX.variables.cyl2_x, zeros(size(gui_SX.variables.cyl2_x)), gui_SX.variables.cyl2_z, 'FaceColor', 'w'); hold on;
-gui_SX.handles.meshSX_5 = surf(gui_SX.variables.lower_x, zeros(size(gui_SX.variables.lower_x)), gui_SX.variables.lower_z, 'FaceColor', 'w'); hold on;
+gui_SX.handles.meshSX(1) = surf(gui_SX.variables.box_x, zeros(size(gui_SX.variables.box_x)), gui_SX.variables.box_z);
+gui_SX.handles.meshSX(2) = surf(gui_SX.variables.outer_x, zeros(size(gui_SX.variables.outer_x)), gui_SX.variables.outer_z);
+gui_SX.handles.meshSX(3) = surf(gui_SX.variables.cyl1_x, zeros(size(gui_SX.variables.cyl1_x)), gui_SX.variables.cyl1_z);
+gui_SX.handles.meshSX(4) = surf(gui_SX.variables.cyl2_x, zeros(size(gui_SX.variables.cyl2_x)), gui_SX.variables.cyl2_z);
+gui_SX.handles.meshSX(5) = surf(gui_SX.variables.lower_x, zeros(size(gui_SX.variables.lower_x)), gui_SX.variables.lower_z);
+set([gui_SX.handles.meshSX, gui_SX.handles.sample.cyl], ...
+    'FaceColor', [1 1 1], 'FaceAlpha', 0., 'Linewidth', 1);
+set(gui_SX.handles.sample.cyl, 'EdgeAlpha', 0.1)
 
 % Axis setting
 axis tight; % Axis tight to the sample
 axis equal; % Axis aspect ratio
 view(old_az, old_el);
+grid off
+xyzlabel
+rotate3d on
 
 % FIXME: Inversion of x-axis ans y-axis with CPFE model !!!
 % if isfield(gui_SX, 'config_map')
