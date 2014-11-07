@@ -18,7 +18,7 @@ sample and the indenter.
 
 Currently the following models can be written:
 
-    * :ref:`single_crystal_indentation` (Mentat)
+    * :ref:`single_crystal_indentation` (Mentat and Abaqus)
     * :ref:`bicrystal_indentation` (Mentat)
     
 .. _single_crystal_indentation:
@@ -40,6 +40,12 @@ The function used to run the preCPFE GUI for SX indentation is: `A_preCPFE_windo
    
    *Figure 1 : Screenshot of the preCPFE GUI for the single crystal indentation*
    
+.. figure:: ./_pictures/fem_softwares/abaqus_SX_model.png
+   :scale: 40 %
+   :align: center
+   
+   *Figure 2 : Screenshot of the single crystal indentation model in Abaqus*
+   
 Convention for the single crystal mesh
 ***************************************
 
@@ -47,7 +53,7 @@ Convention for the single crystal mesh
    :scale: 25 %
    :align: center
    
-   *Figure 2 : Convention used to define the single crystal mesh.*
+   *Figure 3 : Convention used to define the single crystal mesh.*
    
 .. _bicrystal_indentation:
 
@@ -67,7 +73,7 @@ The function used to run the preCPFE GUI for BX indentation is: `A_preCPFE_windo
    :scale: 40 %
    :align: center
    
-   *Figure 3 : Screenshot of the preCPFE GUI for the bicrystal indentation*
+   *Figure 4 : Screenshot of the preCPFE GUI for the bicrystal indentation*
 
 Convention for the bicrystal mesh
 **********************************
@@ -76,7 +82,7 @@ Convention for the bicrystal mesh
    :scale: 25 %
    :align: center
    
-   *Figure 4 : Convention used to define the bicrystal mesh.*
+   *Figure 5 : Convention used to define the bicrystal mesh.*
    
 Indenter's geometry
 --------------------
