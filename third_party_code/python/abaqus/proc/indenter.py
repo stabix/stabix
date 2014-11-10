@@ -210,8 +210,8 @@ g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
 s.setPrimaryObject(option=STANDALONE)
 s.ConstructionLine(point1=(0.0, -sheet_Size*0.5), point2=(0.0, sheet_Size*0.5))
 s.Line(point1=(0.0, 0.0), point2=(tipRadius, 0.0))
-s.Line(point1=(tipRadius, 0.0), point2=(tipRadius, h_indent*1.30))
-s.Line(point1=(tipRadius,  h_indent*1.30), point2=(0.0,  h_indent*1.30))
+s.Line(point1=(tipRadius, 0.0), point2=(tipRadius, h_indent*2.0))
+s.Line(point1=(tipRadius,  h_indent*2.0), point2=(0.0,  h_indent*2.0))
 p = mdb.models['single_crystal_indentation'].Part(name='indenter', 
     dimensionality=THREE_D, type=ANALYTIC_RIGID_SURFACE)
 p = mdb.models['single_crystal_indentation'].parts['indenter']
