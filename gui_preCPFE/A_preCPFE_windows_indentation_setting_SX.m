@@ -15,9 +15,11 @@ hu = 0.05; % height unit
 wu = 0.1; % width unit
 
 %% Window setting
+scrSZ = get(0,'ScreenSize');
+fig_wid = max([0.5 800/scrSZ(3)]);
 gui_SX.handles.gui_SX_win = figure(...
     'NumberTitle', 'off',...
-    'Position', figure_position([.58, .30, .6, .9]), ... % [left, bottom, width, height/width]
+    'Position', figure_position([.58, .30, fig_wid, .9]), ... % [left, bottom, width, height/width]
     'ToolBar', 'figure');
 guidata(gcf, gui_SX);
 
@@ -70,6 +72,7 @@ guidata(gcf, gui_SX);
 
 %% Creation of string boxes and edit boxes to set indenter and indentation properties
 gui_SX.handles.mesh = preCPFE_mesh_parameters_SX(gui_SX.defaults, x0, hu, wu, gui_SX.config.CPFEM.fem_solver_used);
+guidata(gcf, gui_SX);
 
 %% Creation of popup menu and slider for loaded AFM indenter topography
 gui_SX.handles.indenter = preCPFE_buttons_indenter(x0, hu, wu);

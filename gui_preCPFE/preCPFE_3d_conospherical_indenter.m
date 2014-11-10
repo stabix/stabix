@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function [fvc, handle_indax_sphere, handle_indax_cone] = preCPFE_3d_conospherical_indenter(tipRadius, coneAngle, N, X_position, Y_position, Z_position, varargin)
+function handle_indenter = preCPFE_3d_conospherical_indenter(tipRadius, coneAngle, N, X_position, Y_position, Z_position, varargin)
 %% Function to plot a 3D conospherical indenter
 % tipRadius : Radius of the spherical part of the indenter.
 % coneAngle : Full angle in degree of the conical part of the indenter.
@@ -32,6 +32,7 @@ end
 if nargin < 1
     tipRadius = 1;
 end
+
 
 %% Calculation of the transition depth between the conical and spherical part of the indenter
 h_trans = preCPFE_indentation_transition_depth(tipRadius, coneAngle/2);
@@ -68,23 +69,22 @@ for ii = 2:1:size(x,2)
     z(:,ii) = z(:,1);
 end
 
-handle_indax_sphere = surf(x_hs, y_hs, z_hs, 'Facecolor', 'w');
+handle_indenter(1) = surf(x_hs, y_hs, z_hs, 'Facecolor', 'w');
 hold on;
-handle_indax_cone = surf(x,y,z);
+handle_indenter(2) = surf(x,y,z);
+set(handle_indenter, 'EdgeAlpha',.1);
 colormap white;
 
 %% Get patch for generation of Abaqus .inp file
-fvc = surf2patch(x, y, z);
+%fvc = surf2patch(x, y, z);
 
 if nargin == 0
-    close all;
-    handle_indax_sphere = surf(x_hs, y_hs, z_hs, 'Facecolor', 'w');
-    hold on;
-    handle_indax_cone = surf(x,y,z);
-    colormap('white');
-    axis off;
+    close all
+    h = preCPFE_3d_conospherical_indenter(tipRadius);
+    %axis off;
     axis equal;
-    view(0,30);
+    rotate3d on
+    return
 end
 
 end
