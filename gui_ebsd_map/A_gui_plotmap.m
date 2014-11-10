@@ -309,6 +309,9 @@ gui.handles.ST_s31 = uicontrol('Parent', gui.handles.TSLinterfWindow, 'Units', '
 gui.handles.ST_s32 = uicontrol('Parent', gui.handles.TSLinterfWindow, 'Units', 'normalized', 'BackgroundColor', [0.9 0.9 0.9], 'Position', [0.06 0.390 0.03 0.02], 'String', '0', 'Style', 'edit', 'Callback', 'gui = guidata(gcf); set(gui.handles.pmparam2plot4GB, ''Value'', 1); set(gui.handles.pmparam2plot4Grains, ''Value'', 1); guidata(gcf, gui); interface_map_plotmap(0);');
 gui.handles.ST_s33 = uicontrol('Parent', gui.handles.TSLinterfWindow, 'Units', 'normalized', 'BackgroundColor', [0.9 0.9 0.9], 'Position', [0.10 0.390 0.03 0.02], 'String', '1', 'Style', 'edit', 'Callback', 'gui = guidata(gcf); set(gui.handles.pmparam2plot4GB, ''Value'', 1); set(gui.handles.pmparam2plot4Grains, ''Value'', 1); guidata(gcf, gui); interface_map_plotmap(0);');
 
+% stress is symmetric
+set([gui.handles.ST_s21, gui.handles.ST_s31, gui.handles.ST_s32],'Enable','off');
+
 %% GB Map Plot settings
 gui.handles.cbgrnum = uicontrol('Parent', gui.handles.TSLinterfWindow,...
     'Units', 'normalized',...
