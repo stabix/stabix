@@ -101,10 +101,10 @@ guidata(gcf, gdata);
 preCPFE_set_valid_inputs_SX;
 gdata = guidata(gcf);
 
-%% Calculation of the transition depth between spherical and conical parts of the indenter
-gdata.variables.h_trans = preCPFE_indentation_transition_depth(gdata.variables.tipRadius, gdata.variables.coneAngle/2);
-gdata.variables.h_trans = round(gdata.variables.h_trans*100)/100;
-set(gdata.handles.other_setting.trans_depth , 'String', strcat('Transition depth (µm) : ', num2str(gdata.variables.h_trans)));
+% %% Calculation of the transition depth between spherical and conical parts of the indenter
+% gdata.variables.h_trans = preCPFE_indentation_transition_depth(gdata.variables.tipRadius, gdata.variables.coneAngle/2);
+% gdata.variables.h_trans = round(gdata.variables.h_trans*100)/100;
+% set(gdata.handles.other_setting.trans_depth , 'String', strcat('Transition depth (µm) : ', num2str(gdata.variables.h_trans)));
 
 %% Definition of geometry points coordinates
 % Radial coordinates of points for the mesh of indenter
