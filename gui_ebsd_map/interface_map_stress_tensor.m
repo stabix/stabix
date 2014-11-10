@@ -38,12 +38,13 @@ end
 stress11 = str2double(get(gui.handles.ST_s11, 'String'));
 stress12 = str2double(get(gui.handles.ST_s12, 'String'));
 stress13 = str2double(get(gui.handles.ST_s13, 'String'));
-stress21 = str2double(get(gui.handles.ST_s21, 'String'));
 stress22 = str2double(get(gui.handles.ST_s22, 'String'));
 stress23 = str2double(get(gui.handles.ST_s23, 'String'));
-stress31 = str2double(get(gui.handles.ST_s31, 'String'));
-stress32 = str2double(get(gui.handles.ST_s32, 'String'));
 stress33 = str2double(get(gui.handles.ST_s33, 'String'));
+% sym components
+stress21 = stress12; set(gui.handles.ST_s21, 'String', num2str(stress21));
+stress31 = stress13; set(gui.handles.ST_s31, 'String', num2str(stress31));
+stress32 = stress23; set(gui.handles.ST_s32, 'String', num2str(stress32));
 
 gui.stress_tensor.sigma    = [stress11, stress12, stress13;...
     stress21, stress22, stress23;...
