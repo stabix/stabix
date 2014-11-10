@@ -3,151 +3,136 @@ function preCPFE_indentation_setting_SX
 %% Function to set SX indentation inputs (tip radius, indentation depth...) and plot of meshing
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
-gui_SX = guidata(gcf);
-
-%% Store old view settings
-if isfield(gui_SX, 'handle_indenter')
-    [old_az, old_el] = view;
-else
-    old_az = 0; % old azimuth value
-    old_el = 0; % old elevation value
-end
+gdata = guidata(gcf);
 
 %% Setting of the FEM interface
-gui_SX.config.CPFEM.fem_interface_val = get(gui_SX.handles.other_setting.pm_FEM_interface, 'Value');
-gui_SX.config.CPFEM.fem_interface_all_str = get(gui_SX.handles.other_setting.pm_FEM_interface, 'String');
-gui_SX.config.CPFEM.fem_solver_str_cell = gui_SX.config.CPFEM.fem_interface_all_str(gui_SX.config.CPFEM.fem_interface_val);
-gui_SX.config.CPFEM.fem_solver_used = gui_SX.config.CPFEM.fem_solver_str_cell{:};
-if strcmp(strtok(gui_SX.config.CPFEM.fem_solver_used, '_'), 'Abaqus') == 1
-    gui_SX.config.CPFEM.fem_solver_version = sscanf(gui_SX.config.CPFEM.fem_solver_used, 'Abaqus_%f');
-elseif strcmp(strtok(gui_SX.config.CPFEM.fem_solver_used, '_'), 'Mentat') == 1
-    gui_SX.config.CPFEM.fem_solver_version = sscanf(gui_SX.config.CPFEM.fem_solver_used, 'Mentat_%f');
+gdata.config.CPFEM.fem_interface_val = get(gdata.handles.other_setting.pm_FEM_interface, 'Value');
+gdata.config.CPFEM.fem_interface_all_str = get(gdata.handles.other_setting.pm_FEM_interface, 'String');
+gdata.config.CPFEM.fem_solver_str_cell = gdata.config.CPFEM.fem_interface_all_str(gdata.config.CPFEM.fem_interface_val);
+gdata.config.CPFEM.fem_solver_used = gdata.config.CPFEM.fem_solver_str_cell{:};
+if strcmp(strtok(gdata.config.CPFEM.fem_solver_used, '_'), 'Abaqus') == 1
+    gdata.config.CPFEM.fem_solver_version = sscanf(gdata.config.CPFEM.fem_solver_used, 'Abaqus_%f');
+elseif strcmp(strtok(gdata.config.CPFEM.fem_solver_used, '_'), 'Mentat') == 1
+    gdata.config.CPFEM.fem_solver_version = sscanf(gdata.config.CPFEM.fem_solver_used, 'Mentat_%f');
 end
 
-%% Set rotation angle value
-set(gui_SX.handles.indenter.rotate_loaded_indenter_box, ...
-    'String', get(gui_SX.handles.indenter.rotate_loaded_indenter, 'Value'));
 
 %% Set positive values in case of missing parameters
-set_default_values_txtbox(gui_SX.handles.indenter.coneAngle_val, num2str(gui_SX.defaults.variables.coneAngle));
-set_default_values_txtbox(gui_SX.handles.indenter.tipRadius_val, num2str(gui_SX.defaults.variables.tipRadius));
-set_default_values_txtbox(gui_SX.handles.indenter.h_indent_val, num2str(gui_SX.defaults.variables.h_indent));
-set_default_values_txtbox(gui_SX.handles.mesh.box_xfrac_val, num2str(gui_SX.defaults.variables.box_xfrac));
-set_default_values_txtbox(gui_SX.handles.mesh.box_zfrac_val, num2str(gui_SX.defaults.variables.box_zfrac));
-set_default_values_txtbox(gui_SX.handles.mesh.D_sample_val, num2str(gui_SX.defaults.variables.D_sample));
-set_default_values_txtbox(gui_SX.handles.mesh.h_sample_val, num2str(gui_SX.defaults.variables.h_sample));
-set_default_values_txtbox(gui_SX.handles.mesh.r_center_frac_val, num2str(gui_SX.defaults.variables.r_center_frac));
-set_default_values_txtbox(gui_SX.handles.mesh.sample_rep_val, num2str(gui_SX.defaults.variables.sample_rep));
-set_default_values_txtbox(gui_SX.handles.mesh.box_elm_nx_val, num2str(gui_SX.defaults.variables.box_elm_nx));
-set_default_values_txtbox(gui_SX.handles.mesh.box_elm_nz_val, num2str(gui_SX.defaults.variables.box_elm_nz));
-set_default_values_txtbox(gui_SX.handles.mesh.radial_divi_val, num2str(gui_SX.defaults.variables.radial_divi));
-if strfind(gui_SX.config.CPFEM.fem_solver_used, 'Abaqus')
-    set_default_values_txtbox(gui_SX.handles.mesh.box_bias_x_val, num2str(gui_SX.defaults.variables.box_bias_x_abaqus));
-    set_default_values_txtbox(gui_SX.handles.mesh.box_bias_z_val, num2str(gui_SX.defaults.variables.box_bias_z_abaqus));
-    set_default_values_txtbox(gui_SX.handles.mesh.box_bias_conv_x_val, num2str(gui_SX.defaults.variables.box_bias_conv_x_abaqus));
-elseif strfind(gui_SX.config.CPFEM.fem_solver_used, 'Mentat')
-    set_default_values_txtbox(gui_SX.handles.mesh.box_bias_x_val, num2str(gui_SX.defaults.variables.box_bias_x_mentat));
-    set_default_values_txtbox(gui_SX.handles.mesh.box_bias_z_val, num2str(gui_SX.defaults.variables.box_bias_z_mentat));
-    set_default_values_txtbox(gui_SX.handles.mesh.box_bias_conv_x_val, num2str(gui_SX.defaults.variables.box_bias_conv_x_mentat));
+set_default_values_txtbox(gdata.handles.indenter.coneAngle_val, num2str(gdata.defaults.variables.coneAngle));
+set_default_values_txtbox(gdata.handles.indenter.tipRadius_val, num2str(gdata.defaults.variables.tipRadius));
+set_default_values_txtbox(gdata.handles.indenter.h_indent_val, num2str(gdata.defaults.variables.h_indent));
+set_default_values_txtbox(gdata.handles.mesh.box_xfrac_val, num2str(gdata.defaults.variables.box_xfrac));
+set_default_values_txtbox(gdata.handles.mesh.box_zfrac_val, num2str(gdata.defaults.variables.box_zfrac));
+set_default_values_txtbox(gdata.handles.mesh.D_sample_val, num2str(gdata.defaults.variables.D_sample));
+set_default_values_txtbox(gdata.handles.mesh.h_sample_val, num2str(gdata.defaults.variables.h_sample));
+set_default_values_txtbox(gdata.handles.mesh.r_center_frac_val, num2str(gdata.defaults.variables.r_center_frac));
+set_default_values_txtbox(gdata.handles.mesh.sample_rep_val, num2str(gdata.defaults.variables.sample_rep));
+set_default_values_txtbox(gdata.handles.mesh.box_elm_nx_val, num2str(gdata.defaults.variables.box_elm_nx));
+set_default_values_txtbox(gdata.handles.mesh.box_elm_nz_val, num2str(gdata.defaults.variables.box_elm_nz));
+set_default_values_txtbox(gdata.handles.mesh.radial_divi_val, num2str(gdata.defaults.variables.radial_divi));
+if strfind(gdata.config.CPFEM.fem_solver_used, 'Abaqus')
+    set_default_values_txtbox(gdata.handles.mesh.box_bias_x_val, num2str(gdata.defaults.variables.box_bias_x_abaqus));
+    set_default_values_txtbox(gdata.handles.mesh.box_bias_z_val, num2str(gdata.defaults.variables.box_bias_z_abaqus));
+    set_default_values_txtbox(gdata.handles.mesh.box_bias_conv_x_val, num2str(gdata.defaults.variables.box_bias_conv_x_abaqus));
+elseif strfind(gdata.config.CPFEM.fem_solver_used, 'Mentat')
+    set_default_values_txtbox(gdata.handles.mesh.box_bias_x_val, num2str(gdata.defaults.variables.box_bias_x_mentat));
+    set_default_values_txtbox(gdata.handles.mesh.box_bias_z_val, num2str(gdata.defaults.variables.box_bias_z_mentat));
+    set_default_values_txtbox(gdata.handles.mesh.box_bias_conv_x_val, num2str(gdata.defaults.variables.box_bias_conv_x_mentat));
 end
-
-%% Initialization
-cla;
 
 %% Set fine / coarse mesh
-gui_SX.variables.meshquality = get(gui_SX.handles.other_setting.pm_mesh_quality, 'Value');
+gdata.variables.meshquality = get(gdata.handles.other_setting.pm_mesh_quality, 'Value');
 
-if gui_SX.variables.meshquality ~= 1
-    set(gui_SX.handles.mesh.box_elm_nx_val, 'String', num2str(gui_SX.defaults.variables.box_elm_nx));
-    set(gui_SX.handles.mesh.box_elm_nz_val, 'String', num2str(gui_SX.defaults.variables.box_elm_nz));
-    set(gui_SX.handles.mesh.radial_divi_val, 'String', num2str(gui_SX.defaults.variables.radial_divi));
+if gdata.variables.meshquality ~= 1
+    set(gdata.handles.mesh.box_elm_nx_val, 'String', num2str(gdata.defaults.variables.box_elm_nx));
+    set(gdata.handles.mesh.box_elm_nz_val, 'String', num2str(gdata.defaults.variables.box_elm_nz));
+    set(gdata.handles.mesh.radial_divi_val, 'String', num2str(gdata.defaults.variables.radial_divi));
     
-    if gui_SX.variables.meshquality == 2
-        gui_SX.variables.mesh_quality_lvl = 1;
-    elseif gui_SX.variables.meshquality == 3
-        gui_SX.variables.mesh_quality_lvl = 2;
-    elseif gui_SX.variables.meshquality == 4
-        gui_SX.variables.mesh_quality_lvl = 3;
-    elseif gui_SX.variables.meshquality == 5
-        gui_SX.variables.mesh_quality_lvl = 4;
+    if gdata.variables.meshquality == 2
+        gdata.variables.mesh_quality_lvl = 1;
+    elseif gdata.variables.meshquality == 3
+        gdata.variables.mesh_quality_lvl = 2;
+    elseif gdata.variables.meshquality == 4
+        gdata.variables.mesh_quality_lvl = 3;
+    elseif gdata.variables.meshquality == 5
+        gdata.variables.mesh_quality_lvl = 4;
     end
     
-    gui_SX.variables.box_elm_nx  = round(str2num(get(gui_SX.handles.mesh.box_elm_nx_val, 'String')) * gui_SX.variables.mesh_quality_lvl);
-    gui_SX.variables.box_elm_nz  = round(str2num(get(gui_SX.handles.mesh.box_elm_nz_val, 'String')) * gui_SX.variables.mesh_quality_lvl);
-    gui_SX.variables.radial_divi = round(str2num(get(gui_SX.handles.mesh.radial_divi_val, 'String')) * gui_SX.variables.mesh_quality_lvl);
-    set(gui_SX.handles.mesh.box_elm_nx_val, 'String', num2str(gui_SX.variables.box_elm_nx));
-    set(gui_SX.handles.mesh.box_elm_nz_val, 'String', num2str(gui_SX.variables.box_elm_nz));
-    set(gui_SX.handles.mesh.radial_divi_val, 'String', num2str(gui_SX.variables.radial_divi));
+    gdata.variables.box_elm_nx  = round(str2num(get(gdata.handles.mesh.box_elm_nx_val, 'String')) * gdata.variables.mesh_quality_lvl);
+    gdata.variables.box_elm_nz  = round(str2num(get(gdata.handles.mesh.box_elm_nz_val, 'String')) * gdata.variables.mesh_quality_lvl);
+    gdata.variables.radial_divi = round(str2num(get(gdata.handles.mesh.radial_divi_val, 'String')) * gdata.variables.mesh_quality_lvl);
+    set(gdata.handles.mesh.box_elm_nx_val, 'String', num2str(gdata.variables.box_elm_nx));
+    set(gdata.handles.mesh.box_elm_nz_val, 'String', num2str(gdata.variables.box_elm_nz));
+    set(gdata.handles.mesh.radial_divi_val, 'String', num2str(gdata.variables.radial_divi));
     
     % else
-    %     gui_SX.variables.box_elm_nx       = round(str2num(get(gui_SX.handles.mesh.box_elm_nx_val, 'String')) * gui_SX.variables.mesh_quality_lvl);
-    %     gui_SX.variables.box_elm_nz       = round(str2num(get(gui_SX.handles.mesh.box_elm_nz_val, 'String')) * gui_SX.variables.mesh_quality_lvl);
+    %     gdata.variables.box_elm_nx       = round(str2num(get(gdata.handles.mesh.box_elm_nx_val, 'String')) * gdata.variables.mesh_quality_lvl);
+    %     gdata.variables.box_elm_nz       = round(str2num(get(gdata.handles.mesh.box_elm_nz_val, 'String')) * gdata.variables.mesh_quality_lvl);
     
 end
+guidata(gcf, gdata);
 
 %% Definition of mesh/geometry variables
-% Indenter variables
-gui_SX.variables.tipRadius = str2num(get(gui_SX.handles.indenter.tipRadius_val, 'String')); % Radius of cono-spherical indenter (in µm)
-gui_SX.variables.coneAngle = str2num(get(gui_SX.handles.indenter.coneAngle_val, 'String')); % Full Angle of cono-spherical indenter (in °)
-gui_SX.variables.h_indent  = str2num(get(gui_SX.handles.indenter.h_indent_val, 'String')); % Depth of indentation (in µm)
+preCPFE_set_indenter;
+gdata = guidata(gcf);
 % Sample variables
-gui_SX.variables.D_sample        = str2num(get(gui_SX.handles.mesh.D_sample_val, 'String'));
-gui_SX.variables.h_sample        = str2num(get(gui_SX.handles.mesh.h_sample_val, 'String'));
-gui_SX.variables.r_center_frac   = str2num(get(gui_SX.handles.mesh.r_center_frac_val, 'String'));
-gui_SX.variables.box_xfrac       = str2num(get(gui_SX.handles.mesh.box_xfrac_val, 'String'));
-gui_SX.variables.box_zfrac       = str2num(get(gui_SX.handles.mesh.box_zfrac_val, 'String'));
-gui_SX.variables.sample_rep      = str2num(get(gui_SX.handles.mesh.sample_rep_val, 'String'));
-gui_SX.variables.box_elm_nx      = round(str2num(get(gui_SX.handles.mesh.box_elm_nx_val, 'String')));
-gui_SX.variables.box_elm_nz      = round(str2num(get(gui_SX.handles.mesh.box_elm_nz_val, 'String')));
-gui_SX.variables.radial_divi     = round(str2num(get(gui_SX.handles.mesh.radial_divi_val, 'String')));
-gui_SX.variables.box_bias_x      = str2num(get(gui_SX.handles.mesh.box_bias_x_val, 'String'));
-gui_SX.variables.box_bias_z      = str2num(get(gui_SX.handles.mesh.box_bias_z_val, 'String'));
-gui_SX.variables.box_bias_conv_x = str2num(get(gui_SX.handles.mesh.box_bias_conv_x_val, 'String'));
+gdata.variables.D_sample        = str2num(get(gdata.handles.mesh.D_sample_val, 'String'));
+gdata.variables.h_sample        = str2num(get(gdata.handles.mesh.h_sample_val, 'String'));
+gdata.variables.r_center_frac   = str2num(get(gdata.handles.mesh.r_center_frac_val, 'String'));
+gdata.variables.box_xfrac       = str2num(get(gdata.handles.mesh.box_xfrac_val, 'String'));
+gdata.variables.box_zfrac       = str2num(get(gdata.handles.mesh.box_zfrac_val, 'String'));
+gdata.variables.sample_rep      = str2num(get(gdata.handles.mesh.sample_rep_val, 'String'));
+gdata.variables.box_elm_nx      = round(str2num(get(gdata.handles.mesh.box_elm_nx_val, 'String')));
+gdata.variables.box_elm_nz      = round(str2num(get(gdata.handles.mesh.box_elm_nz_val, 'String')));
+gdata.variables.radial_divi     = round(str2num(get(gdata.handles.mesh.radial_divi_val, 'String')));
+gdata.variables.box_bias_x      = str2num(get(gdata.handles.mesh.box_bias_x_val, 'String'));
+gdata.variables.box_bias_z      = str2num(get(gdata.handles.mesh.box_bias_z_val, 'String'));
+gdata.variables.box_bias_conv_x = str2num(get(gdata.handles.mesh.box_bias_conv_x_val, 'String'));
 
 % Setting of the small value (smv), when sample_rep is too high ==> Distorsion of elements...
-if gui_SX.variables.sample_rep == 32 || gui_SX.variables.sample_rep == 48
-    gui_SX.variables.smv = 0.001;
+if gdata.variables.sample_rep == 32 || gdata.variables.sample_rep == 48
+    gdata.variables.smv = 0.001;
 else
-    gui_SX.variables.smv = 0.01;
+    gdata.variables.smv = 0.01;
 end
 
 %% Set valid inputs in case of wrong inputs
-guidata(gcf, gui_SX);
+guidata(gcf, gdata);
 preCPFE_set_valid_inputs_SX;
-gui_SX = guidata(gcf); guidata(gcf, gui_SX);
+gdata = guidata(gcf);
 
 %% Calculation of the transition depth between spherical and conical parts of the indenter
-gui_SX.variables.h_trans = preCPFE_indentation_transition_depth(gui_SX.variables.tipRadius, gui_SX.variables.coneAngle/2);
-gui_SX.variables.h_trans = round(gui_SX.variables.h_trans*100)/100;
-set(gui_SX.handles.other_setting.trans_depth , 'String', strcat('Transition depth (µm) : ',num2str(gui_SX.variables.h_trans)));
+gdata.variables.h_trans = preCPFE_indentation_transition_depth(gdata.variables.tipRadius, gdata.variables.coneAngle/2);
+gdata.variables.h_trans = round(gdata.variables.h_trans*100)/100;
+set(gdata.handles.other_setting.trans_depth , 'String', strcat('Transition depth (µm) : ', num2str(gdata.variables.h_trans)));
 
 %% Definition of geometry points coordinates
 % Radial coordinates of points for the mesh of indenter
 jj = 0;
 for ii = 1:41
-    gui_SX.variables.indenter_mesh_x(ii) = jj*preCPFE_indentation_transition_depth(gui_SX.variables.tipRadius, gui_SX.variables.coneAngle/2);
+    gdata.variables.indenter_mesh_x(ii) = jj*preCPFE_indentation_transition_depth(gdata.variables.tipRadius, gdata.variables.coneAngle/2);
     jj = jj+0.025;
-    gui_SX.variables.indenter_mesh_y(ii) = 0;
+    gdata.variables.indenter_mesh_y(ii) = 0;
 end
 
-gui_SX.variables.coneHeight=gui_SX.variables.h_sample/4;
+gdata.variables.coneHeight=gdata.variables.h_sample/4;
 
 % Coordinates of points for the mesh of indenter before indentation
-gui_SX.variables.indenter_mesh_z = -(((gui_SX.variables.tipRadius.^2)-(gui_SX.variables.indenter_mesh_x.^2)).^0.5)+gui_SX.variables.tipRadius;
-gui_SX.variables.indenter_mesh_con = [max(gui_SX.variables.indenter_mesh_x) 0 max(gui_SX.variables.indenter_mesh_z);...
-    ((max(gui_SX.variables.indenter_mesh_x)+((max(gui_SX.variables.indenter_mesh_z)+gui_SX.variables.coneHeight)/(tand(90-gui_SX.variables.coneAngle/2)))))...
-    0 (max(gui_SX.variables.indenter_mesh_z)+gui_SX.variables.coneHeight)];
+gdata.variables.indenter_mesh_z = -(((gdata.variables.tipRadius.^2)-(gdata.variables.indenter_mesh_x.^2)).^0.5)+gdata.variables.tipRadius;
+gdata.variables.indenter_mesh_con = [max(gdata.variables.indenter_mesh_x) 0 max(gdata.variables.indenter_mesh_z);...
+    ((max(gdata.variables.indenter_mesh_x)+((max(gdata.variables.indenter_mesh_z)+gdata.variables.coneHeight)/(tand(90-gdata.variables.coneAngle/2)))))...
+    0 (max(gdata.variables.indenter_mesh_z)+gdata.variables.coneHeight)];
 
 % Coordinates of points for the mesh of indenter after indentation
-gui_SX.variables.indenter_mesh_z_post = -(((gui_SX.variables.tipRadius.^2)-(gui_SX.variables.indenter_mesh_x.^2)).^0.5)+gui_SX.variables.tipRadius-gui_SX.variables.h_indent;
-gui_SX.variables.indenter_mesh_con_post = [max(gui_SX.variables.indenter_mesh_x) 0 max(gui_SX.variables.indenter_mesh_z_post); ...
-    ((max(gui_SX.variables.indenter_mesh_x)+((max(gui_SX.variables.indenter_mesh_z_post)+gui_SX.variables.coneHeight+gui_SX.variables.h_indent)/(tand(90-gui_SX.variables.coneAngle/2)))))...
-    0 (max(gui_SX.variables.indenter_mesh_z_post)+gui_SX.variables.coneHeight)];
+gdata.variables.indenter_mesh_z_post = -(((gdata.variables.tipRadius.^2)-(gdata.variables.indenter_mesh_x.^2)).^0.5)+gdata.variables.tipRadius-gdata.variables.h_indent;
+gdata.variables.indenter_mesh_con_post = [max(gdata.variables.indenter_mesh_x) 0 max(gdata.variables.indenter_mesh_z_post); ...
+    ((max(gdata.variables.indenter_mesh_x)+((max(gdata.variables.indenter_mesh_z_post)+gdata.variables.coneHeight+gdata.variables.h_indent)/(tand(90-gdata.variables.coneAngle/2)))))...
+    0 (max(gdata.variables.indenter_mesh_z_post)+gdata.variables.coneHeight)];
 
 % Coordinates of points for the mesh of sample
-gui_SX.variables.box_x_start = gui_SX.variables.r_center_frac * gui_SX.variables.box_xfrac * gui_SX.variables.D_sample/2;
-gui_SX.variables.box_x_end   = gui_SX.variables.box_xfrac * gui_SX.variables.D_sample/2;
-gui_SX.variables.box_z_end   = -gui_SX.variables.box_zfrac * gui_SX.variables.h_sample;
+gdata.variables.box_x_start = gdata.variables.r_center_frac * gdata.variables.box_xfrac * gdata.variables.D_sample/2;
+gdata.variables.box_x_end   = gdata.variables.box_xfrac * gdata.variables.D_sample/2;
+gdata.variables.box_z_end   = -gdata.variables.box_zfrac * gdata.variables.h_sample;
 
 
 %% Meshing (Cross section view of the sample + indenter)
@@ -164,103 +149,66 @@ gui_SX.variables.box_z_end   = -gui_SX.variables.box_zfrac * gui_SX.variables.h_
 %  --|-----------\|
 
 % Meshgrid for the upper cylinder (1)
-%gui_SX.variables.cyl1_x_pts = preCPFE_bias(gui_SX.config.CPFEM.fem_solver_used,0, gui_SX.variables.box_x_start, gui_SX.variables.box_elm_nx, 0);
-gui_SX.variables.cyl1_x_pts = preCPFE_bias(gui_SX.config.CPFEM.fem_solver_used, 0, gui_SX.variables.box_x_start, gui_SX.variables.sample_rep/4, 0);
-gui_SX.variables.cyl1_z_pts = preCPFE_bias(gui_SX.config.CPFEM.fem_solver_used, 0, gui_SX.variables.box_z_end, gui_SX.variables.box_elm_nz, -gui_SX.variables.box_bias_z);
-[gui_SX.variables.cyl1_x, gui_SX.variables.cyl1_z] = meshgrid(gui_SX.variables.cyl1_x_pts, gui_SX.variables.cyl1_z_pts);
+%gdata.variables.cyl1_x_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used,0, gdata.variables.box_x_start, gdata.variables.box_elm_nx, 0);
+gdata.variables.cyl1_x_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, 0, gdata.variables.box_x_start, gdata.variables.sample_rep/4, 0);
+gdata.variables.cyl1_z_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, 0, gdata.variables.box_z_end, gdata.variables.box_elm_nz, -gdata.variables.box_bias_z);
+[gdata.variables.cyl1_x, gdata.variables.cyl1_z] = meshgrid(gdata.variables.cyl1_x_pts, gdata.variables.cyl1_z_pts);
 
 % Meshgrid for the lower cylinder (2)
-%gui_SX.variables.cyl2_x_pts = preCPFE_bias(gui_SX.config.CPFEM.fem_solver_used, 0, gui_SX.variables.box_x_start, gui_SX.variables.box_elm_nx, 0);
-gui_SX.variables.cyl2_x_pts = preCPFE_bias(gui_SX.config.CPFEM.fem_solver_used, 0, gui_SX.variables.box_x_start, gui_SX.variables.sample_rep/4, 0);
-gui_SX.variables.cyl2_z_pts = preCPFE_bias(gui_SX.config.CPFEM.fem_solver_used, gui_SX.variables.box_z_end, -gui_SX.variables.h_sample, gui_SX.variables.radial_divi, -gui_SX.variables.box_bias_conv_x);
-[gui_SX.variables.cyl2_x, gui_SX.variables.cyl2_z] = meshgrid(gui_SX.variables.cyl2_x_pts, gui_SX.variables.cyl2_z_pts);
+%gdata.variables.cyl2_x_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, 0, gdata.variables.box_x_start, gdata.variables.box_elm_nx, 0);
+gdata.variables.cyl2_x_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, 0, gdata.variables.box_x_start, gdata.variables.sample_rep/4, 0);
+gdata.variables.cyl2_z_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.box_z_end, -gdata.variables.h_sample, gdata.variables.radial_divi, -gdata.variables.box_bias_conv_x);
+[gdata.variables.cyl2_x, gdata.variables.cyl2_z] = meshgrid(gdata.variables.cyl2_x_pts, gdata.variables.cyl2_z_pts);
 
 % Meshgrid for the box part (3)
-gui_SX.variables.box_x_pts = preCPFE_bias(gui_SX.config.CPFEM.fem_solver_used, gui_SX.variables.box_x_start, gui_SX.variables.box_x_end, gui_SX.variables.box_elm_nx, -gui_SX.variables.box_bias_x);
-gui_SX.variables.box_z_pts = preCPFE_bias(gui_SX.config.CPFEM.fem_solver_used, 0, gui_SX.variables.box_z_end, gui_SX.variables.box_elm_nz, -gui_SX.variables.box_bias_z);
-[gui_SX.variables.box_x, gui_SX.variables.box_z] = meshgrid(gui_SX.variables.box_x_pts, gui_SX.variables.box_z_pts);
+gdata.variables.box_x_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.box_x_start, gdata.variables.box_x_end, gdata.variables.box_elm_nx, -gdata.variables.box_bias_x);
+gdata.variables.box_z_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, 0, gdata.variables.box_z_end, gdata.variables.box_elm_nz, -gdata.variables.box_bias_z);
+[gdata.variables.box_x, gdata.variables.box_z] = meshgrid(gdata.variables.box_x_pts, gdata.variables.box_z_pts);
 
 % Meshgrid for the outer part (4)
-gui_SX.variables.outer_x_pts = preCPFE_bias(gui_SX.config.CPFEM.fem_solver_used, gui_SX.variables.box_x_end, gui_SX.variables.D_sample/2, gui_SX.variables.radial_divi, -gui_SX.variables.box_bias_conv_x);
-gui_SX.variables.outer_z_pts = gui_SX.variables.box_z_pts;
-[gui_SX.variables.outer_x, gui_SX.variables.outer_z] = meshgrid(gui_SX.variables.outer_x_pts, gui_SX.variables.outer_z_pts);
-for ix = 1:size(gui_SX.variables.outer_z,2)
-    for iz = 1:size(gui_SX.variables.outer_z,1)
-        gui_SX.variables.outer_z(iz, ix) = gui_SX.variables.outer_z(iz, ix) - gui_SX.variables.outer_z_pts(iz)/gui_SX.variables.box_z_end * ...
-            (gui_SX.variables.outer_x_pts(ix) - gui_SX.variables.box_x_end) / (gui_SX.variables.D_sample/2 - gui_SX.variables.box_x_end) * ...
-            (gui_SX.variables.h_sample + gui_SX.variables.box_z_end);
+gdata.variables.outer_x_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.box_x_end, gdata.variables.D_sample/2, gdata.variables.radial_divi, -gdata.variables.box_bias_conv_x);
+gdata.variables.outer_z_pts = gdata.variables.box_z_pts;
+[gdata.variables.outer_x, gdata.variables.outer_z] = meshgrid(gdata.variables.outer_x_pts, gdata.variables.outer_z_pts);
+for ix = 1:size(gdata.variables.outer_z,2)
+    for iz = 1:size(gdata.variables.outer_z,1)
+        gdata.variables.outer_z(iz, ix) = gdata.variables.outer_z(iz, ix) - gdata.variables.outer_z_pts(iz)/gdata.variables.box_z_end * ...
+            (gdata.variables.outer_x_pts(ix) - gdata.variables.box_x_end) / (gdata.variables.D_sample/2 - gdata.variables.box_x_end) * ...
+            (gdata.variables.h_sample + gdata.variables.box_z_end);
     end
 end
 
 % Meshgrid for the lower part (5)
-gui_SX.variables.lower_x_pts = gui_SX.variables.box_x_pts;
-gui_SX.variables.lower_z_pts = preCPFE_bias(gui_SX.config.CPFEM.fem_solver_used, gui_SX.variables.box_z_end, -gui_SX.variables.h_sample, gui_SX.variables.radial_divi, -gui_SX.variables.box_bias_conv_x);
-[gui_SX.variables.lower_x, gui_SX.variables.lower_z] = meshgrid(gui_SX.variables.lower_x_pts, gui_SX.variables.lower_z_pts);
-for iz = 1:size(gui_SX.variables.lower_x,1)
-    for ix = 1:size(gui_SX.variables.lower_x,2)
-        gui_SX.variables.lower_x(iz, ix) = gui_SX.variables.lower_x(iz, ix) + (gui_SX.variables.lower_x_pts(ix)-gui_SX.variables.box_x_start)/(gui_SX.variables.box_x_end-gui_SX.variables.box_x_start) * ...
-            abs((gui_SX.variables.lower_z_pts(iz) - gui_SX.variables.box_z_end)) / (gui_SX.variables.h_sample + gui_SX.variables.box_z_end) *...
-            (gui_SX.variables.D_sample/2 - gui_SX.variables.box_x_end);
+gdata.variables.lower_x_pts = gdata.variables.box_x_pts;
+gdata.variables.lower_z_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.box_z_end, -gdata.variables.h_sample, gdata.variables.radial_divi, -gdata.variables.box_bias_conv_x);
+[gdata.variables.lower_x, gdata.variables.lower_z] = meshgrid(gdata.variables.lower_x_pts, gdata.variables.lower_z_pts);
+for iz = 1:size(gdata.variables.lower_x,1)
+    for ix = 1:size(gdata.variables.lower_x,2)
+        gdata.variables.lower_x(iz, ix) = gdata.variables.lower_x(iz, ix) + (gdata.variables.lower_x_pts(ix)-gdata.variables.box_x_start)/(gdata.variables.box_x_end-gdata.variables.box_x_start) * ...
+            abs((gdata.variables.lower_z_pts(iz) - gdata.variables.box_z_end)) / (gdata.variables.h_sample + gdata.variables.box_z_end) *...
+            (gdata.variables.D_sample/2 - gdata.variables.box_x_end);
     end
 end
 
+guidata(gcf, gdata);
+
+%% Initialization
+cla;
+
 %% Plot of the cono-spherical indenter before and after indentation
-guidata(gcf, gui_SX);
-[gui_SX.topo_indenter.fvc, gui_SX.handle_indenter] = preCPFE_indenter_plot;
-guidata(gcf, gui_SX);
-gui_SX  = guidata(gcf);
-guidata(gcf, gui_SX);
-clc
-%% Plot of the sample
-try
-    [cylX, cylY, cylZ] = cylinder(gui_SX.variables.D_sample/2, gui_SX.variables.sample_rep);
-    cylZ = -cylZ * gui_SX.variables.h_sample;
-    gui_SX.handles.sample.cyl = surf(cylX, cylY, cylZ);
-catch id
-    display(id)
-    gui_SX.handles.sample.cyl(1) = plotCircle3D([0,0,1], [0,0,0], gui_SX.variables.D_sample/2);
-    gui_SX.handles.sample.cyl(2) = plotCircle3D([0,0,1], [0,0,-gui_SX.variables.h_sample], gui_SX.variables.D_sample/2);
-end
+gdata.handle_indenter = preCPFE_indenter_plot;
+guidata(gcf, gdata);
 
-gui_SX.handles.meshSX(1) = surf(gui_SX.variables.box_x, zeros(size(gui_SX.variables.box_x)), gui_SX.variables.box_z);
-gui_SX.handles.meshSX(2) = surf(gui_SX.variables.outer_x, zeros(size(gui_SX.variables.outer_x)), gui_SX.variables.outer_z);
-gui_SX.handles.meshSX(3) = surf(gui_SX.variables.cyl1_x, zeros(size(gui_SX.variables.cyl1_x)), gui_SX.variables.cyl1_z);
-gui_SX.handles.meshSX(4) = surf(gui_SX.variables.cyl2_x, zeros(size(gui_SX.variables.cyl2_x)), gui_SX.variables.cyl2_z);
-gui_SX.handles.meshSX(5) = surf(gui_SX.variables.lower_x, zeros(size(gui_SX.variables.lower_x)), gui_SX.variables.lower_z);
-set([gui_SX.handles.meshSX, gui_SX.handles.sample.cyl], ...
-    'FaceColor', [1 1 1], 'FaceAlpha', 0., 'Linewidth', 1);
-set(gui_SX.handles.sample.cyl, 'EdgeAlpha', 0.1)
+hold on
+%% Plot the sample mesh
+gdata.handles.sample = preCPFE_mesh_plot_SX;
+guidata(gcf, gdata);
 
-% Axis setting
-axis tight; % Axis tight to the sample
-axis equal; % Axis aspect ratio
-view(old_az, old_el);
-grid off
-xyzlabel
-rotate3d on
-
-% FIXME: Inversion of x-axis ans y-axis with CPFE model !!!
-% if isfield(gui_SX, 'config_map')
-%     if isfield(gui_SX.config_map, 'unit_string')
-%         xlabel_str = strcat('x axis_', gui_SX.config_map.unit_string);
-%         zlabel_str = strcat('z axis_', gui_SX.config_map.unit_string);
-%     end
-%     xlabel_str = 'x axis';
-%     ylabel_str = 'y axis';
-%     zlabel_str = 'z axis';
-% else
-%     xlabel_str = 'x axis';
-%     zlabel_str = 'z axis';
-% end
-%
-% xlabel(xlabel_str);
-% zlabel(zlabel_str);
 
 %% Calculation of the number of elements
-guidata(gcf, gui_SX);
+
 preCPFE_indentation_number_elements_SX;
-gui_SX = guidata(gcf); guidata(gcf, gui_SX);
 
 %% Update of the CPFEM configuration
 preCPFE_config_CPFEM_updated
+
 end

@@ -99,7 +99,7 @@ handle_indenter = surf(X, Y, data);
 colormap('gray');
 
 %% Get patch for generation of Abaqus .inp file
-fvc = surf2patch(X, Y, data);
+fvc = surf2patch(X, Y, data); %FIXME: Not now, only needed when files are written...
 
 if nargin == 0
     close all;
