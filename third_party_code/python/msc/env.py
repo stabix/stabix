@@ -11,6 +11,8 @@ def get_msc_modules_path(mentat='2010', os_name=None):
         basedir = '/msc/'
         if mentat.startswith('2010'):
             shlibPath = basedir + 'mentat2010/shlib/linux64/'
+        if mentat.startswith('2013.1'):
+            shlibPath = basedir + 'mentat2013.1/shlib/linux64'
     elif os_name in ['nt', 'windows']:  # windows
         if mentat.startswith('2010'):
             import platform

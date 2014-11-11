@@ -79,6 +79,7 @@ class Jobs(Proc):
                   startJobs=False):
         # see copyAndSubmitJobs in MSC_POST
         cmd_list = []
+        cmd_list += ['*draw_manual\n']
         if jobList == None:
             jobList = ['A1', 'B1', 'C1', 'D1', 'N']
         if maxNr != None:
@@ -108,14 +109,24 @@ class Jobs(Proc):
             self.jobListNr = range(1, len(jobList) + 1)
         for ori in jobList:
             cmd_list.extend(['\n*copy_job\n',
-                             '*job_name %s\n' % ori +
-                             '*icond_type state_variable\n',
-                             '*icond_param_value state_var_id %i\n' % \
-                             2 +
-                             '*icond_dof_value var %i\n' \
-                                 #%(jobList.index(ori)+1),
-                             % (self.jobListNr[jobList.index(ori)]),
-                             '*save_model\n'])
+                             '*job_name %s\n' % ori])
+            if self.CODE == 'DAMASK':
+                sv_id = 3
+            else:
+                sv_id = 2
+            sv_val = self.jobListNr[jobList.index(ori)]
+            if True:
+                icond = self.init_cond_state_var(label=None,
+                                 StateVariableNumber=sv_id,
+                                 StateVariableValue=sv_val,
+                                 new=False,
+                                 elements=None)
+                cmd_list.extend([icond])
+            else:
+                cmd_list.extend(['*icond_type state_variable\n',
+                             '*icond_param_value state_var_id %i\n' % sv_id +
+                             '*icond_dof_value var %i\n' % sv_val])
+            cmd_list.extend(['*save_model\n'])
             if startJobs == False:
                 cmd_list.extend(['|'])
                 #'*submit_job 1 |%s\n'%(ori),
@@ -123,6 +134,7 @@ class Jobs(Proc):
                 ['*execute_job 1 |%s, %.1f pct completed\n' % (ori, jobList.index(ori) * 100. / len(jobList)),
                  #'*monitor_job |%s\n'%(ori),
                  '*job_option user_source:run_saved\n'])
+        cmd_list += ['*draw_automatic\n']
         self.print_commands(cmd_list,
                             #filename='startAllOris_%s.proc'%(label),caller='startAllOris',
                             filename='copy_jobs%s.proc' % (label), caller='msc.proc.jobs.copy_jobs',

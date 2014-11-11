@@ -26,8 +26,8 @@ class BicrystalIndent(Indentation):
                  len_trace=None,
                  h_indent=0.3,  # depth of the indent in µm
                  tipRadius=1.4,  # radius of the spherical indenter in µm
-                 geo=None,  # angle of the conical indenter in degree
-                 coneAngle=90.,
+                 geo='conical',
+                 coneAngle=90., # angle of the conical indenter in degree
                  ind_size=None,
                  #lengthScale = 1.
                  wid=4,  # width of the sample
@@ -45,7 +45,7 @@ class BicrystalIndent(Indentation):
                  box_bias_y3=0.3,  # bias in y direction in the grain A
                  smv=0.01,  # small values
                  lvl=1,  # mesh quality value
-                 free_mesh_inp=''
+                 free_mesh_inp=None
     ):
         import math
 
@@ -116,7 +116,7 @@ class BicrystalIndent(Indentation):
                 # length in the model is defined later in the code with the variable min_margin
 
         self.proc = []
-        self.start() 
+        self.start()
         #self.procIndentDocCall()
         self.procNewModel()
         self.proc_draw_update_manual()
@@ -185,7 +185,7 @@ class BicrystalIndent(Indentation):
         print 'length: ', len
         print 'heigth: ', hei
         print 'd: ', d
-        #self.procSampleIndent(smv=self.IndentParameters['smv'])
+
         self.procBoundaryConditions()
         self.procBoundaryConditionsBicrystal()
         if twoDimensional: self.procSampleIndent2D()

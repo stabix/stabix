@@ -16,7 +16,7 @@ class Indenter(Proc):
                           modelname='indenter',
                           h_indent=0.20,
                           D_sample=None,
-                          geo=None,
+                          geo='conical',
                           sample_rep=24, # 24, 48
                           Dexp=None,
                           twoDimensional=False,

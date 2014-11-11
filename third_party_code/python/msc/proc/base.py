@@ -24,7 +24,6 @@ class Proc(Sketch, Tools):
         Now (March 2013) it is more modular and a little bit tidier,
         thus more presentable.
     """
-    proc = []  # emty list to hold the procedure file content
     import getpass
 
     author = 'python_package (C. Zambaldi) used by ' + getpass.getuser()
@@ -39,7 +38,7 @@ class Proc(Sketch, Tools):
     header_line_mark = '|+++++++++++++++++++++++++++++++++++++++++++++\n'
 
     def __init__(self):
-        pass
+        proc = []  # emty list to hold the procedure file content
 
     def get_proc(self):
         return self.proc
@@ -59,7 +58,7 @@ class Proc(Sketch, Tools):
         if title is None: title = self.title
         if author is None: author = self.author
         if affiliation is None: affiliation = self.affiliation
-        self.proc.append('''
+        self.proc.append("""
 |+++++++++++++++++++++++++++++++++++++++++++++
 |  PROCEDURE FILE 
 |  FOR USE WITH MSC.%s''' % self.FEMSOFTWARE + ''' 
@@ -68,24 +67,22 @@ class Proc(Sketch, Tools):
 |=============================================
 |         AUTHOR: %s''' % author + ''', %s''' % affiliation + '''
 |           DATE: %s''' % (str(time.ctime())) + '''
-| GENERATED WITH: msc package by C. Zambaldi
-|                  MPI fuer Eisenforschung
+| GENERATED WITH: msc package by C. Zambaldi, http://github.com/czambaldi
+|                 MPI fuer Eisenforschung www.mpie.de
 |+++++++++++++++++++++++++++++++++++++++++++++
 | USAGE IN MENTAT: 
 |   /!\ Save current model /!\, then
 |   UTILS > PROCEDURES > LOAD > START/CONT
 |+++++++++++++++++++++++++++++++++++++++++++++
-''')
+""")
 
     def procNewModel(self):
-        self.proc.append('''
-|+++++++++++++++++++++++++++++++++++++++++++++
-| NEW MODEL
+        self.proc.append(self.header('NEW MODEL'))
+        self.proc.append("""
 *new_model yes\n*select_reset\n*plot_reset\n*expand_reset\n*move_reset
-|+++++++++++++++++++++++++++++++++++++++++++++
 *set_sweep_tolerance
 0.0001 | the MSC.Marc default value
-''')
+""")
 
 
     def procIndentDocCall(self):
@@ -103,7 +100,7 @@ class Proc(Sketch, Tools):
 
 
     def procParameters(self):
-        self.header('PARAMETER-DEFINITION')
+        self.proc.append(self.header('PARAMETER-DEFINITION'))
 
 
     def procParametersUniax(self, smv=0.01,
@@ -403,21 +400,20 @@ all_selected
                             label=['icond_mpie'],
                             StateVariableNumber=None,
                             StateVariableValue=None,
-                            elements='all_existing',
+                            elements='all_existing', # set 'None' for don't change
                             new=True):
         icond = ''
         if new:
             icond += '*new_icond\n'
-        icond += '''
-*icond_name
-%s
-*icond_type state_variable
-*icond_param_value state_var_id
-%i
-*icond_dof var *icond_dof_value var
-%i
-*add_icond_elements
-%s\n''' % (label, StateVariableNumber, StateVariableValue, elements)
+        if label is not None:
+            icond += "*icond_name\n%s\n" % label
+        icond += ("*icond_type state_variable\n"
+                  "*icond_param_value state_var_id\n"
+                  "%i\n"
+                  "*icond_dof var *icond_dof_value var\n"
+                  "%i\n") % (StateVariableNumber, StateVariableValue)
+        if elements is not None:
+            icond += '*add_icond_elements\n%s\n' % elements
         return icond
 
 

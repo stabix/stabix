@@ -25,7 +25,7 @@ def mapped_unc_to_drive_letter(unc_path=None, network_name='Microsoft'):
                     #print 'not what we are looking for'
                         
 def mapped_network_drives():
-    """ 
+    """Get list of all mapped network drives on Windows (usually Samba shares from Linux)
     """
     import subprocess
     # see also:  os.path.ismount
@@ -48,4 +48,4 @@ def test():
     server = 'mufs4'
     letter = mapped_unc_to_drive_letter(unc_path=server)
     assert(letter is not '')    
-    print letter
+    print(letter + '= ' + server)

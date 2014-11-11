@@ -3,6 +3,8 @@
 @author: c.zambaldi
 """
 
+import math
+
 from tools import Tools
 from indenter import Indenter
 
@@ -35,7 +37,7 @@ class Indentation(Indenter, Tools):
                  h_indent=0.20,  # maximum simulated indentation depth
                  D_sample=2.,  # diameter of sample
                  h_sample=None,  # sample height, only for overriding default estimate
-                 geo=None,  # indenter geometry
+                 geo='conical',  # indenter geometry
                  coneAngle=90,  # full cone angle (deg)
                  tipRadius=1,  # indenter tip radius
                  friction=0.3,  # Coulomb friction coefficient
@@ -59,9 +61,11 @@ class Indentation(Indenter, Tools):
                  divideMesh=False,  # subdivide each el. additionally into 8 els.
                  outStep=5,  # write step for results
                  nSteps=800,  # LC 'indent', No of increments
+                 n_steps_release=None,  # default is 10% of loading
+                 release_split=None,  # time ratio betw release1 and release2 load case
                  smv=0.01,  # small value
                  label='',
-                 free_mesh_inp='', #name of the .inp file for AFM topo for indenter
+                 free_mesh_inp=None,  #name of the .inp file for AFM topo for indenter
                  ori_list=None):
         self.callerDict = locals()
         if r_center_frac is not 0 and sample_rep not in [8, 16, 24, 32, 40, 48, 56]:
@@ -129,11 +133,6 @@ class Indentation(Indenter, Tools):
         self.procBoundaryConditionsIndent()
         if twoDimensional:
             self.procSampleIndent2D()
-            #if codeName is None:
-        #  self.CODE='GENMAT'
-        #  self.CODE='DAMASK'
-        #else:
-        #  self.CODE=codeName
         if self.CODE == 'DAMASK':
             self.procInitCondDamask()
         else:
@@ -142,7 +141,9 @@ class Indentation(Indenter, Tools):
         self.procGeometricProperties()
         #self.procContact()
         self.procContactIndent()
-        self.procLoadCaseIndent(nSteps=self.IndentParameters['nSteps'])
+        self.procLoadCaseIndent(nSteps=self.IndentParameters['nSteps'],
+                                n_steps_release=n_steps_release,
+                                release_split=release_split)
         self.procJobDef()
         self.procJobDefIndent()
         self.procFriction()
@@ -171,13 +172,14 @@ class Indentation(Indenter, Tools):
 
         self.procSaveModel(modelname=savename + '.mfd')
         self.procfilename = savename + '.proc'
+        self.proc_draw_update_automatic()
         #self.printCommands(self.proc,filename=self.procfilename)
         #self.define_post_vars()
         #self.define_post_vars(nslip=18) #Ti
         #return self.procfilename
 
 
-    def procParametersIndent(self):    
+    def procParametersIndent(self):
         if self.IndentParameters['D_sample'] is not None:
             dSamp = self.IndentParameters['D_sample']
         elif self.IndentParameters['Dexp'] is not None:
@@ -715,56 +717,58 @@ indenter_motion
 *contact_value friction %f
 ''' % self.IndentParameters['friction'])
 
+    def load_case_indent(self,
+                         new=True,
+                         name='LOADCASE',
+                         contact_table='ctable1',
+                         #lc_type='static',
+                         time_str='ind_time',
+                         nsteps=100, # increments
+                         maxrec=20,
+                         ntime_cuts=30):  # Number of timestep cutbacks
+        proc = '| LOADCASE: %s\n' % name.upper()
+        if new:
+            proc += '*new_loadcase\n'
+        proc += '*loadcase_name\n%s\n' % name
+        proc += '*loadcase_ctable\n%s\n' % contact_table
+        proc += '*loadcase_type static\n'
+        proc += '*loadcase_value time\n%s\n' % time_str
+        proc += '*loadcase_value nsteps\n%s\n' % str(nsteps)
+        proc += '*loadcase_value maxrec\n%i\n' % maxrec
+        proc += '*loadcase_value ntime_cuts\n%i\n' % ntime_cuts
+        return proc
 
-    def procLoadCaseIndent(self, nSteps=800):
-        self.proc.append('''
-| LOADCASE: INDENTATION
-*loadcase_name
-indentation
-*loadcase_ctable
-ctable1
-*loadcase_type static
-*loadcase_value time
-ind_time
-*loadcase_value nsteps
-%i''' % nSteps + '''
-*loadcase_value maxrec
-20
-*loadcase_value ntime_cuts | Number of timestep cutbacks
-30
-
-| LOADCASE: RELEASE I
-*new_loadcase
-*loadcase_name
-release1
-*loadcase_ctable
-ctable1
-*loadcase_type static
-*loadcase_value time
-0.1*ind_time
-*loadcase_value nsteps
-80
-*loadcase_value maxrec
-20
-*loadcase_value ntime_cuts
-30
-''')
+    def procLoadCaseIndent(self,
+                           nSteps=800,
+                           release_split=None,  # time ratio between rel1 and rel2
+                           n_steps_release=None):
+        lc_ind = self.load_case_indent(
+            new=False,  # just rename default LC
+            name='indentation',
+            contact_table='ctable1',
+            time_str='ind_time',
+            nsteps=nSteps)
+        self.proc.append(lc_ind)
+        if n_steps_release is None:
+            n_steps_release = int(math.ceil(nSteps / 6.))
+        # split number of increments evenly between release LCs but use less time for release1
+        n_steps_rel1 = int(math.ceil(0.5 * n_steps_release))
+        n_steps_rel2 = n_steps_release - n_steps_rel1
+        if release_split is None:
+            release_split = 0.2
+        lc_rel_1 = self.load_case_indent(
+            name='release1',
+            contact_table='ctable1',
+            time_str='%f*ind_time' % release_split,
+            nsteps='%i'%n_steps_rel1)
+        self.proc.append(lc_rel_1)
         self.proc_release_cbody(cbody='indenter')  # Mentat < 2013
-        self.proc.append('''
-| LOADCASE: RELEASE II
-*new_loadcase
-*loadcase_name
-release2
-*loadcase_type static
-*loadcase_value time
-(1-0.9)*ind_time
-*loadcase_value nsteps
-20
-*loadcase_value maxrec
-20
-*loadcase_value ntime_cuts
-30
-''')
+        lc_rel_2 = self.load_case_indent(
+            name='release2',
+            contact_table='ctable1',
+            time_str='%f*ind_time' % (1.-release_split),
+            nsteps='%i' % n_steps_rel2)
+        self.proc.append(lc_rel_2)
         self.proc_release_cbody(cbody='indenter')  # Mentat < 2013
 
     def procViewSetsIndent(self):
