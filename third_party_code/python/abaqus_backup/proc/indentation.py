@@ -124,30 +124,21 @@ class Indentation(Indenter, Tools):
         if self.IndentParameters['h_sample'] is None:
             self.IndentParameters['h_sample'] = h_indent * 12.
         self.procParametersIndent()
+        if geo == 'conical':
+            self.procIndenterConical(coneHalfAngle=self.IndentParameters['coneHalfAngle'])
+        if geo == 'flatPunch':
+			self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
+		#if geo == 'customized':
+		#	self.procIndenterCustomizedTopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'])
         self.procSample()
         self.procSampleIndent(smv=self.IndentParameters['smv'])
         self.procInstance()
         self.procSampleMeshing()
         self.procBoundaryConditionsIndent()
         self.procMaterial()
-        if geo == 'flatPunch':
-            self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
-        if geo == 'conical':
-            self.procIndenterConical(coneHalfAngle=self.IndentParameters['coneHalfAngle'])
-
-## remove      self.procContactIndent()
+        self.procContactIndent()
         self.procLoadCaseIndent() #nSteps=self.IndentParameters['nSteps']
         self.procJobParameters()
-        # if geo == 'flatPunch':
-            # self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
-        # if geo == 'conical':
-            # self.procIndenterConical(coneHalfAngle=self.IndentParameters['coneHalfAngle'])
-#        if geo == 'flatPunch':
-#            self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
-        #if geo == 'customized':
-        #    self.procIndenterCustomizedTopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'])
-
-
         savename = modelname + '_' + label
         savename += '_fric%.1f' % self.IndentParameters['friction']
         if geo == 'conical':
@@ -1500,8 +1491,8 @@ for i in range(8*sectors_45):
     
     
     
-# p = model_name.parts['indenter']
-# session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = model_name.parts['indenter']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
 a = model_name.rootAssembly
 a.regenerate()
 a = model_name.rootAssembly
@@ -1567,16 +1558,6 @@ num_elem = len(z1)
 elems1 = z1[0:num_elem]
 pickedRegions =(elems1, )
 final_sample.setElementType(regions=pickedRegions, elemTypes=(elemType1, ))
-
-
-### Top surface of the sample
-
-final_sample = model_name.parts['Final Sample']
-nodes_selected = final_sample.nodes.getByBoundingCylinder((0,0,-smv),(0,0,smv), D_sample*0.5+smv)
-surf_sample = final_sample.Set(name='Surf Sample', nodes=nodes_selected)
-
-
-
 ''')
 
     def procBoundaryConditionsIndent(self):
@@ -1601,6 +1582,27 @@ for i in range(8*sectors_45):
 	string = 'Points_Diameter_'+'%1d'%(i+1)
 	final_sample.Set(nodes=nodes_selected, name=string)
 	
+### Surface of the indenter
+
+InstanceRoot = model_name.rootAssembly
+faces_indenter = InstanceRoot.instances['indenter-1'].faces
+d = tipRadius/tan(coneAngle)
+r = tipRadius
+x_coor = r*cos(coneAngle)
+y_coor = 0
+z_coor = r*(1-sin(coneAngle))+sep_ind_samp
+side1Faces1 = faces_indenter.findAt(((0, 0, sep_ind_samp), ), ((x_coor, y_coor, z_coor), ))
+InstanceRoot.Surface(side1Faces=side1Faces1, name='Surf Indenter')
+
+### Top surface of the sample
+
+final_sample = model_name.parts['Final Sample']
+nodes_selected = final_sample.nodes.getByBoundingCylinder((0,0,-smv),(0,0,smv), D_sample*0.5+smv)
+surf_sample = final_sample.Set(name='Surf Sample', nodes=nodes_selected)
+
+#: The surface 'Surf Sample' has been created (1 mesh face).
+
+#: The surface 'Surf Sample' has been created (1 mesh face).
 
 ### Constraint of the nodes of the base
 InstanceRoot = model_name.rootAssembly
@@ -1615,6 +1617,37 @@ for i in range(8*sectors_45):
 	name_BC = 'BC_Diameter'+'%1d'%(i+1)
 	region = InstanceRoot.instances['Final Sample-1'].sets[name_set]
 	model_name.EncastreBC(name=name_BC, createStepName='Initial', region=region)
+
+### Surface interaction properties ###
+
+model_name.ContactProperty('Contact Properties')
+model_name.interactionProperties['Contact Properties'].TangentialBehavior(
+    formulation=PENALTY, directionality=ISOTROPIC, slipRateDependency=OFF, 
+    pressureDependency=OFF, temperatureDependency=OFF, dependencies=0, table=((
+    friction, ), ), shearStressLimit=None, maximumElasticSlip=FRACTION, 
+    fraction=0.005, elasticSlipStiffness=None)
+    
+model_name.interactionProperties['Contact Properties'].NormalBehavior(
+    pressureOverclosure=HARD, allowSeparation=ON, contactStiffness=DEFAULT, 
+    contactStiffnessScaleFactor=1.0, clearanceAtZeroContactPressure=0.0, 
+    stiffnessBehavior=LINEAR, constraintEnforcementMethod=PENALTY)
+    
+    
+### Set default contact controls
+
+#~ model_name.StdContactControl(name='Contact_Controls')
+#~ model_name.contactControls['Contact_Controls'].setValues(relativePenetrationTolerance=10.0)
+
+### Contact Definition
+
+InstanceRoot = model_name.rootAssembly
+region1=InstanceRoot.surfaces['Surf Indenter']
+region2=InstanceRoot.instances['Final Sample-1'].sets['Surf Sample']
+model_name.SurfaceToSurfaceContactStd(
+    name='Interaction test', createStepName='Initial', master=region1, 
+    slave=region2, sliding=FINITE, thickness=ON, 
+    interactionProperty='Contact Properties', adjustMethod=NONE, 
+    initialClearance=OMIT, datumAxis=None, clearanceRegion=None)
 ''')
 
     def procContactIndent(self):
