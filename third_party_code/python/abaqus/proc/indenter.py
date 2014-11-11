@@ -160,29 +160,6 @@ z_coor = r*(1-sin(coneAngle))+sep_ind_samp
 side1Faces1 = faces_indenter.findAt(((0, 0, sep_ind_samp), ), ((x_coor, y_coor, z_coor), ))
 InstanceRoot.Surface(side1Faces=side1Faces1, name='Surf Indenter')
 
-#+++++++++++++++++++++++++++++++++++++++++++++
-# CONTACT DEFINITION
-#+++++++++++++++++++++++++++++++++++++++++++++
-# Surface interaction properties
-fric = %f  # Friction value''' % (self.IndentParameters['friction']) + '''
-model_name.ContactProperty('Contact Properties')
-model_name.interactionProperties['Contact Properties'].TangentialBehavior(
-    formulation=PENALTY, directionality=ISOTROPIC, slipRateDependency=OFF, 
-    pressureDependency=OFF, temperatureDependency=OFF, dependencies=0, table=((
-    fric, ), ), shearStressLimit=None, maximumElasticSlip=FRACTION, 
-    fraction=0.005, elasticSlipStiffness=None)
-
-# Contact Definition
-InstanceRoot = model_name.rootAssembly
-region1 = InstanceRoot.surfaces['Surf Indenter']
-region2 = InstanceRoot.instances['Final Sample-1'].sets['Surf Sample']
-model_name.SurfaceToSurfaceContactStd(
-    name='Interaction test', createStepName='Initial', master=region1, 
-    slave=region2, sliding=FINITE, thickness=ON, 
-    interactionProperty='Contact Properties', adjustMethod=NONE, 
-    initialClearance=OMIT, datumAxis=None, clearanceRegion=None)
-
-
 
 '''
 )
@@ -210,8 +187,8 @@ g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
 s.setPrimaryObject(option=STANDALONE)
 s.ConstructionLine(point1=(0.0, -sheet_Size*0.5), point2=(0.0, sheet_Size*0.5))
 s.Line(point1=(0.0, 0.0), point2=(tipRadius, 0.0))
-s.Line(point1=(tipRadius, 0.0), point2=(tipRadius, h_indent*1.30))
-s.Line(point1=(tipRadius,  h_indent*1.30), point2=(0.0,  h_indent*1.30))
+s.Line(point1=(tipRadius, 0.0), point2=(tipRadius, h_indent*2.0))
+s.Line(point1=(tipRadius,  h_indent*2.0), point2=(0.0,  h_indent*2.0))
 p = mdb.models['single_crystal_indentation'].Part(name='indenter', 
     dimensionality=THREE_D, type=ANALYTIC_RIGID_SURFACE)
 p = mdb.models['single_crystal_indentation'].parts['indenter']
@@ -246,30 +223,7 @@ x_coor = r*0.5
 y_coor = 0
 z_coor = sep_ind_samp
 side1Faces1 = faces_indenter.findAt(((0, 0, sep_ind_samp), ), ((x_coor, y_coor, z_coor), ))
-InstanceRoot.Surface(side1Faces=side1Faces1, name='Surf Flat Punch')
-
-
-#+++++++++++++++++++++++++++++++++++++++++++++
-# CONTACT DEFINITION
-#+++++++++++++++++++++++++++++++++++++++++++++
-# Surface interaction properties
-fric = %f  # Friction value''' % (self.IndentParameters['friction']) + '''
-model_name.ContactProperty('Contact Properties')
-model_name.interactionProperties['Contact Properties'].TangentialBehavior(
-    formulation=PENALTY, directionality=ISOTROPIC, slipRateDependency=OFF, 
-    pressureDependency=OFF, temperatureDependency=OFF, dependencies=0, table=((
-    fric, ), ), shearStressLimit=None, maximumElasticSlip=FRACTION, 
-    fraction=0.005, elasticSlipStiffness=None)
-
-# Contact Definition
-InstanceRoot = model_name.rootAssembly
-region1 = InstanceRoot.surfaces['Surf Flat Punch']
-region2 = InstanceRoot.instances['Final Sample-1'].sets['Surf Sample']
-model_name.SurfaceToSurfaceContactStd(
-    name='Interaction test', createStepName='Initial', master=region1, 
-    slave=region2, sliding=FINITE, thickness=ON, 
-    interactionProperty='Contact Properties', adjustMethod=NONE, 
-    initialClearance=OMIT, datumAxis=None, clearanceRegion=None)
+InstanceRoot.Surface(side1Faces=side1Faces1, name='Surf Indenter')
 
 
 ''')

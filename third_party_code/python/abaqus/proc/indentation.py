@@ -133,9 +133,12 @@ class Indentation(Indenter, Tools):
         if geo == 'flatPunch':
             self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
         if geo == 'conical':
-            self.procIndenterConical(coneHalfAngle=self.IndentParameters['coneHalfAngle'])
+			self.procIndenterConical(coneHalfAngle=self.IndentParameters['coneHalfAngle'])
 
-## remove      self.procContactIndent()
+
+
+#		self.procContactIndent()
+        self.procContactIndent() 
         self.procLoadCaseIndent() #nSteps=self.IndentParameters['nSteps']
         self.procJobParameters()
         # if geo == 'flatPunch':
