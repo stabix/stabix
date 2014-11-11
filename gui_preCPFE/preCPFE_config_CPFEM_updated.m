@@ -14,12 +14,11 @@ gui = guidata(gcf);
 
 if gui.config.CPFEM.python.works
     set(gui.handles.other_setting.pb_CPFEM_model, 'BackgroundColor', [0.2 0.8 0],...
-        'String', 'CPFE  model',...
         'Callback', 'preCPFE_generate_CPFE_model');
 else
-    warning('Python not configured correctly')
+    commandwindow
+    warning('No Python found or numpy not installed !')
     set(gui.handles.other_setting.pb_CPFEM_model, 'BackgroundColor', [229/256 20/256 0],...
-        'String', 'No python found or numpy not installed !', ...
         'Callback', 'preCPFE_select_config_CPFEM');
 end
 

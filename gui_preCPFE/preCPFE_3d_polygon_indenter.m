@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function [ptc, handle_indenter] = preCPFE_3d_polygon_indenter(N, ang, height, zShift, varargin)
+function [handle_indenter, ptc] = preCPFE_3d_polygon_indenter(N, ang, height, zShift, varargin)
 %% Function to plot a 3D polygon indenter
 % N: Number of sides of the polygon (e.g.: N = 3 ==> three-sided indenter,
 % N = 4 ==> four-sided indenter). N > 2

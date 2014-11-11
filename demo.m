@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function gui_handle = demo
+function gui_handle = demo(app)
 %% Function to create the main window of the GUI (to select map, bicrystal or meshing interface)
 % author: d.mercier@mpie.de
 
@@ -172,4 +172,12 @@ guidata(gcf, gui);
 
 gui_handle = gui.handles.MainWindow;
 
+if nargin > 0
+    if strcmpi(app, 'map')
+        A_gui_plotmap;
+    elseif strcmpi(app, 'indsx')
+        A_preCPFE_windows_indentation_setting_SX;
+    elseif strcmpi(app, 'indbx')
+        A_preCPFE_windows_indentation_setting_BX;
+    end
 end
