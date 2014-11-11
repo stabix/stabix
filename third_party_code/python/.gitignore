@@ -1,2 +1,4 @@
 # python, also see https://github.com/github/gitignore/blob/master/Python.gitignore
 *.pyc
+# PyCharm project files
+*.idea
