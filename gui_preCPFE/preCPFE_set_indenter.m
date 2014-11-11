@@ -23,11 +23,12 @@ elseif indenter_index == 6
 end
 
 gui.variables.h_indent  = str2num(get(gui.handles.indenter.h_indent_val, 'String')); % Depth of indentation (in µm)
+% tipRadius is used for conospherical and flat punch
+gui.variables.tipRadius = str2num(get(gui.handles.indenter.tipRadius_val, 'String')); % Radius of cono-spherical indenter (in µm)
+
 if indenter_index == 1
     % Indenter variables
-    gui.variables.tipRadius = str2num(get(gui.handles.indenter.tipRadius_val, 'String')); % Radius of cono-spherical indenter (in µm)
     gui.variables.coneAngle = str2num(get(gui.handles.indenter.coneAngle_val, 'String')); % Full Angle of cono-spherical indenter (in °)
-    
     
     % Calculation of transition depth between spherical and conical parts of the indenter
     gui.variables.h_trans = preCPFE_indentation_transition_depth(gui.variables.tipRadius, gui.variables.coneAngle/2);
