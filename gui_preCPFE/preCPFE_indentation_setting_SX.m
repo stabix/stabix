@@ -5,18 +5,6 @@ function preCPFE_indentation_setting_SX
 
 gdata = guidata(gcf);
 
-%% Setting of the FEM interface
-gdata.config.CPFEM.fem_interface_val = get(gdata.handles.other_setting.pm_FEM_interface, 'Value');
-gdata.config.CPFEM.fem_interface_all_str = get(gdata.handles.other_setting.pm_FEM_interface, 'String');
-gdata.config.CPFEM.fem_solver_str_cell = gdata.config.CPFEM.fem_interface_all_str(gdata.config.CPFEM.fem_interface_val);
-gdata.config.CPFEM.fem_solver_used = gdata.config.CPFEM.fem_solver_str_cell{:};
-if strcmp(strtok(gdata.config.CPFEM.fem_solver_used, '_'), 'Abaqus') == 1
-    gdata.config.CPFEM.fem_solver_version = sscanf(gdata.config.CPFEM.fem_solver_used, 'Abaqus_%f');
-elseif strcmp(strtok(gdata.config.CPFEM.fem_solver_used, '_'), 'Mentat') == 1
-    gdata.config.CPFEM.fem_solver_version = sscanf(gdata.config.CPFEM.fem_solver_used, 'Mentat_%f');
-end
-
-
 %% Set positive values in case of missing parameters
 set_default_values_txtbox(gdata.handles.indenter.coneAngle_val, num2str(gdata.defaults.variables.coneAngle));
 set_default_values_txtbox(gdata.handles.indenter.tipRadius_val, num2str(gdata.defaults.variables.tipRadius));
@@ -203,9 +191,7 @@ hold on
 gdata.handles.sample = preCPFE_mesh_plot_SX;
 guidata(gcf, gdata);
 
-
 %% Calculation of the number of elements
-
 preCPFE_indentation_number_elements_SX;
 
 %% Update of the CPFEM configuration

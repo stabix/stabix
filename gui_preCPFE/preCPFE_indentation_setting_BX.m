@@ -11,18 +11,6 @@ rotation_angle = gdata.GB.GB_Trace_Angle - 90; % FIXME: -90 because inversion of
 direction = [0 0 1]; % along z-axis
 origin = [0,0,0];
 
-%% Setting of the FEM interface
-gdata.config.CPFEM.fem_interface_val = get(gdata.handles.other_setting.pm_FEM_interface, 'Value');
-gdata.config.CPFEM.fem_interface_all_str = get(gdata.handles.other_setting.pm_FEM_interface, 'String');
-gdata.config.CPFEM.fem_solver_str_cell = gdata.config.CPFEM.fem_interface_all_str(gdata.config.CPFEM.fem_interface_val);
-gdata.config.CPFEM.fem_solver_used = gdata.config.CPFEM.fem_solver_str_cell{:};
-if strcmp(strtok(gdata.config.CPFEM.fem_solver_used, '_'), 'Abaqus') == 1
-    gdata.config.CPFEM.fem_solver_version = sscanf(gdata.config.CPFEM.fem_solver_used, 'Abaqus_%f');
-elseif strcmp(strtok(gdata.config.CPFEM.fem_solver_used, '_'), 'Mentat') == 1
-    gdata.config.CPFEM.fem_solver_version = sscanf(gdata.config.CPFEM.fem_solver_used, 'Mentat_%f');
-end
-
-
 %% Set positive values in case of missing parameters
 %TODO:preCPFE_set_default_values_indenter
 set_default_values_txtbox(gdata.handles.indenter.coneAngle_val, num2str(gdata.defaults.variables.coneAngle));
@@ -40,12 +28,20 @@ set_default_values_txtbox(gdata.handles.mesh.box_elm_ny1_val, num2str(gdata.defa
 set_default_values_txtbox(gdata.handles.mesh.box_elm_ny2_fac_val, num2str(gdata.defaults.variables.box_elm_ny2_fac));
 set_default_values_txtbox(gdata.handles.mesh.box_elm_ny3_val, num2str(gdata.defaults.variables.box_elm_ny3));
 set_default_values_txtbox(gdata.handles.mesh.mesh_quality_lvl_val, num2str(gdata.defaults.variables.mesh_quality_lvl));
-set_default_values_txtbox(gdata.handles.mesh.box_bias_x_val, num2str(gdata.defaults.variables.box_bias_x));
-set_default_values_txtbox(gdata.handles.mesh.box_bias_z_val, num2str(gdata.defaults.variables.box_bias_z));
-set_default_values_txtbox(gdata.handles.mesh.box_bias_y1_val, num2str(gdata.defaults.variables.box_bias_y1));
-set_default_values_txtbox(gdata.handles.mesh.box_bias_y2_val, num2str(gdata.defaults.variables.box_bias_y2));
-set_default_values_txtbox(gdata.handles.mesh.box_bias_y3_val, num2str(gdata.defaults.variables.box_bias_y3));
 
+if strfind(gdata.config.CPFEM.fem_solver_used, 'Abaqus')
+    set_default_values_txtbox(gdata.handles.mesh.box_bias_x_val, num2str(gdata.defaults.variables.box_bias_x_abaqus));
+    set_default_values_txtbox(gdata.handles.mesh.box_bias_z_val, num2str(gdata.defaults.variables.box_bias_z_abaqus));
+    set_default_values_txtbox(gdata.handles.mesh.box_bias_y1_val, num2str(gdata.defaults.variables.box_bias_y1_abaqus));
+    set_default_values_txtbox(gdata.handles.mesh.box_bias_y2_val, num2str(gdata.defaults.variables.box_bias_y2_abaqus));
+    set_default_values_txtbox(gdata.handles.mesh.box_bias_y3_val, num2str(gdata.defaults.variables.box_bias_y3_abaqus));
+elseif strfind(gdata.config.CPFEM.fem_solver_used, 'Mentat')
+    set_default_values_txtbox(gdata.handles.mesh.box_bias_x_val, num2str(gdata.defaults.variables.box_bias_x_mentat));
+    set_default_values_txtbox(gdata.handles.mesh.box_bias_z_val, num2str(gdata.defaults.variables.box_bias_z_mentat));
+    set_default_values_txtbox(gdata.handles.mesh.box_bias_y1_val, num2str(gdata.defaults.variables.box_bias_y1_mentat));
+    set_default_values_txtbox(gdata.handles.mesh.box_bias_y2_val, num2str(gdata.defaults.variables.box_bias_y2_mentat));
+    set_default_values_txtbox(gdata.handles.mesh.box_bias_y3_val, num2str(gdata.defaults.variables.box_bias_y3_mentat));
+end
 
 %% Set fine / coarse mesh
 gdata.variables.meshquality = get(gdata.handles.other_setting.pm_mesh_quality, 'Value');
@@ -200,44 +196,44 @@ gdata.variables_geom.faces_sample = [1 2 10 9 ; 2 3 11 10  ; 3 4 12 11  ;...
 
 %% Meshing (Cross section view of the sample + indenter)
 % Meshgrid for the surface 1-2-5-6
-gdata.variables_geom.top1256_x_pts = mentat_bias(gdata.variables.sample_coordx_backface, 0, gdata.variables.box_elm_nx, gdata.variables.box_bias_x);
-gdata.variables_geom.top1256_y_pts = mentat_bias(gdata.variables.sample_coordy_leftface, gdata.variables.sample_coordy_midleftface_top, gdata.variables.box_elm_ny1, gdata.variables.box_bias_y1);
+gdata.variables_geom.top1256_x_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.sample_coordx_backface, 0, gdata.variables.box_elm_nx, gdata.variables.box_bias_x);
+gdata.variables_geom.top1256_y_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.sample_coordy_leftface, gdata.variables.sample_coordy_midleftface_top, gdata.variables.box_elm_ny1, gdata.variables.box_bias_y1);
 [gdata.variables_geom.top1256_x, gdata.variables_geom.top1256_y] = meshgrid(gdata.variables_geom.top1256_x_pts, gdata.variables_geom.top1256_y_pts);
 gdata.variables_geom.top1256_z = gdata.variables_geom.top1256_x*0;
 
 % Meshgrid for the surface 5-6-9-10
-gdata.variables_geom.top56910_x_pts = mentat_bias(-gdata.variables.sample_coordx_backface, 0, gdata.variables.box_elm_nx, gdata.variables.box_bias_x);
-gdata.variables_geom.top56910_y_pts = mentat_bias(gdata.variables.sample_coordy_leftface, gdata.variables.sample_coordy_midleftface_top, gdata.variables.box_elm_ny1, gdata.variables.box_bias_y1);
+gdata.variables_geom.top56910_x_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, -gdata.variables.sample_coordx_backface, 0, gdata.variables.box_elm_nx, gdata.variables.box_bias_x);
+gdata.variables_geom.top56910_y_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.sample_coordy_leftface, gdata.variables.sample_coordy_midleftface_top, gdata.variables.box_elm_ny1, gdata.variables.box_bias_y1);
 [gdata.variables_geom.top56910_x, gdata.variables_geom.top56910_y] = meshgrid(gdata.variables_geom.top56910_x_pts, gdata.variables_geom.top56910_y_pts);
 gdata.variables_geom.top56910_z = gdata.variables_geom.top56910_x*0;
 
 % Meshgrid for the surface 2-3-7-6
-gdata.variables_geom.top2376_x_pts = mentat_bias(gdata.variables.sample_coordx_backface, 0, gdata.variables.box_elm_nx, gdata.variables.box_bias_x);
-gdata.variables_geom.top2376_y_pts = mentat_bias(gdata.variables.sample_coordy_midleftface_top, gdata.variables.sample_coordy_midrightface_top, gdata.variables.box_elm_ny2, gdata.variables.box_bias_y2);
+gdata.variables_geom.top2376_x_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.sample_coordx_backface, 0, gdata.variables.box_elm_nx, gdata.variables.box_bias_x);
+gdata.variables_geom.top2376_y_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.sample_coordy_midleftface_top, gdata.variables.sample_coordy_midrightface_top, gdata.variables.box_elm_ny2, gdata.variables.box_bias_y2);
 [gdata.variables_geom.top2376_x, gdata.variables_geom.top2376_y] = meshgrid(gdata.variables_geom.top2376_x_pts, gdata.variables_geom.top2376_y_pts);
 gdata.variables_geom.top2376_z = gdata.variables_geom.top2376_x*0;
 
 % Meshgrid for the surface 6-7-10-11
-gdata.variables_geom.top671011_x_pts = mentat_bias(-gdata.variables.sample_coordx_backface, 0, gdata.variables.box_elm_nx, gdata.variables.box_bias_x);
-gdata.variables_geom.top671011_y_pts = mentat_bias(gdata.variables.sample_coordy_midleftface_top, gdata.variables.sample_coordy_midrightface_top, gdata.variables.box_elm_ny2, gdata.variables.box_bias_y2);
+gdata.variables_geom.top671011_x_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, -gdata.variables.sample_coordx_backface, 0, gdata.variables.box_elm_nx, gdata.variables.box_bias_x);
+gdata.variables_geom.top671011_y_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.sample_coordy_midleftface_top, gdata.variables.sample_coordy_midrightface_top, gdata.variables.box_elm_ny2, gdata.variables.box_bias_y2);
 [gdata.variables_geom.top671011_x, gdata.variables_geom.top671011_y] = meshgrid(gdata.variables_geom.top671011_x_pts, gdata.variables_geom.top671011_y_pts);
 gdata.variables_geom.top671011_z = gdata.variables_geom.top671011_x*0;
 
 % Meshgrid for the surface 3-4-8-7
-gdata.variables_geom.top3487_x_pts = mentat_bias(gdata.variables.sample_coordx_backface, 0, gdata.variables.box_elm_nx, gdata.variables.box_bias_x);
-gdata.variables_geom.top3487_y_pts = mentat_bias(gdata.variables.sample_coordy_midrightface_top, gdata.variables.sample_coordy_rightface, gdata.variables.box_elm_ny3, -gdata.variables.box_bias_y3);
+gdata.variables_geom.top3487_x_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.sample_coordx_backface, 0, gdata.variables.box_elm_nx, gdata.variables.box_bias_x);
+gdata.variables_geom.top3487_y_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.sample_coordy_midrightface_top, gdata.variables.sample_coordy_rightface, gdata.variables.box_elm_ny3, -gdata.variables.box_bias_y3);
 [gdata.variables_geom.top3487_x, gdata.variables_geom.top3487_y] = meshgrid(gdata.variables_geom.top3487_x_pts, gdata.variables_geom.top3487_y_pts);
 gdata.variables_geom.top3487_z = gdata.variables_geom.top3487_x*0;
 
 % Meshgrid for the surface 7-8-12-11
-gdata.variables_geom.top781211_x_pts = mentat_bias(-gdata.variables.sample_coordx_backface, 0, gdata.variables.box_elm_nx, gdata.variables.box_bias_x);
-gdata.variables_geom.top781211_y_pts = mentat_bias(gdata.variables.sample_coordy_midrightface_top, gdata.variables.sample_coordy_rightface, gdata.variables.box_elm_ny3, -gdata.variables.box_bias_y3);
+gdata.variables_geom.top781211_x_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, -gdata.variables.sample_coordx_backface, 0, gdata.variables.box_elm_nx, gdata.variables.box_bias_x);
+gdata.variables_geom.top781211_y_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.sample_coordy_midrightface_top, gdata.variables.sample_coordy_rightface, gdata.variables.box_elm_ny3, -gdata.variables.box_bias_y3);
 [gdata.variables_geom.top781211_x, gdata.variables_geom.top781211_y] = meshgrid(gdata.variables_geom.top781211_x_pts, gdata.variables_geom.top781211_y_pts);
 gdata.variables_geom.top781211_z = gdata.variables_geom.top781211_x*0;
 
 % Meshgrid for the surface 9-10-13-14
-gdata.variables_geom.top9101314_y_pts = mentat_bias(gdata.variables.sample_coordy_midleftface_top, gdata.variables.sample_coordy_leftface, gdata.variables.box_elm_ny1, -gdata.variables.box_bias_y1);
-gdata.variables_geom.top9101314_z_pts = mentat_bias(gdata.variables.sample_coordz_bottomface, 0, gdata.variables.box_elm_nz, gdata.variables.box_bias_z);
+gdata.variables_geom.top9101314_y_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.sample_coordy_midleftface_top, gdata.variables.sample_coordy_leftface, gdata.variables.box_elm_ny1, -gdata.variables.box_bias_y1);
+gdata.variables_geom.top9101314_z_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.sample_coordz_bottomface, 0, gdata.variables.box_elm_nz, gdata.variables.box_bias_z);
 [gdata.variables_geom.top9101314_y, gdata.variables_geom.top9101314_z] = meshgrid(gdata.variables_geom.top9101314_y_pts, gdata.variables_geom.top9101314_z_pts);
 gdata.variables_geom.top9101314_x = gdata.variables_geom.top9101314_y*0;
 gdata.variables_geom.top9101314_x(:) = gdata.variables.sample_coordx_frontface;
@@ -250,8 +246,8 @@ for iz = 1:size(gdata.variables_geom.top9101314_y,1)
 end
 
 % Meshgrid for the surface 10-11-15-14
-gdata.variables_geom.top10111514_y_pts = mentat_bias(gdata.variables.sample_coordy_midleftface_top, gdata.variables.sample_coordy_midrightface_top, gdata.variables.box_elm_ny2, gdata.variables.box_bias_y2);
-gdata.variables_geom.top10111514_z_pts = mentat_bias(gdata.variables.sample_coordz_bottomface, 0, gdata.variables.box_elm_nz, gdata.variables.box_bias_z);
+gdata.variables_geom.top10111514_y_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.sample_coordy_midleftface_top, gdata.variables.sample_coordy_midrightface_top, gdata.variables.box_elm_ny2, gdata.variables.box_bias_y2);
+gdata.variables_geom.top10111514_z_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.sample_coordz_bottomface, 0, gdata.variables.box_elm_nz, gdata.variables.box_bias_z);
 [gdata.variables_geom.top10111514_y, gdata.variables_geom.top10111514_z] = meshgrid(gdata.variables_geom.top10111514_y_pts, gdata.variables_geom.top10111514_z_pts);
 gdata.variables_geom.top10111514_x = gdata.variables_geom.top10111514_y*0;
 gdata.variables_geom.top10111514_x(:) = gdata.variables.sample_coordx_frontface;
@@ -264,8 +260,8 @@ for iy = 1:size(gdata.variables_geom.top10111514_y,2)
 end
 
 % Meshgrid for the surface 11-12-16-15
-gdata.variables_geom.top11121615_y_pts = mentat_bias(gdata.variables.sample_coordy_rightface, gdata.variables.sample_coordy_midrightface_top, gdata.variables.box_elm_ny3, gdata.variables.box_bias_y3);
-gdata.variables_geom.top11121615_z_pts = mentat_bias(gdata.variables.sample_coordz_bottomface, 0, gdata.variables.box_elm_nz, gdata.variables.box_bias_z);
+gdata.variables_geom.top11121615_y_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.sample_coordy_rightface, gdata.variables.sample_coordy_midrightface_top, gdata.variables.box_elm_ny3, gdata.variables.box_bias_y3);
+gdata.variables_geom.top11121615_z_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.sample_coordz_bottomface, 0, gdata.variables.box_elm_nz, gdata.variables.box_bias_z);
 [gdata.variables_geom.top11121615_y, gdata.variables_geom.top11121615_z] = meshgrid(gdata.variables_geom.top11121615_y_pts, gdata.variables_geom.top11121615_z_pts);
 gdata.variables_geom.top11121615_x = gdata.variables_geom.top11121615_y*0;
 gdata.variables_geom.top11121615_x(:) = gdata.variables.sample_coordx_frontface;
@@ -278,15 +274,15 @@ for iz = 1:size(gdata.variables_geom.top11121615_y,1)
 end
 
 % Meshgrid for the surface 8-4-18-17
-gdata.variables_geom.top841817_x_pts = mentat_bias(gdata.variables.sample_coordx_backface, 0, gdata.variables.box_elm_nx, gdata.variables.box_bias_x);
-gdata.variables_geom.top841817_z_pts = mentat_bias(gdata.variables.sample_coordz_bottomface, 0, gdata.variables.box_elm_nz, gdata.variables.box_bias_z);
+gdata.variables_geom.top841817_x_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.sample_coordx_backface, 0, gdata.variables.box_elm_nx, gdata.variables.box_bias_x);
+gdata.variables_geom.top841817_z_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.sample_coordz_bottomface, 0, gdata.variables.box_elm_nz, gdata.variables.box_bias_z);
 [gdata.variables_geom.top841817_x, gdata.variables_geom.top841817_z] = meshgrid(gdata.variables_geom.top841817_x_pts, gdata.variables_geom.top841817_z_pts);
 gdata.variables_geom.top841817_y = gdata.variables_geom.top841817_x*0;
 gdata.variables_geom.top841817_y(:) = gdata.variables.sample_coordy_rightface;
 
 % Meshgrid for the surface 8-12-16-17
-gdata.variables_geom.top8121617_x_pts = mentat_bias(gdata.variables.sample_coordx_frontface, 0, gdata.variables.box_elm_nx, gdata.variables.box_bias_x);
-gdata.variables_geom.top8121617_z_pts = mentat_bias(gdata.variables.sample_coordz_bottomface, 0, gdata.variables.box_elm_nz, gdata.variables.box_bias_z);
+gdata.variables_geom.top8121617_x_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.sample_coordx_frontface, 0, gdata.variables.box_elm_nx, gdata.variables.box_bias_x);
+gdata.variables_geom.top8121617_z_pts = preCPFE_bias(gdata.config.CPFEM.fem_solver_used, gdata.variables.sample_coordz_bottomface, 0, gdata.variables.box_elm_nz, gdata.variables.box_bias_z);
 [gdata.variables_geom.top8121617_x, gdata.variables_geom.top8121617_z] = meshgrid(gdata.variables_geom.top8121617_x_pts, gdata.variables_geom.top8121617_z_pts);
 gdata.variables_geom.top8121617_y = gdata.variables_geom.top8121617_x*0;
 gdata.variables_geom.top8121617_y(:) = gdata.variables.sample_coordy_rightface;
@@ -320,7 +316,7 @@ gdata.handles.mesh.meshBX_GB1 = plot3(GB_coords_X, GB_coords_Y, GB_coords_Z, '-'
 if gdata.variables.ind_dist ~= 0
     gdata.handles.mesh.meshBX_GB2 = surf(gdata.variables_geom.top2376_x, gdata.variables_geom.top2376_y, gdata.variables_geom.top2376_z, 'FaceColor', color_inter_gr_gb); hold on;
     gdata.handles.mesh.meshBX_GB3 = surf(gdata.variables_geom.top671011_x, gdata.variables_geom.top671011_y, gdata.variables_geom.top671011_z, 'FaceColor', color_inter_gr_gb); hold on;
-    gdata.handles.mesh.meshBX_GB4 = surf(gdata.variables_geom.top10111514_x, gdata.variables_geom.top10111514_y, gdata.variables_geom.top10111514_z, 'FaceColor', color_inter_gr_gb); hold on;    
+    gdata.handles.mesh.meshBX_GB4 = surf(gdata.variables_geom.top10111514_x, gdata.variables_geom.top10111514_y, gdata.variables_geom.top10111514_z, 'FaceColor', color_inter_gr_gb); hold on;
     rotate([gdata.handles.mesh.meshBX_GB2, ...
         gdata.handles.mesh.meshBX_GB3, ...
         gdata.handles.mesh.meshBX_GB4], ...
@@ -331,12 +327,12 @@ end
 % legend will be wrong... (mesh.meshBX_1 to mesh.meshBX_8)
 % Plot of the mesh (part 2/2)
 hold on;
-gdata.handles.mesh.meshBX(3) = surf(gdata.variables_geom.top56910_x, gdata.variables_geom.top56910_y, gdata.variables_geom.top56910_z, 'FaceColor', color_grA); 
-gdata.handles.mesh.meshBX(4) = surf(gdata.variables_geom.top781211_x, gdata.variables_geom.top781211_y, gdata.variables_geom.top781211_z, 'FaceColor', color_grB); 
-gdata.handles.mesh.meshBX(5) = surf(gdata.variables_geom.top9101314_x, gdata.variables_geom.top9101314_y, gdata.variables_geom.top9101314_z, 'FaceColor', color_grA); 
-gdata.handles.mesh.meshBX(6) = surf(gdata.variables_geom.top11121615_x, gdata.variables_geom.top11121615_y, gdata.variables_geom.top11121615_z, 'FaceColor', color_grB); 
-gdata.handles.mesh.meshBX(7) = surf(gdata.variables_geom.top841817_x, gdata.variables_geom.top841817_y, gdata.variables_geom.top841817_z, 'FaceColor', color_grB); 
-gdata.handles.mesh.meshBX(8) = surf(gdata.variables_geom.top8121617_x, gdata.variables_geom.top8121617_y, gdata.variables_geom.top8121617_z, 'FaceColor', color_grB); 
+gdata.handles.mesh.meshBX(3) = surf(gdata.variables_geom.top56910_x, gdata.variables_geom.top56910_y, gdata.variables_geom.top56910_z, 'FaceColor', color_grA);
+gdata.handles.mesh.meshBX(4) = surf(gdata.variables_geom.top781211_x, gdata.variables_geom.top781211_y, gdata.variables_geom.top781211_z, 'FaceColor', color_grB);
+gdata.handles.mesh.meshBX(5) = surf(gdata.variables_geom.top9101314_x, gdata.variables_geom.top9101314_y, gdata.variables_geom.top9101314_z, 'FaceColor', color_grA);
+gdata.handles.mesh.meshBX(6) = surf(gdata.variables_geom.top11121615_x, gdata.variables_geom.top11121615_y, gdata.variables_geom.top11121615_z, 'FaceColor', color_grB);
+gdata.handles.mesh.meshBX(7) = surf(gdata.variables_geom.top841817_x, gdata.variables_geom.top841817_y, gdata.variables_geom.top841817_z, 'FaceColor', color_grB);
+gdata.handles.mesh.meshBX(8) = surf(gdata.variables_geom.top8121617_x, gdata.variables_geom.top8121617_y, gdata.variables_geom.top8121617_z, 'FaceColor', color_grB);
 
 % Rotation of the bicrystal
 rotate([gdata.handles.mesh.meshBX, ...
@@ -362,7 +358,7 @@ gdata.handles.mesh.sample_patch = ...
     'Faces', gdata.variables_geom.faces_sample,'FaceAlpha',0.05);
 
 rotate(gdata.handles.mesh.sample_patch, ...
-        direction, rotation_angle, origin);
+    direction, rotation_angle, origin);
 
 % Legend
 legend(strcat('GrainA n°', num2str(gdata.GB.GrainA)), ...

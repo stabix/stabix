@@ -56,8 +56,6 @@ handles.num_elem = uicontrol('Parent', parent,...
     'FontWeight', 'bold',...
     'FontSize', 12);
 
-
-
 %% Pop-up menu to set FEM software
 handles.pm_FEM_interface = preCPFE_solver_popup([2*x0 hu*2 wu*3 hu]);
 
@@ -110,14 +108,14 @@ if strcmp(gui.GB.active_data, 'SX') == 1
     set(handles.pb_CPFEM_model, 'Callback', 'preCPFE_indentation_setting_SX');
     set(handles.pm_mesh_color, 'Callback', 'preCPFE_indentation_setting_SX');
     set(handles.pb_mesh_example, 'Callback', 'gui = guidata(gcf); webbrowser(fullfile(gui.config.doc_path_root, gui.config.doc_path_SXind_png));');
-    set(handles.pm_FEM_interface, 'Callback', 'preCPFE_indentation_setting_SX');
+    set(handles.pm_FEM_interface, 'Callback', 'preCPFE_preset_mesh_parameters_SX; preCPFE_indentation_setting_SX');
 elseif strcmp(gui.GB.active_data, 'BX') == 1
     %set(handles.pm_mesh_quality, 'Callback', 'preCPFE_indentation_setting_BX');
     %set(handles.cb_indenter_post_indentation, 'Callback', 'preCPFE_indentation_setting_BX');
     set(handles.pb_CPFEM_model, 'Callback', 'preCPFE_indentation_setting_BX');
     set(handles.pm_mesh_color, 'Callback', 'preCPFE_indentation_setting_BX');
     set(handles.pb_mesh_example, 'Callback', 'gui = guidata(gcf); webbrowser(fullfile(gui.config.doc_path_root, gui.config.doc_path_BXind_png));');
-    set(handles.pm_FEM_interface, 'Callback', 'preCPFE_indentation_setting_BX');
+    set(handles.pm_FEM_interface, 'Callback', 'preCPFE_preset_mesh_parameters_BX; preCPFE_indentation_setting_BX');
 end
 
 end

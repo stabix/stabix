@@ -92,6 +92,8 @@ guidata(gcf, gui_SX);
 
 %% Run the plot of the meshing
 gui_SX.indenter_type = 'conical'; guidata(gcf, gui_SX);
+preCPFE_set_CPFEM_solver;
+gui_BX = guidata(gcf); guidata(gcf, gui_BX);
 preCPFE_indentation_setting_SX;
 gui_SX = guidata(gcf); guidata(gcf, gui_SX);
 

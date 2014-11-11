@@ -92,34 +92,67 @@ if gui_BX.variables.box_elm_ny3 <= 0
     gui_BX.variables.box_elm_ny3 = str2num(get(gui_BX.handles.mesh.box_elm_ny3_val, 'String'));
 end
 
-% Bias x
-if gui_BX.variables.box_bias_x < -0.5 || gui_BX.variables.box_bias_x > 0.5
-    set(gui_BX.handles.mesh.box_bias_x_val, 'String', num2str(gui_BX.defaults.variables.box_bias_x));
-    gui_BX.variables.box_bias_x = str2num(get(gui_BX.handles.mesh.box_bias_x_val, 'String'));
-end
-
-% Bias z
-if gui_BX.variables.box_bias_z < -0.5 || gui_BX.variables.box_bias_z > 0.5
-    set(gui_BX.handles.mesh.box_bias_z_val, 'String', num2str(gui_BX.defaults.variables.box_bias_z));
-    gui_BX.variables.box_bias_z = str2num(get(gui_BX.handles.mesh.box_bias_z_val, 'String'));
-end
-
-% Bias y1
-if gui_BX.variables.box_bias_y1 < -0.5 || gui_BX.variables.box_bias_y1 > 0.5
-    set(gui_BX.handles.mesh.box_bias_y1_val, 'String', num2str(gui_BX.defaults.variables.box_bias_y1));
-    gui_BX.variables.box_bias_y1 = str2num(get(gui_BX.handles.mesh.box_bias_y1_val, 'String'));
-end
-
-% Bias y2
-if gui_BX.variables.box_bias_y2 < -0.5 || gui_BX.variables.box_bias_y2 > 0.5
-    set(gui_BX.handles.mesh.box_bias_y2_val, 'String', num2str(gui_BX.defaults.variables.box_bias_y2));
-    gui_BX.variables.box_bias_y2 = str2num(get(gui_BX.handles.mesh.box_bias_y2_val, 'String'));
-end
-
-% Bias y3
-if gui_BX.variables.box_bias_y3 < -0.5 || gui_BX.variables.box_bias_y3 > 0.5
-    set(gui_BX.handles.mesh.box_bias_y3_val, 'String', num2str(gui_BX.defaults.variables.box_bias_y3));
-    gui_BX.variables.box_bias_y3 = (str2num(get(gui_BX.handles.mesh.box_bias_y3_val, 'String')));
+if strfind(gui_BX.config.CPFEM.fem_solver_used, 'Abaqus')
+    % Bias x
+    if gui_BX.variables.box_bias_x == 0
+        set(gui_BX.handles.mesh.box_bias_x_val, 'String', num2str(gui_BX.defaults.variables.box_bias_x_abaqus));
+        gui_BX.variables.box_bias_x = str2num(get(gui_BX.handles.mesh.box_bias_x1_val, 'String'));
+    end
+    
+    % Bias z
+    if gui_BX.variables.box_bias_z == 0
+        set(gui_BX.handles.mesh.box_bias_z_val, 'String', num2str(gui_BX.defaults.variables.box_bias_z_abaqus));
+        gui_BX.variables.box_bias_z = str2num(get(gui_BX.handles.mesh.box_bias_z1_val, 'String'));
+    end
+    
+    % Bias y1
+    if gui_BX.variables.box_bias_y1 == 0
+        set(gui_BX.handles.mesh.box_bias_y1_val, 'String', num2str(gui_BX.defaults.variables.box_bias_y1_abaqus));
+        gui_BX.variables.box_bias_y1 = str2num(get(gui_BX.handles.mesh.box_bias_y1_val, 'String'));
+    end
+    
+    % Bias y2
+    if gui_BX.variables.box_bias_y2 == 0
+        set(gui_BX.handles.mesh.box_bias_y2_val, 'String', num2str(gui_BX.defaults.variables.box_bias_y2_abaqus));
+        gui_BX.variables.box_bias_y2 = str2num(get(gui_BX.handles.mesh.box_bias_y2_val, 'String'));
+    end
+    
+    % Bias y3
+    if gui_BX.variables.box_bias_y3 == 0
+        set(gui_BX.handles.mesh.box_bias_y3_val, 'String', num2str(gui_BX.defaults.variables.box_bias_y3_abaqus));
+        gui_BX.variables.box_bias_y3 = (str2num(get(gui_BX.handles.mesh.box_bias_y3_val, 'String')));
+    end
+    
+elseif strfind(gui_BX.config.CPFEM.fem_solver_used, 'Mentat')
+    % Bias x
+    if gui_BX.variables.box_bias_x < -0.5 || gui_BX.variables.box_bias_x > 0.5
+        set(gui_BX.handles.mesh.box_bias_x_val, 'String', num2str(gui_BX.defaults.variables.box_bias_x_mentat));
+        gui_BX.variables.box_bias_x = str2num(get(gui_BX.handles.mesh.box_bias_x_val, 'String'));
+    end
+    
+    % Bias z
+    if gui_BX.variables.box_bias_z < -0.5 || gui_BX.variables.box_bias_z > 0.5
+        set(gui_BX.handles.mesh.box_bias_z_val, 'String', num2str(gui_BX.defaults.variables.box_bias_z_mentat));
+        gui_BX.variables.box_bias_z = str2num(get(gui_BX.handles.mesh.box_bias_z_val, 'String'));
+    end
+    
+    % Bias y1
+    if gui_BX.variables.box_bias_y1 < -0.5 || gui_BX.variables.box_bias_y1 > 0.5
+        set(gui_BX.handles.mesh.box_bias_y1_val, 'String', num2str(gui_BX.defaults.variables.box_bias_y1_mentat));
+        gui_BX.variables.box_bias_y1 = str2num(get(gui_BX.handles.mesh.box_bias_y1_val, 'String'));
+    end
+    
+    % Bias y2
+    if gui_BX.variables.box_bias_y2 < -0.5 || gui_BX.variables.box_bias_y2 > 0.5
+        set(gui_BX.handles.mesh.box_bias_y2_val, 'String', num2str(gui_BX.defaults.variables.box_bias_y2_mentat));
+        gui_BX.variables.box_bias_y2 = str2num(get(gui_BX.handles.mesh.box_bias_y2_val, 'String'));
+    end
+    
+    % Bias y3
+    if gui_BX.variables.box_bias_y3 < -0.5 || gui_BX.variables.box_bias_y3 > 0.5
+        set(gui_BX.handles.mesh.box_bias_y3_val, 'String', num2str(gui_BX.defaults.variables.box_bias_y3_mentat));
+        gui_BX.variables.box_bias_y3 = (str2num(get(gui_BX.handles.mesh.box_bias_y3_val, 'String')));
+    end
 end
 
 guidata(gcf, gui_BX);

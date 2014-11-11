@@ -91,44 +91,40 @@ end
 
 if strfind(gui_SX.config.CPFEM.fem_solver_used, 'Abaqus')
     % Bias x
-    if gui_SX.variables.box_bias_x < 1
+    if gui_SX.variables.box_bias_x == 0
         set(gui_SX.handles.mesh.box_bias_x_val, 'String', num2str(gui_SX.defaults.variables.box_bias_x_abaqus));
-        set(gui_SX.handles.mesh.box_bias_x_str, 'String', 'box_bias_x (> 1)');
         gui_SX.variables.box_bias_x = gui_SX.defaults.variables.box_bias_x_abaqus;
     end
     
     % Bias z
-    if gui_SX.variables.box_bias_z < 1
+    if gui_SX.variables.box_bias_z == 0
         set(gui_SX.handles.mesh.box_bias_z_val, 'String', num2str(gui_SX.defaults.variables.box_bias_z_abaqus));
-        set(gui_SX.handles.mesh.box_bias_z_str, 'String', 'box_bias_z (> 1)');
         gui_SX.variables.box_bias_z = gui_SX.defaults.variables.box_bias_z_abaqus;
     end
     
     % Bias conv_x
-    if gui_SX.variables.box_bias_conv_x < 1
+    if gui_SX.variables.box_bias_conv_x == 0
         set(gui_SX.handles.mesh.box_bias_conv_x_val, 'String', num2str(gui_SX.defaults.variables.box_bias_conv_x_abaqus));
-        set(gui_SX.handles.mesh.box_bias_conv_x_str, 'String', 'box_bias_conv_x (> 1)');
         gui_SX.variables.box_bias_conv_x = gui_SX.defaults.variables.box_bias_conv_x_abaqus;
     end
+    
 elseif strfind(gui_SX.config.CPFEM.fem_solver_used, 'Mentat')
     % Bias x
     if gui_SX.variables.box_bias_x < -0.5 || gui_SX.variables.box_bias_x > 0.5
         set(gui_SX.handles.mesh.box_bias_x_val, 'String', num2str(gui_SX.defaults.variables.box_bias_x_mentat));
-        set(gui_SX.handles.mesh.box_bias_x_str, 'String', 'box_bias_x (-0.5 to 0.5)');
         gui_SX.variables.box_bias_x = gui_SX.defaults.variables.box_bias_x_mentat;
     end
     
     % Bias z
     if gui_SX.variables.box_bias_z < -0.5 || gui_SX.variables.box_bias_z > 0.5
         set(gui_SX.handles.mesh.box_bias_z_val, 'String', num2str(gui_SX.defaults.variables.box_bias_z_mentat));
-        set(gui_SX.handles.mesh.box_bias_z_str, 'String', 'box_bias_z (-0.5 to 0.5)');
+
         gui_SX.variables.box_bias_z = gui_SX.defaults.variables.box_bias_z_mentat;
     end
     
     % Bias conv_x
     if gui_SX.variables.box_bias_conv_x < -0.5 || gui_SX.variables.box_bias_conv_x > 0.5
         set(gui_SX.handles.mesh.box_bias_conv_x_val, 'String', num2str(gui_SX.defaults.variables.box_bias_conv_x_mentat));
-        set(gui_SX.handles.mesh.box_bias_conv_x_str, 'String', 'box_bias_conv_x (-0.5 to 0.5)');
         gui_SX.variables.box_bias_conv_x = gui_SX.defaults.variables.box_bias_conv_x_mentat;
     end
 end

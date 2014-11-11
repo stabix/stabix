@@ -10,7 +10,7 @@ function biased_elem = abaqus_bias(x0, xN, num_elements, bias, varargin)
 
 % A bias parameter, p, that is greater than 1.0 provides closer spacing of
 % the results points toward the ends of the frequency interval, while values
-% of p that are less than 1.0 (or less than 0) provide closer spacing
+% of p that are comprised between 0 and 1.0 (or less than -1) provide closer spacing
 % toward the beginning of the frequency interval. The default bias parameter is 3.0 for an
 % eigenfrequency interval and 1.0 for a range frequency interval.
 
@@ -21,7 +21,7 @@ if nargin == 0
     clc;
     close all;
     num_elements = 10;
-    bias = 2; % or p = -2 to inverse sens of bias
+    bias = 0; % or p = -2 to inverse sens of bias
     x0 = 0;
     xN = 10;
     testing = 1;
@@ -31,6 +31,12 @@ end
 
 length = xN - x0;
 p = bias; % Abaqus uses "p" for the bias.
+
+% No bias elements created if p is equal to 0 !
+if p == 0
+    commandwindow;
+    warning('Wrong input for the bias value. Bias value can not be equal to 0.');
+end
 
 ratio = abs(p)^(1/(num_elements-1));
 

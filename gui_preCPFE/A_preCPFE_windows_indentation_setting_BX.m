@@ -66,7 +66,7 @@ end
 guidata(gcf, gui_BX);
 
 %% Creation of string boxes and edit boxes to set indenter and indentation properties
-gui_BX.handles.mesh = preCPFE_mesh_parameters_BX(gui_BX.defaults, x0, hu, wu);
+gui_BX.handles.mesh = preCPFE_mesh_parameters_BX(gui_BX.defaults, x0, hu, wu, gui_BX.config.CPFEM.fem_solver_used);
 
 %% Pop-up menu to select Python executable
 gui_BX.handles.pm_Python = preCPFE_python_popup([2*x0 hu*2.6 wu*3 hu]);
@@ -84,6 +84,8 @@ guidata(gcf, gui_BX);
 
 %% Run the plot of the meshing
 gui_BX.indenter_type = 'conical'; guidata(gcf, gui_BX);
+preCPFE_set_CPFEM_solver;
+gui_BX = guidata(gcf); guidata(gcf, gui_BX);
 preCPFE_indentation_setting_BX;
 gui_BX = guidata(gcf); guidata(gcf, gui_BX);
 
