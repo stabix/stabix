@@ -39,7 +39,7 @@ gui = guidata(gcf);
 
 % Get total phase_number
 guidata(gcf, gui);
-interface_map_set_phase_number
+interface_map_set_phase_number(gui.GF2_struct);
 % Get data from encapsulation
 gui = guidata(gcf);
 guidata(gcf, gui);

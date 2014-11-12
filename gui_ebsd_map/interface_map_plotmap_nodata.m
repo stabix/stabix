@@ -172,7 +172,7 @@ for ng = 1:1:max(GF2(:,1))
         if get(gui.handles.cbunitcell, 'Value') == 1
             vis_lattice(structure_A, eulers_vis_A, 0, shiftxyz, szFac, 0,1);
         end
-        plot_slip_traces(slip, eulers_vis_A, structure_A, ca_ratio_A(1), shiftxyz_slip_trace', szFac*3, 0.5);
+        plot_slip_traces(slip, eulers_vis_A, structure_A, ca_ratio_A(1), shiftxyz_slip_trace', szFac*2, 0.5);
     end
 end
 
@@ -219,7 +219,7 @@ if gui.flag.pmparam2plot_value4GB ~= 1
             elseif gui.flag.pmparam2plot_value4GB == 13
                 slipA = gui.results(gbnum).n_factor_min_slipA(1);
             end
-            plot_slip_traces(slipA, eulers_vis_A, structure_A, ca_ratio_A(1), shiftxyz_gb_grA, szFac/2, 0);
+            plot_slip_traces(slipA, eulers_vis_A, structure_A, ca_ratio_A(1), shiftxyz_gb_grA, szFac, 0);
             
             % On grain B
             if grcen(gui.GBs(gbnum).grainB,1) == 1
@@ -248,7 +248,7 @@ if gui.flag.pmparam2plot_value4GB ~= 1
             ca_ratio_B   = latt_param(gui.grains(gui.GBs(gbnum).grainB).material, gui.grains(gui.GBs(gbnum).grainB).structure);
             eulers_B     = [grcen(gui.GBs(gbnum).grainB,4) grcen(gui.GBs(gbnum).grainB,5) grcen(gui.GBs(gbnum).grainB,6)];
             eulers_vis_B = coordinate_system_apply(eulers_B, gui.COORDSYS_eulers);
-            plot_slip_traces(slipB, eulers_vis_B, structure_B, ca_ratio_B(1), shiftxyz_gb_grB, szFac/2, 0);
+            plot_slip_traces(slipB, eulers_vis_B, structure_B, ca_ratio_B(1), shiftxyz_gb_grB, szFac, 0);
         end
     end
 end

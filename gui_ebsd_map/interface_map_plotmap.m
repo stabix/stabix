@@ -328,68 +328,33 @@ if gui.flag.flag_lattice == 1
     
     %% Set legends of slips
     if get(gui.handles.cbsliptraces, 'Value') == 1
-        set(gui.handles.cblegend, 'Visible', 'on');
-        if str2double(get(gui.handles.NumPh, 'String')) == 1
-            structure_1 = gui.config_data.struct1;
-            slip_color_1 = cell2mat(get_slip_color(structure_1, 100));
-            slip_legend_1 = get_slip_legend(structure_1, 100);
-            h_slip1 = zeros(1,length(slip_color_1));
-            for ii = 1:length(slip_color_1)
-                h_slip1(ii) = plot(0,0, 'Color', slip_color_1(ii,:), 'Linewidth', szFac/3);
-            end
-            h_slip_legend_1 = legend(h_slip1, slip_legend_1);
-            if get(gui.handles.cblegend, 'Value') == 1
-                set(h_slip_legend_1, 'Visible', 'on', 'Location', 'SouthWest');
-            else
-                set(h_slip_legend_1, 'Visible', 'off');
-            end
-        elseif str2double(get(gui.handles.NumPh, 'String')) == 2
-            structure_1 = gui.config_data.struct1;
-            structure_2 = gui.config_data.struct2;
-            slip_color_1 = cell2mat(get_slip_color(structure_1, 100));
-            slip_color_2 = cell2mat(get_slip_color(structure_2, 100));
-            slip_legend_1 = get_slip_legend(structure_1, 100);
-            slip_legend_2 = get_slip_legend(structure_2, 100);
-            
-            % If size of lists of slip families are differents...
-            diff_length = length(slip_legend_1) - length(slip_legend_2);
-            if diff_length > 0
-                for ii = 1:diff_length
-                    slip_legend_2(end+1) = {''};
-                end
-            elseif diff_length < 0
-                for ii = 1:diff_length
-                    slip_legend_1(end+1) = {''};
+        set(gui.handles.pmlegend, 'Visible', 'on');
+        if get(gui.handles.pmlegend, 'Value') ~= 1
+            if str2double(get(gui.handles.NumPh, 'String')) == 1
+                structure_legend = gui.config_data.struct1;
+            elseif str2double(get(gui.handles.NumPh, 'String')) == 2
+                if get(gui.handles.pmlegend, 'Value') == 2 % Phase 1
+                    structure_legend = gui.config_data.struct1;
+                elseif get(gui.handles.pmlegend, 'Value') == 3 % Phase 2
+                    structure_legend = gui.config_data.struct2;
                 end
             end
-            
-            h_slip1 = zeros(1,length(slip_color_1));
-            h_slip2 = zeros(1,length(slip_color_1));
-            for ii = 1:length(slip_color_1)
-                h_slip1(ii) = plot(0,0, 'Color', slip_color_1(ii,:), 'Linewidth', 5);
+            slip_color = cell2mat(get_slip_color(structure_legend, 100));
+            slip_legend = get_slip_legend(structure_legend, 100);
+            h_slip = zeros(1,length(slip_color));
+            for ii = 1:length(slip_color)
+                h_slip(ii) = plot(0,0, 'Color', slip_color(ii,:), 'Linewidth', 5);
             end
-            for ii = 1:length(slip_color_2)
-                h_slip2(ii) = plot(0,0, 'Color', slip_color_2(ii,:), 'Linewidth', 5);
-            end
-            
-            %% FIXME: Not possible to display 2 legends on 1 axis
-            h_slip_legend_ph1 = legend(h_slip1, slip_legend_1);
-            %h_slip_legend_ph2 = legend(h_slip2, slip_legend_2);
-            
-            if get(gui.handles.cblegend, 'Value') == 1
-                set(h_slip_legend_ph1, 'Visible', 'on', 'Location', 'SouthWest');
-                %set(h_slip_legend_ph2, 'Visible', 'on', 'Location', 'SouthEast');
-            else
-                set(h_slip_legend_ph1, 'Visible', 'off');
-                %set(h_slip_legend_ph2, 'Visible', 'off');
-            end
-            set(h_slip1, 'Visible', 'off');
-            set(h_slip2, 'Visible', 'off');
+            h_slip_legend = legend(h_slip, slip_legend);
+            set(h_slip_legend, 'Visible', 'on', 'Location', 'SouthWest');
+            set(h_slip, 'Visible', 'off');
+        else
+            legend('off'); legend('hide');
         end
     else
-        legend('off');
-        set(gui.handles.cblegend, 'Visible', 'off');
-        set(gui.handles.cblegend, 'Value', 0);
+        legend('off'); legend('hide');
+        set(gui.handles.pmlegend, 'Visible', 'off');
+        set(gui.handles.pmlegend, 'Value', 2);
     end
     
     %% Set axis

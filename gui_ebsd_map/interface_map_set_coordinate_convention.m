@@ -13,7 +13,6 @@ set(gui.handles.cbphase,             'Value', 0);
 set(gui.handles.cbunitcell,          'Value', 1);
 set(gui.handles.cbdatavalues,        'Value', 0);
 set(gui.handles.scale_unitcell_bar,  'Value', 1);
-set(gui.handles.cblegend,            'Value', 0);
  
 set(gcf, 'CurrentAxes', gui.handles.AxisGBmap);
 legend('off');

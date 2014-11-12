@@ -5,7 +5,7 @@ function interface_map_material_definition
 
 gui = guidata(gcf);
 
-if str2num(get(gui.handles.NumPh, 'String')) == 1
+if str2double(get(gui.handles.NumPh, 'String')) == 1
     set([gui.handles.Mat1, gui.handles.pmMat1, gui.handles.Struct1,...
         gui.handles.pmStruct1, gui.handles.listslips1,...
         gui.handles.pmlistslips1], 'Visible', 'on');
@@ -14,7 +14,7 @@ if str2num(get(gui.handles.NumPh, 'String')) == 1
         gui.handles.pmlistslips2], 'Visible', 'off');
 end
 
-if str2num(get(gui.handles.NumPh, 'String')) > 1
+if str2double(get(gui.handles.NumPh, 'String')) > 1
     set([gui.handles.Mat2, gui.handles.pmMat2, gui.handles.Struct2,...
         gui.handles.pmStruct2, gui.handles.listslips2,...
         gui.handles.pmlistslips2], 'Visible', 'on');
