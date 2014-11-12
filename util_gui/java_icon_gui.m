@@ -14,8 +14,10 @@ if nargin < 1
     gui_handle = gcf;
 end
 
+wrn = warning;
+warning('off');
 jframe = get(gui_handle,'JavaFrame');
 jIcon = javax.swing.ImageIcon(logo);
 jframe.setFigureIcon(jIcon);
-
+warning(wrn);
 end
