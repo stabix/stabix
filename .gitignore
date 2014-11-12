@@ -2,9 +2,9 @@
 SX*
 BX*
 
-
 # matlab autosave
 *.asv
+*.mat
 
 # python, also see https://github.com/github/gitignore/blob/master/Python.gitignore
 *.pyc
