@@ -25,26 +25,41 @@ elseif button_type == 2
     if get(gui.handles.cb_rdm_TSLdata, 'value')
         
         if nargin < 2
-            pathname_random_TSL_files = uigetdir(pwd, 'Select a directory to store random TSL files');
+            pathname_random_TSL_files = uigetdir(pwd, ...
+                'Select a directory to store random TSL files');
         else
             pathname_random_TSL_files = pathname;
         end
         
         timestamp = timestamp_make;
         
-        mkdir(fullfile(pathname_random_TSL_files, strcat(timestamp, '_random_TSL_data')));
+        mkdir(fullfile(pathname_random_TSL_files, ...
+            strcat(timestamp, '_random_TSL_data')));
 
-        gui.rdm_TSL_dataset = random_2D_microstructure_data(round(get(gui.handles.scale_rdm_TSLdata, 'value')));
+        gui.rdm_TSL_dataset = random_2D_microstructure_data(round(get(...
+            gui.handles.scale_rdm_TSLdata, 'value')));
         
         %% Creation of Grain File Type 2 (.txt file)
         gui.rdm_TSL_dataset.GF2filename = sprintf('random_GF2data.txt');
-        gui.rdm_TSL_dataset.GF2pathname = fullfile(pathname_random_TSL_files, strcat(timestamp, '_random_TSL_data'));
-        write_oim_grain_file_type2(gui.rdm_TSL_dataset, gui.rdm_TSL_dataset.GF2pathname, gui.rdm_TSL_dataset.GF2filename);
+        
+        gui.rdm_TSL_dataset.GF2pathname = ...
+            fullfile(pathname_random_TSL_files, ...
+            strcat(timestamp, '_random_TSL_data'));
+        
+        write_oim_grain_file_type2(gui.rdm_TSL_dataset, ...
+            gui.rdm_TSL_dataset.GF2pathname, ...
+            gui.rdm_TSL_dataset.GF2filename);
         
         %% Creation of Reconstructed Boundaries (.txt file)
         gui.rdm_TSL_dataset.RBfilename = sprintf('random_RBdata.txt');
-        gui.rdm_TSL_dataset.RBpathname = fullfile(pathname_random_TSL_files, strcat(timestamp, '_random_TSL_data'));
-        write_oim_reconstructed_boundaries_file(gui.rdm_TSL_dataset, gui.rdm_TSL_dataset.GF2pathname, gui.rdm_TSL_dataset.RBfilename);
+        
+        gui.rdm_TSL_dataset.RBpathname = ...
+            fullfile(pathname_random_TSL_files, ...
+            strcat(timestamp, '_random_TSL_data'));
+        
+        write_oim_reconstructed_boundaries_file(gui.rdm_TSL_dataset, ...
+            gui.rdm_TSL_dataset.GF2pathname, ...
+            gui.rdm_TSL_dataset.RBfilename);
         
         %% Set paths and flags
         gui.flag.newDataFlag = 2;

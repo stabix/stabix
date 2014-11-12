@@ -23,10 +23,9 @@ shiftXYZB = -(shiftXYZ+[0;0;+1]);
 %% Setting of legend
 legend_slipA         = get_slip_legend(gui.GB.Phase_A, slipA);
 legend_slipB         = get_slip_legend(gui.GB.Phase_B, slipB);
-list_legend_location = get(gui.handles.pmlegend_location, 'String');
+list_legend_location = listLocation;
 legend_location_num  = get(gui.handles.pmlegend_location, 'Value');
 legend_location_str  = list_legend_location(legend_location_num, :);
-legend_location_str(ismember(legend_location_str,' ')) = [];
 
 %% Setting of slip direction and slip normal
 slipnormalA    = gui.calculations.vectA(slipA, 1:3, gui.GB.GrainA);
@@ -55,7 +54,7 @@ elseif  valplot == 1
     ucgrB  =  vis_lattice(gui.GB.Phase_B, gui.GB.eulerB, slipB,  shiftXYZB, 0.5);
     % ipfB = plotIPF(GB2plot,grnum,RB,struct);
     if get(gui.handles.cblegend,'Value') == 1
-        legend([ucgrA(3) ucgrB(3)], legend_slipA, legend_slipB, 'Location', legend_location_str);
+        legend([ucgrA(3) ucgrB(3)], legend_slipA, legend_slipB, 'Location', legend_location_str{:});
     end
     if valplot > 1
         commandwindow;
@@ -68,7 +67,7 @@ elseif valplot == 2  %% Plot of slip plane (circle) for Grain A and B
     slipplaneB     = plot_slip_plane(slipnormalB, slipdirectionB,  shiftXYZB, radius, arrowcolorb);
     
     if get(gui.handles.cblegend, 'Value') == 1
-        legend([slipplaneA.arrow slipplaneB.arrow], legend_slipA, legend_slipB, 'Location', legend_location_str);
+        legend([slipplaneA.arrow slipplaneB.arrow], legend_slipA, legend_slipB, 'Location', legend_location_str{:});
     end
     
 elseif valplot  ==  3  %% Plot of slip plane (unit cell + circle) for Grain A and B

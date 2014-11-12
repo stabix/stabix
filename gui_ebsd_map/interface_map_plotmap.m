@@ -23,19 +23,8 @@ gui = guidata(gcf);
 
 gui.flag.flag_lattice = 1;
 
-%% Get unit of EBSD map
-gui.config_map.unit_value = get(gui.handles.pm_unit, 'Value');
-
-if gui.config_map.unit_value == 1
-    gui.config_map.unit_string = 'nm';
-elseif gui.config_map.unit_value == 2
-    gui.config_map.unit_string = 'µm';
-elseif gui.config_map.unit_value == 3
-    gui.config_map.unit_string = 'mm';
-end
-
 %% Refresh time/date
-set(gui.handles.date_str_interface,'String', datestr(datenum(clock), 'mmm.dd,yyyy HH:MM'));
+set(gui.handles.date_str_interface,'String', timestamp_make);
 
 %% Refresh pop-up menus
 guidata(gcf, gui);
@@ -67,24 +56,22 @@ fontsize_axis = 16;
 clear bins vec Colorbar;
 
 % Definiton of Colormap
-Color_list = get(gui.handles.pmcolorbar, 'String');
-Color_num  = get(gui.handles.pmcolorbar, 'Value');
-Color_def  = Color_list(Color_num, :);
-Color_def  = num2str(Color_def);
-Color_def  = strtrim(Color_def);
+color_list = listColormap;
+color_num  = get(gui.handles.pmcolorbar, 'Value');
+color_def  = color_list(color_num, :);
 % Definiton of Colorbar location
-location_list     = get(gui.handles.pmcolorbar_loc, 'String');
-location_def_num  = get(gui.handles.pmcolorbar_loc, 'Value');
-location_def_str  = location_list(location_def_num,:);
-location_def_str  = num2str(location_def_str);
-location_def_str  = strtrim(location_def_str);
+location_list     = listLocation;
+location_num  = get(gui.handles.pmcolorbar_loc, 'Value');
+location_str  = location_list(location_num,:);
 % Colormap properties
-colormap(Color_def);
+colormap(color_def{:});
 cmap = colormap;
 
 %% Set axis
-gui.flag.pmparam2plot_value4GB     = get(gui.handles.pmparam2plot4GB,     'Value');
-gui.flag.pmparam2plot_value4Grains = get(gui.handles.pmparam2plot4Grains, 'Value');
+gui.flag.pmparam2plot_value4GB = ...
+    get(gui.handles.pmparam2plot4GB, 'Value');
+gui.flag.pmparam2plot_value4Grains = ...
+    get(gui.handles.pmparam2plot4Grains, 'Value');
 
 gui.handles.gcf;
 guidata(gcf, gui);
@@ -235,34 +222,38 @@ if gui.flag.flag_lattice == 1
             
             if get(gui.handles.cbdatavalues, 'Value') == 1
                 for gbnum = 1:1:size(RB,1)
-                    x_mp         = ((gui.GBs(gbnum).pos_x1 + gui.GBs(gbnum).pos_x2)/2);
-                    y_mp         = ((gui.GBs(gbnum).pos_y1 + gui.GBs(gbnum).pos_y2)/2) + txt_dy;
-                    h_val(gbnum) = text(x_mp, y_mp, sprintf(mprime_format, gui.calculations.func2plot(gbnum)), 'Color', [.5 0 0]);
-                    set(h_val(gbnum), 'HorizontalAlignment', 'Right', 'VerticalAlignment', 'bottom', 'Clipping', 'on');
+                    x_mp = ((gui.GBs(gbnum).pos_x1 + gui.GBs(gbnum).pos_x2)/2);
+                    y_mp = ((gui.GBs(gbnum).pos_y1 + gui.GBs(gbnum).pos_y2)/2) + txt_dy;
+                    h_val(gbnum) = text(x_mp, y_mp, sprintf(...
+                        mprime_format, gui.calculations.func2plot(gbnum)), ...
+                        'Color', [.5 0 0]);
+                    set(h_val(gbnum), 'HorizontalAlignment', 'Right', ...
+                        'VerticalAlignment', 'bottom', 'Clipping', 'on');
                 end
             end
             
             %% GB Colored according to the scaled parameter
-            minval        = min(gui.calculations.func2plot(:));
-            maxval        = max(gui.calculations.func2plot(:));
+            minval = min(gui.calculations.func2plot(:));
+            maxval = max(gui.calculations.func2plot(:));
             if (maxval - minval) > 0.3 && maxval > 0.5
-                minval        = round(minval);
-                maxval        = round(maxval);
+                minval = round(minval);
+                maxval = round(maxval);
             end
             if (max(gui.calculations.func2plot(:)) - min(gui.calculations.func2plot(:))) > 0.3 && min(gui.calculations.func2plot(:)) > 0.5 && max(gui.calculations.func2plot(:)) < 1
-                minval        = round(10*min(gui.calculations.func2plot(:)))/10;
-                maxval        = round(10*max(gui.calculations.func2plot(:)))/10;
+                minval = round(10*min(gui.calculations.func2plot(:)))/10;
+                maxval = round(10*max(gui.calculations.func2plot(:)))/10;
             end
-            step_tot      = max(gui.calculations.func2plot(:)) - min(gui.calculations.func2plot(:));
-            step_elem     = step_tot/10;
+            step_tot = max(gui.calculations.func2plot(:)) - ...
+                min(gui.calculations.func2plot(:));
+            step_elem = step_tot/10;
             
             if gui.flag.pmparam2plot_value4GB == 6  % only highest m' max
-                minval        = minval + (9*step_elem);
-                step_tot      = maxval - minval;
+                minval   = minval + (9*step_elem);
+                step_tot = maxval - minval;
                 
             elseif gui.flag.pmparam2plot_value4GB == 7  % only lowest m' max
-                maxval        = minval + (step_elem);
-                step_tot      = maxval - minval;
+                maxval   = minval + (step_elem);
+                step_tot = maxval - minval;
             end
             
             step_Colorbar = step_tot/size(cmap(:,:),1);
@@ -274,7 +265,8 @@ if gui.flag.flag_lattice == 1
             
             Colorgb = zeros(size(RB,1), 1);
             for gbnum = 1:1:size(RB,1)
-                if gui.calculations.func2plot(gbnum) >= minval && gui.calculations.func2plot(gbnum) <= maxval
+                if gui.calculations.func2plot(gbnum) >= minval ...
+                        && gui.calculations.func2plot(gbnum) <= maxval
                     step_vec = (gui.calculations.func2plot(gbnum) - minval);
                     Colorgb(gbnum) = round(step_vec/step_Colorbar);
                     if Colorgb(gbnum) > length(cmap)
@@ -295,7 +287,9 @@ if gui.flag.flag_lattice == 1
                 if Colorgb(gbnum) == 0 | isnan(Colorgb(gbnum))
                     Colorgb(gbnum) = 1;
                 end
-                plot([gui.GBs(gbnum).pos_x1; gui.GBs(gbnum).pos_x2], [gui.GBs(gbnum).pos_y1; gui.GBs(gbnum).pos_y2], 'Linewidth', wid, 'Color', cmap(Colorgb(gbnum),:));
+                plot([gui.GBs(gbnum).pos_x1; gui.GBs(gbnum).pos_x2], ...
+                    [gui.GBs(gbnum).pos_y1; gui.GBs(gbnum).pos_y2], ...
+                    'Linewidth', wid, 'Color', cmap(Colorgb(gbnum),:));
             end
         end
         
@@ -305,14 +299,18 @@ if gui.flag.flag_lattice == 1
         try
             Colorbargb = colorbar;
             caxis([minval maxval]);
-            if location_def_num == 1 || location_def_num == 2 || location_def_num == 5 || location_def_num == 6
+            if location_num == 1 || location_num == 2 || ...
+                    location_num == 5 || location_num == 6
                 set(Colorbargb, 'XTick', bins);
-                set(get(Colorbargb, 'xlabel'), 'String', Colorbar_title, 'Fontsize', fontsize_axis);
-            elseif location_def_num == 3 || location_def_num == 4 || location_def_num == 7 || location_def_num == 8
+                set(get(Colorbargb, 'xlabel'), 'String', Colorbar_title, ...
+                    'Fontsize', fontsize_axis);
+            elseif location_num == 3 || location_num == 4 || ...
+                    location_num == 7 || location_num == 8
                 set(Colorbargb, 'YTick', bins);
-                set(get(Colorbargb, 'ylabel'), 'String', Colorbar_title, 'Fontsize', fontsize_axis);
+                set(get(Colorbargb, 'ylabel'), 'String', Colorbar_title, ...
+                    'Fontsize', fontsize_axis);
             end
-            set(Colorbargb, 'Location', location_def_str);
+            set(Colorbargb, 'Location', location_str{:});
             
         catch err
             display(err.message);
@@ -403,11 +401,15 @@ if gui.flag.flag_lattice == 1
     daspect([1 1 1]);
     view([0 0 1])
     
-    list_unit = get(gui.handles.pm_unit, 'String');
-    val_unit  = get(gui.handles.pm_unit, 'Value');
-    str_unit  = list_unit(val_unit);
-    xlabel(strcat('x axis - (',str_unit,')'), 'fontsize', fontsize_axis);
-    ylabel(strcat('y axis - (',str_unit,')'), 'fontsize', fontsize_axis);
+    %% Get unit of EBSD map
+    gui.config_map.unit_list = listLengthUnit;
+    gui.config_map.unit_value = get(gui.handles.pm_unit, 'Value');
+    gui.config_map.unit_string = ...
+        gui.config_map.unit_list(gui.config_map.unit_value, :);
+    xlabel(strcat('x axis - (',gui.config_map.unit_string{:},')'), ...
+        'fontsize', fontsize_axis);
+    ylabel(strcat('y axis - (',gui.config_map.unit_string{:},')'), ...
+        'fontsize', fontsize_axis);
     set(gca, 'fontsize', fontsize_axis, 'color', 'w');
     
     %% Set flags

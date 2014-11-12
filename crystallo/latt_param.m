@@ -180,4 +180,3 @@ if ~flag_error
     lattice_parameters = [c/a c a];
     
 end
-

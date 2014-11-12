@@ -46,16 +46,18 @@ stress21 = stress12; set(gui.handles.ST_s21, 'String', num2str(stress21));
 stress31 = stress13; set(gui.handles.ST_s31, 'String', num2str(stress31));
 stress32 = stress23; set(gui.handles.ST_s32, 'String', num2str(stress32));
 
-gui.stress_tensor.sigma    = [stress11, stress12, stress13;...
+gui.stress_tensor.sigma = [stress11, stress12, stress13;...
     stress21, stress22, stress23;...
     stress31, stress32, stress33];
 % Stress tensor is defined using TSL convensions with x down !!!
 
 %% Frobenius norm - unitized stress tensor to get generalized schmid factor
-gui.stress_tensor.sigma_n = gui.stress_tensor.sigma/norm(gui.stress_tensor.sigma,'fro');
+gui.stress_tensor.sigma_n = ...
+    gui.stress_tensor.sigma/norm(gui.stress_tensor.sigma,'fro');
 
 %% Trace of the stress tensor
-gui.stress_tensor.sigma_v = [gui.stress_tensor.sigma(1,1) gui.stress_tensor.sigma(2,2) gui.stress_tensor.sigma(3,3)]';
+gui.stress_tensor.sigma_v = [gui.stress_tensor.sigma(1,1) ...
+    gui.stress_tensor.sigma(2,2) gui.stress_tensor.sigma(3,3)]';
 
 guidata(gcf, gui);
 

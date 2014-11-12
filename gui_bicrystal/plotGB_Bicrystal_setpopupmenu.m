@@ -6,7 +6,8 @@ function plotGB_Bicrystal_setpopupmenu
 %% Setting of Material popupmenu from map interface
 gui = guidata(gcf);
 
-listmat_str = {'Al';'Au';'Be';'Cd';'Co';'Cu';'Fe';'Mg';'Mo';'Nb';'Ni';'Ta';'Ti';'Sn';'Zn';'Zr'};
+listmat_str = {'Al';'Au';'Be';'Cd';'Co';'Cu';'Fe';...
+    'Mg';'Mo';'Nb';'Ni';'Ta';'Ti';'Sn';'Zn';'Zr'};
 
 for ii = 1:size(listmat_str,1)
     if strcmp (listmat_str(ii), gui.GB.Material_A) == 1
