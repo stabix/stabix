@@ -350,6 +350,19 @@ if gui.flag.flag_lattice == 1
             slip_color_2 = cell2mat(get_slip_color(structure_2, 100));
             slip_legend_1 = get_slip_legend(structure_1, 100);
             slip_legend_2 = get_slip_legend(structure_2, 100);
+            
+            % If size of lists of slip families are differents...
+            diff_length = length(slip_legend_1) - length(slip_legend_2);
+            if diff_length > 0
+                for ii = 1:diff_length
+                    slip_legend_2(end+1) = {''};
+                end
+            elseif diff_length < 0
+                for ii = 1:diff_length
+                    slip_legend_1(end+1) = {''};
+                end
+            end
+            
             h_slip1 = zeros(1,length(slip_color_1));
             h_slip2 = zeros(1,length(slip_color_1));
             for ii = 1:length(slip_color_1)
@@ -358,11 +371,17 @@ if gui.flag.flag_lattice == 1
             for ii = 1:length(slip_color_2)
                 h_slip2(ii) = plot(0,0, 'Color', slip_color_2(ii,:), 'Linewidth', 5);
             end
-            h_slip_legend_2 = legend([h_slip1 h_slip2], slip_legend_1, slip_legend_2);
+            
+            %% FIXME: Not possible to display 2 legends on 1 axis
+            h_slip_legend_ph1 = legend(h_slip1, slip_legend_1);
+            %h_slip_legend_ph2 = legend(h_slip2, slip_legend_2);
+            
             if get(gui.handles.cblegend, 'Value') == 1
-                set(h_slip_legend_2, 'Visible', 'on', 'Location', 'SouthWest');
+                set(h_slip_legend_ph1, 'Visible', 'on', 'Location', 'SouthWest');
+                %set(h_slip_legend_ph2, 'Visible', 'on', 'Location', 'SouthEast');
             else
-                set(h_slip_legend_2, 'Visible', 'off');
+                set(h_slip_legend_ph1, 'Visible', 'off');
+                %set(h_slip_legend_ph2, 'Visible', 'off');
             end
             set(h_slip1, 'Visible', 'off');
             set(h_slip2, 'Visible', 'off');

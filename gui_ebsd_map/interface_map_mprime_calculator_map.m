@@ -48,8 +48,9 @@ ss_cart  = zeros(2,3,size(slip_systems(grains(max(GF2(:,1))).structure),3));
 h_waitbar = waitbar(0, 'Calculating GB properties ...');                   % changing the waitbar color is not trivial, http://stackoverflow.com/questions/5368861/how-to-add-progress-bar-control-to-matlab-gui
 
 %% Start calculations...
-if gui.config_data.slips_1 == 0 || gui.config_data.slips_2 == 0
-    helpdlg('Please, select at least 1 (or 2 for a two phases material) slip systems family for calculations...');
+if gui.config_data.slips_1 == 0 | gui.config_data.slips_2 == 0
+    helpdlg(['Please, select at least 1 (or 2 for a two phases '...
+        'material) slip systems family for calculations...']);
     delete(h_waitbar);
 else
     

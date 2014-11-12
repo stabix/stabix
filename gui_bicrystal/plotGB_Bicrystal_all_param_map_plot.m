@@ -66,4 +66,7 @@ colorbar;
 
 guidata(gcf, gui);
 
+%% Set logo of the GUI
+java_icon_gui;
+
 end
