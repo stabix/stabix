@@ -1,7 +1,8 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function gui_handle = A_preCPFE_windows_indentation_setting_SX(gui_bicrystal, activeGrain, varargin)
-%% Setting of indentation inputs (tip radius, indentation depth...) + setting of the mesh for a
-% single crystal indentation experiment.
+%% Setting of indentation inputs (tip radius, indentation depth...)
+% and setting of the mesh for a single crystal indentation experiment.
+
 % gui_bicrystal: Handle of the Bicrystal GUI
 % activeGrain: Number of the active grain in the Bicrystal
 
@@ -31,12 +32,16 @@ if nargin == 0
     gui_SX.config_map.Sample_ID    = [];
     gui_SX.config_map.Material_IDs = [];
     gui_SX.config_map.Material_ID  = [];
-    gui_SX.config_map.default_grain_file_type2 = 'random_GF2data.txt';
-    gui_SX.config_map.default_reconstructed_boundaries_file = 'random_RBdata.txt';
-    gui_SX.config_map.imported_YAML_GB_config_file = 'config_gui_SX_defaults.yaml';
+    gui_SX.config_map.default_grain_file_type2 = ...
+        'random_GF2data.txt';
+    gui_SX.config_map.default_reconstructed_boundaries_file = ...
+        'random_RBdata.txt';
+    gui_SX.config_map.imported_YAML_GB_config_file = ...
+        'config_gui_SX_defaults.yaml';
     
     guidata(gcf, gui_SX);
-    preCPFE_load_YAML_BX_config_file(gui_SX.config_map.imported_YAML_GB_config_file, 1);
+    preCPFE_load_YAML_BX_config_file(...
+        gui_SX.config_map.imported_YAML_GB_config_file, 1);
     gui_SX = guidata(gcf); guidata(gcf, gui_SX);
     gui_SX.GB.active_data = 'SX';
     gui_SX.title_str = set_gui_title(gui_SX, '');
@@ -52,7 +57,8 @@ else
     elseif activeGrain == 2
         gui_SX.GB.activeGrain     = gui_SX.GB.GrainB;
     end
-    gui_SX.title_str = set_gui_title(gui_SX, ['Crystal n°', num2str(gui_SX.GB.activeGrain)]);
+    gui_SX.title_str = set_gui_title(gui_SX, ...
+        ['Crystal n°', num2str(gui_SX.GB.activeGrain)]);
 end
 gui_SX.config.username = username_get;
 guidata(gcf, gui_SX);
@@ -71,7 +77,8 @@ gui_SX.defaults.variables = ReadYaml('config_mesh_SX_defaults.yaml');
 guidata(gcf, gui_SX);
 
 %% Creation of string boxes and edit boxes to set indenter and indentation properties
-gui_SX.handles.mesh = preCPFE_mesh_parameters_SX(gui_SX.defaults, x0, hu, wu, gui_SX.config.CPFEM.fem_solver_used);
+gui_SX.handles.mesh = preCPFE_mesh_parameters_SX(gui_SX.defaults, ...
+    x0, hu, wu, gui_SX.config.CPFEM.fem_solver_used);
 guidata(gcf, gui_SX);
 
 %% Creation of popup menu and slider for loaded AFM indenter topography

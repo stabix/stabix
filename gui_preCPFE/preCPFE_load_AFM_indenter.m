@@ -1,5 +1,8 @@
+% Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function preCPFE_load_AFM_indenter
+
 gui = guidata(gcf);
+
 if ~isfield(gui, 'AFM_indenter_path')
     gui.AFM_indenter_path = fullfile(get_stabix_root, 'gui_preCPFE', '');
 end
@@ -11,4 +14,7 @@ try
 catch id
     disp(id);
 end
+
 guidata(gcf, gui);
+
+end

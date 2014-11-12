@@ -2,7 +2,7 @@
 function preCPFE_indenter_update_controls
 %% Function used to add a custom menu item in the GUI menubar
 
-% author: d.mercier@mpie.de, c.zambaldi@mpie.de
+% authors: d.mercier@mpie.de, c.zambaldi@mpie.de
 
 gui = guidata(gcf);
 

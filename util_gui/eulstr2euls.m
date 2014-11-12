@@ -8,6 +8,8 @@ function eulers = eulstr2euls(eulerstr, varargin)
 
 % eulerstr: Euler angles given as a string
 
+% author: c.zambaldi@mpie.de
+
 if nargin == 0
     clc
     eulerstr = {'0,0,0'%,
@@ -40,4 +42,3 @@ for es = eulerstr
     end
     
 end
-
