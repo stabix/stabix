@@ -13,3 +13,5 @@ for item_idx = 1:numel(p_cstr)
     item = p_cstr(item_idx);
     pstr = [pstr, pathsep, item{1}];
 end
+
+end

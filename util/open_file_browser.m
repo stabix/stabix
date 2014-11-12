@@ -4,6 +4,8 @@ function open_file_browser(loc, varargin)
 % http://stackoverflow.com/questions/16808965/how-to-open-a-directory-in-the-default-file-manager-from-matlab
 % loc : Location of the file to load/open
 
+% author: c.zambaldi@mpie.de
+
 if nargin < 1
     loc = cd;
 end
