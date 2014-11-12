@@ -80,7 +80,7 @@ handle_indenter = patch(ptc, 'FaceColor', 'w', 'FaceAlpha', 0.75);
 
 if nargin == 0
     close all;
-    patch(ptc, 'FaceColor', 'w', 'FaceAlpha', 0.75);
+    handle_indenter = patch(ptc, 'FaceColor', 'w', 'FaceAlpha', 0.75);
     rotate3d on;
     axis off;
     axis equal;

@@ -23,11 +23,11 @@ function handles = preCPFE_mesh_parameters_BX(mesh_variables, x0, hu, wu, fem_so
 [handles.mesh_quality_lvl_str, handles.mesh_quality_lvl_val]  = preCPFE_set_inputs_boxes({'lvl (mesh quality)'}, [x0 hu*11.5 wu*2.8 x0],mesh_variables.variables.mesh_quality_lvl, 'preCPFE_indentation_setting_BX');
 % txt boxes for bias
 if strfind(fem_software, 'Abaqus')
-    [handles.box_bias_x_str, handles.box_bias_x_val]  = preCPFE_set_inputs_boxes({'box_bias_x (not 0)'}, [x0 hu*10.9 wu*2.8 x0],mesh_variables.variables.box_bias_x_abaqus, 'preCPFE_indentation_setting_BX');
-    [handles.box_bias_z_str, handles.box_bias_z_val]  = preCPFE_set_inputs_boxes({'box_bias_z (not 0)'}, [x0 hu*10.3 wu*2.8 x0],mesh_variables.variables.box_bias_z_abaqus, 'preCPFE_indentation_setting_BX');
-    [handles.box_bias_y1_str, handles.box_bias_y1_val] = preCPFE_set_inputs_boxes({'box_bias_y1 (not 0)'}, [x0 hu*9.7 wu*2.8 x0],mesh_variables.variables.box_bias_y1_abaqus, 'preCPFE_indentation_setting_BX');
-    [handles.box_bias_y2_str, handles.box_bias_y2_val] = preCPFE_set_inputs_boxes({'box_bias_y2 (not 0)'}, [x0 hu*9.1 wu*2.8 x0],mesh_variables.variables.box_bias_y2_abaqus, 'preCPFE_indentation_setting_BX');
-    [handles.box_bias_y3_str, handles.box_bias_y3_val] = preCPFE_set_inputs_boxes({'box_bias_y3 (not 0)'}, [x0 hu*8.5 wu*2.8 x0],mesh_variables.variables.box_bias_y3_abaqus, 'preCPFE_indentation_setting_BX');
+    [handles.box_bias_x_str, handles.box_bias_x_val]  = preCPFE_set_inputs_boxes({'box_bias_x (>= 1)'}, [x0 hu*10.9 wu*2.8 x0],mesh_variables.variables.box_bias_x_abaqus, 'preCPFE_indentation_setting_BX');
+    [handles.box_bias_z_str, handles.box_bias_z_val]  = preCPFE_set_inputs_boxes({'box_bias_z (>= 1)'}, [x0 hu*10.3 wu*2.8 x0],mesh_variables.variables.box_bias_z_abaqus, 'preCPFE_indentation_setting_BX');
+    [handles.box_bias_y1_str, handles.box_bias_y1_val] = preCPFE_set_inputs_boxes({'box_bias_y1 (>= 1)'}, [x0 hu*9.7 wu*2.8 x0],mesh_variables.variables.box_bias_y1_abaqus, 'preCPFE_indentation_setting_BX');
+    [handles.box_bias_y2_str, handles.box_bias_y2_val] = preCPFE_set_inputs_boxes({'box_bias_y2 (>= 1)'}, [x0 hu*9.1 wu*2.8 x0],mesh_variables.variables.box_bias_y2_abaqus, 'preCPFE_indentation_setting_BX');
+    [handles.box_bias_y3_str, handles.box_bias_y3_val] = preCPFE_set_inputs_boxes({'box_bias_y3 (>= 1)'}, [x0 hu*8.5 wu*2.8 x0],mesh_variables.variables.box_bias_y3_abaqus, 'preCPFE_indentation_setting_BX');
 elseif strfind(fem_software, 'Mentat')
     [handles.box_bias_x_str, handles.box_bias_x_val]  = preCPFE_set_inputs_boxes({'box_bias_x (-0.5 to 0.5)'}, [x0 hu*10.9 wu*2.8 x0],mesh_variables.variables.box_bias_x_mentat, 'preCPFE_indentation_setting_BX');
     [handles.box_bias_z_str, handles.box_bias_z_val]  = preCPFE_set_inputs_boxes({'box_bias_z (-0.5 to 0.5)'}, [x0 hu*10.3 wu*2.8 x0],mesh_variables.variables.box_bias_z_mentat, 'preCPFE_indentation_setting_BX');

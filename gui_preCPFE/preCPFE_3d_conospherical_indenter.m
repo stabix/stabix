@@ -51,13 +51,18 @@ elseif (Z_position - tipRadius) == 0
     z_hs(find(z_hs >= 1.05*(h_trans + Z_position - tipRadius))) = NaN;
 end
 
-
 %% Plot of the conical part of the indenter
 ang = 0:0.04:2 * pi;
 calRadius = (tipRadius^2 - (tipRadius - h_trans)^2)^0.5;
 dz = 0;
 deltaR = 0.05;
-for ii = 1:1:25
+
+% Preallocations
+ind = 25;
+x = zeros(ind, length(ang));
+y = zeros(ind, length(ang));
+z = zeros(1, ind);
+for ii = 1:1:ind
     x(ii,:) = (calRadius * cos(ang)) + X_position;
     y(ii,:) = (calRadius * sin(ang)) + Y_position;
     z(ii) = (Z_position - tipRadius + h_trans + dz);
@@ -80,7 +85,7 @@ colormap white;
 
 if nargin == 0
     close all
-    h = preCPFE_3d_conospherical_indenter(tipRadius);
+    handle_indenter = preCPFE_3d_conospherical_indenter(tipRadius);
     %axis off;
     axis equal;
     rotate3d on

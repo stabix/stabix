@@ -118,7 +118,7 @@ end
 
 if strfind(gui_BX.config.CPFEM.fem_solver_used, 'Abaqus')
     % Bias x
-    if gui_BX.variables.box_bias_x == 0
+    if gui_BX.variables.box_bias_x < 1
         set(gui_BX.handles.mesh.box_bias_x_val, 'String', ...
             num2str(gui_BX.defaults.variables.box_bias_x_abaqus));
         gui_BX.variables.box_bias_x = str2num(get(...
@@ -126,7 +126,7 @@ if strfind(gui_BX.config.CPFEM.fem_solver_used, 'Abaqus')
     end
     
     % Bias z
-    if gui_BX.variables.box_bias_z == 0
+    if gui_BX.variables.box_bias_z < 1
         set(gui_BX.handles.mesh.box_bias_z_val, 'String', ...
             num2str(gui_BX.defaults.variables.box_bias_z_abaqus));
         gui_BX.variables.box_bias_z = str2num(get(...
@@ -134,7 +134,7 @@ if strfind(gui_BX.config.CPFEM.fem_solver_used, 'Abaqus')
     end
     
     % Bias y1
-    if gui_BX.variables.box_bias_y1 == 0
+    if gui_BX.variables.box_bias_y1 < 1
         set(gui_BX.handles.mesh.box_bias_y1_val, 'String', ...
             num2str(gui_BX.defaults.variables.box_bias_y1_abaqus));
         gui_BX.variables.box_bias_y1 = str2num(get(...
@@ -142,7 +142,7 @@ if strfind(gui_BX.config.CPFEM.fem_solver_used, 'Abaqus')
     end
     
     % Bias y2
-    if gui_BX.variables.box_bias_y2 == 0
+    if gui_BX.variables.box_bias_y2 < 1
         set(gui_BX.handles.mesh.box_bias_y2_val, 'String', ...
             num2str(gui_BX.defaults.variables.box_bias_y2_abaqus));
         gui_BX.variables.box_bias_y2 = str2num(get(...
@@ -150,7 +150,7 @@ if strfind(gui_BX.config.CPFEM.fem_solver_used, 'Abaqus')
     end
     
     % Bias y3
-    if gui_BX.variables.box_bias_y3 == 0
+    if gui_BX.variables.box_bias_y3 < 1
         set(gui_BX.handles.mesh.box_bias_y3_val, 'String', ...
             num2str(gui_BX.defaults.variables.box_bias_y3_abaqus));
         gui_BX.variables.box_bias_y3 = (str2num(get(...

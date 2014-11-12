@@ -32,7 +32,8 @@ elseif gui_SX.variables.h_indent == 0
 end
 
 % Radius of inner cylinder
-if gui_SX.variables.r_center_frac < 0 || gui_SX.variables.r_center_frac >= 1
+if gui_SX.variables.r_center_frac < 0 ...
+        || gui_SX.variables.r_center_frac >= 1
     set(gui_SX.handles.mesh.r_center_frac_val, 'String', ...
         num2str(gui_SX.defaults.variables.r_center_frac));
     gui_SX.variables.r_center_frac = str2num(get(...
@@ -115,7 +116,7 @@ end
 
 if strfind(gui_SX.config.CPFEM.fem_solver_used, 'Abaqus')
     % Bias x
-    if gui_SX.variables.box_bias_x == 0
+    if gui_SX.variables.box_bias_x < 1
         set(gui_SX.handles.mesh.box_bias_x_val, 'String', ...
             num2str(gui_SX.defaults.variables.box_bias_x_abaqus));
         gui_SX.variables.box_bias_x = ...
@@ -123,7 +124,7 @@ if strfind(gui_SX.config.CPFEM.fem_solver_used, 'Abaqus')
     end
     
     % Bias z
-    if gui_SX.variables.box_bias_z == 0
+    if gui_SX.variables.box_bias_z < 1
         set(gui_SX.handles.mesh.box_bias_z_val, 'String', ...
             num2str(gui_SX.defaults.variables.box_bias_z_abaqus));
         gui_SX.variables.box_bias_z = ...
@@ -131,7 +132,7 @@ if strfind(gui_SX.config.CPFEM.fem_solver_used, 'Abaqus')
     end
     
     % Bias conv_x
-    if gui_SX.variables.box_bias_conv_x == 0
+    if gui_SX.variables.box_bias_conv_x < 1
         set(gui_SX.handles.mesh.box_bias_conv_x_val, 'String', ...
             num2str(gui_SX.defaults.variables.box_bias_conv_x_abaqus));
         gui_SX.variables.box_bias_conv_x = ...

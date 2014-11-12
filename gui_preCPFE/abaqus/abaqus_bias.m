@@ -14,6 +14,9 @@ function biased_elem = abaqus_bias(x0, xN, num_elements, bias, varargin)
 % toward the beginning of the frequency interval. The default bias parameter is 3.0 for an
 % eigenfrequency interval and 1.0 for a range frequency interval.
 
+% FIXME: The direction of the bias is not trivial to implement for Abaqus in a Python
+% script... Only positive values are used for SX indentation model.
+
 % author: d.mercier@mpie.de
 
 if nargin == 0
@@ -21,7 +24,7 @@ if nargin == 0
     clc;
     close all;
     num_elements = 10;
-    bias = 0; % or p = -2 to inverse sens of bias
+    bias = 2; % or p = -2 to inverse sens of bias
     x0 = 0;
     xN = 10;
     testing = 1;

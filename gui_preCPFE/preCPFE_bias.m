@@ -11,7 +11,7 @@ function biased_elem = preCPFE_bias(fem_software, x0, xN, num_elements, bias)
 % author: d.mercier@mpie.de
 
 if strcmp(strtok(fem_software, '_'), 'Abaqus') == 1
-    % 0 is used for Mentat and 1 for Abaqus, when no bias is applied to the mesh. 
+    % 0 is used for Mentat and 1 for Abaqus, when no bias is applied to the mesh.
     if bias == 0
         bias = 1;
     end
