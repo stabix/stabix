@@ -172,4 +172,7 @@ gui = guidata(gcf);guidata(parent, gui);
 
 warning on;
 
+%% Set logo of the GUI
+java_icon_gui;
+
 end

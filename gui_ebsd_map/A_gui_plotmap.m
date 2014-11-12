@@ -679,4 +679,7 @@ interface_map_plotmap(1,1);
 %% Encapsulation of data
 gui = guidata(gcf); guidata(gcf, gui);
 
+%% Set logo of the GUI
+java_icon_gui;
+
 end

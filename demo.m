@@ -181,3 +181,8 @@ if nargin > 0
         A_preCPFE_windows_indentation_setting_BX;
     end
 end
+
+%% Set logo of the GUI
+java_icon_gui;
+
+end

@@ -335,4 +335,7 @@ end
 guidata(gcf, gui);
 gui_handle = gui.handles.Bicrystal_interface;
 
+%% Set logo of the GUI
+java_icon_gui;
+
 end

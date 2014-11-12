@@ -97,4 +97,7 @@ gui_BX = guidata(gcf); guidata(gcf, gui_BX);
 
 gui_handle = gui_BX.handles.gui_BX_win;
 
+%% Set logo of the GUI
+java_icon_gui;
+
 end
