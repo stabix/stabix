@@ -1,5 +1,7 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function [p_max_min_bc] = plotGB_Bicrystal_max_min_values_from_matrix(matrix, phase_A, phase_B, max_min, varargin)
+function [p_max_min_bc] = ...
+    plotGB_Bicrystal_max_min_values_from_matrix(...
+    matrix, phase_A, phase_B, max_min, varargin)
 %% Function used to get maximum values of a parameter (e.g. : m' or RBV) from slip-slip matrix
 % matrix : slip-slip matrix
 % phase_A : phase of grain A

@@ -8,7 +8,8 @@ gui = guidata(gcf);
 gui.GB_YAML = struct();
 gui.GB = struct();
 
-[filename, pathname, filterindex] = uigetfile('*.yaml', 'Get YAML config file');
+[filename, pathname, filterindex] = ...
+    uigetfile('*.yaml', 'Get YAML config file');
 
 % Handle canceled file selection
 if filename == 0
@@ -85,13 +86,16 @@ else
     end
     
     if ~isfield(gui.GB_YAML, 'ca_ratio_A')
-        gui.GB_YAML.ca_ratio_A = latt_param(gui.GB_YAML.Material_A, gui.GB_YAML.Phase_A);
+        gui.GB_YAML.ca_ratio_A = ...
+            latt_param(gui.GB_YAML.Material_A, gui.GB_YAML.Phase_A);
     else
         gui.GB_YAML.ca_ratio_A = cell2mat(gui.GB_YAML.ca_ratio_A);
     end
     
     if isfield(gui.GB_YAML, 'lattice_parameter_A')
-        gui.GB_YAML.ca_ratio_A = [1 gui.GB_YAML.lattice_parameter_A gui.GB_YAML.lattice_parameter_A];
+        gui.GB_YAML.ca_ratio_A = ...
+            [1 gui.GB_YAML.lattice_parameter_A ...
+            gui.GB_YAML.lattice_parameter_A];
     end
     
     if ~isfield(gui.GB_YAML, 'Material_B')
@@ -99,29 +103,39 @@ else
     end
     
     if ~isfield(gui.GB_YAML, 'ca_ratio_B')
-        gui.GB_YAML.ca_ratio_B = latt_param(gui.GB_YAML.Material_B, gui.GB_YAML.Phase_B);
+        gui.GB_YAML.ca_ratio_B = ...
+            latt_param(gui.GB_YAML.Material_B, gui.GB_YAML.Phase_B);
     else
         gui.GB_YAML.ca_ratio_B = cell2mat(gui.GB_YAML.ca_ratio_B);
     end
     
     if isfield(gui.GB_YAML, 'lattice_parameter_B')
-        gui.GB_YAML.ca_ratio_B = [1 gui.GB_YAML.lattice_parameter_B gui.GB_YAML.lattice_parameter_B];
+        gui.GB_YAML.ca_ratio_B = ...
+            [1 gui.GB_YAML.lattice_parameter_B ...
+            gui.GB_YAML.lattice_parameter_B];
     end
     
     %% Set specific slips for grains A and B
-    if isfield(gui.GB_YAML, 'SlipA_norm') && isfield(gui.GB_YAML, 'SlipA_dir')
+    if isfield(gui.GB_YAML, 'SlipA_norm') ...
+            && isfield(gui.GB_YAML, 'SlipA_dir')
         % Get the normal plane and direction of slip A from the GUI
-        gui.GB_YAML.GB_YAML_slipA_unstrcat_num_norm = cell2mat(gui.GB_YAML.SlipA_norm);
-        gui.GB_YAML.GB_YAML_slipA_unstrcat_num_dir = cell2mat(gui.GB_YAML.SlipA_dir);
+        gui.GB_YAML.GB_YAML_slipA_unstrcat_num_norm = ...
+            cell2mat(gui.GB_YAML.SlipA_norm);
+        gui.GB_YAML.GB_YAML_slipA_unstrcat_num_dir = ...
+            cell2mat(gui.GB_YAML.SlipA_dir);
     end
     
-    if isfield(gui.GB_YAML, 'SlipB_norm') && isfield(gui.GB_YAML, 'SlipB_dir')
+    if isfield(gui.GB_YAML, 'SlipB_norm') ...
+            && isfield(gui.GB_YAML, 'SlipB_dir')
         % Get the normal plane and direction of slip B from the GUI
-        gui.GB_YAML.GB_YAML_slipB_unstrcat_num_norm = cell2mat(gui.GB_YAML.SlipB_norm);
-        gui.GB_YAML.GB_YAML_slipB_unstrcat_num_dir = cell2mat(gui.GB_YAML.SlipB_dir);
+        gui.GB_YAML.GB_YAML_slipB_unstrcat_num_norm = ...
+            cell2mat(gui.GB_YAML.SlipB_norm);
+        gui.GB_YAML.GB_YAML_slipB_unstrcat_num_dir = ...
+            cell2mat(gui.GB_YAML.SlipB_dir);
     end
     
-    if ~isfield(gui.GB_YAML, 'SlipA_norm') || ~isfield(gui.GB_YAML, 'SlipA_dir')
+    if ~isfield(gui.GB_YAML, 'SlipA_norm') ...
+            || ~isfield(gui.GB_YAML, 'SlipA_dir')
         if strcmp (gui.GB_YAML.Phase_A, 'hcp') == 1
             gui.GB_YAML.GB_YAML_slipA_unstrcat_num_norm = [0, 0, 0, 1];
             gui.GB_YAML.GB_YAML_slipA_unstrcat_num_dir  = [2 -1 -1 0];
@@ -134,7 +148,8 @@ else
         end
     end
     
-    if ~isfield(gui.GB_YAML, 'SlipB_norm') || ~isfield(gui.GB_YAML, 'SlipB_dir')
+    if ~isfield(gui.GB_YAML, 'SlipB_norm') ...
+            || ~isfield(gui.GB_YAML, 'SlipB_dir')
         if strcmp (gui.GB_YAML.Phase_B, 'hcp') == 1
             gui.GB_YAML.GB_YAML_slipB_unstrcat_num_norm = [0, 0, 0, 1];
             gui.GB_YAML.GB_YAML_slipB_unstrcat_num_dir  = [2 -1 -1 0];
@@ -146,15 +161,20 @@ else
             gui.GB_YAML.GB_YAML_slipB_unstrcat_num_dir  = [0,  1, -1];
         end
     end
+        
+    plotGB_Bicrystal_set_slips_indices(gui.handles.getSlipA, ...
+        gui.GB_YAML.GB_YAML_slipA_unstrcat_num_norm, ...
+        gui.GB_YAML.GB_YAML_slipA_unstrcat_num_dir);
+
+    plotGB_Bicrystal_set_slips_indices(gui.handles.getSlipB, ...
+        gui.GB_YAML.GB_YAML_slipB_unstrcat_num_norm, ...
+        gui.GB_YAML.GB_YAML_slipB_unstrcat_num_dir);
     
-    set(gui.handles.getSlipA, 'String', strcat('(',num2str(gui.GB_YAML.GB_YAML_slipA_unstrcat_num_norm),') / [',num2str(gui.GB_YAML.GB_YAML_slipA_unstrcat_num_dir), ']'));
-    set(gui.handles.getSlipB, 'String', strcat('(',num2str(gui.GB_YAML.GB_YAML_slipB_unstrcat_num_norm),') / [',num2str(gui.GB_YAML.GB_YAML_slipB_unstrcat_num_dir), ']'));
-    clear slipA_all_vect slipB_all_vect;
     slipA_all_vect = slip_systems(gui.GB_YAML.Phase_A, 9);
     slipB_all_vect = slip_systems(gui.GB_YAML.Phase_B, 9);
+    specific_slips_AB = ...
+        plotGB_Bicrystal_slip_user_def(slipA_all_vect, slipB_all_vect);
     
-    clear slipA_user_spec slipB_user_spec slipA_inv slipB_inv
-    specific_slips_AB = plotGB_Bicrystal_slip_user_def(slipA_all_vect, slipB_all_vect);
     if specific_slips_AB(1) == 0
         commandwindow;
         warning('Wrong inputs for slip system in grain A !');
@@ -179,15 +199,20 @@ else
     guidata(gcf, gui);
     
     %% Setting of grains Euler angles when only misorientation and mis. axis are given
-    if isfield(gui.GB, 'Misorientation_angle') && isfield(gui.GB, 'Misorientation_axis')
+    if isfield(gui.GB, 'Misorientation_angle') ...
+            && isfield(gui.GB, 'Misorientation_axis')
         gui.GB.Misorientation_axis = cell2mat(gui.GB.Misorientation_axis);
         if strcmp(gui.GB.Phase_A, 'hcp') == 1
-            gui.GB.Misorientation_axis = millerbravaisdir2cart(gui.GB.Misorientation_axis, gui.GB.ca_ratio_A(1));
+            gui.GB.Misorientation_axis = ...
+                millerbravaisdir2cart(gui.GB.Misorientation_axis, ...
+                gui.GB.ca_ratio_A(1));
         end
         gui.GB.eulerA = [0 0 0];
         gui.GB.eulerA_ori = gui.GB.eulerA;
         
-        gui.GB.rot_mat = axisang2g(gui.GB.Misorientation_axis, gui.GB.Misorientation_angle);
+        gui.GB.rot_mat = ...
+            axisang2g(gui.GB.Misorientation_axis, ...
+            gui.GB.Misorientation_angle);
         
         gui.GB.eulerB = g2eulers(gui.GB.rot_mat);
         gui.GB.eulerB_ori = gui.GB.eulerB;
@@ -198,9 +223,12 @@ else
     plotGB_Bicrystal_setpopupmenu;
     gui = guidata(gcf); guidata(gcf, gui);
     
-    set(gui.handles.pmchoicecase, 'Value', size(get(gui.handles.pmchoicecase, 'String'), 1));
-    set(gui.handles.getEulangGrA, 'String', sprintf('%.3f  %.2f  %.1f', gui.GB.eulerA));
-    set(gui.handles.getEulangGrB, 'String', sprintf('%.3f  %.2f  %.1f', gui.GB.eulerB));
+    set(gui.handles.pmchoicecase, 'Value', ...
+        size(get(gui.handles.pmchoicecase, 'String'), 1));
+    set(gui.handles.getEulangGrA, 'String', ...
+        sprintf('%.3f  %.2f  %.1f', gui.GB.eulerA));
+    set(gui.handles.getEulangGrB, 'String', ...
+        sprintf('%.3f  %.2f  %.1f', gui.GB.eulerB));
     set(gui.handles.getGBinclination, 'String', gui.GB.GB_Inclination);
     set(gui.handles.getGBtrace,'String', gui.GB.GB_Trace_Angle);
     guidata(gcf, gui);

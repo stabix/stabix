@@ -17,17 +17,17 @@ struct2      = list_struct(num_struct2,:);
 struct2      = struct2{:};
 
 set(gui.handles.pmlistslipsA, ...
-    'String', slip_systems_names(struct1), ...
+    'String', listSlipSystems(struct1), ...
     'Value', 1);
 set(gui.handles.pmlistslipsB, ...
-    'String', slip_systems_names(struct2), ...
+    'String', listSlipSystems(struct2), ...
     'Value', 1);
 
 gui.GB.Phase_A = struct1;
 gui.GB.Phase_B = struct2;
 
-gui = guidata(gcf);
-plotGB_Bicrystal;
 guidata(gcf, gui);
+
+plotGB_Bicrystal;
 
 end

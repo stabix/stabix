@@ -68,14 +68,18 @@ else
                 % in interface_map_init_microstructure
                 
                 % Calculation of the lattice parameters and c/a ratio for each grain
-                lattice_parameters(ig,:) = latt_param(grains(ig).material, grains(ig).structure);
+                lattice_parameters(ig,:) = latt_param(...
+                    grains(ig).material, ...
+                    grains(ig).structure);
                 if lattice_parameters(ig,1) == 0
                     flag.flag_lattice = 0;
                     delete(h_waitbar);
                     errordlg('Wrong inputs for material and structure !!!');
                     break;
                 else
-                    slip_syst = slip_systems(grains(ig).structure, gui.config_data.Phases(grains(ig).phase).slips);
+                    slip_syst = ...
+                        slip_systems(grains(ig).structure, ...
+                        gui.config_data.Phases(grains(ig).phase).slips);
                     % Conversion from Miller-Bravais notation to cartesian notation
                     if strcmp(grains(ig).structure, 'hcp') == 1
                         for ss_ind = 1:size(slip_syst, 3)

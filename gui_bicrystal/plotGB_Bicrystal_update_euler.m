@@ -8,7 +8,9 @@ function [Euler_new] = plotGB_Bicrystal_update_euler(Euler_old, theHandle)
 
 theString = get(theHandle, 'string');
 
-if strcmp(theString,'') || isempty(theString) || numel(eulstr2euls(theString)) ~= 3
+if strcmp(theString,'') ...
+        || isempty(theString) ...
+        || numel(eulstr2euls(theString)) ~= 3
     Euler_new = Euler_old; % Euler angles of grain from grain file type 2
 else % Euler angles in degrees from the interface (input manually)
     Euler_new = eulstr2euls(theString);

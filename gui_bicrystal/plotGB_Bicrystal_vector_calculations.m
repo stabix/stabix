@@ -1,5 +1,10 @@
-function [vect, euler, sortbv] = plotGB_Bicrystal_vector_calculations(listslip, grain, material, phase, euler_ori, handle_euler, stress_tensor, flag_error)
+% Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
+function [vect, euler, sortbv, flag_error] = ...
+    plotGB_Bicrystal_vector_calculations(listslip, grain, material, ...
+    phase, euler_ori, handle_euler, stress_tensor, flag_error)
 %% Vector calculation for a given grain
+
+% author: d.mercier@mpie.de
 
 % Loop to set grain properties (identity, Euler angles, position)
 for ig = grain
@@ -7,6 +12,9 @@ for ig = grain
     if lattice_parameters(1) == 0
         commandwindow;
         warning('Wrong input for material and structure !!!');
+        vect = 0;
+        euler = 0;
+        sortbv = 0;
         flag_error = 1;
     end
 
@@ -16,17 +24,23 @@ for ig = grain
          ss_cart_norm = zeros(2,3,size(slip_syst, 3));
         if strcmp(phase, 'hcp') == 1
             for ss_ind = 1:size(slip_syst, 3)
-                ss_cart(1,:,ss_ind) = millerbravaisplane2cart(slip_syst(1,:,ss_ind), lattice_parameters(1));
-                ss_cart(2,:,ss_ind) = millerbravaisdir2cart(slip_syst(2,:,ss_ind), lattice_parameters(1));
-                ss_cart_norm(1,:,ss_ind) = ss_cart(1,:,ss_ind)/norm(ss_cart(1,:,ss_ind));
-                ss_cart_norm(2,:,ss_ind) = ss_cart(2,:,ss_ind)/norm(ss_cart(2,:,ss_ind));
+                ss_cart(1,:,ss_ind) = millerbravaisplane2cart(...
+                    slip_syst(1,:,ss_ind), lattice_parameters(1));
+                ss_cart(2,:,ss_ind) = millerbravaisdir2cart(...
+                    slip_syst(2,:,ss_ind), lattice_parameters(1));
+                ss_cart_norm(1,:,ss_ind) = ss_cart(1,:,ss_ind) / ...
+                    norm(ss_cart(1,:,ss_ind));
+                ss_cart_norm(2,:,ss_ind) = ss_cart(2,:,ss_ind) / ...
+                    norm(ss_cart(2,:,ss_ind));
             end
         else
             for ss_ind = 1:size(slip_syst, 3)
                 ss_cart(1,:,ss_ind) = slip_syst(1,:,ss_ind);
                 ss_cart(2,:,ss_ind) = slip_syst(2,:,ss_ind);
-                ss_cart_norm(1,:,ss_ind) = ss_cart(1,:,ss_ind)/norm(ss_cart(1,:,ss_ind));
-                ss_cart_norm(2,:,ss_ind) = ss_cart(2,:,ss_ind)/norm(ss_cart(2,:,ss_ind));
+                ss_cart_norm(1,:,ss_ind) = ss_cart(1,:,ss_ind) / ...
+                    norm(ss_cart(1,:,ss_ind));
+                ss_cart_norm(2,:,ss_ind) = ss_cart(2,:,ss_ind) / ...
+                    norm(ss_cart(2,:,ss_ind));
             end
         end
     end
@@ -49,7 +63,9 @@ if flag_error == 0
                 slip_vec(ii,1:3) = g_mat(:,:,ig).'*ss_cart_norm(1,1:3,ii)';   % Plane normal (n vector normalized)
                 slip_vec(ii,4:6) = g_mat(:,:,ig).'*ss_cart_norm(2,1:3,ii)';   % Slip direction (b vector normalized)
                 % Generalized Schmid Factor
-                slip_vec(ii,7)   = generalized_schmid_factor(ss_cart_norm(1,:,ii), ss_cart_norm(2,:,ii), stress_tensor, g_mat(:,:,ig));
+                slip_vec(ii,7)   = generalized_schmid_factor(...
+                    ss_cart_norm(1,:,ii), ss_cart_norm(2,:,ii), ...
+                    stress_tensor, g_mat(:,:,ig));
                 if isnan(slip_vec(ii,7))
                     slip_vec(ii,8) = 0;
                 else

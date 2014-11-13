@@ -19,7 +19,7 @@ if number_phase == 1
     struct1      = list_structure(num_struct1, :);
     struct1      = struct1{:};
     
-    set(pmlistslips1, 'String', slip_systems_names(struct1), ...
+    set(pmlistslips1, 'String', listSlipSystems(struct1), ...
         'Value', slip_family_1);
     
 elseif number_phase == 2
@@ -31,9 +31,9 @@ elseif number_phase == 2
     struct2      = list_structure(num_struct2, :);
     struct2      = struct2{:};
     
-    set(pmlistslips1, 'String', slip_systems_names(struct1), ...
+    set(pmlistslips1, 'String', listSlipSystems(struct1), ...
         'Value', slip_family_1);
-    set(pmlistslips2, 'String', slip_systems_names(struct2), ...
+    set(pmlistslips2, 'String', listSlipSystems(struct2), ...
         'Value', slip_family_2);
     
 end

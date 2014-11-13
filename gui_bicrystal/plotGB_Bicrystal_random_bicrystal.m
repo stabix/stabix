@@ -30,7 +30,8 @@ if strcmp(gui.GB.Phase_A, gui.GB.Phase_B) == 1
 else
     gui.GB.number_phase    = 2;
 end
-gui.GB.GB_Inclination  = randi(40,1) + 70; % 70-110° or round(rand(1)*100)+1 between 0 and 100°
+% Inclination = 70-110° or round(rand(1)*100)+1 between 0 and 100°
+gui.GB.GB_Inclination  = randi(40,1) + 70; 
 gui.GB.GB_Trace_Angle  = randi(180);
 gui.GB.GB_Number       = randi(100);
 gui.GB.Material_A      = 'Ti';
@@ -38,7 +39,8 @@ gui.GB.ca_ratio_A      = latt_param(gui.GB.Material_A, gui.GB.Phase_A);
 gui.GB.Material_B      = 'Ti';
 gui.GB.ca_ratio_B      = latt_param(gui.GB.Material_B, gui.GB.Phase_B);
 gui.GB.activeGrain     = gui.GB.GrainA;
-gui.GB.misorientation  = misorientation(gui.GB.eulerA, gui.GB.eulerB, gui.GB.Phase_A, gui.GB.Phase_B);
+gui.GB.misorientation  = misorientation(gui.GB.eulerA, gui.GB.eulerB, ...
+    gui.GB.Phase_A, gui.GB.Phase_B);
 gui.GB.slipA           = 1;
 gui.GB.slipB           = 1;
 gui.GB.slipA_user_spec = 1;
@@ -51,7 +53,8 @@ set(gui.handles.pmStructB, 'Value', 1);
 set(gui.handles.getEulangGrA, 'String', num2str(gui.GB.eulerA));
 set(gui.handles.getEulangGrB, 'String', num2str(gui.GB.eulerB));
 set(gui.handles.getGBtrace, 'String', num2str(gui.GB.GB_Trace_Angle));
-set(gui.handles.getGBinclination, 'String', num2str(gui.GB.GB_Inclination));
+set(gui.handles.getGBinclination, ...
+    'String', num2str(gui.GB.GB_Inclination));
 guidata(gcf, gui);
 
 plotGB_Bicrystal_setpopupmenu;

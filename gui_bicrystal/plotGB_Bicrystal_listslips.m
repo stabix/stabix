@@ -12,8 +12,8 @@ if get(gui.handles.pmchoicecase, 'Value') == size_popupmenu(1); % Imported input
     set(gui.handles.pmlistslipsB, 'Value', 1);
 end
 
-listSlipsA = slip_systems_names(gui.GB.Phase_A);
-listSlipsB = slip_systems_names(gui.GB.Phase_B);
+listSlipsA = listSlipSystems(gui.GB.Phase_A);
+listSlipsB = listSlipSystems(gui.GB.Phase_B);
 
 slipAnum = get(gui.handles.pmlistslipsA, 'Value');
 if size(slipAnum, 2) == 1
@@ -38,7 +38,5 @@ else
 end
 
 no_slip = (listslipA(1) == 0 || listslipB(1) == 0);
-
-guidata(gcf, gui);
 
 end

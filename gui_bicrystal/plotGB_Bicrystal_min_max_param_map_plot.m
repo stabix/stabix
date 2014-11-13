@@ -5,14 +5,19 @@ function plotGB_Bicrystal_min_max_param_map_plot(param2plot, min_max)
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
+%% FIXME: Plot of all min/max values for transmission slip function 
+% not displayed for a 2 phases material
+
 %% Set the encapsulation of data
 gui = guidata(gcf);
 
 % Get min or max values
 if min_max == 1
-    param_bc = plotGB_Bicrystal_max_min_values_from_matrix(param2plot, gui.GB.Phase_A, gui.GB.Phase_B, 'min');
+    param_bc = plotGB_Bicrystal_max_min_values_from_matrix(param2plot, ...
+        gui.GB.Phase_A, gui.GB.Phase_B, 'min');
 elseif min_max == 2
-    param_bc = plotGB_Bicrystal_max_min_values_from_matrix(param2plot, gui.GB.Phase_A, gui.GB.Phase_B, 'max');
+    param_bc = plotGB_Bicrystal_max_min_values_from_matrix(param2plot, ...
+        gui.GB.Phase_A, gui.GB.Phase_B, 'max');
 end
 
 imagesc(param_bc);                                                     % create a colored plot of the mp_max_bcrix values
@@ -29,11 +34,13 @@ textcolors = repmat(param_bc(:) < midvalue,1,3);                       % choose 
 set(gui.handles.hstrings,{'color'}, num2cell(textcolors, 2));                          % change the text colors
 
 if strcmp(gui.GB.Phase_A, 'hcp') == 1
-    gui.handles.legend_x = {'bas','pri1<a>','pri2<a>','pyr1<a>','pyr1<a+c>','pyr2<a+c>'};
+    gui.handles.legend_x = ...
+        {'bas','pri1<a>','pri2<a>','pyr1<a>','pyr1<a+c>','pyr2<a+c>'};
     tick_x   = 1:6;
 end
 if strcmp(gui.GB.Phase_B, 'hcp') == 1
-    gui.handles.legend_y = {'bas','pri1<a>','pri2<a>','pyr1<a>','pyr1<a+c>','pyr2<a+c>'};
+    gui.handles.legend_y = ...
+        {'bas','pri1<a>','pri2<a>','pyr1<a>','pyr1<a+c>','pyr2<a+c>'};
     tick_y   = 1:6;
 end
 if strcmp(gui.GB.Phase_A, 'bcc') == 1

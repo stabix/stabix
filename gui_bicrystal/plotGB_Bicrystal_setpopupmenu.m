@@ -3,9 +3,9 @@ function plotGB_Bicrystal_setpopupmenu
 %% Function to set the popup menu into the Bicrystal GUI
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
-%% Setting of Material popupmenu from map interface
 gui = guidata(gcf);
 
+%% Setting of Material popupmenu from map interface
 listmat_str = listMaterial;
 
 for ii = 1:size(listmat_str,1)
@@ -40,11 +40,9 @@ end
 
 set(gui.handles.pmStructA, 'Value', StructAnum);
 set(gui.handles.pmStructB, 'Value', StructBnum);
-listSlipsA = slip_systems_names(gui.GB.Phase_A);
-listSlipsB = slip_systems_names(gui.GB.Phase_B);
+listSlipsA = listSlipSystems(gui.GB.Phase_A);
+listSlipsB = listSlipSystems(gui.GB.Phase_B);
 set(gui.handles.pmlistslipsA, 'String', listSlipsA, 'Value', 1);
 set(gui.handles.pmlistslipsB, 'String', listSlipsB, 'Value', 1);
-
-guidata(gcf, gui);
 
 end
