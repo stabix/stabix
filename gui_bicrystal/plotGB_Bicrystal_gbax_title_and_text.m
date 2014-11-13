@@ -33,7 +33,7 @@ if no_slip == 0
     elseif valcase == 6
         idm = sprintf('m'' = %.2f', gui.GB.results.mpmin3);
     elseif valcase == 7
-        idm = sprintf('m''(SF) = %.2f', gui.GB.results.mprime_SFmax);
+        idm = sprintf('m''(SF) = %.2f', gui.GB.results.mp_SFmax);
     elseif valcase == 8
         idm = sprintf('RBV = %.2f', gui.GB.results.rbv_max1);
     elseif valcase == 9

@@ -39,8 +39,8 @@ elseif valcase == 6
     slipB = gui.GB.results.x_mp_min3;
     
 elseif valcase == 7 || valcase == 14 || valcase == 21 || valcase == 28 ||  valcase == 29
-    slipA = gui.GB.results.slipASFmax;
-    slipB = gui.GB.results.slipBSFmax;
+    slipA = gui.GB.results.SFmax_y;
+    slipB = gui.GB.results.SFmax_x;
     
 elseif valcase == 8
     slipA = gui.GB.results.y_rbv_max1;
