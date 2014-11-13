@@ -213,12 +213,14 @@ elseif numph == 2
 end
 
 % Plot of unit cell
-set([hPri, hBas],'FaceColor',colorph,'FaceAlpha',fAlph,'LineWidth',line_width);
+set([hPri, hBas],'FaceColor',colorph,'FaceAlpha',...
+    fAlph,'LineWidth',line_width);
 
 if  slip == 0
     hPatch = [hBas, hPri];
 else
-    set([hPri, hBas],'FaceColor',colorph,'FaceAlpha',fAlph*.8,'LineWidth',line_width);
+    set([hPri, hBas],'FaceColor',colorph,'FaceAlpha',...
+        fAlph*.8,'LineWidth',line_width);
     %Basal <a>
     if slip >=  1 && slip <= 3
         hslip = patch('Vertices',pts,'Faces',basalfaces,...
@@ -287,7 +289,6 @@ else
     hPatch = [hBas,hPri,hslip];
     
 end
-
 
 if ~fast
     axis off;

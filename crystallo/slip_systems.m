@@ -40,28 +40,36 @@ for ii = 1:1:size(slip_system, 2) % If more than 1 slip/twin system is defined b
         % [POTY 2011]  == > Principal slip for Ti = basal <a> and prisma <a> !!!! [WANG 2003]
         % See "millerbravaisdir2cart.m" and "millerbravaisplane2cart.m" for
         % conversion in cartesian notations.
-        if slip_system(ii) == 1 || slip_system(ii) == 2 || slip_system(ii) == 9
+        if slip_system(ii) == 1 ...
+                || slip_system(ii) == 2 ...
+                || slip_system(ii) == 9
             % basal <a> - glide [Cd Be Zn Mg Re Ti Re]
             % {00.1} <11.0>
             slip_syst(:,:,1) = [0 0 0 1 ;  2 -1 -1 0];
             slip_syst(:,:,2) = [0 0 0 1 ; -1  2 -1 0];
             slip_syst(:,:,3) = [0 0 0 1 ; -1 -1  2 0];
         end
-        if slip_system(ii) == 1 || slip_system(ii) == 3 || slip_system(ii) == 9
+        if slip_system(ii) == 1 ...
+                || slip_system(ii) == 3 ...
+                || slip_system(ii) == 9
             % prisma1 <a> - glide [Ti Zr Re Be Re Mg] - 1st order
             % {10.0} <11.0>
             slip_syst(:,:,4) = [ 0  1 -1 0 ;  2 -1 -1 0];
             slip_syst(:,:,5) = [-1  0  1 0 ; -1  2 -1 0];
             slip_syst(:,:,6) = [ 1 -1  0 0 ; -1 -1  2 0];
         end
-        if slip_system(ii) == 1 || slip_system(ii) == 4 || slip_system(ii) == 9
+        if slip_system(ii) == 1 ...
+                || slip_system(ii) == 4 ...
+                || slip_system(ii) == 9
             % prisma2 <a> - 2nd order
             % {11.0}<10.0>
             slip_syst(:,:,7) = [ 2 -1 -1 0 ; 0  1 -1 0];
             slip_syst(:,:,8) = [-1  2 -1 0 ;-1  0  1 0];
             slip_syst(:,:,9) = [-1 -1  2 0 ; 1 -1  0 0];
         end
-        if slip_system(ii) == 1 || slip_system(ii) == 5 || slip_system(ii) == 9
+        if slip_system(ii) == 1 ...
+                || slip_system(ii) == 5 ...
+                || slip_system(ii) == 9
             % pyramidal <a> - glide [Mg Ti]
             % {-11.1} <11.0>
             slip_syst(:,:,10) = [ 0 -1  1 1 ;  2 -1 -1 0];
@@ -71,7 +79,9 @@ for ii = 1:1:size(slip_system, 2) % If more than 1 slip/twin system is defined b
             slip_syst(:,:,14) = [ 0  1 -1 1 ; -2  1  1 0];
             slip_syst(:,:,15) = [-1  0  1 1 ;  1 -2  1 0];
         end
-        if slip_system(ii) == 1 || slip_system(ii) == 6 || slip_system(ii) == 9
+        if slip_system(ii) == 1 ...
+                || slip_system(ii) == 6 ...
+                || slip_system(ii) == 9
             % pyramidal <c+a> - glide - 1st order
             % {-10.1} <11.3>
             slip_syst(:,:,16) = [-1  1  0 1 ;  2 -1 -1 3];
@@ -87,7 +97,9 @@ for ii = 1:1:size(slip_system, 2) % If more than 1 slip/twin system is defined b
             slip_syst(:,:,26) = [ 0  1 -1 1 ;  1 -2  1 3];
             slip_syst(:,:,27) = [ 0  1 -1 1 ; -1 -1  2 3];
         end
-        if slip_system(ii) == 1 || slip_system(ii) == 7 || slip_system(ii) == 9
+        if slip_system(ii) == 1 ...
+                || slip_system(ii) == 7 ...
+                || slip_system(ii) == 9
             %  pyramidal <c+a> - glide - 2nd order
             % {-1-1.2} <11.3>
             slip_syst(:,:,28) = [-2  1  1 2 ;  2 -1 -1 3];
@@ -139,7 +151,9 @@ for ii = 1:1:size(slip_system, 2) % If more than 1 slip/twin system is defined b
     
     %% bcc structure - Slip system
     if strcmp(structure,'bcc')
-        if slip_system(ii) == 1 || slip_system(ii) == 2 || slip_system(ii) == 9
+        if slip_system(ii) == 1 ...
+                || slip_system(ii) == 2 ...
+                || slip_system(ii) == 9
             slip_syst(:,:,1) =  [ 0  1  1 ;  1 -1  1];                                     %Index 1 in Damask
             slip_syst(:,:,2) =  [ 0  1  1 ; -1 -1  1];                                     %Index 2 in Damask
             slip_syst(:,:,3) =  [ 0 -1  1 ;  1  1  1];                                     %Index 3 in Damask
@@ -156,7 +170,9 @@ for ii = 1:1:size(slip_system, 2) % If more than 1 slip/twin system is defined b
             slip_syst(:,:,11) = [-1  1  0 ;  1  1  1];                                     %Index 11 in Damask
             slip_syst(:,:,12) = [-1  1  0 ;  1  1 -1];                                     %Index 12 in Damask
         end
-        if slip_system(ii) == 1 || slip_system(ii) == 3 || slip_system(ii) == 9
+        if slip_system(ii) == 1 ...
+                || slip_system(ii) == 3 ...
+                || slip_system(ii) == 9
             % Mode 2,   plane direction, Define four points in the plane
             slip_syst(:,:,13) = [ 2  1  1 ; -1  1  1];                                     %Index 13 in Damask
             slip_syst(:,:,14) = [-2  1  1 ;  1  1  1];                                     %Index 14 in Damask
@@ -174,7 +190,9 @@ for ii = 1:1:size(slip_system, 2) % If more than 1 slip/twin system is defined b
             slip_syst(:,:,23) = [ 1 -1  2 ; -1  1  1];                                     %Index 23 in Damask
             slip_syst(:,:,24) = [ 1  1 -2 ;  1  1  1];                                     %Index 24 in Damask
         end
-        if slip_system(ii) == 1 || slip_system(ii) == 4 || slip_system(ii) == 9
+        if slip_system(ii) == 1 ...
+                || slip_system(ii) == 4 ...
+                || slip_system(ii) == 9
             % Mode 3,   plane direction, Define four points in the plane
             slip_syst(:,:,25) = [ 1  2  3 ;  1  1 -1];                                     %Index 25 in Damask
             slip_syst(:,:,26) = [-1  2  3 ;  1 -1  1];                                     %Index 26 in Damask
@@ -265,17 +283,22 @@ for ii = 1:1:size(slip_system, 2) % If more than 1 slip/twin system is defined b
     end
 end
 
+slip_syst_check = zeros(2,3,size(slip_syst,3));
+
 if strcmp(structure,'hcp')
     for ii = 1:size(slip_syst,3)
-        slip_syst_check(1,:,ii) = millerbravaisplane2cart(slip_syst(1,:,ii));
-        slip_syst_check(2,:,ii) = millerbravaisdir2cart(slip_syst(2,:,ii));
+        slip_syst_check(1,:,ii) = ...
+            millerbravaisplane2cart(slip_syst(1,:,ii));
+        slip_syst_check(2,:,ii) = ...
+            millerbravaisdir2cart(slip_syst(2,:,ii));
     end
 else
     slip_syst_check = slip_syst;
 end
 
 for ii = 1:size(slip_syst,3)
-    check_vectors_orthogonality(slip_syst_check(1,:,ii),slip_syst_check(2,:,ii));
+    check_vectors_orthogonality(slip_syst_check(1,:,ii), ...
+        slip_syst_check(2,:,ii));
 end
 
 end

@@ -10,7 +10,8 @@ function h_trace = plot_slip_traces(slip, euler, phase, ca_ratio, shiftXYZ, leng
 % linewidth_trace : Width of the slip trace segment
 % length_trace : Length of the trace (factor)
 % trace_frac : Fraction of the length trace
-% authors: c.zambaldi@mpie.de
+
+% author: c.zambaldi@mpie.de
 
 if nargin == 0
     slip = randi(57);

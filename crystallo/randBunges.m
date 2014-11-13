@@ -2,6 +2,7 @@
 function eulers = randBunges(N, varargin)
 %% Function used to give random Euler angles in degrees (Bunge notation)
 % returns N rows of random Bunge Euler angles in degrees
+
 % author: c.zambaldi@mpie.de
 
 if nargin == 0

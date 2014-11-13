@@ -6,7 +6,8 @@ function hstruct = plot_slip_plane(slip_normal, slip_direction, shiftXYZ, radius
 % shiftXYZ : shift to apply to the slip plane
 % radius : slip plane plotted as a circle with a given radius
 % color : color of the slip plane
-% authors: c.zambaldi@mpie.de
+
+% author: c.zambaldi@mpie.de
 
 if nargin < 5
     color = 'k';

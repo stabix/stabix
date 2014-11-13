@@ -17,7 +17,7 @@ tol2 = 1e-6; % insertion made by C. Zambaldi
 
 if abs(det(g_mat))-1 > tol2 % det~=1
     det_g = det(g_mat);
-    if abs(det(g_mat)-1) > tol2  % orthogonality
+    if abs(det_g - 1) > tol2  % orthogonality
         error('g matrix not orthogonal. det ~= 1');
     elseif det(g_mat)+1<tol2
         error('g matrix  det = -1');

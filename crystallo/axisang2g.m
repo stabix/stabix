@@ -17,7 +17,9 @@ end
 flag_error = 0;
 if length(axis) > 3
     flag_error = 1;
-    error('Axis is defined with only 3 indices. It has to be given in cartesian coordinates system...')
+    commandwindow;
+    error(['Axis is defined with only 3 indices.'...
+        'It has to be given in cartesian coordinates system...']);
 end
 
 if ~flag_error
@@ -42,6 +44,8 @@ if ~flag_error
     g_mat(3,2) = (1.-cc) * axis_n(2) * axis_n(3) - ss*axis_n(1);
     g_mat(3,1) = (1.-cc) * axis_n(1) * axis_n(3) + ss*axis_n(2);
     g_mat(1,3) = (1.-cc) * axis_n(1) * axis_n(3) - ss*axis_n(2);
+end
+
 end
 
 % if isrot(g_mat)==1

@@ -7,7 +7,8 @@ function h = plot_slip_trace(slip_plane_normal, plot_plane_normal, shiftXYZ, len
 % correspond to the middle of the segment plotted for the slip traces).
 % length_trace : Length of the trace (factor)
 % trace_frac : Factor to plot only a outer part of the slip trace
-% authors: c.zambaldi@mpie.de
+
+% author: c.zambaldi@mpie.de
 
 if nargin == 0
     slip_plane_normal = [1;0;0];

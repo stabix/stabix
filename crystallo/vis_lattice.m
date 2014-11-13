@@ -42,11 +42,14 @@ if nargin < 1
 end
 
 if strcmp(lattice_type,'hcp') == 1
-    h_lattice = vis_hex(eulers, slip, shiftXYZ, sz, plotAxes, fast, numph, line_width);
+    h_lattice = vis_hex(eulers, slip, shiftXYZ, sz, plotAxes, ...
+        fast, numph, line_width);
 elseif strcmp(lattice_type,'fcc') == 1
-    h_lattice = vis_fcc(eulers, slip, shiftXYZ, 1.5*sz, plotAxes, fast, numph, line_width);
+    h_lattice = vis_fcc(eulers, slip, shiftXYZ, 1.5*sz, plotAxes, ...
+        fast, numph, line_width);
 elseif strcmp(lattice_type,'bcc') == 1
-    h_lattice = vis_bcc(eulers, slip, shiftXYZ, 1.5*sz, plotAxes, fast, numph, line_width);
+    h_lattice = vis_bcc(eulers, slip, shiftXYZ, 1.5*sz, plotAxes, ...
+        fast, numph, line_width);
 end
 set(h_lattice, 'LineWidth', 2);
 

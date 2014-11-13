@@ -44,6 +44,7 @@ else
 end
 GB_inclined = [gb1 gb2 gb_new1 gb_new2];
 
-patch('Vertices', GB_inclined', 'Faces', [1 3 4 2], 'FaceColor', 'k', 'FaceAlpha', 0.4);
+patch('Vertices', GB_inclined', 'Faces', [1 3 4 2], ...
+    'FaceColor', 'k', 'FaceAlpha', 0.4);
 
 end

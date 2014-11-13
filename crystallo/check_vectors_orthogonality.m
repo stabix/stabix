@@ -24,4 +24,3 @@ assert(numel(v2) == 3);
 res = (dot(v1,v2) < tol);
 
 end
-

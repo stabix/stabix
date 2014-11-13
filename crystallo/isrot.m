@@ -6,11 +6,14 @@ function bool = isrot(g_mat, varargin)
 % written by Randle and Engler, (2000), p.27.
 
 if nargin == 0
-    g_mat = eulers2g; display(g_mat);
+    g_mat = eulers2g;
+    display(g_mat);
 end
 
 if abs(det(g_mat)-1) > 1e-14
-    fprintf('ERROR: Determinant of rotation Matrix is unequal +1. It deviates by %e\n', det(g_mat)-1);
+    commandwindow;
+    error(['Determinant of rotation Matrix is unequal +1.' ...
+        'It deviates by %e\n'], det(g_mat)-1);
     bool = false;
 else
     bool = true;

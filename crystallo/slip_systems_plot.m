@@ -42,3 +42,5 @@ elseif strcmp(slip2plot, 'All Slips and Twins') == 1
     slip_plot = 9;
     
 end
+
+end

@@ -197,13 +197,16 @@ elseif numph == 2
 end
 
 % Plot of unit cell
-set([hTop, hFac],'FaceColor',colorph,'FaceAlpha',fAlph,'LineWidth',line_width);
+set([hTop, hFac],'FaceColor',colorph,'FaceAlpha',...
+    fAlph,'LineWidth',line_width);
 
 if  slip == 0
     hPatch = [hTop hFac];
 else
-    set(hTop,'FaceColor',colorph,'FaceAlpha',fAlph*.8,'LineWidth',line_width);
-    set(hFac,'FaceColor',colorph,'FaceAlpha',fAlph*.8,'LineWidth',line_width);
+    set(hTop,'FaceColor',colorph,'FaceAlpha',...
+        fAlph*.8,'LineWidth',line_width);
+    set(hFac,'FaceColor',colorph,'FaceAlpha',...
+        fAlph*.8,'LineWidth',line_width);
     % Slips
     if slip >= 1 && slip <= 12
         slip_planes1 = slip_planes1(slip,:);
