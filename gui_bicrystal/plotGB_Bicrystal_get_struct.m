@@ -5,7 +5,7 @@ function plotGB_Bicrystal_get_struct
 
 gui = guidata(gcf);
 
-liststruct_str = {'hcp'; 'bcc'; 'fcc'};
+liststruct_str = listPhase;
 phA_num = get(gui.handles.pmStructA, 'Value');
 phB_num = get(gui.handles.pmStructB, 'Value');
 gui.GB.Phase_A = liststruct_str(phA_num);

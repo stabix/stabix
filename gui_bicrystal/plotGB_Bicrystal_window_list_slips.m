@@ -6,18 +6,22 @@ function plotGB_Bicrystal_window_list_slips
 %% Set the encapsulation of data
 gui = guidata(gcf);
 
-list_struct1 = get(gui.handles.pmStructA,'string');
-num_struct1  = get(gui.handles.pmStructA,'value');
-struct1      = list_struct1(num_struct1,:);
-struct1      = num2str(struct1);
+list_struct = listPhase;
 
-list_struct2 = get(gui.handles.pmStructB,'string');
-num_struct2  = get(gui.handles.pmStructB,'value');
-struct2      = list_struct2(num_struct2,:);
-struct2      = num2str(struct2);
+num_struct1  = get(gui.handles.pmStructA, 'Value');
+struct1      = list_struct(num_struct1,:);
+struct1      = struct1{:};
 
-set(gui.handles.pmlistslipsA,'String', slip_systems_names(struct1), 'Value', 1);
-set(gui.handles.pmlistslipsB,'String', slip_systems_names(struct2), 'Value', 1);
+num_struct2  = get(gui.handles.pmStructB, 'Value');
+struct2      = list_struct(num_struct2,:);
+struct2      = struct2{:};
+
+set(gui.handles.pmlistslipsA, ...
+    'String', slip_systems_names(struct1), ...
+    'Value', 1);
+set(gui.handles.pmlistslipsB, ...
+    'String', slip_systems_names(struct2), ...
+    'Value', 1);
 
 gui.GB.Phase_A = struct1;
 gui.GB.Phase_B = struct2;

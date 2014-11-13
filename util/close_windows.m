@@ -9,3 +9,5 @@ if nargin == 0
 else
     close(window_name);
 end
+
+end

@@ -5,7 +5,7 @@ function plotGB_Bicrystal_get_material
 
 gui = guidata(gcf);
 
-listmater_str = {'Al';'Au';'Be';'Cd';'Co';'Cu';'Fe';'Mg';'Mo';'Nb';'Ni';'Ta';'Ti';'Sn';'Zn';'Zr'};
+listmater_str = listMaterial;
 MaterialA_num = get(gui.handles.pmMatA, 'Value');
 MaterialB_num = get(gui.handles.pmMatB, 'Value');
 gui.GB.Material_A = char(listmater_str(MaterialA_num));

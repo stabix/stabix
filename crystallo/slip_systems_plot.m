@@ -14,13 +14,16 @@ if strcmp(slip2plot, 'No slips & No Twins') == 1
 elseif strcmp(slip2plot, 'All Slips') == 1
     slip_plot = 1;
     
-elseif strcmp(slip2plot, 'Basal') == 1 || strcmp(slip2plot, 'Slips {110}') == 1
+elseif strcmp(slip2plot, 'Basal') == 1 ...
+        || strcmp(slip2plot, 'Slips {110}') == 1
     slip_plot = 2;
     
-elseif strcmp(slip2plot, 'Prism1<a>') == 1 || strcmp(slip2plot, 'Slips {211}') == 1
+elseif strcmp(slip2plot, 'Prism1<a>') == 1 ...
+        || strcmp(slip2plot, 'Slips {211}') == 1
     slip_plot = 3;
     
-elseif strcmp(slip2plot, 'Prism2<a>') == 1 || strcmp(slip2plot, 'Slips {321}') == 1
+elseif strcmp(slip2plot, 'Prism2<a>') == 1 ...
+        || strcmp(slip2plot, 'Slips {321}') == 1
     slip_plot = 4;
     
 elseif strcmp(slip2plot, 'Pyram1<a>') == 1

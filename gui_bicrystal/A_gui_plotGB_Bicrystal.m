@@ -282,11 +282,14 @@ if nargin < 1
     
 elseif nargin == 1
     gui.GB.YAMLfilename    = 0;
-    gui.GB.active_GB       = str2double(get(gui_map.handles.numGB2plot, 'string'));
+    gui.GB.active_GB       = ...
+        str2double(get(gui_map.handles.numGB2plot, 'string'));
     gui.GB.filenameGF2_BC  = gui_map.config_map.filename_grain_file_type2;
-    gui.GB.filenameRB_BC   = gui_map.config_map.filename_reconstructed_boundaries_file;
+    gui.GB.filenameRB_BC   = ...
+        gui_map.config_map.filename_reconstructed_boundaries_file;
     gui.GB.pathnameGF2_BC  = gui_map.config_map.pathname_grain_file_type2;
-    gui.GB.pathnameRB_BC   = gui_map.config_map.pathname_reconstructed_boundaries_file;
+    gui.GB.pathnameRB_BC   = ...
+        gui_map.config_map.pathname_reconstructed_boundaries_file;
     gui.GB.GrainA          = gui_map.GBs(gui.GB.active_GB).grainA;
     gui.GB.GrainB          = gui_map.GBs(gui.GB.active_GB).grainB;
     gui.GB.eulerA          = gui_map.grains(gui.GB.GrainA).eulers;
@@ -310,7 +313,8 @@ elseif nargin == 1
     gui.GB.slipB           = 1;
     gui.GB.slipA_user_spec = gui.GB.slipA;
     gui.GB.slipB_user_spec = gui.GB.slipB;
-    gui.description        = ['From: ', gui_map.config_map.filename_grain_file_type2];
+    gui.description        = ['From: ', ...
+        gui_map.config_map.filename_grain_file_type2];
     gui.title_str          = set_gui_title(gui, '');
     guidata(gcf, gui);
     

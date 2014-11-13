@@ -30,25 +30,24 @@ if gui.config_data.phase_number == 1
 end
 
 %% Materials and Structures
-list_material1 = get(gui.handles.pmMat1, 'String');
-gui.config_data.num_material1  = get(gui.handles.pmMat1, 'Value');
-material1      = list_material1(gui.config_data.num_material1, :);
-gui.config_data.material1      = num2str(material1);
+list_material = listMaterial;
+list_struct = listPhase;
 
-list_struct1 = get(gui.handles.pmStruct1, 'String');
-gui.config_data.num_struct1  = get(gui.handles.pmStruct1, 'Value');
-struct1      = list_struct1(gui.config_data.num_struct1, :);
-gui.config_data.struct1      = num2str(struct1);
+gui.config_data.num_material1 = get(gui.handles.pmMat1, 'Value');
+material1 = list_material(gui.config_data.num_material1, :);
+gui.config_data.material1 = material1{:};
 
-list_material2 = get(gui.handles.pmMat2, 'String');
-gui.config_data.num_material2  = get(gui.handles.pmMat2, 'Value');
-material2      = list_material2(gui.config_data.num_material2, :);
-gui.config_data.material2      = num2str(material2);
+gui.config_data.num_struct1 = get(gui.handles.pmStruct1, 'Value');
+struct1 = list_struct(gui.config_data.num_struct1, :);
+gui.config_data.struct1 = struct1{:};
 
-list_struct2 = get(gui.handles.pmStruct2, 'String');
+gui.config_data.num_material2 = get(gui.handles.pmMat2, 'Value');
+material2 = list_material(gui.config_data.num_material2, :);
+gui.config_data.material2 = material2{:};
+
 gui.config_data.num_struct2  = get(gui.handles.pmStruct2, 'Value');
-struct2      = list_struct2(gui.config_data.num_struct2, :);
-gui.config_data.struct2      = num2str(struct2);
+struct2 = list_struct(gui.config_data.num_struct2, :);
+gui.config_data.struct2 = struct2{:};
 
 guidata(gcf, gui);
 

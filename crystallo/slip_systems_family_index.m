@@ -50,4 +50,3 @@ elseif strcmp(structure,'fcc')
 end
 
 end
-
