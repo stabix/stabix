@@ -20,6 +20,4 @@ if str2double(get(gui.handles.NumPh, 'String')) > 1
         gui.handles.pmlistslips2], 'Visible', 'on');
 end
 
-guidata(gcf, gui);
-
 end

@@ -7,16 +7,17 @@ function interface_map_mprime_calculator_map_set
 gui = guidata(gcf);
 
 %% Setting of Phases
-numphase = str2num(get(gui.handles.NumPh,'String'));
-Phases(1:numphase) = struct(); % based on grain file type 2 phase value
+gui.config_data.phase_number = interface_map_set_phase_number(gui.GF2_struct);
+Phases(1:gui.config_data.phase_number) = struct(); % based on grain file type 2 phase value
 pmslips = [gui.handles.pmlistslips1; gui.handles.pmlistslips2];
 gui.config_data.Phases = struct();
 
-for iph = 1:numphase
+for iph = 1:gui.config_data.phase_number
     Phases(iph).slip_strs = get(pmslips(iph), 'String');
     Phases(iph).slip_vals = get(pmslips(iph), 'Value');
     for ii = 1:1:size(Phases(iph).slip_vals,2)
-        gui.config_data.Phases(iph).slips(ii) = slip_systems_plot(Phases(iph).slip_strs(Phases(iph).slip_vals(ii)));
+        gui.config_data.Phases(iph).slips(ii) = slip_systems_plot(...
+            Phases(iph).slip_strs(Phases(iph).slip_vals(ii)));
     end
     if iph == 1
         gui.config_data.slips_1 = gui.config_data.Phases(iph).slips;
@@ -24,7 +25,7 @@ for iph = 1:numphase
         gui.config_data.slips_2 = gui.config_data.Phases(iph).slips;
     end
 end
-if numphase == 1
+if gui.config_data.phase_number == 1
     gui.config_data.slips_2 = 1;
 end
 

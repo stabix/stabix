@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function interface_map_set_phase_number(GF2_struct)
+function GF2_phase = interface_map_set_phase_number(GF2_struct)
 %% Function used to set the map interface
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 

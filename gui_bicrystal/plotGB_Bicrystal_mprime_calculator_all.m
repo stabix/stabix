@@ -15,11 +15,11 @@ gui.flag.error = 0;
 
 [gui.calculations.vectA, gui.GB.eulerA, gui.GB.sortbvA] = plotGB_Bicrystal_vector_calculations(9, gui.GB.GrainA, gui.GB.Material_A,...
     gui.GB.Phase_A, gui.GB.eulerA_ori, gui.handles.getEulangGrA,...
-    gui.stress_tensor.bc_sigma, gui.flag.error);
+    gui.stress_tensor.sigma, gui.flag.error);
 
 [gui.calculations.vectB, gui.GB.eulerB, gui.GB.sortbvA] = plotGB_Bicrystal_vector_calculations(9, gui.GB.GrainB, gui.GB.Material_B,...
     gui.GB.Phase_B, gui.GB.eulerB_ori, gui.handles.getEulangGrB,...
-    gui.stress_tensor.bc_sigma, gui.flag.error);
+    gui.stress_tensor.sigma, gui.flag.error);
 
 guidata(gcf, gui);
 

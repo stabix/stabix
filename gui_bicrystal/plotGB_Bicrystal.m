@@ -14,7 +14,8 @@ else
 end
 
 %% Set of plot type
-valcase = get(gui.handles.pmchoicecase, 'Value'); % Get value of popupmenu to plot m' value (max, min...?)
+% Get value of popupmenu to plot m' value (max, min...?)
+valcase = get(gui.handles.pmchoicecase, 'Value'); 
 
 %% Setting of popupmenu
 plotGB_Bicrystal_get_struct; gui = guidata(gcf); guidata(gcf, gui);
@@ -22,8 +23,10 @@ plotGB_Bicrystal_get_material; gui = guidata(gcf); guidata(gcf, gui);
 
 listSlipsA = slip_systems_names(gui.GB.Phase_A);
 listSlipsB = slip_systems_names(gui.GB.Phase_B);
-set(gui.handles.pmlistslipsA, 'String', listSlipsA, 'max', size(listSlipsA,1));
-set(gui.handles.pmlistslipsB, 'String', listSlipsB, 'max', size(listSlipsB,1));
+set(gui.handles.pmlistslipsA, 'String', listSlipsA, ...
+    'max', size(listSlipsA,1));
+set(gui.handles.pmlistslipsB, 'String', listSlipsB, ...
+    'max', size(listSlipsB,1));
 guidata(gcf, gui);
 
 %% Setting of slip/twin systems for m' calculation
@@ -31,12 +34,13 @@ guidata(gcf, gui);
 gui = guidata(gcf); guidata(gcf, gui);
 
 %% Update of Euler angles
-gui.GB.eulerA = plotGB_Bicrystal_update_euler(gui.GB.eulerA_ori, gui.handles.getEulangGrA); guidata(gcf, gui);
-gui.GB.eulerB = plotGB_Bicrystal_update_euler(gui.GB.eulerB_ori, gui.handles.getEulangGrB); guidata(gcf, gui);
+gui.GB.eulerA = plotGB_Bicrystal_update_euler(gui.GB.eulerA_ori, ...
+    gui.handles.getEulangGrA); guidata(gcf, gui);
+gui.GB.eulerB = plotGB_Bicrystal_update_euler(gui.GB.eulerB_ori, ...
+    gui.handles.getEulangGrB); guidata(gcf, gui);
 
 %% Get stress tensor from map interface
-plotGB_Bicrystal_stress_tensor;
-gui = guidata(gcf); guidata(gcf, gui);
+gui.stress_tensor = get_stress_tensor(gui.handles.stress_tensor);
 
 %% Store old view settings
 if isfield(gui, 'h_gbax')

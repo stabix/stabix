@@ -35,8 +35,8 @@ else
 end
 
 %% Refresh stress tensor
-interface_map_stress_tensor;
-gui = guidata(gcf); guidata(gcf, gui);
+gui.stress_tensor = get_stress_tensor(...
+    gui.handles.stress_tensor);
 
 %% Plot microstructure
 set(gcf, 'CurrentAxes', gui.handles.AxisGBmap);
@@ -85,8 +85,8 @@ gui = guidata(gcf); guidata(gcf, gui);
 guidata(gcf, gui);
 interface_map_init_microstructure;
 gui = guidata(gcf); guidata(gcf, gui);
-GF2     = gui.GF2_struct.data_smoothed;
-RB      = gui.RB_struct.data_smoothed;
+GF2 = gui.GF2_struct.data_smoothed;
+RB  = gui.RB_struct.data_smoothed;
 
 %% Calculations and plot of function results along GBs
 if gui.flag.pmparam2plot_value4GB == 1

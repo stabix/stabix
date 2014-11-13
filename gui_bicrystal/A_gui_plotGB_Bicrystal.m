@@ -210,25 +210,16 @@ gui.handles.pbIPFplot_legendB = uicontrol( ...
     'String', {'Green ==> Grain B'});
 
 %% Stress Tensor
-StressTensorStr_x = 0.76; % Top Left position of the following txt control
-StressTensorStr_y = 0.81; % Array for the stress tensor is below this text bar
 gui.handles.StressTensorStr = uicontrol( ...
     'Parent', gui.handles.Bicrystal_interface,...
     'Units', 'normalized',...
     'HorizontalAlignment', 'center',...
     'Style', 'text',...
-    'Position', [StressTensorStr_x StressTensorStr_y 0.19 0.02],...
+    'Position', [0.8 0.81 0.12 0.02],...
     'String', 'Stress tensor :');
 
-gui.handles.BC_ST_s11 = uicontrol('Parent', gui.handles.Bicrystal_interface, 'Units', 'normalized', 'Style', 'edit', 'Position', [StressTensorStr_x (StressTensorStr_y-0.025) 0.05 0.02], 'BackgroundColor', [0.9 0.9 0.9], 'String', '0', 'Callback', 'plotGB_Bicrystal');
-gui.handles.BC_ST_s12 = uicontrol('Parent', gui.handles.Bicrystal_interface, 'Units', 'normalized', 'Style', 'edit', 'Position', [(StressTensorStr_x + 0.07) (StressTensorStr_y-0.025) 0.05 0.02], 'BackgroundColor', [0.9 0.9 0.9], 'String', '0', 'Callback', 'plotGB_Bicrystal');
-gui.handles.BC_ST_s13 = uicontrol('Parent', gui.handles.Bicrystal_interface, 'Units', 'normalized', 'Style', 'edit', 'Position', [(StressTensorStr_x + 0.14) (StressTensorStr_y-0.025) 0.05 0.02], 'BackgroundColor', [0.9 0.9 0.9], 'String', '0', 'Callback', 'plotGB_Bicrystal');
-gui.handles.BC_ST_s21 = uicontrol('Parent', gui.handles.Bicrystal_interface, 'Units', 'normalized', 'Style', 'edit', 'Position', [StressTensorStr_x (StressTensorStr_y-0.045) 0.05 0.02], 'BackgroundColor', [0.9 0.9 0.9], 'String', '0', 'Callback', 'plotGB_Bicrystal');
-gui.handles.BC_ST_s22 = uicontrol('Parent', gui.handles.Bicrystal_interface, 'Units', 'normalized', 'Style', 'edit', 'Position', [(StressTensorStr_x + 0.07) (StressTensorStr_y-0.045) 0.05 0.02], 'BackgroundColor', [0.9 0.9 0.9], 'String', '0', 'Callback', 'plotGB_Bicrystal');
-gui.handles.BC_ST_s23 = uicontrol('Parent', gui.handles.Bicrystal_interface, 'Units', 'normalized', 'Style', 'edit', 'Position', [(StressTensorStr_x + 0.14) (StressTensorStr_y-0.045) 0.05 0.02], 'BackgroundColor', [0.9 0.9 0.9], 'String', '0', 'Callback', 'plotGB_Bicrystal');
-gui.handles.BC_ST_s31 = uicontrol('Parent', gui.handles.Bicrystal_interface, 'Units', 'normalized', 'Style', 'edit', 'Position', [StressTensorStr_x (StressTensorStr_y-0.065) 0.05 0.02], 'BackgroundColor', [0.9 0.9 0.9], 'String', '0', 'Callback', 'plotGB_Bicrystal');
-gui.handles.BC_ST_s32 = uicontrol('Parent', gui.handles.Bicrystal_interface, 'Units', 'normalized', 'Style', 'edit', 'Position', [(StressTensorStr_x + 0.07) (StressTensorStr_y-0.065) 0.05 0.02], 'BackgroundColor', [0.9 0.9 0.9], 'String', '0', 'Callback', 'plotGB_Bicrystal');
-gui.handles.BC_ST_s33 = uicontrol('Parent', gui.handles.Bicrystal_interface, 'Units', 'normalized', 'Style', 'edit', 'Position', [(StressTensorStr_x + 0.14) (StressTensorStr_y-0.065) 0.05 0.02], 'BackgroundColor', [0.9 0.9 0.9], 'String', '1', 'Callback', 'plotGB_Bicrystal');
+gui.handles.stress_tensor = set_stress_tensor( ...
+    0.8, 0.79, 0.03, 0.02, 'plotGB_Bicrystal');
 
 %% Save picture of the bicrystal
 gui.handles.pbsavefigure = uicontrol( ...
@@ -258,26 +249,25 @@ gui.handles.h_gbax = subplot(4, 2, [3 6]);
 guidata(gcf, gui);
 
 %% Set stress tensor
-if nargin < 1 || nargin > 1
-    set(gui.handles.BC_ST_s11, 'String', 0);
-    set(gui.handles.BC_ST_s12, 'String', 0);
-    set(gui.handles.BC_ST_s13, 'String', 0);
-    set(gui.handles.BC_ST_s21, 'String', 0);
-    set(gui.handles.BC_ST_s22, 'String', 0);
-    set(gui.handles.BC_ST_s23, 'String', 0);
-    set(gui.handles.BC_ST_s31, 'String', 0);
-    set(gui.handles.BC_ST_s32, 'String', 0);
-    set(gui.handles.BC_ST_s33, 'String', 1);
-elseif nargin == 1
-    set(gui.handles.BC_ST_s11, 'String', num2str(gui_map.stress_tensor.sigma(1,1)));
-    set(gui.handles.BC_ST_s12, 'String', num2str(gui_map.stress_tensor.sigma(1,2)));
-    set(gui.handles.BC_ST_s13, 'String', num2str(gui_map.stress_tensor.sigma(1,3)));
-    set(gui.handles.BC_ST_s21, 'String', num2str(gui_map.stress_tensor.sigma(2,1)));
-    set(gui.handles.BC_ST_s22, 'String', num2str(gui_map.stress_tensor.sigma(2,2)));
-    set(gui.handles.BC_ST_s23, 'String', num2str(gui_map.stress_tensor.sigma(2,3)));
-    set(gui.handles.BC_ST_s31, 'String', num2str(gui_map.stress_tensor.sigma(3,1)));
-    set(gui.handles.BC_ST_s32, 'String', num2str(gui_map.stress_tensor.sigma(3,2)));
-    set(gui.handles.BC_ST_s33, 'String', num2str(gui_map.stress_tensor.sigma(3,3)));
+if nargin == 1
+    set(gui.handles.stress_tensor.ST_s11, ...
+        'String', num2str(gui_map.stress_tensor.sigma(1,1)));
+    set(gui.handles.stress_tensor.ST_s12, ...
+        'String', num2str(gui_map.stress_tensor.sigma(1,2)));
+    set(gui.handles.stress_tensor.ST_s13, ...
+        'String', num2str(gui_map.stress_tensor.sigma(1,3)));
+    set(gui.handles.stress_tensor.ST_s21, ...
+        'String', num2str(gui_map.stress_tensor.sigma(2,1)));
+    set(gui.handles.stress_tensor.ST_s22, ...
+        'String', num2str(gui_map.stress_tensor.sigma(2,2)));
+    set(gui.handles.stress_tensor.ST_s23, ...
+        'String', num2str(gui_map.stress_tensor.sigma(2,3)));
+    set(gui.handles.stress_tensor.ST_s31, ...
+        'String', num2str(gui_map.stress_tensor.sigma(3,1)));
+    set(gui.handles.stress_tensor.ST_s32, ...
+        'String', num2str(gui_map.stress_tensor.sigma(3,2)));
+    set(gui.handles.stress_tensor.ST_s33, ...
+        'String', num2str(gui_map.stress_tensor.sigma(3,3)));
 end
 
 %% Set GUI if random bicrystal or bicrystal from EBSD map

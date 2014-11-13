@@ -5,7 +5,7 @@ function handles = preCPFE_buttons_indenter(x0, hu, wu)
 % hu: heigth unit
 % wu: width unit
 
-% authors: d.mercier@mpie.de
+% author: d.mercier@mpie.de
 
 parent = gcf;
 

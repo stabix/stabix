@@ -36,17 +36,11 @@ if gui.flag.initialization
 end
 % Get data from encapsulation
 gui = guidata(gcf);
-
-% Get total phase_number
-guidata(gcf, gui);
-interface_map_set_phase_number(gui.GF2_struct);
-% Get data from encapsulation
-gui = guidata(gcf);
 guidata(gcf, gui);
 
 % Read data from map interface
-guidata(gcf, gui);
 interface_map_mprime_calculator_map_set;
+
 % Get data from encapsulation
 gui = guidata(gcf);
 
@@ -109,7 +103,7 @@ for ng = 1:sGF2(1)
 end
 
 % Set total number of phase (see interface_map_set_phase_number.m)
-if str2num(get(gui.handles.NumPh, 'String')) == 1
+if str2double(get(gui.handles.NumPh, 'String')) == 1
     for ng = 1:max(GF2(:,1))
         gui.grains(ng).phase_num = 1;
         gui.grains(ng).phase     = 1; %Sometimes, 1 phase but phase indexation from TSL is 2 instead of 1;
