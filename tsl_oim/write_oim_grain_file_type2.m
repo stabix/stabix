@@ -51,6 +51,7 @@ if fpath_flag
     %% Check fields of fdata
     if ~isfield(fdata, 'title')
         fdata.title = 'No_title_given_by_user';
+        commandwindow;
         warning('No title given by user for the Grain File Type 2');
     end
     
@@ -58,35 +59,47 @@ if fpath_flag
         if isfield(fdata, 'eul_ang')
             fdata.number_of_grains = length(fdata.eul_ang);
         else
-            warning('No Euler angles found in the data to store in Grain File Type 2');
+            commandwindow;
+            warning(['No Euler angles found in the data ' ...
+                'to store in Grain File Type 2']);
             flag_missing_field = 1;
         end
         if isfield(fdata, 'x_positions')
             fdata.number_of_grains = length(fdata.x_positions);
         else
-            warning('No X positions of grains found in the data to store in Grain File Type 2');
+            commandwindow;
+            warning(['No X positions of grains found in the data ' ...
+                'to store in Grain File Type 2']);
             flag_missing_field = 1;
         end
         if isfield(fdata, 'y_positions')
             fdata.number_of_grains = length(fdata.y_positions);
         else
-            warning('No Y positions of grains found in the data to store in Grain File Type 2');
+            commandwindow;
+            warning(['No Y positions of grains found in the data ' ...
+                'to store in Grain File Type 2']);
             flag_missing_field = 1;
         end
     end
     
     if ~isfield(fdata, 'eul_ang')
-        warning('No Euler angles found in the data to store in Grain File Type 2');
+        commandwindow;
+        warning(['No Euler angles found in the data ' ...
+            'to store in Grain File Type 2']);
         flag_missing_field = 1;
     end
     
     if ~isfield(fdata, 'x_positions')
-        warning('No X positions of grains found in the data to store in Grain File Type 2');
+        commandwindow;
+        warning(['No X positions of grains found in the data ' ...
+            'to store in Grain File Type 2']);
         flag_missing_field = 1;
     end
     
     if ~isfield(fdata, 'y_positions')
-        warning('No Y positions of grains found in the data to store in Grain File Type 2');
+        commandwindow;
+        warning(['No Y positions of grains found in the data ' ...
+            'to store in Grain File Type 2']);
         flag_missing_field = 1;
     end
     
@@ -130,23 +143,31 @@ if fpath_flag
         
         %% Creation of the grain file type 2
         fid = fopen(fname, 'w+');
-        fprintf(fid, '# Header: Project1::%s::All data::Grain Size\r\n', char(fdata(:,1).title));
+        fprintf(fid, '# Header: Project1::%s::All data::Grain Size\r\n', ...
+            char(fdata(:,1).title));
         fprintf(fid, '#\r\n');
         fprintf(fid, '# Column 1: Integer identifying grain\r\n');
-        fprintf(fid, '# Column 2-4: Average orientation (phi1, PHI, phi2) in degrees\r\n');
-        fprintf(fid, '# Column 5-6: Average Position (x, y) in microns\r\n');
+        fprintf(fid, ['# Column 2-4: Average orientation ' ...
+            '(phi1, PHI, phi2) in degrees\r\n']);
+        fprintf(fid, ['# Column 5-6: Average Position ' ...
+            '(x, y) in microns\r\n']);
         fprintf(fid, '# Column 7: Average Image Quality (IQ)\r\n');
         fprintf(fid, '# Column 8: Average Confidence Index (CI)\r\n');
         fprintf(fid, '# Column 9: Average Fit (degrees)\r\n');
         fprintf(fid, '# Column 10: An integer identifying the phase\r\n');
         fprintf(fid, '#           0 -  Titanium (Alpha)\r\n');
-        fprintf(fid, '# Column 11: Edge grain (1) or interior grain (0)\r\n');
+        fprintf(fid, ['# Column 11: Edge grain (1) ' ...
+            'or interior grain (0)\r\n']);
         fprintf(fid, '# Column 12: Diameter of grain in microns\r\n');
         for ii = 1:fdata(1).number_of_grains
-            fprintf(fid, '%i %6.2f %6.2f %6.2f %6.2f %6.2f %i %i %i %i %i %6.2f\r\n',...
+            fprintf(fid, ['%i %6.2f %6.2f %6.2f %6.2f %6.2f ' ...
+                '%i %i %i %i %i %6.2f\r\n'],...
                 ii, ...
-                fdata.eul_ang(ii,1), fdata.eul_ang(ii,2), fdata.eul_ang(ii,3),...
-                fdata.x_positions(ii), fdata.y_positions(ii),...
+                fdata.eul_ang(ii,1), ...
+                fdata.eul_ang(ii,2), ...
+                fdata.eul_ang(ii,3),...
+                fdata.x_positions(ii), ...
+                fdata.y_positions(ii),...
                 fdata.image_quality(ii),...
                 fdata.confidence_index(ii),...
                 fdata.fit(ii),...

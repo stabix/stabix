@@ -20,4 +20,5 @@ jframe = get(gui_handle,'JavaFrame');
 jIcon = javax.swing.ImageIcon(logo);
 jframe.setFigureIcon(jIcon);
 warning(wrn);
+
 end

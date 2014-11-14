@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function rdm_microstructure_dataset = random_2D_microstructure_data (number_of_grains, resolution, varargin)
+function rdm_microstructure_dataset = ...
+    random_2D_microstructure_data(number_of_grains, resolution, varargin)
 %% Function used to create random EBSD data based on TSL files (GF Type2 and RB file)
 % number_of_grains : Number of grains for the Voronoi tesselation
 % resolution : resolution along x and y axis for generation of seeds file
@@ -48,12 +49,19 @@ for ii = 1 : number_of_grains
 end
 
 % GBs endpoints coordinates
-[rdm_microstructure_dataset.GBvx, rdm_microstructure_dataset.GBvy, rdm_microstructure_dataset.GB2cells(:,:), rdm_microstructure_dataset.flag_VorFailed] = ...
-    neighbooring_edge_of_2cells(rdm_microstructure_dataset.x_positions', rdm_microstructure_dataset.y_positions');
+[rdm_microstructure_dataset.GBvx, ...
+    rdm_microstructure_dataset.GBvy, ...
+    rdm_microstructure_dataset.GB2cells(:,:), ...
+    rdm_microstructure_dataset.flag_VorFailed] = ...
+    neighbooring_edge_of_2cells(...
+    rdm_microstructure_dataset.x_positions', ...
+    rdm_microstructure_dataset.y_positions');
 
 % GBs coordinates
-GB(1,:) = rdm_microstructure_dataset.GBvx(2,:) - rdm_microstructure_dataset.GBvx(1,:);
-GB(2,:) = rdm_microstructure_dataset.GBvy(2,:) - rdm_microstructure_dataset.GBvy(1,:);
+GB(1,:) = rdm_microstructure_dataset.GBvx(2,:) - ...
+    rdm_microstructure_dataset.GBvx(1,:);
+GB(2,:) = rdm_microstructure_dataset.GBvy(2,:) - ...
+    rdm_microstructure_dataset.GBvy(1,:);
 GB(3,:) = zeros;
 
 % flag is to know if the voronoiDiagram fails (degenerated case?)
@@ -79,17 +87,21 @@ for ii = 1:length(GB);
     rdm_microstructure_dataset.gb_length(1,ii) = norm(GB(ii));
     
     CosTheta = dot(GB(:,ii),[1,0,0])/(norm(GB(:,ii))*norm([1,0,0]));
-    rdm_microstructure_dataset.gb_trace_angle(1,ii) = acos(CosTheta)*180/pi;
+    rdm_microstructure_dataset.gb_trace_angle(1,ii) = ...
+        acos(CosTheta)*180/pi;
 end
 
 rdm_microstructure_dataset.GBvx = rdm_microstructure_dataset.GBvx';
 rdm_microstructure_dataset.GBvy = rdm_microstructure_dataset.GBvy';
 rdm_microstructure_dataset.GB2cells = rdm_microstructure_dataset.GB2cells';
 
-rdm_microstructure_dataset.confidence_index = ones((resolution*resolution), 1);
-rdm_microstructure_dataset.image_quality = ones((resolution*resolution), 1);
+rdm_microstructure_dataset.confidence_index = ...
+    ones((resolution*resolution), 1);
+rdm_microstructure_dataset.image_quality = ...
+    ones((resolution*resolution), 1);
 rdm_microstructure_dataset.phase_ang = ones((resolution*resolution), 1);
-rdm_microstructure_dataset.detector_intensity  = ones((resolution*resolution), 1);
+rdm_microstructure_dataset.detector_intensity = ...
+    ones((resolution*resolution), 1);
 rdm_microstructure_dataset.fit = ones((resolution*resolution), 1);
 
 rdm_microstructure_dataset.x_pixel_pos = 1:(resolution*resolution);

@@ -66,12 +66,14 @@ while feof(fid) ~= 1
             DIAM_OK = true;
         end
     else
-        if ~(GRAIN_NUMBERS_OK && EULER_ANGLES_OK && AVG_POS_XY_OK && PHASE_OK)
+        if ~(GRAIN_NUMBERS_OK && EULER_ANGLES_OK && ...
+                AVG_POS_XY_OK && PHASE_OK)
             fclose(fid);
             error('Grain File Type 2 columns are wrong !')
         end
         if ~(EDGE_GRAIN_OK && DIAM_OK)
-            warning('Missing information if edge or interior grain, and diameter of grains !')
+            warning(['Missing information if edge or interior grain, ' ...
+                'and diameter of grains !'])
         end
         ii = ii + 1;
         data(ii,:) = sscanf(ln,'%f');

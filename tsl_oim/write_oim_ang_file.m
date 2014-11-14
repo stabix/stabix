@@ -63,76 +63,93 @@ if fpath_flag
     %% Check fields of fdata
     if ~isfield(fdata, 'title')
         fdata.title = 'No_title_given_by_user';
+        commandwindow;
         warning('No title given by user for the .Ang file');
     end
     
     if ~isfield(fdata, 'user')
         fdata.user = 'No_username_given_by_user';
+        commandwindow;
         warning('No username given by user for the .Ang file');
     end
     
     if ~isfield(fdata, 'eul_ang')
         fdata.eul_ang = randBunges((100*100))*pi/(180); %in radians !!!
+        commandwindow;
         warning('No Euler angles given by user for the .Ang file');
     end
     
     if ~isfield(fdata, 'x_pixel_pos')
         fdata.x_pixel_pos =  1:(100*100);
-        warning('No x positions of pixels given by user for the .Ang file');
+        commandwindow;
+        warning(['No x positions of pixels given ' ...
+            'by user for the .Ang file']);
     end
     
     if ~isfield(fdata, 'y_pixel_pos')
         fdata.y_pixel_pos = 1:(100*100);
-        warning('No y positions of pixels given by user for the .Ang file');
+        commandwindow;
+        warning(['No y positions of pixels given ' ...
+            'by user for the .Ang file']);
     end
     
     if ~isfield(fdata, 'image_quality')
         fdata.image_quality = ones(length(fdata.x_pixel_pos), 1);
+        commandwindow;
         warning('No image quality given by user for the .Ang file');
     end
     
     if ~isfield(fdata, 'confidence_index')
         fdata.confidence_index = ones(length(fdata.x_pixel_pos), 1);
+        commandwindow;
         warning('No confidence index given by user for the .Ang file');
     end
     
     if ~isfield(fdata, 'phase')
         fdata.phase_ang = zeros(length(fdata.x_pixel_pos), 1);
+        commandwindow;
         warning('No phase given by user for the .Ang file');
     end
     
     if ~isfield(fdata, 'detector_intensity')
         fdata.detector_intensity = ones(length(fdata.x_pixel_pos), 1);
+        commandwindow;
         warning('No detector intensity given by user for the .Ang file');
     end
     
     if ~isfield(fdata, 'fit')
         fdata.fit = ones(length(fdata.x_pixel_pos), 1);
+        commandwindow;
         warning('No fit values given by user for the .Ang file');
     end
     
     if ~isfield(fdata, 'x_step')
         fdata.x_step = length(fdata.x_pixel_pos);
+        commandwindow;
         warning('No x step values given by user for the .Ang file');
     end
     
     if ~isfield(fdata, 'y_step')
         fdata.y_step = length(fdata.y_pixel_pos);
+        commandwindow;
         warning('No y step values given by user for the .Ang file');
     end
     
     if ~isfield(fdata, 'n_col_odd')
         fdata.n_col_odd = length(fdata.x_pixel_pos);
+        commandwindow;
         warning('No n_col_odd values given by user for the .Ang file');
     end
     
     if ~isfield(fdata, 'n_col_even')
         fdata.n_col_even = length(fdata.y_pixel_pos);
+        commandwindow;
         warning('No n_col_even values given by user for the .Ang file');
     end
     
     if ~isfield(fdata, 'n_rows')
         fdata.n_rows = length(fdata.x_pixel_pos);
+        commandwindow;
         warning('No n_rows values given by user for the .Ang file');
     end
     
@@ -149,7 +166,8 @@ if fpath_flag
     fprintf(fid, '# Formula     	Ti\n');
     fprintf(fid, '# Info\n');
     fprintf(fid, '# Symmetry              62\n');
-    fprintf(fid, '# LatticeConstants      2.950 2.950 4.680  90.000  90.000 120.000\n');
+    fprintf(fid, ['# LatticeConstants      ' ...
+        '2.950 2.950 4.680  90.000  90.000 120.000\n']);
     fprintf(fid, '# NumberFamilies        8\n');
     fprintf(fid, '# hklFamilies   	 1  0  0 1 0.000000 1\n');
     fprintf(fid, '# hklFamilies   	 0  0  2 1 0.000000 1\n');
@@ -159,12 +177,18 @@ if fpath_flag
     fprintf(fid, '# hklFamilies   	 1  0  3 1 0.000000 1\n');
     fprintf(fid, '# hklFamilies   	 1  1  2 1 0.000000 1\n');
     fprintf(fid, '# hklFamilies   	 2  0  1 1 0.000000 1\n');
-    fprintf(fid, '# ElasticConstants 	0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\n');
-    fprintf(fid, '# ElasticConstants 	0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\n');
-    fprintf(fid, '# ElasticConstants 	0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\n');
-    fprintf(fid, '# ElasticConstants 	0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\n');
-    fprintf(fid, '# ElasticConstants 	0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\n');
-    fprintf(fid, '# ElasticConstants 	0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\n');
+    fprintf(fid, ['# ElasticConstants 	' ...
+        '0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\n']);
+    fprintf(fid, ['# ElasticConstants 	' ...
+        '0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\n']);
+    fprintf(fid, ['# ElasticConstants 	' ...
+        '0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\n']);
+    fprintf(fid, ['# ElasticConstants 	' ...
+        '0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\n']);
+    fprintf(fid, ['# ElasticConstants 	' ...
+        '0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\n']);
+    fprintf(fid, ['# ElasticConstants 	' ...
+        '0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\n']);
     fprintf(fid, '# Categories0 0 0 0 0\n');
     fprintf(fid, '#\n');
     fprintf(fid, '# GRID: SqrGrid\n');
@@ -181,7 +205,8 @@ if fpath_flag
     fprintf(fid, '# SCANID:\n');
     fprintf(fid, '#\n');
     for ii = 1:length(fdata.x_pixel_pos)
-        fprintf(fid, '%6.2f %6.2f %6.2f %6.2f %6.2f %6.2f %6.2f %6.2f %6.2f %6.2f \n\l',...
+        fprintf(fid, ['%6.2f %6.2f %6.2f %6.2f %6.2f %6.2f ' ...
+            '%6.2f %6.2f %6.2f %6.2f \n\l'],...
             fdata.eul_ang(ii,1), fdata.eul_ang(ii,2), fdata.eul_ang(ii,3),...
             fdata.x_pixel_pos(ii), fdata.y_pixel_pos(ii),...
             fdata.image_quality(ii),...

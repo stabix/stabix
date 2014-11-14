@@ -17,7 +17,8 @@ dt = DelaunayTri([x(:) y(:)]);
 [v, reg] = voronoiDiagram(dt);
 if length(reg) ~= size(dt.X,1)
     % My 2012B might end up here, which I think is a bug (due to numerical errors)
-    disp('voronoiDiagram fails (bug)');
+    commandwindow;
+    error('voronoiDiagram fails (bug)');
     random_2D_microstructure_data;
 end
 K = dt.convexHull;
@@ -60,7 +61,8 @@ else
     
     % which edge is infinity
     edgeinf = edges(:,1)==1;
-    [~, locinf]=ismember(sort(ridx(:,edgeinf))',sort([K(1:end-1) K(2:end)],2),'rows');
+    [~, locinf] = ismember(sort(ridx(:,edgeinf))', ...
+        sort([K(1:end-1) K(2:end)],2),'rows');
     vx(1,edgeinf) = XInf(1,locinf);
     vy(1,edgeinf) = XInf(2,locinf);
     
@@ -68,11 +70,12 @@ else
     yr = y(ridx);
     
     if flag
-        figure(1)
-        clf
-        plot(x,y,'r+',vx,vy,'b-o',xr,yr,'g')
-        axis equal
+        figure(1);
+        clf;
+        plot(x,y,'r+',vx,vy,'b-o',xr,yr,'g');
+        axis equal;
         axis([-0.5 1.5 -0.5 1.5]);
-        disp (ridx)
+        disp (ridx);
     end
+end
 end

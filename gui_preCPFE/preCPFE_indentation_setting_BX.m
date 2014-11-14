@@ -288,7 +288,8 @@ gdata.variables_geom.top8121617_y = gdata.variables_geom.top8121617_x*0;
 gdata.variables_geom.top8121617_y(:) = gdata.variables.sample_coordy_rightface;
 
 %% Clear axes
-cla;shg
+cla;
+shg;
 
 %% Plot the sample mesh
 

@@ -95,7 +95,9 @@ if ~isfield(GB_YAML, 'ca_ratio_B')
 end
 
 %% Set specific slips for grains A and B
-if (~isfield(GB_YAML, 'SlipA_norm') && ~isfield(GB_YAML, 'SlipA_dir')) && (~isfield(GB_YAML, 'SlipB_norm') && ~isfield(GB_YAML, 'SlipB_dir'))
+if (~isfield(GB_YAML, 'SlipA_norm') && ~isfield(GB_YAML, 'SlipA_dir')) ...
+        && (~isfield(GB_YAML, 'SlipB_norm') ...
+        && ~isfield(GB_YAML, 'SlipB_dir'))
     GB_YAML.SlipA_norm = {[0], [0], [0], [1]};
     GB_YAML.SlipA_dir  = {[2], [-1], [-1], [0]};
     GB_YAML.SlipB_norm = {[0], [0], [0], [1]};
@@ -116,8 +118,10 @@ GB_YAML.slipB_str_dir(ismember(GB_YAML.slipB_str_dir,' ')) = [];
 
 slipA_all_vect = slip_systems(GB_YAML.Phase_A, 9);
 slipB_all_vect = slip_systems(GB_YAML.Phase_B, 9);
-specific_slips_A = get_slip_indices(GB_YAML.slipA_str_dir, slipA_all_vect, 2);
-specific_slips_B = get_slip_indices(GB_YAML.slipB_str_dir, slipB_all_vect, 2);
+specific_slips_A = ...
+    get_slip_indices(GB_YAML.slipA_str_dir, slipA_all_vect, 2);
+specific_slips_B = ...
+    get_slip_indices(GB_YAML.slipB_str_dir, slipB_all_vect, 2);
 
 specific_slips_AB = [specific_slips_A, specific_slips_B];
 

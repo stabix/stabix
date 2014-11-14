@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function ori_grain = MTEX_setBX_orientation(phase, ca_ratio, eulers_angle, varargin)
+function ori_grain = ...
+    MTEX_setBX_orientation(phase, ca_ratio, eulers_angle, varargin)
 %% Set orientation of a grain by using MTEX function
 % phase = Crystal Structure (CS for MTEX)
 % eulers_angle = Euler angles (Bunge) in degrees

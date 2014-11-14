@@ -15,7 +15,9 @@ function open_file_GF2(starting_folder, varargin)
 % authors: c.zambaldi@mpie.de / d.mercier@mpie.de
 
 if nargin == 0
-    starting_folder = fullfile(getenv('SLIP_TRANSFER_TBX_ROOT'), 'gui_ebsd_map', 'EBSD_data_Examples');
+    starting_folder = ...
+        fullfile(get_stabix_root, ...
+        'gui_ebsd_map', 'EBSD_data_Examples');
 end
 
 %% Get data from the GUI
@@ -24,7 +26,9 @@ gui = guidata(gcf);
 cd(starting_folder);
 
 %% FileGF2 loading
-[filenameGF2, pathnameGF2] = uigetfile([gui.config_map.TSLOIM_data_path_GF2, '.txt'], 'Select the ''Grain File Type 2'' file');
+[filenameGF2, pathnameGF2] = ...
+    uigetfile([gui.config_map.TSLOIM_data_path_GF2, '.txt'], ...
+    'Select the ''Grain File Type 2'' file');
 % Handle canceled file selection
 if filenameGF2 == 0
     filenameGF2 = '';
@@ -51,6 +55,6 @@ gui.flag.newDataFlag = 1;
 
 guidata(gcf, gui);
 
-cd(getenv('SLIP_TRANSFER_TBX_ROOT'));
+cd(get_stabix_root);
 
 end

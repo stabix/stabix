@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function coordinate_convention_matrix = coordinate_convention(coordinate_angle, varargin)
+function coordinate_convention_matrix = ...
+    coordinate_convention(coordinate_angle, varargin)
 % coordinate_angle: Angle to rotate coordinate system of EBSD system
 
 % Z out of the plane

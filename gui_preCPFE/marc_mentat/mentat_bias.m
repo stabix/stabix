@@ -41,7 +41,8 @@ biased_elem = zeros(num_elements,1);
 biased_elem(1) = t_true(1);
 for jj = 1:num_elements
     ratio(jj) = (t_star(jj+1)-t_star(jj))/(t(jj+1)-t(jj));
-    biased_elem(jj+1) = ratio(jj) * (t_true(jj+1)-t_true(jj)) + biased_elem(jj);
+    biased_elem(jj+1) = ratio(jj) * ...
+        (t_true(jj+1)-t_true(jj)) + biased_elem(jj);
 end
 
 if testing

@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function RB = read_oim_reconstructed_boundaries_file(fname, fpath, varargin)
+function RB = ...
+    read_oim_reconstructed_boundaries_file(fname, fpath, varargin)
 %% Function to read TSL-OIM reconstructed boundaries file
 % fname : Name of the reconstructed boundaries file
 % fpath : Path to the reconstructed boundaries file
@@ -48,10 +49,12 @@ while feof(fid) ~= 1
     ln = fgetl(fid);
     if ln(1) == '#';
         header{end+1} = ln;
-        if strfind(ln, 'right hand average orientation (phi1, PHI, phi2 in radians)')
+        if strfind(ln, ['right hand average orientation ' ...
+                '(phi1, PHI, phi2 in radians)'])
             RIGHT_ORI_OK = true;
         end
-        if strfind(ln, 'left hand average orientation (phi1, PHI, phi2 in radians)')
+        if strfind(ln, ['left hand average orientation ' ...
+                '(phi1, PHI, phi2 in radians)'])
             LEFT_ORI_OK = true;
         end
         if strfind(ln, 'length (in microns)')
@@ -67,7 +70,8 @@ while feof(fid) ~= 1
             ID_GRAINS_OK = true;
         end
     else
-        if ~(RIGHT_ORI_OK && LEFT_ORI_OK && GB_LENGTH_OK&& GB_TRACE_ANGLE_OK&& GB_ENDPOINTS_COORD_OK && ID_GRAINS_OK)
+        if ~(RIGHT_ORI_OK && LEFT_ORI_OK && GB_LENGTH_OK && ...
+                GB_TRACE_ANGLE_OK&& GB_ENDPOINTS_COORD_OK && ID_GRAINS_OK)
            fclose(fid);
            error('Reconstructed Boundaries File columns are wrong !')
         end
@@ -124,4 +128,3 @@ for i_ln = 1:numel(header)
         end
     end
 end
-

@@ -16,7 +16,8 @@ function open_file_RB(starting_folder, varargin)
 % authors: c.zambaldi@mpie.de / d.mercier@mpie.de
 
 if nargin == 0
-    starting_folder = fullfile(getenv('SLIP_TRANSFER_TBX_ROOT'), 'gui_ebsd_map', 'EBSD_data_Examples');
+    starting_folder = fullfile(get_stabix_root, ...
+        'gui_ebsd_map', 'EBSD_data_Examples');
 end
 
 %% Get data from the GUI
@@ -25,7 +26,9 @@ gui = guidata(gcf);
 cd(starting_folder);
 
 %% FileRB loading
-[filenameRB, pathnameRB] = uigetfile([gui.config_map.TSLOIM_data_path_GF2, '.txt'], 'Select the ''Reconstructed Boundary'' file');
+[filenameRB, pathnameRB] = ...
+    uigetfile([gui.config_map.TSLOIM_data_path_GF2, '.txt'], ...
+    'Select the ''Reconstructed Boundary'' file');
 % Handle canceled file selection
 if filenameRB == 0
     filenameRB = '';
@@ -52,6 +55,6 @@ gui.flag.newDataFlag = 1;
 
 guidata(gcf, gui);
 
-cd(getenv('SLIP_TRANSFER_TBX_ROOT'));
+cd(get_stabix_root);
 
 end
