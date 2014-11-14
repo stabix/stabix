@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function slip_syst = slip_systems(structure, slip_system, varargin)
+function [slip_syst, check_flag] = slip_systems(structure, slip_system, varargin)
 %% Function used to calculate normal and Burgers vectors for given slip systems and for a given grain
 % structure : hcp, bcc or fcc
 % slip_system : setting of slip systems to take into account
@@ -284,7 +284,6 @@ for ii = 1:1:size(slip_system, 2) % If more than 1 slip/twin system is defined b
 end
 
 slip_syst_check = zeros(2,3,size(slip_syst,3));
-
 if strcmp(structure,'hcp')
     for ii = 1:size(slip_syst,3)
         slip_syst_check(1,:,ii) = ...
@@ -296,9 +295,14 @@ else
     slip_syst_check = slip_syst;
 end
 
+check_flag = zeros(slip_syst,3,1);
 for ii = 1:size(slip_syst,3)
-    check_vectors_orthogonality(slip_syst_check(1,:,ii), ...
-        slip_syst_check(2,:,ii));
+    if ~isnan(slip_syst_check(1,:,ii)) & ~isnan(slip_syst_check(2,:,ii))
+        check_flag(ii) = check_vectors_orthogonality(...
+            slip_syst_check(1,:,ii), slip_syst_check(2,:,ii));
+    else
+        check_flag(ii) = 1;
+    end
 end
 
 end

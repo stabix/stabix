@@ -7,7 +7,8 @@ function interface_map_mprime_calculator_map_set
 gui = guidata(gcf);
 
 %% Setting of Phases
-gui.config_data.phase_number = interface_map_set_phase_number(gui.GF2_struct);
+gui.config_data.phase_number = ...
+    interface_map_set_phase_number(gui.GF2_struct);
 Phases(1:gui.config_data.phase_number) = struct(); % based on grain file type 2 phase value
 pmslips = [gui.handles.pmlistslips1; gui.handles.pmlistslips2];
 gui.config_data.Phases = struct();
