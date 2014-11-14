@@ -40,7 +40,8 @@ fprintf('%s\n', folder)
 if nargin > 0 && ischar(varargin{1})
     answer = varargin{1};
 else
-    display('Add the above folder with subfolders to the Matlab search path?')
+    display(['Add the above folder with subfolders ' ...
+        'to the Matlab search path?'])
     fprintf('(%i items)\n', n_dirs)
     answer = input('([y](default)/n/rm(remove))','s');
 end

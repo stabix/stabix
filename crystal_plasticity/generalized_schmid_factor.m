@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function GSF = generalized_schmid_factor(n, d, sigma, g, testFlag, varargin)
+function GSF = generalized_schmid_factor(...
+    n, d, sigma, g, testFlag, varargin)
 %% Function used to calculate the generalized schmid factor
 % Calculates the generalized Schmid factor from :
 % From C.N. Reid," Deformation Geometry for Materials Scientists, Pergamon Press, Oxford, United Kingdom, 1973 (p.156).
@@ -70,7 +71,8 @@ GSF = dot(d * gsgT, n);
 
 if testFlag
     fprintf('Euler angles = [%.3f %.3f %.3f]\n', eulers);
-    fprintf('Rotation matrix = [%.3f %.3f %.3f\n %.3f %.3f %.3f\n %.3f %.3f %.3f]\n ', g);
+    fprintf(['Rotation matrix = ' ...
+        '[%.3f %.3f %.3f\n %.3f %.3f %.3f\n %.3f %.3f %.3f]\n '], g);
     fprintf('Generalized Schmid Factor = %.4f\n', GSF);
 end
 

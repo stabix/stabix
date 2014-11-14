@@ -25,14 +25,16 @@ else
     end
     
     % If new slip families and user has selected a GB parameter to plot, calculation are performed...
-    if gui.flag.new_slip_families == 1 && gui.flag.pmparam2plot_value4GB ~= 1
+    if gui.flag.new_slip_families == 1 ...
+            && gui.flag.pmparam2plot_value4GB ~= 1
         guidata(gcf, gui);
         interface_map_mprime_calculator_map;
         gui = guidata(gcf); guidata(gcf, gui);
     end
     
     % If user has changed the GB parameter top plot
-    if gui.flag.pmparam2plot_value4GB_functype_old ~= gui.flag.pmparam2plot_value4GB_functype
+    if gui.flag.pmparam2plot_value4GB_functype_old ...
+            ~= gui.flag.pmparam2plot_value4GB_functype
         if gui.flag.pmparam2plot_value4GB ~= 1
             guidata(gcf, gui);
             interface_map_mprime_calculator_map;
@@ -41,7 +43,8 @@ else
     end
     
     % If user has changed the Grain parameter top plot
-    if gui.flag.pmparam2plot_value4Grains_functype_old ~= gui.flag.pmparam2plot_value4Grains_functype
+    if gui.flag.pmparam2plot_value4Grains_functype_old ...
+            ~= gui.flag.pmparam2plot_value4Grains_functype
         if gui.flag.pmparam2plot_value4Grains ~= 1
             guidata(gcf, gui);
             interface_map_mprime_calculator_map;

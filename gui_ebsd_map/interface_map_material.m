@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function [hmat, pmMat, Struct, pmStruct, listslips, pmlistslips] = interface_map_material(str, pos, callback_1, callback_2, varargin)
+function [hmat, pmMat, Struct, pmStruct, listslips, pmlistslips] = ...
+    interface_map_material(str, pos, callback_1, callback_2, varargin)
 %% Function used to create text boxes and popup menus for material and structures in the GUI
 % str : title of the popup menu
 % pos : positions of the text box and popup menu

@@ -26,20 +26,32 @@ for gb_segment_numb = 1:1:10
     sRB = size(RB_new);
     
     for gbnum = 1:1:sRB(1,1)
-        vec_gb(:,:,:,gbnum) = [(RB(gbnum,RB_p2x) - RB(gbnum,RB_p1x)); (-RB(gbnum,RB_p2y) + RB(gbnum,RB_p1y)); 0];
-        vec_gb_norm(:,:,:,gbnum) = vec_gb(:,:,:,gbnum)/norm(vec_gb(:,:,:,gbnum));
+        vec_gb(:,:,:,gbnum) = ...
+            [(RB(gbnum,RB_p2x) - RB(gbnum,RB_p1x)); ...
+            (-RB(gbnum,RB_p2y) + RB(gbnum,RB_p1y)); 0];
+        vec_gb_norm(:,:,:,gbnum) = ...
+            vec_gb(:,:,:,gbnum)/norm(vec_gb(:,:,:,gbnum));
     end
     
     for gbnum = 1:1:sRB(1,1)-1
-        cos_segments = dot(vec_gb_norm(:,:,:,gbnum),vec_gb_norm(:,:,:,gbnum+1));
+        cos_segments = ...
+            dot(vec_gb_norm(:,:,:,gbnum),vec_gb_norm(:,:,:,gbnum+1));
         ang_degree = acos(cos_segments)*180/pi;
         
         if ~isnan(RB_new(gbnum,15))
-            if ang_degree < gui.tol.Tol_angle && (RB(gbnum,RB_grain_id1) == RB(gbnum+1,RB_grain_id1)) && (RB(gbnum,RB_grain_id2) == RB(gbnum+1,RB_grain_id2))
+            if ang_degree < gui.tol.Tol_angle ...
+                    && (RB(gbnum,RB_grain_id1) ...
+                    == RB(gbnum+1,RB_grain_id1)) ...
+                    && (RB(gbnum,RB_grain_id2) ...
+                    == RB(gbnum+1,RB_grain_id2))
                 RB_new(gbnum,RB_p2x) = RB(gbnum+1,RB_p2x);
                 RB_new(gbnum,RB_p2y) = RB(gbnum+1,RB_p2y);
                 RB_new(gbnum+1,15) = NaN;
-            elseif ang_degree < gui.tol.Tol_angle && (RB(gbnum, RB_grain_id1) == RB(gbnum+1, RB_grain_id2)) && (RB(gbnum, RB_grain_id2) == RB(gbnum+1, RB_grain_id2))
+            elseif ang_degree < gui.tol.Tol_angle ...
+                    && (RB(gbnum, RB_grain_id1) ...
+                    == RB(gbnum+1, RB_grain_id2)) ...
+                    && (RB(gbnum, RB_grain_id2) ...
+                    == RB(gbnum+1, RB_grain_id2))
                 RB_new(gbnum,RB_p2x) = RB(gbnum+1,RB_p2x);
                 RB_new(gbnum,RB_p2y) = RB(gbnum+1,RB_p2y);
                 RB_new(gbnum+1,15) = NaN;
@@ -63,20 +75,21 @@ dataGF2_smoothed.title = strcat('smoothed_GF2_data_from_', ...
     gui.config_map.default_grain_file_type2);
 
 for ng = 1:dataGF2_smoothed.number_of_grains %length(grains)
-    dataGF2_smoothed.eul_ang(ng,:)        = [grains_cleaned(ng).eulers];
-    dataGF2_smoothed.x_positions(ng,:)    = [grains_cleaned(ng).pos_x];
-    dataGF2_smoothed.y_positions(ng,:)    = -[grains_cleaned(ng).pos_y];
+    dataGF2_smoothed.eul_ang(ng,:)     = [grains_cleaned(ng).eulers];
+    dataGF2_smoothed.x_positions(ng,:) = [grains_cleaned(ng).pos_x];
+    dataGF2_smoothed.y_positions(ng,:) = -[grains_cleaned(ng).pos_y];
     if isfield(grains_cleaned, 'edge_gr')
-        dataGF2_smoothed.edge_grain(ng,:)     = [grains_cleaned(ng).edge_gr];
+        dataGF2_smoothed.edge_grain(ng,:) = [grains_cleaned(ng).edge_gr];
     end
     if isfield(grains_cleaned, 'diameter')
-        dataGF2_smoothed.grain_diameter(ng,:) = [grains_cleaned(ng).diameter];
+        dataGF2_smoothed.grain_diameter(ng,:) ...
+            = [grains_cleaned(ng).diameter];
     end
     
     if grains_cleaned(ng).phase_num == 1
-        dataGF2_smoothed.phase(ng,:)      = 0;
+        dataGF2_smoothed.phase(ng,:) = 0;
     else
-        dataGF2_smoothed.phase(ng,:)      = [grains_cleaned(ng).phase];
+        dataGF2_smoothed.phase(ng,:) = [grains_cleaned(ng).phase];
     end
     
 end

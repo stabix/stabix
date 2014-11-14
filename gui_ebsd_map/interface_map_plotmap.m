@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function interface_map_plotmap(run_calculation, check_calculation, varargin)
+function interface_map_plotmap(...
+    run_calculation, check_calculation, varargin)
 %% Function to plot the map with all GBs and all grains
 % with a variable plotted along each GBs
 % run_calculation : flag (0 if no calculation and 1 if calculations have to
@@ -28,10 +29,23 @@ set(gui.handles.date_str_interface,'String', timestamp_make);
 
 %% Refresh pop-up menus
 guidata(gcf, gui);
-if gui.config_data.num_struct1 ~= get(gui.handles.pmStruct1, 'Value') || gui.config_data.num_struct2 ~= get(gui.handles.pmStruct2, 'Value')
-    interface_map_list_slips(gui.handles.pmStruct1, gui.handles.pmStruct2, gui.handles.pmlistslips1, gui.handles.pmlistslips2, str2double(get(gui.handles.NumPh,'String')), 1, 1);
+if gui.config_data.num_struct1 ~= get(gui.handles.pmStruct1, 'Value') || ...
+        gui.config_data.num_struct2 ~= get(gui.handles.pmStruct2, 'Value')
+    interface_map_list_slips(...
+        gui.handles.pmStruct1, ...
+        gui.handles.pmStruct2, ...
+        gui.handles.pmlistslips1, ...
+        gui.handles.pmlistslips2, ...
+        str2double(get(gui.handles.NumPh,'String')), 1, 1);
 else
-    interface_map_list_slips(gui.handles.pmStruct1, gui.handles.pmStruct2, gui.handles.pmlistslips1, gui.handles.pmlistslips2, str2double(get(gui.handles.NumPh,'String')), get(gui.handles.pmlistslips1, 'value'), get(gui.handles.pmlistslips2, 'value'));
+    interface_map_list_slips(...
+        gui.handles.pmStruct1, ...
+        gui.handles.pmStruct2, ...
+        gui.handles.pmlistslips1, ...
+        gui.handles.pmlistslips2, ...
+        str2double(get(gui.handles.NumPh,'String')), ...
+        get(gui.handles.pmlistslips1, 'value'), ...
+        get(gui.handles.pmlistslips2, 'value'));
 end
 
 %% Refresh stress tensor
@@ -91,15 +105,18 @@ RB  = gui.RB_struct.data_smoothed;
 %% Calculations and plot of function results along GBs
 if gui.flag.pmparam2plot_value4GB == 1
     gui.flag.pmparam2plot_value4GB_functype = 0;
-elseif gui.flag.pmparam2plot_value4GB ~= 1 && gui.flag.pmparam2plot_value4GB < 8
+elseif gui.flag.pmparam2plot_value4GB ~= 1 ...
+        && gui.flag.pmparam2plot_value4GB < 8
     gui.flag.pmparam2plot_value4GB_functype = 1;
 elseif gui.flag.pmparam2plot_value4GB == 8
     gui.flag.pmparam2plot_value4GB_functype = 2;
 elseif gui.flag.pmparam2plot_value4GB == 9
     gui.flag.pmparam2plot_value4GB_functype = 3;
-elseif gui.flag.pmparam2plot_value4GB == 10 || gui.flag.pmparam2plot_value4GB == 11
+elseif gui.flag.pmparam2plot_value4GB == 10 ...
+        || gui.flag.pmparam2plot_value4GB == 11
     gui.flag.pmparam2plot_value4GB_functype = 4;
-elseif gui.flag.pmparam2plot_value4GB == 12 || gui.flag.pmparam2plot_value4GB == 13
+elseif gui.flag.pmparam2plot_value4GB == 12 ...
+        || gui.flag.pmparam2plot_value4GB == 13
     gui.flag.pmparam2plot_value4GB_functype = 5;
 elseif gui.flag.pmparam2plot_value4GB == 14
     gui.flag.pmparam2plot_value4GB_functype = 6;
@@ -109,7 +126,8 @@ end
 
 if gui.flag.pmparam2plot_value4Grains == 1
     gui.flag.pmparam2plot_value4Grains_functype = 0;
-elseif gui.flag.pmparam2plot_value4Grains == 2 || gui.flag.pmparam2plot_value4Grains == 4
+elseif gui.flag.pmparam2plot_value4Grains == 2 ...
+        || gui.flag.pmparam2plot_value4Grains == 4
     gui.flag.pmparam2plot_value4Grains_functype = 1;
 elseif gui.flag.pmparam2plot_value4Grains == 3
     gui.flag.pmparam2plot_value4Grains_functype = 2;
@@ -124,11 +142,15 @@ end
 gui = guidata(gcf); guidata(gcf, gui);
 
 if gui.flag.flag_lattice == 1
-    if gui.flag.pmparam2plot_value4GB_functype == 0 || gui.flag.pmparam2plot_value4GB_functype == 2 || gui.flag.pmparam2plot_value4GB_functype == 3
+    if gui.flag.pmparam2plot_value4GB_functype == 0 ...
+            || gui.flag.pmparam2plot_value4GB_functype == 2 ...
+            || gui.flag.pmparam2plot_value4GB_functype == 3
         set(gui.handles.cbsliptraces, 'Visible', 'off');
         set(gui.handles.cbsliptraces, 'Value', 0);
     else
-        if gui.flag.CalculationFlag == 1 || gui.flag.CalculationFlag == 2 || gui.flag.CalculationFlag == 3
+        if gui.flag.CalculationFlag == 1 ...
+                || gui.flag.CalculationFlag == 2 ...
+                || gui.flag.CalculationFlag == 3
             set(gui.handles.cbsliptraces, 'Visible', 'on');
         end
     end
@@ -137,7 +159,10 @@ if gui.flag.flag_lattice == 1
     if gui.flag.pmparam2plot_value4GB == 1
         h_gbseg = zeros(size(RB,1), 1); % Preallocation
         for gbnum = 1:1:size(RB,1)
-            h_gbseg(gbnum) = plot([gui.GBs(gbnum).pos_x1; gui.GBs(gbnum).pos_x2], [gui.GBs(gbnum).pos_y1; gui.GBs(gbnum).pos_y2], 'LineWidth', wid, 'color', 'k');
+            h_gbseg(gbnum) = plot(...
+                [gui.GBs(gbnum).pos_x1; gui.GBs(gbnum).pos_x2], ...
+                [gui.GBs(gbnum).pos_y1; gui.GBs(gbnum).pos_y2], ...
+                'LineWidth', wid, 'color', 'k');
             % The following lines should be uncommented if user wants arrows for GBs plot instead of pure segments...
             %h_gbseg(gbnum) = arrow([gui.GBs(gbnum).pos_x1; gui.GBs(gbnum).pos_y1; 0], [gui.GBs(gbnum).pos_x2; gui.GBs(gbnum).pos_y2; 0], 'LineWidth', wid, 'color', 'k');
             
@@ -213,7 +238,8 @@ if gui.flag.flag_lattice == 1
         end
         
         %% Plot function results along GBs
-        if gui.flag.CalculationFlag ~= 0 && gui.flag.pmparam2plot_value4GB ~= 1
+        if gui.flag.CalculationFlag ~= 0 ...
+                && gui.flag.pmparam2plot_value4GB ~= 1
             
             %% Plot parameter values ==> txt on GB
             mprime_format = '%0.2f'; % float with 2 digits
@@ -222,8 +248,10 @@ if gui.flag.flag_lattice == 1
             
             if get(gui.handles.cbdatavalues, 'Value') == 1
                 for gbnum = 1:1:size(RB,1)
-                    x_mp = ((gui.GBs(gbnum).pos_x1 + gui.GBs(gbnum).pos_x2)/2);
-                    y_mp = ((gui.GBs(gbnum).pos_y1 + gui.GBs(gbnum).pos_y2)/2) + txt_dy;
+                    x_mp = ((gui.GBs(gbnum).pos_x1 ...
+                        + gui.GBs(gbnum).pos_x2)/2);
+                    y_mp = ((gui.GBs(gbnum).pos_y1 ...
+                        + gui.GBs(gbnum).pos_y2)/2) + txt_dy;
                     h_val(gbnum) = text(x_mp, y_mp, sprintf(...
                         mprime_format, gui.calculations.func2plot(gbnum)), ...
                         'Color', [.5 0 0]);
@@ -239,7 +267,10 @@ if gui.flag.flag_lattice == 1
                 minval = round(minval);
                 maxval = round(maxval);
             end
-            if (max(gui.calculations.func2plot(:)) - min(gui.calculations.func2plot(:))) > 0.3 && min(gui.calculations.func2plot(:)) > 0.5 && max(gui.calculations.func2plot(:)) < 1
+            if (max(gui.calculations.func2plot(:)) ...
+                    - min(gui.calculations.func2plot(:))) > 0.3 ...
+                    && min(gui.calculations.func2plot(:)) > 0.5 ...
+                    && max(gui.calculations.func2plot(:)) < 1
                 minval = round(10*min(gui.calculations.func2plot(:)))/10;
                 maxval = round(10*max(gui.calculations.func2plot(:)))/10;
             end
@@ -267,7 +298,8 @@ if gui.flag.flag_lattice == 1
             for gbnum = 1:1:size(RB,1)
                 if gui.calculations.func2plot(gbnum) >= minval ...
                         && gui.calculations.func2plot(gbnum) <= maxval
-                    step_vec = (gui.calculations.func2plot(gbnum) - minval);
+                    step_vec = ...
+                        (gui.calculations.func2plot(gbnum) - minval);
                     Colorgb(gbnum) = round(step_vec/step_Colorbar);
                     if Colorgb(gbnum) > length(cmap)
                         Colorgb(gbnum) = length(cmap);
@@ -302,12 +334,14 @@ if gui.flag.flag_lattice == 1
             if location_num == 1 || location_num == 2 || ...
                     location_num == 5 || location_num == 6
                 set(Colorbargb, 'XTick', bins);
-                set(get(Colorbargb, 'xlabel'), 'String', Colorbar_title, ...
+                set(get(Colorbargb, 'xlabel'), ...
+                    'String', Colorbar_title, ...
                     'Fontsize', fontsize_axis);
             elseif location_num == 3 || location_num == 4 || ...
                     location_num == 7 || location_num == 8
                 set(Colorbargb, 'YTick', bins);
-                set(get(Colorbargb, 'ylabel'), 'String', Colorbar_title, ...
+                set(get(Colorbargb, 'ylabel'), ...
+                    'String', Colorbar_title, ...
                     'Fontsize', fontsize_axis);
             end
             set(Colorbargb, 'Location', location_str{:});
@@ -343,7 +377,8 @@ if gui.flag.flag_lattice == 1
             slip_legend = get_slip_legend(structure_legend, 100);
             h_slip = zeros(1,length(slip_color));
             for ii = 1:length(slip_color)
-                h_slip(ii) = plot(0,0, 'Color', slip_color(ii,:), 'Linewidth', 5);
+                h_slip(ii) = plot(0,0, 'Color', ...
+                    slip_color(ii,:), 'Linewidth', 5);
             end
             h_slip_legend = legend(h_slip, slip_legend);
             set(h_slip_legend, 'Visible', 'on', 'Location', 'SouthWest');
@@ -398,20 +433,23 @@ if gui.flag.flag_lattice == 1
     
     %% Set flags
     pmslips = [gui.handles.pmlistslips1; gui.handles.pmlistslips2];
-    gui.flag.pmparam2plot_value4GB_old              = gui.flag.pmparam2plot_value4GB;
-    gui.flag.pmparam2plot_value4GB_functype_old     = gui.flag.pmparam2plot_value4GB_functype;
-    gui.flag.pmparam2plot_value4Grains_functype_old = gui.flag.pmparam2plot_value4Grains_functype;
-    gui.flag.pmlistsslips_ph1_old               = get(pmslips(1), 'Value');
-    gui.flag.pmlistsslips_ph2_old               = get(pmslips(2), 'Value');
-    gui.flag.pm_ph1_old                         = get(gui.handles.pmStruct1, 'Value');
-    gui.flag.pm_ph2_old                         = get(gui.handles.pmStruct2, 'Value');
-    gui.flag.pm_NumPh_old                       = str2double(get(gui.handles.NumPh,'String'));
-    gui.flag.pm_mat1_old                        = get(gui.handles.pmMat1, 'Value');
-    gui.flag.pm_mat2_old                        = get(gui.handles.pmMat2, 'Value');
-    gui.flag.initialization                     = 0;
-    gui.flag.initialization_axis                = 0;
-    gui.flag.new_slip_families                  = 0;
-    gui.flag.newAxisLim                         = 1;
+    gui.flag.pmparam2plot_value4GB_old              = ...
+        gui.flag.pmparam2plot_value4GB;
+    gui.flag.pmparam2plot_value4GB_functype_old     = ...
+        gui.flag.pmparam2plot_value4GB_functype;
+    gui.flag.pmparam2plot_value4Grains_functype_old = ...
+        gui.flag.pmparam2plot_value4Grains_functype;
+    gui.flag.pm_NumPh_old = str2double(get(gui.handles.NumPh,'String'));
+    gui.flag.pmlistsslips_ph1_old  = get(pmslips(1), 'Value');
+    gui.flag.pmlistsslips_ph2_old  = get(pmslips(2), 'Value');
+    gui.flag.pm_ph1_old            = get(gui.handles.pmStruct1, 'Value');
+    gui.flag.pm_ph2_old            = get(gui.handles.pmStruct2, 'Value');
+    gui.flag.pm_mat1_old           = get(gui.handles.pmMat1, 'Value');
+    gui.flag.pm_mat2_old           = get(gui.handles.pmMat2, 'Value');
+    gui.flag.initialization        = 0;
+    gui.flag.initialization_axis   = 0;
+    gui.flag.new_slip_families     = 0;
+    gui.flag.newAxisLim            = 1;
     
 end
 guidata(gcf, gui);

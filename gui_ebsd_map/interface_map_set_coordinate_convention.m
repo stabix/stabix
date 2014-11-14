@@ -24,7 +24,8 @@ gui.COORDSYS_eulers = coordinate_convention(coord_angles(coord_idx));
 %% Replot COORDSYS
 delete(gui.handles.PlotMapAxis);
 gui.handles.PlotMapAxis = axes('Position', [0.94 0.94 0.02 0.02]);
-gui.handles.PlotCoordSys = interface_map_plot_coordsys(gui.COORDSYS_eulers);
+gui.handles.PlotCoordSys = ...
+    interface_map_plot_coordsys(gui.COORDSYS_eulers);
 axis off;
 view([0,0,1]);
 gui.flag.initialization = 1;
@@ -36,8 +37,12 @@ gui = guidata(gcf);
 
 guidata(gcf, gui);
 number_phase = str2double(get(gui.handles.NumPh,'String'));
-interface_map_list_slips(gui.handles.pmStruct1, gui.handles.pmStruct2, ...
-    gui.handles.pmlistslips1, gui.handles.pmlistslips2, number_phase, 1, 1);
+interface_map_list_slips(...
+    gui.handles.pmStruct1, ...
+    gui.handles.pmStruct2, ...
+    gui.handles.pmlistslips1, ...
+    gui.handles.pmlistslips2, ...
+    number_phase, 1, 1);
 
 set(gui.handles.scale_gb_segments_bar, 'value', 0);
 gui.flag.newAxisLim = 0;

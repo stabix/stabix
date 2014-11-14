@@ -64,8 +64,10 @@ for ng = 1:sGF2(1)
     
     % gui.grcen = [phase (C1) / grain center (X,Y) (C2-C3) / Euler angles(C4-C6)]
     gui.grcen(ig,1:6) = [GF2(ng,gui.GF2_struct.col_idx.PHASE) ...
-        GF2(ng,gui.GF2_struct.col_idx.AVG_POS_XY(1):gui.GF2_struct.col_idx.AVG_POS_XY(2)) ...
-        GF2(ng,gui.GF2_struct.col_idx.AVG_ORI(1):gui.GF2_struct.col_idx.AVG_ORI(3))];
+        GF2(ng,gui.GF2_struct.col_idx.AVG_POS_XY(1):...
+        gui.GF2_struct.col_idx.AVG_POS_XY(2)) ...
+        GF2(ng,gui.GF2_struct.col_idx.AVG_ORI(1):...
+        gui.GF2_struct.col_idx.AVG_ORI(3))];
     gui.grcen(ig,3)   = -gui.grcen(ig,3);
     
     % If only 1 phase, index = 0. If 2 phases, indexes are 1 and 2. So, this line of code is to have always for phase 1, index = 1 !
@@ -91,9 +93,12 @@ for ng = 1:sGF2(1)
     gui.grains(ig).phase     = ph;
     gui.grains(ig).material  = materials{ng};
     gui.grains(ig).structure = structures{ng};
-    gui.grains(ig).eulers    = GF2(ng,gui.GF2_struct.col_idx.AVG_ORI(1):gui.GF2_struct.col_idx.AVG_ORI(3));
-    gui.grains(ig).pos_x     = +GF2(ng,gui.GF2_struct.col_idx.AVG_POS_XY(1));
-    gui.grains(ig).pos_y     = -GF2(ng,gui.GF2_struct.col_idx.AVG_POS_XY(2));
+    gui.grains(ig).eulers    = GF2(ng,gui.GF2_struct.col_idx.AVG_ORI(1):...
+        gui.GF2_struct.col_idx.AVG_ORI(3));
+    gui.grains(ig).pos_x     = ...
+        +GF2(ng,gui.GF2_struct.col_idx.AVG_POS_XY(1));
+    gui.grains(ig).pos_y     = ...
+        -GF2(ng,gui.GF2_struct.col_idx.AVG_POS_XY(2));
     if isfield(gui.GF2_struct.col_idx,'EDGE')
         gui.grains(ig).edge_gr   = GF2(ng,gui.GF2_struct.col_idx.EDGE);
     end
@@ -138,7 +143,7 @@ end
 
 %% Set grains and GBs numbers in edit boxes on the GUI
 set(gui.handles.GB_totalnumber_value, 'String', num2str(sRB(1)));
-set(gui.handles.Grain_totalnumber_value, 'String', num2str(size(GF2,1))); %Different of max(GF2(:,1))
+set(gui.handles.Grain_totalnumber_value, 'String', num2str(size(GF2,1))); % Different of max(GF2(:,1))
 
 %% Fill gui.GBs
 grsA       = zeros(sRB(1),1);

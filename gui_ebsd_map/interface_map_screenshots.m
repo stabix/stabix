@@ -6,7 +6,8 @@ function interface_map_screenshots
 tabularasa;
 no_file = 0;
 
-[filenameGF2, pathnameGF2] = uigetfile('.txt', 'Select the ''Grain File type 2'' file');
+[filenameGF2, pathnameGF2] = ...
+    uigetfile('.txt', 'Select the ''Grain File type 2'' file');
 if filenameGF2 == 0
     filenameGF2 = '';
 end
@@ -23,7 +24,8 @@ end
 
 if ~no_file
     cd (pathnameGF2);
-    [filenameRB, pathnameRB] = uigetfile('.txt', 'Select the ''Reconstructed Boundary'' file');
+    [filenameRB, pathnameRB] = ...
+        uigetfile('.txt', 'Select the ''Reconstructed Boundary'' file');
     if filenameRB == 0
         filenameRB = '';
     end
@@ -52,7 +54,8 @@ if ~no_file
     set(gui.handles.cbgbnum, 'Value', 0);
     interface_map_plotmap(1,1);
     xlim([-1.5 1.5]);ylim([-1.5 1.5]);
-    SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
+    SCREENSHOT_NUM = screenshot_function(...
+        SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % Load data
     set(gui.handles.FileGF2, 'String', fullfile(filenameGF2));
@@ -66,7 +69,8 @@ if ~no_file
     set(gui.handles.Eul_title, 'BackgroundColor', [1 0 0]);
     set(gui.handles.pmcoordsyst, 'BackgroundColor', [1 0 0]);
     gui = guidata(gcf); guidata(gcf);
-    SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
+    SCREENSHOT_NUM = screenshot_function(...
+        SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % Plot data
     set(gui.handles.pmcoordsyst, 'Value', 4);
@@ -76,46 +80,53 @@ if ~no_file
     set(gui.handles.cbgbnum, 'Value', 0);
     interface_map_plotmap(1,1);
     xlim([ 0 700]);ylim([-1100 0]);
-    SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
+    SCREENSHOT_NUM = screenshot_function(...
+        SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % Smoothing of GBs
     set(gui.handles.scale_gb_segments_bar, 'Value', 180);
     interface_map_plotmap(1,1);
     xlim([ 0 700]);ylim([-1100 0]);
-    SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
+    SCREENSHOT_NUM = screenshot_function(...
+        SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % Increase of lattice cells size
     set(gui.handles.scale_unitcell_bar, 'Value', 0.6);
     interface_map_plotmap(1,1);
     xlim([ 0 700]);ylim([-1100 0]);
-    SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
+    SCREENSHOT_NUM = screenshot_function(...
+        SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % Misorientation calculation
     set(gui.handles.pmparam2plot4GB, 'Value', 8);
     interface_map_plotmap(1,1);
     xlim([ 0 700]);ylim([-1100 0]);
-    SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
+    SCREENSHOT_NUM = screenshot_function(...
+        SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % m' calculation for basal <a>
     set(gui.handles.pmlistslips1, 'Value', 3);
     set(gui.handles.pmparam2plot4GB, 'Value', 2);
     interface_map_plotmap(1,1);
     xlim([ 0 700]);ylim([-1100 0]);
-    SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
+    SCREENSHOT_NUM = screenshot_function(...
+        SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % other calculations
     for ii = 3:1:11
         set(gui.handles.pmparam2plot4GB, 'Value', ii);
         interface_map_plotmap(1,1);
         xlim([ 0 700]);ylim([-1100 0]);
-        SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
+        SCREENSHOT_NUM = screenshot_function(...
+            SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     end
     
     % Plot slip with highest SF
     set(gui.handles.pmparam2plot4Grains, 'Value', 2);
     interface_map_plotmap(1,1);
     xlim([ 0 700]);ylim([-1100 0]);
-    SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
+    SCREENSHOT_NUM = screenshot_function(...
+        SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % m' calculation for basal <a> and prism1 <a>
     set(gui.handles.pmparam2plot4Grains, 'Value', 1);
@@ -123,24 +134,28 @@ if ~no_file
     set(gui.handles.pmparam2plot4GB, 'Value', 2);
     interface_map_plotmap(1,1);
     xlim([ 0 700]);ylim([-1100 0]);
-    SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
+    SCREENSHOT_NUM = screenshot_function(...
+        SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % Plot slip with highest SF
     set(gui.handles.pmparam2plot4Grains, 'Value', 2);
     interface_map_plotmap(1,1);
     xlim([ 0 700]);ylim([-1100 0]);
-    SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
+    SCREENSHOT_NUM = screenshot_function(...
+        SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     %Add GB numbers
     set(gui.handles.cbgbnum, 'Value', 1);
     interface_map_plotmap(1,1);
     xlim([ 0 700]);ylim([-1100 0]);
-    SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
+    SCREENSHOT_NUM = screenshot_function(...
+        SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % Zoom on EBSD map
     zoom on;
     zoom (2.5);
-    SCREENSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
+    SCREENSHOT_NUM = screenshot_function(...
+        SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     zoom off;
 end
 
