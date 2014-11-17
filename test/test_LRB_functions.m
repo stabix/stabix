@@ -1,6 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function test_LRB_functions(GB_number, varargin)
-%% Function to check mprime functions
+%% Function to check LRB functions
 % GBnumber: Number of grain boundaries
 
 % author: d.mercier@mpie.de
@@ -14,10 +14,10 @@ d1 = zeros(3, GB_number);
 l2 = zeros(3, GB_number);
 d2 = zeros(3, GB_number);
 for ii = 1:GB_number
-    l1(:, ii) = random_direction();
-    d1(:, ii) = perpendicular_vector(l1(:, ii));
-    l2(:, ii) = random_direction();
-    d2(:, ii) = perpendicular_vector(l2(:, ii));
+    d1(:, ii) = random_direction();
+    l1(:, ii) = perpendicular_vector(d1(:, ii));
+    d2(:, ii) = random_direction();
+    l2(:, ii) = perpendicular_vector(d2(:, ii));
 end
 
 mprime_val = zeros(GB_number);

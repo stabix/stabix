@@ -14,10 +14,10 @@ d1 = zeros(3, GB_number);
 n2 = zeros(3, GB_number);
 d2 = zeros(3, GB_number);
 for ii = 1:GB_number
-    n1(:, ii) = random_direction();
-    d1(:, ii) = perpendicular_vector(n1(:, ii));
-    n2(:, ii) = random_direction();
-    d2(:, ii) = perpendicular_vector(n2(:, ii));
+    d1(:, ii) = random_direction();
+    n1(:, ii) = perpendicular_vector(d1(:, ii));
+    d2(:, ii) = random_direction();
+    n2(:, ii) = perpendicular_vector(d2(:, ii));
 end
 
 mprime_val = zeros(GB_number);

@@ -52,6 +52,7 @@ try
     rbv = R_in'*b_in' - R_out'*b_out';
     rbv_norm = norm(rbv);
 catch err
+    commandwindow;
     display(strcat(err.message, ' Or missing function eulers2g...'));
 end
 

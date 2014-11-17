@@ -8,7 +8,7 @@ function mp = mprime_opt_vectorized(n1, d1, n2, d2, varargin)
 % d1 = N-vector for Burgers vector of first slip system (= slip direction)
 % n2 = N-vector for normal of 2nd slip system
 % d2 = N-vector for Burgers vector of 2nd slip system (= slip direction)
-% N = Number of grain boundaries
+% N = Number of slip system
 %
 % Luster % Morris (1995):
 %     m' = dot(n1,n2)*dot(d1,d2) = cos(\phi) * cos(\kappa)
@@ -20,10 +20,10 @@ function mp = mprime_opt_vectorized(n1, d1, n2, d2, varargin)
 
 if nargin == 0 % run test cases if called without arguments
     for ii = 1:5
-        n1(ii,:) = random_direction();
-        d1(ii,:) = perpendicular_vector(n1(ii,:));
-        n2(ii,:) = random_direction();
-        d2(ii,:) = perpendicular_vector(n2(ii,:));
+        d1(ii,:) = random_direction();
+        n1(ii,:) = perpendicular_vector(d1(ii,:));
+        d2(ii,:) = random_direction();
+        n2(ii,:) = perpendicular_vector(n2(ii,:));
     end
     m1 = mprime_opt_vectorized(n1,d1,n2,d2)
     m2 = mprime_opt_vectorized(n2,d2,n1,d1)
