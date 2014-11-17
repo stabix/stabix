@@ -27,9 +27,6 @@ if nargin == 0 % run test cases if called without arguments
     return
 end
 
-%check_vectors_orthogonality(l1, d1);
-%check_vectors_orthogonality(l2, d2);
-
 LRB = cos_from_vectors(l1, l2) * cos_from_vectors(d1, d2);
 
-return
+end

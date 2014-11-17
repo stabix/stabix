@@ -68,15 +68,15 @@ else
         [slip_syst_2, slip_check_2] = ...
             slip_systems(gui.config_data.struct2, ...
             gui.config_data.slips_2);
+        if size(slip_syst_1,3) > size(slip_syst_2,3)
+            slip_syst_2(:,:,size(slip_syst_2,3)+1:size(slip_syst_1,3)) = ...
+                NaN;
+        else
+            slip_syst_1(:,:,size(slip_syst_1,3)+1:size(slip_syst_2,3)) = ...
+                NaN;
+        end
     end
     
-    if size(slip_syst_1,3) > size(slip_syst_2,3)
-        slip_syst_2(:,:,size(slip_syst_2,3)+1:size(slip_syst_1,3)) = ...
-            NaN;
-    else
-        slip_syst_1(:,:,size(slip_syst_1,3)+1:size(slip_syst_2,3)) = ...
-            NaN;
-    end
     
     if isempty(find(slip_check_1==0)) && isempty(find(slip_check_2==0)) % Check orthogonality
         %% Start calculations...
@@ -353,7 +353,7 @@ else
                     %                         end
                     %                     end
                     
-                    % Vectorized form
+                    %                     % Vectorized form
                     n_factor_val = N_factor_opt_vectorized(...
                         vect(:,1:3,grA), vect(:,4:6,grA),...
                         vect(:,1:3,grB), vect(:,4:6,grB));
@@ -373,20 +373,20 @@ else
                 % mprime
                 if  flag.pmparam2plot_value4GB ~= 1 ...
                         && flag.pmparam2plot_value4GB < 8
-%                                         for jj = 1:1:vectB(1,18,grB)
-%                                             for kk = 1:1:vectA(1,18,grA)
-%                                                 if ~isnan(vectA(kk,7:9,grA))
-%                                                     mprime_val(jj,kk) = mprime_opt(...
-%                                                         vectA(kk,1:3,grA), vectA(kk,4:6,grA), ...
-%                                                         vectB(jj,1:3,grB), vectB(jj,4:6,grB));
-%                                                                                     mprime_val(jj,kk) = mprime(...
-%                                                                                         vectA(kk,1:3,grA), vectA(kk,4:6,grA), ...
-%                                                                                         vectB(jj,1:3,grB), vectB(jj,4:6,grB));
-%                                                 else
-%                                                     mprime_val(jj,kk) = NaN;
-%                                                 end
-%                                             end
-%                                         end
+                    %                                         for jj = 1:1:vectB(1,18,grB)
+                    %                                             for kk = 1:1:vectA(1,18,grA)
+                    %                                                 if ~isnan(vectA(kk,7:9,grA))
+                    %                                                     mprime_val(jj,kk) = mprime_opt(...
+                    %                                                         vectA(kk,1:3,grA), vectA(kk,4:6,grA), ...
+                    %                                                         vectB(jj,1:3,grB), vectB(jj,4:6,grB));
+                    %                                                                                     mprime_val(jj,kk) = mprime(...
+                    %                                                                                         vectA(kk,1:3,grA), vectA(kk,4:6,grA), ...
+                    %                                                                                         vectB(jj,1:3,grB), vectB(jj,4:6,grB));
+                    %                                                 else
+                    %                                                     mprime_val(jj,kk) = NaN;
+                    %                                                 end
+                    %                                             end
+                    %                                         end
                     
                     mprime_val = mprime_opt_vectorized(...
                         vectA(:,1:3,grA), vectA(:,4:6,grA), ...
@@ -411,24 +411,23 @@ else
                     % N-factor
                 elseif flag.pmparam2plot_value4GB == 12 ...
                         || flag.pmparam2plot_value4GB == 13
-                                        for jj = 1:1:vectB(1,18,grB)
-                                            for kk = 1:1:vectA(1,18,grA)
-                                                if ~isnan(vectA(kk,7:9,grA))
-                                                    n_factor_val(jj,kk) = ...
-                                                        N_factor_opt(...
-                                                        vectA(kk,1:3,grA), vectA(kk,4:6,grA), ...
-                                                        vectB(jj,1:3,grB), vectB(jj,4:6,grB));
-                                                else
-                                                    n_factor_val(jj,kk) = NaN;
-                                                end
-                                            end
-                                        end
+                    %                                         for jj = 1:1:vectB(1,18,grB)
+                    %                                             for kk = 1:1:vectA(1,18,grA)
+                    %                                                 if ~isnan(vectA(kk,7:9,grA))
+                    %                                                     n_factor_val(jj,kk) = ...
+                    %                                                         N_factor_opt(...
+                    %                                                         vectA(kk,1:3,grA), vectA(kk,4:6,grA), ...
+                    %                                                         vectB(jj,1:3,grB), vectB(jj,4:6,grB));
+                    %                                                 else
+                    %                                                     n_factor_val(jj,kk) = NaN;
+                    %                                                 end
+                    %                                             end
+                    %                                         end
                     
                     % Vectorized form
-                    %% FIXME --> Wrong result because of the sum in n_factor function and NaN values introduced in
-%                     n_factor_val = N_factor_opt_vectorized(...
-%                         vectA(:,1:3,grA), vectA(:,4:6,grA),...
-%                         vectB(:,1:3,grB), vectB(:,4:6,grB));
+                    n_factor_val = N_factor_opt_vectorized(...
+                        vectA(:,1:3,grA), vectA(:,4:6,grA),...
+                        vectB(:,1:3,grB), vectB(:,4:6,grB));
                     
                     flag.CalculationFlag = 3;
                     

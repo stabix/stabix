@@ -15,7 +15,7 @@ function mp = mprime_opt(n1, d1, n2, d2, varargin)
 %     phi = angle between normals
 %     kappa = angle between slip directions
 %
-% author: c.zambaldi@mpie.de
+% author: c.zambaldi / d.mercier@mpie.de
 
 if nargin == 0 % run test cases if called without arguments
     n1 = random_direction();
@@ -29,16 +29,13 @@ if nargin == 0 % run test cases if called without arguments
     return
 end
 
-% check_vectors_orthogonality(n1, d1);
-% check_vectors_orthogonality(n2, d2);
-
 % abs is introduced to get the maximum value of m' because of the bidirectionnality of the slip
 % but for the twins the sense of the slip direction has to be taken into account
 %     mp = cos_from_vectors(n1, n2) * cos_from_vectors(d1, d2);
-    mp = dot(n1, n2) * dot(d1, d2);
-    mp = abs(mp); % dealing with bidirectional slip here
-    
-return
+mp = dot(n1, n2) * dot(d1, d2);
+mp = abs(mp); % dealing with bidirectional slip here
+
+end
 
 %function test_mprime
 %maybe use xUnit for testing in future
