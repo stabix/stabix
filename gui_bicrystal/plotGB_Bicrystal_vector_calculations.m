@@ -72,8 +72,8 @@ if flag_error == 0
                     slip_vec(ii,8) = abs(slip_vec(ii,7));                     % Abs(Generalized Schmid Factor)
                 end
                 slip_vec(ii,9) = ii;                                          % Index of slip (number from 1 to 57 for hcp)
-                slip_vec(ii,10:12) = ss_cart(2,1:3,ii);                       % Slip direction (b vector non normalized)
-                slip_vec(ii,13:15) = -ss_cart(2,1:3,ii);                      % Slip direction (b vector non normalized and in the opposite direction)
+                slip_vec(ii,10:12) = g_mat(:,:,ig).'*ss_cart(2,1:3,ii)';      % Slip direction (b vector non normalized)
+                slip_vec(ii,13:15) = g_mat(:,:,ig).'*-ss_cart(2,1:3,ii)';     % Slip direction (b vector non normalized and in the opposite direction)
             end
             sortbv(:,:,ig)  = sortrows(slip_vec, -8);                         % Sort slip systems by Generalized Schimd factor
             vect(:,1:15,ig) = slip_vec;                                       % Matrix with slip systems, Burgers vectors, index of slips for GrainA...

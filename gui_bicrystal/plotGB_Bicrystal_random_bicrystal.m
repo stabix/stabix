@@ -58,7 +58,6 @@ set(gui.handles.getGBinclination, ...
 guidata(gcf, gui);
 
 plotGB_Bicrystal_setpopupmenu;
-gui = guidata(gcf); guidata(gcf, gui);
 
 plotGB_Bicrystal;
 gui = guidata(gcf); guidata(gcf, gui);

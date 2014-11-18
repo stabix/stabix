@@ -172,8 +172,8 @@ else
                         for ii = 1:1:size(slip_syst,3)
                             bv(ii,1:3) = g.'*ss_cart_norm(1,:,ii)';                % Plane normal (n vector normalized and rotated) for m'
                             bv(ii,4:6) = g.'*ss_cart_norm(2,:,ii)';                % Slip direction (b vector normalized and rotated) for m'
-                            bv(ii,7:9) = ss_cart(2,1:3,ii);                        % Slip direction (b vector non normalized) for RBV
-                            bv(ii,10:12) = -ss_cart(2,1:3,ii);                     % Slip direction (b vector non normalized and in the opposite direction) for RBV
+                            bv(ii,7:9) = g.'*ss_cart(2,1:3,ii)';                        % Slip direction (b vector non normalized) for RBV
+                            bv(ii,10:12) = g.'*-ss_cart(2,1:3,ii)';                     % Slip direction (b vector non normalized and in the opposite direction) for RBV
                             
                             % Generalized Schmid factor
                             bv(ii,13) = generalized_schmid_factor(...
@@ -222,248 +222,253 @@ else
             'vectors are not orthogonals !!!']);
     end
     
-    %%  Now start processing by grain boundary...
-    origrA = zeros(size(RB,1));
-    origrB = zeros(size(RB,1));
-    mprime_val = zeros(1:1:size(slip_systems,3), ...
-        1:1:size(slip_systems,3));
-    res_Burgers_vector_val = zeros(1:1:size(slip_systems,3), ...
-        1:1:size(slip_systems,3));
-    n_factor_val = zeros(1:1:size(slip_systems,3), ...
-        1:1:size(slip_systems,3));
-    
-    for gbnum = 1:size(RB,1)
-        clearvars mprime_val rbv_bc_val res_Burgers_vector_val;
-        waitbar(gbnum/size(RB,1), h_waitbar);
+    if flag.flag_lattice
+        %%  Now start processing by grain boundary...
+        origrA = zeros(size(RB,1));
+        origrB = zeros(size(RB,1));
+        mprime_val = zeros(1:1:size(slip_systems,3), ...
+            1:1:size(slip_systems,3));
+        res_Burgers_vector_val = zeros(1:1:size(slip_systems,3), ...
+            1:1:size(slip_systems,3));
+        n_factor_val = zeros(1:1:size(slip_systems,3), ...
+            1:1:size(slip_systems,3));
         
-        GBs(gbnum).phgrA          = grains(GBs(gbnum).grainA).phase;
-        GBs(gbnum).phgrB          = grains(GBs(gbnum).grainB).phase;
-        grA   = GBs(gbnum).grainA;
-        grB   = GBs(gbnum).grainB;
-        phgrA = grains(GBs(gbnum).grainA).phase;
-        phgrB = grains(GBs(gbnum).grainB).phase;
-        
-        %% Calculation of functions ==> Build table of functions values for each grain pair
-        % Matrix ==> columns = GrA / row = GrB
-        
-        if gui.config_data.slips_1(1) >= 1 ...
-                && gui.config_data.slips_2(1) >= 1
+        for gbnum = 1:size(RB,1)
+            clearvars mprime_val rbv_bc_val res_Burgers_vector_val;
+            waitbar(gbnum/size(RB,1), h_waitbar);
             
-            %% Slip transmission functions for a 1 phase material
-            if numphase == 1 || numphase == 2
-                % mprime
-                if flag.pmparam2plot_value4GB ~= 1 ...
-                        && flag.pmparam2plot_value4GB < 8
-                    %                     for jj = 1:1:vect(1,18,grB)
-                    %                         for kk = 1:1:vect(1,18,grA)
-                    %                             if ~isnan(vect(kk,7:9,grA))
-                    %                                 mprime_val(jj,kk) = mprime_opt(...
-                    %                                     vect(kk,1:3,grA), vect(kk,4:6,grA), ...
-                    %                                     vect(jj,1:3,grB), vect(jj,4:6,grB));
-                    %                                 %                                 mprime_val(jj,kk) = mprime(...
-                    %                                 %                                     vect(kk,1:3,grA), vect(kk,4:6,grA), ...
-                    %                                 %                                     vect(jj,1:3,grB), vect(jj,4:6,grB));
-                    %                             else
-                    %                                 mprime_val(jj,kk) = NaN;
-                    %                             end
-                    %                         end
-                    %                     end
-                    
-                    % Vectorized form
-                    mprime_val = mprime_opt_vectorized(...
-                        vect(:,1:3,grA), vect(:,4:6,grA),...
-                        vect(:,1:3,grB), vect(:,4:6,grB));
-                    
-                    flag.CalculationFlag = 1;
-                    
-                    % Residual Burgers vector
-                elseif flag.pmparam2plot_value4GB == 10 ...
-                        || flag.pmparam2plot_value4GB == 11
-                    for jj = 1:1:vect(1,18,grB)
-                        for kk = 1:1:vect(1,18,grA)
-                            if ~isnan(vect(kk,7:9,grA))
-                                rbv_bc_val(1) = residual_Burgers_vector(...
-                                    vect(kk,7:9,grA), vect(jj,7:9,grB), ...
-                                    grcen(grA, 4:6), grcen(grB, 4:6));
-                                rbv_bc_val(2) = residual_Burgers_vector(...
-                                    vect(kk,10:12,grA), vect(jj,7:9,grB), ...
-                                    grcen(grA, 4:6), grcen(grB, 4:6));
-                                
-                                res_Burgers_vector_val(jj,kk) = ...
-                                    min(rbv_bc_val);
-                            else
-                                res_Burgers_vector_val(jj,kk) = NaN;
-                            end
-                        end
-                    end
-                    
-                    %                     rbv_bc_val(:,:,1) = residual_Burgers_vector(...
-                    %                         vect(:,7:9,grA), vect(:,7:9,grB), ...
-                    %                         grcen(grA, 4:6), grcen(grB, 4:6));
-                    %                     rbv_bc_val(:,:,2) = residual_Burgers_vector(...
-                    %                         vect(:,10:12,grA), vect(:,7:9,grB), ...
-                    %                         grcen(grA, 4:6), grcen(grB, 4:6));
-                    %
-                    %                     res_Burgers_vector_val = ...
-                    %                         min(rbv_bc_val);
-                    
-                    
-                    flag.CalculationFlag = 2;
-                    
-                    % N-factor
-                elseif flag.pmparam2plot_value4GB == 12 ...
-                        || flag.pmparam2plot_value4GB == 13
-                    %                     for jj = 1:1:vect(1,18,grB)
-                    %                         for kk = 1:1:vect(1,18,grA)
-                    %                             if ~isnan(vect(kk,7:9,grA))
-                    %                                 n_factor_val(jj,kk) = N_factor_opt(...
-                    %                                     vect(kk,1:3,grA), vect(kk,4:6,grA), ...
-                    %                                     vect(jj,1:3,grB), vect(jj,4:6,grB));
-                    %                             else
-                    %                                 n_factor_val(jj,kk) = NaN;
-                    %                             end
-                    %                         end
-                    %                     end
-                    
-                    %                     % Vectorized form
-                    n_factor_val = N_factor_opt_vectorized(...
-                        vect(:,1:3,grA), vect(:,4:6,grA),...
-                        vect(:,1:3,grB), vect(:,4:6,grB));
-                    
-                    flag.CalculationFlag = 3;
-                    
-                    % GB Schmid factor
-                elseif flag.pmparam2plot_value4GB == 14
-                    Results(gbnum).gb_schmid_factor = ...
-                        vect(:,21,grA) + vect(:,21,grB);
-                    flag.CalculationFlag = 5;
-                    
-                end
-                
-                %% Slip transmission functions for a 2 phases material
-            else
-                commandwindow;
-                warning(['Could not calculate slip transmission parameter ' ...
-                    'for GB n° %i !'], gbnum);
-            end
+            GBs(gbnum).phgrA          = grains(GBs(gbnum).grainA).phase;
+            GBs(gbnum).phgrB          = grains(GBs(gbnum).grainB).phase;
+            grA   = GBs(gbnum).grainA;
+            grB   = GBs(gbnum).grainB;
+            phgrA = grains(GBs(gbnum).grainA).phase;
+            phgrB = grains(GBs(gbnum).grainB).phase;
             
-            %% Calculation of the misorientation
-            if flag.pmparam2plot_value4GB == 8
-                if grains(grA).structure == grains(grB).structure
-                    if flag.installation_mtex == 1
-                        origrA(gbnum) = ...
-                            MTEX_setBX_orientation(grains(grA).structure, ...
-                            lattice_parameters(grA,1), grcen(grA,4:6));
-                        origrB(gbnum) = ...
-                            MTEX_setBX_orientation(grains(grB).structure, ...
-                            lattice_parameters(grB,1), grcen(grB,4:6));
-                        Results(gbnum).misor = ...
-                            MTEX_getBX_misorientation(...
-                            origrA(gbnum),origrB(gbnum));
-                        
-                    elseif flag.installation_mtex == 0
-                        Results(gbnum).misor  = ...
-                            misorientation(grcen(grA,4:6), grcen(grB,4:6), ...
-                            grains(grA).structure, grains(grB).structure) ;
-                    end
-                    flag.CalculationFlag = 4;
-                else
-                    Results(gbnum).misor = NaN ;
-                end
-            end
-            
-            %% Calculation of the c-axis misorientation
-            if flag.pmparam2plot_value4GB == 9
-                if strcmp(grains(grA).structure, 'hcp') == 1 ...
-                        && strcmp(grains(grB).structure, 'hcp') == 1
-                    Results(gbnum).caxis_misor = eul2Caxismisor(...
-                        grcen(grA,4:6), grcen(grB,4:6)) ;
-                else
-                    Results(gbnum).caxis_misor = NaN ;
-                end
-                flag.CalculationFlag = 4;
-            end
-            
-            %% Calculation of new function's values
-            if flag.pmparam2plot_value4GB == 15
-                Results(gbnum).oth_func_val = ...
-                    Other_Function(vect(:,:,grA), vect(:,:,grB), ...
-                    grcen(grA,10:18),grcen(grB,10:18), ...
-                    grA, grB, phgrA, phgrB, RB(8));
-                flag.CalculationFlag = 6;
-            end
-            
-            %% Get max/min values and slip indices of mprime or RBV
+            %% Calculation of functions ==> Build table of functions values for each grain pair
             % Matrix ==> columns = GrA / row = GrB
             
-            if flag.CalculationFlag == 1 % mprime
-                % Sort mprime
-                Results(gbnum).mp_min = min(min(abs(mprime_val)));
-                [Results(gbnum).mp_min_slipB, Results(gbnum).mp_min_slipA] ...
-                    = find(abs(mprime_val) <= Results(gbnum).mp_min);
+            if gui.config_data.slips_1(1) >= 1 ...
+                    && gui.config_data.slips_2(1) >= 1
                 
-                Results(gbnum).mp_max = max(max(abs(mprime_val)));
-                [Results(gbnum).mp_max_slipB, Results(gbnum).mp_max_slipA] ...
-                    = find(abs(mprime_val) >= Results(gbnum).mp_max);
+                %% Slip transmission functions for a 1 phase material
+                if numphase == 1 || numphase == 2
+                    % mprime
+                    if flag.pmparam2plot_value4GB ~= 1 ...
+                            && flag.pmparam2plot_value4GB < 8
+                        %                     for jj = 1:1:vect(1,18,grB)
+                        %                         for kk = 1:1:vect(1,18,grA)
+                        %                             if ~isnan(vect(kk,7:9,grA))
+                        %                                 mprime_val(jj,kk) = mprime_opt(...
+                        %                                     vect(kk,1:3,grA), vect(kk,4:6,grA), ...
+                        %                                     vect(jj,1:3,grB), vect(jj,4:6,grB));
+                        %                                 %                                 mprime_val(jj,kk) = mprime(...
+                        %                                 %                                     vect(kk,1:3,grA), vect(kk,4:6,grA), ...
+                        %                                 %                                     vect(jj,1:3,grB), vect(jj,4:6,grB));
+                        %                             else
+                        %                                 mprime_val(jj,kk) = NaN;
+                        %                             end
+                        %                         end
+                        %                     end
+                        
+                        % Vectorized form
+                        mprime_val = mprime_opt_vectorized(...
+                            vect(:,1:3,grA), vect(:,4:6,grA),...
+                            vect(:,1:3,grB), vect(:,4:6,grB));
+                        
+                        flag.CalculationFlag = 1;
+                        
+                        % Residual Burgers vector
+                    elseif flag.pmparam2plot_value4GB == 10 ...
+                            || flag.pmparam2plot_value4GB == 11
+                        for jj = 1:1:vect(1,18,grB)
+                            for kk = 1:1:vect(1,18,grA)
+                                if ~isnan(vect(kk,7:9,grA))
+                                    rbv_bc_val(1) = residual_Burgers_vector(...
+                                        vect(kk,7:9,grA), vect(jj,7:9,grB));
+                                    rbv_bc_val(2) = residual_Burgers_vector(...
+                                        vect(kk,10:12,grA), vect(jj,7:9,grB));
+                                    
+                                    res_Burgers_vector_val(jj,kk) = ...
+                                        min(rbv_bc_val);
+                                else
+                                    res_Burgers_vector_val(jj,kk) = NaN;
+                                end
+                            end
+                        end
+                        
+                        
+                        
+                        flag.CalculationFlag = 2;
+                        
+                        % N-factor
+                    elseif flag.pmparam2plot_value4GB == 12 ...
+                            || flag.pmparam2plot_value4GB == 13
+                        %                     for jj = 1:1:vect(1,18,grB)
+                        %                         for kk = 1:1:vect(1,18,grA)
+                        %                             if ~isnan(vect(kk,7:9,grA))
+                        %                                 n_factor_val(jj,kk) = N_factor_opt(...
+                        %                                     vect(kk,1:3,grA), vect(kk,4:6,grA), ...
+                        %                                     vect(jj,1:3,grB), vect(jj,4:6,grB));
+                        %                             else
+                        %                                 n_factor_val(jj,kk) = NaN;
+                        %                             end
+                        %                         end
+                        %                     end
+                        
+                        %                     % Vectorized form
+                        n_factor_val = N_factor_opt_vectorized(...
+                            vect(:,1:3,grA), vect(:,4:6,grA),...
+                            vect(:,1:3,grB), vect(:,4:6,grB));
+                        
+                        flag.CalculationFlag = 3;
+                        
+                        % GB Schmid factor
+                    elseif flag.pmparam2plot_value4GB == 14
+                        Results(gbnum).gb_schmid_factor = ...
+                            vect(:,21,grA) + vect(:,21,grB);
+                        flag.CalculationFlag = 5;
+                        
+                    end
+                    
+                    %% Slip transmission functions for a 2 phases material
+                else
+                    commandwindow;
+                    warning(['Could not calculate slip ', ...
+                        'transmission parameter ' ...
+                        'for GB n° %i !'], gbnum);
+                end
                 
-                % Storing of m' value calulated with slips with highest Generalized Schmid factor
-                Results(gbnum).mp_SFmax_slipB = vect(1,19,grB);                               % index of slip with highest Schmid factor
-                Results(gbnum).mp_SFmax_slipA = vect(1,19,grA);                               % index of slip with highest Schmid factor
-                Results(gbnum).mp_SFmax = abs(mprime_val(...
-                    Results(gbnum).mp_SFmax_slipB, ...
-                    Results(gbnum).mp_SFmax_slipA));
+                %% Calculation of the misorientation
+                if flag.pmparam2plot_value4GB == 8
+                    if grains(grA).structure == grains(grB).structure
+                        if flag.installation_mtex == 1
+                            origrA(gbnum) = ...
+                                MTEX_setBX_orientation(...
+                                grains(grA).structure, ...
+                                lattice_parameters(grA,1), ...
+                                grcen(grA,4:6));
+                            origrB(gbnum) = ...
+                                MTEX_setBX_orientation(...
+                                grains(grB).structure, ...
+                                lattice_parameters(grB,1), ...
+                                grcen(grB,4:6));
+                            Results(gbnum).misor = ...
+                                MTEX_getBX_misorientation(...
+                                origrA(gbnum),origrB(gbnum));
+                            
+                        elseif flag.installation_mtex == 0
+                            Results(gbnum).misor  = ...
+                                misorientation(grcen(grA,4:6), ...
+                                grcen(grB,4:6), ...
+                                grains(grA).structure, ...
+                                grains(grB).structure) ;
+                        end
+                        flag.CalculationFlag = 4;
+                    else
+                        Results(gbnum).misor = NaN ;
+                    end
+                end
                 
-                % Storing of m' value calulated with slips with highest resolved shear stress
-                Results(gbnum).mp_RSSmax_slipB = vect(1,20,grB);                               % index of slip with highest resolved shear stress
-                Results(gbnum).mp_RSSmax_slipA = vect(1,20,grA);                               % index of slip with highest resolved shear stress
-                Results(gbnum).mp_RSSmax = abs(mprime_val(...
-                    Results(gbnum).mp_RSSmax_slipB, ...
-                    Results(gbnum).mp_RSSmax_slipA));
+                %% Calculation of the c-axis misorientation
+                if flag.pmparam2plot_value4GB == 9
+                    if strcmp(grains(grA).structure, 'hcp') == 1 ...
+                            && strcmp(grains(grB).structure, 'hcp') == 1
+                        Results(gbnum).caxis_misor = eul2Caxismisor(...
+                            grcen(grA,4:6), grcen(grB,4:6)) ;
+                    else
+                        Results(gbnum).caxis_misor = NaN ;
+                    end
+                    flag.CalculationFlag = 4;
+                end
                 
-            elseif flag.CalculationFlag == 2 % Residual Burgers vector
-                % Sort Residual Burgers Vector
-                Results(gbnum).rbv_min = ...
-                    min(min(abs(res_Burgers_vector_val)));
+                %% Calculation of new function's values
+                if flag.pmparam2plot_value4GB == 15
+                    Results(gbnum).oth_func_val = ...
+                        Other_Function(vect(:,:,grA), vect(:,:,grB), ...
+                        grcen(grA,10:18),grcen(grB,10:18), ...
+                        grA, grB, phgrA, phgrB, RB(8));
+                    flag.CalculationFlag = 6;
+                end
                 
-                [Results(gbnum).rbv_min_slipB, ...
-                    Results(gbnum).rbv_min_slipA] = ...
-                    find(abs(res_Burgers_vector_val) ...
-                    <= Results(gbnum).rbv_min);
+                %% Get max/min values and slip indices of mprime or RBV
+                % Matrix ==> columns = GrA / row = GrB
                 
-                Results(gbnum).rbv_max = ...
-                    max(max(abs(res_Burgers_vector_val)));
-                
-                [Results(gbnum).rbv_max_slipB, ...
-                    Results(gbnum).rbv_max_slipA] = ...
-                    find(abs(res_Burgers_vector_val) ...
-                    >= Results(gbnum).rbv_max);
-                
-            elseif flag.CalculationFlag == 3 % N-factor
-                % Sort N-factor
-                Results(gbnum).n_factor_min = min(min(abs(n_factor_val)));
-                
-                [Results(gbnum).n_factor_min_slipB, ...
-                    Results(gbnum).n_factor_min_slipA] = ...
-                    find(abs(n_factor_val) <= Results(gbnum).n_factor_min);
-                
-                Results(gbnum).n_factor_max = max(max(abs(n_factor_val)));
-                
-                [Results(gbnum).n_factor_max_slipB, ...
-                    Results(gbnum).n_factor_max_slipA] = ...
-                    find(abs(n_factor_val) >= Results(gbnum).n_factor_max);
-                
+                if flag.CalculationFlag == 1 % mprime
+                    % Sort mprime
+                    Results(gbnum).mp_min = min(min(abs(mprime_val)));
+                    [Results(gbnum).mp_min_slipB, ...
+                        Results(gbnum).mp_min_slipA] ...
+                        = find(abs(mprime_val) <= Results(gbnum).mp_min);
+                    
+                    Results(gbnum).mp_max = max(max(abs(mprime_val)));
+                    [Results(gbnum).mp_max_slipB, ...
+                        Results(gbnum).mp_max_slipA] ...
+                        = find(abs(mprime_val) >= Results(gbnum).mp_max);
+                    
+                    % Storing of m' value calulated with slips with highest Generalized Schmid factor
+                    Results(gbnum).mp_SFmax_slipB = vect(1,19,grB);                               % index of slip with highest Schmid factor
+                    Results(gbnum).mp_SFmax_slipA = vect(1,19,grA);                               % index of slip with highest Schmid factor
+                    Results(gbnum).mp_SFmax = abs(mprime_val(...
+                        Results(gbnum).mp_SFmax_slipB, ...
+                        Results(gbnum).mp_SFmax_slipA));
+                    
+                    % Storing of m' value calulated with slips with highest resolved shear stress
+                    Results(gbnum).mp_RSSmax_slipB = vect(1,20,grB);                               % index of slip with highest resolved shear stress
+                    Results(gbnum).mp_RSSmax_slipA = vect(1,20,grA);                               % index of slip with highest resolved shear stress
+                    Results(gbnum).mp_RSSmax = abs(mprime_val(...
+                        Results(gbnum).mp_RSSmax_slipB, ...
+                        Results(gbnum).mp_RSSmax_slipA));
+                    
+                elseif flag.CalculationFlag == 2 % Residual Burgers vector
+                    % Sort Residual Burgers Vector
+                    Results(gbnum).rbv_min = ...
+                        min(min(abs(res_Burgers_vector_val)));
+                    
+                    [Results(gbnum).rbv_min_slipB, ...
+                        Results(gbnum).rbv_min_slipA] = ...
+                        find(abs(res_Burgers_vector_val) ...
+                        <= Results(gbnum).rbv_min);
+                    
+                    Results(gbnum).rbv_max = ...
+                        max(max(abs(res_Burgers_vector_val)));
+                    
+                    [Results(gbnum).rbv_max_slipB, ...
+                        Results(gbnum).rbv_max_slipA] = ...
+                        find(abs(res_Burgers_vector_val) ...
+                        >= Results(gbnum).rbv_max);
+                    
+                elseif flag.CalculationFlag == 3 % N-factor
+                    % Sort N-factor
+                    Results(gbnum).n_factor_min ...
+                        = min(min(abs(n_factor_val)));
+                    
+                    [Results(gbnum).n_factor_min_slipB, ...
+                        Results(gbnum).n_factor_min_slipA] = ...
+                        find(abs(n_factor_val) ...
+                        <= Results(gbnum).n_factor_min);
+                    
+                    Results(gbnum).n_factor_max ...
+                        = max(max(abs(n_factor_val)));
+                    
+                    [Results(gbnum).n_factor_max_slipB, ...
+                        Results(gbnum).n_factor_max_slipA] = ...
+                        find(abs(n_factor_val) ...
+                        >= Results(gbnum).n_factor_max);
+                    
+                end
             end
         end
+        delete(h_waitbar);
     end
-    delete(h_waitbar);
 end
 
-gui.grains    = grains;
-gui.flag      = flag;
-gui.grcen     = grcen;
-gui.results   = Results;
-gui.calculations.vect  = vect;
-
+if flag.flag_lattice
+    gui.grains    = grains;
+    gui.flag      = flag;
+    gui.grcen     = grcen;
+    gui.results   = Results;
+    gui.calculations.vect  = vect;
+end
 guidata(gcf, gui);
 
 end

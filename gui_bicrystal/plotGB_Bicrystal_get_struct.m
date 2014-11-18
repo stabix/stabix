@@ -11,6 +11,4 @@ phB_num = get(gui.handles.pmStructB, 'Value');
 Phase_A = liststruct_str(phA_num);
 Phase_B = liststruct_str(phB_num);
 
-guidata(gcf, gui);
-
 end

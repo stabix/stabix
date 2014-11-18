@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function rbv_norm = residual_Burgers_vector(b_in, b_out, eul_in, eul_out, varargin)
+function rbv_norm = ...
+    residual_Burgers_vector(rotated_b_in, rotated_b_out, varargin)
 %% Function used to calculate the norm of the residual Burgers vector
 % from Marcinkowski et al. ==> Metallurgical Transactions 1,12 (1970) pp 3397-3401
 % DOI ==> DOI 10.1007/BF03037870
@@ -34,22 +35,24 @@ function rbv_norm = residual_Burgers_vector(b_in, b_out, eul_in, eul_out, vararg
 if nargin == 0
     b_in  = rand(3,1)';
     b_out = rand(3,1)';
-    eul_in  = randBunges;
+    eul_in = randBunges;
     eul_out = randBunges;
+    R_in  = eulers2g(eul_in);
+    R_out = eulers2g(eul_out);
+    rotated_b_in = R_in'*b_in';
+    rotated_b_out = R_out'*b_out';
     display(b_in);
     display(b_out);
     display(eul_in);
-    display(eul_out);
+    display(eul_in);
     
-elseif nargin < 4
+elseif nargin < 2
     display('Not enough inputs');
     return
 end
 
 try
-    R_in  = eulers2g(eul_in);
-    R_out = eulers2g(eul_out);
-    rbv = R_in'*b_in' - R_out'*b_out';
+    rbv = rotated_b_in - rotated_b_out;
     rbv_norm = norm(rbv);
 catch err
     commandwindow;
