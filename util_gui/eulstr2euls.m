@@ -36,7 +36,7 @@ for es = eulerstr
     for sstr = spstr
         er2 = strrep(er2,sstr{1},' ');
     end
-    eulers(idx,:)  =  sscanf(er2,'%f %f %f',3)';
+    eulers(idx,:) = sscanf(er2,'%f %f %f',3)';
     if nargin == 0
         eulers(idx,:);
     end

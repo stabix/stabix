@@ -147,8 +147,6 @@ if GB_YAML.slipB > 0
 end
 
 %% Setting of GB's properties
-clearvars GB gui_data;
-
 Names = fieldnames(GB_YAML);
 for fn = 1:length(Names)
     GB.(Names{fn}) = GB_YAML.(Names{fn});

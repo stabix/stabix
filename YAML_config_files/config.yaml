@@ -7,10 +7,10 @@
 toolbox_name: 'STABiX'
 
 # Matlab toolbox version
-version_toolbox: '1.4'
+version_toolbox: '1.5'
 
 # Month, Year
-version_month: 'October'
+version_month: 'November'
 version_year: '2014'
 
 # Setting of opengl, e.g. 'software' or 'hardware' (optional)

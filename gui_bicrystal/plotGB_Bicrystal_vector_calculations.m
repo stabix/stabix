@@ -9,19 +9,21 @@ function [vect, euler, sortbv, flag_error] = ...
 % Loop to set grain properties (identity, Euler angles, position)
 for ig = grain
     lattice_parameters = latt_param(material, phase);  % Get the lattice parameter for the grain
-    if lattice_parameters(1) == 0
+    if lattice_parameters(1) == 0 || flag_error == 1
         commandwindow;
         warning('Wrong input for material and structure !!!');
         vect = 0;
         euler = 0;
         sortbv = 0;
         flag_error = 1;
+    else
+        flag_error = 0;
     end
-
+    
     if flag_error == 0
         slip_syst = slip_systems(phase, listslip);
-         ss_cart = zeros(2,3,size(slip_syst, 3));
-         ss_cart_norm = zeros(2,3,size(slip_syst, 3));
+        ss_cart = zeros(2,3,size(slip_syst, 3));
+        ss_cart_norm = zeros(2,3,size(slip_syst, 3));
         if strcmp(phase, 'hcp') == 1
             for ss_ind = 1:size(slip_syst, 3)
                 ss_cart(1,:,ss_ind) = millerbravaisplane2cart(...

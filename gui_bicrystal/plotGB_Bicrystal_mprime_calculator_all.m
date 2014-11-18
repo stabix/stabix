@@ -122,6 +122,8 @@ if gui.flag.error == 0
     %     gui.GB.LRB_val_bc_all = gui.GB.LRB_val_bc_all(kk_B, kk_A);
     
     gui.flag.error = 0;
+else
+    guidata(gcf, gui);
 end
 guidata(gcf, gui);
 end

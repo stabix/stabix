@@ -29,11 +29,11 @@ if no_slip == 0
         case{3}
             idm = sprintf('m'' = %.2f', gui.GB.results.mp_max3);
         case{4}
-            idm = sprintf('m'' = %.2f', gui.GB.results.mpmin1);
+            idm = sprintf('m'' = %.2f', gui.GB.results.mp_min1);
         case{5}
-            idm = sprintf('m'' = %.2f', gui.GB.results.mpmin2);
+            idm = sprintf('m'' = %.2f', gui.GB.results.mp_min2);
         case{6}
-            idm = sprintf('m'' = %.2f', gui.GB.results.mpmin3);
+            idm = sprintf('m'' = %.2f', gui.GB.results.mp_min3);
         case{7}
             idm = sprintf('m''(SF) = %.2f', gui.GB.results.mp_SFmax);
         case{8}
