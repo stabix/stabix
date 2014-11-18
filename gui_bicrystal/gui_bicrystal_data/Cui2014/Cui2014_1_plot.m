@@ -1,8 +1,10 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-%% Script used to plot all Residual Burgers Vectors calculated for bicrystals given by Cui et al. (2014) : DOI ==> 10.1016/j.actamat.2013.11.033
+%% Script used to plot all Residual Burgers Vectors calculated for bicrystals
+% given by Cui et al. (2014) : DOI ==> 10.1016/j.actamat.2013.11.033
 tabularasa;
 installation_mtex = MTEX_check_install;
 plot_matlab = 1;
+latt_param_Ti = latt_param('Ti', 'hcp');
 
 %% Loading of GB data
 folder_name = which('Cui2014_1_plot');
@@ -60,31 +62,42 @@ GB(8).SlipB_dir = [1, 0,-1];
 GB(8).rbv = 1.35;
 
 %% Calculations
-for ii = 1:length(GB)
+rbv = zeros(length(GB), 2);
+mis = zeros(length(GB), 3);
+GB_legend = cell(length(GB),1);
+for igb = 1:length(GB)
     %% Setting of grains Euler angles when only misorientation angle and mis. axis are given
-    GB(ii).eulerA                        = [0, 0, 0];
-    GB(ii).rot_mat                       = axisang2g(GB(ii).Misorientation_axis, GB(ii).Misorientation_angle);
-    GB(ii).eulerB                        = g2eulers(GB(ii).rot_mat);
+    GB(igb).eulerA  = [0, 0, 0];
+    GB(igb).rot_mat = axisang2g(GB(igb).Misorientation_axis, ...
+        GB(igb).Misorientation_angle);
+    GB(igb).eulerB  = g2eulers(GB(igb).rot_mat);
     
     %% Residual Burgers Vector
-    rbv(ii,1) = residual_Burgers_vector(GB(ii).SlipA_dir, GB(ii).SlipB_dir, ...
-        [0,0,0], GB(ii).eulerB)/2;
+    rotA = eulers2g(GB(igb).eulerA);
+    rotB = eulers2g(GB(igb).eulerB);
+    rotated_b_in = rotA' * GB(igb).SlipA_dir';
+    rotated_b_out = rotB' * GB(igb).SlipB_dir';
+    rbv(igb,1) = residual_Burgers_vector(rotated_b_in, ...
+        rotated_b_out)/2;
     
-    rbv(ii, 2) = GB(ii).rbv;
+    rbv(igb, 2) = GB(igb).rbv;
     
     %% Misorientation
     if installation_mtex == 1
-        oriA = MTEX_setBX_orientation('fcc', 1.5875, GB(ii).eulerA);
-        oriB = MTEX_setBX_orientation('fcc', 1.5875, GB(ii).eulerB);
-        mis(ii,1) = MTEX_getBX_misorientation(oriA, oriB);
+        oriA = MTEX_setBX_orientation('fcc', latt_param_Ti(1), ...
+            GB(igb).eulerA);
+        oriB = MTEX_setBX_orientation('fcc', latt_param_Ti(1), ...
+            GB(igb).eulerB);
+        mis(igb,1) = MTEX_getBX_misorientation(oriA, oriB);
     else
-        mis(ii,1) = NaN;
+        mis(igb,1) = NaN;
     end
-    mis(ii,2) = misorientation(GB(ii).eulerA, GB(ii).eulerB, 'fcc', 'fcc');
-    mis(ii,3) = GB(ii).Misorientation_angle;
+    mis(igb,2) = misorientation(GB(igb).eulerA, ...
+        GB(igb).eulerB, 'fcc', 'fcc');
+    mis(igb,3) = GB(igb).Misorientation_angle;
     
     %% Legend for plot
-    GB_legend(ii) = {strcat('GB', num2str(ii))};
+    GB_legend(igb) = {strcat('GB', num2str(igb))};
     
 end
 
@@ -119,27 +132,12 @@ if plot_matlab
     % Set plot using bar
     x_hist = 0.5:1:length(GB);
     h_bar = bar(x_hist, mis(:,:));
-    legend(h_bar, 'MTEX Misor', 'Calculated values', 'Claudio''s function', 'Values from paper');
+    legend(h_bar, 'MTEX Misor', 'Calculated values', ...
+        'Claudio''s function', 'Values from paper');
     set(gca, 'XTick', x_hist, 'xticklabel', GB_legend);
     xticklabel_rotate([],45);
     ylabel('Misorientation in °');
 end
 
 %% Export results in a .txt file
-parent_directory_full = fullfile(parent_directory, 'latex_barcharts');
-cd(parent_directory_full);
-
-for ii = 1:size(rbv,1)
-    data_to_save(ii,1) = ii;
-end
-data_to_save(:,2) = rbv(:, 2);
-data_to_save(:,3) = rbv(:, 1);
-
-fid = fopen('Data_Cui2014.txt','w+');
-for ii = 1:size(data_to_save, 1)
-    fprintf(fid, '%6.2f %6.2f %6.2f \n',...
-        data_to_save(ii, 1), ...
-        data_to_save(ii, 2),...
-        data_to_save(ii, 3));
-end
-fclose(fid);
+save_txt_file(parent_directory, 'Data_Cui2014.txt', rbv);

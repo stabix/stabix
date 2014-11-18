@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-%% Script used to plot all Residual Burgers Vectors calculated for bicrystals given by Kacher et al. (2014): DOI ==> 10.1080/14786435.2013.868942
+%% Script used to plot all Residual Burgers Vectors calculated for bicrystals
+% given by Kacher et al. (2014): DOI ==> 10.1080/14786435.2013.868942
 tabularasa;
 installation_mtex = MTEX_check_install;
 plot_matlab = 1;
@@ -15,38 +16,58 @@ GB(3) = load_YAML_BX_example_config_file('Kacher2014_Gr5-Gr6_rbv1.2.yaml');
 GB(4) = load_YAML_BX_example_config_file('Kacher2014_Gr7-Gr8_rbv1.1.yaml');
 
 %% Calculations
-for ig = 1:1:length(GB)
+rbv = zeros(length(GB),2);
+mis = zeros(length(GB), 4);
+GB_legend = cell(length(GB),1);
+for igb = 1:1:length(GB)
     %% Conversion from Bravais-Miller indices to Cartesian notation
-    GB(ig).slipA_ind_cs = millerbravaisdir2cart(GB(ig).slipA_ind(2,:), GB(ig).ca_ratio_A(1))';
-    GB(ig).slipB_ind_cs = millerbravaisdir2cart(GB(ig).slipB_ind(2,:), GB(ig).ca_ratio_B(1))';
+    GB(igb).slipA_ind_cs = millerbravaisdir2cart(GB(igb).slipA_ind(2,:), ...
+        GB(igb).ca_ratio_A(1))';
+    GB(igb).slipB_ind_cs = millerbravaisdir2cart(GB(igb).slipB_ind(2,:), ...
+        GB(igb).ca_ratio_B(1))';
     
     %% Setting of grains Euler angles when only misorientation and mis. axis are given
-    if isfield(GB, 'Misorientation_angle') && isfield(GB, 'Misorientation_axis')
-        GB(ig).Misorientation_axis_uvtw = cell2mat(GB(ig).Misorientation_axis);
-        GB(ig).eulerA = [0 0 0];
-        GB(ig).Misorientation_cartesian_vect = millerbravaisdir2cart(GB(ig).Misorientation_axis_uvtw, GB(ig).ca_ratio_A(1));
-        GB(ig).rot_mat = axisang2g(GB(ig).Misorientation_cartesian_vect, GB(ig).Misorientation_angle);
-        GB(ig).eulerB = g2eulers(GB(ig).rot_mat);
+    if isfield(GB, 'Misorientation_angle') ...
+            && isfield(GB, 'Misorientation_axis')
+        GB(igb).Misorientation_axis_uvtw = ...
+            cell2mat(GB(igb).Misorientation_axis);
+        GB(igb).eulerA = [0 0 0];
+        GB(igb).Misorientation_cartesian_vect = ...
+            millerbravaisdir2cart(GB(igb).Misorientation_axis_uvtw, ...
+            GB(igb).ca_ratio_A(1));
+        GB(igb).rot_mat = ...
+            axisang2g(GB(igb).Misorientation_cartesian_vect, ...
+            GB(igb).Misorientation_angle);
+        GB(igb).eulerB = g2eulers(GB(igb).rot_mat);
     end
-    rbv(ig, 1) = residual_Burgers_vector(GB(ig).slipA_ind_cs, GB(ig).slipB_ind_cs, ...
-        GB(ig).eulerA, GB(ig).eulerB);
     
-    rbv(ig, 2) = GB(ig).rbv; % Values from paper
+    rotA = eulers2g(GB(igb).eulerA);
+    rotB = eulers2g(GB(igb).eulerB);
+    rotated_b_in = rotA' * GB(igb).slipA_ind_cs';
+    rotated_b_out = rotB' * GB(igb).slipB_ind_cs';
+    rbv(igb, 1) = residual_Burgers_vector(rotated_b_in, ...
+        rotated_b_out);
     
-    GB_legend(ig) = {strcat('G',num2str(GB(ig).GrainA),'/G',num2str(GB(ig).GrainB))};
+    rbv(igb, 2) = GB(igb).rbv; % Values from paper
+    
+    GB_legend(igb) = {['G',num2str(GB(igb).GrainA), ...
+        '/G',num2str(GB(igb).GrainB)]};
     
     %% Misorientation
     if installation_mtex == 1
-        oriA = MTEX_setBX_orientation(GB(ig).Phase_A, GB(ig).ca_ratio_A(1), GB(ig).eulerA);
-        oriB = MTEX_setBX_orientation(GB(ig).Phase_B, GB(ig).ca_ratio_A(1), GB(ig).eulerB);
-        mis(ig,1) = MTEX_getBX_misorientation(oriA, oriB); % MTEX function
+        oriA = MTEX_setBX_orientation(GB(igb).Phase_A, ...
+            GB(igb).ca_ratio_A(1), GB(igb).eulerA);
+        oriB = MTEX_setBX_orientation(GB(igb).Phase_B, ...
+            GB(igb).ca_ratio_A(1), GB(igb).eulerB);
+        mis(igb,1) = MTEX_getBX_misorientation(oriA, oriB); % MTEX function
     else
-        mis(ig,1) = NaN;
+        mis(igb,1) = NaN;
     end
-    mis(ig,2) = misorientation(GB(ig).eulerA, GB(ig).eulerB, GB(ig).Phase_A, GB(ig).Phase_B);
-    mis_ax_ang = misori_hex(GB(ig).eulerA, GB(ig).eulerB, 24); % Claudio's function
-    mis(ig,3) = mis_ax_ang(4);
-    mis(ig,4) = GB(ig).Misorientation_angle;
+    mis(igb,2) = misorientation(GB(igb).eulerA, GB(igb).eulerB, ...
+        GB(igb).Phase_A, GB(igb).Phase_B);
+    mis_ax_ang = misori_hex(GB(igb).eulerA, GB(igb).eulerB, 24); % Claudio's function
+    mis(igb,3) = mis_ax_ang(4);
+    mis(igb,4) = GB(igb).Misorientation_angle;
     
 end
 
@@ -82,27 +103,12 @@ if plot_matlab
     % Set plot using bar
     x_hist = 0.5:1:length(GB);
     h_bar = bar(x_hist, mis(:,:,:), 1);
-    legend(h_bar, 'MTEX Misor', 'Calculated values', 'Claudio''s function', 'Values from paper');
+    legend(h_bar, 'MTEX Misor', 'Calculated values', ...
+        'Claudio''s function', 'Values from paper');
     set(gca, 'XTick', x_hist, 'xticklabel', GB_legend);
     xticklabel_rotate([],45);
     ylabel('Misorientation in °');
 end
 
 %% Export results in a .txt file
-parent_directory_full = fullfile(parent_directory, 'latex_barcharts');
-cd(parent_directory_full);
-
-for ii = 1:size(rbv,1)
-    data_to_save(ii,1) = ii;
-end
-data_to_save(:,2) = rbv(:, 2);
-data_to_save(:,3) = rbv(:, 1);
-
-fid = fopen('Data_Kacher2014.txt','w+');
-for ii = 1:size(data_to_save, 1)
-    fprintf(fid, '%6.2f %6.2f %6.2f \n',...
-        data_to_save(ii, 1), ...
-        data_to_save(ii, 2),...
-        data_to_save(ii, 3));
-end
-fclose(fid);
+save_txt_file(parent_directory, 'Data_Kacher2014.txt', rbv);

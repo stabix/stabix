@@ -1,9 +1,11 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-%% Script used to plot all Residual Burgers Vectors calculated for bicrystals given by Kacher et al. (2012) : DOI ==> 10.1016/j.actamat.2012.08.036
+%% Script used to plot all Residual Burgers Vectors calculated for bicrystals
+% given by Kacher et al. (2012) : DOI ==> 10.1016/j.actamat.2012.08.036
 tabularasa;
 %installation_mtex = MTEX_check_install;
 installation_mtex = 0;
 plot_matlab = 1;
+latt_param_Ti = latt_param('Ti', 'hcp');
 
 %% Loading of GB data
 folder_name = which('Kacher2012_1_plot');
@@ -14,7 +16,7 @@ GB(1).Misorientation_angle = 36; % in degrees
 GB(1).Misorientation_axis = [-11, -22,  -2];
 GB(1).SlipA_dir = [1, 0, -1];
 GB(1).SlipB_dir = [1, -1, -2];
-GB(1).SlipB_norm = [-1,  1, -1]; 
+GB(1).SlipB_norm = [-1,  1, -1];
 GB(1).rbv = 0.72;
 
 GB(2).Misorientation_angle = 36; % in degrees
@@ -95,54 +97,68 @@ GB(12).SlipB_norm = [1, 1, 1];
 GB(12).rbv = 0.45;
 
 %% Calculations
-for ii = 1:length(GB)
+rbv = zeros(length(GB), 5);
+mis = zeros(length(GB), 3);
+GB_legend = cell(length(GB),1);
+for igb = 1:length(GB)
     %% Setting of grains Euler angles when only misorientation angle and mis. axis are given
-    GB(ii).eulerA                        = [0, 0, 0];
-    GB(ii).rot_mat                       = axisang2g(GB(ii).Misorientation_axis, GB(ii).Misorientation_angle);
-    GB(ii).eulerB                        = g2eulers(GB(ii).rot_mat);
-    GB(ii).eulerB_rot                    = g2eulers(GB(ii).rot_mat');
+    GB(igb).eulerA = [0, 0, 0];
+    GB(igb).rot_mat = axisang2g(GB(igb).Misorientation_axis, ...
+        GB(igb).Misorientation_angle);
+    GB(igb).eulerB = g2eulers(GB(igb).rot_mat);
+
+    rotA = eulers2g(GB(igb).eulerA);
+    rotB = eulers2g(GB(igb).eulerB);
+    rotated_b_in = rotA' * GB(igb).SlipA_dir';
+    rotated_b_out_on = rotB * GB(igb).SlipB_dir';
+    rotated_b_out_off = rotB' * GB(igb).SlipB_dir';
     
     %% Residual Burgers Vector
-    rbv_pos = residual_Burgers_vector(GB(ii).SlipA_dir, GB(ii).SlipB_dir, ...
-        [0,0,0], GB(ii).eulerB);
+    rbv_pos = residual_Burgers_vector(rotated_b_in, ...
+        rotated_b_out_on);
     
-    rbv_neg = residual_Burgers_vector(GB(ii).SlipA_dir, -GB(ii).SlipB_dir, ...
-        [0,0,0], GB(ii).eulerB);
+    rbv_neg = residual_Burgers_vector(rotated_b_in, ...
+        -rotated_b_out_on);
     
-    rbv_pos_rot = residual_Burgers_vector(GB(ii).SlipA_dir, GB(ii).SlipB_dir, ...
-        [0,0,0], GB(ii).eulerB_rot);
+    rbv_pos_rot = residual_Burgers_vector(rotated_b_in, ...
+        rotated_b_out_off);
     
-    rbv_neg_rot = residual_Burgers_vector(GB(ii).SlipA_dir, -GB(ii).SlipB_dir, ...
-        [0,0,0], GB(ii).eulerB_rot);
+    rbv_neg_rot = residual_Burgers_vector(rotated_b_in, ...
+        -rotated_b_out_off);
     
-    rbv(ii, 1) = min([rbv_pos rbv_neg]);
-    rbv(ii, 2) = max([rbv_pos rbv_neg]);
-    rbv(ii, 3) = min([rbv_pos_rot rbv_neg_rot]);
-    rbv(ii, 4) = max([rbv_pos_rot rbv_neg_rot]);
-    rbv(ii, 5) = GB(ii).rbv; %Results from paper
+    rbv(igb, 1) = min([rbv_pos rbv_neg]);
+    rbv(igb, 2) = max([rbv_pos rbv_neg]);
+    rbv(igb, 3) = min([rbv_pos_rot rbv_neg_rot]);
+    rbv(igb, 4) = max([rbv_pos_rot rbv_neg_rot]);
+    rbv(igb, 5) = GB(igb).rbv; %Results from paper
     
     %% Misorientation
     if installation_mtex == 1
-        oriA = MTEX_setBX_orientation('fcc', 1.5875, GB(ii).eulerA);
-        oriB = MTEX_setBX_orientation('fcc', 1.5875, GB(ii).eulerB);
-        mis(ii,1) = MTEX_getBX_misorientation(oriA, oriB);
+        oriA = MTEX_setBX_orientation('fcc', latt_param_Ti(1), ...
+            GB(igb).eulerA);
+        oriB = MTEX_setBX_orientation('fcc', latt_param_Ti(1), ...
+            GB(igb).eulerB);
+        mis(igb,1) = MTEX_getBX_misorientation(oriA, oriB);
     else
-        mis(ii,1) = NaN;
+        mis(igb,1) = NaN;
     end
-    mis(ii,2) = misorientation(GB(ii).eulerA, GB(ii).eulerB, 'fcc', 'fcc');
-    mis(ii,3) = GB(ii).Misorientation_angle;
+    mis(igb,2) = misorientation(GB(igb).eulerA, GB(igb).eulerB, 'fcc', 'fcc');
+    mis(igb,3) = GB(igb).Misorientation_angle;
     
     %% Legend for plot
-    GB_legend(ii) = {strcat('[',num2str(GB(ii).SlipA_dir), '] / [',num2str(GB(ii).SlipB_dir), ']')};
+    GB_legend(igb) = {strcat('[',num2str(GB(igb).SlipA_dir), ...
+        '] / [',num2str(GB(igb).SlipB_dir), ']')};
     
 end
 
 % Values recalculated from Kacher's script
-rbv_recalc = Kacher_RBV_fcc(GB(1).Misorientation_axis, GB(1).Misorientation_angle, GB(1).SlipA_dir', 2);
+rbv_recalc = Kacher_RBV_fcc(GB(1).Misorientation_axis, ...
+    GB(1).Misorientation_angle, GB(1).SlipA_dir', 2);
 rbv_recalc_pos = rbv_recalc(1:12);
 rbv_recalc_neg = rbv_recalc(13:24);
-for ii = 1:12
-    rbv_recalc_min(ii) = min([rbv_recalc_pos(ii) rbv_recalc_neg(ii)]);
+rbv_recalc_min = zeros(length(GB), 1);
+for igb = 1:length(GB)
+    rbv_recalc_min(igb) = min([rbv_recalc_pos(igb) rbv_recalc_neg(igb)]);
 end
 
 rbv(:, 6) = rbv_recalc_min/2;
@@ -155,13 +171,13 @@ rbv(:,3) = rbv(:,3)/rbv_max(3);
 rbv(:,4) = rbv(:,4)/rbv_max(4);
 rbv(:,6) = rbv_recalc_min/max(rbv_recalc_min);
 
-
-for ii = 1:length(GB)
-    ss =     [1.0157    0.2256   -1.9747;
-    0.2256   -0.5642    1.1849;
-   -1.9747    1.1849   -0.4515];
-    rss(ii) = resolved_shear_stress(GB(ii).eulerB, GB(ii).SlipB_dir, GB(ii).SlipB_norm,  ss);
-    
+rss = zeros(length(GB), 1);
+for igb = 1:length(GB)
+    stress_tensor =     [1.0157    0.2256   -1.9747;
+        0.2256   -0.5642    1.1849;
+        -1.9747    1.1849   -0.4515];
+    rss(igb) = resolved_shear_stress(GB(igb).eulerB, ...
+        GB(igb).SlipB_dir, GB(igb).SlipB_norm,  stress_tensor);
 end
 
 %% Plot
@@ -182,7 +198,9 @@ if plot_matlab
     % Set plot using bar
     x_hist = 0.5:1:length(GB);
     h_bar = bar(x_hist, rbv(:,:));
-    legend(h_bar, 'RBV min', 'RBV max', 'RBV min + RotMat transposed', 'RBV max + RotMat transposed', 'Values from Kacher''s paper', 'Values recalculated from Kacher''s function');
+    legend(h_bar, 'RBV min', 'RBV max', 'RBV min + RotMat transposed', ...
+        'RBV max + RotMat transposed', 'Values from Kacher''s paper', ...
+        'Values recalculated from Kacher''s function');
     set(gca, 'XTick', x_hist, 'xticklabel', GB_legend);
     xticklabel_rotate([],45);
     ylabel('Normalized Residual Burgers Vector');
@@ -203,20 +221,4 @@ if plot_matlab
 end
 
 %% Export results in a .txt file
-parent_directory_full = fullfile(parent_directory, 'latex_barcharts');
-cd(parent_directory_full);
-
-for ii = 1:size(rbv,1)
-    data_to_save(ii,1) = ii;
-end
-data_to_save(:,2) = rbv(:, 6);
-data_to_save(:,3) = rbv(:, 3);
-
-fid = fopen('Data_Kacher2012.txt','w+');
-for ii = 1:size(data_to_save, 1)
-    fprintf(fid, '%6.2f %6.2f %6.2f \n',...
-        data_to_save(ii, 1), ...
-        data_to_save(ii, 2),...
-        data_to_save(ii, 3));
-end
-fclose(fid);
+save_txt_file(parent_directory, 'Data_Kacher2012.txt', rbv);
