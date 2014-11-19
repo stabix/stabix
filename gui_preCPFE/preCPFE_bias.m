@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function biased_elem = preCPFE_bias(fem_software, x0, xN, num_elements, bias)
+function biased_elem = ...
+    preCPFE_bias(fem_software, x0, xN, num_elements, bias)
 %% Function used to select bais function to use (Mentat or Abaqus)
 % fem_software: mentat or abaqus
 % x0: First point

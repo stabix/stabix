@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function gui_handle = A_preCPFE_windows_indentation_setting_SX(gui_bicrystal, activeGrain, varargin)
+function gui_handle = ...
+    A_preCPFE_windows_indentation_setting_SX(gui_bicrystal, activeGrain, varargin)
 %% Setting of indentation inputs (tip radius, indentation depth...)
 % and setting of the mesh for a single crystal indentation experiment.
 
@@ -92,9 +93,10 @@ gui_SX.handles.other_setting = preCPFE_buttons_gui(x0, hu, wu);
 set(gui_SX.handles.other_setting.pm_mesh_color_title, 'Visible', 'off');
 set(gui_SX.handles.other_setting.pm_mesh_color, 'Visible', 'off');
 
-%% Set GUI handle encapsulation
+%% Set Python executable
 guidata(gcf, gui_SX);
-gui_SX.config.CPFEM.python_executable = preCPFE_python_select;
+[gui_SX.config.CPFEM.python_executable, gui_SX.config.CPFEM.python] = ...
+    preCPFE_python_select(gui_SX.handles.pm_Python);
 guidata(gcf, gui_SX);
 
 %% Run the plot of the meshing

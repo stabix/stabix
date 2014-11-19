@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function preCPFE_inp_file_generation(proc_path, Titlegbdata, indenter_type, handle_indenter)
+function preCPFE_inp_file_generation(proc_path, Titlegbdata, ...
+    indenter_type, handle_indenter)
 %% Function used to generate .inp file for CPFE model
 % proc_path: Path where to store the proc. file for CPFE model
 % Titlegbdata: Title of the model

@@ -182,11 +182,11 @@ guidata(gcf, gdata);
 %% Initialization
 cla;
 
-%% Plot of the cono-spherical indenter before and after indentation
+%% Plot of the indenter
 gdata.handle_indenter = preCPFE_indenter_plot;
 guidata(gcf, gdata);
+hold on;
 
-hold on
 %% Plot the sample mesh
 gdata.handles.sample = preCPFE_mesh_plot_SX;
 guidata(gcf, gdata);
@@ -195,6 +195,6 @@ guidata(gcf, gdata);
 preCPFE_indentation_number_elements_SX;
 
 %% Update of the CPFEM configuration
-preCPFE_config_CPFEM_updated
+preCPFE_config_CPFEM_updated;
 
 end

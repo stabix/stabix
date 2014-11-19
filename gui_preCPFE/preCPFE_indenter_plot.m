@@ -82,7 +82,8 @@ colormap white;
 rotation_angle = get(gui.handles.indenter.rotate_loaded_indenter, 'Value');
 rotation_angle = round(rotation_angle * 10) / 10; % 0.1 deg steps
 set(gui.handles.indenter.rotate_loaded_indenter, 'Value', rotation_angle);
-set(gui.handles.indenter.rotate_loaded_indenter_box, 'String', sprintf('%.1f',rotation_angle));
+set(gui.handles.indenter.rotate_loaded_indenter_box, 'String', ...
+    sprintf('%.1f',rotation_angle));
 
 direction = [0 0 1]; % along z-axis
 origin = [0,0,0];

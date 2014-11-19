@@ -374,7 +374,7 @@ legend(strcat('GrainA n°', num2str(gdata.GB.GrainA)), ...
 %   2);
 view(old_az, old_el);
 
-preCPFE_mesh_plot_finalize
+preCPFE_mesh_plot_finalize;
 
 % FIXME: Inversion of x-axis ans y-axis with CPFE model !!!
 
@@ -400,10 +400,11 @@ preCPFE_mesh_plot_finalize
 
 %% Calculation of the number of elements
 guidata(gcf, gdata);
-preCPFE_indentation_number_elements_BX;
-gdata = guidata(gcf); guidata(gcf, gdata);
+gui_BX.variables.BX_num_elements = preCPFE_indentation_number_elements_BX;
 
 %% Update of the CPFEM configuration
-preCPFE_config_CPFEM_updated
+preCPFE_config_CPFEM_updated;
 
+%% Save data in encapsulated variable
+guidata(gcf, gdata);
 end

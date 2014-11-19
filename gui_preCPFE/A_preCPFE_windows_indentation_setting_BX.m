@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function gui_handle = A_preCPFE_windows_indentation_setting_BX(gui_bicrystal, varargin)
+function gui_handle = ...
+    A_preCPFE_windows_indentation_setting_BX(gui_bicrystal, varargin)
 %% Setting of indentation inputs (tip radius, indentation depth...) 
 % and setting of the mesh for a bicrystal indentation experiment.
 
@@ -83,9 +84,10 @@ gui_BX.handles.indenter = preCPFE_buttons_indenter(x0, hu, wu);
 %% Creation of buttons/popup menus (mesh quality, layout, Python, CPFEM...)
 gui_BX.handles.other_setting = preCPFE_buttons_gui(x0, hu, wu);
 
-%% Set GUI handle encapsulation
+%% Set Python executable
 guidata(gcf, gui_BX);
-gui_BX.config.CPFEM.python_executable = preCPFE_python_select;
+[gui_BX.config.CPFEM.python_executable, gui_BX.config.CPFEM.python] = ...
+    preCPFE_python_select(gui_BX.handles.pm_Python);
 guidata(gcf, gui_BX);
 
 %% Run the plot of the meshing

@@ -19,7 +19,8 @@ if ~isdir(config_CPFEM.proc_file_path)
     %beep;
     %warningdlg('Please modify proc_file_path field in config_CPFEM YAML file !');
     commandwindow
-    warning('Please modify proc_file_path field in config_CPFEM YAML file !');
+    warning(['Please modify proc_file_path field in ' ...
+        'config_CPFEM YAML file !']);
 end
 
 end

@@ -14,7 +14,10 @@ python.location = python_loc;
 python.exists = ~ system(sprintf('%s -c "exit()"', python_loc));
 python.finds_numpy = ~ system(sprintf('%s -c "import numpy"', python_loc));
 %python.finds_msc = ~ system('python -c "import msc"');
+
 cmd = sprintf('%s --version', python_loc);
+commandwindow;
+
 python.version = strtrim(evalc('system(cmd);'));
 
 %if all(cell2mat(struct2cell(python)))
@@ -24,4 +27,5 @@ else
     python.works = false;
 end
 %python
+
 end

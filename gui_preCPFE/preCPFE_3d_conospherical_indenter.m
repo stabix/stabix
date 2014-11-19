@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function handle_indenter = preCPFE_3d_conospherical_indenter(tipRadius, coneAngle, N, X_position, Y_position, Z_position, varargin)
+function handle_indenter = preCPFE_3d_conospherical_indenter(...
+    tipRadius, coneAngle, N, X_position, Y_position, Z_position, varargin)
 %% Function to plot a 3D conospherical indenter
 % tipRadius : Radius of the spherical part of the indenter.
 % coneAngle : Full angle in degree of the conical part of the indenter.

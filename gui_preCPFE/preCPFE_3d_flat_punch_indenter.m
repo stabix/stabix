@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function handle_indenter = preCPFE_3d_flat_punch_indenter(tipRadius, X_position, Y_position, Z_position, szFac, varargin)
+function handle_indenter = preCPFE_3d_flat_punch_indenter(...
+    tipRadius, X_position, Y_position, Z_position, szFac, varargin)
 %% Function to plot a 3D flat punch indenter
 % tipRadius : Radius of the flat punch indenter.
 % szFac: Factor to scale the 3D plot.
