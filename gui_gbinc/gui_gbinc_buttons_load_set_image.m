@@ -16,9 +16,9 @@ callback_calibration = strcat('gui_gbinc_scale_calibration(', num2str(image),')'
 str_edge_detection = strcat('EDGE DETECTION #', num2str(image));
 callback_edge_detection = strcat('gui_gbinc_edge_detection(', num2str(image),')');
 
-handles = uibuttongroup('visible','on','Position',[x0 hu*7.5 wu*3 x0*24]);
+h = uibuttongroup('visible','on','Position',[x0 hu*7.5 wu*3 x0*24]);
 
-parent = handles;
+parent = h;
 x0 = 0.01;
 hu = 0.1; % height unit
 wu = 0.1; % width unit

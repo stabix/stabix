@@ -7,9 +7,9 @@ function handles = gui_gbinc_buttons_vickers_indents(x0, hu, wu)
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
-handles = uibuttongroup('visible','on','Position',[x0 hu*3.2 wu*3 x0*8]);
+h = uibuttongroup('visible','on','Position',[x0 hu*3.2 wu*3 x0*8]);
 
-parent = handles;
+parent = h;
 x0 = 0.01;
 hu = 0.1; % height unit
 wu = 0.1; % width unit

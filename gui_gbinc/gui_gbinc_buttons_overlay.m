@@ -7,9 +7,9 @@ function handles = gui_gbinc_buttons_overlay(x0, hu, wu)
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
-handles = uibuttongroup('visible','on','Position',[x0 hu*4.1 wu*3 x0*8]);
+h = uibuttongroup('visible','on','Position',[x0 hu*4.1 wu*3 x0*8]);
 
-parent = handles;
+parent = h;
 
 handles.main = uicontrol('Parent', parent,...
     'Units', 'normalized',...
