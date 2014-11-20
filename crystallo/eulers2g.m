@@ -1,13 +1,13 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function g_mat = eulers2g(euler, varargin)
-% from the book "Introduction to Texture Analysis: Macrotexture, Microtexture and Orientation Mapping",
-% written by Randle and Engler (2000), p.27.
+% from the book "Introduction to Texture Analysis: Macrotexture, 
+% Microtexture and Orientation Mapping", by Randle and Engler (2000), p.27.
 
 % euler: Euler Angles ([<phi1>, <Phi>, <phi2>] - Bunge notation) should be given in degrees.
 
 % author: c.zambaldi@mpie.de
 
-if nargin == 0
+if nargin == 0 
     euler = randBunges;
 end
 

@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function hPatch = vis_bcc(eulers, slip, shiftXYZ, szFac, plotAxes, fast, numph, line_width, varargin)
+function hPatch = vis_bcc(eulers, slip, shiftXYZ, szFac, plotAxes, fast, ...
+    numph, line_width, varargin)
 %% Visualization of a bcc unit cell in a given orientation
 % eulers: Bunge Euler angles in degrees
 % slip : slip to plot

@@ -2,7 +2,8 @@
 function [ family_index ] = slip_systems_family_index(structure, varargin)
 %% Function used to return family indexation from structure
 % structure : hcp, bcc or fcc
-% author: d.mercier@mpie.de / eisenlohr@egr.msu.edu
+
+% authors: d.mercier@mpie.de / eisenlohr@egr.msu.edu
 
 if nargin == 0
     structure = 'hcp';

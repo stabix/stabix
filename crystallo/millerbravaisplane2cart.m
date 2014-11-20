@@ -4,6 +4,7 @@ function normal = millerbravaisplane2cart(hkil, c_over_a, varargin)
 % from Hosford, "The Mechanics of Crystals and Textured Polycrystals", (1993), p. 207.
 % hkil : Miller-Bravais indices of the plane
 % c_over_a  : c/a ratio
+
 % author: c.zambaldi@mpie.de
 
 if nargin < 2

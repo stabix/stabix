@@ -1,7 +1,9 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function h_trace = plot_slip_traces(slip, euler, phase, ca_ratio, shiftXYZ, length_trace, trace_frac, varargin)
+function h_trace = plot_slip_traces(slip, euler, phase, ca_ratio, ...
+    shiftXYZ, length_trace, trace_frac, varargin)
 %% Function to plot the slip traces
-% slip : slip number for the plot of the slip traces at the surface of the sample (e.g. from 1 to 57 for hcp - see in slip_systems.m)
+% slip : slip number for the plot of the slip traces at the surface of the sample
+% (e.g. from 1 to 57 for hcp - see in slip_systems.m)
 % euler : Euler angles in degree of the grain
 % phase : Phase of the grain
 % ca_ratio : c/a ratio of the material if hcp phase
@@ -38,7 +40,8 @@ end
 
 slip_norm_cart_rot = rotmat.'*slip_norm_cart';
 
-h_trace = plot_slip_trace(slip_norm_cart_rot, [0;0;1], shiftXYZ, length_trace, trace_frac);
+h_trace = plot_slip_trace(slip_norm_cart_rot, [0;0;1], ...
+    shiftXYZ, length_trace, trace_frac);
 
 % Setting of the color of the slip trace
 slip_color = get_slip_color(phase, slip);

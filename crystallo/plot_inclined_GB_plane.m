@@ -1,8 +1,9 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function GB_inclined = plot_inclined_GB_plane(GB_endpoint_1, GB_endpoint_2, GB_trace_angle, GB_inclination, varargin)
+function GB_inclined = plot_inclined_GB_plane(GB_endpoint_1, ...
+    GB_endpoint_2, GB_trace_angle, GB_inclination, varargin)
 %% Function to update GB plot with a new inclination
-% GB_endpoint_1: Coordinate 1 of GB segment (at the sample's surface) obtained from EBSD measurement
-% GB_endpoint_2: Coordinate 2 of GB segment (at the sample's surface) obtained from EBSD measurement
+% GB_endpoint_1: Coordinates 1 of GB segment (at the sample's surface) obtained from EBSD measurement
+% GB_endpoint_2: Coordinates 2 of GB segment (at the sample's surface) obtained from EBSD measurement
 % GB_trace_angle: Trace angle of GB segment (at the sample's surface) obtained from EBSD measurement
 % GB_inclination: Inclination of the GB in the sample.
 % authors: d.mercier@mpie.de
@@ -11,7 +12,8 @@ if nargin == 0
     GB_endpoint_1 = [0;0;0];
     GB_endpoint_2 = [0;0;0];
     GB_trace_angle = randi(180);
-    GB_inclination = randi(40,1) + 70; % 70-110° or round(rand(1)*100)+1 between 0 and 100°
+    GB_inclination = randi(40,1) + 70;
+    % 70-110° or round(rand(1)*100)+1 between 0 and 100°
 end
 
 GB_inclination = mod(GB_inclination, 180);

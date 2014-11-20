@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function h_lattice = vis_lattice(lattice_type, eulers, slip, shiftXYZ, sz, plotAxes, fast, numph, line_width, varargin)
+function h_lattice = vis_lattice(lattice_type, eulers, slip, shiftXYZ, ...
+    sz, plotAxes, fast, numph, line_width, varargin)
 %% Function to plot lattice cell for hcp, bcc and fcc crystals
 % lattice_type : hcp, bcc or fcc
 % eulers : Bunge Euler angles in degrees

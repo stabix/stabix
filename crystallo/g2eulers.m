@@ -2,8 +2,8 @@
 function eulers = g2eulers(g_mat, varargin)
 %% Function used to return three Bunge Euler Angles in degrees
 % g_mat : 3x3 rotation matrix g_mat
-% see in the book "Introduction to Texture Analysis: Macrotexture, Microtexture and Orientation Mapping",
-% written by Randle and Engler (2000), p.27.
+% see in the book "Introduction to Texture Analysis: Macrotexture,
+% Microtexture and Orientation Mapping", by Randle and Engler (2000), p.27.
 
 % translated from MPIE dreheul.f subroutine (see below)
 % author: c.zambaldi@mpie.de

@@ -2,8 +2,8 @@
 function [misor_angle, misor_axis] = misorientation(euler1, euler2, struct1, struct2, varargin)
 %% Function used to calculate misorientation between 2 grains.
 % From Kamp A. - Master Thesis (06/2007) -  Delft Universit of Technology
-% see the book "Introduction to Texture Analysis: Macrotexture, Microtexture and Orientation Mapping",
-% written by Randle and Engler (2000), p.27.
+% see the book "Introduction to Texture Analysis: Macrotexture, 
+% Microtexture and Orientation Mapping", by Randle and Engler (2000), p.27.
 
 % euler1 : Euler angles of the 1st crystal in degrees
 % euler2 : Euler angles of the 2nd crystal in degrees
