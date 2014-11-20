@@ -10,15 +10,23 @@ gui = guidata(gcf);
 if image_type == 1
     pathnameimage = gui.config_map.pathname_image_before_polishing;
     filenameimage = gui.config_map.filename_image_before_polishing;
-    num_algo = get(gui.handles.image_before_polishing.edge_detection_algo, 'value');
-    threshold = str2num(get(gui.handles.image_before_polishing.edge_detection_threshold_value, 'string'));
+    num_algo = get(...
+        gui.handles.image_before_polishing.edge_detection_algo, ...
+        'value');
+    threshold = str2num(get(...
+        gui.handles.image_before_polishing.edge_detection_threshold_value, ...
+        'string'));
     set(gui.handles.switch_plot.pb1, 'BackgroundColor', [0.2 0.8 0]);
     set(gui.handles.switch_plot.pb2, 'BackgroundColor', [0.9 0.9 0.9]);
 elseif image_type == 2
     pathnameimage = gui.config_map.pathname_image_after_polishing;
     filenameimage = gui.config_map.filename_image_after_polishing;
-    num_algo = get(gui.handles.image_after_polishing.edge_detection_algo, 'value');
-    threshold = str2num(get(gui.handles.image_after_polishing.edge_detection_threshold_value, 'string'));
+    num_algo = get(...
+        gui.handles.image_after_polishing.edge_detection_algo, ...
+        'value');
+    threshold = str2num(get(...
+        gui.handles.image_after_polishing.edge_detection_threshold_value, ...
+        'string'));
     set(gui.handles.switch_plot.pb1, 'BackgroundColor', [0.9 0.9 0.9]);
     set(gui.handles.switch_plot.pb2, 'BackgroundColor', [0.2 0.8 0]);
 end
@@ -58,7 +66,8 @@ end
 
 % Set threshold for edge detection
 if threshold >= 1 | threshold <= 0
-    warning('Please, threshold must be between 0 and 1'); beep; commandwindow;
+    warning('Please, threshold must be between 0 and 1'); ...
+        beep; commandwindow;
 end
 
 image_loaded = edge(image_loaded, algo, threshold);

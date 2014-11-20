@@ -35,7 +35,8 @@ if calibration && edge_detection && overlay
     
     gui.gb.gb_dist_pix = getDistance(gui.config_map.h_dist);
     gui.gb.gb_dist     = gui.gb.gb_dist_pix * gui.config_map.factor_calib;
-    gui.gb.gb_angle    = 90 + (atand(gui.gb.gb_dist / gui.config_map.height_polished));
+    gui.gb.gb_angle    = 90 + (atand(gui.gb.gb_dist ...
+        / gui.config_map.height_polished));
     gui.gb.angle       = 'Angle of GB (delta=180° => // surface)';
     
     set(gui.handles.gb_inclination.distance, 'String', gui.gb.gb_dist);

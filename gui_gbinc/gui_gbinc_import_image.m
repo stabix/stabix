@@ -33,8 +33,10 @@ if picture
         gui.config_map.fullpath_image_before_polishing = fullfile(...
             pathname, filename);
         try
-            if isequal(gui.config_map.filename_image_after_polishing, filename)
-                warning('Please, load a different image !'); beep; commandwindow;
+            if isequal(gui.config_map.filename_image_after_polishing, ...
+                    filename)
+                warning('Please, load a different image !'); ...
+                    beep; commandwindow;
             else
                 gui.flag.image1 = 1;
             end
@@ -54,8 +56,10 @@ if picture
         gui.config_map.fullpath_image_after_polishing = fullfile(...
             pathname, filename);
         try
-            if isequal(gui.config_map.filename_image_before_polishing, filename)
-                warning('Please, load a different image !'); beep; commandwindow;
+            if isequal(gui.config_map.filename_image_before_polishing, ...
+                    filename)
+                warning('Please, load a different image !'); ...
+                    beep; commandwindow;
             else
                 gui.flag.image2 = 1;
             end

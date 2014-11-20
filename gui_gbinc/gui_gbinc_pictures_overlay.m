@@ -55,7 +55,8 @@ if calibration && edge_detection
     
     if ~exist(cp_file, 'file')
         [xyinput_out, xybase_out] = cpselect(unreg, base, 'Wait', true);  % unregistered image is the first one
-        save(cp_file, 'xyinput_out', 'xybase_out', 'filename1', 'filename2');
+        save(cp_file, 'xyinput_out', 'xybase_out', ...
+            'filename1', 'filename2');
     elseif exist(cp_file, 'file') == 2
         load(cp_file, '-mat');
     end
@@ -69,7 +70,8 @@ if calibration && edge_detection
             'XData', [1 size(base, 2)],...
             'YData', [1 size(base, 1)]);
     else
-        warning('Please, select correctly new control points...'); beep; commandwindow;
+        warning('Please, select correctly new control points...'); ...
+            beep; commandwindow;
     end
     guidata(gcf, gui);
     

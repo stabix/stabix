@@ -4,7 +4,8 @@
 This toolbox helps to find the grain boundary inclination from two micrographs from serial polishing.
 At least three marks such as microindents are needed for registration of the images. 
 
-To get started with gbinc toolbox, clone the repository, then run Matlab, and cd into the folder containing this README file. Then add the package path to the Matlab search path by typing "path_management".
+To get started with gbinc toolbox, clone the repository, then run Matlab, and cd into the folder containing this README file. 
+Then add the package path to the Matlab search path by typing "path_management".
 Finally you can start the launcher by typing "A_gui_gbinc" at the Matlab command prompt.
 
 `Click here for the full documentation. <http://stabix.readthedocs.org/en/latest/gui_gbinc.html>`_

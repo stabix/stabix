@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function image_loaded = gui_gbinc_correction_image(image_loaded, correction, varargin)
+function image_loaded = gui_gbinc_correction_image(...
+    image_loaded, correction, varargin)
 %% Function to correct loaded image
 % image_loaded: Loaded image
 % correction: Correction to apply to the image
