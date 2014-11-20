@@ -108,8 +108,6 @@ gui.handles.TSLinterfWindow = figure('NumberTitle', 'off',...
     'PaperPosition', [0 7 50 15],...
     'Position', [WX WY WW WH]);
 
-gui.description = 'Analysis of Slip Transmission for an EBSD map - ';
-guidata(gcf, gui);
 gui.title_str = set_gui_title(gui, '');
 
 gui.handles.gcf = gui.handles.TSLinterfWindow;

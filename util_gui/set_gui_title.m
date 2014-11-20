@@ -14,7 +14,7 @@ else
 end
 
 gui_title = [gui.module_name, ' - ', gui.description, label, ...
-    ' ', gui.config.toolbox_name, ' ', gui.version_str];
+    ' ', gui.config.toolbox_name, ' ', gui.config.toolbox_version_str];
 
 set(gcf, 'name', gui_title);
 

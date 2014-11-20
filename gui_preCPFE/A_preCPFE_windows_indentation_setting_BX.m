@@ -10,6 +10,7 @@ function gui_handle = ...
 
 %% Initialization
 gui_BX = preCPFE_init;
+gui_BX.description = 'Indentation of a bicrystal - ';
 
 x0 = 0.025;
 hu = 0.05; % height unit
@@ -22,7 +23,7 @@ gui_BX.handles.gui_BX_win = figure(...
     'ToolBar', 'figure');
 guidata(gcf, gui_BX);
 
-gui_BX.description = 'Indentation of a bicrystal - ';
+
 
 %% Set Matlab and CPFEM configurations
 if nargin == 0

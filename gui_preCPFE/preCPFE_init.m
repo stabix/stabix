@@ -6,13 +6,11 @@ function gui = preCPFE_init
 
 get_stabix_root;
 
-%% Set the GUI
-gui.config = load_YAML_config_file;
-gui.config.username = username_get;
+gui.config = get_config;
 
-gui.version_str = num2str(gui.config.version_toolbox);
 gui.module_name = 'preCPFE';
 
+%% Set the GUI
 config_files_dir = ...
     fullfile(get_stabix_root, 'YAML_config_files', ''); %in the same folder as default config. files
 gui.config.CPFEM.config_file_user = ...

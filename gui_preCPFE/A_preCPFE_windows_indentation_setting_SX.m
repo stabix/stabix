@@ -11,6 +11,7 @@ function gui_handle = ...
 
 %% Initialization
 gui_SX = preCPFE_init;
+gui_SX.description = 'Indentation of a single crystal - ';
 
 x0 = 0.025;
 hu = 0.05; % height unit
@@ -25,7 +26,7 @@ gui_SX.handles.gui_SX_win = figure(...
     'ToolBar', 'figure');
 guidata(gcf, gui_SX);
 
-gui_SX.description = 'Indentation of a single crystal - ';
+
 
 %% Set Matlab and CPFEM configurations
 if nargin == 0  

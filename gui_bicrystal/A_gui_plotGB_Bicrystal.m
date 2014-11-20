@@ -56,6 +56,8 @@ gui.handles.Bicrystal_interface = figure('NumberTitle', 'off',...
     'PaperPosition', [0 7 50 15],...
     'Position', [WX WY WW WH]);
 
+gui.title_str = set_gui_title(gui, '');
+
 %% Setting of Euler angles
 gui.handles.txtEulAngGrA = uicontrol(...
     'Parent', gui.handles.Bicrystal_interface,...
@@ -275,10 +277,6 @@ if nargin < 1
     guidata(gcf, gui);
     plotGB_Bicrystal_random_bicrystal;
     gui = guidata(gcf);
-    gui.config = load_YAML_config_file;
-    gui.config.username = username_get;
-    gui.description = 'Analysis of Slip Transmission in a Bicrystal -';
-    gui.title_str = set_gui_title(gui, '');
     
 elseif nargin == 1
     gui.GB.YAMLfilename    = 0;
