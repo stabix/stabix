@@ -147,7 +147,7 @@ catch err
 end
 guidata(gcf, gui_BX);
 
-preCPFE_generate_material_files_BX(gui_BX.config.CPFEM.simulation_code);
+preCPFE_generate_material_files(gui_BX.config.CPFEM.simulation_code, 2);
 
 % Move .mat file
 try

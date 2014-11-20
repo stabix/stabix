@@ -143,7 +143,7 @@ elseif gui_SX.GB.activeGrain == gui_SX.GB.GrainB
 end
 guidata(gcf, gui_SX);
 
-preCPFE_generate_material_files_SX(gui_SX.config.CPFEM.simulation_code);
+preCPFE_generate_material_files(gui_SX.config.CPFEM.simulation_code, 1);
 
 % Move .mat file
 try
