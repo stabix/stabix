@@ -6,6 +6,8 @@ function [python_executable, python_checked] = ...
 
 % author: c.zambaldi@mpie.de
 
+gui = guidata(gcf);
+
 python_executable_list = get(handle_pm_Python, 'String');
 python_executable_selected = get(handle_pm_Python, 'Value');
 
@@ -13,6 +15,9 @@ python_executable = python_executable_list(python_executable_selected);
 python_executable = python_executable{:};
 
 python_checked = python_check(python_executable);
+
+gui.config.CPFEM.python = python_checked;
+guidata(gcf, gui);
 
 preCPFE_config_CPFEM_updated;
 
