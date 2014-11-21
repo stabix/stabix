@@ -27,15 +27,8 @@ if flagEBSDdata
     plot(ebsdData, 'property', 'phase');
     
     %% Plot Inverse Pole Figure
-    v = vector3d(0, 0, 1); %zvector
-    figure('Name', 'IPF');  hold on;
-    plot(oM); hold on;
-    plotIPDF(ebsdData.orientations, v, ...
-        'markerSize', 3, ...
-        'points', 500, ...
-        'marker', 'o', ...
-        'markerfacecolor', 'none', ...
-        'markeredgecolor', 'k');
+    MTEX_plotIPF(ebsdData.orientations);
+    
 end
 
 end

@@ -22,13 +22,13 @@ end
 
 % Grain symmetry
 if strcmp (phase,'hcp') == 1
-    CS = symmetry('hexagonal', [1 1 ca_ratio]);
+    CS = crystalSymmetry('hexagonal', [1 1 ca_ratio]);
     
 elseif strcmp (phase, 'fcc') == 1
-    CS = symmetry('cubic');
+    CS = crystalSymmetry('cubic');
     
 elseif strcmp (phase, 'bcc') == 1
-    CS = symmetry('cubic');
+    CS = crystalSymmetry('cubic');
     
 end
 
