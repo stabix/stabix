@@ -42,7 +42,7 @@ gui.GB.eulerB = plotGB_Bicrystal_update_euler(gui.GB.eulerB_ori, ...
 gui.stress_tensor = get_stress_tensor(gui.handles.stress_tensor);
 
 %% Store old view settings
-if isfield(gui, 'h_gbax')
+if isfield(gui.handles, 'h_gbax')
     set(gcf, 'CurrentAxes', subplot(4,2,[3 6]));
     [old_az, old_el] = view;
 else
@@ -51,7 +51,7 @@ else
 end
 
 %% Initialization of bicrystal plot
-gui.h_gbax = subplot(4,2,[3 6], 'replace'); guidata(gcf, gui);
+gui.handles.h_gbax = subplot(4,2,[3 6], 'replace');
 axis off;
 
 %% GB Trace calculation / plot
@@ -148,7 +148,6 @@ if ~gui.flag.error
     
     %% Update slips from popupmenu and definition of slips A and B
     [slipA, slipB] = plotGB_Bicrystal_update_slip(no_slip);
-    gui = guidata(gcf); guidata(gcf, gui);
     gui.GB.slipA = slipA;
     gui.GB.slipB = slipB;
     
