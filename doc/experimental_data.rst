@@ -88,8 +88,8 @@ This .ang file is useful for the `MTEX Toolbox <http://mtex-toolbox.github.io/>`
 
 Example of an `.ang file. <https://github.com/stabix/stabix/blob/master/gui_ebsd_map/EBSD_data_Examples/validation1_AngFile(forMTEX).ang>`_
 
-Errors introduced during files exportation from TSL
----------------------------------------------------
+Possible errors introduced during files exportation from TSL
+------------------------------------------------------------
 
 - "Grain File Type 2" --> Missing integer identifying grain
    --> Solved when file is imported via the GUI.

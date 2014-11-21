@@ -32,7 +32,7 @@ The geometry of the slip transfer event is most of the time described by the sch
 and :math:`\delta` is between the direction of outgoing slip and the plane normal of incoming slip.
 :math:`n`, :math:`d` and :math:`l` are respectively the slip plane normals, slip directions and the lines of intersection of the slip plane and the grain boundary.
 :math:`\vec b` is the Burgers vector of the slip plane and :math:`\vec b_\text r` is the residual Burgers vector of the residual dislocation at the grain boundary.
-The subscripts 'in' and 'out' refer to the incoming and outgoing slip systems, respectively.
+The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming and outgoing slip systems, respectively.
   
 .. figure:: ./_pictures/Schemes_SlipTransmission/slip_transmission_scheme2.png
    :scale: 45 %
@@ -153,7 +153,7 @@ Stress Criteria
     .. math:: m_\text{GB} = m_\text{in} + m_\text{out}
         :label: schmid_factor_gb
         
-  The subscripts 'GB', 'in', and 'out' refer to the grain boundary, and the incoming and outgoing slip systems, respectively.
+  The subscripts :math:`\text{GB}`, :math:`\text{in}`, and :math:`\text{out}` refer to the grain boundary, and the incoming and outgoing slip systems, respectively.
   This GB Schmid factor (:math:`m_\text{GB}`) factor should be maximized.
   
   The |matlab| function used to calculate the Schmid factor is: `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_
