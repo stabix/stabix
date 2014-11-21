@@ -48,12 +48,16 @@ function misorientation = ...
 % author: d.mercier@mpie.de
 
 if nargin < 2
-    ori_grainB = orientation('Euler', 0.7854, 0.7854, 0.7854, 'hexagonal');
+    ca_ratio = latt_param('Ti', 'hcp');
+    ori_grainB = MTEX_setOrientation('hcp', ...
+        ca_ratio(1), randBunges);
     display(ori_grainB);
 end
 
 if nargin < 1
-    ori_grainA = orientation('Euler', 0, 0, 0, 'hexagonal');
+    ca_ratio = latt_param('Ti', 'hcp');
+    ori_grainA = MTEX_setOrientation('hcp', ...
+        ca_ratio(1), randBunges);
     display(ori_grainA)
 end
 

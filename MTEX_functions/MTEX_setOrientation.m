@@ -1,6 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function ori_grain = ...
-    MTEX_setBX_orientation(phase, ca_ratio, eulers_angle, varargin)
+    MTEX_setOrientation(phase, ca_ratio, eulers_angle, varargin)
 %% Set orientation of a grain by using MTEX function
 % phase = Crystal Structure (CS for MTEX)
 % eulers_angle = Euler angles (Bunge) in degrees
@@ -13,7 +13,7 @@ if nargin < 3
 end
 
 if nargin < 2
-    ca_ratio = 1.5875; %for Ti
+    ca_ratio = latt_param('Ti', 'hcp');
 end
 
 if nargin < 1
@@ -21,8 +21,8 @@ if nargin < 1
 end
 
 % Grain symmetry
-if strcmp (phase,'hcp') == 1
-    CS = crystalSymmetry('hexagonal', [1 1 ca_ratio]);
+if strcmp (phase, 'hcp') == 1
+    CS = crystalSymmetry('hexagonal', [1 1 ca_ratio(1)]);
     
 elseif strcmp (phase, 'fcc') == 1
     CS = crystalSymmetry('cubic');
