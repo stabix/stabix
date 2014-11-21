@@ -5,7 +5,7 @@ function installation_mtex = MTEX_check_install
 % author: d.mercier@mpie.de
 
 try
-    check_mtex;
+    startup_mtex;
     installation_mtex = 1;
 catch
     %warndlg('MTEX not installed or check_mtex not found/failing!');

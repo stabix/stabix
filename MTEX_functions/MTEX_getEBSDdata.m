@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function MTEX_getEBSD
+function MTEX_getEBSDdata
 %% Import data with MTEX toolbox
 % See in http://code.google.com/p/mtex/
 
@@ -10,8 +10,8 @@ try
     
 catch err 
     commandwindow;
-    display(err);
-    
+    display(err.message);
+
 end
 
 end
