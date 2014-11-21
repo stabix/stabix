@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function interface_map_GB_segments_opti
+function [GF2, RB, dataGF2_smoothed, dataRB_smoothed] = ...
+    interface_map_GB_segments_opti
 %% Function to reduce the number of GB segments (using angle between segments)
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
@@ -25,17 +26,19 @@ for gb_segment_numb = 1:1:10
     RB_new(:,15) = 1;
     sRB = size(RB_new);
     
+    vec_gb = zeros(1,3,sRB(1,1));
+    vec_gb_norm = zeros(1,3,sRB(1,1));
     for gbnum = 1:1:sRB(1,1)
-        vec_gb(:,:,:,gbnum) = ...
+        vec_gb(:,:,gbnum) = ...
             [(RB(gbnum,RB_p2x) - RB(gbnum,RB_p1x)); ...
             (-RB(gbnum,RB_p2y) + RB(gbnum,RB_p1y)); 0];
-        vec_gb_norm(:,:,:,gbnum) = ...
-            vec_gb(:,:,:,gbnum)/norm(vec_gb(:,:,:,gbnum));
+        vec_gb_norm(:,:,gbnum) = ...
+            vec_gb(:,:,gbnum)/norm(vec_gb(:,:,gbnum));
     end
     
     for gbnum = 1:1:sRB(1,1)-1
         cos_segments = ...
-            dot(vec_gb_norm(:,:,:,gbnum),vec_gb_norm(:,:,:,gbnum+1));
+            dot(vec_gb_norm(:,:,gbnum),vec_gb_norm(:,:,gbnum+1));
         ang_degree = acos(cos_segments)*180/pi;
         
         if ~isnan(RB_new(gbnum,15))
@@ -119,12 +122,5 @@ dataRB_smoothed.gb_trace_angle = dataRB_smoothed.gb_trace_angle';
 dataRB_smoothed.GBvx           = dataRB_smoothed.GBvx';
 dataRB_smoothed.GBvy           = dataRB_smoothed.GBvy';
 dataRB_smoothed.GB2cells       = dataRB_smoothed.GB2cells';
-
-gui.GF2_struct.data_smoothed  = GF2;
-gui.RB_struct.data_smoothed   = RB;
-gui.GF2_smoothed_struct       = dataGF2_smoothed;
-gui.RB_smoothed_struct        = dataRB_smoothed;
-
-guidata(gcf, gui);
 
 end

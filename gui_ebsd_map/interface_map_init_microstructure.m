@@ -129,8 +129,9 @@ old_sRB = size(RB);
 
 %% Set GB segments (RB from interface_map_init_microstructure)
 guidata(gcf, gui);
-interface_map_GB_segments_opti;
-gui = guidata(gcf); guidata(gcf, gui);
+[gui.GF2_struct.data_smoothed, gui.RB_struct.data_smoothed, ...
+    gui.GF2_smoothed_struct, gui.RB_smoothed_struct] = ...
+    interface_map_GB_segments_opti;
 
 RB = gui.RB_struct.data_smoothed;
 sRB = size(RB);
