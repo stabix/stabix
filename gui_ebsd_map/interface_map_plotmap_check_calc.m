@@ -14,14 +14,14 @@ gui = guidata(gcf);
 if check_calculation == 0
     guidata(gcf, gui);
     interface_map_mprime_calculator_map;
-    gui = guidata(gcf); guidata(gcf, gui);
+    gui = guidata(gcf); 
 else
     
     % If GBs smoothed and user has selected a GB parameter to plot, calculation are performed...
     if gui.flag.GB_smoothing == 1 && gui.flag.pmparam2plot_value4GB ~= 1
         guidata(gcf, gui);
         interface_map_mprime_calculator_map;
-        gui = guidata(gcf); guidata(gcf, gui);
+        gui = guidata(gcf);
     end
     
     % If new slip families and user has selected a GB parameter to plot, calculation are performed...
@@ -29,7 +29,7 @@ else
             && gui.flag.pmparam2plot_value4GB ~= 1
         guidata(gcf, gui);
         interface_map_mprime_calculator_map;
-        gui = guidata(gcf); guidata(gcf, gui);
+        gui = guidata(gcf);
     end
     
     % If user has changed the GB parameter top plot
@@ -38,7 +38,7 @@ else
         if gui.flag.pmparam2plot_value4GB ~= 1
             guidata(gcf, gui);
             interface_map_mprime_calculator_map;
-            gui = guidata(gcf); guidata(gcf, gui);
+            gui = guidata(gcf);
         end
     end
     
@@ -48,7 +48,7 @@ else
         if gui.flag.pmparam2plot_value4Grains ~= 1
             guidata(gcf, gui);
             interface_map_mprime_calculator_map;
-            gui = guidata(gcf); guidata(gcf, gui);
+            gui = guidata(gcf);
         end
     end
 end

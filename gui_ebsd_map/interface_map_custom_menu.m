@@ -3,8 +3,6 @@ function interface_map_custom_menu
 %% Function to Add a custom menu item in the GUI menubar
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
-gui = guidata(gcf);
-
 menu_map = uimenu('Label', 'EBSDmap');
 
 custom_menu_help(menu_map);
@@ -25,7 +23,5 @@ uimenu(menu_map, 'Label', 'Show GB conventions', ...
     'Separator', 'on');
 uimenu(menu_map, 'Label', 'Edit this GUI', ...
     'Callback', 'edit(''A_gui_plotmap'')', 'Separator', 'on');
-
-guidata(gcf, gui);
 
 end

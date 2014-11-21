@@ -31,11 +31,9 @@ view([0,0,1]);
 gui.flag.initialization = 1;
 guidata(gcf, gui);
 
-guidata(gcf, gui);
 interface_map_init_microstructure;
-gui = guidata(gcf);
+gui = guidata(gcf); guidata(gcf, gui);
 
-guidata(gcf, gui);
 number_phase = str2double(get(gui.handles.NumPh,'String'));
 interface_map_list_slips(...
     gui.handles.pmStruct1, ...

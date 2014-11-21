@@ -6,9 +6,9 @@ function interface_map_set_random_data(button_type, pathname, varargin)
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
+gui = guidata(gcf);
+
 if button_type == 1
-    
-    gui = guidata(gcf);
     
     if get(gui.handles.cb_rdm_TSLdata, 'value')
         set(gui.handles.scale_rdm_TSLdata, 'visible', 'on');
@@ -18,9 +18,7 @@ if button_type == 1
     end
     
 elseif button_type == 2
-    
-    gui = guidata(gcf);
-    
+
     %% Set directory and create folder
     if get(gui.handles.cb_rdm_TSLdata, 'value')
         
@@ -31,10 +29,10 @@ elseif button_type == 2
             pathname_random_TSL_files = pathname;
         end
         
-        timestamp = timestamp_make;
+        rdmData_path = fullfile(pathname_random_TSL_files, ...
+            strcat(timestamp_make, '_random_TSL_data'));
         
-        mkdir(fullfile(pathname_random_TSL_files, ...
-            strcat(timestamp, '_random_TSL_data')));
+        mkdir(rdmData_path);
 
         gui.rdm_TSL_dataset = random_2D_microstructure_data(round(get(...
             gui.handles.scale_rdm_TSLdata, 'value')));
@@ -42,9 +40,7 @@ elseif button_type == 2
         %% Creation of Grain File Type 2 (.txt file)
         gui.rdm_TSL_dataset.GF2filename = sprintf('random_GF2data.txt');
         
-        gui.rdm_TSL_dataset.GF2pathname = ...
-            fullfile(pathname_random_TSL_files, ...
-            strcat(timestamp, '_random_TSL_data'));
+        gui.rdm_TSL_dataset.GF2pathname = rdmData_path;
         
         write_oim_grain_file_type2(gui.rdm_TSL_dataset, ...
             gui.rdm_TSL_dataset.GF2pathname, ...
@@ -53,9 +49,7 @@ elseif button_type == 2
         %% Creation of Reconstructed Boundaries (.txt file)
         gui.rdm_TSL_dataset.RBfilename = sprintf('random_RBdata.txt');
         
-        gui.rdm_TSL_dataset.RBpathname = ...
-            fullfile(pathname_random_TSL_files, ...
-            strcat(timestamp, '_random_TSL_data'));
+        gui.rdm_TSL_dataset.RBpathname = rdmData_path;
         
         write_oim_reconstructed_boundaries_file(gui.rdm_TSL_dataset, ...
             gui.rdm_TSL_dataset.GF2pathname, ...
@@ -71,11 +65,9 @@ elseif button_type == 2
         gui.flag.newDataFlag = 2;
         guidata(gcf, gui);
         interface_map_set_coordinate_convention;
-        gui = guidata(gcf);
         
     end
-    
-    guidata(gcf, gui);
+
 end
 
 guidata(gcf, gui);
