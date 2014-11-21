@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function interface_map_MTEX_plotEBSDdata(ebsd)
+function MTEX_plotEBSDdata(ebsd)
 %% Visualization of EBSD data (phase, EBSD map, IPF) with MTEX Toolbox
 % ebsd : Name of the structure variable created after importing EBSD data
 % .ang file ('ebsd' is default name use by MTEX...)
