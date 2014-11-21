@@ -68,7 +68,6 @@ set(gui.handles.getGBtrace, 'String', ...
 gui.handles.h_gbax = subplot(4,2,[3 6], 'replace');
 
 if strfind(gui.config.matlab_version, '2014')
-    commandwindow;
     warning('Arrow not display for Matlab R2014b...');
 else
     arrow(gui.GB_geometry.GB_arrow(:,1), gui.GB_geometry.GB_arrow(:,2), ...

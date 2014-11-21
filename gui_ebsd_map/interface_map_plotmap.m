@@ -88,7 +88,6 @@ gui.flag.pmparam2plot_value4Grains = ...
     get(gui.handles.pmparam2plot4Grains, 'Value');
 
 gui.handles.gcf;
-guidata(gcf, gui);
 hold on;
 
 guidata(gcf, gui);
@@ -96,7 +95,6 @@ interface_map_mprime_calculator_map_set;
 gui = guidata(gcf); guidata(gcf, gui);
 
 %% Set GBs
-guidata(gcf, gui);
 interface_map_init_microstructure;
 gui = guidata(gcf); guidata(gcf, gui);
 GF2 = gui.GF2_struct.data_smoothed;
@@ -163,11 +161,19 @@ if gui.flag.flag_lattice == 1
                 [gui.GBs(gbnum).pos_x1; gui.GBs(gbnum).pos_x2], ...
                 [gui.GBs(gbnum).pos_y1; gui.GBs(gbnum).pos_y2], ...
                 'LineWidth', wid, 'color', 'k');
-            % The following lines should be uncommented if user wants arrows for GBs plot instead of pure segments...
-            %h_gbseg(gbnum) = arrow([gui.GBs(gbnum).pos_x1; gui.GBs(gbnum).pos_y1; 0], [gui.GBs(gbnum).pos_x2; gui.GBs(gbnum).pos_y2; 0], 'LineWidth', wid, 'color', 'k');
             
-            % Next line used to plot GB inclined plane
-            %plot_inclined_GB_plane([gui.GBs(gbnum).pos_x1; gui.GBs(gbnum).pos_y1; 0], [gui.GBs(gbnum).pos_x2; gui.GBs(gbnum).pos_y2; 0], 0 ,90);
+            % The following lines should be uncommented if user wants arrows for GBs plot instead of pure segments...
+%             if ~strfind(version('-release'), '2014')
+%                 h_gbseg(gbnum) = arrow(...
+%                     [gui.GBs(gbnum).pos_x1; gui.GBs(gbnum).pos_y1; 0], ...
+%                     [gui.GBs(gbnum).pos_x2; gui.GBs(gbnum).pos_y2; 0], ...
+%                     'LineWidth', wid, 'color', 'k');
+%             end
+            
+            % The following lines should be uncommented if user wants to plot GB inclined planes
+            % h_inclined_planes = plot_inclined_GB_plane(...
+            % [gui.GBs(gbnum).pos_x1; gui.GBs(gbnum).pos_y1; 0], ...
+            % [gui.GBs(gbnum).pos_x2; gui.GBs(gbnum).pos_y2; 0], 0 ,90);
         end
     end
     
@@ -181,59 +187,59 @@ if gui.flag.flag_lattice == 1
         
         if gui.flag.pmparam2plot_value4GB == 2  % m' max
             Colorbar_title = 'Maximum m'' values';
-            gui.calculations.func2plot  = [gui.results.mp_max];
+            gui.calculations.func2plot = [gui.results.mp_max];
             
         elseif gui.flag.pmparam2plot_value4GB == 3  % m' min
             Colorbar_title = 'Minimum m'' values';
-            gui.calculations.func2plot  = [gui.results.mp_min];
+            gui.calculations.func2plot = [gui.results.mp_min];
             
         elseif gui.flag.pmparam2plot_value4GB == 4 % m' with slips with highest Generalized Schmid Factor
             Colorbar_title = 'm'' with highest Generalized Schmid Factor';
-            gui.calculations.func2plot  = [gui.results.mp_SFmax];
+            gui.calculations.func2plot = [gui.results.mp_SFmax];
             
         elseif gui.flag.pmparam2plot_value4GB == 5 % m' with slips with highest Resolved Shear Stress
             Colorbar_title = 'm'' with highest Resolved Shear Stress';
-            gui.calculations.func2plot  = [gui.results.mp_RSSmax];
+            gui.calculations.func2plot = [gui.results.mp_RSSmax];
             
         elseif gui.flag.pmparam2plot_value4GB == 6  % only highest m' max
             Colorbar_title = 'Maximum m'' values (-10%)';
-            gui.calculations.func2plot  = [gui.results.mp_max];
+            gui.calculations.func2plot = [gui.results.mp_max];
             
         elseif gui.flag.pmparam2plot_value4GB == 7  % only lowest m' min
             Colorbar_title = 'Minimum m'' values (+10%)';
-            gui.calculations.func2plot  = [gui.results.mp_min];
+            gui.calculations.func2plot = [gui.results.mp_min];
             
         elseif gui.flag.pmparam2plot_value4GB == 8 % Misorientation
             Colorbar_title = 'Misorientation (°)';
-            gui.calculations.func2plot  = [gui.results.misor];
+            gui.calculations.func2plot = [gui.results.misor];
             
         elseif gui.flag.pmparam2plot_value4GB == 9 % C-axis Misorientation
             Colorbar_title = 'C-axis Misorientation (°)';
-            gui.calculations.func2plot  = [gui.results.caxis_misor];
+            gui.calculations.func2plot = [gui.results.caxis_misor];
             
         elseif gui.flag.pmparam2plot_value4GB == 10  % Maximum residual Burgers vector
             Colorbar_title = 'Maximum residual Burgers vector';
-            gui.calculations.func2plot  = [gui.results.rbv_max];
+            gui.calculations.func2plot = [gui.results.rbv_max];
             
         elseif gui.flag.pmparam2plot_value4GB == 11  % Minimum residual Burgers vector
             Colorbar_title = 'Minimum residual Burgers vector';
-            gui.calculations.func2plot  = [gui.results.rbv_min];
+            gui.calculations.func2plot = [gui.results.rbv_min];
             
         elseif gui.flag.pmparam2plot_value4GB == 12 % N-factor
             Colorbar_title = 'Maximum N-factor';
-            gui.calculations.func2plot  = [gui.results.n_factor_max];
+            gui.calculations.func2plot = [gui.results.n_factor_max];
             
         elseif gui.flag.pmparam2plot_value4GB == 13 % N-factor
             Colorbar_title = 'Minimum N-factor';
-            gui.calculations.func2plot  = [gui.results.n_factor_min];
+            gui.calculations.func2plot = [gui.results.n_factor_min];
             
         elseif gui.flag.pmparam2plot_value4GB == 14 % GB Schmid factor
             Colorbar_title = 'GB Schmid factor';
-            gui.calculations.func2plot  = [gui.results.gb_schmid_factor];
+            gui.calculations.func2plot = [gui.results.gb_schmid_factor];
             
         elseif gui.flag.pmparam2plot_value4GB == 15 % Other function
             Colorbar_title = 'Other function';
-            gui.calculations.func2plot  = [gui.results.oth_func_val];
+            gui.calculations.func2plot = [gui.results.oth_func_val];
             
         end
         
@@ -347,6 +353,7 @@ if gui.flag.flag_lattice == 1
             set(Colorbargb, 'Location', location_str{:});
             
         catch err
+            commandwindow;
             display(err.message);
             colorbar('delete');
             set(gui.handles.cbdatavalues, 'Value', 1);
@@ -356,7 +363,8 @@ if gui.flag.flag_lattice == 1
     elseif gui.flag.pmparam2plot_value4GB == 1
         colorbar('off');
     else
-        helpdlg('Please, run calculations before...');
+        commandwindow;
+        warning('Please, run calculations before...');
         %colorbar('off');
     end
     
