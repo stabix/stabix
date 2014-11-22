@@ -20,15 +20,17 @@ if nargin == 0
 end
 
 if correction == 1
-    image_loaded = im2uint16(image_loaded);
+    image_corrected = im2uint16(image_loaded);
 elseif correction == 2
-    image_loaded = imfilter(image_loaded, fspecial('unsharp'));
-elseif correction == 1
-    image_loaded = adapthisteq(image_loaded);
-elseif correction == 1
-    image_loaded = histeq(image_loaded);
-elseif correction == 1
-    image_loaded = decorrstretch(image_loaded);
+    image_corrected = imfilter(image_loaded, fspecial('unsharp'));
+elseif correction == 3
+    image_corrected = adapthisteq(image_loaded);
+elseif correction == 4
+    image_corrected = histeq(image_loaded);
+elseif correction == 5
+    image_corrected = decorrstretch(image_loaded);
 end
+
+imshow(image_corrected);
 
 end
