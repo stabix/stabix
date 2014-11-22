@@ -176,12 +176,13 @@ gui.handles.main_axis = axes('Parent', parent,...
 axis off;
 
 %% Load first image en gui encapsulation
-guidata(parent, gui);
-gui_gbinc_load_image(gui.config.defaults.picture_before.pathname, ...
+gui.config_map.image_loaded = gui_gbinc_load_image(...
+    gui.config.defaults.picture_before.pathname, ...
     strcat(gui.config.defaults.picture_before.filename,...
     gui.config.defaults.picture_before.extension));
 
-gui = guidata(gcf); guidata(parent, gui);
+%% Encapsulation of data
+guidata(parent, gui);
 
 %% Set logo of the GUI
 java_icon_gui;

@@ -75,7 +75,7 @@ if picture
         gui.flag.image2 = 0;
     end
     guidata(gcf, gui);
-    gui_gbinc_load_image(pathname, filename);
+    gui.config_map.image_loaded = gui_gbinc_load_image(pathname, filename);
     gui = guidata(gcf); guidata(gcf, gui);
     set(txtbox, 'String', filename);
 end

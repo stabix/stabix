@@ -20,7 +20,8 @@ elseif image_type == 2
     set(gui.handles.switch_plot.pb2, 'BackgroundColor', [0.2 0.8 0]);
 end
 
-gui_gbinc_load_image(pathnameimage, filenameimage);
+gui.config_map.image_loaded = gui_gbinc_load_image( ...
+    pathnameimage, filenameimage);
 
 zoom out;
 

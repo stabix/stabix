@@ -66,8 +66,8 @@ end
 
 % Set threshold for edge detection
 if threshold >= 1 | threshold <= 0
-    warning('Please, threshold must be between 0 and 1'); ...
-        beep; commandwindow;
+    warning('Please, threshold must be between 0 and 1');
+    beep; commandwindow;
 end
 
 image_loaded = edge(image_loaded, algo, threshold);

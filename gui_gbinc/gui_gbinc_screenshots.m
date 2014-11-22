@@ -3,7 +3,6 @@ function gui_gbinc_screenshots
 %% Function used to generate sequential screenshots of the GUI running with given files.
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
-tabularasa;
 % Initialization of parameters
 SCREENSHOT = strcat(timestamp_make, 'screenshots');
 SCREENSHOT_DIR = get_stabix_root;

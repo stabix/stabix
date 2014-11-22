@@ -14,14 +14,14 @@ str_loading = strcat('LOAD Image #', num2str(image));
 callback_loading = strcat('gui_gbinc_import_image(', num2str(image),')');
 
 callback_calibration_dist = ...
-    strcat('gui_gbinc_calib_distance(', num2str(image),')');
+    strcat('gui_gbinc_calib_distance(', num2str(image),');');
 
 callback_calibration = ...
-    strcat('gui_gbinc_scale_calibration(', num2str(image),')');
+    strcat('gui_gbinc_scale_calibration(', num2str(image),');');
 
 str_edge_detection = strcat('EDGE DETECTION #', num2str(image));
 callback_edge_detection = ...
-    strcat('gui_gbinc_edge_detection(', num2str(image),')');
+    strcat('gui_gbinc_edge_detection(', num2str(image),');');
 
 h = uibuttongroup('visible','on','Position',[x0 hu*7.5 wu*3 x0*24]);
 
