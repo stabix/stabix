@@ -7,8 +7,16 @@ function gui_gbinc_save_overlay
 gui = guidata(gcf);
 
 im = screencapture(gcf);
-imwrite(im, [timestamp_make, gui.config_map.cpfilename, '.png'], 'png');
 
-guidata(gcf, gui);
+if ~isfield(gui.config_map, 'cpfilename')
+    path4overlay = pwd;
+else
+    path4overlay = gui.config_map.cpfilename;
+end
+
+name4overlay = [path4overlay, timestamp_make, 'overlay.png'];
+
+imwrite(im, name4overlay, 'png');
+display(['Overlay saved in ', name4overlay]);
 
 end
