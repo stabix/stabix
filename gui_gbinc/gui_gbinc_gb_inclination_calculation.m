@@ -6,30 +6,10 @@ function gui_gbinc_gb_inclination_calculation
 
 gui = guidata(gcf);
 
-calibration = 1;
-edge_detection = 1;
-overlay = 1;
-
-%% Check calibration
-if gui.flag.calibration_1 == 0 || gui.flag.calibration_2 == 0
-    warning('Please, calibration to do first !'); beep; commandwindow;
-    calibration = 0;
-end
-
-%% Check edge detection
-if gui.flag.edgedetection_1 == 0 || gui.flag.edgedetection_2 == 0
-    warning('Please, edge detection to do !'); beep; commandwindow;
-    edge_detection = 0;
-end
-
-%% Check of the presence of on overlay
-if gui.flag.overlay == 0
-    warning('Please, overlay images before !'); beep; commandwindow;
-    overlay = 0;
-end
+[images, calibration, edge_detection, overlay] = gui_gbinc_checks(gui.flag);
 
 %% Calculations
-if calibration && edge_detection && overlay
+if images && calibration && edge_detection && overlay
     gui.config_map.factor_calib = mean([gui.config_map.factor_calib_1, ...
         gui.config_map.factor_calib_2]);
     

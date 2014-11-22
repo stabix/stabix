@@ -9,28 +9,10 @@ function gui_gbinc_pictures_overlay
 
 gui = guidata(gcf);
 
-calibration = 1;
-edge_detection = 1;
-
-%% Check of the presence of the 2 pictures
-if ~gui.flag.image1 || ~gui.flag.image2
-    warning('Please, load image first !'); beep; commandwindow;
-end
-
-%% Check calibration
-if gui.flag.calibration_1 == 0 || gui.flag.calibration_2 == 0
-    warning('Please, calibration to do first !'); beep; commandwindow;
-    calibration = 0;
-end
-
-%% Check edge detection
-if gui.flag.edgedetection_1 == 0 || gui.flag.edgedetection_2 == 0
-    warning('Please, edge detection to do !'); beep; commandwindow;
-    edge_detection = 0;
-end
+[images, calibration, edge_detection] = gui_gbinc_checks(gui.flag);
 
 %% Calculations
-if calibration && edge_detection
+if images && calibration && edge_detection
     zoom out;
     %% Run overlay step
     fullpath_1 = gui.config_map.fullpath_image_before_polishing;
