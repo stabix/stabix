@@ -26,8 +26,6 @@ gui_SX.handles.gui_SX_win = figure(...
     'ToolBar', 'figure');
 guidata(gcf, gui_SX);
 
-
-
 %% Set Matlab and CPFEM configurations
 if nargin == 0  
     gui_SX.config_map.Sample_IDs   = [];

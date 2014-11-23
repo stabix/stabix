@@ -23,8 +23,6 @@ gui_BX.handles.gui_BX_win = figure(...
     'ToolBar', 'figure');
 guidata(gcf, gui_BX);
 
-
-
 %% Set Matlab and CPFEM configurations
 if nargin == 0
     gui_BX.config_map.Sample_IDs   = [];

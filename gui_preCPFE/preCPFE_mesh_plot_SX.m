@@ -45,6 +45,6 @@ set(h_sample.cyl, 'EdgeAlpha', 0.1);
 
 view(old_az, old_el);
 
-preCPFE_mesh_plot_finalize
+preCPFE_mesh_plot_finalize;
 
 end

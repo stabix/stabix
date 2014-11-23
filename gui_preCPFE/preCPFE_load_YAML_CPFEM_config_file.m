@@ -35,30 +35,35 @@ gui.config.CPFEM.filename = gui.config_CPFEM_file;
 
 %% Setting of CPFEM code by default
 if ~isfield(gui.config.CPFEM, 'simulation_code')
+    commandwindow;
     warning('Missing CPFEM code definition in your CPFEM YAML config. file...');
     gui.config.CPFEM.simulation_code = 'DAMASK';
 end
 
 %% Setting of list of FEM solvers
 if ~isfield(gui.config.CPFEM, 'fem_solvers')
+    commandwindow;
     warning('Missing FEM solvers list in your CPFEM YAML config. file...');
     gui.config.CPFEM.fem_solvers = 'Mentat_2013.1';
 end
 
 %% Setting of FEM solvers used
 if ~isfield(gui.config.CPFEM, 'fem_solver_used')
+    commandwindow;
     warning('Missing FEM solver used in your CPFEM YAML config. file...');
     gui.config.CPFEM.fem_solver_used = 'Mentat_2013.1';
 end
 
 %% Setting of procedure path by default
 if ~isfield(gui.config.CPFEM, 'proc_file_path')
+    commandwindow;
     warning('Missing path to store proc. file in your CPFEM YAML config. file...');
     gui.config.CPFEM.proc_file_path = getenv('SLIP_TRANSFER_TBX_ROOT');
 end
 
 %% Setting of python folder for FEM path by default
 if ~isfield(gui.config.CPFEM, 'python4fem_module_path')
+    %commandwindow;
     %warning('Missing path for MSC package in your CPFEM YAML config. file...');
     python4fem_module_path = fullfile(getenv('SLIP_TRANSFER_TBX_ROOT'), ...
         'third_party_code','python','');
@@ -68,6 +73,7 @@ end
 
 %% Setting of Python executable path by default
 if ~isfield(gui.config.CPFEM, 'python_executable')
+    commandwindow;
     warning('Missing path for Python executable in your CPFEM YAML config. file...');
     gui.config.CPFEM.python_executable = 'python';
 % else

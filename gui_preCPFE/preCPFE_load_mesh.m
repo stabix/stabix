@@ -22,17 +22,16 @@ else
     
     mesh_variables.variables = ReadYaml(YAML_mesh_config_file);
     
+    gui = guidata(gcf);
+    set(gui.handles.pm_mesh_quality, 'Value', 1);
+    
     if interface == 1
-        gui_BX = guidata(gcf);
-        set(gui_BX.handles.pm_mesh_quality, 'Value', 1);
-        gui_BX.handles.mesh = preCPFE_mesh_parameters_BX(mesh_variables);
-        guidata(gcf, gui_BX);
+        gui.handles.mesh = preCPFE_mesh_parameters_BX(mesh_variables);
+        guidata(gcf, gui);
         preCPFE_indentation_setting_BX;
     elseif interface == 2
-        gui_SX = guidata(gcf);
-        set(gui_SX.handles.pm_mesh_quality, 'Value', 1);
-        gui_SX.handles.mesh = preCPFE_mesh_parameters_SX(mesh_variables);
-        guidata(gcf, gui_SX);
+        gui.handles.mesh = preCPFE_mesh_parameters_SX(mesh_variables);
+        guidata(gcf, gui);
         preCPFE_indentation_setting_SX;
     end
     

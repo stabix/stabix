@@ -17,7 +17,7 @@ end
 %% Set indentation depth
 h_indent = 0;
 try
-    if get(gui.handles.indenter.move,'Value')
+    if get(gui.handles.indenter.move, 'Value')
         h_indent = gui.variables.h_indent;
     end
 catch id
@@ -78,7 +78,6 @@ colormap white;
 
 %% Rotate indenter
 % rotation_angle: Angle to rotate indenter (from 0 to 360°) in degrees
-
 rotation_angle = get(gui.handles.indenter.rotate_loaded_indenter, 'Value');
 rotation_angle = round(rotation_angle * 10) / 10; % 0.1 deg steps
 set(gui.handles.indenter.rotate_loaded_indenter, 'Value', rotation_angle);
@@ -104,8 +103,6 @@ else
     fvc = NaN;
 end
 
-%% Save encapsulated data
-%guidata(gcf, gui);
 axis tight
 
 end

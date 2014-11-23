@@ -12,11 +12,11 @@ indenter = gui.handles.indenter;
 set(indenter.rotate_loaded_indenter_box, ...
     'String', get(indenter.rotate_loaded_indenter, 'Value'));
 
-%%
+%% Get Indentation depth
 h_ind = [indenter.h_indent_str, indenter.h_indent_val];
 set(h_ind, 'visible', 'on');
 
-%%
+%% Get tip radius
 tipRadius = [indenter.tipRadius_str, indenter.tipRadius_val];
 rotation = [indenter.rotate_loaded_indenter, ...
     indenter.rotate_loaded_indenter_str, ...
@@ -30,7 +30,7 @@ set(coneAngle, 'visible', 'off');
 set(indenter.pm_indenter_mesh_quality, 'visible', 'off');
 set(indenter.load_AFM, 'visible', 'off');
 
-%%
+%% Update GUIs buttons in function of indenter type
 if strcmpi(gui.indenter_type, 'conical')
     set(coneAngle, 'visible', 'on');
     set(tipRadius, 'visible', 'on');
@@ -41,7 +41,6 @@ elseif strcmpi(gui.indenter_type, 'Berkovich') || ...
         strcmpi(gui.indenter_type, 'cubeCorner')
     set(tipRadius, 'visible', 'off');
 
-    
 elseif strcmpi(gui.indenter_type, 'flatPunch')
     set(tipRadius, 'visible', 'on');
     set(rotation, 'visible', 'off');
@@ -51,7 +50,5 @@ elseif strcmpi(gui.indenter_type, 'AFM')
     set(indenter.pm_indenter_mesh_quality, 'visible', 'on');
     set(indenter.load_AFM, 'visible', 'on');
 end
-
-%guidata(gcf, gui);
 
 end

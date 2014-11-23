@@ -113,7 +113,6 @@ guidata(gcf, gdata);
 preCPFE_set_valid_inputs_BX;
 gdata = guidata(gcf);
 
-
 %% Definition of geometry points coordinates
 %    1------------2---3-------------4
 %   /            /   /             /|
@@ -292,7 +291,6 @@ cla;
 shg;
 
 %% Plot the sample mesh
-
 if get(gdata.handles.other_setting.pm_mesh_color, 'Value') == 1
     %color_grA = [49 140 231]/255;
     color_grA = 'b';
@@ -341,6 +339,7 @@ rotate([gdata.handles.mesh.meshBX, ...
     direction, rotation_angle, origin);
 
 guidata(gcf, gdata);
+
 %%
 if isfield(gdata, 'handle_indenter')
     [old_az, old_el] = view;
@@ -348,7 +347,6 @@ else
     old_az = -65 + rotation_angle; % old azimuth value
     old_el = 20; % old elevation value
 end
-
 
 %% Plot the indenter
 gdata.handle_indenter = preCPFE_indenter_plot;
