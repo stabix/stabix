@@ -1,6 +1,7 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function [pmax1, xmax1, ymax1, pmax2, xmax2, ymax2, pmax3, xmax3, ymax3,...
-    pmin1, xmin1, ymin1, pmin2, xmin2, ymin2, pmin3, xmin3, ymin3] = sort_values(matrix, varargin)
+    pmin1, xmin1, ymin1, pmin2, xmin2, ymin2, pmin3, xmin3, ymin3] = ...
+    sort_values(matrix, varargin)
 %% Function used to sort values (max and min) from a given matrix and to get indices of these values
 % matrix : a N-by-N matrix of values given for a specific parameter
 % pmax1 : 1st highest value
@@ -38,11 +39,15 @@ for ii = 1:size(matrix,1)
 end
 
 sort_param_col(:,:) = sort((matrix_max(:,:)), 1, 'descend');                          % sort matrix (by columns)
-[sort_param_1stline(:,:), param_index_1] = sort(sort_param_col(1,:), 'descend');      % sort 1st line of values (maximum of each columns)
-sort_param_row(:,:) = sort((matrix_max(:,:)), 2, 'descend');                          % sort matrix (by rows)
-[sort_param_1stcol(:,:), param_index_2] = sort(sort_param_row(:,1), 'descend');       % sort 1st column of values (maximum of each columns)
+[sort_param_1stline(:,:), param_index_1] = sort(sort_param_col(1,:), ...
+    'descend');      % sort 1st line of values (maximum of each columns)
 
-sort_param_all(:,:) = sort((sort((matrix_max(:,:)), 1, 'descend')), 2, 'descend');
+sort_param_row(:,:) = sort((matrix_max(:,:)), 2, 'descend');                         % sort matrix (by rows)
+[sort_param_1stcol(:,:), param_index_2] = sort(sort_param_row(:,1), ...
+    'descend');       % sort 1st column of values (maximum of each columns)
+
+sort_param_all(:,:) = sort((sort((matrix_max(:,:)), 1, 'descend')), 2, ...
+    'descend');
 
 pmax1 = sort_param_all(1,1);                      % 1st highest value
 pmax2 = sort_param_all(2,1);                      % 2nd highest value
@@ -63,11 +68,14 @@ for ii = 1:size(matrix,1)
 end
 
 sort_param_col(:,:) = sort((matrix_min(:,:)), 1, 'ascend');                          % sort matrix (by columns)
-[sort_param_1stline(:,:), param_index_1] = sort(sort_param_col(1,:), 'ascend');      % sort 1st line of values (maximum of each columns)
+[sort_param_1stline(:,:), param_index_1] = sort(sort_param_col(1,:), ...
+    'ascend');      % sort 1st line of values (maximum of each columns)
 sort_param_row(:,:) = sort((matrix_min(:,:)), 2, 'ascend');                          % sort matrix (by rows)
-[sort_param_1stcol(:,:), param_index_2] = sort(sort_param_row(:,1), 'ascend');       % sort 1st column of values (maximum of each columns)
+[sort_param_1stcol(:,:), param_index_2] = sort(sort_param_row(:,1), ...
+    'ascend');       % sort 1st column of values (maximum of each columns)
 
-sort_param_all(:,:) = sort((sort((matrix_min(:,:)), 1, 'ascend')), 2, 'ascend');
+sort_param_all(:,:) = sort((sort((matrix_min(:,:)), 1, 'ascend')), 2, ...
+    'ascend');
 
 pmin1 = sort_param_all(1,1);                    % 1st lowest value
 pmin2 = sort_param_all(2,1);                    % 2nd lowest value

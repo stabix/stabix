@@ -1,5 +1,6 @@
+% Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function locations = sys_which(cmd_str)
-% Locate executables outside of Matlab
+%% Locate executables outside of Matlab
 % uses
 % - "which" for linux
 % - "where" for windows
@@ -20,9 +21,8 @@ if ispc
     evalc_str = sprintf('system(''where %s'');', cmd_str);
     locs = strtrim(evalc(evalc_str));
     locations = regexp(locs, '\n', 'split');
-    for i = 1:numel(locations)
-        loc = strtrim(locations(i));
+    for ii = 1:numel(locations)
+        loc = strtrim(locations(ii));
         locations(1) = loc;
     end
 end
-

@@ -63,20 +63,23 @@ fprintf(fid_inp,'*NODE,NSET=NALL\n');
 %for i=1:size(nv,1)
 %  fprintf(fid_inp,'%5i, %9.4f, %9.4f, %9.4f\n',i,nv(i,:))
 %end
-for i=1:size(patch_data.vertices,1)
-    fprintf(fid_inp,'%5i, %9.4f, %9.4f, %9.4f\n',i,patch_data.vertices(i,:));
+for ii = 1:size(patch_data.vertices,1)
+    fprintf(fid_inp,'%5i, %9.4f, %9.4f, %9.4f\n',ii, ...
+        patch_data.vertices(ii,:));
 end
 nFaces = size(patch_data.faces,1);
 if length(patch_data.faces(1,:)) == 4 % Rectangle, "Quadrilateral"
     %fprintf(fid_inp,'*ELEMENT, TYPE=CAX4, ELSET=Eall\n')
     fprintf(fid_inp, '*ELEMENT, TYPE=CAX4, ELSET=%s\n', fname);
-    for i = 1:nFaces
-        fprintf(fid_inp,'%5i, %5i, %5i, %5i, %5i\n', i, patch_data.faces(i,:));
+    for ii = 1:nFaces
+        fprintf(fid_inp,'%5i, %5i, %5i, %5i, %5i\n', ii, ...
+            patch_data.faces(ii,:));
     end
 elseif length(patch_data.faces(1,:)) == 3 % Triangle
     fprintf(fid_inp, '*ELEMENT, TYPE=STRI3, ELSET=Eall\n');
-    for i=1:nFaces
-        fprintf(fid_inp, '%5i, %5i, %5i, %5i\n', i, patch_data.faces(i,:));
+    for ii = 1:nFaces
+        fprintf(fid_inp, '%5i, %5i, %5i, %5i\n', ii, ...
+            patch_data.faces(ii,:));
     end
 end
 fclose(fid_inp);

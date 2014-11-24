@@ -1,20 +1,19 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function h_trd = triad(sz, pos, col, dim, varargin)
+function h_trd = triad(sz, pos, col, varargin)
 %% Function used to plots triad
 % sz: Size of the triad
 % pos: Position of the center of the triad
 % col: Color of the triad
-% dim: Dimenstion of the triad
 
 % Uses the function "arrow3D" in the ThirdPartCode folder
 
-if nargin<1
+if nargin < 1
     sz = .35;
 end
-if nargin<2
+if nargin < 2
     pos = [0,0,0];
 end
-if nargin<3
+if nargin < 3
     col = {'r', 'g', 'b'};
 elseif length(col) == 1
     col = {col,col,col};
@@ -38,12 +37,12 @@ else
 end
 
 FszTr = 14;
-htxt(1) = text(end1(1)+sz*.17,end1(2),end1(3),'X','FontSize',FszTr);
-htxt(2) = text(end2(1),end2(2)+sz*.17,end2(3),'Y','FontSize',FszTr,...
-    'HorizontalAlignment','center');
-htxt(3) = text(end3(1)+sz*.25,end3(2)+sz*.25,end3(3)+sz*.2,'Z','FontSize',FszTr);
+htxt(1) = text(end1(1)+sz*.17,end1(2),end1(3),'X');
+htxt(2) = text(end2(1),end2(2)+sz*.17,end2(3),'Y');
+htxt(3) = text(end3(1)+sz*.25,end3(2)+sz*.25,end3(3)+sz*.2,'Z');
 
-set(htxt,'HorizontalAlignment','center');
+set(htxt,'HorizontalAlignment','center', ...
+    'FontSize',FszTr);
 % if 1
 %     delete(htxt);
 % end

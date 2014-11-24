@@ -10,4 +10,3 @@ scr.width = scr.ScreenSize(3);
 nw = pw / scr.width;
 
 end
-

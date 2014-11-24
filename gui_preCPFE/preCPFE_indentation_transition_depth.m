@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function h_trans = preCPFE_indentation_transition_depth(tip_radius, cone_angle, varargin)
+function h_trans = preCPFE_indentation_transition_depth(...
+    tip_radius, cone_angle, varargin)
 %% Function used to calculate the transition depth between the spherical and the conical
 % tip_radius : radius in micron of the spherical part of the tip
 % cone_angle : half angle in degrees at the apex of the conical part of the tip
