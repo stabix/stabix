@@ -9,6 +9,8 @@ function gui_gbinc_pictures_overlay
 
 gui = guidata(gcf);
 
+gui.flag.overlay = 1;
+
 [images, calibration, edge_detection] = gui_gbinc_checks(gui.flag);
 
 %% Calculations
