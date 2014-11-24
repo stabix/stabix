@@ -18,8 +18,7 @@ if gui.config.CPFEM.python.works
         'BackgroundColor', [0.2 0.8 0],...
         'Callback', 'preCPFE_generate_CPFE_model');
 else
-    commandwindow
-    warning('No Python found or numpy not installed !')
+    warning_commwin('No Python found or numpy not installed !')
     set(gui.handles.other_setting.pb_CPFEM_model, ...
         'BackgroundColor', [229/256 20/256 0],...
         'Callback', 'preCPFE_select_config_CPFEM');

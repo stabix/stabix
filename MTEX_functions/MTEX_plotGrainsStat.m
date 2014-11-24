@@ -15,8 +15,7 @@ if nargin < 2
 end
 
 if nargin < 1
-    commandwindow;
-    warning('No EBSD data to load !');
+    warning_commwin('No EBSD data to load !');
     flagEBSDdata = 0;
 end
 

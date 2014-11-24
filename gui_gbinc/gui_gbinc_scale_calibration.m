@@ -10,7 +10,7 @@ gui = guidata(gcf);
 %% Calculation of the calibration factor
 if image_type == 1
     if ~gui.flag.image1
-        warning('Please, load image first !'); beep; commandwindow;
+        warning_commwin('Please, load image first !', 1);
     else
         gui.config_map.scale_str = ...
             get(gui.handles.image_before_polishing.scale_value, 'string');
@@ -32,7 +32,7 @@ if image_type == 1
     end
 elseif image_type == 2
     if ~gui.flag.image2
-        warning('Please, load image first !'); beep; commandwindow;
+        warning_commwin('Please, load image first !', 1);
     else
         gui.config_map.scale_str = ...
             get(gui.handles.image_after_polishing.scale_value, 'string');

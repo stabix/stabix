@@ -8,7 +8,7 @@ for fn_idx = 1:numel(fns)
     % update fields with user config
     config_out.(fn) = config_to_add.(fn);
     %else
-    %    warning('User config field "%s" not found\n', fn);
+    %   warning_commwin('User config field "%s" not found\n', fn);
     %end
 end
 

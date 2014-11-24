@@ -42,13 +42,11 @@ end
 smooth_flag = 1;
 
 if mod(topo.nX,smooth_factor) ~= 0
-    commandwindow;
-    warning('Size of topography scan is not a 2^n value...');
+    warning_commwin('Size of topography scan is not a 2^n value...');
     smooth_flag = 0;
 end
 if mod(topo.nY,smooth_factor) ~= 0
-    commandwindow;
-    warning('Size of topography scan is not a 2^n value...');
+    warning_commwin('Size of topography scan is not a 2^n value...');
     smooth_flag = 0;
 end
 

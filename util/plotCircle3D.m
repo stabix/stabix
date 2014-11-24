@@ -14,7 +14,7 @@ if nargin < 2
 end
 
 if nargin < 1
-    warning('Testing')
+    warning('Testing');
     center = rand(1,3);
     normale = rand(1,3);
     normale = normale/norm(normale);

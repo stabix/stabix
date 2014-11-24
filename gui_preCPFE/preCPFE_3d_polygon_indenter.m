@@ -35,13 +35,11 @@ if nargin < 1
 end
 
 if N < 2
-   commandwindow;
-   warning('N should be higher than 2 !');
+   warning_commwin('N should be higher than 2 !');
 end
 
 if ang <=0 || ang >=90
-   commandwindow;
-   warning('ang should be comprised between 0° and 90° ! ');
+   warning_commwin('ang should be comprised between 0° and 90° ! ');
 end
     
 deg_inc = 360/N;

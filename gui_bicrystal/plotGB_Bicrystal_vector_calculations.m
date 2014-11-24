@@ -10,8 +10,7 @@ function [vect, euler, sortbv, flag_error] = ...
 for ig = grain
     lattice_parameters = latt_param(material, phase);  % Get the lattice parameter for the grain
     if lattice_parameters(1) == 0 || flag_error == 1
-        commandwindow;
-        warning('Wrong input for material and structure !!!');
+        warning_commwin('Wrong input for material and structure !!!');
         vect = 0;
         euler = 0;
         sortbv = 0;

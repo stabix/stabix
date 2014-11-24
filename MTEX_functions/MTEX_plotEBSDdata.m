@@ -11,8 +11,7 @@ function MTEX_plotEBSDdata(ebsdData)
 flagEBSDdata = 1;
 
 if nargin < 1
-    commandwindow;
-    warning('No EBSD data to load !');
+    warning_commwin('No EBSD data to load !');
     flagEBSDdata = 0;
 end
 

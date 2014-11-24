@@ -33,7 +33,7 @@ end
 
 %% Check of the presence of the 2 pictures
 if ~gui.flag.image1 || ~gui.flag.image2 || isequal(filenameimage, 0)
-    warning('Please, load image first !'); beep; commandwindow;
+    warning_commwin('Please, load image first !', 1);
 end
 
 %% Check of the calibration setting
@@ -66,8 +66,7 @@ end
 
 % Set threshold for edge detection
 if threshold >= 1 | threshold <= 0
-    warning('Please, threshold must be between 0 and 1');
-    beep; commandwindow;
+    warning_commwin('Please, threshold must be between 0 and 1', 1);
 end
 
 image_loaded = edge(image_loaded, algo, threshold);

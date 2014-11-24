@@ -63,8 +63,7 @@ elseif  valplot == 1
             'Location', legend_location_str{:});
     end
     if valplot > 1
-        commandwindow;
-        warning('No slip systems defined !')
+        warning_commwin('No slip systems defined !');
     end
     
 elseif valplot == 2  %% Plot of slip plane (circle) for Grain A and B

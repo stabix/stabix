@@ -62,8 +62,7 @@ if nargin < 1
 end
 
 if nargin == 1
-    warning('Missing inputs !');
-    commandwindow;
+    warning_commwin('Missing inputs !');
     return
 end
 

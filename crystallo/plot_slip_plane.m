@@ -19,8 +19,7 @@ if nargin < 3
     shiftXYZ = [0,0,0];
 end
 if nargin < 1
-    commandwindow;
-    warning('Testing')
+    warning_commwin('Testing');
     %close all
     slip_normal = rand(1,3);
     slip_normal = slip_normal./norm(slip_normal);

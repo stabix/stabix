@@ -29,8 +29,7 @@ n = n/norm(n);
 d = d/norm(d);
 
 if dot(n,d) > tol
-    commandwindow;
-    warning('n,b not perpendicular');
+    warning_commwin('n,b not perpendicular');
 end
 
 g = eulers2g(eulers)';

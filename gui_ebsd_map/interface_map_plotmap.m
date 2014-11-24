@@ -363,8 +363,7 @@ if gui.flag.flag_lattice == 1
     elseif gui.flag.pmparam2plot_value4GB == 1
         colorbar('off');
     else
-        commandwindow;
-        warning('Please, run calculations before...');
+        warning_commwin('Please, run calculations before...');
         %colorbar('off');
     end
     

@@ -17,7 +17,7 @@ picture = 1;
 
 if isequal(filename, 0)
     disp('User selected Cancel');
-    warning('Please, select a picture...'); beep; commandwindow;
+    warning_commwin('Please, select a picture...', 1);
     picture = 0;
 else
     disp(['User selected :', fullfile(pathname, filename)])
@@ -35,15 +35,14 @@ if picture
         try
             if isequal(gui.config_map.filename_image_after_polishing, ...
                     filename)
-                warning('Please, load a different image !'); ...
-                    beep; commandwindow;
+                warning_commwin('Please, load a different image !', 1);
             else
                 gui.flag.image1 = 1;
             end
         catch
         end
         if isequal(filename, 0)
-            warning('Please, load an image !'); beep; commandwindow;
+            warning_commwin('Please, load an image !', 1);
         else
             gui.flag.image1 = 1;
         end
@@ -58,15 +57,14 @@ if picture
         try
             if isequal(gui.config_map.filename_image_before_polishing, ...
                     filename)
-                warning('Please, load a different image !'); ...
-                    beep; commandwindow;
+                warning_commwin('Please, load a different image !', 1);
             else
                 gui.flag.image2 = 1;
             end
         catch
         end
         if isequal(filename, 0)
-            warning('Please, load an image !'); beep; commandwindow;
+            warning_commwin('Please, load an image !', 1);
         else
             gui.flag.image2 = 1;
         end

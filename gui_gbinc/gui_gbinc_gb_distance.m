@@ -8,8 +8,7 @@ function gui_gbinc_gb_distance
 gui = guidata(gcf);
 
 if gui.flag.overlay == 0
-    warning('Please, overlay images before !');
-    beep; commandwindow;
+    warning_commwin('Please, overlay images before !', 1);
 end
 
 zoom out;

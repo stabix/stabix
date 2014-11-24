@@ -52,8 +52,8 @@ if images && calibration && edge_detection
             'XData', [1 size(base, 2)],...
             'YData', [1 size(base, 1)]);
     else
-        warning('Please, select correctly new control points...'); ...
-            beep; commandwindow;
+        warning_commwin(...
+            'Please, select correctly new control points...', 1);
     end
     guidata(gcf, gui);
     

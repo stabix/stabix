@@ -12,29 +12,25 @@ overlay = 1;
 
 %% Check of the presence of the 2 pictures
 if ~flag.image1 || ~flag.image2
-    warning('Please, load images first !');
-    beep; commandwindow;
-    images;
+    warning_commwin('Please, load images first !', 1);
+    images = 0;
 end
 
 %% Check calibration
 if flag.calibration_1 == 0 || flag.calibration_2 == 0
-    warning('Please, calibration to do !');
-    beep; commandwindow;
+    warning_commwin('Please, calibration to do !', 1);
     calibration = 0;
 end
 
 %% Check edge detection
 if flag.edgedetection_1 == 0 || flag.edgedetection_2 == 0
-    warning('Please, edge detection to do !');
-    beep; commandwindow;
+    warning_commwin('Please, edge detection to do !', 1);
     edge_detection = 0;
 end
 
 %% Check of the presence of on overlay
 if flag.overlay == 0
-    warning('Please, overlay images before !');
-    beep; commandwindow;
+    warning_commwin('Please, overlay images before !', 1);
     overlay = 0;
 end
 

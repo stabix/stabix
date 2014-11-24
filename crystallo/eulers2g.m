@@ -35,8 +35,7 @@ g_mat(3,3) = c;
 if isrot(g_mat) == true
     return
 else
-    commandwindow;
-    warning('Not a rotation matrix');
+    warning_commwin('Not a rotation matrix');
 end
 
 %% Calculate single rotation matrices

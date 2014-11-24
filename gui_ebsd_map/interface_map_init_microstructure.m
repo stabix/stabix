@@ -59,7 +59,7 @@ slip_defs  = {zeros(1,sGF2(1))};
 for ng = 1:sGF2(1)
     ig = GF2(ng,1);      % Identity of the grain
     %if ng ~= ig
-    %    warning(sprintf('Grain %i is not at index %i in GF2',ig,ng))
+    %    warning_commwin(sprintf('Grain %i is not at index %i in GF2',ig,ng))
     %end
     
     % gui.grcen = [phase (C1) / grain center (X,Y) (C2-C3) / Euler angles(C4-C6)]

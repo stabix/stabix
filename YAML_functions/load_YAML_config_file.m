@@ -9,8 +9,7 @@ configYAML = 'config.yaml';
 if exist(configYAML, 'file') == 2
     config = ReadYaml(configYAML);
 else
-    warndlg('Missing YAML configuration file for Matlab...', 'Warning');
-    warning('Missing YAML configuration file for Matlab...');
+    warning_commwin('Missing YAML configuration file for Matlab...');
 end
 
 %% Setting of OpenGL

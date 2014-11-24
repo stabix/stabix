@@ -142,8 +142,7 @@ gui_BX.GB.Titlegbdatacompl_YAML = strcat(gui_BX.GB.Titlegbdatacompl, ...
 try
     movefile(scriptname_bicrystal, gui_BX.path_config_file);
 catch err
-    commandwindow;
-    warning(err.message);
+    warning_commwin(err.message);
 end
 guidata(gcf, gui_BX);
 
@@ -153,8 +152,7 @@ preCPFE_generate_material_files(gui_BX.config.CPFEM.simulation_code, 2);
 try
     movefile(gui_BX.GB.Titlegbdatacompl, gui_BX.path_config_file);
 catch err
-    commandwindow;
-    warning(err.message);
+    warning_commwin(err.message);
 end
 
 %% Generation of .inp file

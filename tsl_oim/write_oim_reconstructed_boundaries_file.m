@@ -57,8 +57,7 @@ if fpath_flag
     %% Check fields of fdata
     if ~isfield(fdata, 'title')
         fdata.title = 'No_title_given_by_user';
-        commandwindow;
-        warning(['No title given by user for the ' ...
+        warning_commwin(['No title given by user for the ' ...
             'Reconstructed Boundaries File']);
     end
     
@@ -66,8 +65,7 @@ if fpath_flag
         if isfield(fdata, 'GBvx')
             fdata.number_of_grain_boundaries = length(fdata.x_positions);
         else
-            commandwindow;
-            warning(['No X positions of grain boundaries found ' ...
+            warning_commwin(['No X positions of grain boundaries found ' ...
                 'in the data to store in Reconstructed Boundaries File']);
             flag_missing_field = 1;
         end
@@ -75,44 +73,38 @@ if fpath_flag
         if isfield(fdata, 'GBvy')
             fdata.number_of_grain_boundaries = length(fdata.y_positions);
         else
-            commandwindow;
-            warning(['No Y positions of grain boundaries found ' ...
+            warning_commwin(['No Y positions of grain boundaries found ' ...
                 'in the data to store in Reconstructed Boundaries File']);
             flag_missing_field = 1;
         end
     end
     
     if ~isfield(fdata, 'eul_ang')
-        commandwindow;
-        warning(['No Euler angles found in the data to store ' ...
+        warning_commwin(['No Euler angles found in the data to store ' ...
             'in Reconstructed Boundaries File']);
         flag_missing_field = 1;
     end
     
     if ~isfield(fdata, 'GBvx')
-        commandwindow;
-        warning(['No X positions of grain boundaries found ' ...
+        warning_commwin(['No X positions of grain boundaries found ' ...
             'in the data to store in Reconstructed Boundaries File']);
         flag_missing_field = 1;
     end
     
     if ~isfield(fdata, 'GBvy')
-        commandwindow;
-        warning(['No Y positions of grain boundaries found ' ...
+        warning_commwin(['No Y positions of grain boundaries found ' ...
             'in the data to store in Reconstructed Boundaries File']);
         flag_missing_field = 1;
     end
     
     if ~isfield(fdata, 'GB2cells')
-        commandwindow;
-        warning(['No grains identification found ' ...
+        warning_commwin(['No grains identification found ' ...
             'in the data to store in Reconstructed Boundaries File']);
         flag_missing_field = 1;
     end
     
     if ~isfield(fdata, 'gb_length')
-        commandwindow;
-        warning(['No grains boundaries length found ' ...
+        warning_commwin(['No grains boundaries length found ' ...
             'in the data to store in Reconstructed Boundaries File']);
         for ii = 1:fdata(1).number_of_grain_boundaries
             fdata.gb_length(ii) = 1;
@@ -120,8 +112,7 @@ if fpath_flag
     end
     
     if ~isfield(fdata, 'gb_trace_angle')
-        commandwindow;
-        warning(['No grains boundaries trace angle found ' ...
+        warning_commwin(['No grains boundaries trace angle found ' ...
             'in the data to store in Reconstructed Boundaries File']);
         for ii = 1:fdata(1).number_of_grain_boundaries
             fdata.gb_trace_angle(ii) = 1;

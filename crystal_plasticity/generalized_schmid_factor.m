@@ -60,8 +60,7 @@ d = d/norm(d);
 sigma_n = sigma/norm(sigma,'fro');  % Frobenius normalization
         
 if dot(n,d) > tol
-    commandwindow;
-    warning('n,b not perpendicular');
+    warning_commwin('n,b not perpendicular');
 end
 
 gsgT = g * sigma_n * g';
@@ -79,7 +78,7 @@ end
 if abs(GSF) > tol_GSF
     % Generalized Schmid factors are greater than 0.5 in some instances because the
     % grain average stress tensor differs significantly from uniaxial tension.
-    warning('Generalized Schmid Factor > 0.5 !');
+    warning_commwin('Generalized Schmid Factor > 0.5 !');
 end
 
 end

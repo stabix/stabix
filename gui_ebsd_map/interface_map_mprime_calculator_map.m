@@ -332,8 +332,7 @@ else
                     
                     %% Slip transmission functions for a 2 phases material
                 else
-                    commandwindow;
-                    warning(['Could not calculate slip ', ...
+                    warning_commwin(['Could not calculate slip ', ...
                         'transmission parameter ' ...
                         'for GB n° %i !'], gbnum);
                 end

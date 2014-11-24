@@ -16,10 +16,7 @@ end
 if ~isdir(config_CPFEM.proc_file_path)
     %config_CPFEM.proc_file_path = getenv('HOME');
     config_CPFEM.proc_file_path = cd();
-    %beep;
-    %warningdlg('Please modify proc_file_path field in config_CPFEM YAML file !');
-    commandwindow
-    warning(['Please modify proc_file_path field in ' ...
+    warning_commwin(['Please modify proc_file_path field in ' ...
         'config_CPFEM YAML file !']);
 end
 

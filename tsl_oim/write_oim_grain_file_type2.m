@@ -51,54 +51,48 @@ if fpath_flag
     %% Check fields of fdata
     if ~isfield(fdata, 'title')
         fdata.title = 'No_title_given_by_user';
-        commandwindow;
-        warning('No title given by user for the Grain File Type 2');
+        warning_commwin(...
+            'No title given by user for the Grain File Type 2');
     end
     
     if ~isfield(fdata, 'number_of_grains')
         if isfield(fdata, 'eul_ang')
             fdata.number_of_grains = length(fdata.eul_ang);
         else
-            commandwindow;
-            warning(['No Euler angles found in the data ' ...
+            warning_commwin(['No Euler angles found in the data ' ...
                 'to store in Grain File Type 2']);
             flag_missing_field = 1;
         end
         if isfield(fdata, 'x_positions')
             fdata.number_of_grains = length(fdata.x_positions);
         else
-            commandwindow;
-            warning(['No X positions of grains found in the data ' ...
+            warning_commwin(['No X positions of grains found in the data ' ...
                 'to store in Grain File Type 2']);
             flag_missing_field = 1;
         end
         if isfield(fdata, 'y_positions')
             fdata.number_of_grains = length(fdata.y_positions);
         else
-            commandwindow;
-            warning(['No Y positions of grains found in the data ' ...
+            warning_commwin(['No Y positions of grains found in the data ' ...
                 'to store in Grain File Type 2']);
             flag_missing_field = 1;
         end
     end
     
     if ~isfield(fdata, 'eul_ang')
-        commandwindow;
-        warning(['No Euler angles found in the data ' ...
+        warning_commwin(['No Euler angles found in the data ' ...
             'to store in Grain File Type 2']);
         flag_missing_field = 1;
     end
     
     if ~isfield(fdata, 'x_positions')
-        commandwindow;
-        warning(['No X positions of grains found in the data ' ...
+        warning_commwin(['No X positions of grains found in the data ' ...
             'to store in Grain File Type 2']);
         flag_missing_field = 1;
     end
     
     if ~isfield(fdata, 'y_positions')
-        commandwindow;
-        warning(['No Y positions of grains found in the data ' ...
+        warning_commwin(['No Y positions of grains found in the data ' ...
             'to store in Grain File Type 2']);
         flag_missing_field = 1;
     end

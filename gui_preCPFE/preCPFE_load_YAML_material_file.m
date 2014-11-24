@@ -12,8 +12,7 @@ if gui.GB.number_phase == 1
         gui.config.username);
     
     if ~exist(configmatYAML, 'file')
-        commandwindow;
-        warning(['YAML file for material configation not found ! ' ...
+        warning_commwin(['YAML file for material configation not found ! ' ...
             'Default values are used...']);
         configmatdefYAML = sprintf('config_CPFEM_material_defaults.yaml');
         gui.config_material  = ReadYaml(configmatdefYAML);
@@ -28,8 +27,7 @@ elseif gui.GB.number_phase == 2
         gui.config.username);
     
     if ~exist(configmatA_YAML, 'file') || ~exist(configmatB_YAML, 'file')
-        commandwindow;
-        warning(['YAML file for material A or B configuration not ' ...
+        warning_commwin(['YAML file for material A or B configuration not ' ...
             'found ! Default values are used...']);
         configmatdefYAML_A = ...
             sprintf('config_CPFEM_materialA_defaults.yaml');

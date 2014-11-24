@@ -132,8 +132,7 @@ gui_SX.GB.Titlegbdatacompl_YAML = strcat(gui_SX.GB.Titlegbdatacompl, ...
 try
     movefile(scriptname_bicrystal, gui_SX.path_config_file);
 catch err
-    commandwindow;
-    warning(err.message);
+    warning_commwin(err.message);
 end
 
 if gui_SX.GB.activeGrain == gui_SX.GB.GrainA
@@ -149,8 +148,7 @@ preCPFE_generate_material_files(gui_SX.config.CPFEM.simulation_code, 1);
 try
     movefile(gui_SX.GB.Titlegbdatacompl, gui_SX.path_config_file);
 catch err
-    commandwindow;
-    warning(err.message);
+    warning_commwin(err.message);
 end
 
 %% Generation of .inp file

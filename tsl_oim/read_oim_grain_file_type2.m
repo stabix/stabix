@@ -72,8 +72,8 @@ while feof(fid) ~= 1
             error('Grain File Type 2 columns are wrong !')
         end
         if ~(EDGE_GRAIN_OK && DIAM_OK)
-            warning(['Missing information if edge or interior grain, ' ...
-                'and diameter of grains !'])
+            warning_commwin(['Missing information if edge or interior' ...
+                ' grain, and diameter of grains !'])
         end
         ii = ii + 1;
         data(ii,:) = sscanf(ln,'%f');

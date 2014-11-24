@@ -8,12 +8,10 @@ try
     startup_mtex;
     installation_mtex = 1;
 catch
-    %warndlg('MTEX not installed or check_mtex not found/failing!');
-    warning('MTEX not installed or check_mtex not found/failing!');
+    warning_commwin('MTEX not installed or check_mtex not found/failing!');
     disp('Proceeding without MTEX functionalities...');
     disp('Download MTEX here: http://mtex-toolbox.github.io/');
     installation_mtex = 0;
-    commandwindow;
 end
 
 end

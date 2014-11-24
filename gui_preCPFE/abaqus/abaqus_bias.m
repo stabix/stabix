@@ -37,8 +37,8 @@ p = bias; % Abaqus uses "p" for the bias.
 
 % No bias elements created if p is equal to 0 !
 if p == 0
-    commandwindow;
-    warning('Wrong input for the bias value. Bias value can not be equal to 0.');
+    warning_commwin(['Wrong input for the bias value. ' ...
+        'Bias value can not be equal to 0.']);
 end
 
 ratio = abs(p)^(1/(num_elements-1));
