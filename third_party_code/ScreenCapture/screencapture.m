@@ -69,6 +69,7 @@ function imageData = screencapture(varargin)
 %    imshow, imwrite, print
 %
 % Release history:
+%    1.8 2014-11-16: Fexes for R2014b
 %    1.7 2014-04-28: Fixed bug when capturing interactive selection
 %    1.6 2014-04-22: Only enable image formats when saving to an unspecified file via uiputfile
 %    1.5 2013-04-18: Fixed bug in capture of non-square image; fixes for Win64
@@ -82,7 +83,7 @@ function imageData = screencapture(varargin)
 % referenced and attributed as such. The original author maintains the right to be solely associated with this work.
 
 % Programmed and Copyright by Yair M. Altman: altmany(at)gmail.com
-% $Revision: 1.7 $  $Date: 2014/04/28 21:10:12 $
+% $Revision: 1.8 $  $Date: 2014/11/16 00:39:42 $
 
     % Ensure that java awt is enabled...
     if ~usejava('awt')
@@ -349,7 +350,7 @@ function [paramsStruct, msgStr] = convertPos(paramsStruct)
         dY = 0;
         dW = 0;
         dH = 0;
-        if ~isa(handle(hParent),'figure')
+        if ~isFigure(hParent)
             % Get the reguested component's pixel position
             parentPos = getPixelPos(hParent, 1);  % no true available in ML6
 
@@ -358,9 +359,7 @@ function [paramsStruct, msgStr] = convertPos(paramsStruct)
             deltaY = -1;
             
             % Fix for images
-            %isAxes  = isa(handle(hParent),'axes');
-            isImage = isa(handle(hParent),'image');
-            if isImage  % | (isAxes & strcmpi(get(hParent,'YDir'),'reverse'))  %#ok ML6
+            if isImage(hParent)  % | (isAxes(hParent) & strcmpi(get(hParent,'YDir'),'reverse'))  %#ok ML6
 
                 % Compensate for resized image axes
                 hAxes = get(hParent,'Parent');
@@ -595,7 +594,7 @@ function pos = getPixelPos(hObj,varargin)
             originalObj = hObj;
         end
 
-        if isa(handle(hObj),'figure') %| isa(handle(hObj),'axes')
+        if isFigure(hObj) %| isAxes(hObj)
         %try
             pos = getPos(hObj,'OuterPosition','pixels');
         else  %catch
@@ -603,7 +602,7 @@ function pos = getPixelPos(hObj,varargin)
             pos = getpixelposition(hObj,varargin{:});
 
             % add the axes labels/ticks if relevant (plus a tiny margin to fix 2px label/title inconsistencies)
-            if isa(handle(hObj),'axes') & ~isa(handle(originalObj),'image')  %#ok ML6
+            if isAxes(hObj) & ~isImage(originalObj)  %#ok ML6
                 tightInsets = getPos(hObj,'TightInset','pixel');
                 pos = pos + tightInsets.*[-1,-1,1,1] + [-1,1,1+tightInsets(1:2)];
             end
@@ -769,5 +768,19 @@ function imclipboard(imgData)
     cb.setContents(imSelection, []);
 %end  %imclipboard
 
+%% Is the provided handle a figure?
+function flag = isFigure(hObj)
+    flag = isa(handle(hObj),'figure') | isa(hObj,'matlab.ui.Figure');
+%end  %isFigure
+
+%% Is the provided handle an axes?
+function flag = isAxes(hObj)
+    flag = isa(handle(hObj),'axes') | isa(hObj,'matlab.graphics.axis.Axes');
+%end  %isFigure
+
+%% Is the provided handle an image?
+function flag = isImage(hObj)
+    flag = isa(handle(hObj),'image') | isa(hObj,'matlab.graphics.primitive.Image');
+%end  %isFigure
 %%%%%%%%%%%%%%%%%%%%%%%%%% TODO %%%%%%%%%%%%%%%%%%%%%%%%%
 % find a way in interactive-mode to single-click another Matlab figure for screen-capture

@@ -1,4 +1,4 @@
-Copyright (c) 2009, Yair Altman
+Copyright (c) 2014, Yair Altman
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
