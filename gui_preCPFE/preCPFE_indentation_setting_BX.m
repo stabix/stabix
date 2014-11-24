@@ -44,7 +44,8 @@ elseif strfind(gdata.config.CPFEM.fem_solver_used, 'Mentat')
 end
 
 %% Set fine / coarse mesh
-gdata.variables.meshquality = get(gdata.handles.other_setting.pm_mesh_quality, 'Value');
+gdata.variables.meshquality = ...
+    get(gdata.handles.other_setting.pm_mesh_quality, 'Value');
 
 if gdata.variables.meshquality ~= 1 % Not free mesh defined by user
     set(gdata.handles.mesh.box_elm_nx_val, 'String', num2str(gdata.defaults.variables.box_elm_nx));
@@ -77,7 +78,6 @@ if gdata.variables.meshquality ~= 1 % Not free mesh defined by user
     set(gdata.handles.mesh.mesh_quality_lvl_val, 'String', num2str(gdata.variables.mesh_quality_lvl));
     
 else % Free mesh defined by user
-    set(gdata.handles.mesh.mesh_quality_lvl_val, 'String', '1');
     gdata.variables.mesh_quality_lvl = str2num(get(gdata.handles.mesh.mesh_quality_lvl_val, 'String'));
     gdata.variables.box_elm_nx       = round(str2num(get(gdata.handles.mesh.box_elm_nx_val, 'String')) * gdata.variables.mesh_quality_lvl);
     gdata.variables.box_elm_nz       = round(str2num(get(gdata.handles.mesh.box_elm_nz_val, 'String')) * gdata.variables.mesh_quality_lvl);
@@ -127,7 +127,8 @@ gdata = guidata(gcf);
 %                                      y
 
 % Coordinates of points of the sample
-gdata.variables.length_box = (gdata.variables.len_sample+gdata.variables.ind_dist)/2; % Length of the boxes A or C
+gdata.variables.length_box = ...
+    (gdata.variables.len_sample + gdata.variables.ind_dist)/2; % Length of the boxes A or C
 if gdata.variables.inclination <= 90
     gdata.variables.length_inc = gdata.variables.h_sample * tand(90-gdata.variables.inclination);
 else

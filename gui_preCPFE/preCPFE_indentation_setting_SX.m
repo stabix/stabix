@@ -29,7 +29,8 @@ elseif strfind(gdata.config.CPFEM.fem_solver_used, 'Mentat')
 end
 
 %% Set fine / coarse mesh
-gdata.variables.meshquality = get(gdata.handles.other_setting.pm_mesh_quality, 'Value');
+gdata.variables.meshquality = ...
+    get(gdata.handles.other_setting.pm_mesh_quality, 'Value');
 
 if gdata.variables.meshquality ~= 1
     set(gdata.handles.mesh.box_elm_nx_val, 'String', num2str(gdata.defaults.variables.box_elm_nx));
@@ -52,10 +53,6 @@ if gdata.variables.meshquality ~= 1
     set(gdata.handles.mesh.box_elm_nx_val, 'String', num2str(gdata.variables.box_elm_nx));
     set(gdata.handles.mesh.box_elm_nz_val, 'String', num2str(gdata.variables.box_elm_nz));
     set(gdata.handles.mesh.radial_divi_val, 'String', num2str(gdata.variables.radial_divi));
-    
-    % else
-    %     gdata.variables.box_elm_nx       = round(str2num(get(gdata.handles.mesh.box_elm_nx_val, 'String')) * gdata.variables.mesh_quality_lvl);
-    %     gdata.variables.box_elm_nz       = round(str2num(get(gdata.handles.mesh.box_elm_nz_val, 'String')) * gdata.variables.mesh_quality_lvl);
     
 end
 guidata(gcf, gdata);
@@ -89,21 +86,18 @@ guidata(gcf, gdata);
 preCPFE_set_valid_inputs_SX;
 gdata = guidata(gcf);
 
-% %% Calculation of the transition depth between spherical and conical parts of the indenter
-% gdata.variables.h_trans = preCPFE_indentation_transition_depth(gdata.variables.tipRadius, gdata.variables.coneAngle/2);
-% gdata.variables.h_trans = round(gdata.variables.h_trans*100)/100;
-% set(gdata.handles.other_setting.trans_depth , 'String', strcat('Transition depth (µm) : ', num2str(gdata.variables.h_trans)));
-
 %% Definition of geometry points coordinates
 % Radial coordinates of points for the mesh of indenter
 jj = 0;
 for ii = 1:41
-    gdata.variables.indenter_mesh_x(ii) = jj*preCPFE_indentation_transition_depth(gdata.variables.tipRadius, gdata.variables.coneAngle/2);
+    gdata.variables.indenter_mesh_x(ii) = ...
+        jj*preCPFE_indentation_transition_depth(...
+        gdata.variables.tipRadius, gdata.variables.coneAngle/2);
     jj = jj+0.025;
     gdata.variables.indenter_mesh_y(ii) = 0;
 end
 
-gdata.variables.coneHeight=gdata.variables.h_sample/4;
+gdata.variables.coneHeight = gdata.variables.h_sample/4;
 
 % Coordinates of points for the mesh of indenter before indentation
 gdata.variables.indenter_mesh_z = -(((gdata.variables.tipRadius.^2)-(gdata.variables.indenter_mesh_x.^2)).^0.5)+gdata.variables.tipRadius;
