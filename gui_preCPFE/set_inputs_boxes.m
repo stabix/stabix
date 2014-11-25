@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function [string, edit_box] = preCPFE_set_inputs_boxes(str, pos, val, callback, varargin)
+function [string, edit_box] = set_inputs_boxes(str, pos, val, callback, varargin)
 %% Function used to create automatically a serir of txt boxes + editable txt boxes in the GUI
 % str : string for the txt box
 % pos : position of the txt box

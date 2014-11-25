@@ -1,6 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function preCPFE_preset_mesh_parameters_BX
-%% Function to set valid inputs for mesh
+function preCPFE_preset_bias_parameters_BX
+%% Function to set valid inputs for bias parameters
 % author: d.mercier@mpie.de
 
 preCPFE_set_CPFEM_solver;
@@ -39,7 +39,5 @@ elseif strfind(gui_BX.config.CPFEM.fem_solver_used, 'Mentat')
     set(gui_BX.handles.mesh.box_bias_y3_val, 'String', num2str(gui_BX.defaults.variables.box_bias_y3_mentat));
     set(gui_BX.handles.mesh.box_bias_y3_str, 'String', 'box_bias_y3 (-0.5 to 0.5)');
 end
-
-guidata(gcf, gui_BX);
 
 end
