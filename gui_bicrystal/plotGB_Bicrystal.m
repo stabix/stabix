@@ -67,11 +67,11 @@ set(gui.handles.getGBtrace, 'String', ...
     plotGB_Bicrystal_GB_trace(gui.GB.GB_Trace_Angle);
 gui.handles.h_gbax = subplot(4,2,[3 6], 'replace');
 
-if strfind(gui.config.matlab_version, '2014')
-    warning('Arrow not display for Matlab R2014b...');
-else
+try
     arrow(gui.GB_geometry.GB_arrow(:,1), gui.GB_geometry.GB_arrow(:,2), ...
         0, 'Length', 100, 'FaceColor', 'k', 'TipAngle', 15);
+catch err
+    warning_commwin(err.message);
 end
 
 % Surface plane

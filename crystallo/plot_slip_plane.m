@@ -32,15 +32,15 @@ hPlane = plotCircle3D(slip_normal, shiftXYZ, radius);
 hold on;
 plot3(shiftXYZ(1), shiftXYZ(2), shiftXYZ(3),'.k','MarkerSize',10);
 if nargin > 1 || nargin == 0
-    if strfind(version('-release'), '2014')
+    try
+        hArr = arrow(shiftXYZ, shiftXYZ+slip_direction*radius,...
+            'FaceColor', color, 'Length', 5, 'TipAngle', 45);
+    catch err
         hArr = plot3([shiftXYZ(1) shiftXYZ(1)+slip_direction(1)*radius], ...
             [shiftXYZ(2) shiftXYZ(2)+slip_direction(2)*radius], ...
             [shiftXYZ(3) shiftXYZ(3)+slip_direction(3)*radius], ...
             'Color', color, 'LineWidth', 4);
-        warning('Arrow not display for Matlab R2014b...');
-    else
-        hArr = arrow(shiftXYZ, shiftXYZ+slip_direction*radius,...
-            'FaceColor', color, 'Length', 5, 'TipAngle', 45);
+        warning_commwin(err.message);
     end
 end
 
