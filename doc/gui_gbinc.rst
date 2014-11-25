@@ -10,6 +10,13 @@
    
 `Source code is hosted at Github <https://github.com/stabix/stabix/tree/master/gui_gbinc>`_.
 
+.. figure:: ./_pictures/normal_folder.ico
+   :scale: 20 %
+   :align: left
+   :target: https://github.com/stabix/stabix/archive/master.zip
+   
+`Download source code as a .zip file <https://github.com/stabix/stabix/archive/master.zip>`_.
+
 This toolbox helps to find the grain boundary inclination from two micrographs from serial polishing.
 At least three marks such as microindents are needed for registration of the images. 
 
@@ -31,7 +38,7 @@ How to use the toolbox ?
     - Select a point on the figure on the left, then on the figure on the right, and repeat this operation 2 times.
     - Close the window for the selection of control points (Ctrl+W).
     - Control points are saved in .mat file (in the same folder than the 1st picture loaded).
-7) If the control points are not satisfying, delete them and start to set a new overlay.
+7) If the control points are not satisfying, delete them and redo the step 6 to set new control points and to get a new overlay.
 8) Save the overlay (see Figure 1) in the same folder than the 1st picture loaded (as a screenshot.png) (optional).
 9) Do the measurement of the distance between edges (Vickers faces) or ridges of a unique Vickers indent (see Figure 2).
 10) Do the measurement of the distance between edges of a unique grain boundary.
@@ -59,17 +66,19 @@ How to use the toolbox ?
    
    *Figure 2 : Schemes of a) the top view of a Vickers indent (before and after polishing) and of b) the cross-section view.*
 
+N.B.: Images should have the same scale factor.
 N.B.: Distances and grain boundary inclination values are obtained with the mean scale factor of the two images...
 
 See also
 --------
-`V. Randle, "A methodology for grain boundary plane assessment by single-section trace analysis.", Scripta Mater., 2001, 44, pp. 2789-2794. <http://dx.doi.org/10.1016/S1359-6462(01)00975-7>`_ 
+`V. Randle, "A methodology for grain boundary plane assessment by single-section trace analysis.", Scripta Mater., 2001, 44, pp. 2789-2794. <http://dx.doi.org/10.1016/S1359-6462(01)00975-7>`_
 
 Links
 -----
 - `Matlab - Control Point Selection Tool <http://www.mathworks.fr/help/images/ref/cpselect.html>`_
 - `Matlab - Spatial transformation from control point pairs <http://www.mathworks.fr/help/images/ref/cp2tform.html>`_
 - `Matlab - Edge detection <http://www.mathworks.fr/help/images/ref/edge.html>`_
+- `Matlab - Interactive Exploration with the Image Viewer App <http://fr.mathworks.com/help/images/interactive-exploration-with-the-image-tool.html>`_
 - `Matlab - Distance tool <http://www.mathworks.fr/help/images/ref/imdistline.html>`_
 
 Authors

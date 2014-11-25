@@ -19,6 +19,7 @@ First of all, download the source code of the |matlab| toolbox.
    
 `Download source code as a .zip file <https://github.com/stabix/stabix/archive/master.zip>`_.
 
+
 To have more details about the use of the toolbox, please have a look to :
 
 .. code-block:: matlab
@@ -59,10 +60,12 @@ Default YAML configuration files, stored in the folder `YAML_config_files <https
    config_mesh_BX_defaults.yaml
    config_mesh_SX_defaults.yaml
    
-You have to set your own YAML configuration files, by following instructions giving in this `README <https://github.com/stabix/stabix/blob/master/YAML_config_files/README.txt>`_.
+You have to set your own YAML configuration files, by following instructions given in this `README <https://github.com/stabix/stabix/blob/master/YAML_config_files/README.txt>`_.
 
 If the OpenGL rendering is not satisfying, you can modify the corresponding option in the `config.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config.yaml>`_ file.
 
-`Visit the YAML website for more informations. <http://www.yaml.org/>`_
+`Visit the YAML website for more informations <http://www.yaml.org/>`_.
 
-`Visit the YAML code for Matlab. <http://code.google.com/p/yamlmatlab/>`_
+`Visit the YAML code for Matlab <http://code.google.com/p/yamlmatlab/>`_.
+
+`Visit the Matlab page about OpenGL rendering <http://fr.mathworks.com/help/matlab/ref/opengl.html?refresh=true>`_.
