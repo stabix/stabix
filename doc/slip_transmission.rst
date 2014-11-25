@@ -100,7 +100,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
     .. math:: GB_\text{resfac} = 1 - m'
         :label: resistance_factor
         
-  This factor is equal to 0 (grain boundary transparent if the :math:`m'` parameter is equal to 1 (when slip perfectly aligns).
+  This factor is equal to 0 (grain boundary transparent if the :math:`m'` parameter is equal to 1 (when slip perfectly aligns)).
    
   The |matlab| function used to calculate the m' parameter is: `mprime.m <https://github.com/stabix/stabix/tree/master/slip_transfer/mprime.m>`_
      

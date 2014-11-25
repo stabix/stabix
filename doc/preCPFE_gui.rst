@@ -118,7 +118,7 @@ The |matlab| function used to load and read Gwyddion file is: `read_gwyddion_asc
    :scale: 40 %
    :align: center
    
-   *Figure 5 : Screenshot of the preCPFE GUI for the bicrystal indentation with loaded AFM topography of the indenter*
+   *Figure 6 : Screenshot of the preCPFE GUI for the bicrystal indentation with loaded AFM topography of the indenter*
 
 Python setup
 -------------
