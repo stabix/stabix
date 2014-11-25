@@ -22,3 +22,4 @@ box_bias_conv_x_mentat: 0.4
 box_bias_x_abaqus: 3
 box_bias_z_abaqus: 3
 box_bias_conv_x_abaqus: 3
+mesh_quality_lvl: 1

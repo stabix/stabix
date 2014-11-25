@@ -89,11 +89,14 @@ gui_SX.handles.pm_Python = preCPFE_python_popup([2*x0 hu*2.6 wu*3 hu]);
 
 %% Creation of buttons/popup menus... (mesh quality, layout, Python, CPFEM...)
 gui_SX.handles.other_setting = preCPFE_buttons_gui(x0, hu, wu);
+guidata(gcf, gui_SX);
+preCPFE_mesh_level(0);
 set(gui_SX.handles.other_setting.pm_mesh_color_title, 'Visible', 'off');
 set(gui_SX.handles.other_setting.pm_mesh_color, 'Visible', 'off');
+gui_SX = guidata(gcf);
+guidata(gcf, gui_SX);
 
 %% Set Python executable
-guidata(gcf, gui_SX);
 [gui_SX.config.CPFEM.python_executable, gui_SX.config.CPFEM.python] = ...
     preCPFE_python_select(gui_SX.handles.pm_Python);
 guidata(gcf, gui_SX);

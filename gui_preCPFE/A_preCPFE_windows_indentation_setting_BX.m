@@ -11,7 +11,7 @@ function gui_handle = ...
 %% Initialization
 gui_BX = preCPFE_init;
 gui_BX.description = 'Indentation of a bicrystal - ';
-
+ 
 x0 = 0.025;
 hu = 0.05; % height unit
 wu = 0.1; % width unit
@@ -82,9 +82,12 @@ gui_BX.handles.indenter = preCPFE_buttons_indenter(x0, hu, wu);
     
 %% Creation of buttons/popup menus (mesh quality, layout, Python, CPFEM...)
 gui_BX.handles.other_setting = preCPFE_buttons_gui(x0, hu, wu);
+guidata(gcf, gui_BX);
+preCPFE_mesh_level(0);
+gui_BX = guidata(gcf);
+guidata(gcf, gui_BX);
 
 %% Set Python executable
-guidata(gcf, gui_BX);
 [gui_BX.config.CPFEM.python_executable, gui_BX.config.CPFEM.python] = ...
     preCPFE_python_select(gui_BX.handles.pm_Python);
 guidata(gcf, gui_BX);

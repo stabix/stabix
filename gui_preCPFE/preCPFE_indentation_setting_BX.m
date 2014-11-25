@@ -12,10 +12,11 @@ direction = [0 0 1]; % along z-axis
 origin = [0,0,0];
 
 %% Set positive values in case of missing parameters
+% Indenter parameters
 set_default_values_txtbox(gdata.handles.indenter.coneAngle_val, num2str(gdata.defaults.variables.coneAngle));
 set_default_values_txtbox(gdata.handles.indenter.tipRadius_val, num2str(gdata.defaults.variables.tipRadius));
 set_default_values_txtbox(gdata.handles.indenter.h_indent_val, num2str(gdata.defaults.variables.h_indent));
-
+% Mesh parameters
 set_default_values_txtbox(gdata.handles.mesh.w_sample_val, num2str(gdata.defaults.variables.w_sample));
 set_default_values_txtbox(gdata.handles.mesh.h_sample_val, num2str(gdata.defaults.variables.h_sample));
 set_default_values_txtbox(gdata.handles.mesh.len_sample_val, num2str(gdata.defaults.variables.len_sample));
@@ -26,7 +27,7 @@ set_default_values_txtbox(gdata.handles.mesh.box_elm_nz_val, num2str(gdata.defau
 set_default_values_txtbox(gdata.handles.mesh.box_elm_ny1_val, num2str(gdata.defaults.variables.box_elm_ny1));
 set_default_values_txtbox(gdata.handles.mesh.box_elm_ny2_fac_val, num2str(gdata.defaults.variables.box_elm_ny2_fac));
 set_default_values_txtbox(gdata.handles.mesh.box_elm_ny3_val, num2str(gdata.defaults.variables.box_elm_ny3));
-
+% Bias parameters
 if strfind(gdata.config.CPFEM.fem_solver_used, 'Abaqus')
     set_default_values_txtbox(gdata.handles.mesh.box_bias_x_val, num2str(gdata.defaults.variables.box_bias_x_abaqus));
     set_default_values_txtbox(gdata.handles.mesh.box_bias_z_val, num2str(gdata.defaults.variables.box_bias_z_abaqus));
@@ -42,14 +43,15 @@ elseif strfind(gdata.config.CPFEM.fem_solver_used, 'Mentat')
 end
 
 %% Set mesh level
-gdata.variables.mesh_quality_lvl = str2num(get(gdata.handles.other_setting.mesh_quality_lvl_val, 'String'));
+gdata.variables.mesh_quality_lvl = ...
+    str2num(get(gdata.handles.other_setting.mesh_quality_lvl_val, 'String'));
 
-gdata.variables.box_elm_nx       = round(str2num(get(gdata.handles.mesh.box_elm_nx_val, 'String')) * gdata.variables.mesh_quality_lvl);
-gdata.variables.box_elm_nz       = round(str2num(get(gdata.handles.mesh.box_elm_nz_val, 'String')) * gdata.variables.mesh_quality_lvl);
-gdata.variables.box_elm_ny1      = round(str2num(get(gdata.handles.mesh.box_elm_ny1_val, 'String')) * gdata.variables.mesh_quality_lvl);
+gdata.variables.box_elm_nx       = round(gdata.defaults.variables.box_elm_nx * gdata.variables.mesh_quality_lvl);
+gdata.variables.box_elm_nz       = round(gdata.defaults.variables.box_elm_nz * gdata.variables.mesh_quality_lvl);
+gdata.variables.box_elm_ny1      = round(gdata.defaults.variables.box_elm_ny1 * gdata.variables.mesh_quality_lvl);
 gdata.variables.box_elm_ny2_fac  = str2num(get(gdata.handles.mesh.box_elm_ny2_fac_val, 'String'));
 gdata.variables.box_elm_ny2      = round(round(abs(str2num(get(gdata.handles.mesh.ind_dist_val, 'String')) * gdata.variables.box_elm_ny2_fac * gdata.variables.mesh_quality_lvl)));
-gdata.variables.box_elm_ny3      = round(str2num(get(gdata.handles.mesh.box_elm_ny3_val, 'String')) * gdata.variables.mesh_quality_lvl);
+gdata.variables.box_elm_ny3      = round(gdata.defaults.variables.box_elm_ny3 * gdata.variables.mesh_quality_lvl);
 
 set(gdata.handles.mesh.box_elm_nx_val, 'String', num2str(gdata.variables.box_elm_nx));
 set(gdata.handles.mesh.box_elm_nz_val, 'String', num2str(gdata.variables.box_elm_nz));
