@@ -51,6 +51,9 @@ set(gui.handles.indenter.move, 'Value', ...
     get(gui.handles.indenter.h_indent_str, 'Value'));
 
 preCPFE_indenter_update_controls;
-gui.handle_indenter = preCPFE_indenter_plot;
+handle_indenter = preCPFE_indenter_plot;
+gui = guidata(gcf); 
+gui.handle_indenter = handle_indenter; %%FIXME: don't touch this line or the handle of the indenter is wrong
 guidata(gcf, gui);
+
 end

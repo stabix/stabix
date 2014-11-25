@@ -160,8 +160,9 @@ end
 
 guidata(gcf, gdata);
 
-%% Initialization
+%% Clear axes
 cla;
+shg;
 
 %% Plot of the indenter
 gdata.handle_indenter = preCPFE_indenter_plot;

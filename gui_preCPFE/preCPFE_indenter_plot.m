@@ -8,9 +8,9 @@ gui = guidata(gcf);
 
 if isfield(gui, 'handle_indenter')
     try
-        delete(gui.handle_indenter)
+        delete(gui.handle_indenter);
     catch id
-        disp(id.message)
+        disp(id.message);
     end
 end
 
@@ -23,10 +23,6 @@ try
 catch id
     disp(id)
 end
-
-% if ~isfield(gui, 'indenter_type')
-%     gui.indenter_type = 'conical';
-% end
 
 %% Set plot of indenter
 if strcmp(gui.indenter_type, 'conical') == 1
@@ -62,7 +58,7 @@ elseif strcmp(gui.indenter_type, 'AFM') == 1
     
     if ~isfield(gui, 'indenter_topo')
         guidata(gcf, gui);
-        preCPFE_load_AFM_indenter();
+        preCPFE_load_AFM_indenter;
         gui = guidata(gcf);
     end
     
