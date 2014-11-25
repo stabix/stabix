@@ -32,7 +32,6 @@ set(handles.ST_s31, 'String', num2str(stressTensor.s31));
 stressTensor.s32 = stressTensor.s23;
 set(handles.ST_s32, 'String', num2str(stressTensor.s32));
 
-
 stressTensor = stress_tensor(stressTensor);
 
 end

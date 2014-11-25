@@ -9,7 +9,6 @@ function h_trace = plot_slip_traces(slip, euler, phase, ca_ratio, ...
 % ca_ratio : c/a ratio of the material if hcp phase
 % shiftXYZ : coordinates of the point where to plot the slip trace (-->
 % correspond to the middle of the segment plotted for the slip traces).
-% linewidth_trace : Width of the slip trace segment
 % length_trace : Length of the trace (factor)
 % trace_frac : Fraction of the length trace
 
@@ -19,7 +18,7 @@ if nargin == 0
     slip = randi(57);
     euler = randBunges;
     phase = 'hcp';
-    ca_ratio = 1.57;
+    ca_ratio = latt_param('Ti', phase);
     shiftXYZ = [0;0;0];
     length_trace = 1;
     trace_frac = 0;

@@ -10,11 +10,10 @@ if nargin < 2
 end
 
 if nargin < 1
-    warning_commwin'Wrong dataset for orientations calculation !');
+    warning_commwin('Wrong dataset for orientations calculation !');
 end
 
 %% Specify how to align the x-axis in plots
-
 switch(xaxis_alignement)
     case {1}
         plotx2east; %set the default plot direction of the xaxis

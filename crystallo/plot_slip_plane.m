@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function hstruct = plot_slip_plane(slip_normal, slip_direction, shiftXYZ, radius, color, varargin)
+function hstruct = plot_slip_plane(slip_normal, slip_direction, ...
+    shiftXYZ, radius, color, varargin)
 %% Returns the plot of a choosen slip by plotting the corresponding plane
 % slip_normal : slip normal (vector normal to the slip plane)
 % slip_direction : slip direction (Burgers vector)
@@ -20,7 +21,6 @@ if nargin < 3
 end
 if nargin < 1
     warning_commwin('Testing');
-    %close all
     slip_normal = rand(1,3);
     slip_normal = slip_normal./norm(slip_normal);
     slip_direction = orthogonal_vector(slip_normal);
