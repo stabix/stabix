@@ -28,33 +28,18 @@ elseif strfind(gdata.config.CPFEM.fem_solver_used, 'Mentat')
     set_default_values_txtbox(gdata.handles.mesh.box_bias_conv_x_val, num2str(gdata.defaults.variables.box_bias_conv_x_mentat));
 end
 
-%% Set fine / coarse mesh
-gdata.variables.meshquality = ...
-    get(gdata.handles.other_setting.pm_mesh_quality, 'Value');
+%% Set mesh level
+gdata.variables.mesh_quality_lvl = str2num(get(gdata.handles.other_setting.mesh_quality_lvl_val, 'String'));
 
-if gdata.variables.meshquality ~= 1
-    set(gdata.handles.mesh.box_elm_nx_val, 'String', num2str(gdata.defaults.variables.box_elm_nx));
-    set(gdata.handles.mesh.box_elm_nz_val, 'String', num2str(gdata.defaults.variables.box_elm_nz));
-    set(gdata.handles.mesh.radial_divi_val, 'String', num2str(gdata.defaults.variables.radial_divi));
-    
-    if gdata.variables.meshquality == 2
-        gdata.variables.mesh_quality_lvl = 1;
-    elseif gdata.variables.meshquality == 3
-        gdata.variables.mesh_quality_lvl = 2;
-    elseif gdata.variables.meshquality == 4
-        gdata.variables.mesh_quality_lvl = 3;
-    elseif gdata.variables.meshquality == 5
-        gdata.variables.mesh_quality_lvl = 4;
-    end
-    
-    gdata.variables.box_elm_nx  = round(str2num(get(gdata.handles.mesh.box_elm_nx_val, 'String')) * gdata.variables.mesh_quality_lvl);
-    gdata.variables.box_elm_nz  = round(str2num(get(gdata.handles.mesh.box_elm_nz_val, 'String')) * gdata.variables.mesh_quality_lvl);
-    gdata.variables.radial_divi = round(str2num(get(gdata.handles.mesh.radial_divi_val, 'String')) * gdata.variables.mesh_quality_lvl);
-    set(gdata.handles.mesh.box_elm_nx_val, 'String', num2str(gdata.variables.box_elm_nx));
-    set(gdata.handles.mesh.box_elm_nz_val, 'String', num2str(gdata.variables.box_elm_nz));
-    set(gdata.handles.mesh.radial_divi_val, 'String', num2str(gdata.variables.radial_divi));
-    
-end
+gdata.variables.box_elm_nx  = round(str2num(get(gdata.handles.mesh.box_elm_nx_val, 'String')) * gdata.variables.mesh_quality_lvl);
+gdata.variables.box_elm_nz  = round(str2num(get(gdata.handles.mesh.box_elm_nz_val, 'String')) * gdata.variables.mesh_quality_lvl);
+gdata.variables.radial_divi = round(str2num(get(gdata.handles.mesh.radial_divi_val, 'String')) * gdata.variables.mesh_quality_lvl);
+
+
+set(gdata.handles.mesh.box_elm_nx_val, 'String', num2str(gdata.variables.box_elm_nx));
+set(gdata.handles.mesh.box_elm_nz_val, 'String', num2str(gdata.variables.box_elm_nz));
+set(gdata.handles.mesh.radial_divi_val, 'String', num2str(gdata.variables.radial_divi));
+
 guidata(gcf, gdata);
 
 %% Definition of mesh/geometry variables
