@@ -88,6 +88,7 @@ py{end+1} = sprintf('box_elm_nx = %.3f,', gui_SX.variables.box_elm_nx);
 py{end+1} = sprintf('box_elm_nz = %.3f,', gui_SX.variables.box_elm_nz);
 py{end+1} = sprintf('radial_divi = %.3f,', gui_SX.variables.radial_divi);
 py{end+1} = sprintf('smv = %e,', gui_SX.variables.smv);
+%py{end+1} = sprintf('lvl = %i,', gui_SX.variables.mesh_quality_lvl);
 py{end+1} = sprintf('geo = ''%s'',', gui_SX.indenter_type_model);
 py{end+1} = sprintf('free_mesh_inp = ''%s''', ...
     strcat(gui_SX.GB.Titlegbdata, '.inp'));

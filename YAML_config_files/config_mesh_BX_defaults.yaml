@@ -12,11 +12,11 @@ h_sample: 4
 len_sample: 6
 inclination: 90 # GB inclination (in °)
 ind_dist: 1
-box_elm_nx: 6
-box_elm_nz: 6
-box_elm_ny1: 6
+box_elm_nx: 7
+box_elm_nz: 7
+box_elm_ny1: 7
 box_elm_ny2_fac: 7
-box_elm_ny3: 6
+box_elm_ny3: 8
 box_bias_x_mentat: 0.2
 box_bias_z_mentat: 0.25
 box_bias_y1_mentat: 0.3

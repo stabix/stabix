@@ -97,7 +97,7 @@ py{end+1} = sprintf('box_bias_y1 = %.3f,', gui_BX.variables.box_bias_y1);
 py{end+1} = sprintf('box_bias_y2 = %.3f,', gui_BX.variables.box_bias_y2);
 py{end+1} = sprintf('box_bias_y3 = %.3f,', gui_BX.variables.box_bias_y3);
 py{end+1} = sprintf('smv = %e,', gui_BX.variables.smv);
-py{end+1} = sprintf('lvl = %i,', gui_BX.variables.meshquality);
+py{end+1} = sprintf('lvl = %i,', gui_BX.variables.mesh_quality_lvl);
 py{end+1} = sprintf('len_trace = 1.,');
 py{end+1} = sprintf('geo = ''%s'',', gui_BX.indenter_type_model);
 py{end+1} = sprintf('free_mesh_inp = ''%s''', ...
