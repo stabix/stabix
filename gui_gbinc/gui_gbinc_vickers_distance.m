@@ -6,7 +6,8 @@ function gui_gbinc_vickers_distance
 
 gui = guidata(gcf);
 
-[images, calibration, edge_detection, overlay] = gui_gbinc_checks(gui.flag);
+[images, calibration, edge_detection, overlay] = ...
+    gui_gbinc_checks(gui.flag);
 
 %% Calculations
 if images && calibration && edge_detection && overlay

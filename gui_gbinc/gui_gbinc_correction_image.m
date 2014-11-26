@@ -5,6 +5,8 @@ function image_corrected = gui_gbinc_correction_image(...
 % image_loaded: Loaded image
 % correction: Correction to apply to the image
 
+% See http://fr.mathworks.com/help/images/image-type-conversions.html
+
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
 gui = guidata(gcf);

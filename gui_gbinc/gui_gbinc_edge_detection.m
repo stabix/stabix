@@ -3,6 +3,9 @@ function gui_gbinc_edge_detection(image_type)
 %% Function used to run the edge detection
 % image_type: 1 for before polishing and 2 after polishing
 
+% See http://www.mathworks.fr/help/images/ref/edge.html
+% See http://fr.mathworks.com/help/images/linear-filtering.html
+
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
 gui = guidata(gcf);
@@ -47,6 +50,8 @@ elseif num_algo == 4
     algo = 'canny';
 elseif num_algo == 5
     algo = 'log';
+elseif num_algo == 6
+    algo = 'zerocross';
 end
 
 thresholg_flag = 1;
