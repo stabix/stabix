@@ -92,13 +92,13 @@ Possible errors introduced during files exportation from TSL
 ------------------------------------------------------------
 
 - "Grain File Type 2" --> Missing integer identifying grain
-   --> Solved when file is imported via the GUI.
+    - Solved when file is imported via the GUI.
 
 - "Reconstructed Boundary File" --> Inversion of left and right grains for a given grain boundary 
-   --> Cross product performed between GB vector and center of grains to check (if cross product < 0 : no inversion, and if cross product > 0 : inversion).
+    - Cross product performed between GB vector and center of grains to check (if cross product < 0 : no inversion, and if cross product > 0 : inversion).
 
 - "Reconstructed Boundary File" --> x-axis and y-axis not corrects…
-   --> y coordinates is multiplied by -1 when file is imported via the GUI.
+    - y coordinates is multiplied by -1 when file is imported via the GUI.
 
 All of these issues are taken into account and corrected automatically when user is loading his data via the EBSD map GUI.
 
