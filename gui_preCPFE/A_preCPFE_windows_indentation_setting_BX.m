@@ -45,7 +45,6 @@ if nargin == 0
 else
     gui_BX.flag           = gui_bicrystal.flag;
     gui_BX.config_map     = gui_bicrystal.config_map;
-    gui_BX.config         = gui_bicrystal.config;
     gui_BX.GB             = gui_bicrystal.GB;
     gui_BX.GB.active_data = 'BX';
     gui_BX.title_str = set_gui_title(gui_BX, ...

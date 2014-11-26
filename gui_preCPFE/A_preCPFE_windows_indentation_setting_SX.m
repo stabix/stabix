@@ -49,7 +49,6 @@ if nargin == 0
 else
     gui_SX.flag           = gui_bicrystal.flag;
     gui_SX.config_map     = gui_bicrystal.config_map;
-    gui_SX.config         = gui_bicrystal.config;
     gui_SX.GB             = gui_bicrystal.GB;
     gui_SX.GB.active_data = 'SX';
     if activeGrain == 1

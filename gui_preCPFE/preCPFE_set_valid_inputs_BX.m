@@ -102,10 +102,10 @@ end
 
 % Box elm ny2_fac
 if gui_BX.variables.box_elm_ny2_fac <= 0
-    set(gui_BX.handles.mesh.box_elm_ny2_fac_val, 'String', ...
-        num2str(gui_BX.defaults.variables.box_elm_ny2_fac));
+    set(gui_BX.handles.mesh.box_elm_ny2_val, 'String', ...
+        num2str(gui_BX.defaults.variables.box_elm_ny2));
     gui_BX.variables.box_elm_ny2_fac = str2num(get(...
-        gui_BX.handles.mesh.box_elm_ny2_fac_val, 'String'));
+        gui_BX.handles.mesh.box_elm_ny2_val, 'String'));
 end
 
 % Box elm ny3
