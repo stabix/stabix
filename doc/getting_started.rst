@@ -37,12 +37,12 @@ Run one of these GUIs to play with the toolbox.
    :header: "Name of the GUI", "Features", "|matlab| function", "YAML config. file"
    :widths: 25, 25, 25, 25
   
-   "`Demo <MainMenu.png>`_", "Start and run other GUIs.", `demo.m <https://github.com/stabix/stabix/blob/master/demo.m>`_
-   "`EBSD map GUI <EBSDmap.png>`_", "Analysis of slip transmission across GBs for an EBSD map.", `A_gui_plotmap.m <https://github.com/stabix/stabix/blob/master/gui_ebsd_map/A_gui_plotmap.m>`_, "config_gui_EBSDmap_default.yaml"
-   "`Bicrystal GUI <BX.png>`_", "Analysis of slip transfer in a bicrystal.", `A_gui_plotGB_Bicrystal.m <https://github.com/stabix/stabix/blob/master/gui_bicrystal/A_gui_plotGB_Bicrystal.m>`_
-   "`preCPFE_SX <preCPFE_GUI_SX.png>`_", "Preprocess of CPFE model for SX indentation.", `A_preCPFE_windows_indentation_setting_SX.m <https://github.com/stabix/stabix/blob/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_SX.m>`_, "config_CPFEM_default.yaml"
-   "`preCPFE_BX <preCPFE_GUI_BX.png>`_", "Preprocess of CPFE model for BX indentation.", `A_preCPFE_windows_indentation_setting_BX.m <https://github.com/stabix/stabix/blob/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_BX.m>`_, "config_CPFEM_default.yaml"
-   "`GBinc <gui_gb_inc.png>`_", "Calculation of grain boundaries inclination.", `A_gui_gbinc.m <https://github.com/stabix/stabix/blob/master/gui_gbinc/A_gui_gbinc.m>`_
+   "`Demo <_pictures/MainMenu.png>`_", "Start and run other GUIs.", `demo.m <https://github.com/stabix/stabix/blob/master/demo.m>`_
+   "`EBSD map GUI <_pictures/EBSDmap.png>`_", "Analysis of slip transmission across GBs for an EBSD map.", `A_gui_plotmap.m <https://github.com/stabix/stabix/blob/master/gui_ebsd_map/A_gui_plotmap.m>`_, "config_gui_EBSDmap_default.yaml"
+   "`Bicrystal GUI <_pictures/BX.png>`_", "Analysis of slip transfer in a bicrystal.", `A_gui_plotGB_Bicrystal.m <https://github.com/stabix/stabix/blob/master/gui_bicrystal/A_gui_plotGB_Bicrystal.m>`_
+   "`preCPFE_SX <_pictures/preCPFE_GUI_SX.png>`_", "Preprocess of CPFE model for SX indentation.", `A_preCPFE_windows_indentation_setting_SX.m <https://github.com/stabix/stabix/blob/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_SX.m>`_, "config_CPFEM_default.yaml"
+   "`preCPFE_BX <_pictures/preCPFE_GUI_BX.png>`_", "Preprocess of CPFE model for BX indentation.", `A_preCPFE_windows_indentation_setting_BX.m <https://github.com/stabix/stabix/blob/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_BX.m>`_, "config_CPFEM_default.yaml"
+   "`GBinc <_pictures/gui_gb_inc.png>`_", "Calculation of grain boundaries inclination.", `A_gui_gbinc.m <https://github.com/stabix/stabix/blob/master/gui_gbinc/A_gui_gbinc.m>`_
    
 Default YAML configuration files, stored in the folder `YAML_config_files <https://github.com/stabix/stabix/tree/master/YAML_config_files>`_, are loaded automatically to set the GUIs:
 
