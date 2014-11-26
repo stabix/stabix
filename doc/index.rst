@@ -51,7 +51,7 @@ Activation and transmission of slip are interpreted based on these simulations a
    
 `Source code is hosted at Github <https://github.com/stabix/stabix>`_.
 
-.. figure:: ./_pictures/normal_folder.ico
+.. figure:: ./_pictures/normal_folder.png
    :scale: 15 %
    :align: left
    :target: https://github.com/stabix/stabix/archive/master.zip
@@ -70,7 +70,7 @@ Contents
    
 .. toctree::
    :maxdepth: 3
-   
+
    motivation
    getting_started
    bicrystal_definition
@@ -81,7 +81,8 @@ Contents
    preCPFE_gui
    data_from_paper
    gui_gbinc
-   
+
+
 References
 ==========
 .. [#LusterMorris_1995] `J. Luster and M.A. Morris, "Compatibility of deformation in two-phase Ti-Al alloys: Dependence on microstructure and orientation relationships.", Metal. and Mat. Trans. A (1995), 26(7), pp. 1745-1756. <http://dx.doi.org/10.1007/BF02670762>`_
@@ -105,7 +106,6 @@ Contact
 .. image:: ./_pictures/logo_MPIE_MSU.png
    :scale: 50 %
 
-
 Acknowledgements
 ================
 This work was supported by the DFG/NSF `Materials World Network <http://www.nsf.gov/funding/pgm_summ.jsp?pims_id=12820>`_ grant references (DFG ZA 523/3-1 and NSF-DMR-1108211).
@@ -114,7 +114,6 @@ The authors are grateful to Philip Eisenlohr, Martin Crimp and Yang Su of `Michi
 and the `Max-Planck-Institut für Eisenforschung <http://www.mpie.de/>`_ for support.
 
 .. include:: contributors.rst
-
 
 Keywords
 ========

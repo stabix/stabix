@@ -204,7 +204,7 @@ Slip transmission parameters implemented in the |matlab| Toolbox
    :widths: 40, 40, 20, 10
 
    "Misorientation angle (:math:`\omega`)", ":math:`\omega = cos^{-1}((tr(\Delta g)-1)/2)`", `misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/misorientation.m>`_, [#SuttonBalluffi_1995]_
-   "C-axis misorientation angle (for hcp material) (:math:`\omega`)", , `c-axis misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/eul2Caxismisor.m>`_, [#SuttonBalluffi_1995]_
+   "C-axis misorientation angle (hcp material) (:math:`\omega`)", , `c-axis misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/eul2Caxismisor.m>`_, [#SuttonBalluffi_1995]_
    ":math:`N` factor from Livingston and Chamlers", ":math:`N = \cos(\psi)\cdot\cos(\kappa) + \cos(\gamma)\cdot\cos(\delta)`", `N_factor.m <https://github.com/stabix/stabix/tree/master/slip_transfer/N_factor.m>`_, [#LivingstonChalmers_1957]_
    ":math:`LRB` factor from Shen et al.", ":math:`LRB = \cos(\theta)\cdot\cos(\kappa)`", `LRB_parameter.m <https://github.com/stabix/stabix/tree/master/slip_transfer/LRB_parameter.m>`_, [#Shen_1986]_ / [#Shen_1988]_
    ":math:`m'` parameter from Luster and Morris", ":math:`m' = \cos(\psi)\cdot\cos(\kappa)`", `mprime.m <https://github.com/stabix/stabix/tree/master/slip_transfer/mprime.m>`_, [#LusterMorris_1995]_

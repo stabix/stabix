@@ -10,7 +10,7 @@
    
 `Source code is hosted at Github <https://github.com/stabix/stabix/tree/master/gui_gbinc>`_.
 
-.. figure:: ./_pictures/normal_folder.ico
+.. figure:: ./_pictures/normal_folder.png
    :scale: 15 %
    :align: left
    :target: https://github.com/stabix/stabix/archive/master.zip
