@@ -11,7 +11,7 @@
 `Source code is hosted at Github <https://github.com/stabix/stabix/tree/master/gui_gbinc>`_.
 
 .. figure:: ./_pictures/normal_folder.ico
-   :scale: 20 %
+   :scale: 15 %
    :align: left
    :target: https://github.com/stabix/stabix/archive/master.zip
    
@@ -75,11 +75,13 @@ See also
 
 Links
 -----
+- `Matlab - Interactive Exploration with the Image Viewer App <http://fr.mathworks.com/help/images/interactive-exploration-with-the-image-tool.html>`_
+- `Matlab - Distance tool <http://www.mathworks.fr/help/images/ref/imdistline.html>`_
+- `Matlab - Image conversions <http://fr.mathworks.com/help/images/image-type-conversions.html>`_
+- `Matlab - Image filtering <http://fr.mathworks.com/help/images/linear-filtering.html>`_
 - `Matlab - Control Point Selection Tool <http://www.mathworks.fr/help/images/ref/cpselect.html>`_
 - `Matlab - Spatial transformation from control point pairs <http://www.mathworks.fr/help/images/ref/cp2tform.html>`_
 - `Matlab - Edge detection <http://www.mathworks.fr/help/images/ref/edge.html>`_
-- `Matlab - Interactive Exploration with the Image Viewer App <http://fr.mathworks.com/help/images/interactive-exploration-with-the-image-tool.html>`_
-- `Matlab - Distance tool <http://www.mathworks.fr/help/images/ref/imdistline.html>`_
 
 Authors
 -------

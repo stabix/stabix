@@ -52,7 +52,7 @@ Activation and transmission of slip are interpreted based on these simulations a
 `Source code is hosted at Github <https://github.com/stabix/stabix>`_.
 
 .. figure:: ./_pictures/normal_folder.ico
-   :scale: 20 %
+   :scale: 15 %
    :align: left
    :target: https://github.com/stabix/stabix/archive/master.zip
    
