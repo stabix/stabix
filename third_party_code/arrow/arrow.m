@@ -420,7 +420,7 @@ if (length(page      )==1),   page       = o * page      ;   end;
 if (size(crossdir  ,1)==1),   crossdir   = o * crossdir  ;   end;
 if (length(ends      )==1),   ends       = o * ends      ;   end;
 if (length(ispatch   )==1),   ispatch    = o * ispatch   ;   end;
-ax = o * gca;
+ax = repmat(gca,narrows,1);
 
 % if we've got handles, get the defaults from the handles
 if ~isempty(oldh),
@@ -501,7 +501,7 @@ while (any(axnotdone)),
 	curpage = page(ii);
 	% get axes limits and aspect ratio
 	axl = [get(curax,'XLim'); get(curax,'YLim'); get(curax,'ZLim')];
-	oldaxlims(min(find(oldaxlims(:,1)==0)),:) = [curax reshape(axl',1,6)];
+	oldaxlims(min(find(oldaxlims(:,1)==0)),:) = [ii reshape(axl',1,6)];
 	% get axes size in pixels (points)
 	u = get(curax,'Units');
 	axposoldunits = get(curax,'Position');
@@ -587,7 +587,8 @@ while (any(axnotdone)),
 		axl(ii,[1 2])=-axl(ii,[2 1]);
 	end;
 	% compute the range of 2-D values
-	curT = get(curax,'Xform');
+	[azA,elA] = view(curax); 
+    curT = viewmtx(azA,elA);
 	lim = curT*[0 1 0 1 0 1 0 1;0 0 1 1 0 0 1 1;0 0 0 0 1 1 1 1;1 1 1 1 1 1 1 1];
 	lim = lim(1:2,:)./([1;1]*lim(4,:));
 	curlimmin = min(lim')';
@@ -954,17 +955,17 @@ if (nargout<=1),
 	% make sure the axis limits did not change
 	if isempty(oldaxlims),
 		ARROW_AXLIMITS = [];
-	else,
-		lims = get(oldaxlims(:,1),{'XLim','YLim','ZLim'})';
-		lims = reshape(cat(2,lims{:}),6,size(lims,2));
-		mask = arrow_is2DXY(oldaxlims(:,1));
+    else
+		lims = get(ax(oldaxlims(:,1)),{'XLim','YLim','ZLim'})';
+        lims = reshape(cat(2,lims{:}),6,size(lims,2));
+		mask = arrow_is2DXY(ax(oldaxlims(:,1)));
 		oldaxlims(mask,6:7) = lims(5:6,mask)';
 		ARROW_AXLIMITS = oldaxlims(find(any(oldaxlims(:,2:7)'~=lims)),:);
 		if ~isempty(ARROW_AXLIMITS),
 			warning(arrow_warnlimits(ARROW_AXLIMITS,narrows));
 		end;
 	end;
-else,
+else
 	% don't create the patch, just return the data
 	h=x;
 	yy=y;
@@ -1028,9 +1029,6 @@ function [wasInterrupted,errstr] = arrow_click(lockStart,H,prop,ax)
 	% save some things
 	oldFigProps = {'Pointer','WindowButtonMotionFcn','WindowButtonUpFcn'};
 	oldFigValue = get(fig,oldFigProps);
-	oldArrowProps = {'EraseMode'};
-	oldArrowValue = get(H,oldArrowProps);
-	set(H,'EraseMode','background'); %because 'xor' makes shaft invisible unless Width>1
 	global ARROW_CLICK_H ARROW_CLICK_PROP ARROW_CLICK_AX ARROW_CLICK_USE_Z
 	ARROW_CLICK_H=H; ARROW_CLICK_PROP=prop; ARROW_CLICK_AX=ax;
 	ARROW_CLICK_USE_Z=~arrow_is2DXY(ax)|~arrow_planarkids(ax);
@@ -1062,7 +1060,6 @@ function [wasInterrupted,errstr] = arrow_click(lockStart,H,prop,ax)
 	if ~wasInterrupted, feval(mfilename,'callback','motion'); end;
 	% restore some things
 	set(gcf,oldFigProps,oldFigValue);
-	set(H,oldArrowProps,oldArrowValue);
 
 function arrow_callback(varargin)
 % handle redrawing callbacks
