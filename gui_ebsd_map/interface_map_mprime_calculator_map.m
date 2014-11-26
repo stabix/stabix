@@ -41,10 +41,6 @@ guidata(gcf, gui);
 %% Settings of Phase Number, Materials, Structures, Slip and Twin Systems to consider for calculations
 % Preallocation
 lattice_parameters = zeros(max(GF2(:,1)), 3, 1);
-ss_cart_norm = ...
-    zeros(2,3,size(slip_systems(grains(max(GF2(:,1))).structure),3));
-ss_cart = ...
-    zeros(2,3,size(slip_systems(grains(max(GF2(:,1))).structure),3));
 
 %% Waitbar
 h_waitbar = waitbar(0, 'Calculating GB properties ...');                   % changing the waitbar color is not trivial, http://stackoverflow.com/questions/5368861/how-to-add-progress-bar-control-to-matlab-gui
@@ -88,7 +84,7 @@ else
         if flag.pmparam2plot_value4GB ~= 7 ...
                 || flag.pmparam2plot_value4GB ~= 8
             % Loop to set grains properties (identity, Euler angles, position)
-            vect  = zeros(size_max_slip_sys,21,max(GF2(:,1)));
+            vect = zeros(size_max_slip_sys,21,max(GF2(:,1)));
             
             for ig = 1:max(GF2(:,1))
                 if size(grains(ig).ID) > 0
@@ -99,119 +95,39 @@ else
                     lattice_parameters(ig,:) = latt_param(...
                         grains(ig).material, ...
                         grains(ig).structure);
-                    if lattice_parameters(ig,1) == 0
-                        flag.flag_lattice = 0;
-                        delete(h_waitbar);
-                        errordlg(['Wrong inputs for material', ...
-                            'and structure !!!']);
-                        break;
-                    else
-                        if numphase == 1
+                    
+                    % Variable 'grcen' defined in "interface_map_init_microstructure.m"
+                    euler = grcen(ig, 4:6);
+                    g                = eulers2g(euler);
+                    grcen(ig, 7:9)   = g.'*[0 0 1].';                          % C-axis direction
+                    grcen(ig, 10:18) = [g(1,:) g(2,:) g(3,:)];                 % Orientation matrix is stored
+                    
+                    if numphase == 1
+                        slip_syst = slip_syst_1;
+                    elseif numphase == 2
+                        if strcmp(grains(ig).structure, ...
+                                gui.config_data.struct1)
                             slip_syst = slip_syst_1;
-                        elseif numphase == 2
-                            if strcmp(grains(ig).structure, ...
-                                    gui.config_data.struct1)
-                                slip_syst = slip_syst_1;
-                            elseif strcmp(grains(ig).structure, ...
-                                    gui.config_data.struct2)
-                                slip_syst = slip_syst_2;
-                            end
-                        end
-                        
-                        % Conversion from Miller-Bravais notation to cartesian notation
-                        if strcmp(grains(ig).structure, 'hcp') == 1
-                            for ss_ind = 1:size(slip_syst, 3)
-                                
-                                ss_cart(1,:,ss_ind) = ...
-                                    millerbravaisplane2cart(...
-                                    slip_syst(1,:,ss_ind), ...
-                                    lattice_parameters(ig,1));
-                                
-                                ss_cart(2,:,ss_ind) = ...
-                                    millerbravaisdir2cart(...
-                                    slip_syst(2,:,ss_ind), ...
-                                    lattice_parameters(ig,1));
-                                
-                                ss_cart_norm(1,:,ss_ind) = ...
-                                    ss_cart(1,:,ss_ind) ...
-                                    / norm(ss_cart(1,:,ss_ind));
-                                
-                                ss_cart_norm(2,:,ss_ind) = ...
-                                    ss_cart(2,:,ss_ind) ...
-                                    / norm(ss_cart(2,:,ss_ind));
-                            end
-                        else
-                            for ss_ind = 1:size(slip_syst, 3)
-                                
-                                ss_cart(1,:,ss_ind) = ...
-                                    slip_syst(1,:,ss_ind);
-                                
-                                ss_cart(2,:,ss_ind) = ...
-                                    slip_syst(2,:,ss_ind);
-                                
-                                ss_cart_norm(1,:,ss_ind) = ...
-                                    ss_cart(1,:,ss_ind) ...
-                                    / norm(ss_cart(1,:,ss_ind));
-                                
-                                ss_cart_norm(2,:,ss_ind) = ...
-                                    ss_cart(2,:,ss_ind)...
-                                    /norm(ss_cart(2,:,ss_ind));
-                            end
+                        elseif strcmp(grains(ig).structure, ...
+                                gui.config_data.struct2)
+                            slip_syst = slip_syst_2;
                         end
                     end
-                end
-                if size(grains(ig).ID) > 0
-                    if lattice_parameters(ig,1)
-                        g                = eulers2g(grcen(ig, 4:6));               % Variable 'grcen' defined in "interface_map_init_microstructure.m"
-                        grcen(ig, 7:9)   = g.'*[0 0 1].';                          % C-axis direction
-                        grcen(ig, 10:18) = [g(1,:) g(2,:) g(3,:)];                 % Orientation matrix is stored
-                        
-                        clear bv sortbv sortbv_SF sortbv_RSS;
-                        bv = zeros(size(slip_syst,3), 17);
-                        
-                        for ii = 1:1:size(slip_syst,3)
-                            bv(ii,1:3) = g.'*ss_cart_norm(1,:,ii)';                % Plane normal (n vector normalized and rotated) for m'
-                            bv(ii,4:6) = g.'*ss_cart_norm(2,:,ii)';                % Slip direction (b vector normalized and rotated) for m'
-                            bv(ii,7:9) = g.'*ss_cart(2,1:3,ii)';                        % Slip direction (b vector non normalized) for RBV
-                            bv(ii,10:12) = g.'*-ss_cart(2,1:3,ii)';                     % Slip direction (b vector non normalized and in the opposite direction) for RBV
-                            
-                            % Generalized Schmid factor
-                            bv(ii,13) = generalized_schmid_factor(...
-                                ss_cart_norm(1,:,ii), ...
-                                ss_cart_norm(2,:,ii), ...
-                                gui.stress_tensor.sigma, g);
-                            if isnan(bv(ii,13))
-                                bv(ii,14) = 0;
-                            else
-                                bv(ii,14) = abs(bv(ii,13));                        % abs(Generalized Schmid Factor)
-                            end
-                            
-                            % Resolved Shear Stress
-                            bv(ii,15) = resolved_shear_stress(...
-                                grcen(ig, 4:6), ...
-                                ss_cart_norm(2,:,ii), ...
-                                ss_cart_norm(1,:,ii), ...
-                                gui.stress_tensor.sigma_n);
-                            if isnan(bv(ii,15))
-                                bv(ii,16) = 0;
-                            else
-                                bv(ii,16) = abs(bv(ii,15));                        % abs(Resolved shear stress)
-                            end
-                            
-                            % Slip index (number from 1 to 57 for hcp)
-                            bv(ii,17) = ii;
-                        end
-                        
-                        sortbv_SF(:,:) = sortrows(bv,-14);                         % Sort slip systems by highest Schmid factor
-                        sortbv_RSS(:,:) = sortrows(bv,-16);                        % Sort slip systems by highest resolved shear stress
-                        
-                        vect(:,1:17,ig) = bv;                                  % n & b vectors for each slip system and each grain
-                        vect(:,18,ig)   = size(slip_syst,3);
-                        vect(:,19,ig)   = sortbv_SF(:,17);                     % Index of slip with highest Schmid factor
-                        vect(:,20,ig)   = sortbv_RSS(:,17);                    % Index of slip with highest resolved shear stress
-                        vect(:,21,ig)   = sortbv_SF(:,14);                     % Highest Schmid factor
-                        
-                    end
+                    
+                    [slip_vec] = ...
+                        vector_calculations(ig, grains(ig).material, ...
+                        grains(ig).structure, euler, ...
+                        slip_syst, gui.stress_tensor, 0);
+                    
+
+                    sortbv_SF(:,:) = sortrows(slip_vec,-14);                     % Sort slip systems by highest Schmid factor
+                    sortbv_RSS(:,:) = sortrows(slip_vec,-16);                    % Sort slip systems by highest resolved shear stress
+                    
+                    vect(:,1:17,ig) = slip_vec;                                  % n & b vectors for each slip system and each grain
+                    vect(:,18,ig)   = size(slip_syst,3);
+                    vect(:,19,ig)   = sortbv_SF(:,17);                     % Index of slip with highest Schmid factor
+                    vect(:,20,ig)   = sortbv_RSS(:,17);                    % Index of slip with highest resolved shear stress
+                    vect(:,21,ig)   = sortbv_SF(:,14);                     % Highest Schmid factor
                 end
             end
         end
@@ -237,8 +153,8 @@ else
             clearvars mprime_val rbv_bc_val res_Burgers_vector_val;
             waitbar(gbnum/size(RB,1), h_waitbar);
             
-            GBs(gbnum).phgrA          = grains(GBs(gbnum).grainA).phase;
-            GBs(gbnum).phgrB          = grains(GBs(gbnum).grainB).phase;
+            GBs(gbnum).phgrA = grains(GBs(gbnum).grainA).phase;
+            GBs(gbnum).phgrB = grains(GBs(gbnum).grainB).phase;
             grA   = GBs(gbnum).grainA;
             grB   = GBs(gbnum).grainB;
             phgrA = grains(GBs(gbnum).grainA).phase;
@@ -295,8 +211,6 @@ else
                                 end
                             end
                         end
-                        
-                        
                         
                         flag.CalculationFlag = 2;
                         

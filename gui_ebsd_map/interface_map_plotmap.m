@@ -74,7 +74,7 @@ color_list = listColormap;
 color_num  = get(gui.handles.pmcolorbar, 'Value');
 color_def  = color_list(color_num, :);
 % Definiton of Colorbar location
-location_list     = listLocation;
+location_list = listLocation;
 location_num  = get(gui.handles.pmcolorbar_loc, 'Value');
 location_str  = location_list(location_num,:);
 % Colormap properties
