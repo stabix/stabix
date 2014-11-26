@@ -15,7 +15,7 @@ ind_dist: 1
 box_elm_nx: 7
 box_elm_nz: 7
 box_elm_ny1: 7
-box_elm_ny2_fac: 7
+box_elm_ny2: 7
 box_elm_ny3: 8
 box_bias_x_mentat: 0.2
 box_bias_z_mentat: 0.25

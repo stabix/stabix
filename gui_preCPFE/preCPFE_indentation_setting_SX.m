@@ -31,16 +31,13 @@ elseif strfind(gdata.config.CPFEM.fem_solver_used, 'Mentat')
     set_default_values_txtbox(gdata.handles.mesh.box_bias_conv_x_val, num2str(gdata.defaults.variables.box_bias_conv_x_mentat));
 end
 
-%% Set mesh level
-gdata.variables.mesh_quality_lvl = ...
-    str2num(get(gdata.handles.other_setting.mesh_quality_lvl_val, 'String'));
-
-gdata.variables.box_elm_nx  = round(gdata.defaults.variables.box_elm_nx * gdata.variables.mesh_quality_lvl);
-gdata.variables.box_elm_nz  = round(gdata.defaults.variables.box_elm_nz * gdata.variables.mesh_quality_lvl);
-gdata.variables.radial_divi = round(gdata.defaults.variables.radial_divi * gdata.variables.mesh_quality_lvl);
-set(gdata.handles.mesh.box_elm_nx_val, 'String', num2str(gdata.variables.box_elm_nx));
-set(gdata.handles.mesh.box_elm_nz_val, 'String', num2str(gdata.variables.box_elm_nz));
-set(gdata.handles.mesh.radial_divi_val, 'String', num2str(gdata.variables.radial_divi));
+%% Get mesh level
+gdata.variables.box_elm_nx = ...
+    str2num(get(gdata.handles.mesh.box_elm_nx_val, 'String'));
+gdata.variables.box_elm_nz = ...
+    str2num(get(gdata.handles.mesh.box_elm_nz_val, 'String'));
+gdata.variables.radial_divi = ...
+    str2num(get(gdata.handles.mesh.radial_divi_val, 'String'));
 
 guidata(gcf, gdata);
 

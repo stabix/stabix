@@ -18,7 +18,7 @@ function handles = preCPFE_mesh_parameters_BX(mesh_variables, x0, hu, wu, fem_so
 [handles.box_elm_nx_str, handles.box_elm_nx_val]   = set_inputs_boxes({'box_elm_nx'}, [x0 hu*14.5 wu*2.8 x0],mesh_variables.variables.box_elm_nx, 'preCPFE_indentation_setting_BX');
 [handles.box_elm_nz_str, handles.box_elm_nz_val]   = set_inputs_boxes({'box_elm_nz'}, [x0 hu*13.9 wu*2.8 x0],mesh_variables.variables.box_elm_nz, 'preCPFE_indentation_setting_BX');
 [handles.box_elm_ny1_str, handles.box_elm_ny1_val] = set_inputs_boxes({'box_elm_ny1'}, [x0 hu*13.3 wu*2.8 x0],mesh_variables.variables.box_elm_ny1, 'preCPFE_indentation_setting_BX');
-[handles.box_elm_ny2_fac_str, handles.box_elm_ny2_fac_val] = set_inputs_boxes({'box_elm_ny2_fac'}, [x0 hu*12.7 wu*2.8 x0],mesh_variables.variables.box_elm_ny2_fac, 'preCPFE_indentation_setting_BX');
+[handles.box_elm_ny2_fac_str, handles.box_elm_ny2_val] = set_inputs_boxes({'box_elm_ny2'}, [x0 hu*12.7 wu*2.8 x0],mesh_variables.variables.box_elm_ny2, 'preCPFE_indentation_setting_BX');
 [handles.box_elm_ny3_str, handles.box_elm_ny3_val] = set_inputs_boxes({'box_elm_ny3'}, [x0 hu*12.1 wu*2.8 x0],mesh_variables.variables.box_elm_ny3, 'preCPFE_indentation_setting_BX');
 % txt boxes for bias
 if strfind(fem_software, 'Abaqus')
