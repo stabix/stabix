@@ -18,9 +18,6 @@ COORDSYS_eulers = gui.COORDSYS_eulers;
 maxx = max(GF2(:,5));
 maxy = max(GF2(:,6));
 
-% Number of phase
-numphase = str2double(get(gui.handles.NumPh,'String'));
-
 %% Size of unit cell
 scale_unitcell_val = get(gui.handles.scale_unitcell_bar, 'Value'); % value from the scale bar
 if (((maxy*maxx)/size(GF2,1))/(maxy*maxx)) < 0.025
@@ -93,15 +90,12 @@ end
 % set(gcf, 'CurrentAxes', gui.handles.AxisGBmap);
 
 if get(gui.handles.cbphase, 'Value') == 1
-    set(gui.handles.Mat1, 'BackgroundColor', 'g');
-    set(gui.handles.Struct1, 'BackgroundColor', 'g');
-    set(gui.handles.Mat2, 'BackgroundColor', 'r');
-    set(gui.handles.Struct2, 'BackgroundColor', 'r');
+    set([gui.handles.Mat1, gui.handles.Struct1], 'BackgroundColor', 'g');
+    set([gui.handles.Mat2, gui.handles.Struct2], 'BackgroundColor', 'r');
 else
-    set(gui.handles.Mat1, 'BackgroundColor', [0.9,0.9,0.9]);
-    set(gui.handles.Struct1, 'BackgroundColor', [0.9,0.9,0.9]);
-    set(gui.handles.Mat2, 'BackgroundColor', [0.9,0.9,0.9]);
-    set(gui.handles.Struct2, 'BackgroundColor', [0.9,0.9,0.9]);
+    set([gui.handles.Mat1, gui.handles.Struct1, ...
+        gui.handles.Mat2, gui.handles.Struct2], ...
+        'BackgroundColor', [0.9,0.9,0.9]);
 end
 guidata(gcf, gui);
 
@@ -109,8 +103,8 @@ guidata(gcf, gui);
 if get(gui.handles.cbgbnum, 'Value') == 1
     gui.handles.h_gbnum = zeros(size(RB,1), 'double'); % Preallocation
     for gbnum = 1:1:size(RB,1)
-        x_mp           = mean([GBs(gbnum).pos_x1; GBs(gbnum).pos_x2]);
-        y_mp           = mean([GBs(gbnum).pos_y1; GBs(gbnum).pos_y2]);
+        x_mp = mean([GBs(gbnum).pos_x1; GBs(gbnum).pos_x2]);
+        y_mp = mean([GBs(gbnum).pos_y1; GBs(gbnum).pos_y2]);
         gui.handles.h_gbnum(gbnum) = text(x_mp, y_mp, 3 * szFac, ...
             sprintf('%i',gbnum), 'Color', [.5 0 0], 'FontWeight', 'bold');
         set(gui.handles.h_gbnum(gbnum), 'HorizontalAlignment', 'Right', ...
@@ -144,21 +138,9 @@ for ng = 1:1:max(GF2(:,1))
         % Definition of slip to plot
         if gui.flag.pmparam2plot_value4Grains == 2 ...
                 || gui.flag.pmparam2plot_value4Grains == 4 % Slip with highest Schmid factor
-            if numphase == 1
-                slip = gui.calculations.vect(1,19,ng);
-            elseif numphase == 2 && grcen(ng,1) == 1
-                slip = gui.calculations.vect1(1,19,ng);
-            elseif numphase == 2 && grcen(ng,1) == 2
-                slip = gui.calculations.vect2(1,19,ng);
-            end
+            slip = gui.calculations.vect(1,19,ng);
         elseif gui.flag.pmparam2plot_value4Grains == 3 % Slip with highest resolved shear stress
-            if numphase == 1
-                slip = gui.calculations.vect(1,20,ng);
-            elseif numphase == 2 && grcen(ng,1) == 1
-                slip = gui.calculations.vect1(1,20,ng);
-            elseif numphase == 2 && grcen(ng,1) == 2
-                slip = gui.calculations.vect2(1,20,ng);
-            end
+            slip = gui.calculations.vect(1,20,ng);
         else
             slip = 0;
         end
@@ -237,15 +219,18 @@ if gui.flag.pmparam2plot_value4GB ~= 1
             elseif grcen(gui.GBs(gbnum).grainA,1) == 2
                 structure_A = gui.config_data.struct2;
             end
-            ca_ratio_A   = latt_param(...
+            ca_ratio_A = latt_param(...
                 gui.grains(gui.GBs(gbnum).grainA).material, ...
                 gui.grains(gui.GBs(gbnum).grainA).structure);
-            eulers_A     = [...
+            
+            eulers_A = [...
                 grcen(gui.GBs(gbnum).grainA,4) ...
                 grcen(gui.GBs(gbnum).grainA,5) ...
                 grcen(gui.GBs(gbnum).grainA,6)];
+            
             eulers_vis_A = coordinate_system_apply(eulers_A, ...
                 gui.COORDSYS_eulers);
+            
             % Definition of slip to plot
             if gui.flag.pmparam2plot_value4GB == 2 ...
                     || gui.flag.pmparam2plot_value4GB == 6
@@ -296,11 +281,11 @@ if gui.flag.pmparam2plot_value4GB ~= 1
                 slipB = gui.results(gbnum).n_factor_min_slipB(1);
             end
             
-            ca_ratio_B   = ...
+            ca_ratio_B = ...
                 latt_param(gui.grains(gui.GBs(gbnum).grainB).material, ...
                 gui.grains(gui.GBs(gbnum).grainB).structure);
             
-            eulers_B     = [...
+            eulers_B = [...
                 grcen(gui.GBs(gbnum).grainB,4) ...
                 grcen(gui.GBs(gbnum).grainB,5) ...
                 grcen(gui.GBs(gbnum).grainB,6)];
