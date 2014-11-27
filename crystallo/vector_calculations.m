@@ -11,7 +11,7 @@ for ig = grain
     lattice_parameters = latt_param(material, phase);  % Get the lattice parameter for the grain
     if lattice_parameters(1) == 0 || flag_error == 1
         warning_commwin('Wrong input for material and structure !!!');
-        euler = 0;
+        slip_vec = 0;
         flag_error = 1;
     else
         flag_error = 0;
@@ -60,7 +60,7 @@ if flag_error == 0
                 slip_vec(ii,10:12) = g_mat(:,:,ig).'*-ss_cart(2,1:3,ii)';     % Slip direction (b vector non normalized and in the opposite direction)
                 
                 % Generalized Schmid Factor
-                slip_vec(ii,13)   = generalized_schmid_factor(...
+                slip_vec(ii,13) = generalized_schmid_factor(...
                     ss_cart_norm(1,:,ii), ss_cart_norm(2,:,ii), ...
                     stress_tensor.sigma, g_mat(:,:,ig));
                 

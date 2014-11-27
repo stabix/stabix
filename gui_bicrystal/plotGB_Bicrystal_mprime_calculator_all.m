@@ -14,18 +14,13 @@ gui.calculations = struct();
 gui.flag.error = 0;
 
 %% Set slip systems
-[slip_systA, slip_check_1] = ...
-    slip_systems(gui.GB.Phase_A, ...
-    9);
-[slip_systB, slip_check_2] = ...
-    slip_systems(gui.GB.Phase_B, ...
-    9);
+[slip_systA, slip_check_1] = slip_systems(gui.GB.Phase_A, 9);
+[slip_systB, slip_check_2] = slip_systems(gui.GB.Phase_B, 9);
 
 [size_max_slip_sys, slip_systA, slip_systB] = ...
     check_size_slipsystem(slip_systA, slip_systB);
 
 if isempty(find(slip_check_1==0)) && isempty(find(slip_check_2==0)) % Check orthogonality
-    
     gui.calculations.vectA = zeros(size_max_slip_sys,21,gui.GB.GrainA);
     gui.calculations.vectB = zeros(size_max_slip_sys,21,gui.GB.GrainB);
     
@@ -43,7 +38,7 @@ if isempty(find(slip_check_1==0)) && isempty(find(slip_check_2==0)) % Check orth
     
     ig = gui.GB.GrainA;
     sortbvA(:,:,ig) = sortrows(slip_vecA, -14);                         % Sort slip systems by Generalized Schimd factor
-    gui.calculations.vectA(:,1:17,ig) = slip_vecA;                             % Matrix with slip systems, Burgers vectors, index of slips for GrainA...
+    gui.calculations.vectA(:,1:17,ig) = slip_vecA;                      % Matrix with slip systems, Burgers vectors, index of slips for GrainA...
     gui.calculations.vectA(:,18,ig)   = size(slip_systA, 3);
     gui.calculations.vectA(:,19,ig)   = sortbvA(:,14,ig);               % Highest Generalized Schmid Factor
     
@@ -61,7 +56,7 @@ if isempty(find(slip_check_1==0)) && isempty(find(slip_check_2==0)) % Check orth
     
     ig = gui.GB.GrainB;
     sortbvB(:,:,ig) = sortrows(slip_vecB, -14);                         % Sort slip systems by Generalized Schimd factor
-    gui.calculations.vectB(:,1:17,ig) = slip_vecB;                             % Matrix with slip systems, Burgers vectors, index of slips for GrainA...
+    gui.calculations.vectB(:,1:17,ig) = slip_vecB;                      % Matrix with slip systems, Burgers vectors, index of slips for GrainA...
     gui.calculations.vectB(:,18,ig)   = size(slip_systB, 3);
     gui.calculations.vectB(:,19,ig)   = sortbvB(:,14,ig);               % Highest Generalized Schmid Factor
     
@@ -98,7 +93,7 @@ if isempty(find(slip_check_1==0)) && isempty(find(slip_check_2==0)) % Check orth
                             gui.calculations.vectB(jj,7:9,gui.GB.GrainB));
                         %rbv_bc_val(3) = residual_Burgers_vector(gui.calculations.vectA(kk,7:9,GB.GrainA), gui.calculations.vectB(jj,10:12,GB.GrainB));
                         %rbv_bc_val(4) = residual_Burgers_vector(gui.calculations.vectA(kk,10:12,GB.GrainA), gui.calculations.vectB(jj,10:12,GB.GrainB));
-                        gui.calculations.residual_Burgers_vector_val_bc_all(jj,kk) = ...
+                        gui.calculations.residual_Burgers_vector_val_bc_all(kk,jj) = ...
                             min(rbv_bc_val);
                         ind = find(rbv_bc_val == min(min(rbv_bc_val)));
                         
