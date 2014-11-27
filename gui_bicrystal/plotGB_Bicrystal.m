@@ -154,16 +154,16 @@ if ~gui.flag.error
     %% m' and RBV calculations for specific slips given by user for grains A and B
     if valcase == size(get(gui.handles.pmchoicecase, 'String'), 1)
         gui.GB.mprime_specific = ...
-            gui.calculations.mprime_val_bc(slipB, slipA);
+            gui.calculations.mprime_val_bc(slipA, slipB);
         
         gui.GB.rbv_specific = ...
-            gui.calculations.residual_Burgers_vector_val_bc(slipB, slipA);
+            gui.calculations.residual_Burgers_vector_val_bc(slipA, slipB);
         
         gui.GB.nfact_specific = ...
-            gui.calculations.n_fact_val_bc(slipB, slipA);
+            gui.calculations.n_fact_val_bc(slipA, slipB);
         
         gui.GB.LRBfact_specific = ...
-            gui.calculations.LRB_val_bc(slipB, slipA);
+            gui.calculations.LRB_val_bc(slipA, slipB);
     end
     guidata(gcf, gui);
     

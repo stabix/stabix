@@ -66,18 +66,9 @@ else
             slip_systems(gui.config_data.struct2, ...
             gui.config_data.slips_2);
     end
-    % To have the same size for slip system matrices when phases are
-    % different
-    if size(slip_syst_1,3) > size(slip_syst_2,3)
-        slip_syst_2(:,:,size(slip_syst_2,3)+1:size(slip_syst_1,3)) ...
-            = NaN;
-        size_max_slip_sys = size(slip_syst_1,3);
-        
-    else
-        slip_syst_1(:,:,size(slip_syst_1,3)+1:size(slip_syst_2,3)) ...
-            = NaN;
-        size_max_slip_sys = size(slip_syst_2,3);
-    end
+    
+    [size_max_slip_sys, slip_syst_1, slip_syst_2] = ...
+        check_size_slipsystem(slip_syst_1, slip_syst_2);
     
     if isempty(find(slip_check_1==0)) && isempty(find(slip_check_2==0)) % Check orthogonality
         %% Start calculations...
@@ -119,7 +110,7 @@ else
                         grains(ig).structure, euler, ...
                         slip_syst, gui.stress_tensor, 0);
                     
-
+                    
                     sortbv_SF(:,:) = sortrows(slip_vec,-14);                     % Sort slip systems by highest Schmid factor
                     sortbv_RSS(:,:) = sortrows(slip_vec,-16);                    % Sort slip systems by highest resolved shear stress
                     

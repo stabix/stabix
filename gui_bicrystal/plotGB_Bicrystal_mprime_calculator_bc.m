@@ -9,38 +9,15 @@ function plotGB_Bicrystal_mprime_calculator_bc(listslipA, listslipB)
 %% Set the encapsulation of data
 gui = guidata(gcf);
 
-if strcmp(gui.GB.Phase_A, gui.GB.Phase_B)
-    numphase = 1;
-else
-    numphase = 2;
-end
+[slip_systA, slip_check_1] = ...
+    slip_systems(gui.GB.Phase_A, ...
+    listslipA);
+[slip_systB, slip_check_2] = ...
+    slip_systems(gui.GB.Phase_B, ...
+    listslipB);
 
-if numphase == 1
-    [slip_systA, slip_check_1] = ...
-        slip_systems(gui.GB.Phase_A, ...
-        listslipA);
-    slip_check_2 = 1;
-    slip_systB = slip_systA;
-elseif numphase == 2
-    [slip_systA, slip_check_1] = ...
-        slip_systems(gui.GB.Phase_A, ...
-        9);
-    [slip_systB, slip_check_2] = ...
-        slip_systems(gui.GB.Phase_B, ...
-        listslipB);
-end
-% To have the same size for slip system matrices when phases are
-% different
-if size(slip_systA,3) > size(slip_systB,3)
-    slip_systB(:,:,size(slip_systB,3)+1:size(slip_systA,3)) ...
-        = NaN;
-    size_max_slip_sys = size(slip_systA,3);
-    
-else
-    slip_systA(:,:,size(slip_systA,3)+1:size(slip_systB,3)) ...
-        = NaN;
-    size_max_slip_sys = size(slip_systB,3);
-end
+[size_max_slip_sys, slip_systA, slip_systB] = ...
+    check_size_slipsystem(slip_systA, slip_systB);
 
 if isempty(find(slip_check_1==0)) && isempty(find(slip_check_2==0)) % Check orthogonality
     

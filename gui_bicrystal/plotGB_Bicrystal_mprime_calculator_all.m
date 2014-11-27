@@ -14,44 +14,21 @@ gui.calculations = struct();
 gui.flag.error = 0;
 
 %% Set slip systems
-if strcmp(gui.GB.Phase_A, gui.GB.Phase_B)
-    numphase = 1;
-else
-    numphase = 2;
-end
+[slip_systA, slip_check_1] = ...
+    slip_systems(gui.GB.Phase_A, ...
+    9);
+[slip_systB, slip_check_2] = ...
+    slip_systems(gui.GB.Phase_B, ...
+    9);
 
-if numphase == 1
-    [slip_systA, slip_check_1] = ...
-        slip_systems(gui.GB.Phase_A, ...
-        9);
-    slip_check_2 = 1;
-    slip_systB = slip_systA;
-elseif numphase == 2
-    [slip_systA, slip_check_1] = ...
-        slip_systems(gui.GB.Phase_A, ...
-        9);
-    [slip_systB, slip_check_2] = ...
-        slip_systems(gui.GB.Phase_B, ...
-        9);
-end
-% To have the same size for slip system matrices when phases are
-% different
-if size(slip_systA,3) > size(slip_systB,3)
-    slip_systB(:,:,size(slip_systB,3)+1:size(slip_systA,3)) ...
-        = NaN;
-    size_max_slip_sys = size(slip_systA,3);
-    
-else
-    slip_systA(:,:,size(slip_systA,3)+1:size(slip_systB,3)) ...
-        = NaN;
-    size_max_slip_sys = size(slip_systB,3);
-end
+[size_max_slip_sys, slip_systA, slip_systB] = ...
+    check_size_slipsystem(slip_systA, slip_systB);
 
 if isempty(find(slip_check_1==0)) && isempty(find(slip_check_2==0)) % Check orthogonality
     
     gui.calculations.vectA = zeros(size_max_slip_sys,21,gui.GB.GrainA);
     gui.calculations.vectB = zeros(size_max_slip_sys,21,gui.GB.GrainB);
-
+    
     % Grain A
     gui.GB.eulerA = ...
         plotGB_Bicrystal_update_euler(...

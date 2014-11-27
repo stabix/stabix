@@ -22,80 +22,80 @@ slipB_all_vect = slip_systems(gui.GB.Phase_B, 9);
 
 switch(valcase)
     case {1}
-        slipA = gui.GB.results.y_mp_max1;
-        slipB = gui.GB.results.x_mp_max1;
+        slipA = gui.GB.results.x_mp_max1;
+        slipB = gui.GB.results.y_mp_max1;
     case {2}
-        slipA = gui.GB.results.y_mp_max2;
-        slipB = gui.GB.results.x_mp_max2;
+        slipA = gui.GB.results.x_mp_max2;
+        slipB = gui.GB.results.y_mp_max2;
     case {3}
-        slipA = gui.GB.results.y_mp_max3;
-        slipB = gui.GB.results.x_mp_max3;
+        slipA = gui.GB.results.x_mp_max3;
+        slipB = gui.GB.results.y_mp_max3;
     case {4}
-        slipA = gui.GB.results.y_mp_min1;
-        slipB = gui.GB.results.x_mp_min1;
+        slipA = gui.GB.results.x_mp_min1;
+        slipB = gui.GB.results.y_mp_min1;
     case {5}
-        slipA = gui.GB.results.y_mp_min2;
-        slipB = gui.GB.results.x_mp_min2;
+        slipA = gui.GB.results.x_mp_min2;
+        slipB = gui.GB.results.y_mp_min2;
     case {6}
-        slipA = gui.GB.results.y_mp_min3;
-        slipB = gui.GB.results.x_mp_min3;
+        slipA = gui.GB.results.x_mp_min3;
+        slipB = gui.GB.results.y_mp_min3;
     case {7, 14, 21, 28, 29}
-        slipA = gui.GB.results.SFmax_y;
-        slipB = gui.GB.results.SFmax_x;
+        slipA = gui.GB.results.SFmax_x;
+        slipB = gui.GB.results.SFmax_y;
     case {8}
-        slipA = gui.GB.results.y_rbv_max1;
-        slipB = gui.GB.results.x_rbv_max1;
+        slipA = gui.GB.results.x_rbv_max1;
+        slipB = gui.GB.results.y_rbv_max1;
     case {9}
-        slipA = gui.GB.results.y_rbv_max2;
-        slipB = gui.GB.results.x_rbv_max2;
+        slipA = gui.GB.results.x_rbv_max2;
+        slipB = gui.GB.results.y_rbv_max2;
     case {10}
-        slipA = gui.GB.results.y_rbv_max3;
-        slipB = gui.GB.results.x_rbv_max3;
+        slipA = gui.GB.results.x_rbv_max3;
+        slipB = gui.GB.results.y_rbv_max3;
     case {11}
-        slipA = gui.GB.results.y_rbv_min1;
-        slipB = gui.GB.results.x_rbv_min1;
+        slipA = gui.GB.results.x_rbv_min1;
+        slipB = gui.GB.results.y_rbv_min1;
     case {12}
-        slipA = gui.GB.results.y_rbv_min2;
-        slipB = gui.GB.results.x_rbv_min2;
+        slipA = gui.GB.results.x_rbv_min2;
+        slipB = gui.GB.results.y_rbv_min2;
     case {13}
-        slipA = gui.GB.results.y_rbv_min3;
-        slipB = gui.GB.results.x_rbv_min3;
+        slipA = gui.GB.results.x_rbv_min3;
+        slipB = gui.GB.results.y_rbv_min3;
     case {15}
-        slipA = gui.GB.results.y_nfact_max1;
-        slipB = gui.GB.results.x_nfact_max1;
+        slipA = gui.GB.results.x_nfact_max1;
+        slipB = gui.GB.results.y_nfact_max1;
     case {16}
-        slipA = gui.GB.results.y_nfact_max2;
-        slipB = gui.GB.results.x_nfact_max2;
+        slipA = gui.GB.results.x_nfact_max2;
+        slipB = gui.GB.results.y_nfact_max2;
     case {17}
-        slipA = gui.GB.results.y_nfact_max3;
-        slipB = gui.GB.results.x_nfact_max3;
+        slipA = gui.GB.results.x_nfact_max3;
+        slipB = gui.GB.results.y_nfact_max3;
     case {18}
-        slipA = gui.GB.results.y_nfact_min1;
-        slipB = gui.GB.results.x_nfact_min1;
+        slipA = gui.GB.results.x_nfact_min1;
+        slipB = gui.GB.results.y_nfact_min1;
     case {19}
-        slipA = gui.GB.results.y_nfact_min2;
-        slipB = gui.GB.results.x_nfact_min2;
+        slipA = gui.GB.results.x_nfact_min2;
+        slipB = gui.GB.results.y_nfact_min2;
     case {20}
-        slipA = gui.GB.results.y_nfact_min3;
-        slipB = gui.GB.results.x_nfact_min3;
+        slipA = gui.GB.results.x_nfact_min3;
+        slipB = gui.GB.results.y_nfact_min3;
     case {22}
-        slipA = gui.GB.results.y_LRBfact_max1;
-        slipB = gui.GB.results.x_LRBfact_max1;
+        slipA = gui.GB.results.x_LRBfact_max1;
+        slipB = gui.GB.results.y_LRBfact_max1;
     case {23}
-        slipA = gui.GB.results.y_LRBfact_max2;
-        slipB = gui.GB.results.x_LRBfact_max2;
+        slipA = gui.GB.results.x_LRBfact_max2;
+        slipB = gui.GB.results.y_LRBfact_max2;
     case {24}
-        slipA = gui.GB.results.y_LRBfact_max3;
-        slipB = gui.GB.results.x_LRBfact_max3;
+        slipA = gui.GB.results.x_LRBfact_max3;
+        slipB = gui.GB.results.y_LRBfact_max3;
     case {25}
-        slipA = gui.GB.results.y_LRBfact_min1;
-        slipB = gui.GB.results.x_LRBfact_min1;
+        slipA = gui.GB.results.x_LRBfact_min1;
+        slipB = gui.GB.results.y_LRBfact_min1;
     case {26}
-        slipA = gui.GB.results.y_LRBfact_min2;
-        slipB = gui.GB.results.x_LRBfact_min2;
+        slipA = gui.GB.results.x_LRBfact_min2;
+        slipB = gui.GB.results.y_LRBfact_min2;
     case {27}
-        slipA = gui.GB.results.y_LRBfact_min3;
-        slipB = gui.GB.results.x_LRBfact_min3;
+        slipA = gui.GB.results.x_LRBfact_min3;
+        slipB = gui.GB.results.y_LRBfact_min3;
     case {30}
         if isempty(get(gui.handles.getSlipA, 'String'))
             plotGB_Bicrystal_set_slips_indices(gui.handles.getSlipA, ...
