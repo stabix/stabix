@@ -70,7 +70,7 @@ tmp_nam = [tempname '.tif'];
 if nargin > 2 && strcmp(renderer, '-painters')
     % Print to eps file
     tmp_eps = [tempname '.eps'];
-    print2eps(tmp_eps, fig, renderer, '-loose');
+    print2eps(tmp_eps, fig, 0, renderer, '-loose');
     try
         % Initialize the command to export to tiff using ghostscript
         cmd_str = ['-dEPSCrop -q -dNOPAUSE -dBATCH ' res_str ' -sDEVICE=tiff24nc'];
@@ -171,7 +171,7 @@ if isequal(res, round(res))
         A = A(1:min(end,px(1)),1:min(end,px(2)),:);
     end
 end
-return
+end
 
 % Function to return (and create, where necessary) the font path
 function fp = font_path()
@@ -195,4 +195,4 @@ else
     fp = [fp '/usr/share/fonts:/usr/local/share/fonts:/usr/share/fonts/X11:/usr/local/share/fonts/X11:/usr/share/fonts/truetype:/usr/local/share/fonts/truetype'];
 end
 user_string('gs_font_path', fp);
-return
+end

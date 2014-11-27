@@ -83,11 +83,11 @@ if nargin > 3 && append && exist(dest, 'file') == 2
     options = [options ' -f "' tmp_nam '" "' source '"'];
     try
         % Convert to pdf using ghostscript
-        [status message] = ghostscript(options);
-    catch
+        [status, message] = ghostscript(options);
+    catch me
         % Delete the intermediate file
         delete(tmp_nam);
-        rethrow(lasterror);
+        rethrow(me);
     end
     % Delete the intermediate file
     delete(tmp_nam);
@@ -96,7 +96,7 @@ else
     % Add the output file names
     options = [options ' -f "' source '"'];
     % Convert to pdf using ghostscript
-    [status message] = ghostscript(options);
+    [status, message] = ghostscript(options);
 end
 % Check for error
 if status
@@ -107,7 +107,7 @@ if status
         error(message);
     end
 end
-return
+end
 
 % Function to return (and create, where necessary) the font path
 function fp = font_path()
@@ -131,4 +131,4 @@ else
     fp = [fp '/usr/share/fonts:/usr/local/share/fonts:/usr/share/fonts/X11:/usr/local/share/fonts/X11:/usr/share/fonts/truetype:/usr/local/share/fonts/truetype'];
 end
 user_string('gs_font_path', fp);
-return
+end

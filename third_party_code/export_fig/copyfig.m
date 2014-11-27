@@ -20,7 +20,7 @@ if nargin == 0
     fh = gcf;
 end
 % Is there a legend?
-if isempty(findobj(fh, 'Type', 'axes', 'Tag', 'legend'))
+if isempty(findall(fh, 'Type', 'axes', 'Tag', 'legend'))
     % Safe to copy using copyobj
     fh = copyobj(fh, 0);
 else
@@ -30,4 +30,4 @@ else
     fh = hgload(tmp_nam);
     delete(tmp_nam);
 end
-return
+end

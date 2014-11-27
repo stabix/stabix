@@ -18,13 +18,16 @@
 % OUT:
 %    fh - The handle of the created figure.
 
-% Copyright (C) Oliver Woodford 2011-2012
+% Copyright (C) Oliver Woodford 2011-2013
 
 % Thank you to Rosella Blatt for reporting a bug to do with axes in GUIs
 % 16/3/2012 Moved copyfig to its own function. Thanks to Bob Fratantonio
 % for pointing out that the function is also used in export_fig.m.
 % 12/12/12 - Add support for isolating uipanels. Thanks to michael for
 % suggesting it.
+% 08/10/13 - Bug fix to allchildren suggested by Will Grant (many thanks!).
+% 05/12/13 - Bug fix to axes having different units. Thanks to Remington
+% Reid for reporting the issue.
 
 function fh = isolate_axes(ah, vis)
 % Make sure we have an array of handles
@@ -71,6 +74,7 @@ end
 lh = findall(fh, 'Type', 'axes', '-and', {'Tag', 'legend', '-or', 'Tag', 'Colorbar'});
 nLeg = numel(lh);
 if nLeg > 0
+    set([ah(:); lh(:)], 'Units', 'normalized');
     ax_pos = get(ah, 'OuterPosition');
     if nAx > 1
         ax_pos = cell2mat(ax_pos(:));
@@ -81,25 +85,27 @@ if nLeg > 0
         leg_pos = cell2mat(leg_pos);
     end
     leg_pos(:,3:4) = leg_pos(:,3:4) + leg_pos(:,1:2);
-    for a = 1:nAx
-            % Overlap test
-            ah = [ah; lh(leg_pos(:,1) < ax_pos(a,3) & leg_pos(:,2) < ax_pos(a,4) &...
-                         leg_pos(:,3) > ax_pos(a,1) & leg_pos(:,4) > ax_pos(a,2))];
-    end
+    ax_pos = shiftdim(ax_pos, -1);
+    % Overlap test
+    M = bsxfun(@lt, leg_pos(:,1), ax_pos(:,:,3)) & ...
+        bsxfun(@lt, leg_pos(:,2), ax_pos(:,:,4)) & ...
+        bsxfun(@gt, leg_pos(:,3), ax_pos(:,:,1)) & ...
+        bsxfun(@gt, leg_pos(:,4), ax_pos(:,:,2));
+    ah = [ah; lh(any(M, 2))];
 end
 % Get all the objects in the figure
 axs = findall(fh);
 % Delete everything except for the input objects and associated items
 delete(axs(~ismember(axs, [ah; allchildren(ah); allancestors(ah)])));
-return
+end
 
 function ah = allchildren(ah)
-ah = allchild(ah);
+ah = findall(ah);
 if iscell(ah)
     ah = cell2mat(ah);
 end
 ah = ah(:);
-return
+end
 
 function ph = allancestors(ah)
 ph = [];
@@ -110,4 +116,4 @@ for a = 1:numel(ah)
         h = get(h, 'parent');
     end
 end
-return
+end

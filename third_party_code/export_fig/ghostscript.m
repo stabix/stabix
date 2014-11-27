@@ -33,6 +33,10 @@
 % Punnoose for highlighting the issue.
 % 28/6/13 - Fix error using GS 9.07 in Linux. Many thanks to Jannick
 % Steinbring for proposing the fix.
+% 24/10/13 - Fix error using GS 9.07 in Linux. Many thanks to Johannes
+% for the fix.
+% 23/01/2014 - Add full path to ghostscript.txt in warning. Thanks to Koen
+% Vermeer for raising the issue.
 
 function varargout = ghostscript(cmd)
 % Initialize any required system calls before calling ghostscript
@@ -40,9 +44,12 @@ shell_cmd = '';
 if isunix
     shell_cmd = 'export LD_LIBRARY_PATH=""; '; % Avoids an error on Linux with GS 9.07
 end
+if ismac
+    shell_cmd = 'export DYLD_LIBRARY_PATH=""; ';  % Avoids an error on Mac with GS 9.07
+end
 % Call ghostscript
 [varargout{1:nargout}] = system(sprintf('%s"%s" %s', shell_cmd, gs_path, cmd));
-return
+end
 
 function path_ = gs_path
 % Return a valid path
@@ -91,9 +98,9 @@ if ispc
         return
     end
 else
-    bin = {'/usr/bin/gs', '/usr/local/bin/gs'};
-    for a = 1:numel(bin)
-        path_ = bin{a};
+    executable = {'/usr/bin/gs', '/usr/local/bin/gs'};
+    for a = 1:numel(executable)
+        path_ = executable{a};
         if check_store_gs_path(path_)
             return
         end
@@ -125,6 +132,7 @@ while 1
     end
 end
 error('Ghostscript not found. Have you installed it from www.ghostscript.com?');
+end
 
 function good = check_store_gs_path(path_)
 % Check the path is valid
@@ -134,13 +142,17 @@ if ~good
 end
 % Update the current default path to the path found
 if ~user_string('ghostscript', path_)
-    warning('Path to ghostscript installation could not be saved. Enter it manually in ghostscript.txt.');
+    warning('Path to ghostscript installation could not be saved. Enter it manually in %s.', fullfile(fileparts(which('user_string.m')), '.ignore', 'ghostscript.txt'));
     return
 end
-return
+end
 
 function good = check_gs_path(path_)
 % Check the path is valid
-[good, message] = system(sprintf('"%s" -h', path_));
+shell_cmd = '';
+if ismac
+    shell_cmd = 'export DYLD_LIBRARY_PATH=""; ';  % Avoids an error on Mac with GS 9.07
+end
+[good, message] = system(sprintf('%s"%s" -h', shell_cmd, path_));
 good = good == 0;
-return
+end
