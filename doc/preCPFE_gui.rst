@@ -69,11 +69,21 @@ by employing a local phenomenological crystal plasticity formulation in the simu
 
 The function used to run the preCPFE GUI for BX indentation is: `A_preCPFE_windows_indentation_setting_BX.m <https://github.com/stabix/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_BX.m>`_
 
-.. figure:: ./_pictures/GUIs/preCPFE_GUI_BX.png
-   :scale: 40 %
-   :align: center
+.. only:: html
+
+    .. figure:: ./_pictures/GUIs/BX_mesh.gif
+       :scale: 60 %
+       :align: center
+       
+       *Figure 4 : Screenshots of the preCPFE GUI for the bicrystal indentation*
    
-   *Figure 4 : Screenshot of the preCPFE GUI for the bicrystal indentation*
+.. only:: latex
+
+    .. figure:: ./_pictures/GUIs/preCPFE_GUI_BX.png
+       :scale: 40 %
+       :align: center
+       
+       *Figure 4 : Screenshot of the preCPFE GUI for the bicrystal indentation*
 
 Convention for the bicrystal mesh
 **********************************
