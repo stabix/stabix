@@ -5,10 +5,7 @@ function [Material_A, Material_B] = plotGB_Bicrystal_get_material
 
 gui = guidata(gcf);
 
-listmater_str = listMaterial;
-MaterialA_num = get(gui.handles.pmMatA, 'Value');
-MaterialB_num = get(gui.handles.pmMatB, 'Value');
-Material_A = char(listmater_str(MaterialA_num));
-Material_B = char(listmater_str(MaterialB_num));
+Material_A = get_value_popupmenu(gui.handles.pmMatA, listMaterial);
+Material_B = get_value_popupmenu(gui.handles.pmMatB, listMaterial);
 
 end

@@ -70,13 +70,11 @@ fontsize_axis = 16;
 clear bins vec Colorbar;
 
 % Definiton of Colormap
-color_list = listColormap;
-color_num  = get(gui.handles.pmcolorbar, 'Value');
-color_def  = color_list(color_num, :);
+color_def = get_value_popupmenu(gui.handles.pmcolorbar, listColormap);
 % Definiton of Colorbar location
-location_list = listLocation;
-location_num  = get(gui.handles.pmcolorbar_loc, 'Value');
-location_str  = location_list(location_num,:);
+location_num = get(gui.handles.pmcolorbar_loc, 'Value');
+location_str = ...
+    get_value_popupmenu(gui.handles.pmcolorbar_loc, listLocation);
 % Colormap properties
 colormap(color_def{:});
 cmap = colormap;
@@ -430,10 +428,8 @@ if gui.flag.flag_lattice == 1
     view([0 0 1])
     
     %% Get unit of EBSD map
-    gui.config_map.unit_list = listLengthUnit;
-    gui.config_map.unit_value = get(gui.handles.pm_unit, 'Value');
     gui.config_map.unit_string = ...
-        gui.config_map.unit_list(gui.config_map.unit_value, :);
+        get_value_popupmenu(gui.handles.pm_unit, listLengthUnit);
     xlabel(strcat('x axis - (',gui.config_map.unit_string{:},')'), ...
         'fontsize', fontsize_axis);
     ylabel(strcat('y axis - (',gui.config_map.unit_string{:},')'), ...

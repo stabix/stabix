@@ -17,6 +17,7 @@ python.finds_numpy = ~ system(sprintf('%s -c "import numpy"', python_loc));
 
 cmd = sprintf('%s --version', python_loc);
 commandwindow;
+display(cmd);
 
 python.version = strtrim(evalc('system(cmd);'));
 

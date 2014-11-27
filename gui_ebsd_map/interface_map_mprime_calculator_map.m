@@ -105,11 +105,14 @@ else
                         end
                     end
                     
-                    [slip_vec] = ...
+                    [slip_vec, flag_error] = ...
                         vector_calculations(ig, grains(ig).material, ...
                         grains(ig).structure, euler, ...
                         slip_syst, gui.stress_tensor, 0);
                     
+                    if flag_error
+                        flag.flag_lattice = 0;
+                    end
                     
                     sortbv_SF(:,:) = sortrows(slip_vec,-14);                     % Sort slip systems by highest Schmid factor
                     sortbv_RSS(:,:) = sortrows(slip_vec,-16);                    % Sort slip systems by highest resolved shear stress

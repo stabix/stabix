@@ -5,10 +5,7 @@ function [Phase_A, Phase_B] = plotGB_Bicrystal_get_struct
 
 gui = guidata(gcf);
 
-liststruct_str = listPhase;
-phA_num = get(gui.handles.pmStructA, 'Value');
-phB_num = get(gui.handles.pmStructB, 'Value');
-Phase_A = liststruct_str(phA_num);
-Phase_B = liststruct_str(phB_num);
+Phase_A = get_value_popupmenu(gui.handles.pmStructA, listPhase);
+Phase_B = get_value_popupmenu(gui.handles.pmStructB, listPhase);
 
 end

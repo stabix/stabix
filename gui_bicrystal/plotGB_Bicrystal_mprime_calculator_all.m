@@ -36,11 +36,13 @@ if isempty(find(slip_check_1==0)) && isempty(find(slip_check_2==0)) % Check orth
         slip_systA,...
         gui.stress_tensor, gui.flag.error);
     
-    ig = gui.GB.GrainA;
-    sortbvA(:,:,ig) = sortrows(slip_vecA, -14);                         % Sort slip systems by Generalized Schimd factor
-    gui.calculations.vectA(:,1:17,ig) = slip_vecA;                      % Matrix with slip systems, Burgers vectors, index of slips for GrainA...
-    gui.calculations.vectA(:,18,ig)   = size(slip_systA, 3);
-    gui.calculations.vectA(:,19,ig)   = sortbvA(:,14,ig);               % Highest Generalized Schmid Factor
+    if ~gui.flag.error
+        ig = gui.GB.GrainA;
+        sortbvA(:,:,ig) = sortrows(slip_vecA, -14);                         % Sort slip systems by Generalized Schimd factor
+        gui.calculations.vectA(:,1:17,ig) = slip_vecA;                      % Matrix with slip systems, Burgers vectors, index of slips for GrainA...
+        gui.calculations.vectA(:,18,ig)   = size(slip_systA, 3);
+        gui.calculations.vectA(:,19,ig)   = sortbvA(:,14,ig);               % Highest Generalized Schmid Factor
+    end
     
     % Grain B
     gui.GB.eulerB = ...
@@ -54,15 +56,17 @@ if isempty(find(slip_check_1==0)) && isempty(find(slip_check_2==0)) % Check orth
         slip_systB,...
         gui.stress_tensor, gui.flag.error);
     
-    ig = gui.GB.GrainB;
-    sortbvB(:,:,ig) = sortrows(slip_vecB, -14);                         % Sort slip systems by Generalized Schimd factor
-    gui.calculations.vectB(:,1:17,ig) = slip_vecB;                      % Matrix with slip systems, Burgers vectors, index of slips for GrainA...
-    gui.calculations.vectB(:,18,ig)   = size(slip_systB, 3);
-    gui.calculations.vectB(:,19,ig)   = sortbvB(:,14,ig);               % Highest Generalized Schmid Factor
+    if ~gui.flag.error
+        ig = gui.GB.GrainB;
+        sortbvB(:,:,ig) = sortrows(slip_vecB, -14);                         % Sort slip systems by Generalized Schimd factor
+        gui.calculations.vectB(:,1:17,ig) = slip_vecB;                      % Matrix with slip systems, Burgers vectors, index of slips for GrainA...
+        gui.calculations.vectB(:,18,ig)   = size(slip_systB, 3);
+        gui.calculations.vectB(:,19,ig)   = sortbvB(:,14,ig);               % Highest Generalized Schmid Factor
+    end
     
     guidata(gcf, gui);
     
-    if gui.flag.error == 0
+    if ~gui.flag.error
         %% m', residual Burgers vector, N-factor and SF(GB) calculations
         gui = guidata(gcf);
         

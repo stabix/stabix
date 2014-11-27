@@ -7,17 +7,12 @@ function [slip_vec, flag_error] = ...
 % author: d.mercier@mpie.de
 
 % Loop to set grain properties (identity, Euler angles, position)
+slip_vec = 0;
 for ig = grain
-    lattice_parameters = latt_param(material, phase);  % Get the lattice parameter for the grain
-    if lattice_parameters(1) == 0 || flag_error == 1
-        warning_commwin('Wrong input for material and structure !!!');
-        slip_vec = 0;
-        flag_error = 1;
-    else
-        flag_error = 0;
-    end
+    [lattice_parameters, flag_error] = ...
+        check_material_phase(material, phase);
     
-    if flag_error == 0
+    if ~flag_error
         ss_cart = zeros(2,3,size(slip_syst, 3));
         ss_cart_norm = zeros(2,3,size(slip_syst, 3));
         if strcmp(phase, 'hcp') == 1
@@ -44,7 +39,7 @@ for ig = grain
     end
 end
 
-if flag_error == 0
+if ~flag_error
     if lattice_parameters(1) ~= 0
         % Preallocation
         slip_vec = zeros(size(slip_syst, 3), 15);

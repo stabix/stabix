@@ -12,29 +12,16 @@ if get(gui.handles.pmchoicecase, 'Value') == size_popupmenu(1); % Imported input
     set(gui.handles.pmlistslipsB, 'Value', 1);
 end
 
-listSlipsA = listSlipSystems(gui.GB.Phase_A);
-listSlipsB = listSlipSystems(gui.GB.Phase_B);
-
-slipAnum = get(gui.handles.pmlistslipsA, 'Value');
-if size(slipAnum, 2) == 1
-    slipAplot = listSlipsA(slipAnum, :);
-    listslipA = slip_systems_plot(slipAplot);
-else
-    for ii = 1:1:size(slipAnum, 2)
-        var_slipA    =  listSlipsA{slipAnum(ii)};
-        listslipA(ii) = slip_systems_plot(var_slipA);
-    end
+var_slipA = get_value_popupmenu(gui.handles.pmlistslipsA, ...
+    listSlipSystems(gui.GB.Phase_A));
+for ii = 1:1:size(var_slipA, 2)
+    listslipA(ii) = slip_systems_plot(var_slipA(ii,:));
 end
 
-slipBnum = get(gui.handles.pmlistslipsB, 'Value');
-if size(slipBnum, 2) == 1
-    slipBplot = listSlipsB(slipBnum, :);
-    listslipB = slip_systems_plot(slipBplot);
-else
-    for ii = 1:1:size(slipBnum,2)
-        var_slipB    =  listSlipsB{slipBnum(ii)};
-        listslipB(ii) = slip_systems_plot(var_slipB);
-    end
+var_slipB = get_value_popupmenu(gui.handles.pmlistslipsB, ...
+    listSlipSystems(gui.GB.Phase_B));
+for ii = 1:1:size(var_slipB, 2)
+    listslipB(ii) = slip_systems_plot(var_slipB(ii,:));
 end
 
 no_slip = (listslipA(1) == 0 || listslipB(1) == 0);
