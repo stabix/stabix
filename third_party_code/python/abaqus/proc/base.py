@@ -114,7 +114,6 @@ sample_name = 'sample'
 model_name = mdb.Model(name='%s')''' % (self.modelname) + '''
 ''')
 
-
     def procIndentDocCall(self):
         self.proc.append('''
 ''')
@@ -132,10 +131,8 @@ model_name = mdb.Model(name='%s')''' % (self.modelname) + '''
         self.proc.append('''
 ''')
 
-
     def procSample(self):
         self.header('SAMPLE-MODELING AND MESHING')
-
 
     def proc_points(self, p_list):
         p_str = '*add_points\n'
@@ -148,7 +145,6 @@ model_name = mdb.Model(name='%s')''' % (self.modelname) + '''
         for i, n in enumerate(n_list):
             n_str += '%e %e %e # %i \n' % (n[0], n[1], n[2], i)
         return n_str
-
 
     def procNodeSets(self):
         self.proc.append('''
@@ -189,7 +185,6 @@ model_name = mdb.Model(name='%s')''' % (self.modelname) + '''
 
     def e3(self):
         return np.array([0., 0., 1.])
-
 
     def procInitCond(self, iconds=['icond_mpie'], ic_els=['all_existing']):
         self.proc.append(self.header('INITIAL CONDITIONS'))
@@ -251,21 +246,20 @@ elements_sample = final_sample.elements
 elements_selected = elements_sample.getByBoundingCylinder((0,0,-h_sample-smv),(0,0,smv), D_sample*0.5+smv)
 final_sample.Set(elements=elements_selected, name='All Elements')
 
-
 model_name.Material(name='ElastoPlastic Material')
 model_name.materials['ElastoPlastic Material'].Elastic(table=((45000.0, 0.3), ))
 model_name.materials['ElastoPlastic Material'].Plastic(
-	table=((10.0, 0.0), (15.0, 0.15), (17.5, 0.3), (18.0, 0.4)))
+    table=((10.0, 0.0), (15.0, 0.15), (17.5, 0.3), (18.0, 0.4)))
 model_name.HomogeneousSolidSection(
-	name='Section ElastoPlastic', material='ElastoPlastic Material', 
-	thickness=None)
+    name='Section ElastoPlastic', material='ElastoPlastic Material', 
+    thickness=None)
 
 # Assigning material properties
 final_sample = model_name.parts['Final Sample']
 region = p.sets['All Elements']
 final_sample.SectionAssignment(region=region, sectionName='Section ElastoPlastic', 
-	offset=0.0, offsetType=MIDDLE_SURFACE, offsetField='', 
-	thicknessAssignment=FROM_SECTION)''')
+    offset=0.0, offsetType=MIDDLE_SURFACE, offsetField='', 
+    thicknessAssignment=FROM_SECTION)''')
 
     def procMaterialElast(self, name='hypela2', els='all_existing'):
         self.header('MATERIAL DATA')
@@ -311,7 +305,6 @@ refPoints1=(r1[2], )
 Ref_Indenter = indenter.Set(name='Ref_Indenter', referencePoints=refPoints1)
 
 #Defining output request
-
 
 del model_name.fieldOutputRequests['F-Output-1']
 del model_name.historyOutputRequests['H-Output-1']

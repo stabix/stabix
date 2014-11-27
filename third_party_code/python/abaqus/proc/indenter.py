@@ -144,9 +144,8 @@ InstanceRoot.Instance(name='indenter-1', part=Indenter, dependent=ON)
 InstanceRoot = model_name.rootAssembly
 InstanceRoot.rotate(instanceList=('indenter-1', ), axisPoint=(10.0, 0.0, 0.0), 
     axisDirection=(-20.0, 0.0, 0.0), angle=-90.0)
-    
-InstanceRoot.translate(instanceList=('indenter-1', ), vector=(0.0, 0.0, sep_ind_samp))
 
+InstanceRoot.translate(instanceList=('indenter-1', ), vector=(0.0, 0.0, sep_ind_samp))
 
 ### Surface of the indenter
 
@@ -159,8 +158,6 @@ y_coor = 0
 z_coor = r*(1-sin(coneAngle))+sep_ind_samp
 side1Faces1 = faces_indenter.findAt(((0, 0, sep_ind_samp), ), ((x_coor, y_coor, z_coor), ))
 InstanceRoot.Surface(side1Faces=side1Faces1, name='Surf Indenter')
-
-
 '''
 )
     def procIndenterFlatPunch(self, tipRadius=0.1):
@@ -174,12 +171,9 @@ tipRadius = %f''' % (self.IndentParameters['tipRadius']) +  ''' # radius of sphe
 
 '''
 
-
-
 #+++++++++++++++++++++++++++++++++++++++++++++
 # MODELING OF FLAT PUNCH INDENTER 
 #+++++++++++++++++++++++++++++++++++++++++++++
-
 
 s = mdb.models['single_crystal_indentation'].ConstrainedSketch(
     name='__profile__', sheetSize=sheet_Size)
@@ -197,7 +191,6 @@ s.unsetPrimaryObject()
 p = mdb.models['single_crystal_indentation'].parts['indenter']
 session.viewports['Viewport: 1'].setValues(displayedObject=p)
 del mdb.models['single_crystal_indentation'].sketches['__profile__']
-
 
 # Creating instance and positioning the indenter
 
@@ -228,12 +221,12 @@ InstanceRoot.Surface(side1Faces=side1Faces1, name='Surf Indenter')
 
 ''')
 
-	def procIndenterCustomizedTopo(self, free_mesh_inp):
-		self.proc.append('''
+    def procIndenterCustomizedTopo(self, free_mesh_inp):
+        self.proc.append('''
 #+++++++++++++++++++++++++++++++++++++++++++++
 # MODELING OF FREE TOPOGRAPHY OF INDENTER
 #+++++++++++++++++++++++++++++++++++++++++++++
 ''')
     def procIndenterDeformable(self):
-		self.proc.append('''
+        self.proc.append('''
 ''')
