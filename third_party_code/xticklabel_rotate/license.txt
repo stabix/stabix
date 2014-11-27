@@ -1,4 +1,4 @@
-Copyright (c) 2003, Brian Katz
+Copyright (c) 2014, Brian Katz
 Copyright (c) 2009, The MathWorks, Inc.
 All rights reserved.
 

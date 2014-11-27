@@ -32,6 +32,11 @@ function hText = xticklabel_rotate(XTick,rot,varargin)
 % Example 5:  Use text labels rotated 90° at current positions
 %    xticklabel_rotate([],90,NameFields);
 %
+% Example 6:  Multiline labels
+%    figure;plot([1:4],[1:4])
+%    axis([0.5 4.5 1 4])
+%    xticklabel_rotate([1:4],45,{{'aaa' 'AA'};{'bbb' 'AA'};{'ccc' 'BB'};{'ddd' 'BB'}})
+%
 % Note : you can not RE-RUN xticklabel_rotate on the same graph. 
 %
 
@@ -60,6 +65,9 @@ function hText = xticklabel_rotate(XTick,rot,varargin)
 % Modified 11-jun-2010
 %   Response to numerous suggestions on MatlabCentral to improve certain
 %   errors.
+% Modified 23-sep-2014
+%   Allow for mutliline labels
+
 
 % Other m-files required: cell2mat
 % Subfunctions: none
@@ -142,8 +150,16 @@ y=repmat(y,size(XTick,1),1);
 % retrieve current axis' fontsize
 fs = get(gca,'fontsize');
 
-% Place the new xTickLabels by creating TEXT objects
-hText = text(XTick, y, xTickLabels,'fontsize',fs);
+if ~iscell(xTickLabels)
+    % Place the new xTickLabels by creating TEXT objects
+    hText = text(XTick, y, xTickLabels,'fontsize',fs);
+else
+    % Place multi-line text approximately where tick labels belong
+    for cnt=1:length(XTick),
+       hText(cnt) = text(XTick(cnt),y(cnt),xTickLabels{cnt},...
+            'VerticalAlignment','top', 'UserData','xtick');
+    end
+end
 
 % Rotate the text objects by ROT degrees
 %set(hText,'Rotation',rot,'HorizontalAlignment','right',varargin{:})
@@ -171,6 +187,10 @@ set(gca,'units','pixel')                        ;
 set(hText,'units','pixel')                      ;
 set(get(gca,'xlabel'),'units','pixel')          ;
 set(get(gca,'ylabel'),'units','pixel')          ;
+% set(gca,'units','normalized')                        ;
+% set(hText,'units','normalized')                      ;
+% set(get(gca,'xlabel'),'units','normalized')          ;
+% set(get(gca,'ylabel'),'units','normalized')          ;
 
 origpos = get(gca,'position')                   ;
 
