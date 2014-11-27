@@ -6,7 +6,10 @@ function [size_max_slip_sys, slip_systA, slip_systB] = ...
 % slip_systB: Slip system of grain B
 
 % To have the same size for slip system matrices when phases are
-% different
+% different in a given  bicrystal
+
+% author: d.mercier@mpie.de
+
 if size(slip_systA,3) > size(slip_systB,3)
     slip_systB(:,:,size(slip_systB,3)+1:size(slip_systA,3)) ...
         = NaN;

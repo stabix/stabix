@@ -1,7 +1,7 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function gui_handle = ...
     A_preCPFE_windows_indentation_setting_BX(gui_bicrystal, varargin)
-%% Setting of indentation inputs (tip radius, indentation depth...) 
+%% Setting of indentation inputs (tip radius, indentation depth...)
 % and setting of the mesh for a bicrystal indentation experiment.
 
 % gui_bicrystal: Handle of the Bicrystal GUI
@@ -11,7 +11,7 @@ function gui_handle = ...
 %% Initialization
 gui_BX = preCPFE_init;
 gui_BX.description = 'Indentation of a bicrystal - ';
- 
+
 x0 = 0.025;
 hu = 0.05; % height unit
 wu = 0.1; % width unit
@@ -19,6 +19,7 @@ wu = 0.1; % width unit
 %% Window setting
 gui_BX.handles.gui_BX_win = figure(...
     'NumberTitle', 'off',...
+    'Color', [0.9 0.9 0.9],...
     'Position', figure_position([.58, .30, .9, 1]), ... %[left, bottom, width, height/width],...
     'ToolBar', 'figure');
 guidata(gcf, gui_BX);
@@ -71,14 +72,14 @@ guidata(gcf, gui_BX);
 
 %% Creation of boxes to set indenter and indentation properties
 gui_BX.handles.mesh = preCPFE_mesh_parameters_BX(gui_BX.defaults, ...
-    x0, hu, wu, gui_BX.config.CPFEM.fem_solver_used);
+    2*x0, hu, wu, gui_BX.config.CPFEM.fem_solver_used);
 
 %% Pop-up menu to select Python executable
 gui_BX.handles.pm_Python = preCPFE_python_popup([2*x0 hu*2.6 wu*3 hu]);
 
 %% Creation of popup menu and slider for loaded AFM indenter topography
 gui_BX.handles.indenter = preCPFE_buttons_indenter(x0, hu, wu);
-    
+
 %% Creation of buttons/popup menus (mesh quality, layout, Python, CPFEM...)
 gui_BX.handles.other_setting = preCPFE_buttons_gui(x0, hu, wu);
 guidata(gcf, gui_BX);

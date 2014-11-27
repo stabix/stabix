@@ -6,7 +6,6 @@ function [slip_vec, flag_error] = ...
 
 % author: d.mercier@mpie.de
 
-% Loop to set grain properties (identity, Euler angles, position)
 slip_vec = 0;
 for ig = grain
     [lattice_parameters, flag_error] = ...
@@ -77,7 +76,8 @@ if ~flag_error
                     slip_vec(ii,16) = abs(slip_vec(ii,15));
                 end
                 
-                slip_vec(ii,17) = ii;                                         % Index of slip (number from 1 to 57 for hcp)
+                % Index of slip (number from 1 to 57 for hcp)
+                slip_vec(ii,17) = ii;
                 
             end
         end

@@ -22,12 +22,13 @@ scrSZ = get(0,'ScreenSize');
 fig_wid = max([0.5 800/scrSZ(3)]);
 gui_SX.handles.gui_SX_win = figure(...
     'NumberTitle', 'off',...
+    'Color', [0.9 0.9 0.9],...
     'Position', figure_position([.58, .30, fig_wid, .9]), ... % [left, bottom, width, height/width]
     'ToolBar', 'figure');
 guidata(gcf, gui_SX);
 
 %% Set Matlab and CPFEM configurations
-if nargin == 0  
+if nargin == 0
     gui_SX.config_map.Sample_IDs   = [];
     gui_SX.config_map.Sample_ID    = [];
     gui_SX.config_map.Material_IDs = [];
@@ -77,7 +78,7 @@ guidata(gcf, gui_SX);
 
 %% Creation of string boxes and edit boxes to set indenter and indentation properties
 gui_SX.handles.mesh = preCPFE_mesh_parameters_SX(gui_SX.defaults, ...
-    x0, hu, wu, gui_SX.config.CPFEM.fem_solver_used);
+    2*x0, hu, wu, gui_SX.config.CPFEM.fem_solver_used);
 guidata(gcf, gui_SX);
 
 %% Creation of popup menu and slider for loaded AFM indenter topography
