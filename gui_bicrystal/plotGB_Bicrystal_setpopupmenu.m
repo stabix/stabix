@@ -5,16 +5,13 @@ function plotGB_Bicrystal_setpopupmenu
 
 gui = guidata(gcf);
 
-%% Setting of Material popupmenu from map interface
+%% Setting of Material popupmenu
 listmat_str = listMaterial;
 
 for ii = 1:size(listmat_str,1)
     if strcmp (listmat_str(ii), gui.GB.Material_A) == 1
         matAnum = ii;
     end
-end
-
-for ii = 1:size(listmat_str,1)
     if strcmp (listmat_str(ii), gui.GB.Material_B) == 1
         matBnum = ii;
     end
@@ -23,16 +20,13 @@ end
 set(gui.handles.pmMatA, 'Value', matAnum);
 set(gui.handles.pmMatB, 'Value', matBnum);
 
-%% Setting of Phase popupmenu from map interface
+%% Setting of Phase popupmenu
 liststruct_str = listPhase;
 
 for ii = 1:size(liststruct_str,1)
     if strcmp (liststruct_str(ii), gui.GB.Phase_A) == 1
         StructAnum = ii;
     end
-end
-
-for ii = 1:size(liststruct_str,1)
     if strcmp (liststruct_str(ii), gui.GB.Phase_B) == 1
         StructBnum = ii;
     end
@@ -40,6 +34,8 @@ end
 
 set(gui.handles.pmStructA, 'Value', StructAnum);
 set(gui.handles.pmStructB, 'Value', StructBnum);
+
+%% Setting of Slip systems families popupmenu
 listSlipsA = listSlipSystems(gui.GB.Phase_A);
 listSlipsB = listSlipSystems(gui.GB.Phase_B);
 set(gui.handles.pmlistslipsA, 'String', listSlipsA, 'Value', 1);

@@ -5,7 +5,7 @@ function plotGB_Bicrystal_min_max_param_map_plot(param2plot, min_max)
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
-%% FIXME: Plot of all min/max values for transmission slip function 
+%% FIXME: Plot of all min/max values for transmission slip function
 % not displayed for a 2 phases material
 
 %% Set the encapsulation of data
@@ -20,18 +20,18 @@ elseif min_max == 2
         gui.GB.Phase_A, gui.GB.Phase_B, 'max');
 end
 
-imagesc(param_bc);                                                     % create a colored plot of the mp_max_bcrix values
-colormap(winter);                                                          % change the colormap to gray (so higher values are black and lower values are white)
+imagesc(param_bc);
+colormap(winter);
 
-textstrings = num2str(param_bc(:), '%0.2f');                           % create strings from the mp_max_bcrix values
-textstrings = strtrim(cellstr(textstrings));                               % remove any space padding
-[x,y] = meshgrid(1:size(param_bc));                                    % create x and y coordinates for the strings
-gui.handles.hstrings = text(x(:), y(:), textstrings(:),...                             % plot the strings
+textstrings = num2str(param_bc(:), '%0.2f');
+textstrings = strtrim(cellstr(textstrings));
+[x,y] = meshgrid(1:size(param_bc));
+gui.handles.hstrings = text(x(:), y(:), textstrings(:),...
     'horizontalalignment', 'center');
-midvalue = mean(get(gca, 'clim'));                                         % get the middle value of the color range
-textcolors = repmat(param_bc(:) < midvalue,1,3);                       % choose white or black for the text color of the strings
-% so they can be easily seen over the background color
-set(gui.handles.hstrings,{'color'}, num2cell(textcolors, 2));                          % change the text colors
+midvalue = mean(get(gca, 'clim'));
+textcolors = repmat(param_bc(:) < midvalue,1,3);
+
+set(gui.handles.hstrings,{'color'}, num2cell(textcolors, 2));
 
 if strcmp(gui.GB.Phase_A, 'hcp') == 1
     gui.handles.legend_x = ...
@@ -60,9 +60,10 @@ if strcmp(gui.GB.Phase_B, 'fcc') == 1
     tick_y   = 1:1;
 end
 
+% change the axes tick marks and tick labels
 set(gca,...
-    'xtick',         tick_x,...                                            % change the axes tick marks
-    'xticklabel',    gui.handles.legend_x,...                                          % and tick labels
+    'xtick',         tick_x,...
+    'xticklabel',    gui.handles.legend_x,...
     'XAxisLocation', 'top',...
     'ytick',         tick_y,...
     'yticklabel',    gui.handles.legend_y,...

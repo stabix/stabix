@@ -7,11 +7,7 @@ function handle_indenter = preCPFE_indenter_plot
 gui = guidata(gcf);
 
 if isfield(gui, 'handle_indenter')
-    try
-        delete(gui.handle_indenter);
-    catch id
-        disp(id.message);
-    end
+    del_if_handle(gui.handle_indenter);
 end
 
 %% Set indentation depth

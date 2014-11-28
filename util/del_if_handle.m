@@ -8,5 +8,5 @@ try
         eval('delete(h)');
     end
 catch err
-    display(err.message);
+    warning_commwin(err.message);
 end
