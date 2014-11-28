@@ -18,7 +18,7 @@ set(gcf, 'CurrentAxes', gui.handles.AxisGBmap);
 legend('off');
 
 coord_idx = get(gui.handles.pmcoordsyst, 'Value');
-coord_angles = [0 90 180 270 -360 -90 -180 -270];
+coord_angles = listCoordAngles;
 gui.COORDSYS_eulers = coordinate_convention(coord_angles(coord_idx));
 
 %% Replot COORDSYS
