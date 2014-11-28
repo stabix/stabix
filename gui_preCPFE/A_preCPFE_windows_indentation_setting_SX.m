@@ -1,6 +1,7 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function gui_handle = ...
-    A_preCPFE_windows_indentation_setting_SX(gui_bicrystal, activeGrain, varargin)
+    A_preCPFE_windows_indentation_setting_SX(...
+    gui_bicrystal, activeGrain, varargin)
 %% Setting of indentation inputs (tip radius, indentation depth...)
 % and setting of the mesh for a single crystal indentation experiment.
 

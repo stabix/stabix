@@ -2,11 +2,11 @@
 function [string, popupmenu] = ...
     set_popupmenu(str, pos, val, listpm, callback, varargin)
 %% Function used to create automatically a serir of txt boxes + editable txt boxes in the GUI
-% str : string for the txt box
-% pos : position of the txt box
-% val : value of the variable to edit in corresponding editable txt box
+% str : string for the popupmenu
+% pos : position of the popupmenu
+% val : value of the variable to edit in corresponding popupmenu
 % listpm : list to fill the popupmenu
-% callback : callback function or script to assess to the editable txt box
+% callback : callback function or script to assess to the popupmenu
 
 % authors: d.mercier@mpie.de
 
