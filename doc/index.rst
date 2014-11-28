@@ -44,19 +44,7 @@ instrumented sphero-conical indentation, and measurement of the resulting surfac
 In this way the stress and strain fields close to the grain boundary can be rapidly assessed.
 Activation and transmission of slip are interpreted based on these simulations and the mechanical resistance of grain boundaries can be quantified.
 
-.. figure:: ./_pictures/download.png
-   :scale: 20 %
-   :align: left
-   :target: https://github.com/stabix/stabix
-   
-`Source code is hosted at Github <https://github.com/stabix/stabix>`_.
-
-.. figure:: ./_pictures/normal_folder.png
-   :scale: 5 %
-   :align: left
-   :target: https://github.com/stabix/stabix/archive/master.zip
-   
-`Download source code as a .zip file <https://github.com/stabix/stabix/archive/master.zip>`_.
+.. include:: source_code.rst
 
 .. figure:: ./_pictures/download.png
    :scale: 20 %
@@ -64,6 +52,13 @@ Activation and transmission of slip are interpreted based on these simulations a
    :target: http://dx.doi.org/10.5281/zenodo.11561
 
 `Find here the reference paper for this toolbox <http://dx.doi.org/10.5281/zenodo.11561>`_.
+
+.. figure:: ./_pictures/download.png
+   :scale: 20 %
+   :align: left
+   :target: https://media.readthedocs.org/pdf/stabix/latest/stabix.pdf
+
+`Download the documentation as a pdf file <https://media.readthedocs.org/pdf/stabix/latest/stabix.pdf>`_.
 
 Contents
 ========
