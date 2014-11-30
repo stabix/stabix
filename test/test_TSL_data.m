@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function check_TSL_data(eul_rot0, eul_rot90ND, struct, varargin)
+function test_TSL_data(eul_rot0, eul_rot90ND, struct, varargin)
 %% Function to check TSL-OIM data
 % eul_rot0 : Euler angles in degrees with a rotation of 0°
 % eul_rot90ND : Euler angles in degrees with a rotation of 90°
