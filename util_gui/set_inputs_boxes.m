@@ -1,14 +1,19 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function [string, edit_box] = ...
-    set_inputs_boxes(str, pos, val, callback, ratio, varargin)
+    set_inputs_boxes(str, pos, val, callback, ratio, parent, varargin)
 %% Function used to create automatically a serir of txt boxes + editable txt boxes in the GUI
 % str : string for the txt box
 % pos : position of the txt box
 % val : value of the variable to edit in corresponding editable txt box
 % callback : callback function or script to assess to the editable txt box
 % ratio: ratio betweem string box and edit box
+% parent: handle of the parent
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
+
+if nargin < 6
+    parent = gcf;
+end
 
 if nargin < 5 
     ratio = 0.75;
@@ -29,8 +34,6 @@ end
 if nargin < 1
     str = 'test';
 end
-
-parent = gcf;
 
 string = uicontrol('Parent', parent,...
     'Units', 'normalized',...

@@ -39,7 +39,7 @@ if indenter_index == 1
         gui.variables.tipRadius, gui.variables.coneAngle/2);
     gui.variables.h_trans = round(gui.variables.h_trans*100)/100;
     set(gui.handles.indenter.trans_depth , 'String', ...
-        sprintf('Transition depth: %.2f ', gui.variables.h_trans));
+        sprintf('Transition depth: %.2f µm', gui.variables.h_trans));
     
     % Calculation of radius of the spherical cap in the cono-spherical indenter
     gui.variables.calRadius = (gui.variables.tipRadius^2 - ...

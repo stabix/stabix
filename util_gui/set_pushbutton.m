@@ -5,6 +5,7 @@ function [pushbutton] = ...
 % str : string for the pushbutton
 % pos : position of the pushbutton
 % callback : callback function or script to assess to the pushbutton
+% parent: handle of the parent
 
 % author: d.mercier@mpie.de
 
