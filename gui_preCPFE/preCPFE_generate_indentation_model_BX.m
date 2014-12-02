@@ -66,6 +66,7 @@ py{end+1} = sprintf('if p not in sys.path: sys.path.insert(0,p) \n');
 py{end+1} = sprintf('import proc');
 py{end+1} = sprintf('from proc.bicrystal import BicrystalIndent');
 py{end+1} = sprintf('Titlegbdata = ''%s''', gui_BX.GB.Titlegbdata);
+py{end+1} = sprintf('BicrystalIndent.title = ''%s (STABiX)''', gui_BX.GB.Titlegbdata);
 py{end+1} = sprintf('BicrystalIndent.CODE = ''%s''', ...
     gui_BX.config.CPFEM.simulation_code);
 py{end+1} = sprintf('BicrystalIndent.FEMSOFTWAREVERSION = %.1f', ...

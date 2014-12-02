@@ -112,8 +112,6 @@ class Indentation(Indenter, Tools):
         self.procIndentDocCall()
         self.procNewModel()
         self.proc_draw_update_manual() 
-        if self.IndentParameters['h_sample'] is None:
-            self.IndentParameters['h_sample'] = h_indent * 12.
         self.procParameters()
         self.procParametersIndent()
         self.procIndenter()
@@ -139,7 +137,7 @@ class Indentation(Indenter, Tools):
             self.procInitCond()
         self.procMaterial()
         self.procGeometricProperties()
-        #self.procContact()
+        self.procContact()
         self.procContactIndent()
         self.procLoadCaseIndent(nSteps=self.IndentParameters['nSteps'],
                                 n_steps_release=n_steps_release,
@@ -178,8 +176,9 @@ class Indentation(Indenter, Tools):
         #self.define_post_vars(nslip=18) #Ti
         #return self.procfilename
 
-
     def procParametersIndent(self):
+        if self.IndentParameters['h_sample'] is None:
+            self.IndentParameters['h_sample'] = h_indent * 12.
         if self.IndentParameters['D_sample'] is not None:
             dSamp = self.IndentParameters['D_sample']
         elif self.IndentParameters['Dexp'] is not None:

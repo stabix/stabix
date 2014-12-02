@@ -63,6 +63,7 @@ py{end+1} = sprintf('import proc');
 py{end+1} = sprintf('from proc.indentation import Indentation');
 py{end+1} = sprintf('import tools');
 py{end+1} = sprintf('Titlegbdata = ''%s''', gui_SX.GB.Titlegbdata);
+py{end+1} = sprintf('Indentation.title = ''%s (STABiX)''', gui_SX.GB.Titlegbdata);
 py{end+1} = sprintf('Indentation.CODE = ''%s''', ...
     gui_SX.config.CPFEM.simulation_code);
 py{end+1} = sprintf('Indentation.FEMSOFTWAREVERSION = %.1f', ...

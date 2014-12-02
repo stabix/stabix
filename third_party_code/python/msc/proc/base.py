@@ -61,14 +61,14 @@ class Proc(Sketch, Tools):
         self.proc.append("""
 |+++++++++++++++++++++++++++++++++++++++++++++
 |  PROCEDURE FILE 
-|  FOR USE WITH MSC.%s''' % self.FEMSOFTWARE + ''' 
+|  FOR USE WITH MSC.%s""" % self.FEMSOFTWARE +"""
 |=============================================
-|        TITLE: %s\n''' % (title) + '''
+|        TITLE: %s\n""" % (title) + """
 |=============================================
-|         AUTHOR: %s''' % author + ''', %s''' % affiliation + '''
-|           DATE: %s''' % (str(time.ctime())) + '''
-| GENERATED WITH: msc package by C. Zambaldi, http://github.com/czambaldi
-|                 MPI fuer Eisenforschung www.mpie.de
+|         AUTHOR: %s""" % author + """
+|           DATE: %s""" % (str(time.ctime())) + """
+| GENERATED WITH: msc package by STABiX (https://github.com/stabix)
+|                 %s""" % affiliation + """
 |+++++++++++++++++++++++++++++++++++++++++++++
 | USAGE IN MENTAT: 
 |   /!\ Save current model /!\, then
@@ -84,7 +84,6 @@ class Proc(Sketch, Tools):
 0.0001 | the MSC.Marc default value
 """)
 
-
     def procIndentDocCall(self):
         self.proc.append('''
 |=== procIndentDocCall    
@@ -98,10 +97,8 @@ class Proc(Sketch, Tools):
             callString += '%s=%s, ' % (k, str(P[k]))
         self.proc.append('| %s)' % callString)
 
-
     def procParameters(self):
         self.proc.append(self.header('PARAMETER-DEFINITION'))
-
 
     def procParametersUniax(self, smv=0.01,
                             eps_max=0.25, def_time=100.,
@@ -126,10 +123,8 @@ class Proc(Sketch, Tools):
 *renumber_all\n*sweep_all\n
 ''')
 
-
     def procSample(self):
         self.header('SAMPLE-MODELING AND MESHING')
-
 
     def proc_points(self, p_list):
         p_str = '*add_points\n'
@@ -142,7 +137,6 @@ class Proc(Sketch, Tools):
         for i, n in enumerate(n_list):
             n_str += '%e %e %e | %i \n' % (n[0], n[1], n[2], i)
         return n_str
-
 
     def procNodeSets(self):
         self.proc.append('''
@@ -435,7 +429,7 @@ all_selected
 
 
     def procMaterial(self, name='hypela2', els='all_existing'):
-        self.header('MATERIAL DATA')
+        self.proc.append(self.header('MATERIAL'))
         self.proc.append('''
 *material_name %s''' % name + '''
 *material_type mechanical:hypoelastic
@@ -445,7 +439,7 @@ all_selected
 %s\n''' % (els))
 
     def procMaterialElast(self, name='hypela2', els='all_existing'):
-        self.header('MATERIAL DATA')
+        self.proc.append(self.header('MATERIAL DATA'))
         self.proc.append('''
 *material_name %s''' % name + '''
 *material_type mechanical:hypoelastic
@@ -456,7 +450,7 @@ all_selected
 
 
     def procGeometricProperties(self, cdil='on'):
-        self.header('GEOMETRIC PROPERTIES')
+        self.proc.append(self.header('GEOMETRIC PROPERTIES'))
         self.proc.append('''
 *geometry_type mech_three_solid
 *geometry_option cdilatation:%s''' % cdil + '''
@@ -468,10 +462,10 @@ all_existing\n''')
 
 
     def procJobDef(self, cpfemLoc='mpie_marc_cz.f'):
-        self.header('JOB DEFINITION')
+        self.proc.append(self.header('JOB DEFINITION'))
         self.proc.append('''
 *sweep_all\n*surfaces_wireframe *regen
-*job_class mechanical
+*job_class mechanical\n
 ''')
         for ic in self.initConds:
             self.proc.append('''
@@ -502,7 +496,7 @@ all_existing\n''')
 
 *job_option user_source:compile_save
 |*job_option user_source:run_saved
-
+\n
 ''')
 
     def proc_copy_job(self,
@@ -525,7 +519,8 @@ all_existing\n''')
         self.proc.append('*job_name postdef\n')
 
     def procAnalysisOptions(self):
-        self.proc.append('''| ANALYSIS OPTIONS
+        self.proc.append('''
+| ANALYSIS OPTIONS
 || Large Displacement
 *job_option large:on
 || Plasticity Procedure: Large strain additive
@@ -538,10 +533,10 @@ all_existing\n''')
 ||| Large Strains
 *job_option finite:on
 ||| Multiplicative Decomposition (large stra =2)
-*job_option plas_proc:multiplicative''')
+*job_option plas_proc:multiplicative\n''')
 
     def procJobResults(self, step=5):
-        self.proc.append('''|++++++++++++
+        self.proc.append('''
 | JOB RESULTS
 |*job_option post ascii/binary | Write Result File as formatted ASCII or binary
 *job_param post %i | write each ith increment to *.t16 (binary) or *.t19 (ascii)''' % step + '''
@@ -560,7 +555,7 @@ all_existing\n''')
 *add_post_var eq/yl_stress
 *add_post_var volume         | volume (initial)
 *add_post_var cur_volume     | volume (current)
-''')
+\n''')
         if self.CODE == 'GENMAT':
             self.proc.append('''
 *add_post_var user1
@@ -618,42 +613,41 @@ all_existing\n''')
 *add_post_var user27
 *add_post_var user28
 *add_post_var user29
-*add_post_var user30''')
+*add_post_var user30\n''')
 
 
     def procJobParameters(self):
-        self.proc.append('''| JOB PARAMETERS
+        self.proc.append('''
+| JOB PARAMETERS
 || Solver: Nonsymmetrical Solution
 *job_option solver_nonsym:on
 | SOUBROUTINE DEFINITION
 *job_usersub_file %s'''%({'GENMAT':'mpie_marc_cz.f','DAMASK':'DAMASK_marc.f90'}[self.CODE]) + '''
 |*job_usersub_file only_forcdt.f
 *job_option user_source:compile_save
-|*job_option user_source:run_saved''')
+|*job_option user_source:run_saved\n''')
 
     def proc_usersub_def(self):
         #TODO: gibts in procJobParameters und in ProcJobDef
         pass
 
     def procFriction(self):
-        self.proc.append('''|+++++++++++++++++++++++++++++++++++
-| FRICTION            \n
+        self.proc.append('''
+| FRICTION
 |job_option frictype:<none/coul_stick_slip/shear/ coulomb/shear_roll/coulomb_roll>
-|*job_option frictype''')
+|*job_option frictype\n''')
 
 
     def procCleanUp(self, sweepTol=0.001):
         self.proc.append('''
-|++++ CLEAN UP +++++++    
+| CLEAN UP  
 *sweep_all
 *remove_unused_nodes
-*renumber_all
-''')
+*renumber_all\n''')
 
     def procSaveModel(self, modelname='model.mfd'):
+        self.proc.append(self.header('SAVE MODEL'))
         self.proc.append('''
-|+++++++++++++++++++++++
-| SAVE MODEL
 *sweep_all
 *renumber_all
 *save_as_model %s yes
@@ -666,7 +660,6 @@ all_existing\n''')
 |@push(jobs)
 |@popup(job_run_popmenu)\n''' % modelname)
 
-
     def norm(self, vec):
         if len(vec) == 3:
             n = math.sqrt(vec[0] ** 2. + vec[1] ** 2. + vec[2] ** 2.)
@@ -676,8 +669,6 @@ all_existing\n''')
 
     #  def procSetMoveTranslations(self,f,t):
     #
-
-
 
     def getNodeSets(self):
         '''Not used by now'''
@@ -703,7 +694,6 @@ all_existing\n''')
             print 'Set: ', s.name, ', Type: ', s.type, '\n', s.items
             exec ('self.nodeSets[''%s'']=s.items' % s.name)
             #print 'xmin: ',xmin_nds,'\nxmax: ',xmax_nds
-
 
     def ParticleLinks(self):
         self.getNodeSets()
