@@ -21,7 +21,6 @@ class Proc(Tools):
     """ This class defines the common bits needed for writing
         Abaqus Python files.
     """
-    proc = []  # empty list to hold the procedure file content
     import getpass
 
     author = 'python_package (C. Zambaldi) used by ' + getpass.getuser()
@@ -32,18 +31,18 @@ class Proc(Tools):
     #CODE = 'DAMASK'
     FEMSOFTWAREVERSION = 2012 # default
     FEMSOFTWARE = 'Abaqus'
-    modelname = 'single_crystal_indentation'
+    modelname = 'Indentation'
 
-    header_line_mark = '#+++++++++++++++++++++++++++++++++++++++++++++\n'
+    header_line_mark = '#+++++++++++++++++++++++++++++++++++++++++++++'
 
     def __init__(self):
-        pass
+        proc = []  # empty list to hold the procedure file content
 
     def get_proc(self):
         return self.proc
 
     def header(self, label):
-        """Visually separate the sections in the Mentat procedure file
+        """Visually separate the sections in the Abaqus procedure file
         """
         assert(label is not None)
         return '\n' + self.header_line_mark + \
@@ -53,29 +52,33 @@ class Proc(Tools):
     def start(self,
               title=None,
               author=None,
-              affiliation=None):
+              affiliation=None,
+              FEMSOFTWARE=None):
         if title is None: title = self.title
         if author is None: author = self.author
         if affiliation is None: affiliation = self.affiliation
-        self.proc.append('''
-#+++++++++++++++++++++++++++++++++++++++++++++
-#  PROCEDURE FILE 
-#  FOR USE WITH %s''' % self.FEMSOFTWARE + ''' 
-#=============================================
-#        TITLE: %s\n''' % (title) + '''
-#=============================================
-#         AUTHOR: %s''' % author + ''', %s''' % affiliation + '''
-#           DATE: %s''' % (str(time.ctime())) + '''
-# GENERATED WITH: ABAQUS package by C. Zambaldi
-#                  MPI fuer Eisenforschung
-#+++++++++++++++++++++++++++++++++++++++++++++
-# USAGE IN ABAQUS: 
-#   /!\ Save current model /!\, then
-#   UTILS > PROCEDURES > LOAD > START/CONT
-#+++++++++++++++++++++++++++++++++++++++++++++
-''')
+        if FEMSOFTWARE is None: FEMSOFTWARE = self.FEMSOFTWARE
+        self.proc.append("""
+#|+++++++++++++++++++++++++++++++++++++++++++++
+#|  PROCEDURE FILE
+#|  FOR USE WITH %s""" % FEMSOFTWARE + """
+#|=============================================
+#|        TITLE: %s""" % title + """
+#|=============================================
+#|         AUTHOR: %s""" % author + """
+#|           DATE: %s""" % str(time.ctime()) + """
+#| GENERATED WITH: ABAQUS package by STABiX (https://github.com/stabix)
+#|                 %s""" % affiliation + """
+#|+++++++++++++++++++++++++++++++++++++++++++++
+#| USAGE IN ABAQUS:
+#|   /!\ Save current model /!\, then
+#|   FILE > RUN SCRIPT
+#|+++++++++++++++++++++++++++++++++++++++++++++
+""")
 
-    def procNewModel(self):
+    def procNewModel(self,
+                     modelname=None):
+        if modelname is None: modelname = self.modelname
         self.proc.append('''
 #+++++++++++++++++++++++++++++++++++++++++++++
 # NEW MODEL
@@ -111,7 +114,7 @@ cliCommand("""session.journalOptions.setValues(replayGeometry=
     COORDINATE, recoverGeometry=COORDINATE)""")
 
 sample_name = 'sample'
-model_name = mdb.Model(name='%s')''' % (self.modelname) + '''
+model_name = mdb.Model(name='%s')''' % modelname + '''
 ''')
 
     def procIndentDocCall(self):
@@ -328,7 +331,6 @@ mdb.Job(name='Indentation_Job', model=model_name, description='',
 # Writing .inp
   
 mdb.jobs['Indentation_Job'].writeInput(consistencyChecking=OFF)''')
-#%({'GENMAT':'mpie_marc_cz.f','DAMASK':'DAMASK_marc.f90'}[self.CODE]) +
 
     def procFriction(self):
         self.proc.append('''
@@ -338,7 +340,7 @@ mdb.jobs['Indentation_Job'].writeInput(consistencyChecking=OFF)''')
         self.proc.append('''
 ''')
 
-    def procSaveModel(self, modelname='model.mfd'):
+    def procSaveModel(self, modelname='model.cae'):
         self.proc.append('''
 ''')
 
@@ -381,9 +383,6 @@ mdb.jobs['Indentation_Job'].writeInput(consistencyChecking=OFF)''')
         self.getNodeSets()
         #f=open('servo.proc','w')# store servo definitions in proc-file
         #self.write2servo(f=f,tie,dof=1,ret,coeff=(1, 1, 1))
-
-    def quit_mentat(self):
-        self.proc.append('*quit yes\n') # exit mentat after model is built
 
     def to_file(self, dst_path=None, dst_name=None):
         '''Write  self.proc list to file'''

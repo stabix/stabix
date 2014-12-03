@@ -147,7 +147,7 @@ InstanceRoot.rotate(instanceList=('indenter-1', ), axisPoint=(10.0, 0.0, 0.0),
 
 InstanceRoot.translate(instanceList=('indenter-1', ), vector=(0.0, 0.0, sep_ind_samp))
 
-### Surface of the indenter
+### Surface of the conical indenter
 
 InstanceRoot = model_name.rootAssembly
 faces_indenter = InstanceRoot.instances['indenter-1'].faces
@@ -175,7 +175,7 @@ tipRadius = %f''' % (self.IndentParameters['tipRadius']) +  ''' # radius of sphe
 # MODELING OF FLAT PUNCH INDENTER 
 #+++++++++++++++++++++++++++++++++++++++++++++
 
-s = mdb.models['single_crystal_indentation'].ConstrainedSketch(
+s = model_name.ConstrainedSketch(
     name='__profile__', sheetSize=sheet_Size)
 g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
 s.setPrimaryObject(option=STANDALONE)
@@ -183,14 +183,14 @@ s.ConstructionLine(point1=(0.0, -sheet_Size*0.5), point2=(0.0, sheet_Size*0.5))
 s.Line(point1=(0.0, 0.0), point2=(tipRadius, 0.0))
 s.Line(point1=(tipRadius, 0.0), point2=(tipRadius, h_indent*2.0))
 s.Line(point1=(tipRadius,  h_indent*2.0), point2=(0.0,  h_indent*2.0))
-p = mdb.models['single_crystal_indentation'].Part(name='indenter', 
+p = model_name.Part(name='indenter', 
     dimensionality=THREE_D, type=ANALYTIC_RIGID_SURFACE)
-p = mdb.models['single_crystal_indentation'].parts['indenter']
+p = model_name.parts['indenter']
 p.AnalyticRigidSurfRevolve(sketch=s)
 s.unsetPrimaryObject()
-p = mdb.models['single_crystal_indentation'].parts['indenter']
+p = model_name.parts['indenter']
 session.viewports['Viewport: 1'].setValues(displayedObject=p)
-del mdb.models['single_crystal_indentation'].sketches['__profile__']
+del model_name.sketches['__profile__']
 
 # Creating instance and positioning the indenter
 
@@ -217,7 +217,6 @@ y_coor = 0
 z_coor = sep_ind_samp
 side1Faces1 = faces_indenter.findAt(((0, 0, sep_ind_samp), ), ((x_coor, y_coor, z_coor), ))
 InstanceRoot.Surface(side1Faces=side1Faces1, name='Surf Indenter')
-
 
 ''')
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@author: C. Zambaldi
+@author: D. Mercier / R. Sanchez-Martin / C. Zambaldi
 """
 
 #import numpy as N # old
@@ -11,17 +11,17 @@ from .base import Proc
 
 class BicrystalIndent(Proc):
     def __init__(self,
-                 modelname = 'ind_bicrystal',
+                 modelname = 'Bicrystal_indentation',
                  label = '',  # informative label
                  ori1 = None,  # orientation grain 1
                  ori2 = None,  # orientation grain 2
                  gbn = None,  # grain boundary normal in xyz
-                 trace_ang = None,  # 0° // X, 90° // Y
-                 inclination = None,  # vertical = 90°, 0.. 90 cuts through grain 1, 90 ..180  through grain 2
+                 trace_ang = None,  # 0ï¿½ // X, 90ï¿½ // Y
+                 inclination = None,  # vertical = 90ï¿½, 0.. 90 cuts through grain 1, 90 ..180  through grain 2
                  d = None,  # distance of indent from GB
                  len_trace = None,
-                 h_indent = 0.3,  # depth of the indent in µm
-                 tipRadius = 1.4,  # radius of the spherical indenter in µm
+                 h_indent = 0.3,  # depth of the indent in ï¿½m
+                 tipRadius = 1.4,  # radius of the spherical indenter in ï¿½m
                  geo = 'conical',  # angle of the conical indenter in degree
                  coneAngle = 90.,
                  ind_size = None,
@@ -39,41 +39,31 @@ class BicrystalIndent(Proc):
                  box_bias_y1 = 0.3,  # bias in y direction in the grain B
                  box_bias_y2 = 0,  # bias in y direction in the middle part
                  box_bias_y3 = 0.3,  # bias in y direction in the grain A
-                 smv = 0.01,  # small values
                  lvl = 1,  # mesh quality value
-                 sheetSize = 200,
-				 free_mesh_inp = '' #name of the .inp file for AFM topo for indenter
-    ):
+                 friction = 0.3,  # Coulomb friction coefficient
+                 ind_time = 10.,  # time of loading segment
+                 dwell_time = 3,  # not used yet, needs Loadcase "dwell" (included in Abaqus)
+                 unload_time = 2, # unload time in seconds (only Abaqus)
+                 max_inc_indent = 10000, # maximum number of increments allowed in the simulation (only Abaqus)
+                 ini_inc_indent = 0.0001, # initial increment (in seconds) of the calculation (only Abaqus)
+                 min_inc_indent_time = 0.000001, # minimum increment (in seconds) allowed in the calculation (only Abaqus)
+                 max_inc_indent_time = 0.05, # maximum increment (in seconds) allowed in the calculation (only Abaqus)
+                 sep_ind_samp = 0.0005, #Distance between the indenter and the sample before indentation (to initialize contact) (only Abaqus)
+                 freq_field_output = 50, #Frequency of the output request (only Abaqus)
+                 Dexp = None,  # experimental indent diameter, for visualization purposes only
+                 twoDimensional = False,  # 2D indentation model, experimental
+                 divideMesh = False,  # subdivide each el. additionally into 8 els.
+                 outStep = 5,  # write step for results
+                 nSteps = 800,  # LC 'indent', No of increments
+                 smv = 0.01,  # small value
+                 free_mesh_inp = '', #name of the .inp file for AFM topo for indenter
+                 ori_list = None):
         import math
 
         if ori1 == None:
             ori1 == [0., 0., 0.]
         if ori2 == None:
             ori2 == [0., 0., 0.]
-        if 0:#gbn == None and (trace_ang == None and inclination == None):
-            #gbn = -np.array([2., 1., 3.])
-            gbn = np.random.rand(3)
-            gbn = gbn / np.linalg.norm(gbn)
-            gbn[2] *= 0.3
-        elif 1:#gbn == None:
-            print 'gbn not given, using trace_ang and inclination.'
-            if inclination == None:
-                inclination = 90.
-                inclination = np.random.rand() * 180.
-            if trace_ang == None:
-                trace_ang = 90.
-                trace_ang = np.random.rand() * 360.
-            print('RND inclination: ', inclination)
-            print('RND trace_ang:', trace_ang)
-            gbn = np.array([math.cos((trace_ang - 90.) / 180. * math.pi), \
-                            math.sin((trace_ang - 90.) / 180. * math.pi),
-                            math.tan((inclination - 90.) / 180. * math.pi)])
-            gbn /= np.linalg.norm(gbn)
-            gbtn_xy = np.linalg.norm(gbn[0:2])
-            #gbn[2] = math.atan(inclination/180.*math.pi)
-
-        else:
-            raise ('Only gbn OR trace_ang and inclination can be given')
 
         if ind_size == None: #ind_size = diameter of indent
             if h_indent <= tipRadius * (1 - math.sin((coneAngle / 180. * math.pi) / 2)):
@@ -111,15 +101,11 @@ class BicrystalIndent(Proc):
                 len = 4.5 * (ind_size)
                 # length in the model is defined later in the code with the variable min_margin
 
-        if sheetSize == None:
-            if len >= hei:
-                sheetSize = 2. * len
-            else:
-                sheetSize = 2. * hei
-
         self.proc = []
-        self.procNewModel()
-        self.procBicrystal(label=label,
+        self.start(title='INDENTATION-MODEL (%s) %s' % (modelname, label))
+        self.procNewModel(modelname=(modelname))
+        self.procBicrystal(modelname = modelname,
+                           label = label,
                            ori1 = ori1, #not used yet
                            ori2 = ori2, # not used yet
                            gbn = gbn,
@@ -127,6 +113,7 @@ class BicrystalIndent(Proc):
                            hei = hei,
                            wid = wid,
                            len = len,
+                           trace_ang = trace_ang,
                            inclination = inclination,
                            ind_size = ind_size,
                            box_elm_nx = box_elm_nx,
@@ -139,153 +126,247 @@ class BicrystalIndent(Proc):
                            box_bias_y1 = box_bias_y1,
                            box_bias_y2 = box_bias_y2,
                            box_bias_y3 = box_bias_y3,
-                           smv = smv,
                            lvl = lvl,
                            len_trace = len_trace,
-                           modelname = modelname,
-                           sheetSize = sheetSize,
-                           free_mesh_inp = free_mesh_inp)
-                           
+                           friction = friction,
+                           ind_time = ind_time,
+                           dwell_time = dwell_time,
+                           unload_time = unload_time,
+                           max_inc_indent = max_inc_indent,
+                           ini_inc_indent =ini_inc_indent,
+                           min_inc_indent_time = min_inc_indent_time,
+                           max_inc_indent_time = max_inc_indent_time,
+                           sep_ind_samp = sep_ind_samp,
+                           freq_field_output = freq_field_output,
+                           Dexp = Dexp,
+                           twoDimensional = twoDimensional,
+                           divideMesh = divideMesh,
+                           outStep = outStep,
+                           nSteps = nSteps,
+                           smv = smv,
+                           free_mesh_inp = free_mesh_inp,
+                           ori_list = ori_list)
+
     def procBicrystal(self,
-                      label = '',
-                      ori1 = None,
-                      ori2 = None,
-                      trace_ang = None, # 0...360 from X-axis
-                      inclination = None, # ? ... ? spans 180°:
-                      # suggestion: 90 is vertical, >90 makes grain 1 larger
-                      gbn = None, # given or calculated from tr_ang & inclination
-                      d = None,
-                      # d>0 := ind in grain #1 or grainA (left of the GB), d<0 ind in grain #2 or grainB (right of the GB)
-                      ind_size = 1., # approximate indent diameter
-                      lvl = None, # mesh refining level, higher is finer
-                      #lengthScale = 1.  # switch between µm and SI (meter)
-                      wid = None, # width of the sample
-                      hei = None, # height of the sample
-                      len = None, # length of the sample (dimension perpendicular to gb trace)
-                      box_elm_nx = None, # number of elements in x direction
-                      box_elm_nz = None, # number of elements in z direction
-                      box_elm_ny1 = None, # number of elements in y direction in the grain B
-                      box_elm_ny2_fac = None, # number of elements in y direction in the middle part
-                      box_elm_ny3 = None, # number of elements in y direction in the grain A
-                      box_bias_x = None, # bias in the x direction
-                      box_bias_z = None, # bias in the z direction
-                      box_bias_y1 = None, # bias in y direction in the grain B
-                      box_bias_y2 = None, # bias in y direction in the middle part
-                      box_bias_y3 = None, # bias in y direction in the grain A
-                      smv = None, # small values    
-                      len_trace = None,
                       modelname = None,
-                      sheetSize = None
-    ):  
-        #if lengthScale != 1.:
-        #    vals=d,hei,wd,len,ind_size
-        #    for val in d,hei,wd,len,ind_size = [x==None or x * lengthScale for ]
-        #os.chdir('M:/zambaldi') # /egr/research/BielerFEM/zambaldi
-        smv = wid / 1000.
-        origin = np.array([0., 0., 0.])
-        #if trace_ang is not None:
-        # Implement gbn calculation here #TODO
-        gbn = np.array(gbn)
-        #if gbn[2]<0: gbn = -gbn
-        gbn = gbn / np.linalg.norm(gbn)
-        gbtn_xy = [gbn[0], gbn[1], 0.] # normal on gb-trace in X-Y plane
-        norm_gbtn_xy = np.linalg.norm(gbtn_xy)
-        gbtn_xy /= norm_gbtn_xy
-        gbtn_xy = np.array(gbtn_xy)
-        #trace_ang = np.math.atan(gbn[1]/gbn[0])/np.math.pi*180.
-        # atan2(y,x)
-
-        trace_ang = (np.math.atan2(gbn[1], gbn[0]) / np.math.pi * 180. + 90.) % 360.
+                      label = None,
+                      ori1 = None, #not used yet
+                      ori2 = None, # not used yet
+                      gbn = None,
+                      d = None,
+                      hei = None,
+                      wid = None,
+                      len = None,
+                      trace_ang = None,
+                      inclination = None,
+                      ind_size = None,
+                      box_elm_nx = None,
+                      box_elm_nz = None,
+                      box_elm_ny1 = None,
+                      box_elm_ny2_fac = None,
+                      box_elm_ny3 = None,
+                      box_bias_x = None,
+                      box_bias_z = None,
+                      box_bias_y1 = None,
+                      box_bias_y2 = None,
+                      box_bias_y3 = None,
+                      lvl = None,
+                      len_trace = None,
+                      friction = None,
+                      ind_time = None,
+                      dwell_time = None,
+                      unload_time = None,
+                      max_inc_indent = None,
+                      ini_inc_indent = None,
+                      min_inc_indent_time = None,
+                      max_inc_indent_time = None,
+                      sep_ind_samp = None,
+                      freq_field_output = None,
+                      Dexp = None,
+                      twoDimensional = None,
+                      divideMesh = None,
+                      outStep = None,
+                      nSteps = None,
+                      smv = None,
+                      free_mesh_inp = None,
+                      ori_list = None):
         print('trace_ang: ', trace_ang)
-        min_margin = len/2
-        #min_margin = 3. * ind_size # outer margin in both grains normal to gb
-        #d_vec = -gbtn_xy * d   # vector from the gb to the indent center
-        d_vec = np.array([np.math.cos(self.deg2rad(trace_ang + np.sign(d) * 90.)),
-                          np.math.sin(self.deg2rad(trace_ang + np.sign(d) * 90.)), 0.]) * abs(
-            d)   # vector from the gb to the indent center
-        if np.dot(d_vec, gbtn_xy) > 0.:
-            gbn = -gbn
-            gbtn_xy = -gbtn_xy
-        d_vec_norm = np.linalg.norm(d_vec)
-        if d_vec_norm < 1e-3: # indent on gb
-            d_dir = gbtn_xy # correct?
-        else:
-            d_dir = d_vec / d_vec_norm
-            #wid = 5. * ind_size
-        gb_trace_center = - d_vec
-        gb_trace = np.array([-gbtn_xy[1], gbtn_xy[0], 0.0])
-        gb_trace /= np.linalg.norm(gb_trace)
-        print('gb_trace: ', gb_trace)
-        gb_trace_0 = gb_trace_center
-        gb_trace_1 = gb_trace_center + gb_trace * wid / 2.
-        gb_dir = np.cross(gb_trace, gbn) # direction along gb
-        gb_dir /= np.linalg.norm(gb_dir)
-        if gb_dir[2] > 0.:
-            gb_dir = -gb_dir
-        print('gb_dir:', gb_dir)
-        self.gb_dir = gb_dir
-        print('gb_dir-z:', math.acos(np.dot(gb_dir, self.e3())) / np.pi * 180.)
-        g1_dir = np.array([np.cos(self.deg2rad(trace_ang + 90.)),
-                           np.sin(self.deg2rad(trace_ang + 90.)), 0.])
-        g1_dir /= np.linalg.norm(g1_dir)
-        print('g1_dir: ', g1_dir)
-        print('d_vec_u: ', d_vec / d_vec_norm)
-        h_vec = np.array([0., 0., -hei])
-        inclination = np.math.acos(np.dot(g1_dir, gb_dir)) / np.pi * 180.
-        #print('inclination: ', inclination)
-        #gb_shift = gbtn_xy * gbn[2]/norm_gbtn_xy * hei
-        #gb_shift = g1_dir * np.math.sin(self.deg2rad(90.-inclination)) * hei
-        shift_val = 1. / np.math.tan(inclination / 180. * np.pi)
-        if abs(shift_val) > 1e-3 * ind_size:
-            gb_shift = g1_dir * shift_val * hei
-        else:
-            gb_shift = g1_dir * 0.
-            #gb_shift = np.dot(g1_dir,gb_dir) * np.sign(d) * hei
-
-        if d >= 0.:
-            beg_g1 = g1_dir * (min_margin)
-            end_g2 = -g1_dir * (min_margin + d)
-        else:
-            beg_g1 = g1_dir * (min_margin - d)
-            end_g2 = -g1_dir * (min_margin)
-
-        #print norm_gbtn_xy
-        #print norm_gbtn_xy/gbn[2]
-        #print 'gb_shift: ', gb_shift
-        #print '|gb_shift|: ', np.linalg.norm(gb_shift)
-        #print 'wid: ', wid, '(along x axis, in um)'
-        #print 'len: ', len, '(along y axis, in um)'
-        #print 'hei: ', hei, '(along z axis, in um)'
-        print 'inclination: ', inclination, '(in degree)'
+        print 'inclination: ', inclination, '(in degrees)'
         print 'd: ', d, '(Distance between indent and GB in um)'
-        print 'box_bias_x : ', box_bias_x
-        #print 'gbn: ', gbn
-        #print 'gbtn_xy:', gbtn_xy
-        #print 'd_vec_norm:', d_vec_norm, '(Dist from gb)'
-        norm_beg_g1 = np.linalg.norm(beg_g1)
-        norm_end_g2 = np.linalg.norm(end_g2)
-        print 'norm_beg_g1: ', norm_beg_g1
-        print 'norm_end_g2: ', norm_end_g2
         self.proc.append('''
-#width = %e # width of the sample in um''' % (wid) + '''
-#height = %e # height of the sample in um''' % (hei) + '''
-#length = %e # length of the sample in um''' % (len) +'''
+#+++++++++++++++++++++++++++++++++++++++++++++
+# PARAMETERS DEFINITION
+#+++++++++++++++++++++++++++++++++++++++++++++
+# Cross-section view of the bicrystal (Y-Z plane)
+#
+#                distGB
+#    d_box       |    |     d_box
+#  ______________|____|________________
+# |           \  /   /|                |
+# |inclination \/   / |                |
+# |            /   /  |                |
+# |           /   /   |                | height
+# |          /   /    |                |
+# |         /   /     |                |
+# |        /   /      |                |
+# |_______/___/_______|________________|
+#             |       |
+#              d_incgb
+#
 
-import sketch
-import part
+# SAMPLE
+width = %f # width of the sample in um''' % wid + '''
+height = %f # height of the sample in um''' % hei + '''
+length = %f # length of the sample in um''' % len + '''
+trace_ang = %f # trace angle in degrees''' % trace_ang + '''
+inclination = %f # gb inclination in degrees''' % inclination + '''
+distGB = %f # distance between gb and indenter in um''' % d + '''
 
-mySketch = modelname.ConstrainedSketch(name='Sketch A', sheetSize=%e)''' % (sheetSize) + '''
+if inclination < 90:
+    d_incgb = height/tan(radians(inclination))
+elif inclination > 90:
+    d_incgb = height/tan(radians(180-inclination))
+else:
+    d_incgb = 0
 
-xyCoords = ((%e , %e),''' % (beg_g1[0], beg_g1[2]) + '''
-    (%e , %e),''' % (end_g2[0], end_g2[2]) + '''
-    (%e , %e),''' % (beg_g1[0], beg_g1[2] + h_vec[2]) + '''
-    (%e , %e),''' % (end_g2[0], end_g2[2] + h_vec[2]) + '''
-    (%e , %e))''' % (0, 0) + '''
+d_box = ((length - abs(distGB))/2)
 
-for i in range(len(xyCoords)-1):
-    mySketch.Line(point1=xyCoordsInner[i],
-        point2=xyCoordsInner[i+1])
+if distGB < 0:
+    d_box_A = d_box
+    d_box_B = -d_box + distGB
+    box_y1 = 0
+    box_y2 = distGB
+    if inclination < 90:
+        box_y3 = d_incgb + distGB
+        box_y4 = d_incgb
+    elif inclination > 90:
+        box_y3 = -d_incgb
+        box_y4 = -d_incgb - distGB
+elif distGB > 0:
+    d_box_A = d_box + distGB
+    d_box_B = -d_box
+    box_y1 = distGB
+    box_y2 = 0
+    if inclination < 90:
+        box_y3 = -d_incgb
+        box_y4 = -d_incgb + distGB
+    elif inclination > 90:
+        box_y3 = d_incgb
+        box_y4 = d_incgb - distGB
+elif distGB == 0:
+    d_box_A = d_box
+    d_box_B = -d_box
+    box_y1 = 0
+    box_y2 = 0
 
-myPart = modelname.Part(name='Sample', dimensionality=THREE_D, type=DEFORMABLE_BODY)
-myPart.BaseSolidExtrude(sketch=mySketch, depth=%e)''' % (wid) + '''
+# MESH
+box_elm_nx = %f''' % box_elm_nx + '''
+box_elm_nz = %f''' % box_elm_nz + '''
+box_elm_ny1 = %f''' % box_elm_ny1 + '''
+box_elm_ny2_fac = %f''' % box_elm_ny2_fac + '''
+box_elm_ny3 = %f''' % box_elm_ny3 + '''
+box_bias_x = %f''' % box_bias_x + '''
+box_bias_z = %f''' % box_bias_z + '''
+box_bias_y1 = %f''' % box_bias_y1 + '''
+box_bias_y2 = %f''' % box_bias_y2 + '''
+box_bias_y3 = %f''' % box_bias_y3 + '''
+
+# INDENTER VELOCITY, "STRAIN RATE"
+# Time used for LoadCase "indentation" (in [seconds] for model in mm)
+ind_time = %f  # in [10e-3*seconds] for model in micrometer, gamma0?!!?''' % ind_time + '''
+max_inc_indent = %i # maximum number of increments allowed in the simulation (only Abaqus) ''' % max_inc_indent + '''
+ini_inc_indent = %f # initial increment (in seconds) of the calculation (only Abaqus) ''' % ini_inc_indent + '''
+min_inc_indent_time = %f # minimum increment (in seconds) allowed in the calculation (only Abaqus) ''' % min_inc_indent_time + '''
+max_inc_indent_time = %f # maximum increment (in seconds) allowed in the calculation (only Abaqus) ''' % max_inc_indent_time + '''
+dwell_time = %f # dwell time in seconds (only Abaqus) ''' % dwell_time + '''
+unload_time = %f # unload time in seconds (only Abaqus) ''' % unload_time + '''
+sep_ind_samp = %f #Distance between the indenter and the sample before indentation (to initialize contact) ''' % sep_ind_samp + '''
+friction = %f # friction coefficient between the sample and the indenter (only Abaqus)''' % friction + '''
+freq_field_output = %i #Frequency of the output request (only Abaqus) ''' % freq_field_output + '''
+
+tolerance = 0.01+(float(width)/1500)
+
+# SIZE OF THE SHEET FOR THE SKETCH
+if width > height:
+    sheet_Size = 2 * width
+else:
+    sheet_Size = 2 * height
+
+#+++++++++++++++++++++++++++++++++++++++++++++
+# SAMPLE GEOMETRY
+#+++++++++++++++++++++++++++++++++++++++++++++
+
+p = model_name.Part(name='Bicrystal', dimensionality=THREE_D, type=DEFORMABLE_BODY)
+s = model_name.ConstrainedSketch(name='__profile__', sheetSize=sheet_Size)
+
+g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
+s.setPrimaryObject(option=STANDALONE)
+
+#s.rectangle(point1=(d_box_A, 0), point2=(d_box_B, -height))
+#s.Spot(point=(0, 0))
+#s.Spot(point=(distGB, 0))
+#s.Spot(point=(d_incgb, -height))
+#s.Spot(point=(d_incgb + distGB, -height))
+#s.Spot(point=(0, -height)) # to have a normal axis to the surface
+
+if distGB == 0:
+    s.Line(point1=(d_box_A, 0), point2=(box_y1, 0))
+    s.Line(point1=(box_y1, 0), point2=(d_box_B, 0))
+    s.Line(point1=(d_box_B, 0), point2=(d_box_B, -height))
+    s.Line(point1=(d_box_B, -height), point2=(box_y2, -height))
+    s.Line(point1=(box_y2, -height), point2=(d_box_A, -height))
+    s.Line(point1=(d_box_A, -height), point2=(d_box_A, 0))
+else:
+    s.Line(point1=(d_box_A, 0), point2=(box_y1, 0))
+    s.Line(point1=(box_y1, 0), point2=(box_y2, 0))
+    s.Line(point1=(box_y2, 0), point2=(d_box_B, 0))
+    s.Line(point1=(d_box_B, 0), point2=(d_box_B, -height))
+    s.Line(point1=(d_box_B, -height), point2=(box_y3, -height))
+    s.Line(point1=(box_y3, -height), point2=(box_y4, -height))
+    s.Line(point1=(box_y4, -height), point2=(d_box_A, -height))
+    s.Line(point1=(d_box_A, -height), point2=(d_box_A, 0))
+
+p = model_name.Part(name='Bicrystal', dimensionality=THREE_D, type=DEFORMABLE_BODY)
+p = model_name.parts['Bicrystal']
+p.BaseSolidExtrude(sketch=s, depth=width)
+s.unsetPrimaryObject()
+p = model_name.parts['Bicrystal']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+del model_name.sketches['__profile__']
+
+#+++++++++++++++++++++++++++++++++++++++++++++
+# INSTANCES DEFINITION
+#+++++++++++++++++++++++++++++++++++++++++++++
+
+a = model_name.rootAssembly
+a.DatumCsysByDefault(CARTESIAN)
+p = model_name.parts['Bicrystal']
+a.Instance(name='Bicrystal-1', part=p, dependent=OFF)
+
+#+++++++++++++++++++++++++++++++++++++++++++++
+# CELLS DEFINITION
+#+++++++++++++++++++++++++++++++++++++++++++++
+
+p = model_name.parts['Bicrystal']
+c = p.cells
+pickedCells = c.getSequenceFromMask(mask=('[#1 ]', ), )
+v, e, d = p.vertices, p.edges, p.datums
+p.PartitionCellByPlaneThreePoints(point1=v[10], point2=v[7], point3=v[4], cells=pickedCells)
+pickedCells = c.getSequenceFromMask(mask=('[#2 ]', ), )
+v, e, d = p.vertices, p.edges, p.datums
+p.PartitionCellByPlaneThreePoints(point1=v[14], point2=v[7], point3=v[4], cells=pickedCells)
+
+#+++++++++++++++++++++++++++++++++++++++++++++
+# SAMPLE-MODELING AND MESHING
+#+++++++++++++++++++++++++++++++++++++++++++++
+
+#+++++++++++++++++++++++++++++++++++++++++++++
+# CONTACT DEFINITION
+#+++++++++++++++++++++++++++++++++++++++++++++
+
+#+++++++++++++++++++++++++++++++++++++++++++++
+# LOADING STEP DEFINITION
+#+++++++++++++++++++++++++++++++++++++++++++++
+
+
 ''')

@@ -29,45 +29,45 @@ class Indentation(Indenter, Tools):
     """
 
     def __init__(self,
-                modelname='indent',
-                h_indent=0.20,  # maximum simulated indentation depth
-                D_sample=2.,  # diameter of sample
-                h_sample=None,  # sample height, only for overriding default estimate
-                geo='conical',  # indenter geometry
-                coneAngle=90,  # full cone angle (deg)
-                tipRadius=1,  # indenter tip radius
-                friction=0.3,  # Coulomb friction coefficient
-                sample_rep=24,  # 16, 24, 32, 48 # number of segments,
+                modelname = 'SX_indentation',
+                h_indent = 0.20,  # maximum simulated indentation depth
+                D_sample = 2.,  # diameter of sample
+                h_sample = None,  # sample height, only for overriding default estimate
+                geo = 'conical',  # indenter geometry
+                coneAngle = 90,  # full cone angle (deg)
+                tipRadius = 1,  # indenter tip radius
+                friction = 0.3,  # Coulomb friction coefficient
+                sample_rep = 24,  # 16, 24, 32, 48 # number of segments,
                                  # must be dividable by 8 if used with r_center_frac != 0
-                r_center_frac=0.25,  # if >0 ==>insert a cylindrical column of brick
+                r_center_frac = 0.25,  # if >0 ==>insert a cylindrical column of brick
                                       # elements in the center to avoid collapsed elements
                                       # under the indenter
-                box_xfrac=0.3,  # size of the finer mesh box in horizontal direction
-                box_zfrac=0.2,  # ... in vertical dimension
-                box_elm_nx=5,  # number of horizontal elements in box
-                box_elm_nz=5,  # number of vertical elements in box
-                box_bias_x=0.25,  # bias in x direction
-                box_bias_z=0.25,  # bias in z direction
-                box_bias_conv_x=0.25,  # bias in x direction for the outer cylinder
-                radial_divi=5,  # radial subdivisions of the outer part of the model
-                ind_time=10.,  # time of loading segment
-                dwell_time=3,  # not used yet, needs Loadcase "dwell" (included in Abaqus)
-                unload_time=2, # unload time in seconds (only Abaqus)
-                max_inc_indent=10000, # maximum number of increments allowed in the simulation (only Abaqus)
-                ini_inc_indent=0.0001, # initial increment (in seconds) of the calculation (only Abaqus)
-                min_inc_indent_time=0.000001, # minimum increment (in seconds) allowed in the calculation (only Abaqus)
-                max_inc_indent_time=0.05, # maximum increment (in seconds) allowed in the calculation (only Abaqus)
-                sep_ind_samp=0.0005, #Distance between the indenter and the sample before indentation (to initialize contact) (only Abaqus)
-                freq_field_output=50, #Frequency of the output request (only Abaqus)
-                Dexp=None,  # experimental indent diameter, for visualization purposes only
-                twoDimensional=False,  # 2D indentation model, experimental
-                divideMesh=False,  # subdivide each el. additionally into 8 els.
-                outStep=5,  # write step for results
-                nSteps=800,  # LC 'indent', No of increments
-                smv=0.01,  # small value
-                label='',
-                free_mesh_inp='', #name of the .inp file for AFM topo for indenter
-                ori_list=None):
+                box_xfrac = 0.3,  # size of the finer mesh box in horizontal direction
+                box_zfrac = 0.2,  # ... in vertical dimension
+                box_elm_nx = 5,  # number of horizontal elements in box
+                box_elm_nz = 5,  # number of vertical elements in box
+                box_bias_x = 0.25,  # bias in x direction
+                box_bias_z = 0.25,  # bias in z direction
+                box_bias_conv_x = 0.25,  # bias in x direction for the outer cylinder
+                radial_divi = 5,  # radial subdivisions of the outer part of the model
+                ind_time = 10.,  # time of loading segment
+                dwell_time = 3,  # not used yet, needs Loadcase "dwell" (included in Abaqus)
+                unload_time = 2, # unload time in seconds (only Abaqus)
+                max_inc_indent = 10000, # maximum number of increments allowed in the simulation (only Abaqus)
+                ini_inc_indent = 0.0001, # initial increment (in seconds) of the calculation (only Abaqus)
+                min_inc_indent_time = 0.000001, # minimum increment (in seconds) allowed in the calculation (only Abaqus)
+                max_inc_indent_time = 0.05, # maximum increment (in seconds) allowed in the calculation (only Abaqus)
+                sep_ind_samp = 0.0005, # distance between the indenter and the sample before indentation (to initialize contact) (only Abaqus)
+                freq_field_output = 50, # frequency of the output request (only Abaqus)
+                Dexp = None,  # experimental indent diameter, for visualization purposes only
+                twoDimensional = False,  # 2D indentation model, experimental
+                divideMesh = False,  # subdivide each el. additionally into 8 els.
+                outStep = 5,  # write step for results
+                nSteps = 800,  # LC 'indent', No of increments
+                smv = 0.01,  # small value
+                label = '',
+                free_mesh_inp = '', # name of the .inp file for AFM topo for indenter
+                ori_list = None):
         self.callerDict = locals()
         if r_center_frac is not 0 and sample_rep not in [8, 16, 24, 32, 40, 48, 56]:
             print('For r_center_frac not 0, sample_rep needs to be dividable by 8')
@@ -118,21 +118,17 @@ class Indentation(Indenter, Tools):
         print(repr(self.IndentParameters))
         self.proc = []
         self.start(title='INDENTATION-MODEL (%s) %s' % (modelname, label))
-        #self.procIndentDocCall()
-        self.procNewModel()
-        if self.IndentParameters['h_sample'] is None:
-            self.IndentParameters['h_sample'] = h_indent * 12.
+        self.procNewModel(modelname=self.IndentParameters['modelname'])
         self.procParametersIndent()
-        self.procSample()
-        self.procSampleIndent(smv=self.IndentParameters['smv'])
+        self.procSampleIndent()
         self.procInstance()
         self.procSampleMeshing()
         self.procBoundaryConditionsIndent()
         self.procMaterial()
-        if geo == 'flatPunch':
-            self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
         if geo == 'conical':
             self.procIndenterConical(coneHalfAngle=self.IndentParameters['coneHalfAngle'])
+        if geo == 'flatPunch':
+            self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
         if geo == 'customized':
             self.procIndenterCustomizedTopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'])
         self.procContactIndent() 
@@ -143,6 +139,10 @@ class Indentation(Indenter, Tools):
         if geo == 'conical':
             savename += '_R%.2f' % self.IndentParameters['tipRadius']
             savename += '_cA%.1f' % self.IndentParameters['coneAngle']
+        if geo == 'flatPunch':
+            savename += '_R%.2f' % self.IndentParameters['tipRadius']
+        if geo == 'customized':
+            savename += '_AFMtopo'
         savename += '_h%.3f' % self.IndentParameters['h_indent']
         savename += ['_' + label, ''][label == '']
         if Dexp is not None:
@@ -154,6 +154,8 @@ class Indentation(Indenter, Tools):
                 #TODO needs update in initial conditions
 
     def procParametersIndent(self):
+        if self.IndentParameters['h_sample'] is None:
+            self.IndentParameters['h_sample'] = h_indent * 12.
         if self.IndentParameters['D_sample'] is not None:
             dSamp = self.IndentParameters['D_sample']
         elif self.IndentParameters['Dexp'] is not None:
@@ -172,9 +174,9 @@ h_sample = %f
 #d_sample = 20*h_indent  # Berkovich
 #d_samp>!7*d_indentation
 #d_sample = 16*h_indent  # CubeCorner
-#h_sample = 12*h_indent      # Berkovich
-#h_sample = 14*h_indent      # large tip radii
-#h_sample = 10*h_indent     # CubeCorner
+#h_sample = 12*h_indent  # Berkovich
+#h_sample = 14*h_indent  # large tip radii
+#h_sample = 10*h_indent  # CubeCorner
 # large tip radii
 '''
 # MESH
@@ -188,7 +190,7 @@ box_elm_nx = %i # number of horizontal elements in box''' % (self.IndentParamete
 box_elm_nz = %i # number of vertical elements in box''' % (self.IndentParameters['box_elm_nz']) + '''
 smv = %f''' % (self.IndentParameters['smv']) + '''
 radial_divi = %i # number of horizontal elements between the big sample and the box''' % (self.IndentParameters['radial_divi']) + '''
-c_divi = 2 # subdivisions of the core sample in the r direction
+c_divi = 2 # subdivisions of the core sample in the radial direction
 sample_rep = %i # 24 No of Sample Sectors...''' % (self.IndentParameters['sample_rep']) + '''
 sectors_45 = sample_rep/8
 # Sector Angle is 360/sample_rep...
@@ -215,20 +217,7 @@ if D_sample > h_sample:
 else:
     sheet_Size = 2 * h_sample''')
 
-    def procSampleIndent(self, smv=0.01):
-        try:
-            self.IndentParameters['box_elm_nx']
-        except:
-            self.IndentParameters['box_elm_nx'] = 5
-        try:
-            self.IndentParameters['box_elm_nz']
-        except:
-            self.IndentParameters['box_elm_nz'] = 5
-        try:
-            self.IndentParameters['radial_divi']
-        except:
-            self.IndentParameters['radial_divi'] = 5
-
+    def procSampleIndent(self):
         self.proc.append('''
 #+++++++++++++++++++++++++++++++++++++++++++++
 # SAMPLE GEOMETRY
@@ -237,27 +226,25 @@ else:
 #
 #          __--
 #     __---
-#     *N1-----------*N4---------------------*
-#     |             |                       |
-#     |             |                       |
-#     *N2-----------*N3                     |
-#     |                 _
-#     |                     _
-#     |                         _
-#     |                             
-#     *-------------------------------------*
+#     *N1-----------*N4-------------------*
+#     |             |                     |
+#     |             |                     |
+#     *N2-----------*N3                   |
+#     |                 _                 |
+#     |                     _             |
+#     |                         _         |
+#     |                             _     |
+#     *-----------------------------------*
 #
 #define sample large initial
 
 sample_large_ini = model_name.Part(name=
     'Sample_Large_Ini', dimensionality=THREE_D,
     type=DEFORMABLE_BODY)
-
-sample_large_ini = model_name.parts['Sample_Large_Ini']
     
 p = model_name.parts['Sample_Large_Ini']
 s = model_name.ConstrainedSketch(name='__profile__', 
-    sheetSize=200.0)   
+    sheetSize=sheet_Size)
     
 g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
 s.setPrimaryObject(option=STANDALONE)
@@ -266,13 +253,11 @@ number_points_base_sample_large = 8*sectors_45
 points_base_sample_large = [[0for i in range(2)] for j in 
     range(number_points_base_sample_large)]
 
-
 for i in range(number_points_base_sample_large):
     points_base_sample_large[i][0] = \
         0.5*D_sample*cos(i*(2*pi/number_points_base_sample_large))
     points_base_sample_large[i][1] = \
         0.5*D_sample*sin(i*(2*pi/number_points_base_sample_large))
-
 
 for i in range(number_points_base_sample_large-1):
     s.Line(point1=(points_base_sample_large[i][0], \
@@ -297,11 +282,9 @@ sample_small_ini = model_name.Part(name=
     'Sample_Small_Ini', dimensionality=THREE_D,
     type=DEFORMABLE_BODY)
 
-sample_small_ini = model_name.parts['Sample_Small_Ini']
-    
 p = model_name.parts['Sample_Small_Ini']
 s = model_name.ConstrainedSketch(name='__profile__', 
-    sheetSize=200.0)   
+    sheetSize=sheet_Size)
     
 g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
 s.setPrimaryObject(option=STANDALONE)
@@ -340,11 +323,9 @@ core_sample = model_name.Part(name=
     'Core_Sample_Top', dimensionality=THREE_D,
     type=DEFORMABLE_BODY)
 
-core_sample_top = model_name.parts['Core_Sample_Top']
-    
 p = model_name.parts['Core_Sample_Top']
 s = model_name.ConstrainedSketch(name='__profile__', 
-    sheetSize=200.0)   
+    sheetSize=sheet_Size)
 
 g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
 s.setPrimaryObject(option=STANDALONE)
@@ -382,12 +363,10 @@ p = model_name.parts['Core_Sample_Top']
 core_sample_top_inner = model_name.Part(name=
     'Core_Sample_Top_Inner', dimensionality=THREE_D,
     type=DEFORMABLE_BODY)
-
-core_sample_top_inner = model_name.parts['Core_Sample_Top_Inner']
     
 p = model_name.parts['Core_Sample_Top_Inner']
 s = model_name.ConstrainedSketch(name='__profile__', 
-    sheetSize=200.0)   
+    sheetSize=sheet_Size)
 
 g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
 s.setPrimaryObject(option=STANDALONE)
@@ -433,12 +412,10 @@ p = model_name.parts['Core_Sample_Top_Inner']
 core_sample = model_name.Part(name=
     'Core_Sample_Bottom', dimensionality=THREE_D,
     type=DEFORMABLE_BODY)
-
-core_sample_bottom = model_name.parts['Core_Sample_Bottom']
-    
+  
 p = model_name.parts['Core_Sample_Bottom']
 s = model_name.ConstrainedSketch(name='__profile__', 
-    sheetSize=200.0)   
+    sheetSize=sheet_Size)
     
 g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
 s.setPrimaryObject(option=STANDALONE)
@@ -476,12 +453,10 @@ p = model_name.parts['Core_Sample_Bottom']
 core_sample_buttom_inner = model_name.Part(name=
     'Core_Sample_Buttom_Inner', dimensionality=THREE_D,
     type=DEFORMABLE_BODY)
-
-core_sample_buttom_inner = model_name.parts['Core_Sample_Buttom_Inner']
     
 p = model_name.parts['Core_Sample_Buttom_Inner']
 s = model_name.ConstrainedSketch(name='__profile__', 
-    sheetSize=200.0)   
+    sheetSize=sheet_Size)
     
 g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
 s.setPrimaryObject(option=STANDALONE)
@@ -591,7 +566,7 @@ InstanceRoot.features['Core_Sample_Buttom_Inner-1'].resume()''')
 #+++++++++++++++++++++++++++++++++++++++++++++
 # SAMPLE-MODELING AND MESHING
 #+++++++++++++++++++++++++++++++++++++++++++++
-### Meshing Sample Small Def
+# Meshing Sample Small Def
 
 p = model_name.parts['Sample_Small_Def']
 c = p.cells
@@ -645,7 +620,7 @@ for i in range(0, 8*sectors_45):
             end1Edges=pickedEdges1, ratio=box_bias_x, number=box_elm_nx, constraint=FIXED)
 r = [0, 0]
 
-for i in range(8*sectors_45):	
+for i in range(8*sectors_45):
     p = model_name.parts['Sample_Small_Def']
     e = p.edges
     angle = math.pi/(sectors_45*8)
@@ -653,7 +628,7 @@ for i in range(8*sectors_45):
     pickedEdges = e.findAt(((r*math.cos(angle*(2*i+1)), r*math.sin(angle*(2*i+1)), 0.0), ))
     p.seedEdgeByNumber(edges=pickedEdges, number=1, constraint=FIXED)
 
-for i in range(8*sectors_45):	
+for i in range(8*sectors_45):
     p = model_name.parts['Sample_Small_Def']
     e = p.edges
     angle = math.pi/(sectors_45*8)
@@ -661,7 +636,7 @@ for i in range(8*sectors_45):
     pickedEdges = e.findAt(((r*math.cos(angle*(2*i+1)), r*math.sin(angle*(2*i+1)), 0.0), ))
     p.seedEdgeByNumber(edges=pickedEdges, number=1, constraint=FIXED)
 
-for i in range(8*sectors_45):	
+for i in range(8*sectors_45):
     p = model_name.parts['Sample_Small_Def']
     e = p.edges
     angle = math.pi/(sectors_45*8)
@@ -669,7 +644,7 @@ for i in range(8*sectors_45):
     pickedEdges = e.findAt(((r*math.cos(angle*(2*i+1)), r*math.sin(angle*(2*i+1)), -box_zfrac*h_sample), ))
     p.seedEdgeByNumber(edges=pickedEdges, number=1, constraint=FIXED)
 
-for i in range(8*sectors_45):	
+for i in range(8*sectors_45):
     p = model_name.parts['Sample_Small_Def']
     e = p.edges
     angle = math.pi/(sectors_45*8)
@@ -677,7 +652,7 @@ for i in range(8*sectors_45):
     pickedEdges = e.findAt(((r*math.cos(angle*(2*i+1)), r*math.sin(angle*(2*i+1)), -box_zfrac*h_sample), ))
     p.seedEdgeByNumber(edges=pickedEdges, number=1, constraint=FIXED)
 
-for i in range(8*sectors_45):	
+for i in range(8*sectors_45):
     p = model_name.parts['Sample_Small_Def']
     e = p.edges
     angle = math.pi/(sectors_45*4)
@@ -685,7 +660,7 @@ for i in range(8*sectors_45):
     pickedEdges2 = e.findAt(((r*math.cos(angle*i), r*math.sin(angle*i), -0.5*box_zfrac*h_sample), ))
     p.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FIXED)
 
-for i in range(8*sectors_45):	
+for i in range(8*sectors_45):
     p = model_name.parts['Sample_Small_Def']
     e = p.edges
     angle = math.pi/(sectors_45*4)
@@ -707,12 +682,11 @@ p.setElementType(regions=pickedRegions, elemTypes=(elemType1, elemType2,
 p = model_name.parts['Sample_Small_Def']
 p.generateMesh()
 
-### Meshing Sample Large Def
+# Meshing Sample Large Def
 # Creation partitions sample large
 p = model_name.parts['Sample_Large_Def']
 c = p.cells
 
-#for i in range(0, 4*sectors_45):
 for i in range(0, 4*sectors_45):
     pickedCells = c.findAt((((1+box_xfrac)*0.5*D_sample*0.5*cos(pi/(4*sectors_45)*i+pi/200), (1+box_xfrac)*0.5*D_sample*0.5*sin(pi/(4*sectors_45)*i+pi/200), \
         -0.5*h_sample), ))
@@ -1017,7 +991,7 @@ for i in range(4):
     pickedEdges2 = e.findAt(((r*math.cos(angle*i), r*math.sin(angle*i), 0.5*h_sample*(1-box_zfrac)), ))
     p.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_conv_x, number=radial_divi, constraint=FIXED)
 
-for i in range(4):	
+for i in range(4):
     p = model_name.parts['Core_Sample_Buttom_Inner']
     e = p.edges
     angle = math.pi/2
@@ -1067,7 +1041,7 @@ p.setElementType(regions=pickedRegions, elemTypes=(elemType1, elemType2,
 p = model_name.parts['Core_Sample_Buttom_Inner']
 p.generateMesh()
 
-### Meshing Core Sample Top Outer
+# Meshing Core Sample Top Outer
 
 for i in range(4):
     p = model_name.parts['Core_Sample_Top_Outer']
@@ -1211,7 +1185,7 @@ for i in range(8*sectors_45):
     pickedRegions = c.findAt(((radius*cos((i+0.5)*angle), radius*sin((i+0.5)*angle), -h_sample*box_zfrac*0.5), ))
     p.generateMesh(regions=pickedRegions)
 
-### Meshing Core Sample Buttom Outer
+# Meshing Core Sample Buttom Outer
 
 for i in range(4):
     p = model_name.parts['Core_Sample_Buttom_Outer']
@@ -1357,7 +1331,7 @@ for i in range(8*sectors_45):
     pickedRegions = c.findAt(((radius*cos((i+0.5)*angle), radius*sin((i+0.5)*angle), -h_sample*(1-box_zfrac)*0.5), ))
     p.generateMesh(regions=pickedRegions)
 
-### Merging all the meshes in order to genererate the final sample "Final Sample", which is an orphan mesh
+# Merging all the meshes in order to generate the final sample "Final Sample", which is an orphan mesh
 
 a = model_name.rootAssembly
 a.regenerate()
@@ -1414,7 +1388,7 @@ a.Instance(name='Final Sample-1', part=p, dependent=ON)
 a1 = model_name.rootAssembly
 a1.suppressFeatures(('Core_Sample_Final-1', 'Sample_Intermediate_Final-1', ))
     
-### Setting correctly the element type for all the elments
+# Setting correctly the element type for all the elements
 
 elemType1 = mesh.ElemType(elemCode=C3D8, elemLibrary=STANDARD, 
     secondOrderAccuracy=OFF, distortionControl=DEFAULT)
@@ -1425,7 +1399,7 @@ elems1 = z1[0:num_elem]
 pickedRegions =(elems1, )
 final_sample.setElementType(regions=pickedRegions, elemTypes=(elemType1, ))
 
-### Top surface of the sample
+# Top surface of the sample
 
 final_sample = model_name.parts['Final Sample']
 nodes_selected = final_sample.nodes.getByBoundingCylinder((0,0,-smv),(0,0,smv), D_sample*0.5+smv)
@@ -1435,15 +1409,14 @@ surf_sample = final_sample.Set(name='Surf Sample', nodes=nodes_selected)
 
     def procBoundaryConditionsIndent(self):
         self.proc.append('''
-### Preliminary definitions (sets, surfaces, references points...)###
+### Preliminary definitions (sets, surfaces, references points...)
 
-### Set of the nodes of the base
+# Set of the nodes of the base
 final_sample = model_name.parts['Final Sample']
 nodes_base = final_sample.nodes.getByBoundingCylinder((0,0,-h_sample-smv),(0,0,-h_sample+smv), D_sample+smv)
 final_sample.Set(nodes=nodes_base, name='Points_Base')
 
-### Set of nodes of the external diameters
-
+# Set of nodes of the external diameters
 for i in range(8*sectors_45):
     final_sample = model_name.parts['Final Sample']
     r = D_sample*0.5
@@ -1454,13 +1427,13 @@ for i in range(8*sectors_45):
     string = 'Points_Diameter_'+'%1d'%(i+1)
     final_sample.Set(nodes=nodes_selected, name=string)
 
-### Constraint of the nodes of the base
+# Constraint of the nodes of the base
 InstanceRoot = model_name.rootAssembly
 region = InstanceRoot.instances['Final Sample-1'].sets['Points_Base']
 model_name.EncastreBC(name='BC_points_base', 
     createStepName='Initial', region=region)
     
-### Constraint external diameters nodes    
+# Constraint external diameters nodes    
     
 for i in range(8*sectors_45):
     name_set = 'Points_Diameter_'+'%1d'%(i+1)
@@ -1499,23 +1472,22 @@ model_name.SurfaceToSurfaceContactStd(
 #+++++++++++++++++++++++++++++++++++++++++++++
 # LOADING STEP DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
-### Preliminary definitions (sets, surfaces, references points...)###
+# Preliminary definitions (sets, surfaces, references points...)
 indenter = model_name.parts['indenter']
 v, e, d, n = indenter.vertices, indenter.edges, indenter.datums, indenter.nodes
 indenter.ReferencePoint(point=v.findAt(coordinates=(0.0, 0.0, 0.0)))
 
-### Definition of the indent step
+# Definition of the indent step
 model_name.StaticStep(name='Indent', previous='Initial', 
     timePeriod=(ind_time+dwell_time+unload_time), maxNumInc=max_inc_indent, initialInc=ini_inc_indent, minInc=min_inc_indent_time, 
     maxInc=max_inc_indent_time, nlgeom=ON)
 session.viewports['Viewport: 1'].assemblyDisplay.setValues(step='Indent')
     
-### Generating velocity amplitude tables
-
+# Generating velocity amplitude tables
 model_name.TabularAmplitude(data=((0.0, 0.0), (ind_time, -(h_indent+sep_ind_samp)), (ind_time+dwell_time, -(h_indent+sep_ind_samp)), (ind_time+dwell_time+unload_time, 0)), \
     name='Indent_Amplitude', smooth=SOLVER_DEFAULT, timeSpan=STEP)
 
-### Defining velocities in the different steps
+# Defining velocities in the different steps
 InstanceRoot = model_name.rootAssembly
 r1 = InstanceRoot.instances['indenter-1'].referencePoints
 refPoints1=(r1[2], )
