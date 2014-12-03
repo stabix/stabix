@@ -38,7 +38,7 @@ class Proc(Sketch, Tools):
     header_line_mark = '|+++++++++++++++++++++++++++++++++++++++++++++\n'
 
     def __init__(self):
-        proc = []  # emty list to hold the procedure file content
+        proc = []  # empty list to hold the procedure file content
 
     def get_proc(self):
         return self.proc
@@ -54,20 +54,22 @@ class Proc(Sketch, Tools):
     def start(self,
               title=None,
               author=None,
-              affiliation=None):
+              affiliation=None,
+              FEMSOFTWARE=None):
         if title is None: title = self.title
         if author is None: author = self.author
         if affiliation is None: affiliation = self.affiliation
+        if FEMSOFTWARE is None: FEMSOFTWARE = self.FEMSOFTWARE
         self.proc.append("""
 |+++++++++++++++++++++++++++++++++++++++++++++
 |  PROCEDURE FILE 
-|  FOR USE WITH MSC.%s""" % self.FEMSOFTWARE +"""
+|  FOR USE WITH MSC.%s""" % FEMSOFTWARE +"""
 |=============================================
-|        TITLE: %s\n""" % (title) + """
+|        TITLE: %s\n""" % title + """
 |=============================================
 |         AUTHOR: %s""" % author + """
-|           DATE: %s""" % (str(time.ctime())) + """
-| GENERATED WITH: msc package by STABiX (https://github.com/stabix)
+|           DATE: %s""" % str(time.ctime()) + """
+| GENERATED WITH: msc package by C. Zambaldi, http://github.com/czambaldi
 |                 %s""" % affiliation + """
 |+++++++++++++++++++++++++++++++++++++++++++++
 | USAGE IN MENTAT: 
@@ -100,8 +102,10 @@ class Proc(Sketch, Tools):
     def procParameters(self):
         self.proc.append(self.header('PARAMETER-DEFINITION'))
 
-    def procParametersUniax(self, smv=0.01,
-                            eps_max=0.25, def_time=100.,
+    def procParametersUniax(self,
+                            smv=0.01,
+                            eps_max=0.25,
+                            def_time=100.,
                             nr_incr=100):
     #az=12 für tessel666d2
         self.proc.append('''
@@ -298,7 +302,6 @@ all_selected
 *invisible_selected
 ''')
 
-
     def procBoundaryConditions(self):
         self.header('BOUNDARY CONDITIONS')
 
@@ -340,7 +343,6 @@ all_selected
         for pts in tablepoints:
             self.proc.append('%s\n%s' % (pts[0], pts[1]))
         self.proc.append('''\n*show_table\n*table_fit\n*table_filled\n''')
-
 
     def procContact(self):
         self.header('CONTACT DEFINITION')
@@ -411,7 +413,8 @@ all_selected
         return icond
 
 
-    def procInitCondDamask(self, T=300, # temperature (K)
+    def procInitCondDamask(self,
+                           T=300, # temperature (K)
                            H=[1], # homogenization
                            M=[1]  # microstructure
     ):
@@ -426,7 +429,6 @@ all_selected
             self.procInitCondSV(label='icond_microstructure_%i' % m,
                                 StateVariableNumber=3,
                                 StateVariableValue=m)
-
 
     def procMaterial(self, name='hypela2', els='all_existing'):
         self.proc.append(self.header('MATERIAL'))
@@ -447,7 +449,6 @@ all_selected
 *material_option hypoelastic:pass:def_rot
 *add_material_elements
 %s\n''' % (els))
-
 
     def procGeometricProperties(self, cdil='on'):
         self.proc.append(self.header('GEOMETRIC PROPERTIES'))
@@ -615,7 +616,6 @@ all_existing\n''')
 *add_post_var user29
 *add_post_var user30\n''')
 
-
     def procJobParameters(self):
         self.proc.append('''
 | JOB PARAMETERS
@@ -636,7 +636,6 @@ all_existing\n''')
 | FRICTION
 |job_option frictype:<none/coul_stick_slip/shear/ coulomb/shear_roll/coulomb_roll>
 |*job_option frictype\n''')
-
 
     def procCleanUp(self, sweepTol=0.001):
         self.proc.append('''
@@ -701,7 +700,7 @@ all_existing\n''')
         #self.write2servo(f=f,tie,dof=1,ret,coeff=(1, 1, 1))
 
     def quit_mentat(self):
-        self.proc.append('*quit yes\n') # exit mentat after model is built
+        self.proc.append('*quit yes\n') # exit Mentat after model is built
         
     def proc_draw_update_manual(self):
         self.proc.append('*draw_manual\n')
