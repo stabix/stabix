@@ -8,6 +8,7 @@ BX*
 
 # python, also see https://github.com/github/gitignore/blob/master/Python.gitignore
 *.pyc
+.idea/
 
 # sphinx documentation builds
-doc/_build
+doc/_build/
