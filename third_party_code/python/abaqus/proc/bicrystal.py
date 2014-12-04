@@ -205,7 +205,7 @@ class BicrystalIndent(Proc):
 # |           \  /   /|                |
 # |inclination \/   / |                |
 # |            /   /  |                |
-# |           /   /   |                | height
+# | Gr1       /   /   |        Gr2     | height
 # |          /   /    |                |
 # |         /   /     |                |
 # |        /   /      |                |
@@ -229,7 +229,7 @@ elif inclination > 90:
 else:
     d_incgb = 0
 
-d_box = ((length - abs(distGB))/2)
+d_box = (length - abs(distGB))/2
 
 if distGB < 0:
     d_box_A = d_box
@@ -240,19 +240,19 @@ if distGB < 0:
         box_y3 = d_incgb + distGB
         box_y4 = d_incgb
     elif inclination > 90:
-        box_y3 = -d_incgb
-        box_y4 = -d_incgb - distGB
+        box_y3 = -d_incgb + distGB
+        box_y4 = -d_incgb
 elif distGB > 0:
     d_box_A = d_box + distGB
     d_box_B = -d_box
     box_y1 = distGB
     box_y2 = 0
     if inclination < 90:
+        box_y3 = d_incgb
+        box_y4 = d_incgb + distGB
+    elif inclination > 90:
         box_y3 = -d_incgb
         box_y4 = -d_incgb + distGB
-    elif inclination > 90:
-        box_y3 = d_incgb
-        box_y4 = d_incgb - distGB
 elif distGB == 0:
     d_box_A = d_box
     d_box_B = -d_box
@@ -298,16 +298,8 @@ else:
 
 p = model_name.Part(name='Bicrystal', dimensionality=THREE_D, type=DEFORMABLE_BODY)
 s = model_name.ConstrainedSketch(name='__profile__', sheetSize=sheet_Size)
-
 g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
 s.setPrimaryObject(option=STANDALONE)
-
-#s.rectangle(point1=(d_box_A, 0), point2=(d_box_B, -height))
-#s.Spot(point=(0, 0))
-#s.Spot(point=(distGB, 0))
-#s.Spot(point=(d_incgb, -height))
-#s.Spot(point=(d_incgb + distGB, -height))
-#s.Spot(point=(0, -height)) # to have a normal axis to the surface
 
 if distGB == 0:
     s.Line(point1=(d_box_A, 0), point2=(box_y1, 0))
@@ -335,6 +327,49 @@ session.viewports['Viewport: 1'].setValues(displayedObject=p)
 del model_name.sketches['__profile__']
 
 #+++++++++++++++++++++++++++++++++++++++++++++
+# CELLS DEFINITION
+#+++++++++++++++++++++++++++++++++++++++++++++
+
+p = model_name.parts['Bicrystal']
+c = p.cells
+pickedCells = c.getSequenceFromMask(mask=('[#1 ]', ), )
+v, e, d = p.vertices, p.edges, p.datums
+p.PartitionCellByPlaneThreePoints(point1=v[10], point2=v[7], point3=v[4], cells=pickedCells)
+if distGB != 0:
+    pickedCells = c.getSequenceFromMask(mask=('[#2 ]', ), )
+    v, e, d = p.vertices, p.edges, p.datums
+    p.PartitionCellByPlaneThreePoints(point1=v[14], point2=v[7], point3=v[4], cells=pickedCells)
+
+#+++++++++++++++++++++++++++++++++++++++++++++
+# SETS DEFINITION
+#+++++++++++++++++++++++++++++++++++++++++++++
+
+p = model_name.parts['Bicrystal']
+c = p.cells
+
+if distGB != 0:
+    #cells = c.getSequenceFromMask(mask=('[#1 ]', ), )
+    cells = c.findAt(((d_box_A, 0, 0), ))   #Arbitrary ???
+    region = p.Set(cells=cells, name='Grain1')
+    cells = c.findAt(((d_box_B, 0, 0), ))   #Arbitrary ???
+    region = p.Set(cells=cells, name='Grain2')
+
+if distGB > 0:
+    cells = c.findAt(((distGB / 2, 0, 0), )) #Arbitrary ???
+    region = p.Set(cells=cells, name='Grain1_GB')
+elif distGB < 0:
+    cells = c.findAt(((distGB / 2, 0, 0), )) #Arbitrary ???
+    region = p.Set(cells=cells, name='Grain2_GB')
+
+#+++++++++++++++++++++++++++++++++++++++++++++
+# REFERENCE POINT
+#+++++++++++++++++++++++++++++++++++++++++++++
+
+p = model_name.parts['Bicrystal']
+v, e, d, n = p.vertices, p.edges, p.datums, p.nodes
+p.ReferencePoint(point=p.InterestingPoint(edge=e.findAt(coordinates=(distGB, 0.0, width/2)), rule=MIDDLE))
+
+#+++++++++++++++++++++++++++++++++++++++++++++
 # INSTANCES DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
 
@@ -344,17 +379,48 @@ p = model_name.parts['Bicrystal']
 a.Instance(name='Bicrystal-1', part=p, dependent=OFF)
 
 #+++++++++++++++++++++++++++++++++++++++++++++
-# CELLS DEFINITION
+# MATERIAL DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
 
+model_name.Material(name='Material-1')
+model_name.materials['Material-1'].Density(table=((1.0, ), ))
+model_name.materials['Material-1'].Elastic(table=((45000.0, 0.3), ))
+model_name.materials['Material-1'].Plastic(table=((10.0, 0.0), (15.0, 0.15), (17.5, 0.3), (18.0, 0.4)))
+
+model_name.Material(name='Material-2')
+model_name.materials['Material-2'].Density(table=((1.0, ), ))
+model_name.materials['Material-2'].Elastic(table=((90000.0, 0.3), ))
+model_name.materials['Material-2'].Plastic(table=((20.0, 0.0), (30.0, 0.15), (35, 0.3), (36, 0.4)))
+
+#+++++++++++++++++++++++++++++++++++++++++++++
+# SECTION DEFINITION
+#+++++++++++++++++++++++++++++++++++++++++++++
+
+model_name.HomogeneousSolidSection(name='Section_Grain1', material='Material-1', thickness=None)
+model_name.HomogeneousSolidSection(name='Section_Grain2', material='Material-2', thickness=None)
+
 p = model_name.parts['Bicrystal']
-c = p.cells
-pickedCells = c.getSequenceFromMask(mask=('[#1 ]', ), )
-v, e, d = p.vertices, p.edges, p.datums
-p.PartitionCellByPlaneThreePoints(point1=v[10], point2=v[7], point3=v[4], cells=pickedCells)
-pickedCells = c.getSequenceFromMask(mask=('[#2 ]', ), )
-v, e, d = p.vertices, p.edges, p.datums
-p.PartitionCellByPlaneThreePoints(point1=v[14], point2=v[7], point3=v[4], cells=pickedCells)
+
+set1 = p.sets['Grain1']
+p.SectionAssignment(region=set1, sectionName='Section_Grain1',
+    offset=0.0, offsetType=MIDDLE_SURFACE, offsetField='',
+    thicknessAssignment=FROM_SECTION)
+
+set3 = p.sets['Grain2']
+p.SectionAssignment(region=set3, sectionName='Section_Grain2',
+    offset=0.0, offsetType=MIDDLE_SURFACE, offsetField='',
+    thicknessAssignment=FROM_SECTION)
+
+if distGB > 0:
+    set2 = p.sets['Grain1_GB']
+    p.SectionAssignment(region=set2, sectionName='Section_Grain1-GB',
+        offset=0.0, offsetType=MIDDLE_SURFACE, offsetField='',
+        thicknessAssignment=FROM_SECTION)
+elif distGB < 0:
+    set2 = p.sets['Grain2_GB']
+    p.SectionAssignment(region=set2, sectionName='Section_Grain2-GB',
+    offset=0.0, offsetType=MIDDLE_SURFACE, offsetField='',
+    thicknessAssignment=FROM_SECTION)
 
 #+++++++++++++++++++++++++++++++++++++++++++++
 # SAMPLE-MODELING AND MESHING
