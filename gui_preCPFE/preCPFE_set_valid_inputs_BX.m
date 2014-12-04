@@ -101,11 +101,14 @@ if gui_BX.variables.box_elm_ny1 <= 0
 end
 
 % Box elm ny2_fac
-if gui_BX.variables.box_elm_ny2_fac <= 0
+if gui_BX.variables.box_elm_ny2 < 0
     set(gui_BX.handles.mesh.box_elm_ny2_val, 'String', ...
         num2str(gui_BX.defaults.variables.box_elm_ny2));
-    gui_BX.variables.box_elm_ny2_fac = str2num(get(...
+    gui_BX.variables.box_elm_ny2 = str2num(get(...
         gui_BX.handles.mesh.box_elm_ny2_val, 'String'));
+elseif gui_BX.variables.box_elm_ny2 == 0
+    set(gui_BX.handles.mesh.box_elm_ny2_val, 'String', num2str(1));
+    gui_BX.variables.box_elm_ny2 = 1;    
 end
 
 % Box elm ny3
