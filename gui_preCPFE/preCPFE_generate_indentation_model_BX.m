@@ -78,11 +78,15 @@ py{end+1} = 'indent = BicrystalIndent(';
 py{end+1} = sprintf('modelname = ''%s'',', gui_BX.GB.Titlegbdata);
 py{end+1} = sprintf('trace_ang = %.3f,', gui_BX.GB.GB_Trace_Angle);
 py{end+1} = sprintf('inclination = %.2f,', gui_BX.GB.GB_Inclination);
+py{end+1} = sprintf('len_trace = 1.,');
 py{end+1} = sprintf('d = %e,', gui_BX.variables.ind_dist);
 py{end+1} = sprintf('ind_size = 1.,');
 py{end+1} = sprintf('h_indent = %.5f,', gui_BX.variables.h_indent);
 py{end+1} = sprintf('tipRadius = %.5f,', gui_BX.variables.tipRadius);
 py{end+1} = sprintf('coneAngle = %.5f,', gui_BX.variables.coneAngle);
+py{end+1} = sprintf('geo = ''%s'',', gui_BX.indenter_type_model);
+py{end+1} = sprintf('free_mesh_inp = ''%s'',', ...
+    strcat(gui_BX.GB.Titlegbdata, '.inp'));
 py{end+1} = sprintf('wid = %.5f,', gui_BX.variables.w_sample);
 py{end+1} = sprintf('hei = %.5f,', gui_BX.variables.h_sample);
 py{end+1} = sprintf('len = %.5f,', gui_BX.variables.len_sample);
@@ -98,11 +102,7 @@ py{end+1} = sprintf('box_bias_y1 = %.3f,', gui_BX.variables.box_bias_y1);
 py{end+1} = sprintf('box_bias_y2 = %.3f,', gui_BX.variables.box_bias_y2);
 py{end+1} = sprintf('box_bias_y3 = %.3f,', gui_BX.variables.box_bias_y3);
 py{end+1} = sprintf('smv = %e,', gui_BX.variables.smv);
-py{end+1} = sprintf('lvl = %i,', gui_BX.variables.mesh_quality_lvl);
-py{end+1} = sprintf('len_trace = 1.,');
-py{end+1} = sprintf('geo = ''%s'',', gui_BX.indenter_type_model);
-py{end+1} = sprintf('free_mesh_inp = ''%s''', ...
-    strcat(gui_BX.GB.Titlegbdata, '.inp'));
+py{end+1} = sprintf('lvl = %i', gui_BX.variables.mesh_quality_lvl);
 py{end+1} = ')';
 py{end+1} = sprintf('proc_path = ''%s'' ', proc_path);
 py{end+1} = sprintf('tools.mkdir_p(proc_path)');

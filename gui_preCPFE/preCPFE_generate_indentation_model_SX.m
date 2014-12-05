@@ -75,6 +75,9 @@ py{end+1} = sprintf('modelname = ''%s'',', gui_SX.GB.Titlegbdata);
 py{end+1} = sprintf('h_indent = %.5f,', gui_SX.variables.h_indent);
 py{end+1} = sprintf('tipRadius = %.5f,', gui_SX.variables.tipRadius);
 py{end+1} = sprintf('coneAngle = %.5f,', gui_SX.variables.coneAngle);
+py{end+1} = sprintf('geo = ''%s'',', gui_SX.indenter_type_model);
+py{end+1} = sprintf('free_mesh_inp = ''%s'',', ...
+    strcat(gui_SX.GB.Titlegbdata, '.inp'));
 py{end+1} = sprintf('D_sample = %.5f,', gui_SX.variables.D_sample);
 py{end+1} = sprintf('h_sample = %.5f,', gui_SX.variables.h_sample);
 py{end+1} = sprintf('sample_rep = %.5f,', gui_SX.variables.sample_rep);
@@ -88,11 +91,8 @@ py{end+1} = sprintf('box_bias_conv_x = %.3f,', ...
 py{end+1} = sprintf('box_elm_nx = %.3f,', gui_SX.variables.box_elm_nx);
 py{end+1} = sprintf('box_elm_nz = %.3f,', gui_SX.variables.box_elm_nz);
 py{end+1} = sprintf('radial_divi = %.3f,', gui_SX.variables.radial_divi);
-py{end+1} = sprintf('smv = %e,', gui_SX.variables.smv);
-%py{end+1} = sprintf('lvl = %i,', gui_SX.variables.mesh_quality_lvl);
-py{end+1} = sprintf('geo = ''%s'',', gui_SX.indenter_type_model);
-py{end+1} = sprintf('free_mesh_inp = ''%s''', ...
-    strcat(gui_SX.GB.Titlegbdata, '.inp'));
+py{end+1} = sprintf('smv = %e', gui_SX.variables.smv);
+%py{end+1} = sprintf('lvl = %i', gui_SX.variables.mesh_quality_lvl);
 py{end+1} = ')';
 py{end+1} = sprintf('proc_path = ''%s'' ', proc_path);
 py{end+1} = sprintf('tools.mkdir_p(proc_path)');
