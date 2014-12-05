@@ -78,6 +78,7 @@ class Indentation(Indenter, Tools):
             'modelname': modelname,
             'coneAngle': coneAngle,
             'coneHalfAngle': coneAngle / 2.,
+            'tipRadius': tipRadius,
             'friction': friction,
             'geo': geo,
             'h_indent': h_indent, # indentation depth
@@ -91,7 +92,6 @@ class Indentation(Indenter, Tools):
             'box_bias_z': box_bias_z,  # bias in z direction
             'box_bias_conv_x': box_bias_conv_x,  # bias in x direction for the outer cylinder
             'radial_divi': radial_divi,
-            'tipRadius': tipRadius,
             'D_sample': D_sample, # not yet implemented, governed by h_indent
             'h_sample': h_sample,
             'ind_time': ind_time, # in seconds, since dotgamma_0 is in perSecond

@@ -8,22 +8,24 @@ import numpy as np
 import math
 
 from .base import Proc
+from .indenter import Indenter
 
-class BicrystalIndent(Proc):
+class BicrystalIndent(Proc, Indenter):
     def __init__(self,
                  modelname = 'Bicrystal_indentation',
                  label = '',  # informative label
                  ori1 = None,  # orientation grain 1
                  ori2 = None,  # orientation grain 2
+                 coneAngle = 90.,
+                 friction = 0.3,  # Coulomb friction coefficient
+                 geo = 'conical',  # angle of the conical indenter in degrees
+                 h_indent = 0.3,  # depth of the indent in um
+                 tipRadius = 1.4,  # radius of the spherical indenter in um
                  gbn = None,  # grain boundary normal in xyz
-                 trace_ang = None,  # 0� // X, 90� // Y
-                 inclination = None,  # vertical = 90�, 0.. 90 cuts through grain 1, 90 ..180  through grain 2
+                 trace_ang = None,  # 0deg // X, 90deg // Y
+                 inclination = None,  # vertical = 90deg, 0.. 90 cuts through grain 1, 90 ..180  through grain 2
                  d = None,  # distance of indent from GB
                  len_trace = None,
-                 h_indent = 0.3,  # depth of the indent in �m
-                 tipRadius = 1.4,  # radius of the spherical indenter in �m
-                 geo = 'conical',  # angle of the conical indenter in degree
-                 coneAngle = 90.,
                  ind_size = None,
                  #lengthScale = 1.
                  wid = 4,  # width of the sample
@@ -40,7 +42,6 @@ class BicrystalIndent(Proc):
                  box_bias_y2 = 0,  # bias in y direction in the middle part
                  box_bias_y3 = 0.3,  # bias in y direction in the grain A
                  lvl = 1,  # mesh quality value
-                 friction = 0.3,  # Coulomb friction coefficient
                  ind_time = 10.,  # time of loading segment
                  dwell_time = 3,  # not used yet, needs Loadcase "dwell" (included in Abaqus)
                  unload_time = 2, # unload time in seconds (only Abaqus)
@@ -104,7 +105,30 @@ class BicrystalIndent(Proc):
         self.proc = []
         self.start(title='INDENTATION-MODEL (%s) %s' % (modelname, label))
         self.procNewModel(modelname=(modelname))
+        self.IndentParameters = {}
+        self.IndentParameters['2D'] = False
+        self.IndentParameters['D_sample'] = False
+        self.IndentParameters['sample_rep'] = False
+        self.IndentParameters['coneHalfAngle'] = coneAngle / 2
+        self.IndentParameters['coneAngle'] = coneAngle
+        self.IndentParameters['h_indent'] = h_indent
+        self.IndentParameters['tipRadius'] = tipRadius
+        self.IndentParameters['indAxis'] = 'z'
+        self.IndentParameters['smv'] = 1e-3
+        self.IndentParameters['friction'] = 0.3
+        self.IndentParameters['nSteps'] = 800
+        self.IndentParameters['outStep'] = 5
+        self.IndentParameters['ind_time'] = 10.
+        self.IndentParameters['h_sample'] = hei
+        self.IndentParameters['w_sample'] = wid
+        self.IndentParameters['len_sample'] = len/2
+        self.IndentParameters['free_mesh_inp'] = free_mesh_inp
         self.procBicrystal(modelname = modelname,
+                           coneAngle = coneAngle,
+                           friction = friction,
+                           geo = geo,
+                           h_indent = h_indent, # indentation depth
+                           tipRadius = tipRadius,
                            label = label,
                            ori1 = ori1, #not used yet
                            ori2 = ori2, # not used yet
@@ -115,6 +139,7 @@ class BicrystalIndent(Proc):
                            len = len,
                            trace_ang = trace_ang,
                            inclination = inclination,
+                           len_trace = len_trace,
                            ind_size = ind_size,
                            box_elm_nx = box_elm_nx,
                            box_elm_nz = box_elm_nz,
@@ -127,8 +152,6 @@ class BicrystalIndent(Proc):
                            box_bias_y2 = box_bias_y2,
                            box_bias_y3 = box_bias_y3,
                            lvl = lvl,
-                           len_trace = len_trace,
-                           friction = friction,
                            ind_time = ind_time,
                            dwell_time = dwell_time,
                            unload_time = unload_time,
@@ -146,6 +169,23 @@ class BicrystalIndent(Proc):
                            smv = smv,
                            free_mesh_inp = free_mesh_inp,
                            ori_list = ori_list)
+        if geo == 'conical':
+            self.procIndenterConical(coneHalfAngle=self.IndentParameters['coneHalfAngle'])
+        if geo == 'flatPunch':
+            self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
+        if geo == 'customized':
+            self.procIndenterCustomizedTopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'])
+        savename = modelname + '_' + label
+        savename += '_fric%.1f' % self.IndentParameters['friction']
+        if geo == 'conical':
+            savename += '_R%.2f' % self.IndentParameters['tipRadius']
+            savename += '_cA%.1f' % self.IndentParameters['coneAngle']
+        if geo == 'flatPunch':
+            savename += '_R%.2f' % self.IndentParameters['tipRadius']
+        if geo == 'customized':
+            savename += '_AFMtopo'
+        savename += '_h%.3f' % self.IndentParameters['h_indent']
+        savename += ['_' + label, ''][label == '']
 
     def procBicrystal(self,
                       modelname = None,
@@ -153,12 +193,18 @@ class BicrystalIndent(Proc):
                       ori1 = None, #not used yet
                       ori2 = None, # not used yet
                       gbn = None,
+                      coneAngle = None,
+                      friction = None,
+                      geo = None,
+                      h_indent = None,
+                      tipRadius = None,
                       d = None,
                       hei = None,
                       wid = None,
                       len = None,
                       trace_ang = None,
                       inclination = None,
+                      len_trace = None,
                       ind_size = None,
                       box_elm_nx = None,
                       box_elm_nz = None,
@@ -171,8 +217,6 @@ class BicrystalIndent(Proc):
                       box_bias_y2 = None,
                       box_bias_y3 = None,
                       lvl = None,
-                      len_trace = None,
-                      friction = None,
                       ind_time = None,
                       dwell_time = None,
                       unload_time = None,
@@ -242,6 +286,9 @@ if distGB < 0:
     elif inclination > 90:
         box_y3 = -d_incgb + distGB
         box_y4 = -d_incgb
+    else:
+        box_y3 = distGB
+        box_y4 = 0
 elif distGB > 0:
     d_box_A = d_box + distGB
     d_box_B = -d_box
@@ -253,11 +300,16 @@ elif distGB > 0:
     elif inclination > 90:
         box_y3 = -d_incgb
         box_y4 = -d_incgb + distGB
+    else:
+        box_y3 = 0
+        box_y4 = distGB
 elif distGB == 0:
     d_box_A = d_box
     d_box_B = -d_box
     box_y1 = 0
     box_y2 = 0
+    box_y3 = 0
+    box_y4 = 0
 
 # MESH
 box_elm_nx = %f''' % box_elm_nx + '''
@@ -341,12 +393,12 @@ if distGB != 0:
     p.PartitionCellByPlaneThreePoints(point1=v[14], point2=v[7], point3=v[4], cells=pickedCells)
 
 #+++++++++++++++++++++++++++++++++++++++++++++
-# SETS DEFINITION
+# SETS/SURFACES DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
 
 p = model_name.parts['Bicrystal']
-c = p.cells
 
+c = p.cells
 if distGB != 0:
     #cells = c.getSequenceFromMask(mask=('[#1 ]', ), )
     cells = c.findAt(((d_box_A, 0, 0), ))   #Arbitrary ???
@@ -361,6 +413,46 @@ elif distGB < 0:
     cells = c.findAt(((distGB / 2, 0, 0), )) #Arbitrary ???
     region = p.Set(cells=cells, name='Grain2_GB')
 
+e = p.edges
+edges = e.findAt(((d_box_A, 0, width/2), ), ((d_box_B, 0, width/2), ),
+    ((box_y1, 0, width/2), ), ((box_y2, 0, width/2), ),
+    ((d_box_A, -height, width/2), ), ((d_box_B, -height, width/2), ),
+    ((box_y3, -height, width/2), ), ((box_y4, -height, width/2), ))
+p.Set(edges=edges, name='edges_x')
+edges = e.findAt(((d_box_A, -height/2, 0), ), ((d_box_B, -height/2, 0), ),
+    (((box_y1 + box_y4)/2, -height/2, 0), ), (((box_y2 + box_y3)/2, -height/2, 0), ),
+    ((d_box_A, -height/2, width), ), ((d_box_B, -height/2, width), ),
+    (((box_y1 + box_y4)/2, -height/2, width), ), (((box_y2 + box_y3)/2, -height/2, width), ))
+p.Set(edges=edges, name='edges_z')
+edges = e.findAt((((d_box_A + box_y1)/2, 0, 0), ), (((d_box_A + box_y4)/2, -height, 0), ),
+    (((d_box_A + box_y1)/2, 0, width), ), (((d_box_A + box_y4)/2, -height, width), ))
+p.Set(edges=edges, name='edges_y1')
+edges = e.findAt((((box_y1 + box_y2)/2, 0, 0), ), (((box_y4 + box_y3)/2, -height, 0), ),
+    (((box_y1 + box_y2)/2, 0, width), ), (((box_y4 + box_y3)/2, -height, width), ))
+p.Set(edges=edges, name='edges_y2')
+edges = e.findAt((((box_y2 + d_box_B)/2, 0, 0), ), (((box_y3 + d_box_B)/2, -height, 0), ),
+    (((box_y2 + d_box_B)/2, 0, width), ), (((box_y3 + d_box_B)/2, -height, width), ))
+p.Set(edges=edges, name='edges_y3')
+
+f = p.faces
+faces = f.findAt((((d_box_A + box_y1)/2, 0, width/2), ), (((box_y1 + box_y2)/2, 0, width/2), ),
+    (((box_y2 + d_box_B)/2, 0, width/2), ))
+p.Set(faces=faces, name='Surf-top')
+faces = f.findAt((((d_box_A + box_y3)/2, -height, width/2), ), (((box_y3 + box_y4)/2, -height, width/2), ),
+    (((box_y4 + d_box_B)/2, -height, width/2), ))
+p.Set(faces=faces, name='Surf-bottom')
+faces = f.findAt((((d_box_A + box_y1)/2 + d_incgb/2, -height/2, 0), ),
+    (((box_y1 + box_y3)/2, -height/2, 0), ), (((box_y3 + d_box_B)/2 + d_incgb/2, -height/2, 0), ),
+    ((d_box_A, -height/2, width/2), ), ((d_box_B, -height/2, width/2), ),
+    (((d_box_A + box_y1)/2 + d_incgb/2, -height/2, width), ),
+    (((box_y1 + box_y3)/2, -height/2, width), ), (((box_y3 + d_box_B)/2 + d_incgb/2, -height/2, width), ))
+p.Set(faces=faces, name='Surf-sides')
+
+s = p.faces
+side1Faces = s.findAt((((d_box_A + box_y1)/2, 0, width/2), ), (((box_y1 + box_y2)/2, 0, width/2), ),
+    (((box_y2 + d_box_B)/2, 0, width/2), ))
+p.Surface(side1Faces=side1Faces, name='Surf-top')
+
 #+++++++++++++++++++++++++++++++++++++++++++++
 # REFERENCE POINT
 #+++++++++++++++++++++++++++++++++++++++++++++
@@ -368,6 +460,9 @@ elif distGB < 0:
 p = model_name.parts['Bicrystal']
 v, e, d, n = p.vertices, p.edges, p.datums, p.nodes
 p.ReferencePoint(point=p.InterestingPoint(edge=e.findAt(coordinates=(distGB, 0.0, width/2)), rule=MIDDLE))
+r = p.referencePoints
+refPoints=(r[16], )
+p.Set(referencePoints=refPoints, name='Set-RP')
 
 #+++++++++++++++++++++++++++++++++++++++++++++
 # INSTANCES DEFINITION
@@ -398,6 +493,10 @@ model_name.materials['Material-2'].Plastic(table=((20.0, 0.0), (30.0, 0.15), (35
 
 model_name.HomogeneousSolidSection(name='Section_Grain1', material='Material-1', thickness=None)
 model_name.HomogeneousSolidSection(name='Section_Grain2', material='Material-2', thickness=None)
+if distGB > 0:
+    model_name.HomogeneousSolidSection(name='Section_Grain1-GB', material='Material-1', thickness=None)
+elif distGB < 0:
+    model_name.HomogeneousSolidSection(name='Section_Grain2-GB', material='Material-2', thickness=None)
 
 p = model_name.parts['Bicrystal']
 
@@ -422,8 +521,27 @@ elif distGB < 0:
     offset=0.0, offsetType=MIDDLE_SURFACE, offsetField='',
     thicknessAssignment=FROM_SECTION)
 
+a.regenerate()
+
 #+++++++++++++++++++++++++++++++++++++++++++++
-# SAMPLE-MODELING AND MESHING
+# ROTATION / TRANSLATION
+#+++++++++++++++++++++++++++++++++++++++++++++
+
+a = model_name.rootAssembly
+
+# Translation to set the reference point to (0,0,0)
+a.translate(instanceList=('Bicrystal-1', ), vector=(-distGB, 0, -width/2))
+
+# Rotations to set correctly the xyz coordinate system
+a.rotate(instanceList=('Bicrystal-1', ), axisPoint=(0, 0, 0), axisDirection=(1, 0, 0), angle=90.0)
+a.rotate(instanceList=('Bicrystal-1', ), axisPoint=(0, 0, 0), axisDirection=(0, 0, 1), angle=90.0)
+
+# Rotation for the trace angle
+if trace_ang !=0:
+    a.rotate(instanceList=('Bicrystal-1', ), axisPoint=(0, 0, 0), axisDirection=(0.0, 0.0, 1.0), angle=trace_ang)
+
+#+++++++++++++++++++++++++++++++++++++++++++++
+# MESHING
 #+++++++++++++++++++++++++++++++++++++++++++++
 
 #+++++++++++++++++++++++++++++++++++++++++++++
