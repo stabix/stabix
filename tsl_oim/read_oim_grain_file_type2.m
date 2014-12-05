@@ -76,7 +76,14 @@ while feof(fid) ~= 1
                 ' grain, and diameter of grains !'])
         end
         ii = ii + 1;
-        data(ii,:) = sscanf(ln,'%f');
+        try
+            data(ii,:) = sscanf(ln, '%f');
+        catch  % handle empty lines or other problems in data
+            if ~isempty(strtrim(ln))
+                warning('Could not make sense of this line:');
+                disp(ln);
+            end
+        end
     end
 end
 fclose(fid);

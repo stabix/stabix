@@ -68,7 +68,9 @@ try
         gui.GF2_struct = GF2_struct;
     end
 catch err
-    display(err.message);
+    %warning('Could not read grain file type 2')         
+    rethrow(err); % Just rethrow the error instead of silently resetting the GF2 file
+    % TODO: button to reset the input files to the validation files
     config_map.filename_grain_file_type2 = 'validation_grain_file_type2.txt';
     config_map.pathname_grain_file_type2 = '';
     GF2_struct = read_oim_grain_file_type2(...
