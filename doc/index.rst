@@ -8,7 +8,7 @@
 
 
 Slip Transmission |matlab| toolbox
-==================================
+===================================
 
 .. only:: html
 
@@ -62,7 +62,7 @@ Activation and transmission of slip are interpreted based on these simulations a
 
 
 Contents
-========
+=========
    
 .. toctree::
    :maxdepth: 3
@@ -80,7 +80,8 @@ Contents
 
 
 References
-==========
+===========
+
 .. [#LusterMorris_1995] `J. Luster and M.A. Morris, "Compatibility of deformation in two-phase Ti-Al alloys: Dependence on microstructure and orientation relationships.", Metal. and Mat. Trans. A (1995), 26(7), pp. 1745-1756. <http://dx.doi.org/10.1007/BF02670762>`_
 .. [#Marcinkowski_1970] `M.J. Marcinkowski and W.F. Tseng, "Dislocation behavior at tilt boundaries of infinite extent.", Metal. Trans. (1970), 1(12), pp. 3397-3401. <http://dx.doi.org/10.1007/BF03037870>`_
 .. [#Bollmann_1970] `W. Bollmann, "Crystal Defects and Crystalline Interfaces", Springer-Verlag (1970). <http://dx.doi.org/10.1007/978-3-642-49173-3>`_
@@ -93,7 +94,8 @@ References
 
 
 Contact
-=======
+========
+
 :Authors: `David Mercier <d.mercier@mpie.de>`_ [1], `Claudio Zambaldi <c.zambaldi@mpie.de>`_ [1] and `Thomas R. Bieler <bieler@egr.msu.edu>`_ [2].
 
 [1] `Max-Planck-Institut für Eisenforschung, 40237 Düsseldorf, Germany <http://www.mpie.de/>`_
@@ -105,13 +107,14 @@ Contact
 
 
 Contributors
-============
+=============
 
 - Raúl Sánchez Martín (`IMDEA <http://www.materials.imdea.org/>`_, Madrid) contributed Python code to generate *Abaqus* indentation models.
 
 
 Acknowledgements
-================
+=================
+
 This work was supported by the DFG/NSF `Materials World Network <http://www.nsf.gov/funding/pgm_summ.jsp?pims_id=12820>`_ grant references (DFG ZA 523/3-1 and NSF-DMR-1108211).
 
 The authors are grateful to Philip Eisenlohr, Martin Crimp and Yang Su of `Michigan State University <http://www.msu.edu/>`_,
@@ -119,6 +122,7 @@ and the `Max-Planck-Institut für Eisenforschung <http://www.mpie.de/>`_ for sup
 
 
 Keywords
-========
+=========
+
 |matlab| Toolbox; Graphical User Interface (GUI); Grain Boundary (GB); Polycrystalline Metals; Slip Transmission; Bi-Crystal (BX);
 Electron backscatter diffraction (EBSD); Instrumented indentation; Crystal Plasticity Finite Element Method (CPFEM); python\ :sup:`TM` \ Toolbox.
