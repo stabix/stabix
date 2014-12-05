@@ -5,6 +5,7 @@ To get started with STABiX, clone the repository, then run Matlab, and cd into t
 Finally you can start the launcher by typing "demo" at the Matlab command prompt.
 See the full documentation at http://stabix.readthedocs.org.
 
+
 Authors
 -------
 
@@ -13,6 +14,7 @@ Written by D. Mercier [1] and C. Zambaldi [1], based on previous work of T. R. B
 [1] Max-Planck-Institut für Eisenforschung, 40237 Düsseldorf, Germany
 [2] Chemical Engineering and Materials Science, Michigan State University, East Lansing 48824 MI, USA
 
+
 Reference paper
 ----------------
 
@@ -20,10 +22,18 @@ Reference paper
 D. Mercier, C. Zambaldi, T. R. Bieler, 17th International Conference on Textures of Materials (ICOTOM17), At Dresden, Germany (2014).
 http://dx.doi.org/10.5281/zenodo.11561
 
+
+Contributors
+============
+
+- Raúl Sánchez Martín (`IMDEA <http://www.materials.imdea.org/>`_, Madrid) contributed Python code to generate *Abaqus* indentation models.
+
+
 Acknowledgements
 -----------------
 
 Parts of this work were supported under the NSF/DFG Materials World Network program (DFG ZA 523/3-1 and NSF-DMR-1108211). We also acknowledge useful discussions with Y. Su, P. Eisenlohr and M. Crimp from the Michigan State University.
+
 
 Keywords
 --------

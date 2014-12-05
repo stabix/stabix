@@ -60,6 +60,7 @@ Activation and transmission of slip are interpreted based on these simulations a
 
 `Download the documentation as a pdf file <https://media.readthedocs.org/pdf/stabix/latest/stabix.pdf>`_.
 
+
 Contents
 ========
    
@@ -90,6 +91,7 @@ References
 .. [#Zambaldi_2012] `C. Zambaldi et al., "Orientation informed nanoindentation of α-titanium: Indentation pileup in hexagonal metals deforming by prismatic slip", J. Mater. Res. (2012), 27(01), pp. 356-367. <http://dx.doi.org/10.1557/jmr.2011.334>`_
 .. [#Zambaldi_SX] `C. Zambaldi, "Anisotropic indentation pile-up in single crystals". <http://zambaldi.de/sx-indent/>`_
 
+
 Contact
 =======
 :Authors: `David Mercier <d.mercier@mpie.de>`_ [1], `Claudio Zambaldi <c.zambaldi@mpie.de>`_ [1] and `Thomas R. Bieler <bieler@egr.msu.edu>`_ [2].
@@ -101,17 +103,19 @@ Contact
 .. image:: ./_pictures/logo_MPIE_MSU.png
    :scale: 50 %
 
+
+Contributors
+============
+
+- Raúl Sánchez Martín (`IMDEA <http://www.materials.imdea.org/>`_, Madrid) contributed Python code to generate *Abaqus* indentation models.
+
+
 Acknowledgements
 ================
 This work was supported by the DFG/NSF `Materials World Network <http://www.nsf.gov/funding/pgm_summ.jsp?pims_id=12820>`_ grant references (DFG ZA 523/3-1 and NSF-DMR-1108211).
 
 The authors are grateful to Philip Eisenlohr, Martin Crimp and Yang Su of `Michigan State University <http://www.msu.edu/>`_,
 and the `Max-Planck-Institut für Eisenforschung <http://www.mpie.de/>`_ for support.
-
-Contributors
-============
-
-- Raúl Sánchez Martín (`IMDEA <http://www.materials.imdea.org/>`_, Madrid) contributed Python code to generate *Abaqus* indentation models.
 
 
 Keywords
