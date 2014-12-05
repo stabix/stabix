@@ -7,7 +7,7 @@ gdata = guidata(gcf);
 
 %% Store old view settings
 % Rotation of the bicrystal based on the GB trace angle
-rotation_angle = gdata.GB.GB_Trace_Angle - 90; % FIXME: -90 because inversion of x and y axis with CPFE model...
+rotation_angle = gdata.GB.GB_Trace_Angle;
 direction = [0 0 1]; % along z-axis
 origin = [0,0,0];
 
