@@ -108,7 +108,11 @@ This work was supported by the DFG/NSF `Materials World Network <http://www.nsf.
 The authors are grateful to Philip Eisenlohr, Martin Crimp and Yang Su of `Michigan State University <http://www.msu.edu/>`_,
 and the `Max-Planck-Institut für Eisenforschung <http://www.mpie.de/>`_ for support.
 
-.. include:: contributors.rst
+Contributors
+============
+
+- Raúl Sánchez Martín (`IMDEA <http://www.materials.imdea.org/>`_, Madrid) contributed Python code to generate *Abaqus* indentation models.
+
 
 Keywords
 ========
