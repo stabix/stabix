@@ -45,7 +45,7 @@ lattice_parameters = zeros(max(GF2(:,1)), 3, 1);
 %% Waitbar
 h_waitbar = waitbar(0, 'Calculating GB properties ...');                   % changing the waitbar color is not trivial, http://stackoverflow.com/questions/5368861/how-to-add-progress-bar-control-to-matlab-gui
 
-if gui.config_data.slips_1 == 0 || gui.config_data.slips_2 == 0
+if gui.config_data.slips_1 == 0 | gui.config_data.slips_2 == 0
     helpdlg(['Please, select at least 1 (or 2 for a two phases '...
         'material) slip systems family for calculations...']);
     delete(h_waitbar);
