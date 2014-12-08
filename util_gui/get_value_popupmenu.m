@@ -12,7 +12,7 @@ if size(value_pm, 2) == 1
     string_pm = list_pm(value_pm, :);
 else % In case of multiple selection
     for ii = 1:1:size(value_pm, 2)
-        string_pm(ii,:) =  list_pm{value_pm(ii)};
+        string_pm(ii,:) = list_pm(value_pm(ii));
     end
 end
 

@@ -14,13 +14,13 @@ end
 
 var_slipA = get_value_popupmenu(gui.handles.pmlistslipsA, ...
     listSlipSystems(gui.GB.Phase_A));
-for ii = 1:1:size(var_slipA, 2)
+for ii = 1:1:size(var_slipA, 1)
     listslipA(ii) = slip_systems_plot(var_slipA(ii,:));
 end
 
 var_slipB = get_value_popupmenu(gui.handles.pmlistslipsB, ...
     listSlipSystems(gui.GB.Phase_B));
-for ii = 1:1:size(var_slipB, 2)
+for ii = 1:1:size(var_slipB, 1)
     listslipB(ii) = slip_systems_plot(var_slipB(ii,:));
 end
 

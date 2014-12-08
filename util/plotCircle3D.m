@@ -28,9 +28,11 @@ theta = 0:0.01:2*pi;
 %theta=linspace(0,2*pi,100)';%:0.01:2*pi;
 v = null(normale);
 %center
-points = repmat(center',1,size(theta,2))+radius*(v(:,1)*cos(theta)+v(:,2)*sin(theta));
-%hCirc = plot3(points(1,:),points(2,:),points(3,:),'r-');
-hPatch = patch(points(1,:),points(2,:),points(3,:),'k-','LineWidth',1.5,'FaceAlpha',.1);
+points = repmat(center',1,size(theta,2)) + ...
+    radius*(v(:,1)*cos(theta)+v(:,2)*sin(theta));
+%hCirc = plot3(points(1,:), points(2,:), points(3,:), 'r-');
+hPatch = patch(points(1,:), points(2,:), points(3,:), 'k-', ...
+    'LineWidth', 1.5, 'FaceAlpha', .1);
 axis equal
 %rotate3d on
 

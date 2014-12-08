@@ -28,8 +28,8 @@ legend_location_str = ...
     get_value_popupmenu(gui.handles.pmlegend_location, listLocation);
 
 %% Setting of slip direction and slip normal
-slipnormalA    = gui.calculations.vectA(slipA, 1:3, gui.GB.GrainA);
-slipnormalB    = gui.calculations.vectB(slipB, 1:3, gui.GB.GrainB);
+slipnormalA = gui.calculations.vectA(slipA, 1:3, gui.GB.GrainA);
+slipnormalB = gui.calculations.vectB(slipB, 1:3, gui.GB.GrainB);
 
 % FIXME ==> Direction of Burgers vector ??
 % see in plotGB_Bicrystal_mprime_calculator_bc... in RBV calculations
