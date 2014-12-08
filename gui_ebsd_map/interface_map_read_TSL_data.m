@@ -98,7 +98,9 @@ try
         gui.RB_struct = RB_struct;
     end
 catch err
-    display(err.message);
+    %warning('Could not read grain file type 2')         
+    rethrow(err); % Just rethrow the error instead of silently resetting the GF2 file
+    % TODO: button to reset the input files to the validation files
     config_map.filename_reconstructed_boundaries_file  = ...
         'validation_reconstructed_boundaries.txt';
     config_map.pathname_reconstructed_boundaries_file  = '';

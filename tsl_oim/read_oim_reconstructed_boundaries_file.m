@@ -72,11 +72,18 @@ while feof(fid) ~= 1
     else
         if ~(RIGHT_ORI_OK && LEFT_ORI_OK && GB_LENGTH_OK && ...
                 GB_TRACE_ANGLE_OK&& GB_ENDPOINTS_COORD_OK && ID_GRAINS_OK)
-           fclose(fid);
-           error('Reconstructed Boundaries File columns are wrong !')
+            fclose(fid);
+            error('Reconstructed Boundaries File columns are wrong !')
         end
         ii = ii + 1;
-        data(ii,:) = sscanf(ln,'%f');
+        try
+            data(ii,:) = sscanf(ln, '%f');
+        catch  % handle empty lines or other problems in data
+            if ~isempty(strtrim(ln))
+                warning('Could not make sense of this line:');
+                disp(ln);
+            end
+        end
     end
 end
 fclose(fid);
