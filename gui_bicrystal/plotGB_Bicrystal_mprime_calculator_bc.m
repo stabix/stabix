@@ -17,6 +17,9 @@ gui = guidata(gcf);
 
 if isempty(find(slip_check_1==0)) && isempty(find(slip_check_2==0)) % Check orthogonality
     
+    vectA = zeros(size_max_slip_sys,21,gui.GB.GrainA);
+    vectB = zeros(size_max_slip_sys,21,gui.GB.GrainB);
+    
     % Grain A
     gui.GB.eulerA = ...
         plotGB_Bicrystal_update_euler(...
