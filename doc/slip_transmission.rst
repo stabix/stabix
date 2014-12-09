@@ -31,7 +31,7 @@ The geometry of the slip transfer event is most of the time described by the sch
 :math:`\psi` is the angle between slip plane normal directions, :math:`\gamma` is the angle between the direction of incoming slip and the plane normal of outgoing slip,
 and :math:`\delta` is between the direction of outgoing slip and the plane normal of incoming slip.
 :math:`n`, :math:`d` and :math:`l` are respectively the slip plane normals, slip directions and the lines of intersection of the slip plane and the grain boundary.
-:math:`\vec b` is the Burgers vector of the slip plane and :math:`\vec b_\text r` is the residual Burgers vector of the residual dislocation at the grain boundary.
+:math:`\vec b` is the Burgers vector of the slip plane and :math:`\vec b_\text r` is the |rbv| of the residual dislocation at the grain boundary.
 The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming and outgoing slip systems, respectively.
   
 .. figure:: ./_pictures/Schemes_SlipTransmission/slip_transmission_scheme2.png
@@ -108,17 +108,17 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
     .. math:: \vec b_\text{r} = \vec g_\text{in}\cdot\vec b_\text{in} - \vec g_\text{out}\cdot\vec b_\text{out}
         :label: residual_burgers_vector
         
-  The magnitude of this residual Burgers vector should be minimized.
+  The magnitude of this |rbv| should be minimized.
   
-  Shirokoff et al., Kehagias et al., and Kacher et al. used the residual Burgers vector as a criterion to analyse slip transmission in cp-Ti (hex) [#Shirokoff_1993]_, [#Kehagias_1995]_, [#Kehagias_1996]_ and [#KacherRobertson_2014]_,
+  Shirokoff et al., Kehagias et al., and Kacher et al. used the |rbv| as a criterion to analyse slip transmission in cp-Ti (hex) [#Shirokoff_1993]_, [#Kehagias_1995]_, [#Kehagias_1996]_ and [#KacherRobertson_2014]_,
   Lagow et al. in Mo (bcc) [#Lagow_2001]_, Gemperle et al. and Gemperlova et al. in FeSi (bcc) [#Gemperle_2004]_ and [#Gemperlova_2004]_, Kacher et al. in 304 stainless steel (fcc) [#KacherRobertson_2012]_,
   and Jacques et al. for semiconductors [#Jacques_1990]_.
   
-  Patriarca et al. demonstrated for BCC material the role of the residual Burgers vector in predicting slip transmission, by analysing strain field across GBs determined by digital image correlation [#Patriarca_2013]_. 
+  Patriarca et al. demonstrated for BCC material the role of the |rbv| in predicting slip transmission, by analysing strain field across GBs determined by digital image correlation [#Patriarca_2013]_. 
   
-  Misra and Gibala used the residual Burgers vector to analyze slip across a fcc/bcc interphase boundary [#MisraGibala_1999]_.
+  Misra and Gibala used the |rbv| to analyze slip across a fcc/bcc interphase boundary [#MisraGibala_1999]_.
   
-  The |matlab| function used to calculate the residual Burgers vector is: `residual_Burgers_vector.m <https://github.com/stabix/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_
+  The |matlab| function used to calculate the |rbv| is: `residual_Burgers_vector.m <https://github.com/stabix/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_
  
 * **The misorientation or disorientation** (:math:`\Delta g` or :math:`\Delta g_\text d`)  [#AustChen_1954]_, [#ClarkChalmers_1954]_ and [#WoNgan_2004]_
 
@@ -208,7 +208,7 @@ Slip transmission parameters implemented in the |matlab| Toolbox
    ":math:`N` factor from Livingston and Chamlers", ":math:`N = \cos(\psi)\cdot\cos(\kappa) + \cos(\gamma)\cdot\cos(\delta)`", `N_factor.m <https://github.com/stabix/stabix/tree/master/slip_transfer/N_factor.m>`_, [#LivingstonChalmers_1957]_
    ":math:`LRB` factor from Shen et al.", ":math:`LRB = \cos(\theta)\cdot\cos(\kappa)`", `LRB_parameter.m <https://github.com/stabix/stabix/tree/master/slip_transfer/LRB_parameter.m>`_, [#Shen_1986]_ / [#Shen_1988]_
    ":math:`m'` parameter from Luster and Morris", ":math:`m' = \cos(\psi)\cdot\cos(\kappa)`", `mprime.m <https://github.com/stabix/stabix/tree/master/slip_transfer/mprime.m>`_, [#LusterMorris_1995]_
-   "Residual Burgers vector (:math:`\vec b_\text{r}`)", ":math:`\vec b_\text{r} = g_\text{in}\cdot\vec b_\text{in} - g_\text{out}\cdot\vec b_\text{out}`", `residual_Burgers_vector.m <https://github.com/stabix/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_, [#Marcinkowski_1970]_
+   "|rbv| (:math:`\vec b_\text{r}`)", ":math:`\vec b_\text{r} = g_\text{in}\cdot\vec b_\text{in} - g_\text{out}\cdot\vec b_\text{out}`", `residual_Burgers_vector.m <https://github.com/stabix/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_, [#Marcinkowski_1970]_
    "Resolved Shear Stress (:math:`\tau^{i}`) / Schmid Factor", ":math:`\tau^{i} = \sigma : {S_0}^{i}` with :math:`{S_0}^{i} = d \otimes n`", `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_, [#Reid_1973]_
    "Grain boundary Schmid factor", ":math:`m_\text{GB} = m_\text{in} + m_\text{out}`", `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_, [#Abuzaid_2012]_
    "Generalized Schmid Factor (:math:`GSF`)", ":math:`GSF = d \cdot g \sigma g \cdot n`", `generalized_schmid_factor.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/generalized_schmid_factor.m>`_, [#Reid_1973]_

@@ -18,7 +18,7 @@ of possible outgoing systems. Calculations are reproduced using the |matlab| too
    :scale: 40 %
    :align: center
    
-   *Figure 1 : a) Plot of a bicrystal with a misorientation angle of 36° and misorientation axis of [-11, -22,  -2] from Kacher's paper. b) Magnitude of residual Burgers vector given in Kacher's paper compared to values calculated with the |matlab| toolbox*
+   *Figure 1 : a) Plot of a bicrystal with a misorientation angle of 36° and misorientation axis of [-11, -22,  -2] from Kacher's paper. b) Magnitude of residual Burgers vector given in Kacher's paper compared to values calculated with the Matlab toolbox*
 
 Patriarca et al. (2013)
 .......................
