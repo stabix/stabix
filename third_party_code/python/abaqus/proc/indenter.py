@@ -182,9 +182,12 @@ s.setPrimaryObject(option=STANDALONE)
 s.ConstructionLine(point1=(0.0, -sheet_Size*0.5), point2=(0.0, sheet_Size*0.5))
 s.Line(point1=(0.0, 0.0), point2=(tipRadius, 0.0))
 s.Line(point1=(tipRadius, 0.0), point2=(tipRadius, h_indent*2.0))
-s.Line(point1=(tipRadius,  h_indent*2.0), point2=(0.0,  h_indent*2.0))
-p = model_name.Part(name='indenter', 
-    dimensionality=THREE_D, type=ANALYTIC_RIGID_SURFACE)
+s.Line(point1=(tipRadius, h_indent*2.0), point2=(0.0, h_indent*2.0))
+s.FilletByRadius(radius=0.1*tipRadius, curve1=g.findAt((tipRadius*0.5, 0.0)), nearPoint1=(
+    0.9*tipRadius, 0.0), curve2=g.findAt((tipRadius, h_indent)), 
+    nearPoint2=(tipRadius,0.1*tipRadius))
+p = model_name.Part(name='indenter', dimensionality=THREE_D, 
+    type=ANALYTIC_RIGID_SURFACE)
 p = model_name.parts['indenter']
 p.AnalyticRigidSurfRevolve(sketch=s)
 s.unsetPrimaryObject()
