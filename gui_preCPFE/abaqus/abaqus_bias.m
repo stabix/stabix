@@ -2,10 +2,10 @@
 function biased_elem = abaqus_bias(x0, xN, num_elements, bias, varargin)
 %% Function used to calculate the bias for a segment (based on bias used in Abaqus)
 % num_elements: is the number of frequency points at which results are to
-% be given within a frequency interval (discussed above)
+% be given within a frequency interval (discussed above) (1 to 1e4 in Abaqus)
 % x0: First point
 % xn: End point
-% p: Bias parameter value
+% p: Bias parameter value (1 to 1e6 in Abaqus)
 % biased_elem: Seed points for biased elements
 
 % A bias parameter, p, that is greater than 1.0 provides closer spacing of

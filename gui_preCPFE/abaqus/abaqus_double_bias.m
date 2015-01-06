@@ -1,12 +1,13 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function f = abaqus_double_bias(num_elements, p, f1, f2, varargin)
 %% Function used to calculate the bias for a segment (based on bias used in Abaqus)
-% num_elements is the number of frequency points at which results are to be given within a frequency interval (discussed above);
+% num_elements is the number of frequency points at which results are to be
+% given within a frequency interval (discussed above) (1 to 1e4 in Abaqus);
 % k is one such frequency point (k = 1,2,...n);
 % f1 is the lower limit of the frequency interval;
 % f2 is the upper limit of the frequency interval;
 % fk is the frequency at which the kth results are given;
-% p is the bias parameter value; and
+% p is the bias parameter value (1 to 1e6 in Abaqus); and
 % f is the frequency or the logarithm of the frequency, depending on the value used for the frequency scale parameter.
 
 % A bias parameter, p, that is greater than 1.0 provides closer spacing of
