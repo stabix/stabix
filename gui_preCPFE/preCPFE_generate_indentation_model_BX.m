@@ -73,7 +73,8 @@ py{end+1} = sprintf('BicrystalIndent.FEMSOFTWAREVERSION = %.1f', ...
     gui_BX.config.CPFEM.fem_solver_version);
 py{end+1} = sprintf('BicrystalIndent.FEMSOFTWARE = ''%s''', ...
     strtok(gui_BX.config.CPFEM.fem_solver_used, '_'));
-py{end+1} = sprintf('BicrystalIndent.modelname = ''BX_indentation''');
+py{end+1} = sprintf('BicrystalIndent.description = ''%s %s''', ...
+    gui_BX.description, gui_BX.GB.Titlegbdata);
 py{end+1} = 'indent = BicrystalIndent(';
 py{end+1} = sprintf('modelname = ''%s'',', gui_BX.GB.Titlegbdata);
 py{end+1} = sprintf('trace_ang = %.3f,', gui_BX.GB.GB_Trace_Angle);

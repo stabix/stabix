@@ -30,8 +30,9 @@ class Proc(Tools):
     CODE = 'GENMAT'
     #CODE = 'DAMASK'
     FEMSOFTWAREVERSION = 2012 # default
-    FEMSOFTWARE = 'Abaqus'
-    modelname = 'Indentation'
+    FEMSOFTWARE = 'Abaqus' # default
+    modelname = 'Indentation' # default
+    description = 'Modelling of indentation test' # default
 
     header_line_mark = '#+++++++++++++++++++++++++++++++++++++++++++++'
 
@@ -77,8 +78,10 @@ class Proc(Tools):
 """)
 
     def procNewModel(self,
-                     modelname=None):
+                     modelname=None,
+                     description=None):
         if modelname is None: modelname = self.modelname
+        if description is None: description = self.description
         self.proc.append('''
 #+++++++++++++++++++++++++++++++++++++++++++++
 # NEW MODEL
@@ -115,6 +118,7 @@ cliCommand("""session.journalOptions.setValues(replayGeometry=
 
 sample_name = 'sample'
 model_name = mdb.Model(name='%s')''' % modelname + '''
+model_name.setValues(description='%s')''' % description + '''
 ''')
 
     def procIndentDocCall(self):
