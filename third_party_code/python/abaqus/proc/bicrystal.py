@@ -123,6 +123,12 @@ class BicrystalIndent(Proc, Indenter):
         self.IndentParameters['w_sample'] = wid
         self.IndentParameters['len_sample'] = len/2
         self.IndentParameters['free_mesh_inp'] = free_mesh_inp
+        if geo == 'conical':
+            self.procIndenterConical(coneHalfAngle=self.IndentParameters['coneHalfAngle'])
+        if geo == 'flatPunch':
+            self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
+        if geo == 'customized':
+            self.procIndenterCustomizedTopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'])
         self.procBicrystal(modelname = modelname,
                            coneAngle = coneAngle,
                            friction = friction,
@@ -169,12 +175,6 @@ class BicrystalIndent(Proc, Indenter):
                            smv = smv,
                            free_mesh_inp = free_mesh_inp,
                            ori_list = ori_list)
-        if geo == 'conical':
-            self.procIndenterConical(coneHalfAngle=self.IndentParameters['coneHalfAngle'])
-        if geo == 'flatPunch':
-            self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
-        if geo == 'customized':
-            self.procIndenterCustomizedTopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'])
         savename = modelname + '_' + label
         savename += '_fric%.1f' % self.IndentParameters['friction']
         if geo == 'conical':
@@ -414,11 +414,41 @@ elif distGB < 0:
     region = p.Set(cells=cells, name='Grain2_GB')
 
 e = p.edges
-edges = e.findAt(((d_box_A, 0, width/2), ), ((d_box_B, 0, width/2), ),
-    ((box_y1, 0, width/2), ), ((box_y2, 0, width/2), ),
-    ((d_box_A, -height, width/2), ), ((d_box_B, -height, width/2), ),
-    ((box_y3, -height, width/2), ), ((box_y4, -height, width/2), ))
-p.Set(edges=edges, name='edges_x')
+p.PartitionEdgeByPoint(edge=e.findAt(coordinates=(d_box_A, 0, width/2)),
+    point=p.InterestingPoint(edge=e.findAt(coordinates=(d_box_A, 0, width/2)),
+    rule=MIDDLE))
+p.PartitionEdgeByPoint(edge=e.findAt(coordinates=(d_box_B, 0, width/2)),
+    point=p.InterestingPoint(edge=e.findAt(coordinates=(d_box_B, 0, width/2)),
+    rule=MIDDLE))
+p.PartitionEdgeByPoint(edge=e.findAt(coordinates=(box_y1, 0, width/2)),
+    point=p.InterestingPoint(edge=e.findAt(coordinates=(box_y1, 0, width/2)),
+    rule=MIDDLE))
+p.PartitionEdgeByPoint(edge=e.findAt(coordinates=(box_y2, 0, width/2)),
+    point=p.InterestingPoint(edge=e.findAt(coordinates=(box_y2, 0, width/2)),
+    rule=MIDDLE))
+p.PartitionEdgeByPoint(edge=e.findAt(coordinates=(d_box_A, -height, width/2)),
+    point=p.InterestingPoint(edge=e.findAt(coordinates=(d_box_A, -height, width/2)),
+    rule=MIDDLE))
+p.PartitionEdgeByPoint(edge=e.findAt(coordinates=(d_box_B, -height, width/2)),
+    point=p.InterestingPoint(edge=e.findAt(coordinates=(d_box_B, -height, width/2)),
+    rule=MIDDLE))
+p.PartitionEdgeByPoint(edge=e.findAt(coordinates=(box_y3, -height, width/2)),
+    point=p.InterestingPoint(edge=e.findAt(coordinates=(box_y3, -height, width/2)),
+    rule=MIDDLE))
+p.PartitionEdgeByPoint(edge=e.findAt(coordinates=(box_y4, -height, width/2)),
+    point=p.InterestingPoint(edge=e.findAt(coordinates=(box_y4, -height, width/2)),
+    rule=MIDDLE))
+
+edges = e.findAt(((d_box_A, 0, width/4), ), ((d_box_B, 0, width/4), ),
+    ((box_y1, 0, width/4), ), ((box_y2, 0, width/4), ),
+    ((d_box_A, -height, width/4), ), ((d_box_B, -height, width/4), ),
+    ((box_y3, -height, width/4), ), ((box_y4, -height, width/4), ))
+p.Set(edges=edges, name='edges_x_neg')
+edges = e.findAt(((d_box_A, 0, 3*width/4), ), ((d_box_B, 0, 3*width/4), ),
+    ((box_y1, 0, 3*width/4), ), ((box_y2, 0, 3*width/4), ),
+    ((d_box_A, -height, 3*width/4), ), ((d_box_B, -height, 3*width/4), ),
+    ((box_y3, -height, 3*width/4), ), ((box_y4, -height, 3*width/4), ))
+p.Set(edges=edges, name='edges_x_pos')
 edges = e.findAt(((d_box_A, -height/2, 0), ), ((d_box_B, -height/2, 0), ),
     (((box_y1 + box_y4)/2, -height/2, 0), ), (((box_y2 + box_y3)/2, -height/2, 0), ),
     ((d_box_A, -height/2, width), ), ((d_box_B, -height/2, width), ),
@@ -458,10 +488,10 @@ p.Surface(side1Faces=side1Faces, name='Surf-top')
 #+++++++++++++++++++++++++++++++++++++++++++++
 
 p = model_name.parts['Bicrystal']
-v, e, d, n = p.vertices, p.edges, p.datums, p.nodes
-p.ReferencePoint(point=p.InterestingPoint(edge=e.findAt(coordinates=(distGB, 0.0, width/2)), rule=MIDDLE))
+v = p.vertices
+p.ReferencePoint(point=v.findAt(coordinates=(distGB, 0.0, width/2)))
 r = p.referencePoints
-refPoints=(r[16], )
+refPoints=(r[25], ) #Function of the partitions done before
 p.Set(referencePoints=refPoints, name='Set-RP')
 
 #+++++++++++++++++++++++++++++++++++++++++++++
@@ -544,13 +574,40 @@ if trace_ang !=0:
 # MESHING
 #+++++++++++++++++++++++++++++++++++++++++++++
 
+
+
+
+
+
 #+++++++++++++++++++++++++++++++++++++++++++++
 # CONTACT DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
 
+model_name.ContactProperty('IntProp-1')
+model_name.interactionProperties['IntProp-1'].TangentialBehavior(formulation=FRICTIONLESS)
+model_name.interactionProperties['IntProp-1'].NormalBehavior(pressureOverclosure=HARD, allowSeparation=ON,
+    constraintEnforcementMethod=DEFAULT)
+
+a = model_name.rootAssembly
+region1=a.surfaces['Surf Indenter']
+region2=a.instances['Bicrystal-1'].surfaces['Surf-top']
+model_name.SurfaceToSurfaceContactStd(
+    name='Int-1', createStepName='Initial', master=region1, slave=region2,
+    sliding=FINITE, thickness=ON, interactionProperty='IntProp-1',
+    adjustMethod=NONE, initialClearance=OMIT, datumAxis=None,
+    clearanceRegion=None)
+
+#+++++++++++++++++++++++++++++++++++++++++++++
+# BOUNDARIES CONDITIONS
+#+++++++++++++++++++++++++++++++++++++++++++++
+
+
 #+++++++++++++++++++++++++++++++++++++++++++++
 # LOADING STEP DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
+
+
+
 
 
 ''')
