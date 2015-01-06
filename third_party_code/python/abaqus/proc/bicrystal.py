@@ -312,16 +312,16 @@ elif distGB == 0:
     box_y4 = 0
 
 # MESH
-box_elm_nx = %f''' % box_elm_nx + '''
-box_elm_nz = %f''' % box_elm_nz + '''
-box_elm_ny1 = %f''' % box_elm_ny1 + '''
-box_elm_ny2_fac = %f''' % box_elm_ny2_fac + '''
-box_elm_ny3 = %f''' % box_elm_ny3 + '''
-box_bias_x = %f''' % box_bias_x + '''
-box_bias_z = %f''' % box_bias_z + '''
-box_bias_y1 = %f''' % box_bias_y1 + '''
-box_bias_y2 = %f''' % box_bias_y2 + '''
-box_bias_y3 = %f''' % box_bias_y3 + '''
+box_elm_nx = %i''' % box_elm_nx + '''
+box_elm_nz = %i''' % box_elm_nz + '''
+box_elm_ny1 = %i''' % box_elm_ny1 + '''
+box_elm_ny2 = %i''' % box_elm_ny2_fac + '''
+box_elm_ny3 = %i''' % box_elm_ny3 + '''
+box_bias_x = %i''' % box_bias_x + '''
+box_bias_z = %i''' % box_bias_z + '''
+box_bias_y1 = %i''' % box_bias_y1 + '''
+box_bias_y2 = %i''' % box_bias_y2 + '''
+box_bias_y3 = %i''' % box_bias_y3 + '''
 
 # INDENTER VELOCITY, "STRAIN RATE"
 # Time used for LoadCase "indentation" (in [seconds] for model in mm)
@@ -554,29 +554,53 @@ elif distGB < 0:
 a.regenerate()
 
 #+++++++++++++++++++++++++++++++++++++++++++++
-# ROTATION / TRANSLATION
+# SEEDS FOR MESH
 #+++++++++++++++++++++++++++++++++++++++++++++
 
 a = model_name.rootAssembly
+e = a.instances['Bicrystal-1'].edges
 
-# Translation to set the reference point to (0,0,0)
-a.translate(instanceList=('Bicrystal-1', ), vector=(-distGB, 0, -width/2))
+# TODO : end1Edges=pickedEdges1 vs end2Edges=pickedEdges2 for bias definition
 
-# Rotations to set correctly the xyz coordinate system
-a.rotate(instanceList=('Bicrystal-1', ), axisPoint=(0, 0, 0), axisDirection=(1, 0, 0), angle=90.0)
-a.rotate(instanceList=('Bicrystal-1', ), axisPoint=(0, 0, 0), axisDirection=(0, 0, 1), angle=90.0)
+# edge_x_neg
+pickedEdges2 = e.findAt(((d_box_A, 0, width/4), ), ((d_box_B, 0, width/4), ),
+    ((box_y1, 0, width/4), ), ((box_y2, 0, width/4), ),
+    ((d_box_A, -height, width/4), ), ((d_box_B, -height, width/4), ),
+    ((box_y3, -height, width/4), ), ((box_y4, -height, width/4), ))
+a.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_x, number=box_elm_nx, constraint=FINER)
 
-# Rotation for the trace angle
-if trace_ang !=0:
-    a.rotate(instanceList=('Bicrystal-1', ), axisPoint=(0, 0, 0), axisDirection=(0.0, 0.0, 1.0), angle=trace_ang)
+# edge_x_pos
+pickedEdges2 = e.findAt(((d_box_A, 0, 3*width/4), ), ((d_box_B, 0, 3*width/4), ),
+    ((box_y1, 0, 3*width/4), ), ((box_y2, 0, 3*width/4), ),
+    ((d_box_A, -height, 3*width/4), ), ((d_box_B, -height, 3*width/4), ),
+    ((box_y3, -height, 3*width/4), ), ((box_y4, -height, 3*width/4), ))
+a.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_x, number=box_elm_nx, constraint=FINER)
+
+# edge_z
+pickedEdges2 = e.findAt(((d_box_A, -height/2, 0), ), ((d_box_B, -height/2, 0), ),
+    (((box_y1 + box_y4)/2, -height/2, 0), ), (((box_y2 + box_y3)/2, -height/2, 0), ),
+    ((d_box_A, -height/2, width), ), ((d_box_B, -height/2, width), ),
+    (((box_y1 + box_y4)/2, -height/2, width), ), (((box_y2 + box_y3)/2, -height/2, width), ))
+a.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FINER)
+
+# edge_y1
+pickedEdges2 = e.findAt((((d_box_A + box_y1)/2, 0, 0), ), (((d_box_A + box_y4)/2, -height, 0), ),
+    (((d_box_A + box_y1)/2, 0, width), ), (((d_box_A + box_y4)/2, -height, width), ))
+a.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_y1, number=box_elm_ny1, constraint=FINER)
+
+# edge_y2
+pickedEdges2 = e.findAt((((box_y1 + box_y2)/2, 0, 0), ), (((box_y4 + box_y3)/2, -height, 0), ),
+    (((box_y1 + box_y2)/2, 0, width), ), (((box_y4 + box_y3)/2, -height, width), ))
+a.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_y2, number=box_elm_ny2, constraint=FINER)
+
+# edge_y3
+pickedEdges2 = e.findAt((((box_y2 + d_box_B)/2, 0, 0), ), (((box_y3 + d_box_B)/2, -height, 0), ),
+    (((box_y2 + d_box_B)/2, 0, width), ), (((box_y3 + d_box_B)/2, -height, width), ))
+a.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_y3, number=box_elm_ny3, constraint=FINER)
 
 #+++++++++++++++++++++++++++++++++++++++++++++
 # MESHING
 #+++++++++++++++++++++++++++++++++++++++++++++
-
-
-
-
 
 
 #+++++++++++++++++++++++++++++++++++++++++++++
@@ -601,6 +625,23 @@ model_name.SurfaceToSurfaceContactStd(
 # BOUNDARIES CONDITIONS
 #+++++++++++++++++++++++++++++++++++++++++++++
 
+
+#+++++++++++++++++++++++++++++++++++++++++++++
+# ROTATION / TRANSLATION
+#+++++++++++++++++++++++++++++++++++++++++++++
+
+a = model_name.rootAssembly
+
+# Translation to set the reference point to (0,0,0)
+a.translate(instanceList=('Bicrystal-1', ), vector=(-distGB, 0, -width/2))
+
+# Rotations to set correctly the xyz coordinate system
+a.rotate(instanceList=('Bicrystal-1', ), axisPoint=(0, 0, 0), axisDirection=(1, 0, 0), angle=90.0)
+a.rotate(instanceList=('Bicrystal-1', ), axisPoint=(0, 0, 0), axisDirection=(0, 0, 1), angle=90.0)
+
+# Rotation for the trace angle
+if trace_ang !=0:
+    a.rotate(instanceList=('Bicrystal-1', ), axisPoint=(0, 0, 0), axisDirection=(0.0, 0.0, 1.0), angle=trace_ang)
 
 #+++++++++++++++++++++++++++++++++++++++++++++
 # LOADING STEP DEFINITION
