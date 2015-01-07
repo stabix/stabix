@@ -90,6 +90,13 @@ guidata(gcf, gdata);
 preCPFE_set_valid_inputs_BX;
 gdata = guidata(gcf);
 
+% Just for the plot in Matlab !
+if strfind(gdata.config.CPFEM.fem_solver_used, 'Abaqus')
+    if gdata.variables.ind_dist < 0 % in grain B, on the right of the GB
+        gdata.variables.box_bias_y2 = -gdata.variables.box_bias_y2;
+    end
+end
+
 %% Definition of geometry points coordinates
 %    1------------2---3-------------4
 %   /            /   /             /|
@@ -373,6 +380,13 @@ preCPFE_mesh_plot_finalize;
 % xlabel(xlabel_str);
 % ylabel(ylabel_str);
 % zlabel(zlabel_str);
+
+% Just for the plot in Matlab and because Abaqus bias is always positive !
+if strfind(gdata.config.CPFEM.fem_solver_used, 'Abaqus')
+    if gdata.variables.ind_dist < 0 % in grain B, on the right of the GB
+        gdata.variables.box_bias_y2 = -gdata.variables.box_bias_y2;
+    end
+end
 
 %% Calculation of the number of elements
 guidata(gcf, gdata);
