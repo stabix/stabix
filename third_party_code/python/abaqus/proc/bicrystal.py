@@ -690,11 +690,18 @@ pickedEdges2 = e.findAt((((d_box_A + box_y1)/2, 0, 0), ), (((d_box_A + box_y4)/2
 a.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
     ratio=box_bias_y1, number=box_elm_ny1, constraint=FINER)
 
-# edge_y2
-pickedEdges1 = e.findAt((((box_y4 + box_y3)/2, -height, 0), ), (((box_y1 + box_y2)/2, 0, width), ))
-pickedEdges2 = e.findAt((((box_y1 + box_y2)/2, 0, 0), ), (((box_y4 + box_y3)/2, -height, width), ))
-a.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
-    ratio=box_bias_y2, number=box_elm_ny2, constraint=FINER)
+if distGB > 0:
+    # edge_y2
+    pickedEdges1 = e.findAt((((box_y4 + box_y3)/2, -height, 0), ), (((box_y1 + box_y2)/2, 0, width), ))
+    pickedEdges2 = e.findAt((((box_y1 + box_y2)/2, 0, 0), ), (((box_y4 + box_y3)/2, -height, width), ))
+    a.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
+        ratio=box_bias_y2, number=box_elm_ny2, constraint=FINER)
+elif distGB < 0:
+    # edge_y2
+    pickedEdges1 = e.findAt((((box_y1 + box_y2)/2, 0, 0), ), (((box_y4 + box_y3)/2, -height, width), ))
+    pickedEdges2 = e.findAt((((box_y4 + box_y3)/2, -height, 0), ), (((box_y1 + box_y2)/2, 0, width), ))
+    a.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
+        ratio=box_bias_y2, number=box_elm_ny2, constraint=FINER)
 
 # edge_y3
 pickedEdges1 = e.findAt((((box_y2 + d_box_B)/2, 0, 0), ), (((box_y3 + d_box_B)/2, -height, width), ))
