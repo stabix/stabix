@@ -123,6 +123,52 @@ class BicrystalIndent(Proc, Indenter):
         self.IndentParameters['w_sample'] = wid
         self.IndentParameters['len_sample'] = len/2
         self.IndentParameters['free_mesh_inp'] = free_mesh_inp
+        self.procParameters(modelname = modelname,
+                           coneAngle = coneAngle,
+                           friction = friction,
+                           geo = geo,
+                           h_indent = h_indent, # indentation depth
+                           tipRadius = tipRadius,
+                           label = label,
+                           ori1 = ori1, #not used yet
+                           ori2 = ori2, # not used yet
+                           gbn = gbn,
+                           d = d,
+                           hei = hei,
+                           wid = wid,
+                           len = len,
+                           trace_ang = trace_ang,
+                           inclination = inclination,
+                           len_trace = len_trace,
+                           ind_size = ind_size,
+                           box_elm_nx = box_elm_nx,
+                           box_elm_nz = box_elm_nz,
+                           box_elm_ny1 = box_elm_ny1,
+                           box_elm_ny2_fac = box_elm_ny2_fac,
+                           box_elm_ny3 = box_elm_ny3,
+                           box_bias_x = box_bias_x,
+                           box_bias_z = box_bias_z,
+                           box_bias_y1 = box_bias_y1,
+                           box_bias_y2 = box_bias_y2,
+                           box_bias_y3 = box_bias_y3,
+                           lvl = lvl,
+                           ind_time = ind_time,
+                           dwell_time = dwell_time,
+                           unload_time = unload_time,
+                           max_inc_indent = max_inc_indent,
+                           ini_inc_indent =ini_inc_indent,
+                           min_inc_indent_time = min_inc_indent_time,
+                           max_inc_indent_time = max_inc_indent_time,
+                           sep_ind_samp = sep_ind_samp,
+                           freq_field_output = freq_field_output,
+                           Dexp = Dexp,
+                           twoDimensional = twoDimensional,
+                           divideMesh = divideMesh,
+                           outStep = outStep,
+                           nSteps = nSteps,
+                           smv = smv,
+                           free_mesh_inp = free_mesh_inp,
+                           ori_list = ori_list)
         if geo == 'conical':
             self.procIndenterConical(coneHalfAngle=self.IndentParameters['coneHalfAngle'])
         if geo == 'flatPunch':
@@ -187,7 +233,7 @@ class BicrystalIndent(Proc, Indenter):
         savename += '_h%.3f' % self.IndentParameters['h_indent']
         savename += ['_' + label, ''][label == '']
 
-    def procBicrystal(self,
+    def procParameters(self,
                       modelname = None,
                       label = None,
                       ori1 = None, #not used yet
@@ -242,6 +288,7 @@ class BicrystalIndent(Proc, Indenter):
 # PARAMETERS DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
 # Cross-section view of the bicrystal (Y-Z plane)
+# NB: X-Y plane in Abaqus before rotation/translation !
 #
 #                distGB
 #    d_box       |    |     d_box
@@ -322,6 +369,7 @@ box_bias_z = %i''' % box_bias_z + '''
 box_bias_y1 = %i''' % box_bias_y1 + '''
 box_bias_y2 = %i''' % box_bias_y2 + '''
 box_bias_y3 = %i''' % box_bias_y3 + '''
+linear_elements = 1
 
 # INDENTER VELOCITY, "STRAIN RATE"
 # Time used for LoadCase "indentation" (in [seconds] for model in mm)
@@ -344,6 +392,56 @@ if width > height:
 else:
     sheet_Size = 2 * height
 
+''')
+
+    def procBicrystal(self,
+                      modelname = None,
+                      label = None,
+                      ori1 = None, #not used yet
+                      ori2 = None, # not used yet
+                      gbn = None,
+                      coneAngle = None,
+                      friction = None,
+                      geo = None,
+                      h_indent = None,
+                      tipRadius = None,
+                      d = None,
+                      hei = None,
+                      wid = None,
+                      len = None,
+                      trace_ang = None,
+                      inclination = None,
+                      len_trace = None,
+                      ind_size = None,
+                      box_elm_nx = None,
+                      box_elm_nz = None,
+                      box_elm_ny1 = None,
+                      box_elm_ny2_fac = None,
+                      box_elm_ny3 = None,
+                      box_bias_x = None,
+                      box_bias_z = None,
+                      box_bias_y1 = None,
+                      box_bias_y2 = None,
+                      box_bias_y3 = None,
+                      lvl = None,
+                      ind_time = None,
+                      dwell_time = None,
+                      unload_time = None,
+                      max_inc_indent = None,
+                      ini_inc_indent = None,
+                      min_inc_indent_time = None,
+                      max_inc_indent_time = None,
+                      sep_ind_samp = None,
+                      freq_field_output = None,
+                      Dexp = None,
+                      twoDimensional = None,
+                      divideMesh = None,
+                      outStep = None,
+                      nSteps = None,
+                      smv = None,
+                      free_mesh_inp = None,
+                      ori_list = None):
+        self.proc.append('''
 #+++++++++++++++++++++++++++++++++++++++++++++
 # SAMPLE GEOMETRY
 #+++++++++++++++++++++++++++++++++++++++++++++
@@ -560,65 +658,97 @@ a.regenerate()
 a = model_name.rootAssembly
 e = a.instances['Bicrystal-1'].edges
 
-# TODO : end1Edges=pickedEdges1 vs end2Edges=pickedEdges2 for bias definition
+# NB: pickedEdges1 and pickedEdges2 used for direction of bias
 
 # edge_x_neg
+pickedEdges1 = e.findAt(((box_y4, -height, width/4), ), ((box_y2, 0, width/4), ))
 pickedEdges2 = e.findAt(((d_box_A, 0, width/4), ), ((d_box_B, 0, width/4), ),
-    ((box_y1, 0, width/4), ), ((box_y2, 0, width/4), ),
-    ((d_box_A, -height, width/4), ), ((d_box_B, -height, width/4), ),
-    ((box_y3, -height, width/4), ), ((box_y4, -height, width/4), ))
-a.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_x, number=box_elm_nx, constraint=FINER)
+    ((box_y1, 0, width/4), ), ((d_box_A, -height, width/4), ),
+    ((box_y3, -height, width/4), ), ((d_box_B, -height, width/4), ))
+a.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
+    ratio=box_bias_x, number=box_elm_nx, constraint=FINER)
 
 # edge_x_pos
-pickedEdges2 = e.findAt(((d_box_A, 0, 3*width/4), ), ((d_box_B, 0, 3*width/4), ),
-    ((box_y1, 0, 3*width/4), ), ((box_y2, 0, 3*width/4), ),
-    ((d_box_A, -height, 3*width/4), ), ((d_box_B, -height, 3*width/4), ),
-    ((box_y3, -height, 3*width/4), ), ((box_y4, -height, 3*width/4), ))
-a.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_x, number=box_elm_nx, constraint=FINER)
+pickedEdges2 = e.findAt(((box_y4, -height, 3*width/4), ), ((box_y2, 0, 3*width/4), ))
+pickedEdges1 = e.findAt(((d_box_A, 0, 3*width/4), ), ((d_box_B, 0, 3*width/4), ),
+    ((box_y1, 0, 3*width/4), ), ((d_box_A, -height, 3*width/4), ),
+    ((box_y3, -height, 3*width/4), ), ((d_box_B, -height, 3*width/4), ))
+a.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
+    ratio=box_bias_x, number=box_elm_nx, constraint=FINER)
 
 # edge_z
-pickedEdges2 = e.findAt(((d_box_A, -height/2, 0), ), ((d_box_B, -height/2, 0), ),
-    (((box_y1 + box_y4)/2, -height/2, 0), ), (((box_y2 + box_y3)/2, -height/2, 0), ),
-    ((d_box_A, -height/2, width), ), ((d_box_B, -height/2, width), ),
-    (((box_y1 + box_y4)/2, -height/2, width), ), (((box_y2 + box_y3)/2, -height/2, width), ))
-a.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FINER)
+pickedEdges1 = e.findAt(((d_box_B, -height/2, 0), ), (((box_y2 + box_y3)/2, -height/2, 0), ),
+    ((d_box_A, -height/2, width), ), (((box_y1 + box_y4)/2, -height/2, width), ))
+pickedEdges2 = e.findAt(((d_box_A, -height/2, 0), ), (((box_y1 + box_y4)/2, -height/2, 0), ),
+    ((d_box_B, -height/2, width), ), (((box_y2 + box_y3)/2, -height/2, width), ))
+a.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
+    ratio=box_bias_z, number=box_elm_nz, constraint=FINER)
 
 # edge_y1
-pickedEdges2 = e.findAt((((d_box_A + box_y1)/2, 0, 0), ), (((d_box_A + box_y4)/2, -height, 0), ),
-    (((d_box_A + box_y1)/2, 0, width), ), (((d_box_A + box_y4)/2, -height, width), ))
-a.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_y1, number=box_elm_ny1, constraint=FINER)
+pickedEdges1 = e.findAt((((d_box_A + box_y4)/2, -height, 0), ), (((d_box_A + box_y1)/2, 0, width), ))
+pickedEdges2 = e.findAt((((d_box_A + box_y1)/2, 0, 0), ), (((d_box_A + box_y4)/2, -height, width), ))
+a.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
+    ratio=box_bias_y1, number=box_elm_ny1, constraint=FINER)
 
 # edge_y2
-pickedEdges2 = e.findAt((((box_y1 + box_y2)/2, 0, 0), ), (((box_y4 + box_y3)/2, -height, 0), ),
-    (((box_y1 + box_y2)/2, 0, width), ), (((box_y4 + box_y3)/2, -height, width), ))
-a.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_y2, number=box_elm_ny2, constraint=FINER)
+pickedEdges1 = e.findAt((((box_y4 + box_y3)/2, -height, 0), ), (((box_y1 + box_y2)/2, 0, width), ))
+pickedEdges2 = e.findAt((((box_y1 + box_y2)/2, 0, 0), ), (((box_y4 + box_y3)/2, -height, width), ))
+a.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
+    ratio=box_bias_y2, number=box_elm_ny2, constraint=FINER)
 
 # edge_y3
-pickedEdges2 = e.findAt((((box_y2 + d_box_B)/2, 0, 0), ), (((box_y3 + d_box_B)/2, -height, 0), ),
-    (((box_y2 + d_box_B)/2, 0, width), ), (((box_y3 + d_box_B)/2, -height, width), ))
-a.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_y3, number=box_elm_ny3, constraint=FINER)
+pickedEdges1 = e.findAt((((box_y2 + d_box_B)/2, 0, 0), ), (((box_y3 + d_box_B)/2, -height, width), ))
+pickedEdges2 = e.findAt((((box_y3 + d_box_B)/2, -height, 0), ), (((box_y2 + d_box_B)/2, 0, width), ))
+a.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
+    ratio=box_bias_y3, number=box_elm_ny3, constraint=FINER)
 
 #+++++++++++++++++++++++++++++++++++++++++++++
 # MESHING
 #+++++++++++++++++++++++++++++++++++++++++++++
 
+a = model_name.rootAssembly
+partInstances =(a.instances['Bicrystal-1'], )
+a.generateMesh(regions=partInstances)
+
+if linear_elements == 1:
+    # Linear elements
+    elemType1 = mesh.ElemType(elemCode=C3D8R, elemLibrary=STANDARD)
+    elemType2 = mesh.ElemType(elemCode=C3D6, elemLibrary=STANDARD)
+    elemType3 = mesh.ElemType(elemCode=C3D4, elemLibrary=STANDARD)
+else:
+    # Quadratic elements
+    elemType1 = mesh.ElemType(elemCode=C3D20R, elemLibrary=STANDARD)
+    elemType2 = mesh.ElemType(elemCode=C3D15, elemLibrary=STANDARD)
+    elemType3 = mesh.ElemType(elemCode=C3D10, elemLibrary=STANDARD)
+
+c = a.instances['Bicrystal-1'].cells
+cells1 = c.findAt((((d_box_A + box_y1)/2, -height/2, width/2), ), (((box_y1 + box_y2)/2, -height/2, width/2),
+    ), (((box_y3 + d_box_B)/2, -height/2, width/2), ))
+pickedRegions =(cells1, )
+a.setElementType(regions=pickedRegions, elemTypes=(elemType1, elemType2, elemType3))
 
 #+++++++++++++++++++++++++++++++++++++++++++++
 # CONTACT DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
 
-model_name.ContactProperty('IntProp-1')
-model_name.interactionProperties['IntProp-1'].TangentialBehavior(formulation=FRICTIONLESS)
-model_name.interactionProperties['IntProp-1'].NormalBehavior(pressureOverclosure=HARD, allowSeparation=ON,
+model_name.ContactProperty('Interaction_properties')
+model_name.interactionProperties['Interaction_properties'].TangentialBehavior(formulation=FRICTIONLESS)
+model_name.interactionProperties['Interaction_properties'].NormalBehavior(pressureOverclosure=HARD, allowSeparation=ON,
     constraintEnforcementMethod=DEFAULT)
 
 a = model_name.rootAssembly
 region1=a.surfaces['Surf Indenter']
 region2=a.instances['Bicrystal-1'].surfaces['Surf-top']
-model_name.SurfaceToSurfaceContactStd(
-    name='Int-1', createStepName='Initial', master=region1, slave=region2,
-    sliding=FINITE, thickness=ON, interactionProperty='IntProp-1',
-    adjustMethod=NONE, initialClearance=OMIT, datumAxis=None,
+model_name.SurfaceToSurfaceContactStd(name='Interaction_Indenter_Sample',
+    createStepName='Initial',
+    master=region1,
+    slave=region2,
+    sliding=FINITE,
+    thickness=ON,
+    interactionProperty='Interaction_properties',
+    adjustMethod=NONE,
+    initialClearance=OMIT,
+    datumAxis=None,
     clearanceRegion=None)
 
 #+++++++++++++++++++++++++++++++++++++++++++++
