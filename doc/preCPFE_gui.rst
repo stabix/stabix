@@ -19,7 +19,7 @@ sample and the indenter.
 Currently the following models can be written:
 
     * :ref:`single_crystal_indentation` (Mentat and Abaqus)
-    * :ref:`bicrystal_indentation` (Mentat)
+    * :ref:`bicrystal_indentation` (Mentat and Abaqus)
     
 .. _single_crystal_indentation:
 
