@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
 """
-@author: D. Mercier / R. Sanchez-Martin / C. Zambaldi
+@authors: D. Mercier / R. Sanchez-Martin / C. Zambaldi
 """
-
-#import numpy as N # old
-import numpy as np
-import math
 
 from .base import Proc
 from .indenter import Indenter
+
+#import numpy as N # old
+import numpy as np
+import logging
+
+logger = logging.getLogger('root')
+logger.info('logger says : proc.bicrystal_indent')
 
 class BicrystalIndent(Proc, Indenter):
     def __init__(self,
@@ -221,6 +224,14 @@ class BicrystalIndent(Proc, Indenter):
                            smv = smv,
                            free_mesh_inp = free_mesh_inp,
                            ori_list = ori_list)
+        self.procMaterial()
+        self.procSectionsBicrystal()
+        self.proc.append('''
+final_sample_name = 'Bicrystal-1'
+''')
+        self.procContactIndent()
+        self.procLoadCaseIndent() #nSteps=self.IndentParameters['nSteps']
+        self.procJobParameters()
         savename = modelname + '_' + label
         savename += '_fric%.1f' % self.IndentParameters['friction']
         if geo == 'conical':
@@ -383,6 +394,7 @@ unload_time = %f # unload time in seconds (only Abaqus) ''' % unload_time + '''
 sep_ind_samp = %f #Distance between the indenter and the sample before indentation (to initialize contact) ''' % sep_ind_samp + '''
 friction = %f # friction coefficient between the sample and the indenter (only Abaqus)''' % friction + '''
 freq_field_output = %i #Frequency of the output request (only Abaqus) ''' % freq_field_output + '''
+h_indent = %f #Indentation depth in um''' % h_indent + '''
 
 tolerance = 0.01+(float(width)/1500)
 
@@ -391,7 +403,6 @@ if width > height:
     sheet_Size = 2 * width
 else:
     sheet_Size = 2 * height
-
 ''')
 
     def procBicrystal(self,
@@ -576,10 +587,10 @@ faces = f.findAt((((d_box_A + box_y1)/2 + d_incgb/2, -height/2, 0), ),
     (((box_y1 + box_y3)/2, -height/2, width), ), (((box_y3 + d_box_B)/2 + d_incgb/2, -height/2, width), ))
 p.Set(faces=faces, name='Surf-sides')
 
-s = p.faces
-side1Faces = s.findAt((((d_box_A + box_y1)/2, 0, width/2), ), (((box_y1 + box_y2)/2, 0, width/2), ),
+side1Faces = f.findAt((((d_box_A + box_y1)/2, 0, width/2), ), (((box_y1 + box_y2)/2, 0, width/2), ),
     (((box_y2 + d_box_B)/2, 0, width/2), ))
-p.Surface(side1Faces=side1Faces, name='Surf-top')
+p.Surface(side1Faces=side1Faces, name='Surf Sample')
+p.Set(faces=faces, name='Surf Sample')
 
 #+++++++++++++++++++++++++++++++++++++++++++++
 # REFERENCE POINT
@@ -589,7 +600,7 @@ p = model_name.parts['Bicrystal']
 v = p.vertices
 p.ReferencePoint(point=v.findAt(coordinates=(distGB, 0.0, width/2)))
 r = p.referencePoints
-refPoints=(r[25], ) #Function of the partitions done before
+refPoints=(r[26], ) #Function of the partitions done before
 p.Set(referencePoints=refPoints, name='Set-RP')
 
 #+++++++++++++++++++++++++++++++++++++++++++++
@@ -600,56 +611,6 @@ a = model_name.rootAssembly
 a.DatumCsysByDefault(CARTESIAN)
 p = model_name.parts['Bicrystal']
 a.Instance(name='Bicrystal-1', part=p, dependent=OFF)
-
-#+++++++++++++++++++++++++++++++++++++++++++++
-# MATERIAL DEFINITION
-#+++++++++++++++++++++++++++++++++++++++++++++
-
-model_name.Material(name='Material-1')
-model_name.materials['Material-1'].Density(table=((1.0, ), ))
-model_name.materials['Material-1'].Elastic(table=((45000.0, 0.3), ))
-model_name.materials['Material-1'].Plastic(table=((10.0, 0.0), (15.0, 0.15), (17.5, 0.3), (18.0, 0.4)))
-
-model_name.Material(name='Material-2')
-model_name.materials['Material-2'].Density(table=((1.0, ), ))
-model_name.materials['Material-2'].Elastic(table=((90000.0, 0.3), ))
-model_name.materials['Material-2'].Plastic(table=((20.0, 0.0), (30.0, 0.15), (35, 0.3), (36, 0.4)))
-
-#+++++++++++++++++++++++++++++++++++++++++++++
-# SECTION DEFINITION
-#+++++++++++++++++++++++++++++++++++++++++++++
-
-model_name.HomogeneousSolidSection(name='Section_Grain1', material='Material-1', thickness=None)
-model_name.HomogeneousSolidSection(name='Section_Grain2', material='Material-2', thickness=None)
-if distGB > 0:
-    model_name.HomogeneousSolidSection(name='Section_Grain1-GB', material='Material-1', thickness=None)
-elif distGB < 0:
-    model_name.HomogeneousSolidSection(name='Section_Grain2-GB', material='Material-2', thickness=None)
-
-p = model_name.parts['Bicrystal']
-
-set1 = p.sets['Grain1']
-p.SectionAssignment(region=set1, sectionName='Section_Grain1',
-    offset=0.0, offsetType=MIDDLE_SURFACE, offsetField='',
-    thicknessAssignment=FROM_SECTION)
-
-set3 = p.sets['Grain2']
-p.SectionAssignment(region=set3, sectionName='Section_Grain2',
-    offset=0.0, offsetType=MIDDLE_SURFACE, offsetField='',
-    thicknessAssignment=FROM_SECTION)
-
-if distGB > 0:
-    set2 = p.sets['Grain1_GB']
-    p.SectionAssignment(region=set2, sectionName='Section_Grain1-GB',
-        offset=0.0, offsetType=MIDDLE_SURFACE, offsetField='',
-        thicknessAssignment=FROM_SECTION)
-elif distGB < 0:
-    set2 = p.sets['Grain2_GB']
-    p.SectionAssignment(region=set2, sectionName='Section_Grain2-GB',
-    offset=0.0, offsetType=MIDDLE_SURFACE, offsetField='',
-    thicknessAssignment=FROM_SECTION)
-
-a.regenerate()
 
 #+++++++++++++++++++++++++++++++++++++++++++++
 # SEEDS FOR MESH
@@ -735,33 +696,16 @@ pickedRegions =(cells1, )
 a.setElementType(regions=pickedRegions, elemTypes=(elemType1, elemType2, elemType3))
 
 #+++++++++++++++++++++++++++++++++++++++++++++
-# CONTACT DEFINITION
-#+++++++++++++++++++++++++++++++++++++++++++++
-
-model_name.ContactProperty('Interaction_properties')
-model_name.interactionProperties['Interaction_properties'].TangentialBehavior(formulation=FRICTIONLESS)
-model_name.interactionProperties['Interaction_properties'].NormalBehavior(pressureOverclosure=HARD, allowSeparation=ON,
-    constraintEnforcementMethod=DEFAULT)
-
-a = model_name.rootAssembly
-region1=a.surfaces['Surf Indenter']
-region2=a.instances['Bicrystal-1'].surfaces['Surf-top']
-model_name.SurfaceToSurfaceContactStd(name='Interaction_Indenter_Sample',
-    createStepName='Initial',
-    master=region1,
-    slave=region2,
-    sliding=FINITE,
-    thickness=ON,
-    interactionProperty='Interaction_properties',
-    adjustMethod=NONE,
-    initialClearance=OMIT,
-    datumAxis=None,
-    clearanceRegion=None)
-
-#+++++++++++++++++++++++++++++++++++++++++++++
 # BOUNDARIES CONDITIONS
 #+++++++++++++++++++++++++++++++++++++++++++++
 
+a = model_name.rootAssembly
+
+region = a.instances['Bicrystal-1'].sets['Surf-bottom']
+model_name.EncastreBC(name='BC_bottom', createStepName='Initial', region=region)
+
+region = a.instances['Bicrystal-1'].sets['Surf-sides']
+model_name.EncastreBC(name='BC_sides', createStepName='Initial', region=region)
 
 #+++++++++++++++++++++++++++++++++++++++++++++
 # ROTATION / TRANSLATION
@@ -779,13 +723,43 @@ a.rotate(instanceList=('Bicrystal-1', ), axisPoint=(0, 0, 0), axisDirection=(0, 
 # Rotation for the trace angle
 if trace_ang !=0:
     a.rotate(instanceList=('Bicrystal-1', ), axisPoint=(0, 0, 0), axisDirection=(0.0, 0.0, 1.0), angle=trace_ang)
+''')
 
+    def procSectionsBicrystal(self):
+        self.proc.append('''
 #+++++++++++++++++++++++++++++++++++++++++++++
-# LOADING STEP DEFINITION
+# SECTIONS DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
 
+model_name.HomogeneousSolidSection(name='Section_Grain1', material='ElastoPlastic_Material-1', thickness=None)
+model_name.HomogeneousSolidSection(name='Section_Grain2', material='ElastoPlastic_Material-2', thickness=None)
+if distGB > 0:
+    model_name.HomogeneousSolidSection(name='Section_Grain1-GB', material='ElastoPlastic_Material-1', thickness=None)
+elif distGB < 0:
+    model_name.HomogeneousSolidSection(name='Section_Grain2-GB', material='ElastoPlastic_Material-2', thickness=None)
 
+p = model_name.parts['Bicrystal']
 
+set1 = p.sets['Grain1']
+p.SectionAssignment(region=set1, sectionName='Section_Grain1',
+    offset=0.0, offsetType=MIDDLE_SURFACE, offsetField='',
+    thicknessAssignment=FROM_SECTION)
 
+set3 = p.sets['Grain2']
+p.SectionAssignment(region=set3, sectionName='Section_Grain2',
+    offset=0.0, offsetType=MIDDLE_SURFACE, offsetField='',
+    thicknessAssignment=FROM_SECTION)
 
+if distGB > 0:
+    set2 = p.sets['Grain1_GB']
+    p.SectionAssignment(region=set2, sectionName='Section_Grain1-GB',
+        offset=0.0, offsetType=MIDDLE_SURFACE, offsetField='',
+        thicknessAssignment=FROM_SECTION)
+elif distGB < 0:
+    set2 = p.sets['Grain2_GB']
+    p.SectionAssignment(region=set2, sectionName='Section_Grain2-GB',
+    offset=0.0, offsetType=MIDDLE_SURFACE, offsetField='',
+    thicknessAssignment=FROM_SECTION)
+
+a.regenerate()
 ''')

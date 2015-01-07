@@ -125,12 +125,16 @@ class Indentation(Indenter, Tools):
         self.procSampleMeshing()
         self.procBoundaryConditionsIndent()
         self.procMaterial()
+        self.procSectionsIndent()
         if geo == 'conical':
             self.procIndenterConical(coneHalfAngle=self.IndentParameters['coneHalfAngle'])
         if geo == 'flatPunch':
             self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
         if geo == 'customized':
             self.procIndenterCustomizedTopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'])
+        self.proc.append('''
+final_sample_name = 'Final Sample-1'
+''')
         self.procContactIndent() 
         self.procLoadCaseIndent() #nSteps=self.IndentParameters['nSteps']
         self.procJobParameters()
@@ -208,6 +212,7 @@ unload_time = %f # unload time in seconds (only Abaqus) ''' % (self.IndentParame
 sep_ind_samp = %f #Distance between the indenter and the sample before indentation (to initialize contact) ''' % (self.IndentParameters['sep_ind_samp']) + '''
 friction =  %f # friction coefficient between the sample and the indenter (only Abaqus)''' % (self.IndentParameters['friction']) + '''
 freq_field_output = %i #Frequency of the output request (only Abaqus) ''' % (self.IndentParameters['freq_field_output']) + '''
+h_indent = %f #Indentation depth in um''' % self.IndentParameters['h_indent'] + '''
 
 tolerance = 0.01+(float(D_sample)/1500)
 
@@ -1442,58 +1447,26 @@ for i in range(8*sectors_45):
     model_name.EncastreBC(name=name_BC, createStepName='Initial', region=region)
 ''')
 
-    def procContactIndent(self):
+    def procSectionsIndent(self):
         self.proc.append('''
 #+++++++++++++++++++++++++++++++++++++++++++++
-# CONTACT DEFINITION
+# SECTION DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
-# Surface interaction properties
-fric = %f  # Friction value''' % (self.IndentParameters['friction']) + '''
-model_name.ContactProperty('Contact Properties')
-model_name.interactionProperties['Contact Properties'].TangentialBehavior(
-    formulation=PENALTY, directionality=ISOTROPIC, slipRateDependency=OFF, 
-    pressureDependency=OFF, temperatureDependency=OFF, dependencies=0, table=((
-    fric, ), ), shearStressLimit=None, maximumElasticSlip=FRACTION, 
-    fraction=0.005, elasticSlipStiffness=None)
 
-# Contact Definition
-InstanceRoot = model_name.rootAssembly
-region1 = InstanceRoot.surfaces['Surf Indenter']
-region2 = InstanceRoot.instances['Final Sample-1'].sets['Surf Sample']
-model_name.SurfaceToSurfaceContactStd(
-    name='Interaction test', createStepName='Initial', master=region1, 
-    slave=region2, sliding=FINITE, thickness=ON, 
-    interactionProperty='Contact Properties', adjustMethod=NONE, 
-    initialClearance=OMIT, datumAxis=None, clearanceRegion=None)
-''')
+# Defining preliminary sets
+final_sample = model_name.parts['Final Sample']
+elements_sample = final_sample.elements
+elements_selected = elements_sample.getByBoundingCylinder((0,0,-h_sample-smv),(0,0,smv), D_sample*0.5+smv)
+final_sample.Set(elements=elements_selected, name='All Elements')
 
-    def procLoadCaseIndent(self):
-        self.proc.append('''
-#+++++++++++++++++++++++++++++++++++++++++++++
-# LOADING STEP DEFINITION
-#+++++++++++++++++++++++++++++++++++++++++++++
-# Preliminary definitions (sets, surfaces, references points...)
-indenter = model_name.parts['indenter']
-v, e, d, n = indenter.vertices, indenter.edges, indenter.datums, indenter.nodes
-indenter.ReferencePoint(point=v.findAt(coordinates=(0.0, 0.0, 0.0)))
+model_name.HomogeneousSolidSection(
+    name='Section ElastoPlastic', material='ElastoPlastic_Material-1',
+    thickness=None)
 
-# Definition of the indent step
-model_name.StaticStep(name='Indent', previous='Initial', 
-    timePeriod=(ind_time+dwell_time+unload_time), maxNumInc=max_inc_indent, initialInc=ini_inc_indent, minInc=min_inc_indent_time, 
-    maxInc=max_inc_indent_time, nlgeom=ON)
-session.viewports['Viewport: 1'].assemblyDisplay.setValues(step='Indent')
-    
-# Generating velocity amplitude tables
-model_name.TabularAmplitude(data=((0.0, 0.0), (ind_time, -(h_indent+sep_ind_samp)), (ind_time+dwell_time, -(h_indent+sep_ind_samp)), (ind_time+dwell_time+unload_time, 0)), \
-    name='Indent_Amplitude', smooth=SOLVER_DEFAULT, timeSpan=STEP)
-
-# Defining velocities in the different steps
-InstanceRoot = model_name.rootAssembly
-r1 = InstanceRoot.instances['indenter-1'].referencePoints
-refPoints1=(r1[2], )
-region = regionToolset.Region(referencePoints=refPoints1)
-model_name.DisplacementBC(name='Indent', createStepName='Indent', 
-    region=region, u1=0.0, u2=0.0, u3=1.0, ur1=0.0, ur2=0.0, ur3=0.0, 
-    amplitude='Indent_Amplitude', fixed=OFF, distributionType=UNIFORM, 
-    fieldName='', localCsys=None)
+# Assigning material properties
+final_sample = model_name.parts['Final Sample']
+region = p.sets['All Elements']
+final_sample.SectionAssignment(region=region, sectionName='Section ElastoPlastic',
+    offset=0.0, offsetType=MIDDLE_SURFACE, offsetField='',
+    thicknessAssignment=FROM_SECTION)
 ''')

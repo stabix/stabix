@@ -247,26 +247,15 @@ model_name.setValues(description='%s')''' % description + '''
 #+++++++++++++++++++++++++++++++++++++++++++++
 # MATERIAL-DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
-# Defining preliminary sets
-final_sample = model_name.parts['Final Sample']
-elements_sample = final_sample.elements
-elements_selected = elements_sample.getByBoundingCylinder((0,0,-h_sample-smv),(0,0,smv), D_sample*0.5+smv)
-final_sample.Set(elements=elements_selected, name='All Elements')
+model_name.Material(name='ElastoPlastic_Material-1')
+model_name.materials['ElastoPlastic_Material-1'].Density(table=((1.0, ), ))
+model_name.materials['ElastoPlastic_Material-1'].Elastic(table=((45000.0, 0.3), ))
+model_name.materials['ElastoPlastic_Material-1'].Plastic(table=((10.0, 0.0), (15.0, 0.15), (17.5, 0.3), (18.0, 0.4)))
 
-model_name.Material(name='ElastoPlastic Material')
-model_name.materials['ElastoPlastic Material'].Elastic(table=((45000.0, 0.3), ))
-model_name.materials['ElastoPlastic Material'].Plastic(
-    table=((10.0, 0.0), (15.0, 0.15), (17.5, 0.3), (18.0, 0.4)))
-model_name.HomogeneousSolidSection(
-    name='Section ElastoPlastic', material='ElastoPlastic Material', 
-    thickness=None)
-
-# Assigning material properties
-final_sample = model_name.parts['Final Sample']
-region = p.sets['All Elements']
-final_sample.SectionAssignment(region=region, sectionName='Section ElastoPlastic', 
-    offset=0.0, offsetType=MIDDLE_SURFACE, offsetField='', 
-    thicknessAssignment=FROM_SECTION)''')
+model_name.Material(name='ElastoPlastic_Material-2')
+model_name.materials['ElastoPlastic_Material-2'].Density(table=((1.0, ), ))
+model_name.materials['ElastoPlastic_Material-2'].Elastic(table=((90000.0, 0.3), ))
+model_name.materials['ElastoPlastic_Material-2'].Plastic(table=((20.0, 0.0), (30.0, 0.15), (35, 0.3), (36, 0.4)))''')
 
     def procMaterialElast(self, name='hypela2', els='all_existing'):
         self.header('MATERIAL DATA')
@@ -299,6 +288,76 @@ final_sample.SectionAssignment(region=region, sectionName='Section ElastoPlastic
         #self.proc.append('*copy_job\n')
         #self.proc.append('*job_name postdef\n')
 
+    def procContactIndent(self):
+        self.proc.append('''
+#+++++++++++++++++++++++++++++++++++++++++++++
+# CONTACT DEFINITION
+#+++++++++++++++++++++++++++++++++++++++++++++
+# Surface interaction properties
+model_name.ContactProperty('Contact Properties')
+model_name.interactionProperties['Contact Properties'].TangentialBehavior(
+    formulation=PENALTY, directionality=ISOTROPIC, slipRateDependency=OFF,
+    pressureDependency=OFF, temperatureDependency=OFF, dependencies=0,
+    table=((friction, ), ), shearStressLimit=None, maximumElasticSlip=FRACTION,
+    fraction=0.005, elasticSlipStiffness=None)
+
+# Other type of contact...
+# model_name.interactionProperties['Contact Properties'].TangentialBehavior(formulation=FRICTIONLESS)
+# model_name.interactionProperties['Contact Properties'].NormalBehavior(pressureOverclosure=HARD, allowSeparation=ON,
+#     constraintEnforcementMethod=DEFAULT)
+
+# Contact Definition
+InstanceRoot = model_name.rootAssembly
+region1 = InstanceRoot.surfaces['Surf Indenter']
+region2 = InstanceRoot.instances[final_sample_name].sets['Surf Sample']
+model_name.SurfaceToSurfaceContactStd(name='Interaction Indenter-Sample',
+    createStepName='Initial',
+    master=region1,
+    slave=region2,
+    sliding=FINITE,
+    thickness=ON,
+    interactionProperty='Contact Properties',
+    adjustMethod=NONE,
+    initialClearance=OMIT,
+    datumAxis=None,
+    clearanceRegion=None)
+''')
+
+    def procLoadCaseIndent(self):
+        self.proc.append('''
+#+++++++++++++++++++++++++++++++++++++++++++++
+# LOADING STEP DEFINITION
+#+++++++++++++++++++++++++++++++++++++++++++++
+# Preliminary definitions (sets, surfaces, references points...)
+indenter = model_name.parts['indenter']
+v = indenter.vertices
+indenter.ReferencePoint(point=v.findAt(coordinates=(0.0, 0.0, 0.0)))
+
+# Definition of the indent step
+model_name.StaticStep(name='Indent', previous='Initial',
+    timePeriod=(ind_time+dwell_time+unload_time),
+    maxNumInc=max_inc_indent, initialInc=ini_inc_indent, minInc=min_inc_indent_time,
+    maxInc=max_inc_indent_time, nlgeom=ON)
+
+# Generating velocity amplitude tables
+model_name.TabularAmplitude(data=(
+    (0.0, 0.0),
+    (ind_time, -(h_indent+sep_ind_samp)),
+    (ind_time+dwell_time, -(h_indent+sep_ind_samp)),
+    (ind_time+dwell_time+unload_time, 0)), \
+    name='Indent_Amplitude', smooth=SOLVER_DEFAULT, timeSpan=STEP)
+
+# Defining velocities in the different steps
+InstanceRoot = model_name.rootAssembly
+r1 = InstanceRoot.instances['indenter-1'].referencePoints
+refPoints1=(r1[2], )
+region = regionToolset.Region(referencePoints=refPoints1)
+model_name.DisplacementBC(name='Indent', createStepName='Indent',
+    region=region, u1=0.0, u2=0.0, u3=-h_indent, ur1=0.0, ur2=0.0, ur3=0.0,
+    amplitude='Indent_Amplitude', fixed=OFF, distributionType=UNIFORM,
+    fieldName='', localCsys=None)
+''')
+
     def procJobParameters(self):
         self.proc.append('''
 #+++++++++++++++++++++++++++++++++++++++++++++
@@ -312,7 +371,6 @@ refPoints1=(r1[2], )
 Ref_Indenter = indenter.Set(name='Ref_Indenter', referencePoints=refPoints1)
 
 #Defining output request
-
 del model_name.fieldOutputRequests['F-Output-1']
 del model_name.historyOutputRequests['H-Output-1']
 
@@ -323,8 +381,7 @@ model_name.HistoryOutputRequest(name='History output',
     createStepName='Indent', variables=('U3', 'RF3'), frequency=2, 
     region=regionDef, sectionPoints=DEFAULT, rebar=EXCLUDE)
     
-# Creating job    
-    
+# Creating job
 mdb.Job(name='Indentation_Job', model=model_name, description='', 
     type=ANALYSIS, atTime=None, waitMinutes=0, waitHours=0, queue=None, 
     memory=90, memoryUnits=PERCENTAGE, getMemoryFromAnalysis=True, 

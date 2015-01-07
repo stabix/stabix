@@ -220,7 +220,6 @@ y_coor = 0
 z_coor = sep_ind_samp
 side1Faces1 = faces_indenter.findAt(((0, 0, sep_ind_samp), ), ((x_coor, y_coor, z_coor), ))
 InstanceRoot.Surface(side1Faces=side1Faces1, name='Surf Indenter')
-
 ''')
 
     def procIndenterCustomizedTopo(self, free_mesh_inp):
