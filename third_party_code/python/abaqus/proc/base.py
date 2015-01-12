@@ -353,7 +353,7 @@ r1 = InstanceRoot.instances['indenter-1'].referencePoints
 refPoints1=(r1[2], )
 region = regionToolset.Region(referencePoints=refPoints1)
 model_name.DisplacementBC(name='Indent', createStepName='Indent',
-    region=region, u1=0.0, u2=0.0, u3=-h_indent, ur1=0.0, ur2=0.0, ur3=0.0,
+    region=region, u1=0.0, u2=0.0, u3=h_indent, ur1=0.0, ur2=0.0, ur3=0.0,
     amplitude='Indent_Amplitude', fixed=OFF, distributionType=UNIFORM,
     fieldName='', localCsys=None)
 ''')
