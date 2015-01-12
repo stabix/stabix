@@ -21,6 +21,8 @@ Currently the following models can be written:
     * :ref:`single_crystal_indentation` (Mentat and Abaqus)
     * :ref:`bicrystal_indentation` (Mentat and Abaqus)
     
+Please find here the `python package used to generate the SX and BX indentation models <https://github.com/stabix/stabix/tree/master/third_party_code/python>`_.
+    
 .. _single_crystal_indentation:
 
 Single crystal (SX) indentation
@@ -114,6 +116,12 @@ Then the function `patch2inp <https://github.com/stabix/stabix/blob/master/util/
 is used to generate an *Abaqus .inp* file, which is used when the CPFE model is created in *MSC.Mentat* or *Abaqus*.
 
 It is possible to rotate directly into the GUIs, the Berkovich, Vickers, cube corner indenters and the free topography before the generation of the *Abaqus .inp* file.
+
+.. figure:: ./_pictures/GUIs/BX_Berko_rotate.gif
+   :scale: 40 %
+   :align: center
+   
+   *Figure 6 : Screenshots of the preCPFE GUI for the bicrystal indentation with Berkovich indenter*
     
 AFM topography
 ***************
@@ -128,7 +136,7 @@ The |matlab| function used to load and read Gwyddion file is: `read_gwyddion_asc
    :scale: 40 %
    :align: center
    
-   *Figure 6 : Screenshot of the preCPFE GUI for the bicrystal indentation with loaded AFM topography of the indenter*
+   *Figure 7 : Screenshot of the preCPFE GUI for the bicrystal indentation with loaded AFM topography of the indenter*
 
 Python setup
 -------------
@@ -176,3 +184,4 @@ See also
 
 `S. F. Choudhury et al., "Single Crystal Plasticity Finite Element Analysis of Cu6Sn5 Intermetallic.", Metall. and Mat. Trans. A (2014) <http://dx.doi.org/10.1007/s11661-014-2696-0>`_
 
+`L. Charleux , "Abapy Documentation", Metall. and Mat. Trans. A (2014) <http://abapy.readthedocs.org/en/latest/index.html>`_
