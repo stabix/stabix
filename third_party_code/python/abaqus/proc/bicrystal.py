@@ -53,7 +53,6 @@ class BicrystalIndent(Proc, Indenter):
                  min_inc_indent_time = 0.000001, # minimum increment (in seconds) allowed in the calculation (only Abaqus)
                  max_inc_indent_time = 0.05, # maximum increment (in seconds) allowed in the calculation (only Abaqus)
                  sep_ind_samp = 0.0005, #Distance between the indenter and the sample before indentation (to initialize contact) (only Abaqus)
-                 freq_field_output = 50, #Frequency of the output request (only Abaqus)
                  Dexp = None,  # experimental indent diameter, for visualization purposes only
                  twoDimensional = False,  # 2D indentation model, experimental
                  divideMesh = False,  # subdivide each el. additionally into 8 els.
@@ -163,7 +162,6 @@ class BicrystalIndent(Proc, Indenter):
                            min_inc_indent_time = min_inc_indent_time,
                            max_inc_indent_time = max_inc_indent_time,
                            sep_ind_samp = sep_ind_samp,
-                           freq_field_output = freq_field_output,
                            Dexp = Dexp,
                            twoDimensional = twoDimensional,
                            divideMesh = divideMesh,
@@ -215,7 +213,6 @@ class BicrystalIndent(Proc, Indenter):
                            min_inc_indent_time = min_inc_indent_time,
                            max_inc_indent_time = max_inc_indent_time,
                            sep_ind_samp = sep_ind_samp,
-                           freq_field_output = freq_field_output,
                            Dexp = Dexp,
                            twoDimensional = twoDimensional,
                            divideMesh = divideMesh,
@@ -282,7 +279,6 @@ final_sample_name = 'Bicrystal-1'
                       min_inc_indent_time = None,
                       max_inc_indent_time = None,
                       sep_ind_samp = None,
-                      freq_field_output = None,
                       Dexp = None,
                       twoDimensional = None,
                       divideMesh = None,
@@ -393,7 +389,7 @@ dwell_time = %f # dwell time in seconds (only Abaqus) ''' % dwell_time + '''
 unload_time = %f # unload time in seconds (only Abaqus) ''' % unload_time + '''
 sep_ind_samp = %f #Distance between the indenter and the sample before indentation (to initialize contact) ''' % sep_ind_samp + '''
 friction = %f # friction coefficient between the sample and the indenter (only Abaqus)''' % friction + '''
-freq_field_output = %i #Frequency of the output request (only Abaqus) ''' % freq_field_output + '''
+freq_field_output = %i #Frequency of the output request (only Abaqus) ''' % outStep + '''
 h_indent = %f #Indentation depth in um''' % h_indent + '''
 
 tolerance = 0.01+(float(width)/1500)

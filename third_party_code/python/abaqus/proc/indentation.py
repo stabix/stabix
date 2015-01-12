@@ -58,7 +58,6 @@ class Indentation(Indenter, Tools):
                 min_inc_indent_time = 0.000001, # minimum increment (in seconds) allowed in the calculation (only Abaqus)
                 max_inc_indent_time = 0.05, # maximum increment (in seconds) allowed in the calculation (only Abaqus)
                 sep_ind_samp = 0.0005, # distance between the indenter and the sample before indentation (to initialize contact) (only Abaqus)
-                freq_field_output = 50, # frequency of the output request (only Abaqus)
                 Dexp = None,  # experimental indent diameter, for visualization purposes only
                 twoDimensional = False,  # 2D indentation model, experimental
                 divideMesh = False,  # subdivide each el. additionally into 8 els.
@@ -102,7 +101,6 @@ class Indentation(Indenter, Tools):
             'max_inc_indent_time': max_inc_indent_time, # maximum increment (in seconds) allowed in the calculation (only Abaqus)
             'unload_time': unload_time, # unload time in seconds (only Abaqus)
             'sep_ind_samp': sep_ind_samp, #Distance between the indenter and the sample before indentation (to initialize contact) (only Abaqus)
-            'freq_field_output': freq_field_output, #Frequency of the output request (only Abaqus)
             'Dexp': Dexp, # experimental remaining indent diameter
             'indAxis': 'z', # however, indDirection is -z
             '2D': twoDimensional, #2D model flag
@@ -211,7 +209,7 @@ dwell_time = %f # dwell time in seconds (only Abaqus) ''' % (self.IndentParamete
 unload_time = %f # unload time in seconds (only Abaqus) ''' % (self.IndentParameters['unload_time']) + '''
 sep_ind_samp = %f #Distance between the indenter and the sample before indentation (to initialize contact) ''' % (self.IndentParameters['sep_ind_samp']) + '''
 friction =  %f # friction coefficient between the sample and the indenter (only Abaqus)''' % (self.IndentParameters['friction']) + '''
-freq_field_output = %i #Frequency of the output request (only Abaqus) ''' % (self.IndentParameters['freq_field_output']) + '''
+freq_field_output = %i #Frequency of the output request (only Abaqus) ''' % (self.IndentParameters['outStep']) + '''
 h_indent = %f #Indentation depth in um''' % self.IndentParameters['h_indent'] + '''
 
 tolerance = 0.01+(float(D_sample)/1500)
