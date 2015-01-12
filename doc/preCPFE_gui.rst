@@ -21,7 +21,7 @@ Currently the following models can be written:
     * :ref:`single_crystal_indentation` (Mentat and Abaqus)
     * :ref:`bicrystal_indentation` (Mentat and Abaqus)
     
-Please find here the `python package used to generate the SX and BX indentation models <https://github.com/stabix/stabix/tree/master/third_party_code/python>`_.
+Please find here the `Python package used to generate the SX and BX indentation models <https://github.com/stabix/stabix/tree/master/third_party_code/python>`_.
     
 .. _single_crystal_indentation:
 
@@ -74,7 +74,7 @@ The function used to run the preCPFE GUI for BX indentation is: `A_preCPFE_windo
 .. only:: html
 
     .. figure:: ./_pictures/GUIs/BX_mesh.gif
-       :scale: 60 %
+       :scale: 40 %
        :align: center
        
        *Figure 4 : Screenshots of the preCPFE GUI for the bicrystal indentation*
@@ -194,4 +194,4 @@ See also
 
 `S. F. Choudhury et al., "Single Crystal Plasticity Finite Element Analysis of Cu6Sn5 Intermetallic.", Metall. and Mat. Trans. A (2014) <http://dx.doi.org/10.1007/s11661-014-2696-0>`_
 
-`L. Charleux , "Abapy Documentation", Metall. and Mat. Trans. A (2014) <http://abapy.readthedocs.org/en/latest/index.html>`_
+`L. Charleux , "Abapy Documentation" <http://abapy.readthedocs.org/en/latest/index.html>`_

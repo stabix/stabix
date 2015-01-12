@@ -97,8 +97,8 @@ Possible errors introduced during files exportation from TSL
 - "Reconstructed Boundary File" --> Inversion of left and right grains for a given grain boundary 
     - Cross product performed between GB vector and center of grains to check (if cross product < 0 : no inversion, and if cross product > 0 : inversion).
 
-- "Reconstructed Boundary File" --> x-axis and y-axis not corrects…
-    - y coordinates is multiplied by -1 when file is imported via the GUI.
+- "Reconstructed Boundary File" --> (:math:`y`)-axis and (:math:`y`)-axis not corrects…
+    - (:math:`y`) coordinates is multiplied by -1 when file is imported via the GUI.
 
 All of these issues are taken into account and corrected automatically when user is loading his data via the EBSD map GUI.
 
@@ -107,9 +107,9 @@ Bicrystal GUI - YAML configuration file
 
 **The YAML configuration file provides a simple way to define a bicrystal.**
 
-An example of bicrystal configuration file is given here :  `config_gui_BX_defaults.yaml <https://github.com/stabix/stabix/tree/master/YAML_config_files/config_gui_BX_defaults.yaml>`_
+An example of bicrystal configuration file is given here : `config_gui_BX_defaults.yaml <https://github.com/stabix/stabix/tree/master/YAML_config_files/config_gui_BX_defaults.yaml>`_
 
-Copy this example file and modify it with your data. Be careful to put a space after the comma in a list (e.g. [x, y, z]).
+Copy this example file and modify it with your data. Be careful to put a space after the comma in a list (e.g. [(:math:`x,y,z`)]).
 
 Don't change fieldnames and don't round Euler angles. Euler angles are given in degrees.
 

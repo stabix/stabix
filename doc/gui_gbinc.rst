@@ -55,6 +55,7 @@ How to use the toolbox ?
    *Figure 2 : Schemes of a) the top view of a Vickers indent (before and after polishing) and of b) the cross-section view.*
 
 N.B.: Images should have the same scale factor.
+
 N.B.: Distances and grain boundary inclination values are obtained with the mean scale factor of the two images...
 
 See also
