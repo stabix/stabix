@@ -222,6 +222,8 @@ class BicrystalIndent(Proc, Indenter):
                            smv = smv,
                            free_mesh_inp = free_mesh_inp,
                            ori_list = ori_list)
+        self.procBoundaryConditionsIndent()
+        self.procRotationTranslation()
         self.procMaterial()
         self.procSectionsBicrystal()
         self.proc.append('''
@@ -453,7 +455,6 @@ else:
 #+++++++++++++++++++++++++++++++++++++++++++++
 # SAMPLE GEOMETRY
 #+++++++++++++++++++++++++++++++++++++++++++++
-
 p = model_name.Part(name='Bicrystal', dimensionality=THREE_D, type=DEFORMABLE_BODY)
 s = model_name.ConstrainedSketch(name='__profile__', sheetSize=sheet_Size)
 g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
@@ -487,7 +488,6 @@ del model_name.sketches['__profile__']
 #+++++++++++++++++++++++++++++++++++++++++++++
 # CELLS DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
-
 p = model_name.parts['Bicrystal']
 c = p.cells
 pickedCells = c.getSequenceFromMask(mask=('[#1 ]', ), )
@@ -501,7 +501,6 @@ if distGB != 0:
 #+++++++++++++++++++++++++++++++++++++++++++++
 # SETS/SURFACES DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
-
 p = model_name.parts['Bicrystal']
 
 c = p.cells
@@ -592,7 +591,6 @@ p.Set(faces=faces, name='Surf Sample')
 #+++++++++++++++++++++++++++++++++++++++++++++
 # REFERENCE POINT
 #+++++++++++++++++++++++++++++++++++++++++++++
-
 p = model_name.parts['Bicrystal']
 v = p.vertices
 p.ReferencePoint(point=v.findAt(coordinates=(distGB, 0.0, width/2)))
@@ -603,7 +601,6 @@ p.Set(referencePoints=refPoints, name='Set-RP')
 #+++++++++++++++++++++++++++++++++++++++++++++
 # INSTANCES DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
-
 a = model_name.rootAssembly
 a.DatumCsysByDefault(CARTESIAN)
 p = model_name.parts['Bicrystal']
@@ -612,7 +609,6 @@ a.Instance(name='Bicrystal-1', part=p, dependent=OFF)
 #+++++++++++++++++++++++++++++++++++++++++++++
 # SEEDS FOR MESH
 #+++++++++++++++++++++++++++++++++++++++++++++
-
 a = model_name.rootAssembly
 e = a.instances['Bicrystal-1'].edges
 
@@ -670,19 +666,20 @@ a.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdge
 #+++++++++++++++++++++++++++++++++++++++++++++
 # MESHING
 #+++++++++++++++++++++++++++++++++++++++++++++
-
 a = model_name.rootAssembly
 partInstances =(a.instances['Bicrystal-1'], )
 a.generateMesh(regions=partInstances)
 
 if linear_elements == 1:
     # Linear elements
-    elemType1 = mesh.ElemType(elemCode=C3D8R, elemLibrary=STANDARD)
+    elemType1 = mesh.ElemType(elemCode=C3D8, elemLibrary=STANDARD,
+        secondOrderAccuracy=OFF, distortionControl=DEFAULT)
     elemType2 = mesh.ElemType(elemCode=C3D6, elemLibrary=STANDARD)
     elemType3 = mesh.ElemType(elemCode=C3D4, elemLibrary=STANDARD)
 else:
     # Quadratic elements
-    elemType1 = mesh.ElemType(elemCode=C3D20R, elemLibrary=STANDARD)
+    elemType1 = mesh.ElemType(elemCode=C3D20, elemLibrary=STANDARD,
+        secondOrderAccuracy=OFF, distortionControl=DEFAULT)
     elemType2 = mesh.ElemType(elemCode=C3D15, elemLibrary=STANDARD)
     elemType3 = mesh.ElemType(elemCode=C3D10, elemLibrary=STANDARD)
 
@@ -690,12 +687,14 @@ c = a.instances['Bicrystal-1'].cells
 cells1 = c.findAt((((d_box_A + box_y1)/2, -height/2, width/2), ), (((box_y1 + box_y2)/2, -height/2, width/2),
     ), (((box_y3 + d_box_B)/2, -height/2, width/2), ))
 pickedRegions =(cells1, )
-a.setElementType(regions=pickedRegions, elemTypes=(elemType1, elemType2, elemType3))
+a.setElementType(regions=pickedRegions, elemTypes=(elemType1, ))
+''')
 
+    def procBoundaryConditionsIndent(self):
+        self.proc.append('''
 #+++++++++++++++++++++++++++++++++++++++++++++
 # BOUNDARIES CONDITIONS
 #+++++++++++++++++++++++++++++++++++++++++++++
-
 a = model_name.rootAssembly
 
 region = a.instances['Bicrystal-1'].sets['Surf-bottom']
@@ -703,11 +702,13 @@ model_name.EncastreBC(name='BC_bottom', createStepName='Initial', region=region)
 
 region = a.instances['Bicrystal-1'].sets['Surf-sides']
 model_name.EncastreBC(name='BC_sides', createStepName='Initial', region=region)
+''')
 
+    def procRotationTranslation(self):
+        self.proc.append('''
 #+++++++++++++++++++++++++++++++++++++++++++++
 # ROTATION / TRANSLATION
 #+++++++++++++++++++++++++++++++++++++++++++++
-
 a = model_name.rootAssembly
 
 # Translation to set the reference point to (0,0,0)
@@ -727,7 +728,6 @@ if trace_ang !=0:
 #+++++++++++++++++++++++++++++++++++++++++++++
 # SECTIONS DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
-
 model_name.HomogeneousSolidSection(name='Section_Grain1', material='ElastoPlastic_Material-1', thickness=None)
 model_name.HomogeneousSolidSection(name='Section_Grain2', material='ElastoPlastic_Material-2', thickness=None)
 if distGB > 0:
