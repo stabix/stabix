@@ -117,11 +117,21 @@ is used to generate an *Abaqus .inp* file, which is used when the CPFE model is 
 
 It is possible to rotate directly into the GUIs, the Berkovich, Vickers, cube corner indenters and the free topography before the generation of the *Abaqus .inp* file.
 
-.. figure:: ./_pictures/GUIs/BX_Berko_rotate.gif
-   :scale: 40 %
-   :align: center
+.. only:: html
+
+    .. figure:: ./_pictures/GUIs/BX_Berko_rotate.gif
+       :scale: 40 %
+       :align: center
+       
+       *Figure 6 : Screenshots of the preCPFE GUI for the bicrystal indentation with Berkovich indenter*
    
-   *Figure 6 : Screenshots of the preCPFE GUI for the bicrystal indentation with Berkovich indenter*
+.. only:: latex
+
+    .. figure:: ./_pictures/GUIs/BX_Berko_rotate.png
+       :scale: 40 %
+       :align: center
+       
+       *Figure 6 : Screenshot of the preCPFE GUI for the bicrystal indentation with Berkovich indenter*
     
 AFM topography
 ***************

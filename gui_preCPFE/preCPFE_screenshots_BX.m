@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function preCPFE_screenshots
+function preCPFE_screenshots_BX
 %% Function used to generate sequential screenshots of the GUI running with given files.
 % author: d.mercier@mpie.de
 
