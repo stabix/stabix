@@ -85,6 +85,7 @@ py{end+1} = sprintf('ind_size = 1.,');
 py{end+1} = sprintf('h_indent = %.5f,', gui_BX.variables.h_indent);
 py{end+1} = sprintf('tipRadius = %.5f,', gui_BX.variables.tipRadius);
 py{end+1} = sprintf('coneAngle = %.5f,', gui_BX.variables.coneAngle);
+py{end+1} = sprintf('friction = %.5f,', gui_BX.variables.frictionCoeff);
 py{end+1} = sprintf('geo = ''%s'',', gui_BX.indenter_type_model);
 py{end+1} = sprintf('free_mesh_inp = ''%s'',', ...
     strcat(gui_BX.GB.Titlegbdata, '.inp'));

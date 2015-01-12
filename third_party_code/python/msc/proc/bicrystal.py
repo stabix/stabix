@@ -26,7 +26,8 @@ class BicrystalIndent(Indentation):
                  h_indent=0.3,  # depth of the indent in µm
                  tipRadius=1.4,  # radius of the spherical indenter in µm
                  geo='conical',
-                 coneAngle=90., # angle of the conical indenter in degree
+                 coneAngle=90., # angle of the conical indenter in degree.
+                 friction=0.3,  # Coulomb friction coefficient
                  ind_size=None,
                  #lengthScale = 1.
                  wid=4,  # width of the sample
@@ -154,6 +155,7 @@ class BicrystalIndent(Indentation):
         if geo == 'customized':
             self.procIndenterCustomizedTopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'])
         self.procNewModel()
+        self.IndentParameters['friction'] = friction
         self.procParametersIndent()
         self.procSample()
         self.procBicrystal(label=label,

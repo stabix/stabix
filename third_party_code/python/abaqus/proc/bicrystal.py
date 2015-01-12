@@ -115,6 +115,7 @@ class BicrystalIndent(Proc, Indenter):
         self.IndentParameters['coneAngle'] = coneAngle
         self.IndentParameters['h_indent'] = h_indent
         self.IndentParameters['tipRadius'] = tipRadius
+        self.IndentParameters['friction'] = friction
         self.IndentParameters['indAxis'] = 'z'
         self.IndentParameters['smv'] = 1e-3
         self.IndentParameters['friction'] = 0.3

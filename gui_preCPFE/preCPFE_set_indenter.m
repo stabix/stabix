@@ -22,11 +22,14 @@ elseif indenter_index == 6
     gui.indenter_type = 'AFM';
 end
 
-gui.variables.h_indent  = ...
+gui.variables.h_indent = ...
     str2num(get(gui.handles.indenter.h_indent_val, 'String')); % Depth of indentation (in µm)
 % tipRadius is used for conospherical and flat punch
 gui.variables.tipRadius = ...
     str2num(get(gui.handles.indenter.tipRadius_val, 'String')); % Radius of cono-spherical indenter (in µm)
+
+gui.variables.frictionCoeff = ...
+    str2num(get(gui.handles.indenter.friction_coeff_val, 'String')); % Depth of indentation (in µm)
 
 if indenter_index == 1
     % Indenter variables

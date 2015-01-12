@@ -77,6 +77,7 @@ py{end+1} = sprintf('modelname = ''%s'',', gui_SX.GB.Titlegbdata);
 py{end+1} = sprintf('h_indent = %.5f,', gui_SX.variables.h_indent);
 py{end+1} = sprintf('tipRadius = %.5f,', gui_SX.variables.tipRadius);
 py{end+1} = sprintf('coneAngle = %.5f,', gui_SX.variables.coneAngle);
+py{end+1} = sprintf('friction = %.5f,', gui_SX.variables.frictionCoeff);
 py{end+1} = sprintf('geo = ''%s'',', gui_SX.indenter_type_model);
 py{end+1} = sprintf('free_mesh_inp = ''%s'',', ...
     strcat(gui_SX.GB.Titlegbdata, '.inp'));
