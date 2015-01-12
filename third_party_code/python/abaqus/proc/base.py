@@ -358,7 +358,9 @@ model_name.DisplacementBC(name='Indent', createStepName='Indent',
     fieldName='', localCsys=None)
 ''')
 
-    def procJobParameters(self):
+    def procJobParameters(self,
+                          description=None):
+        if description is None: description = self.description
         self.proc.append('''
 #+++++++++++++++++++++++++++++++++++++++++++++
 # JOB DEFINITION
@@ -382,15 +384,14 @@ model_name.HistoryOutputRequest(name='History output',
     region=regionDef, sectionPoints=DEFAULT, rebar=EXCLUDE)
     
 # Creating job
-mdb.Job(name='Indentation_Job', model=model_name, description='', 
+mdb.Job(name='Indentation_Job', model=model_name, description='%s',
     type=ANALYSIS, atTime=None, waitMinutes=0, waitHours=0, queue=None, 
     memory=90, memoryUnits=PERCENTAGE, getMemoryFromAnalysis=True, 
     explicitPrecision=SINGLE, nodalOutputPrecision=SINGLE, echoPrint=OFF, 
     modelPrint=OFF, contactPrint=OFF, historyPrint=OFF, userSubroutine='', 
-    scratch='', multiprocessingMode=DEFAULT, numCpus=1)
+    scratch='', multiprocessingMode=DEFAULT, numCpus=1)''' % description + '''
 
 # Writing .inp
-  
 mdb.jobs['Indentation_Job'].writeInput(consistencyChecking=OFF)''')
 
     def procFriction(self):
@@ -425,10 +426,10 @@ mdb.jobs['Indentation_Job'].writeInput(consistencyChecking=OFF)''')
         if self.p == None:
             self.p = post_open(postname[0:-1] + '9') # is it *.t19 file?
             if self.p == None:
-                print 'Could not open %s. run make_post' % postname;
+                print 'Could not open %s. run make_post' % postname
                 sys.exit(1)
         self.p.moveto(0)
-        nnds = self.p.nodes();
+        nnds = self.p.nodes()
         print  nnds
 
         nSets = self.p.sets()
