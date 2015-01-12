@@ -586,7 +586,7 @@ p.Set(faces=faces, name='Surf-sides')
 side1Faces = f.findAt((((d_box_A + box_y1)/2, 0, width/2), ), (((box_y1 + box_y2)/2, 0, width/2), ),
     (((box_y2 + d_box_B)/2, 0, width/2), ))
 p.Surface(side1Faces=side1Faces, name='Surf Sample')
-p.Set(faces=faces, name='Surf Sample')
+p.Set(faces=side1Faces, name='Surf Sample')
 
 #+++++++++++++++++++++++++++++++++++++++++++++
 # REFERENCE POINT
@@ -612,7 +612,7 @@ a.Instance(name='Bicrystal-1', part=p, dependent=OFF)
 a = model_name.rootAssembly
 e = a.instances['Bicrystal-1'].edges
 
-# NB: pickedEdges1 and pickedEdges2 used for direction of bias
+# NB: pickedEdges1 and pickedEdges2 are used for direction of bias
 
 # edge_x_neg
 pickedEdges1 = e.findAt(((box_y4, -height, width/4), ), ((box_y2, 0, width/4), ))
