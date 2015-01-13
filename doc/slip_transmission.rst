@@ -22,11 +22,11 @@ The strain transfer across grain boundaries can be defined by the four following
 Several authors proposed slip transfer parameters from modellings or experiments for the last 60 years.
 A non-exhaustive list of those criteria is given in the next part of this work, including geometrical parameter, stress and energetic functions, and recent combinations of the previous parameters.
 
-Please find here, the list of slip and twin systems for FCC phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>` and `DAMASK <http://damask.mpie.de/Documentation/FCC>`.
+Please find here, the list of slip and twin systems for FCC phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_ and `DAMASK <http://damask.mpie.de/Documentation/FCC>`_.
 
-Please find here, the list of slip and twin systems for BCC phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>` and `DAMASK <http://damask.mpie.de/Documentation/BCC>`.
+Please find here, the list of slip and twin systems for BCC phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_ and `DAMASK <http://damask.mpie.de/Documentation/BCC>`_.
 
-Please find here, the list of slip and twin systems for HCP phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>` and `DAMASK <http://damask.mpie.de/Documentation/Hex>`.
+Please find here, the list of slip and twin systems for HCP phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_ and `DAMASK <http://damask.mpie.de/Documentation/Hex>`_.
 
 Geometrical Criteria
 --------------------

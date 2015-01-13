@@ -109,7 +109,7 @@ Bicrystal GUI - YAML configuration file
 
 An example of bicrystal configuration file is given here : `config_gui_BX_defaults.yaml <https://github.com/stabix/stabix/tree/master/YAML_config_files/config_gui_BX_defaults.yaml>`_
 
-Copy this example file and modify it with your data. Be careful to put a space after the comma in a list (e.g. [:math:`x, y, z`]).
+Copy this example file and modify it with your data. Be careful to put a space after the comma in a list (e.g. [:math:`x`, :math:`y`, :math:`z`]).
 
 Don't change fieldnames and don't round Euler angles. Euler angles are given in degrees.
 
