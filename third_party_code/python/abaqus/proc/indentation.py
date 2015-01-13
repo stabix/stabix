@@ -120,6 +120,7 @@ class Indentation(Indenter, Tools):
         self.procParametersIndent()
         self.procSampleIndent()
         self.procInstance()
+        self.procMeshParameters()
         self.procSampleMeshing()
         self.procBoundaryConditionsIndent()
         self.procMaterial()
@@ -541,12 +542,6 @@ InstanceRoot.features['Core_Sample_Bottom_Inner-1'].resume()''')
 #+++++++++++++++++++++++++++++++++++++++++++++
 # SAMPLE-MODELING AND MESHING
 #+++++++++++++++++++++++++++++++++++++++++++++
-# Elements definition
-elemType1 = mesh.ElemType(elemCode=C3D8, elemLibrary=STANDARD,
-    secondOrderAccuracy=OFF, distortionControl=DEFAULT)
-elemType2 = mesh.ElemType(elemCode=C3D6, elemLibrary=STANDARD)
-elemType3 = mesh.ElemType(elemCode=C3D4, elemLibrary=STANDARD)
-#---------------------------------------------
 # Meshing Sample Small Def
 p = model_name.parts['Sample_Small_Def']
 c, v, e, d = p.cells, p.vertices, p.edges, p.datums

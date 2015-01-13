@@ -222,6 +222,8 @@ class BicrystalIndent(Proc, Indenter):
                            smv = smv,
                            free_mesh_inp = free_mesh_inp,
                            ori_list = ori_list)
+        self.procMeshParameters()
+        self.procSampleMeshing()
         self.procBoundaryConditionsIndent()
         self.procRotationTranslation()
         self.procMaterial()
@@ -606,6 +608,11 @@ a.DatumCsysByDefault(CARTESIAN)
 p = model_name.parts['Bicrystal']
 a.Instance(name='Bicrystal-1', part=p, dependent=OFF)
 
+
+''')
+
+    def procSampleMeshing(self):
+        self.proc.append('''
 #+++++++++++++++++++++++++++++++++++++++++++++
 # SEEDS FOR MESH
 #+++++++++++++++++++++++++++++++++++++++++++++
@@ -669,19 +676,6 @@ a.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdge
 a = model_name.rootAssembly
 partInstances =(a.instances['Bicrystal-1'], )
 a.generateMesh(regions=partInstances)
-
-if linear_elements == 1:
-    # Linear elements
-    elemType1 = mesh.ElemType(elemCode=C3D8, elemLibrary=STANDARD,
-        secondOrderAccuracy=OFF, distortionControl=DEFAULT)
-    elemType2 = mesh.ElemType(elemCode=C3D6, elemLibrary=STANDARD)
-    elemType3 = mesh.ElemType(elemCode=C3D4, elemLibrary=STANDARD)
-else:
-    # Quadratic elements
-    elemType1 = mesh.ElemType(elemCode=C3D20, elemLibrary=STANDARD,
-        secondOrderAccuracy=OFF, distortionControl=DEFAULT)
-    elemType2 = mesh.ElemType(elemCode=C3D15, elemLibrary=STANDARD)
-    elemType3 = mesh.ElemType(elemCode=C3D10, elemLibrary=STANDARD)
 
 c = a.instances['Bicrystal-1'].cells
 cells1 = c.findAt((((d_box_A + box_y1)/2, -height/2, width/2), ), (((box_y1 + box_y2)/2, -height/2, width/2),

@@ -323,6 +323,26 @@ model_name.SurfaceToSurfaceContactStd(name='Interaction Indenter-Sample',
     clearanceRegion=None)
 ''')
 
+    def procMeshParameters(self,
+                           linear_elements=1):
+        self.proc.append('''
+#+++++++++++++++++++++++++++++++++++++++++++++
+# ELEMENTS DEFINITION
+#+++++++++++++++++++++++++++++++++++++++++++++
+if linear_elements == %i:''' % linear_elements + '''
+    # Linear elements
+    elemType1 = mesh.ElemType(elemCode=C3D8, elemLibrary=STANDARD,
+        secondOrderAccuracy=OFF, distortionControl=DEFAULT)
+    elemType2 = mesh.ElemType(elemCode=C3D6, elemLibrary=STANDARD)
+    elemType3 = mesh.ElemType(elemCode=C3D4, elemLibrary=STANDARD)
+else:
+    # Quadratic elements
+    elemType1 = mesh.ElemType(elemCode=C3D20, elemLibrary=STANDARD,
+        secondOrderAccuracy=OFF, distortionControl=DEFAULT)
+    elemType2 = mesh.ElemType(elemCode=C3D15, elemLibrary=STANDARD)
+    elemType3 = mesh.ElemType(elemCode=C3D10, elemLibrary=STANDARD)
+''')
+
     def procLoadCaseIndent(self):
         self.proc.append('''
 #+++++++++++++++++++++++++++++++++++++++++++++
