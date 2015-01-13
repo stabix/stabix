@@ -22,12 +22,6 @@ The strain transfer across grain boundaries can be defined by the four following
 Several authors proposed slip transfer parameters from modellings or experiments for the last 60 years.
 A non-exhaustive list of those criteria is given in the next part of this work, including geometrical parameter, stress and energetic functions, and recent combinations of the previous parameters.
 
-Please find here, the list of slip and twin systems for FCC phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_ and `DAMASK <http://damask.mpie.de/Documentation/FCC>`_.
-
-Please find here, the list of slip and twin systems for BCC phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_ and `DAMASK <http://damask.mpie.de/Documentation/BCC>`_.
-
-Please find here, the list of slip and twin systems for HCP phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_ and `DAMASK <http://damask.mpie.de/Documentation/Hex>`_.
-
 Geometrical Criteria
 --------------------
 Based on numerous investigations of dislocation-grain boundary interactions, quantitative geometrical expressions describing the slip transmission mechanisms have been developed. 
@@ -139,7 +133,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   The |matlab| function used to calculate the misorientation angle is: `misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/misorientation.m>`_
 
 Stress Criteria
----------------
+-----------------
 * **Schmid Factor** (:math:`m`) [#Reid_1973]_, [#Seal_2012]_ and [#Abuzaid_2012]_
 
   The Schmid's law can be expressed by the following equation:
@@ -199,12 +193,12 @@ Stress Criteria
   The |matlab| function used to calculate the resolved shear stress is: `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_
 
 Combination of Criteria
------------------------
+-------------------------
 
 * **Geometrical function weighted by the accumulated shear stress or the Schmid factor** [#Bieler_2014]_ (not yet implemented...)
 
 Slip transmission parameters implemented in the |matlab| Toolbox
----------------------------------------------------------------------------
+-----------------------------------------------------------------------
 .. csv-table::
    :header: "Slip transmission parameter", "Function", "|matlab| function", "Reference"
    :widths: 40, 40, 20, 10
@@ -218,6 +212,12 @@ Slip transmission parameters implemented in the |matlab| Toolbox
    "Resolved Shear Stress (:math:`\tau^{i}`) / Schmid Factor", ":math:`\tau^{i} = \sigma : {S_0}^{i}` with :math:`{S_0}^{i} = d \otimes n`", `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_, [#Reid_1973]_
    "Grain boundary Schmid factor", ":math:`m_\text{GB} = m_\text{in} + m_\text{out}`", `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_, [#Abuzaid_2012]_
    "Generalized Schmid Factor (:math:`GSF`)", ":math:`GSF = d \cdot g \sigma g \cdot n`", `generalized_schmid_factor.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/generalized_schmid_factor.m>`_, [#Reid_1973]_
+
+Slip and twin systems implemented in the |matlab| Toolbox
+---------------------------------------------------------------------------
+* List of slip and twin systems for FCC phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_ and `DAMASK <http://damask.mpie.de/Documentation/FCC>`_.
+* List of slip and twin systems for BCC phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_ and `DAMASK <http://damask.mpie.de/Documentation/BCC>`_.
+* List of slip and twin systems for HCP phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_ and `DAMASK <http://damask.mpie.de/Documentation/Hex>`_.
 
 References
 ----------

@@ -23,7 +23,7 @@ Run one of these GUIs to play with the toolbox.
    :header: "|matlab| function", "Features", "YAML config. file"
    :widths: 25, 25, 25
   
-   `demo.m <https://github.com/stabix/stabix/blob/master/demo.m>`_, "Start and run other GUIs." 
+   `demo <https://github.com/stabix/stabix/blob/master/demo.m>`_, "Start and run other GUIs." 
    `EBSD map GUI <https://github.com/stabix/stabix/blob/master/gui_ebsd_map/A_gui_plotmap.m>`_, "Analysis of slip transmission across GBs for an EBSD map.", "config_gui_EBSDmap_default.yaml" 
    `Bicrystal BUI <https://github.com/stabix/stabix/blob/master/gui_bicrystal/A_gui_plotGB_Bicrystal.m>`_, "Analysis of slip transfer in a bicrystal." 
    `preCPFE_SX <https://github.com/stabix/stabix/blob/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_SX.m>`_, "Preprocess of CPFE model for SX indentation.", "config_CPFEM_default.yaml" 

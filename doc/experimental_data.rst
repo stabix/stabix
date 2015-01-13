@@ -22,7 +22,8 @@ EBSD map GUI - TSL-OIM data preparation
 
 Open you .osc (or your .ctf) file in the TSL-OIM Analysis Software.
 
-**Set the TSL coordinates system !**
+.. warning::
+    Set the TSL coordinates system !
 
 Change data properties for the detection of grain boundaries (All data --> Properties).
 
@@ -45,7 +46,8 @@ Reconstructed Boundaries File
 
 - IDs of right hand and left hand grains
 
-N.B : Reconstructed boundary methodology is only applied to data collected on a hexagonal grid. It is possible to convert a square grid into an hexagonal grid in TSL-OIM software.
+.. note::
+    Reconstructed boundary methodology is only applied to data collected on a hexagonal grid. It is possible to convert a square grid into an hexagonal grid in TSL-OIM software.
 
 Example of "Reconstructed Boundary File": `MPIE_cpTi_reconstructed_boundaries_2013.txt <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/EBSD_data_Examples/MPIE_cpTi_reconstructed_boundaries_2013.txt>`_
 
@@ -73,7 +75,8 @@ Grain File Type 2
 
 - Diameter of the grain in microns (optional).
 
-N.B. : Export the "Grain File Type 2" in the same location as the corresponding "Reconstructed Boundary File".
+.. note::
+    Export the "Grain File Type 2" in the same location as the corresponding "Reconstructed Boundary File".
 
 Example of "Grain Gile Type 2": `MPIE_cpTi_grain_file_type2_2013.txt <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/EBSD_data_Examples/MPIE_cpTi_grain_file_type2_2013.txt>`_
 

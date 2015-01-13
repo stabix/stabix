@@ -54,16 +54,18 @@ How to use the toolbox ?
    
    *Figure 2 : Schemes of a) the top view of a Vickers indent (before and after polishing) and of b) the cross-section view.*
 
-N.B.: Images should have the same scale factor.
+.. note::
+    Images should have the same scale factor.
 
-N.B.: Distances and grain boundary inclination values are obtained with the mean scale factor of the two images...
+.. note::
+    Distances and grain boundary inclination values are obtained with the mean scale factor of the two images...
 
 See also
---------
+---------
 `V. Randle, "A methodology for grain boundary plane assessment by single-section trace analysis.", Scripta Mater., 2001, 44, pp. 2789-2794. <http://dx.doi.org/10.1016/S1359-6462(01)00975-7>`_
 
 Links
------
+------
 - `Matlab - Interactive Exploration with the Image Viewer App <http://fr.mathworks.com/help/images/interactive-exploration-with-the-image-tool.html>`_
 - `Matlab - Distance tool <http://www.mathworks.fr/help/images/ref/imdistline.html>`_
 - `Matlab - Image conversions <http://fr.mathworks.com/help/images/image-type-conversions.html>`_
@@ -73,7 +75,7 @@ Links
 - `Matlab - Edge detection <http://www.mathworks.fr/help/images/ref/edge.html>`_
 
 Authors
--------
+--------
 Written by D. Mercier [1] and C. Zambaldi [1].
 
 [1] Max-Planck-Institut für Eisenforschung, 40237 Düsseldorf, Germany
@@ -83,6 +85,6 @@ Acknowledgements
 Parts of this work were supported under the NSF/DFG Materials World Network program (DFG ZA 523/3-1 and NSF-DMR-1108211).
 
 Keywords
---------
+---------
 Matlab; Graphical User Interface (GUI); Grain Boundaries; Polycrystalline Metals; Grain Boundary Inclination; Serial Polishing;
 Scanning electron microscope (SEM).
