@@ -241,9 +241,7 @@ else:
 #
 #define sample large initial
 
-sample_large_ini = model_name.Part(name=
-    'Sample_Large_Ini', dimensionality=THREE_D,
-    type=DEFORMABLE_BODY)
+sample_large_ini = model_name.Part(name= 'Sample_Large_Ini', dimensionality=THREE_D, type=DEFORMABLE_BODY)
     
 p = model_name.parts['Sample_Large_Ini']
 s = model_name.ConstrainedSketch(name='__profile__', sheetSize=sheet_Size)
@@ -311,17 +309,14 @@ s.Line(point1=(points_base_sample_small[-1][0], \
         point2=(points_base_sample_small[0][0], \
             points_base_sample_small[0][1]))
 
-p = model_name.Part(name='Sample_Small_Ini', 
-    dimensionality=THREE_D, type=DEFORMABLE_BODY)
+p = model_name.Part(name='Sample_Small_Ini', dimensionality=THREE_D, type=DEFORMABLE_BODY)
 p = model_name.parts['Sample_Small_Ini']
 p.BaseSolidExtrude(sketch=s, depth=box_zfrac*h_sample)
 s.unsetPrimaryObject()
 p = model_name.parts['Sample_Small_Ini']
 
 #define core sample top
-core_sample = model_name.Part(name=
-    'Core_Sample_Top', dimensionality=THREE_D,
-    type=DEFORMABLE_BODY)
+core_sample = model_name.Part(name= 'Core_Sample_Top', dimensionality=THREE_D, type=DEFORMABLE_BODY)
 
 p = model_name.parts['Core_Sample_Top']
 s = model_name.ConstrainedSketch(name='__profile__', sheetSize=sheet_Size)
@@ -399,9 +394,7 @@ s.unsetPrimaryObject()
 p = model_name.parts['Core_Sample_Top_Inner']
 
 #define core sample button
-core_sample = model_name.Part(name=
-    'Core_Sample_Bottom', dimensionality=THREE_D,
-    type=DEFORMABLE_BODY)
+core_sample = model_name.Part(name= 'Core_Sample_Bottom', dimensionality=THREE_D, type=DEFORMABLE_BODY)
   
 p = model_name.parts['Core_Sample_Bottom']
 s = model_name.ConstrainedSketch(name='__profile__', sheetSize=sheet_Size)
@@ -562,8 +555,9 @@ for i in range(0, 4*sectors_45):
     radius = 0.5*D_sample*box_xfrac*(1+r_center_frac)*0.5
     pickedCells = c.findAt(((radius*cos(pi/(4*sectors_45)*i+pi/200), radius*sin(pi/(4*sectors_45)*i+pi/200), \
         -0.5*box_zfrac*h_sample), ))
-    p.PartitionCellByPlaneThreePoints(point1=v.findAt(coordinates=(box_xfrac*D_sample*0.5*cos(pi/(4*sectors_45)*i), box_xfrac*D_sample*0.5*sin(pi/(4*sectors_45)*i),
-        0.0)), point2=v.findAt(coordinates=(r_center_frac*box_xfrac*D_sample*0.5*cos(pi/(4*sectors_45)*i), r_center_frac*box_xfrac*D_sample*0.5*sin(pi/(4*sectors_45)*i), 0.0)), cells=pickedCells,
+    p.PartitionCellByPlaneThreePoints(
+        point1=v.findAt(coordinates=(box_xfrac*D_sample*0.5*cos(pi/(4*sectors_45)*i), box_xfrac*D_sample*0.5*sin(pi/(4*sectors_45)*i), 0.0)),
+        point2=v.findAt(coordinates=(r_center_frac*box_xfrac*D_sample*0.5*cos(pi/(4*sectors_45)*i), r_center_frac*box_xfrac*D_sample*0.5*sin(pi/(4*sectors_45)*i), 0.0)), cells=pickedCells,
         point3=p.InterestingPoint(edge=e.findAt(coordinates=(box_xfrac*D_sample*0.5*cos(pi/(4*sectors_45)*i), box_xfrac*D_sample*0.5*sin(pi/(4*sectors_45)*i),-0.5*box_zfrac*h_sample)),
         rule=MIDDLE))
 
@@ -571,28 +565,33 @@ for i in range(4*sectors_45+1, 8*sectors_45):
     radius = 0.5*D_sample*box_xfrac*(1+r_center_frac)*0.5
     pickedCells = c.findAt(((radius*cos(pi/(4*sectors_45)*i+pi/200), radius*sin(pi/(4*sectors_45)*i+pi/200), \
         -0.5*box_zfrac*h_sample), ))
-    p.PartitionCellByPlaneThreePoints(point1=v.findAt(coordinates=(box_xfrac*D_sample*0.5*cos(pi/(4*sectors_45)*i), box_xfrac*D_sample*0.5*sin(pi/(4*sectors_45)*i),
-        0.0)), point2=v.findAt(coordinates=(r_center_frac*box_xfrac*D_sample*0.5*cos(pi/(4*sectors_45)*i), r_center_frac*box_xfrac*D_sample*0.5*sin(pi/(4*sectors_45)*i), 0.0)), cells=pickedCells,
+    p.PartitionCellByPlaneThreePoints(
+        point1=v.findAt(coordinates=(box_xfrac*D_sample*0.5*cos(pi/(4*sectors_45)*i), box_xfrac*D_sample*0.5*sin(pi/(4*sectors_45)*i), 0.0)),
+        point2=v.findAt(coordinates=(r_center_frac*box_xfrac*D_sample*0.5*cos(pi/(4*sectors_45)*i), r_center_frac*box_xfrac*D_sample*0.5*sin(pi/(4*sectors_45)*i), 0.0)), cells=pickedCells,
         point3=p.InterestingPoint(edge=e.findAt(coordinates=(box_xfrac*D_sample*0.5*cos(pi/(4*sectors_45)*i), box_xfrac*D_sample*0.5*sin(pi/(4*sectors_45)*i),-0.5*box_zfrac*h_sample)),
         rule=MIDDLE))
 
 for i in range(0, 8*sectors_45):
     if i == 4*sectors_45:
-        pickedEdges1 = e.findAt((((r_center_frac*box_xfrac*D_sample*0.5+0.02)*cos(pi/(4*sectors_45)*i), (r_center_frac*box_xfrac*D_sample*0.5+0.02)*sin(pi/(4*sectors_45)*i), 0), ))
+        pickedEdges1 = e.findAt((((r_center_frac*box_xfrac*D_sample*0.5+0.02)*cos(pi/(4*sectors_45)*i),
+            (r_center_frac*box_xfrac*D_sample*0.5+0.02)*sin(pi/(4*sectors_45)*i), 0), ))
         p.seedEdgeByBias(biasMethod=SINGLE,
             end1Edges=pickedEdges1, ratio=box_bias_x, number=box_elm_nx, constraint=FIXED)
     else:
-        pickedEdges2 = e.findAt((((r_center_frac*box_xfrac*D_sample*0.5+0.02)*cos(pi/(4*sectors_45)*i), (r_center_frac*box_xfrac*D_sample*0.5+0.02)*sin(pi/(4*sectors_45)*i), 0), ))
+        pickedEdges2 = e.findAt((((r_center_frac*box_xfrac*D_sample*0.5+0.02)*cos(pi/(4*sectors_45)*i),
+            (r_center_frac*box_xfrac*D_sample*0.5+0.02)*sin(pi/(4*sectors_45)*i), 0), ))
         p.seedEdgeByBias(biasMethod=SINGLE,
             end2Edges=pickedEdges2, ratio=box_bias_x, number=box_elm_nx, constraint=FIXED)
 
 for i in range(0, 8*sectors_45):
     if i == 4*sectors_45:
-        pickedEdges2 = e.findAt((((r_center_frac*box_xfrac*D_sample*0.5+0.02)*cos(pi/(4*sectors_45)*i), (r_center_frac*box_xfrac*D_sample*0.5+0.02)*sin(pi/(4*sectors_45)*i), -box_zfrac*h_sample), ))
+        pickedEdges2 = e.findAt((((r_center_frac*box_xfrac*D_sample*0.5+0.02)*cos(pi/(4*sectors_45)*i),
+            (r_center_frac*box_xfrac*D_sample*0.5+0.02)*sin(pi/(4*sectors_45)*i), -box_zfrac*h_sample), ))
         p.seedEdgeByBias(biasMethod=SINGLE,
             end2Edges=pickedEdges2, ratio=box_bias_x, number=box_elm_nx, constraint=FIXED)
     else:
-        pickedEdges1 = e.findAt((((r_center_frac*box_xfrac*D_sample*0.5+0.02)*cos(pi/(4*sectors_45)*i), (r_center_frac*box_xfrac*D_sample*0.5+0.02)*sin(pi/(4*sectors_45)*i), -box_zfrac*h_sample), ))
+        pickedEdges1 = e.findAt((((r_center_frac*box_xfrac*D_sample*0.5+0.02)*cos(pi/(4*sectors_45)*i),
+            (r_center_frac*box_xfrac*D_sample*0.5+0.02)*sin(pi/(4*sectors_45)*i), -box_zfrac*h_sample), ))
         p.seedEdgeByBias(biasMethod=SINGLE,
             end1Edges=pickedEdges1, ratio=box_bias_x, number=box_elm_nx, constraint=FIXED)
 
@@ -622,12 +621,14 @@ angle = pi/(sectors_45*4)
 for i in range(8*sectors_45):
     r = box_xfrac*D_sample*0.5
     pickedEdges2 = e.findAt(((r*cos(angle*i), r*sin(angle*i), -0.5*box_zfrac*h_sample), ))
-    p.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FIXED)
+    p.seedEdgeByBias(biasMethod=SINGLE,
+        end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FIXED)
 
 for i in range(8*sectors_45):
     r = box_xfrac*D_sample*0.5*r_center_frac
     pickedEdges2 = e.findAt(((r*cos(angle*i), r*sin(angle*i), -0.5*box_zfrac*h_sample), ))
-    p.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FIXED)
+    p.seedEdgeByBias(biasMethod=SINGLE,
+        end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FIXED)
 
 r = (1+r_center_frac)*0.5*D_sample*0.5*box_xfrac
 cells = c.findAt(((r, 0.0, -h_sample*box_zfrac*0.5), ))
@@ -641,20 +642,24 @@ p.generateMesh()
 for i in range(0, 4*sectors_45):
     p = model_name.parts['Sample_Large_Def']
     c, v, e, d = p.cells, p.vertices, p.edges, p.datums
-    pickedCells = c.findAt((((1+box_xfrac)*0.5*D_sample*0.5*cos(pi/(4*sectors_45)*i+pi/200), (1+box_xfrac)*0.5*D_sample*0.5*sin(pi/(4*sectors_45)*i+pi/200), \
+    pickedCells = c.findAt((((1+box_xfrac)*0.5*D_sample*0.5*cos(pi/(4*sectors_45)*i+pi/200),
+        (1+box_xfrac)*0.5*D_sample*0.5*sin(pi/(4*sectors_45)*i+pi/200), \
         -0.5*h_sample), ))
-    p.PartitionCellByPlaneThreePoints(point1=v.findAt(coordinates=(D_sample*0.5*cos(pi/(4*sectors_45)*i), D_sample*0.5*sin(pi/(4*sectors_45)*i),
-        0.0)), point2=v.findAt(coordinates=(box_xfrac*D_sample*0.5*cos(pi/(4*sectors_45)*i), box_xfrac*D_sample*0.5*sin(pi/(4*sectors_45)*i), 0.0)), cells=pickedCells,
+    p.PartitionCellByPlaneThreePoints(
+        point1=v.findAt(coordinates=(D_sample*0.5*cos(pi/(4*sectors_45)*i), D_sample*0.5*sin(pi/(4*sectors_45)*i), 0.0)),
+        point2=v.findAt(coordinates=(box_xfrac*D_sample*0.5*cos(pi/(4*sectors_45)*i), box_xfrac*D_sample*0.5*sin(pi/(4*sectors_45)*i), 0.0)), cells=pickedCells,
         point3=p.InterestingPoint(edge=e.findAt(coordinates=(D_sample*0.5*cos(pi/(4*sectors_45)*i), D_sample*0.5*sin(pi/(4*sectors_45)*i),-0.5*h_sample)),
         rule=MIDDLE))
 
 for i in range(4*sectors_45+1, 8*sectors_45):
     p = model_name.parts['Sample_Large_Def']
     c, v, e, d = p.cells, p.vertices, p.edges, p.datums
-    pickedCells = c.findAt((((1+box_xfrac)*0.5*D_sample*0.5*cos(pi/(4*sectors_45)*i+pi/200), (1+box_xfrac)*0.5*D_sample*0.5*sin(pi/(4*sectors_45)*i+pi/200), \
+    pickedCells = c.findAt((((1+box_xfrac)*0.5*D_sample*0.5*cos(pi/(4*sectors_45)*i+pi/200),
+        (1+box_xfrac)*0.5*D_sample*0.5*sin(pi/(4*sectors_45)*i+pi/200), \
         -0.5*h_sample), ))
-    p.PartitionCellByPlaneThreePoints(point1=v.findAt(coordinates=(D_sample*0.5*cos(pi/(4*sectors_45)*i), D_sample*0.5*sin(pi/(4*sectors_45)*i),
-        0.0)), point2=v.findAt(coordinates=(box_xfrac*D_sample*0.5*cos(pi/(4*sectors_45)*i), box_xfrac*D_sample*0.5*sin(pi/(4*sectors_45)*i), 0.0)), cells=pickedCells,
+    p.PartitionCellByPlaneThreePoints(
+        point1=v.findAt(coordinates=(D_sample*0.5*cos(pi/(4*sectors_45)*i), D_sample*0.5*sin(pi/(4*sectors_45)*i), 0.0)),
+        point2=v.findAt(coordinates=(box_xfrac*D_sample*0.5*cos(pi/(4*sectors_45)*i), box_xfrac*D_sample*0.5*sin(pi/(4*sectors_45)*i), 0.0)), cells=pickedCells,
         point3=p.InterestingPoint(edge=e.findAt(coordinates=(D_sample*0.5*cos(pi/(4*sectors_45)*i), D_sample*0.5*sin(pi/(4*sectors_45)*i),-0.5*h_sample)),
         rule=MIDDLE))
 
@@ -667,8 +672,9 @@ for i in range (8*sectors_45):
     v, e, d = p.vertices, p.edges, p.datums
     r = D_sample*0.5*box_xfrac
     angle = pi/(4*sectors_45)
-    p.PartitionCellByPlaneThreePoints(point1=v.findAt(coordinates=(r*cos(i*angle), r*sin(i*angle),
-        -h_sample*box_zfrac)), point2=v.findAt(coordinates=(r*cos((i+1)*angle), r*sin((i+1)*angle), -h_sample*box_zfrac)),
+    p.PartitionCellByPlaneThreePoints(
+        point1=v.findAt(coordinates=(r*cos(i*angle), r*sin(i*angle), -h_sample*box_zfrac)),
+        point2=v.findAt(coordinates=(r*cos((i+1)*angle), r*sin((i+1)*angle), -h_sample*box_zfrac)),
         point3=v.findAt(coordinates=(0.5*D_sample*cos(i*angle), 0.5*D_sample*sin(i*angle), -h_sample)), cells=pickedCells)
 
 p = model_name.parts['Sample_Large_Def']
@@ -701,27 +707,32 @@ for i in range(0, 8*sectors_45):
 for i in range(8*sectors_45):
     r = box_xfrac*D_sample*0.5
     pickedEdges2 = e.findAt(((r*cos(angle*i), r*sin(angle*i), -0.5*box_zfrac*h_sample), ))
-    p.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FIXED)
+    p.seedEdgeByBias(biasMethod=SINGLE,
+        end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FIXED)
 
 for i in range(8*sectors_45):
     r = D_sample*0.5
     pickedEdges2 = e.findAt(((r*cos(angle*i), r*sin(angle*i), -0.5*h_sample), ))
-    p.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FIXED)
+    p.seedEdgeByBias(biasMethod=SINGLE,
+        end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FIXED)
 
 for i in range(8*sectors_45):
     r = D_sample*0.5*box_xfrac*r_center_frac
     pickedEdges2 = e.findAt(((r*cos(angle*i), r*sin(angle*i), -0.5*(1+box_zfrac)*h_sample), ))
-    p.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_conv_x, number=radial_divi, constraint=FIXED)
+    p.seedEdgeByBias(biasMethod=SINGLE,
+        end2Edges=pickedEdges2, ratio=box_bias_conv_x, number=radial_divi, constraint=FIXED)
 
 for i in range(8*sectors_45):
     if i != 4*sectors_45:
         r = 0.25*D_sample*(1+box_xfrac)
         pickedEdges2 = e.findAt(((r*cos(angle*i), r*sin(angle*i), -0.5*(1+box_zfrac)*h_sample), ))
-        p.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_conv_x, number=radial_divi, constraint=FIXED)
+        p.seedEdgeByBias(biasMethod=SINGLE,
+            end2Edges=pickedEdges2, ratio=box_bias_conv_x, number=radial_divi, constraint=FIXED)
     else:
         r = 0.25*D_sample*(1+box_xfrac)
         pickedEdges1 = e.findAt(((r*cos(angle*i), r*sin(angle*i), -0.5*(1+box_zfrac)*h_sample), ))
-        p.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, ratio=box_bias_conv_x, number=radial_divi, constraint=FIXED)
+        p.seedEdgeByBias(biasMethod=SINGLE,
+            end1Edges=pickedEdges1, ratio=box_bias_conv_x, number=radial_divi, constraint=FIXED)
 
 angle = pi/(sectors_45*8)
 
@@ -778,44 +789,57 @@ c, v, e, d = p.cells, p.vertices, p.edges, p.datums
 
 pickedCells = c.findAt(((0.0, 0.0, 0.5*h_sample*box_zfrac), ))
 radius = D_sample*0.5*box_xfrac*r_center_frac/c_divi
-p.PartitionCellByPlaneThreePoints(point1=v.findAt(coordinates=(-radius, 0.0,
-    h_sample*box_zfrac)), point2=v.findAt(coordinates=(radius, 0.0,  h_sample*box_zfrac)), point3=v.findAt(
-    coordinates=(radius, 0.0, 0.0)), cells=pickedCells)
+p.PartitionCellByPlaneThreePoints(
+    point1=v.findAt(coordinates=(-radius, 0.0, h_sample*box_zfrac)),
+    point2=v.findAt(coordinates=(radius, 0.0,  h_sample*box_zfrac)),
+    point3=v.findAt(coordinates=(radius, 0.0, 0.0)),
+    cells=pickedCells)
 
 pickedCells = c.findAt(((0.0, 0.0, 0.5*h_sample*box_zfrac), ))
 radius = D_sample*0.5*box_xfrac*r_center_frac/c_divi
-p.PartitionCellByPlaneThreePoints(point1=v.findAt(coordinates=(0.0, radius,
-    h_sample*box_zfrac)), point2=v.findAt(coordinates=(0.0, -radius, 0.0)), point3=v.findAt(
-    coordinates=(0.0, radius, 0.0)), cells=pickedCells)
+p.PartitionCellByPlaneThreePoints(
+    point1=v.findAt(coordinates=(0.0, radius, h_sample*box_zfrac)),
+    point2=v.findAt(coordinates=(0.0, -radius, 0.0)),
+    point3=v.findAt(coordinates=(0.0, radius, 0.0)),
+    cells=pickedCells)
 
 radius = D_sample*0.5*box_xfrac*r_center_frac/c_divi
 pickedCells = c.findAt(((0.0, 0.5*radius, 0.5*h_sample*box_zfrac), ))
 radius = D_sample*0.5*box_xfrac*r_center_frac/c_divi
-p.PartitionCellByPlaneThreePoints(point1=v.findAt(coordinates=(0.0, radius,
-    h_sample*box_zfrac)), point2=v.findAt(coordinates=(0.0, -radius, 0.0)), point3=v.findAt(
-    coordinates=(0.0, radius, 0.0)), cells=pickedCells)
+p.PartitionCellByPlaneThreePoints(
+    point1=v.findAt(coordinates=(0.0, radius, h_sample*box_zfrac)),
+    point2=v.findAt(coordinates=(0.0, -radius, 0.0)),
+    point3=v.findAt(coordinates=(0.0, radius, 0.0)),
+    cells=pickedCells)
 
 angle = pi/2
 for i in range(4):
     r = D_sample*0.5*box_xfrac*r_center_frac/c_divi
     pickedEdges2 = e.findAt(((r*cos(angle*i), r*sin(angle*i), 0.5*h_sample*box_zfrac), ))
-    p.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FIXED)
+    p.seedEdgeByBias(biasMethod=SINGLE,
+        end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FIXED)
 
 for i in range(4):
     r = D_sample*0.5*box_xfrac*r_center_frac/c_divi*1.131371
     pickedEdges2 = e.findAt(((r*cos(angle*(i+0.5)), r*sin(angle*(i+0.5)), 0.5*h_sample*box_zfrac), ))
-    p.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FIXED)
+    p.seedEdgeByBias(biasMethod=SINGLE,
+        end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FIXED)
 
 pickedEdges2 = e.findAt(((0, 0, 0.5*h_sample*box_zfrac), ))
-p.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FIXED)
+p.seedEdgeByBias(biasMethod=SINGLE,
+    end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FIXED)
 
 r = D_sample*0.5*box_xfrac*r_center_frac/c_divi
 
-x = [0.5*r*(1+1.131371*cos(pi/4)), 0.5*r*(0+1.131371*cos(pi/4)), -0.5*r*(0+1.131371*cos(pi/4)), -0.5*r*(1+1.131371*cos(pi/4)), \
-    -0.5*r*(1+1.131371*cos(pi/4)), -0.5*r*(0+1.131371*cos(pi/4)), 0.5*r*(0+1.131371*cos(pi/4)), 0.5*r*(1+1.131371*cos(pi/4))]
+x = [0.5*r*(1+1.131371*cos(pi/4)), 0.5*r*(0+1.131371*cos(pi/4)),
+    -0.5*r*(0+1.131371*cos(pi/4)), -0.5*r*(1+1.131371*cos(pi/4)),
+    -0.5*r*(1+1.131371*cos(pi/4)), -0.5*r*(0+1.131371*cos(pi/4)),
+    0.5*r*(0+1.131371*cos(pi/4)), 0.5*r*(1+1.131371*cos(pi/4))]
 
-y = [0.5*r*(0+1.131371*sin(pi/4)), 0.5*r*(1+1.131371*sin(pi/4)), 0.5*r*(1+1.131371*sin(pi/4)), 0.5*r*(0+1.131371*sin(pi/4)), \
-    -0.5*r*(0+1.131371*sin(pi/4)), -0.5*r*(1+1.131371*sin(pi/4)), -0.5*r*(1+1.131371*sin(pi/4)), -0.5*r*(0+1.131371*sin(pi/4))]
+y = [0.5*r*(0+1.131371*sin(pi/4)), 0.5*r*(1+1.131371*sin(pi/4)),
+    0.5*r*(1+1.131371*sin(pi/4)), 0.5*r*(0+1.131371*sin(pi/4)),
+    -0.5*r*(0+1.131371*sin(pi/4)), -0.5*r*(1+1.131371*sin(pi/4)),
+    -0.5*r*(1+1.131371*sin(pi/4)), -0.5*r*(0+1.131371*sin(pi/4))]
 
 for i in range(8):
     pickedEdges = e.findAt(((x[i], y[i], h_sample*box_zfrac), ))
@@ -840,44 +864,57 @@ c, v, e, d = p.cells, p.vertices, p.edges, p.datums
 
 pickedCells = c.findAt(((0.0, 0.0, 0.5*h_sample*(1-box_zfrac)), ))
 radius = D_sample*0.5*box_xfrac*r_center_frac/c_divi
-p.PartitionCellByPlaneThreePoints(point1=v.findAt(coordinates=(-radius, 0.0,
-    h_sample*(1-box_zfrac))), point2=v.findAt(coordinates=(radius, 0.0,  h_sample*(1-box_zfrac))), point3=v.findAt(
-    coordinates=(radius, 0.0, 0.0)), cells=pickedCells)
+p.PartitionCellByPlaneThreePoints(
+    point1=v.findAt(coordinates=(-radius, 0.0, h_sample*(1-box_zfrac))),
+    point2=v.findAt(coordinates=(radius, 0.0,  h_sample*(1-box_zfrac))),
+    point3=v.findAt(coordinates=(radius, 0.0, 0.0)),
+    cells=pickedCells)
 
 pickedCells = c.findAt(((0.0, 0.0, 0.5*h_sample*(1-box_zfrac)), ))
 radius = D_sample*0.5*box_xfrac*r_center_frac/c_divi
-p.PartitionCellByPlaneThreePoints(point1=v.findAt(coordinates=(0.0, radius,
-    h_sample*(1-box_zfrac))), point2=v.findAt(coordinates=(0.0, -radius, 0.0)), point3=v.findAt(
-    coordinates=(0.0, radius, 0.0)), cells=pickedCells)
+p.PartitionCellByPlaneThreePoints(
+    point1=v.findAt(coordinates=(0.0, radius, h_sample*(1-box_zfrac))),
+    point2=v.findAt(coordinates=(0.0, -radius, 0.0)),
+    point3=v.findAt(coordinates=(0.0, radius, 0.0)),
+    cells=pickedCells)
 
 radius = D_sample*0.5*box_xfrac*r_center_frac/c_divi
 pickedCells = c.findAt(((0.0, 0.5*radius, 0.5*h_sample*(1-box_zfrac)), ))
 radius = D_sample*0.5*box_xfrac*r_center_frac/c_divi
-p.PartitionCellByPlaneThreePoints(point1=v.findAt(coordinates=(0.0, radius,
-    h_sample*(1-box_zfrac))), point2=v.findAt(coordinates=(0.0, -radius, 0.0)), point3=v.findAt(
-    coordinates=(0.0, radius, 0.0)), cells=pickedCells)
+p.PartitionCellByPlaneThreePoints(
+    point1=v.findAt(coordinates=(0.0, radius, h_sample*(1-box_zfrac))),
+    point2=v.findAt(coordinates=(0.0, -radius, 0.0)),
+    point3=v.findAt(coordinates=(0.0, radius, 0.0)),
+    cells=pickedCells)
 
 angle = pi/2
 for i in range(4):
     r = D_sample*0.5*box_xfrac*r_center_frac/c_divi
     pickedEdges2 = e.findAt(((r*cos(angle*i), r*sin(angle*i), 0.5*h_sample*(1-box_zfrac)), ))
-    p.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_conv_x, number=radial_divi, constraint=FIXED)
+    p.seedEdgeByBias(biasMethod=SINGLE,
+        end2Edges=pickedEdges2, ratio=box_bias_conv_x, number=radial_divi, constraint=FIXED)
 
 for i in range(4):
     r = D_sample*0.5*box_xfrac*r_center_frac/c_divi*1.131371
     pickedEdges2 = e.findAt(((r*cos(angle*(i+0.5)), r*sin(angle*(i+0.5)), 0.5*h_sample*(1-box_zfrac)), ))
-    p.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_conv_x, number=radial_divi, constraint=FIXED)
+    p.seedEdgeByBias(biasMethod=SINGLE,
+        end2Edges=pickedEdges2, ratio=box_bias_conv_x, number=radial_divi, constraint=FIXED)
 
 pickedEdges2 = e.findAt(((0, 0, 0.5*h_sample*(1-box_zfrac)), ))
-p.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_conv_x, number=radial_divi, constraint=FIXED)
+p.seedEdgeByBias(biasMethod=SINGLE,
+    end2Edges=pickedEdges2, ratio=box_bias_conv_x, number=radial_divi, constraint=FIXED)
 
 r = D_sample*0.5*box_xfrac*r_center_frac/c_divi
 
-x = [0.5*r*(1+1.131371*cos(pi/4)), 0.5*r*(0+1.131371*cos(pi/4)), -0.5*r*(0+1.131371*cos(pi/4)), -0.5*r*(1+1.131371*cos(pi/4)), \
-    -0.5*r*(1+1.131371*cos(pi/4)), -0.5*r*(0+1.131371*cos(pi/4)), 0.5*r*(0+1.131371*cos(pi/4)), 0.5*r*(1+1.131371*cos(pi/4))]
+x = [0.5*r*(1+1.131371*cos(pi/4)), 0.5*r*(0+1.131371*cos(pi/4)),
+    -0.5*r*(0+1.131371*cos(pi/4)), -0.5*r*(1+1.131371*cos(pi/4)),
+    -0.5*r*(1+1.131371*cos(pi/4)), -0.5*r*(0+1.131371*cos(pi/4)),
+    0.5*r*(0+1.131371*cos(pi/4)), 0.5*r*(1+1.131371*cos(pi/4))]
 
-y = [0.5*r*(0+1.131371*sin(pi/4)), 0.5*r*(1+1.131371*sin(pi/4)), 0.5*r*(1+1.131371*sin(pi/4)), 0.5*r*(0+1.131371*sin(pi/4)), \
-    -0.5*r*(0+1.131371*sin(pi/4)), -0.5*r*(1+1.131371*sin(pi/4)), -0.5*r*(1+1.131371*sin(pi/4)), -0.5*r*(0+1.131371*sin(pi/4))]
+y = [0.5*r*(0+1.131371*sin(pi/4)), 0.5*r*(1+1.131371*sin(pi/4)),
+    0.5*r*(1+1.131371*sin(pi/4)), 0.5*r*(0+1.131371*sin(pi/4)),
+    -0.5*r*(0+1.131371*sin(pi/4)), -0.5*r*(1+1.131371*sin(pi/4)),
+    -0.5*r*(1+1.131371*sin(pi/4)), -0.5*r*(0+1.131371*sin(pi/4))]
 
 for i in range(8):
     pickedEdges = e.findAt(((x[i], y[i], h_sample*(1-box_zfrac)), ))
@@ -904,12 +941,14 @@ angle = pi/2
 for i in range(4):
     r = D_sample*0.5*box_xfrac*r_center_frac/c_divi
     pickedEdges2 = e.findAt(((r*cos(angle*i), r*sin(angle*i), -0.5*h_sample*box_zfrac), ))
-    p.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FIXED)
+    p.seedEdgeByBias(biasMethod=SINGLE,
+        end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FIXED)
 
 for i in range(4):
     r = D_sample*0.5*box_xfrac*r_center_frac/c_divi*1.131371
     pickedEdges2 = e.findAt(((r*cos(angle*(i+0.5)), r*sin(angle*(i+0.5)), -0.5*h_sample*box_zfrac), ))
-    p.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FIXED)
+    p.seedEdgeByBias(biasMethod=SINGLE,
+        end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FIXED)
 
 for i in range(4*sectors_45):
     radius1 = 0.5*D_sample*box_xfrac*r_center_frac
@@ -917,11 +956,14 @@ for i in range(4*sectors_45):
     radius = 0.5*(radius1+radius2)
     p = model_name.parts['Core_Sample_Top_Outer']
     c, v, e, d = p.cells, p.vertices, p.edges, p.datums
-    pickedCells = c.findAt(((radius*cos(pi/(4*sectors_45)*i+pi/200), radius*sin(pi/(4*sectors_45)*i+pi/200), -0.5*box_zfrac*h_sample), ))
+    pickedCells = c.findAt(((radius*cos(pi/(4*sectors_45)*i+pi/200),
+        radius*sin(pi/(4*sectors_45)*i+pi/200), -0.5*box_zfrac*h_sample), ))
     r2 = 0.5*D_sample*box_xfrac*r_center_frac
-    p.PartitionCellByPlaneThreePoints(point1=v.findAt(coordinates=(r2*cos(pi/(4*sectors_45)*i), r2*sin(pi/(4*sectors_45)*i), 0.0)),
-        point2=v.findAt(coordinates=(r2*cos(pi/(4*sectors_45)*i), r2*sin(pi/(4*sectors_45)*i), -h_sample*box_zfrac)), point3=v.findAt(
-        coordinates=(-r2*cos(pi/(4*sectors_45)*i), -r2*sin(pi/(4*sectors_45)*i), 0.0)), cells=pickedCells)
+    p.PartitionCellByPlaneThreePoints(
+        point1=v.findAt(coordinates=(r2*cos(pi/(4*sectors_45)*i), r2*sin(pi/(4*sectors_45)*i), 0.0)),
+        point2=v.findAt(coordinates=(r2*cos(pi/(4*sectors_45)*i), r2*sin(pi/(4*sectors_45)*i), -h_sample*box_zfrac)),
+        point3=v.findAt(coordinates=(-r2*cos(pi/(4*sectors_45)*i), -r2*sin(pi/(4*sectors_45)*i), 0.0)),
+        cells=pickedCells)
 
 for i in range(4*sectors_45+1, 8*sectors_45):
     radius1 = 0.5*D_sample*box_xfrac*r_center_frac
@@ -929,11 +971,14 @@ for i in range(4*sectors_45+1, 8*sectors_45):
     radius = 0.5*(radius1+radius2)
     p = model_name.parts['Core_Sample_Top_Outer']
     c, v, e, d = p.cells, p.vertices, p.edges, p.datums
-    pickedCells = c.findAt(((radius*cos(pi/(4*sectors_45)*i+pi/200), radius*sin(pi/(4*sectors_45)*i+pi/200), -0.5*box_zfrac*h_sample), ))
+    pickedCells = c.findAt(((radius*cos(pi/(4*sectors_45)*i+pi/200),
+        radius*sin(pi/(4*sectors_45)*i+pi/200), -0.5*box_zfrac*h_sample), ))
     r2 = 0.5*D_sample*box_xfrac*r_center_frac
-    p.PartitionCellByPlaneThreePoints(point1=v.findAt(coordinates=(r2*cos(pi/(4*sectors_45)*i), r2*sin(pi/(4*sectors_45)*i), 0.0)),
-        point2=v.findAt(coordinates=(r2*cos(pi/(4*sectors_45)*i), r2*sin(pi/(4*sectors_45)*i), -h_sample*box_zfrac)), point3=v.findAt(
-        coordinates=(-r2*cos(pi/(4*sectors_45)*i), -r2*sin(pi/(4*sectors_45)*i), 0.0)), cells=pickedCells)
+    p.PartitionCellByPlaneThreePoints(
+        point1=v.findAt(coordinates=(r2*cos(pi/(4*sectors_45)*i), r2*sin(pi/(4*sectors_45)*i), 0.0)),
+        point2=v.findAt(coordinates=(r2*cos(pi/(4*sectors_45)*i), r2*sin(pi/(4*sectors_45)*i), -h_sample*box_zfrac)),
+        point3=v.findAt(coordinates=(-r2*cos(pi/(4*sectors_45)*i), -r2*sin(pi/(4*sectors_45)*i), 0.0)),
+        cells=pickedCells)
 
 p = model_name.parts['Core_Sample_Top_Outer']
 c, v, e, d = p.cells, p.vertices, p.edges, p.datums
@@ -941,34 +986,35 @@ if sectors_45 > 1:
     for i in range(8):
         angle_sector = pi/4*i
         r = D_sample*0.5*box_xfrac*r_center_frac/c_divi
-        print "radius", r
+        #print "radius", r
         coord_x_0 = r*cos(angle_sector)
-        print "coord_x_0", coord_x_0
+        #print "coord_x_0", coord_x_0
         coord_y_0 = r*sin(angle_sector)
-        print "coord_y_0", coord_y_0
+        #print "coord_y_0", coord_y_0
         coord_x_1 = 1.131371*r*cos(angle_sector + pi/4)
-        print "coord_x_1", coord_x_1
+        #print "coord_x_1", coord_x_1
         coord_y_1 = 1.131371*r*sin(angle_sector + pi/4)
-        print "coord_y_1", coord_y_1
+        #print "coord_y_1", coord_y_1
         for sub_sector in range(1, sectors_45):
-            print "sub_sector", sub_sector
-            print "sectors_45-1", (sectors_45-1)
+            #print "sub_sector", sub_sector
+            #print "sectors_45-1", (sectors_45-1)
             x_sector_1 = float((sectors_45-sub_sector))/sectors_45*coord_x_0
             x_sector_2 = float(sub_sector)/sectors_45*coord_x_1
             x_sector = x_sector_1+x_sector_2
-            print "x_sector_1", x_sector_1
-            print "x_sector_2", x_sector_2
+            #print "x_sector_1", x_sector_1
+            #print "x_sector_2", x_sector_2
             y_sector_1 = float((sectors_45-sub_sector))/sectors_45*coord_y_0
             y_sector_2 = float(sub_sector)/sectors_45*coord_y_1
             y_sector = y_sector_1+y_sector_2
-            print "y_sector_1", y_sector_1
-            print "y_sector_2", y_sector_2
-            print "x_sector", x_sector
-            print "y_sector", y_sector
+            #print "y_sector_1", y_sector_1
+            #print "y_sector_2", y_sector_2
+            #print "x_sector", x_sector
+            #print "y_sector", y_sector
             z_1 = -h_sample*box_zfrac-0.0005
             z_2 = +0.00005
             pickedEdges2 = e.getByBoundingCylinder((x_sector, y_sector, z_1), (x_sector, y_sector, z_2), 0.5 )
-            p.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FIXED)
+            p.seedEdgeByBias(biasMethod=SINGLE,
+                end2Edges=pickedEdges2, ratio=box_bias_z, number=box_elm_nz, constraint=FIXED)
 
 #r = 1.35*D_sample*0.5*box_xfrac*r_center_frac/c_divi
 r = 1.35*D_sample*0.5*box_xfrac*r_center_frac
@@ -1022,12 +1068,14 @@ angle = pi/2
 for i in range(4):
     r = D_sample*0.5*box_xfrac*r_center_frac/c_divi
     pickedEdges2 = e.findAt(((r*cos(angle*i), r*sin(angle*i), -0.5*h_sample*(1-box_zfrac)), ))
-    p.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_conv_x, number=radial_divi, constraint=FIXED)
+    p.seedEdgeByBias(biasMethod=SINGLE,
+        end2Edges=pickedEdges2, ratio=box_bias_conv_x, number=radial_divi, constraint=FIXED)
 
 for i in range(4):
     r = D_sample*0.5*box_xfrac*r_center_frac/c_divi*1.131371
     pickedEdges2 = e.findAt(((r*cos(angle*(i+0.5)), r*sin(angle*(i+0.5)), -0.5*h_sample*(1-box_zfrac)), ))
-    p.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_conv_x, number=radial_divi, constraint=FIXED)
+    p.seedEdgeByBias(biasMethod=SINGLE,
+        end2Edges=pickedEdges2, ratio=box_bias_conv_x, number=radial_divi, constraint=FIXED)
 
 for i in range(4*sectors_45):
     radius1 = 0.5*D_sample*box_xfrac*r_center_frac
@@ -1035,12 +1083,15 @@ for i in range(4*sectors_45):
     radius = 0.5*(radius1+radius2)
     p = model_name.parts['Core_Sample_Bottom_Outer']
     c, v, e, d = p.cells, p.vertices, p.edges, p.datums
-    pickedCells = c.findAt(((radius*cos(pi/(4*sectors_45)*i+pi/200), radius*sin(pi/(4*sectors_45)*i+pi/200), -0.5*(1-box_zfrac)*h_sample), ))
+    pickedCells = c.findAt(((radius*cos(pi/(4*sectors_45)*i+pi/200),
+        radius*sin(pi/(4*sectors_45)*i+pi/200), -0.5*(1-box_zfrac)*h_sample), ))
     r1 = 0.5*D_sample*box_xfrac*r_center_frac/c_divi
     r2 = 0.5*D_sample*box_xfrac*r_center_frac
-    p.PartitionCellByPlaneThreePoints(point1=v.findAt(coordinates=(r2*cos(pi/(4*sectors_45)*i), r2*sin(pi/(4*sectors_45)*i), -box_zfrac*h_sample)),
-        point2=v.findAt(coordinates=(r2*cos(pi/(4*sectors_45)*i), r2*sin(pi/(4*sectors_45)*i), -h_sample)), point3=v.findAt(coordinates=
-        (-r2*cos(pi/(4*sectors_45)*i), -r2*sin(pi/(4*sectors_45)*i), -h_sample)), cells=pickedCells)
+    p.PartitionCellByPlaneThreePoints(
+        point1=v.findAt(coordinates=(r2*cos(pi/(4*sectors_45)*i), r2*sin(pi/(4*sectors_45)*i), -box_zfrac*h_sample)),
+        point2=v.findAt(coordinates=(r2*cos(pi/(4*sectors_45)*i), r2*sin(pi/(4*sectors_45)*i), -h_sample)),
+        point3=v.findAt(coordinates=(-r2*cos(pi/(4*sectors_45)*i), -r2*sin(pi/(4*sectors_45)*i), -h_sample)),
+        cells=pickedCells)
 
 for i in range(4*sectors_45+1, 8*sectors_45):
     radius1 = 0.5*D_sample*box_xfrac*r_center_frac
@@ -1051,9 +1102,11 @@ for i in range(4*sectors_45+1, 8*sectors_45):
     pickedCells = c.findAt(((radius*cos(pi/(4*sectors_45)*i+pi/200), radius*sin(pi/(4*sectors_45)*i+pi/200), -0.5*(1-box_zfrac)*h_sample), ))
     r1 = 0.5*D_sample*box_xfrac*r_center_frac/c_divi
     r2 = 0.5*D_sample*box_xfrac*r_center_frac
-    p.PartitionCellByPlaneThreePoints(point1=v.findAt(coordinates=(r2*cos(pi/(4*sectors_45)*i), r2*sin(pi/(4*sectors_45)*i), -box_zfrac*h_sample)),
-        point2=v.findAt(coordinates=(r2*cos(pi/(4*sectors_45)*i), r2*sin(pi/(4*sectors_45)*i), -h_sample)), point3=v.findAt(coordinates=
-        (-r2*cos(pi/(4*sectors_45)*i), -r2*sin(pi/(4*sectors_45)*i), -h_sample)), cells=pickedCells)
+    p.PartitionCellByPlaneThreePoints(
+        point1=v.findAt(coordinates=(r2*cos(pi/(4*sectors_45)*i), r2*sin(pi/(4*sectors_45)*i), -box_zfrac*h_sample)),
+        point2=v.findAt(coordinates=(r2*cos(pi/(4*sectors_45)*i), r2*sin(pi/(4*sectors_45)*i), -h_sample)),
+        point3=v.findAt(coordinates=(-r2*cos(pi/(4*sectors_45)*i), -r2*sin(pi/(4*sectors_45)*i), -h_sample)),
+        cells=pickedCells)
 
 p = model_name.parts['Core_Sample_Bottom_Outer']
 c, v, e, d = p.cells, p.vertices, p.edges, p.datums
@@ -1073,34 +1126,35 @@ if sectors_45 > 1:
     for i in range(8):
         angle_sector = pi/4*i
         r = D_sample*0.5*box_xfrac*r_center_frac/c_divi
-        print "radius", r
+        #print "radius", r
         coord_x_0 = r*cos(angle_sector)
-        print "coord_x_0", coord_x_0
+        #print "coord_x_0", coord_x_0
         coord_y_0 = r*sin(angle_sector)
-        print "coord_y_0", coord_y_0
+        #print "coord_y_0", coord_y_0
         coord_x_1 = 1.131371*r*cos(angle_sector + pi/4)
-        print "coord_x_1", coord_x_1
+        #print "coord_x_1", coord_x_1
         coord_y_1 = 1.131371*r*sin(angle_sector + pi/4)
-        print "coord_y_1", coord_y_1
+        #print "coord_y_1", coord_y_1
         for sub_sector in range(1, sectors_45):
-            print "sub_sector", sub_sector
-            print "sectors_45-1", (sectors_45-1)
+            #print "sub_sector", sub_sector
+            #print "sectors_45-1", (sectors_45-1)
             x_sector_1 = float((sectors_45-sub_sector))/sectors_45*coord_x_0
             x_sector_2 = float(sub_sector)/sectors_45*coord_x_1
             x_sector = x_sector_1+x_sector_2
-            print "x_sector_1", x_sector_1
-            print "x_sector_2", x_sector_2
+            #print "x_sector_1", x_sector_1
+            #print "x_sector_2", x_sector_2
             y_sector_1 = float((sectors_45-sub_sector))/sectors_45*coord_y_0
             y_sector_2 = float(sub_sector)/sectors_45*coord_y_1
             y_sector = y_sector_1+y_sector_2
-            print "y_sector_1", y_sector_1
-            print "y_sector_2", y_sector_2
-            print "x_sector", x_sector
-            print "y_sector", y_sector
+            #print "y_sector_1", y_sector_1
+            #print "y_sector_2", y_sector_2
+            #print "x_sector", x_sector
+            #print "y_sector", y_sector
             z_1 = -h_sample-0.0005
             z_2 = -h_sample*box_zfrac+0.00005
             pickedEdges2 = e.getByBoundingCylinder((x_sector, y_sector, z_1), (x_sector, y_sector, z_2), 0.5 )
-            p.seedEdgeByBias(biasMethod=SINGLE, end2Edges=pickedEdges2, ratio=box_bias_conv_x, number=radial_divi, constraint=FIXED)
+            p.seedEdgeByBias(biasMethod=SINGLE,
+                end2Edges=pickedEdges2, ratio=box_bias_conv_x, number=radial_divi, constraint=FIXED)
 
 r = 1.30*D_sample*0.5*box_xfrac*r_center_frac
 z = -h_sample*box_zfrac
@@ -1137,9 +1191,8 @@ for i in range(8*sectors_45):
 a = model_name.rootAssembly
 a.regenerate()
 a.PartFromBooleanMerge(name='Core_Sample_Bottom_Final', instances=(
-    a.instances['Core_Sample_Bottom_Inner-1'], 
-    a.instances['Core_Sample_Bottom_Outer-1'], ), mergeNodes=BOUNDARY_ONLY, 
-    nodeMergingTolerance=tolerance, domain=MESH)
+    a.instances['Core_Sample_Bottom_Inner-1'], a.instances['Core_Sample_Bottom_Outer-1'], ),
+    mergeNodes=BOUNDARY_ONLY, nodeMergingTolerance=tolerance, domain=MESH)
 a = model_name.rootAssembly
 p = model_name.parts['Core_Sample_Bottom_Final']
 a.Instance(name='Core_Sample_Bottom_Final-1', part=p, dependent=ON)
@@ -1148,9 +1201,8 @@ a.suppressFeatures(('Core_Sample_Bottom_Inner-1',
     'Core_Sample_Bottom_Outer-1', ))
 a = model_name.rootAssembly
 a.PartFromBooleanMerge(name='Core_Sample_Top_Final', instances=(
-    a.instances['Core_Sample_Top_Inner-1'], 
-    a.instances['Core_Sample_Top_Outer-1'], ), mergeNodes=BOUNDARY_ONLY, 
-    nodeMergingTolerance=tolerance, domain=MESH)
+    a.instances['Core_Sample_Top_Inner-1'], a.instances['Core_Sample_Top_Outer-1'], ),
+    mergeNodes=BOUNDARY_ONLY, nodeMergingTolerance=tolerance, domain=MESH)
 a = model_name.rootAssembly
 p = model_name.parts['Core_Sample_Top_Final']
 a.Instance(name='Core_Sample_Top_Final-1', part=p, dependent=ON)
@@ -1158,15 +1210,13 @@ a = model_name.rootAssembly
 a.suppressFeatures(('Core_Sample_Top_Inner-1', 'Core_Sample_Top_Outer-1', ))
 a = model_name.rootAssembly
 a.PartFromBooleanMerge(name='Core_Sample_Final', instances=(
-    a.instances['Core_Sample_Bottom_Final-1'], 
-    a.instances['Core_Sample_Top_Final-1'], ), mergeNodes=BOUNDARY_ONLY, 
-    nodeMergingTolerance=tolerance, domain=MESH)
+    a.instances['Core_Sample_Bottom_Final-1'], a.instances['Core_Sample_Top_Final-1'], ),
+    mergeNodes=BOUNDARY_ONLY, nodeMergingTolerance=tolerance, domain=MESH)
 a = model_name.rootAssembly
 p = model_name.parts['Core_Sample_Final']
 a.Instance(name='Core_Sample_Final-1', part=p, dependent=ON)
 a = model_name.rootAssembly
-a.suppressFeatures(('Core_Sample_Bottom_Final-1', 'Core_Sample_Top_Final-1',
-    ))
+a.suppressFeatures(('Core_Sample_Bottom_Final-1', 'Core_Sample_Top_Final-1', ))
 a = model_name.rootAssembly
 a.PartFromBooleanMerge(name='Sample_Intermediate_Final', instances=(
     a.instances['Sample_Large_Def-1'], a.instances['Sample_Small_Def-1'], ), 
@@ -1178,15 +1228,14 @@ a = model_name.rootAssembly
 a.suppressFeatures(('Sample_Large_Def-1', 'Sample_Small_Def-1', ))
 a = model_name.rootAssembly
 a.PartFromBooleanMerge(name='Final Sample', instances=(
-    a.instances['Core_Sample_Final-1'], 
-    a.instances['Sample_Intermediate_Final-1'], ), mergeNodes=BOUNDARY_ONLY, 
-    nodeMergingTolerance=0.01, domain=MESH)
+    a.instances['Core_Sample_Final-1'], a.instances['Sample_Intermediate_Final-1'], ),
+    mergeNodes=BOUNDARY_ONLY, nodeMergingTolerance=0.01, domain=MESH)
 a = model_name.rootAssembly
 p = model_name.parts['Final Sample']
 a.Instance(name='Final Sample-1', part=p, dependent=ON)
 a = model_name.rootAssembly
 a.suppressFeatures(('Core_Sample_Final-1', 'Sample_Intermediate_Final-1', ))
-    
+
 # Setting correctly the element type for all the elements
 final_sample = model_name.parts['Final Sample']
 z1 = p.elements
@@ -1225,8 +1274,7 @@ for i in range(8*sectors_45):
 # Constraint of the nodes of the base
 InstanceRoot = model_name.rootAssembly
 region = InstanceRoot.instances['Final Sample-1'].sets['Points_Base']
-model_name.EncastreBC(name='BC_points_base', 
-    createStepName='Initial', region=region)
+model_name.EncastreBC(name='BC_points_base', createStepName='Initial', region=region)
     
 # Constraint external diameters nodes
 for i in range(8*sectors_45):
@@ -1248,13 +1296,11 @@ elements_selected = elements_sample.getByBoundingCylinder((0,0,-h_sample-smv),(0
 final_sample.Set(elements=elements_selected, name='All Elements')
 
 model_name.HomogeneousSolidSection(
-    name='Section ElastoPlastic', material='ElastoPlastic_Material-1',
-    thickness=None)
+    name='Section ElastoPlastic', material='ElastoPlastic_Material-1', thickness=None)
 
 # Assigning material properties
 final_sample = model_name.parts['Final Sample']
 region = p.sets['All Elements']
 final_sample.SectionAssignment(region=region, sectionName='Section ElastoPlastic',
-    offset=0.0, offsetType=MIDDLE_SURFACE, offsetField='',
-    thicknessAssignment=FROM_SECTION)
+    offset=0.0, offsetType=MIDDLE_SURFACE, offsetField='', thicknessAssignment=FROM_SECTION)
 ''')
