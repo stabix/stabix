@@ -103,7 +103,7 @@ import step
 import interaction
 import load
 import mesh
-#import optimization
+import optimization
 import job
 import sketch
 import visualization
@@ -295,16 +295,19 @@ model_name.materials['ElastoPlastic_Material-2'].Plastic(table=((20.0, 0.0), (30
 #+++++++++++++++++++++++++++++++++++++++++++++
 # Surface interaction properties
 model_name.ContactProperty('Contact Properties')
-model_name.interactionProperties['Contact Properties'].TangentialBehavior(
-    formulation=PENALTY, directionality=ISOTROPIC, slipRateDependency=OFF,
-    pressureDependency=OFF, temperatureDependency=OFF, dependencies=0,
-    table=((friction, ), ), shearStressLimit=None, maximumElasticSlip=FRACTION,
-    fraction=0.005, elasticSlipStiffness=None)
 
-# Other type of contact...
-# model_name.interactionProperties['Contact Properties'].TangentialBehavior(formulation=FRICTIONLESS)
-# model_name.interactionProperties['Contact Properties'].NormalBehavior(pressureOverclosure=HARD, allowSeparation=ON,
-#     constraintEnforcementMethod=DEFAULT)
+# Tangential Behavior
+if friction != 0:
+    model_name.interactionProperties['Contact Properties'].TangentialBehavior(
+        formulation=PENALTY, directionality=ISOTROPIC, slipRateDependency=OFF,
+        pressureDependency=OFF, temperatureDependency=OFF, dependencies=0,
+        table=((friction, ), ), shearStressLimit=None, maximumElasticSlip=FRACTION,
+        fraction=0.005, elasticSlipStiffness=None)
+
+elif friction == 0:
+    model_name.interactionProperties['Contact Properties'].TangentialBehavior(formulation=FRICTIONLESS)
+    model_name.interactionProperties['Contact Properties'].NormalBehavior(pressureOverclosure=HARD, allowSeparation=ON,
+         constraintEnforcementMethod=DEFAULT)
 
 # Contact Definition
 InstanceRoot = model_name.rootAssembly
@@ -342,6 +345,10 @@ else:
     elemType2 = mesh.ElemType(elemCode=C3D15, elemLibrary=STANDARD)
     elemType3 = mesh.ElemType(elemCode=C3D10, elemLibrary=STANDARD)
 ''')
+# From Abaqus 6.12 - Analysis User’s Manual - Volume IV: Elements
+# C3D8 = 8-node linear brick
+# C3D8R = 8-node linear brick, reduced integration, hourglass control
+# Reduced integration means it will take less time, but it will be less accurate...
 
     def procLoadCaseIndent(self):
         self.proc.append('''
@@ -396,19 +403,19 @@ Ref_Indenter = indenter.Set(name='Ref_Indenter', referencePoints=refPoints1)
 del model_name.fieldOutputRequests['F-Output-1']
 del model_name.historyOutputRequests['H-Output-1']
 
-model_name.FieldOutputRequest(name='Field output', 
+model_name.FieldOutputRequest(name='Field output',
     createStepName='Indent', variables=('S', 'PEEQ', 'U', 'SDV'), frequency=freq_field_output)
 regionDef=model_name.rootAssembly.instances['indenter-1'].sets['Ref_Indenter']
-model_name.HistoryOutputRequest(name='History output', 
-    createStepName='Indent', variables=('U3', 'RF3'), frequency=2, 
+model_name.HistoryOutputRequest(name='History output',
+    createStepName='Indent', variables=('U3', 'RF3'), frequency=2,
     region=regionDef, sectionPoints=DEFAULT, rebar=EXCLUDE)
-    
+
 # Creating job
 mdb.Job(name='Indentation_Job', model=model_name, description='%s',
-    type=ANALYSIS, atTime=None, waitMinutes=0, waitHours=0, queue=None, 
-    memory=90, memoryUnits=PERCENTAGE, getMemoryFromAnalysis=True, 
-    explicitPrecision=SINGLE, nodalOutputPrecision=SINGLE, echoPrint=OFF, 
-    modelPrint=OFF, contactPrint=OFF, historyPrint=OFF, userSubroutine='', 
+    type=ANALYSIS, atTime=None, waitMinutes=0, waitHours=0, queue=None,
+    memory=90, memoryUnits=PERCENTAGE, getMemoryFromAnalysis=True,
+    explicitPrecision=SINGLE, nodalOutputPrecision=SINGLE, echoPrint=OFF,
+    modelPrint=OFF, contactPrint=OFF, historyPrint=OFF, userSubroutine='',
     scratch='', multiprocessingMode=DEFAULT, numCpus=1)''' % description + '''
 
 # Writing .inp
