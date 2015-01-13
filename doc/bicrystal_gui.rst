@@ -18,7 +18,7 @@ This includes:
 Plotting and analyzing a bicrystal
 ----------------------------------
 
-.. figure:: ./_pictures/GUIs/BX2.png
+.. figure:: ./_pictures/GUIs/BX.png
    :scale: 40 %
    :align: center
    

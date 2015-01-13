@@ -52,8 +52,8 @@ Example of "Reconstructed Boundary File": `MPIE_cpTi_reconstructed_boundaries_20
 The |matlab| function used to read "Reconstructed Boundary File" is: `read_oim_reconstructed_boundaries_file.m <https://github.com/stabix/stabix/tree/master/tsl_oim/read_oim_reconstructed_boundaries_file.m>`_
 
 If some GBs segments are missing or some wrong segments are exported, play with partition properties in the TSL-OIM software in order to export a more realistic Reconstructed Boundaries file:
-    - decrease/increase "Grain Tolerance Angle"
-    - decrease/increase "Minimum Grain Size"
+    - decrease/increase "Grain Tolerance Angle" ;
+    - decrease/increase "Minimum Grain Size" ;
     - decrease/increase the maximum deviation between reconstructed boundary and corresponding boundary segments.
 
 Grain File Type 2
@@ -61,17 +61,17 @@ Grain File Type 2
 
 **Export "Grain File Type 2" of the cleaned dataset** (All data --> Export --> Grain File), with the following options :
 
-- Integer identifying grain
+- Integer identifying grain ;
 
-- Average orientation (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees
+- Average orientation (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees ;
 
-- Average position (:math:`x,y`) in microns 
+- Average position (:math:`x,y`) in microns ;
 
-- An integer identifying the phase
+- An integer identifying the phase ;
 
-- Edge or interior grain (optional)
+- Edge or interior grain (optional) ;
 
-- Diameter of the grain in microns (optional)
+- Diameter of the grain in microns (optional).
 
 N.B. : Export the "Grain File Type 2" in the same location as the corresponding "Reconstructed Boundary File".
 
@@ -97,8 +97,8 @@ Possible errors introduced during files exportation from TSL
 - "Reconstructed Boundary File" --> Inversion of left and right grains for a given grain boundary 
     - Cross product performed between GB vector and center of grains to check (if cross product < 0 : no inversion, and if cross product > 0 : inversion).
 
-- "Reconstructed Boundary File" --> (:math:`y`)-axis and (:math:`y`)-axis not corrects…
-    - (:math:`y`) coordinates is multiplied by -1 when file is imported via the GUI.
+- "Reconstructed Boundary File" --> :math:`x`-axis and :math:`y`-axis not corrects…
+    - :math:`y` coordinates is multiplied by -1 when file is imported via the GUI.
 
 All of these issues are taken into account and corrected automatically when user is loading his data via the EBSD map GUI.
 
@@ -109,7 +109,7 @@ Bicrystal GUI - YAML configuration file
 
 An example of bicrystal configuration file is given here : `config_gui_BX_defaults.yaml <https://github.com/stabix/stabix/tree/master/YAML_config_files/config_gui_BX_defaults.yaml>`_
 
-Copy this example file and modify it with your data. Be careful to put a space after the comma in a list (e.g. [(:math:`x,y,z`)]).
+Copy this example file and modify it with your data. Be careful to put a space after the comma in a list (e.g. [:math:`x, y, z`]).
 
 Don't change fieldnames and don't round Euler angles. Euler angles are given in degrees.
 
