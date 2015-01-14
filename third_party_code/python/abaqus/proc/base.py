@@ -312,7 +312,7 @@ elif friction == 0:
 # Contact Definition
 InstanceRoot = model_name.rootAssembly
 region1 = InstanceRoot.surfaces['Surf Indenter']
-region2 = InstanceRoot.instances[final_sample_name].sets['Surf Sample']
+region2 = InstanceRoot.surfaces['Surf Sample']
 model_name.SurfaceToSurfaceContactStd(name='Interaction Indenter-Sample',
     createStepName='Initial',
     master=region1,
