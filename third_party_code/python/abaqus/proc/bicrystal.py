@@ -585,11 +585,6 @@ faces = f.findAt((((d_box_A + box_y1)/2 + d_incgb/2, -height/2, 0), ),
     (((box_y1 + box_y3)/2, -height/2, width), ), (((box_y3 + d_box_B)/2 + d_incgb/2, -height/2, width), ))
 p.Set(faces=faces, name='Surf-sides')
 
-side1Faces = f.findAt((((d_box_A + box_y1)/2, 0, width/2), ), (((box_y1 + box_y2)/2, 0, width/2), ),
-    (((box_y2 + d_box_B)/2, 0, width/2), ))
-p.Surface(side1Faces=side1Faces, name='Surf Sample')
-p.Set(faces=side1Faces, name='Surf Sample')
-
 #+++++++++++++++++++++++++++++++++++++++++++++
 # REFERENCE POINT
 #+++++++++++++++++++++++++++++++++++++++++++++
@@ -597,7 +592,7 @@ p = model_name.parts['Bicrystal']
 v = p.vertices
 p.ReferencePoint(point=v.findAt(coordinates=(distGB, 0.0, width/2)))
 r = p.referencePoints
-refPoints=(r[26], ) #Function of the partitions done before
+refPoints=(r[24], ) #Function of the partitions done before
 p.Set(referencePoints=refPoints, name='Set-RP')
 
 #+++++++++++++++++++++++++++++++++++++++++++++
@@ -606,9 +601,11 @@ p.Set(referencePoints=refPoints, name='Set-RP')
 a = model_name.rootAssembly
 a.DatumCsysByDefault(CARTESIAN)
 p = model_name.parts['Bicrystal']
-a.Instance(name='Bicrystal-1', part=p, dependent=OFF)
-
-
+a.Instance(name='Bicrystal-1', part=p, dependent=ON)
+f = a.instances['Bicrystal-1'].faces
+side1Faces = f.findAt((((d_box_A + box_y1)/2, 0, width/2), ), (((box_y1 + box_y2)/2, 0, width/2), ),
+    (((box_y2 + d_box_B)/2, 0, width/2), ))
+a.Surface(side1Faces=side1Faces, name='Surf Sample')
 ''')
 
     def procSampleMeshing(self):
@@ -616,8 +613,8 @@ a.Instance(name='Bicrystal-1', part=p, dependent=OFF)
 #+++++++++++++++++++++++++++++++++++++++++++++
 # SEEDS FOR MESH
 #+++++++++++++++++++++++++++++++++++++++++++++
-a = model_name.rootAssembly
-e = a.instances['Bicrystal-1'].edges
+p = model_name.parts['Bicrystal']
+e = p.edges
 
 # NB: pickedEdges1 and pickedEdges2 are used for direction of bias
 
@@ -626,7 +623,7 @@ pickedEdges1 = e.findAt(((box_y4, -height, width/4), ), ((box_y2, 0, width/4), )
 pickedEdges2 = e.findAt(((d_box_A, 0, width/4), ), ((d_box_B, 0, width/4), ),
     ((box_y1, 0, width/4), ), ((d_box_A, -height, width/4), ),
     ((box_y3, -height, width/4), ), ((d_box_B, -height, width/4), ))
-a.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
+p.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
     ratio=box_bias_x, number=box_elm_nx, constraint=FINER)
 
 # edge_x_pos
@@ -634,7 +631,7 @@ pickedEdges2 = e.findAt(((box_y4, -height, 3*width/4), ), ((box_y2, 0, 3*width/4
 pickedEdges1 = e.findAt(((d_box_A, 0, 3*width/4), ), ((d_box_B, 0, 3*width/4), ),
     ((box_y1, 0, 3*width/4), ), ((d_box_A, -height, 3*width/4), ),
     ((box_y3, -height, 3*width/4), ), ((d_box_B, -height, 3*width/4), ))
-a.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
+p.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
     ratio=box_bias_x, number=box_elm_nx, constraint=FINER)
 
 # edge_z
@@ -642,46 +639,45 @@ pickedEdges1 = e.findAt(((d_box_B, -height/2, 0), ), (((box_y2 + box_y3)/2, -hei
     ((d_box_A, -height/2, width), ), (((box_y1 + box_y4)/2, -height/2, width), ))
 pickedEdges2 = e.findAt(((d_box_A, -height/2, 0), ), (((box_y1 + box_y4)/2, -height/2, 0), ),
     ((d_box_B, -height/2, width), ), (((box_y2 + box_y3)/2, -height/2, width), ))
-a.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
+p.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
     ratio=box_bias_z, number=box_elm_nz, constraint=FINER)
 
 # edge_y1
 pickedEdges1 = e.findAt((((d_box_A + box_y4)/2, -height, 0), ), (((d_box_A + box_y1)/2, 0, width), ))
 pickedEdges2 = e.findAt((((d_box_A + box_y1)/2, 0, 0), ), (((d_box_A + box_y4)/2, -height, width), ))
-a.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
+p.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
     ratio=box_bias_y1, number=box_elm_ny1, constraint=FINER)
 
 if distGB > 0:
     # edge_y2
     pickedEdges1 = e.findAt((((box_y4 + box_y3)/2, -height, 0), ), (((box_y1 + box_y2)/2, 0, width), ))
     pickedEdges2 = e.findAt((((box_y1 + box_y2)/2, 0, 0), ), (((box_y4 + box_y3)/2, -height, width), ))
-    a.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
+    p.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
         ratio=box_bias_y2, number=box_elm_ny2, constraint=FINER)
 elif distGB < 0:
     # edge_y2
     pickedEdges1 = e.findAt((((box_y1 + box_y2)/2, 0, 0), ), (((box_y4 + box_y3)/2, -height, width), ))
     pickedEdges2 = e.findAt((((box_y4 + box_y3)/2, -height, 0), ), (((box_y1 + box_y2)/2, 0, width), ))
-    a.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
+    p.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
         ratio=box_bias_y2, number=box_elm_ny2, constraint=FINER)
 
 # edge_y3
 pickedEdges1 = e.findAt((((box_y2 + d_box_B)/2, 0, 0), ), (((box_y3 + d_box_B)/2, -height, width), ))
 pickedEdges2 = e.findAt((((box_y3 + d_box_B)/2, -height, 0), ), (((box_y2 + d_box_B)/2, 0, width), ))
-a.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
+p.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdges2,
     ratio=box_bias_y3, number=box_elm_ny3, constraint=FINER)
 
 #+++++++++++++++++++++++++++++++++++++++++++++
 # MESHING
 #+++++++++++++++++++++++++++++++++++++++++++++
-a = model_name.rootAssembly
-partInstances =(a.instances['Bicrystal-1'], )
-a.generateMesh(regions=partInstances)
+p = model_name.parts['Bicrystal']
+p.generateMesh(regions=partInstances)
 
-c = a.instances['Bicrystal-1'].cells
+c = p.cells
 cells1 = c.findAt((((d_box_A + box_y1)/2, -height/2, width/2), ), (((box_y1 + box_y2)/2, -height/2, width/2),
     ), (((box_y3 + d_box_B)/2, -height/2, width/2), ))
 pickedRegions =(cells1, )
-a.setElementType(regions=pickedRegions, elemTypes=(elemType1, ))
+p.setElementType(regions=pickedRegions, elemTypes=(elemType1, ))
 ''')
 
     def procBoundaryConditionsIndent(self):
