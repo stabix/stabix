@@ -198,6 +198,7 @@ sample_rep = %i # 24 No of Sample Sectors...''' % (self.IndentParameters['sample
 sectors_45 = sample_rep/8
 # Sector Angle is 360/sample_rep...
 # 12=>30 deg, 16=>22.5 deg, 18=>20 deg, 24=>15 deg, 36=>10 deg, 72=>5 deg
+linear_elements = 1
 
 # INDENTER VELOCITY, "STRAIN RATE"
 # Time used for LoadCase "indentation" (in [seconds] for model in mm)
