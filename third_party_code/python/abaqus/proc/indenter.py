@@ -93,9 +93,7 @@ tipRadius = %f''' % (self.IndentParameters['tipRadius']) +  ''' # radius of sphe
 # CONICAL INDENTER-MODELING
 #+++++++++++++++++++++++++++++++++++++++++++++
 # 3D analytical rigid indenter
-
-Sketch_indenter = model_name.ConstrainedSketch(name='__profile__', 
-    sheetSize=sheet_Size)
+Sketch_indenter = model_name.ConstrainedSketch(name='__profile__', sheetSize=sheet_Size)
 g, v, d, c = Sketch_indenter.geometry, Sketch_indenter.vertices, Sketch_indenter.dimensions, Sketch_indenter.constraints
 
 s = Sketch_indenter
@@ -112,7 +110,7 @@ y_trans = r*(1-sin(coneAngle))
 x_trans = r*cos(coneAngle)
 Sketch_indenter.ArcByCenterEnds(center=(0.0, r), point1=(x_trans , y_trans), point2=(0.0, 0.0), 
     direction=CLOCKWISE)
-    
+
 # Conical part
 h_con_part = 1.3*h_indent
 x_2 = x_trans + (h_con_part*sin(coneAngle)/cos(coneAngle))
@@ -120,12 +118,10 @@ y_2 = y_trans + h_con_part
 Sketch_indenter.Line(point1=(x_trans , y_trans), point2=(x_2, y_2))
 
 # Definition of the three-dimensional part
-Indenter = model_name.Part(name='indenter', dimensionality=THREE_D, 
-    type=ANALYTIC_RIGID_SURFACE)
+Indenter = model_name.Part(name='indenter', dimensionality=THREE_D, type=ANALYTIC_RIGID_SURFACE)
 Indenter = model_name.parts['indenter']
 
 # Symmetry of revolution
-
 Indenter.AnalyticRigidSurfRevolve(sketch=Sketch_indenter)
 Sketch_indenter.unsetPrimaryObject()
 Indenter = model_name.parts['indenter']
@@ -133,7 +129,6 @@ session.viewports['Viewport: 1'].setValues(displayedObject=Indenter)
 del model_name.sketches['__profile__']
 
 # Creating instance and positioning the indenter
-
 Indenter = model_name.parts['indenter']
 session.viewports['Viewport: 1'].setValues(displayedObject=Indenter)
 InstanceRoot = model_name.rootAssembly
@@ -147,8 +142,7 @@ InstanceRoot.rotate(instanceList=('indenter-1', ), axisPoint=(10.0, 0.0, 0.0),
 
 InstanceRoot.translate(instanceList=('indenter-1', ), vector=(0.0, 0.0, sep_ind_samp))
 
-### Surface of the conical indenter
-
+# Surface of the conical indenter
 InstanceRoot = model_name.rootAssembly
 faces_indenter = InstanceRoot.instances['indenter-1'].faces
 d = tipRadius/tan(coneAngle)
@@ -158,8 +152,8 @@ y_coor = 0
 z_coor = r*(1-sin(coneAngle))+sep_ind_samp
 side1Faces1 = faces_indenter.findAt(((0, 0, sep_ind_samp), ), ((x_coor, y_coor, z_coor), ))
 InstanceRoot.Surface(side1Faces=side1Faces1, name='Surf Indenter')
-'''
-)
+''')
+
     def procIndenterFlatPunch(self, tipRadius=0.1):
         self.proc.append('''
 #+++++++++++++++++++++++++++++++++++++++++++++
@@ -167,16 +161,13 @@ InstanceRoot.Surface(side1Faces=side1Faces1, name='Surf Indenter')
 #+++++++++++++++++++++++++++++++++++++++++++++
 
 h_indent = %f''' % (self.IndentParameters['h_indent']) + ''' # indentation depth
-tipRadius = %f''' % (self.IndentParameters['tipRadius']) +  ''' # radius of spherical tip'''
-
-'''
+tipRadius = %f''' % (self.IndentParameters['tipRadius']) +  ''' # radius of spherical tip
 
 #+++++++++++++++++++++++++++++++++++++++++++++
 # MODELING OF FLAT PUNCH INDENTER 
 #+++++++++++++++++++++++++++++++++++++++++++++
 
-s = model_name.ConstrainedSketch(
-    name='__profile__', sheetSize=sheet_Size)
+s = model_name.ConstrainedSketch(name='__profile__', sheetSize=sheet_Size)
 g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
 s.setPrimaryObject(option=STANDALONE)
 s.ConstructionLine(point1=(0.0, -sheet_Size*0.5), point2=(0.0, sheet_Size*0.5))
@@ -186,8 +177,7 @@ s.Line(point1=(tipRadius, h_indent*2.0), point2=(0.0, h_indent*2.0))
 s.FilletByRadius(radius=0.1*tipRadius, curve1=g.findAt((tipRadius*0.5, 0.0)), nearPoint1=(
     0.9*tipRadius, 0.0), curve2=g.findAt((tipRadius, h_indent)), 
     nearPoint2=(tipRadius,0.1*tipRadius))
-p = model_name.Part(name='indenter', dimensionality=THREE_D, 
-    type=ANALYTIC_RIGID_SURFACE)
+p = model_name.Part(name='indenter', dimensionality=THREE_D, type=ANALYTIC_RIGID_SURFACE)
 p = model_name.parts['indenter']
 p.AnalyticRigidSurfRevolve(sketch=s)
 s.unsetPrimaryObject()
@@ -196,7 +186,6 @@ session.viewports['Viewport: 1'].setValues(displayedObject=p)
 del model_name.sketches['__profile__']
 
 # Creating instance and positioning the indenter
-
 Indenter = model_name.parts['indenter']
 session.viewports['Viewport: 1'].setValues(displayedObject=Indenter)
 InstanceRoot = model_name.rootAssembly
@@ -210,8 +199,7 @@ InstanceRoot.rotate(instanceList=('indenter-1', ), axisPoint=(10.0, 0.0, 0.0),
     
 InstanceRoot.translate(instanceList=('indenter-1', ), vector=(0.0, 0.0, sep_ind_samp))
 
-### Surface of the flat punch
-
+# Surface of the flat punch
 InstanceRoot = model_name.rootAssembly
 faces_indenter = InstanceRoot.instances['indenter-1'].faces
 r = tipRadius
