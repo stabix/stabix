@@ -104,7 +104,9 @@ py{end+1} = sprintf('box_bias_y1 = %.3f,', gui_BX.variables.box_bias_y1);
 py{end+1} = sprintf('box_bias_y2 = %.3f,', gui_BX.variables.box_bias_y2);
 py{end+1} = sprintf('box_bias_y3 = %.3f,', gui_BX.variables.box_bias_y3);
 py{end+1} = sprintf('smv = %e,', gui_BX.variables.smv);
-py{end+1} = sprintf('lvl = %i', gui_BX.variables.mesh_quality_lvl);
+%py{end+1} = sprintf('lvl = %i', gui_BX.variables.mesh_quality_lvl);
+% Don't export the 'lvl' variable because numbers of elements along x, y and z axis
+% are already function of the mesh quality level !
 py{end+1} = ')';
 py{end+1} = sprintf('proc_path = ''%s'' ', proc_path);
 py{end+1} = sprintf('tools.mkdir_p(proc_path)');

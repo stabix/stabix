@@ -373,9 +373,9 @@ elif distGB == 0:
 # MESH
 box_elm_nx = %i''' % box_elm_nx + '''
 box_elm_nz = %i''' % box_elm_nz + '''
-box_elm_ny1 = %i''' % box_elm_ny1 + '''
-box_elm_ny2 = %i''' % box_elm_ny2_fac + '''
-box_elm_ny3 = %i''' % box_elm_ny3 + '''
+box_elm_ny1 = %i''' % (box_elm_ny1 * lvl)+ '''
+box_elm_ny2 = %i''' % (abs(d) * box_elm_ny2_fac * lvl)+ '''
+box_elm_ny3 = %i''' % (box_elm_ny3 * lvl)+ '''
 box_bias_x = %i''' % box_bias_x + '''
 box_bias_z = %i''' % box_bias_z + '''
 box_bias_y1 = %i''' % box_bias_y1 + '''
