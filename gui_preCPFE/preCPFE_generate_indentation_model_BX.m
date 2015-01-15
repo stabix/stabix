@@ -135,7 +135,8 @@ commandwindow;
 system(cmd);
 
 %% Definition of path config file
-gui_BX.path_config_file = fullfile(proc_path);
+gui_BX.path_config_file = ...
+    strrep(fullfile(proc_path), '\\\\', '\\');
 guidata(gcf, gui_BX);
 
 %% Move files to keep the directory cleaned and organized
