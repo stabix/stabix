@@ -10,7 +10,6 @@ h_indent: 0.3 # Depth of indentation (in µm)
 w_sample: 4
 h_sample: 4
 len_sample: 6
-inclination: 90 # GB inclination (in °)
 ind_dist: 1
 box_elm_nx: 7
 box_elm_nz: 7

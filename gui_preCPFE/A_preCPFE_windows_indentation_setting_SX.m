@@ -59,9 +59,9 @@ else
     gui_SX.GB             = gui_bicrystal.GB;
     gui_SX.GB.active_data = 'SX';
     if activeGrain == 1
-        gui_SX.GB.activeGrain     = gui_SX.GB.GrainA;
+        gui_SX.GB.activeGrain = gui_SX.GB.GrainA;
     elseif activeGrain == 2
-        gui_SX.GB.activeGrain     = gui_SX.GB.GrainB;
+        gui_SX.GB.activeGrain = gui_SX.GB.GrainB;
     end
     gui_SX.title_str = set_gui_title(gui_SX, ...
         ['Crystal n°', num2str(gui_SX.GB.activeGrain)]);

@@ -8,8 +8,8 @@ filenameRB_BC: 'random_inputs'
 
 #GB definition
 GB_Number: 1
-#GB_Trace_Angle: 0  #(in degree)
-#GB_Inclination: 90 #(in degree)
+GB_Trace_Angle: 45  #(in degree)
+GB_Inclination: 80 #(in degree)
     
 #Grains definition (number and Euler angles in degree)
 GrainA: 1

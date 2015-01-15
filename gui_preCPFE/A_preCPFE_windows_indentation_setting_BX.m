@@ -41,7 +41,6 @@ if nargin == 0
             'config_gui_BX_defaults.yaml';
     end
     
-    
     guidata(gcf, gui_BX);
     preCPFE_load_YAML_BX_config_file(...
         gui_BX.config_map.imported_YAML_GB_config_file, 2);
@@ -71,9 +70,7 @@ gui_BX.handles.hax = axes('Units', 'normalized',...
 
 %% Initialization of variables
 gui_BX.defaults.variables = ReadYaml('config_mesh_BX_defaults.yaml');
-if nargin > 0
-    gui_BX.defaults.variables.inclination = gui_BX.GB.GB_Inclination;
-end
+gui_BX.defaults.variables.inclination = gui_BX.GB.GB_Inclination;
 guidata(gcf, gui_BX);
 
 %% Creation of boxes to set indenter and indentation properties

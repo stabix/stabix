@@ -34,7 +34,9 @@ elseif strcmp(gui.config.CPFEM.simulation_code, 'DAMASK') == 1
     end
     
     config_all_data.orientation_grA = config_all_data.eulerA;
-    config_all_data.orientation_grB = config_all_data.eulerB;
+    if strcmp(gui.GB.active_data, 'BX') == 1
+        config_all_data.orientation_grB = config_all_data.eulerB;
+    end
     
 else
     display('No CPFEM code given in YAML CPFEM config. file !');

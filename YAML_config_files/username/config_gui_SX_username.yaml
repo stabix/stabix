@@ -14,5 +14,5 @@ activeGrain: 1
 eulerA: [205.8, 41.56, 46.47]
 
 #Specific slips
-Slip_norm: [0, -1, 1]
-Slip_dir: [-1, 1, 1]
+SlipA_norm: [0, 0, 0, 1]
+SlipA_dir: [2, -1, -1, 0]
