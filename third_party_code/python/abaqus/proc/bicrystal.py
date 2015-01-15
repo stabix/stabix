@@ -585,6 +585,10 @@ faces = f.findAt((((d_box_A + box_y1)/2 + d_incgb/2, -height/2, 0), ),
     (((box_y1 + box_y3)/2, -height/2, width), ), (((box_y3 + d_box_B)/2 + d_incgb/2, -height/2, width), ))
 p.Set(faces=faces, name='Surf-sides')
 
+faces = f.findAt((((d_box_A + box_y1)/2, 0, width/2), ), (((box_y1 + box_y2)/2, 0, width/2), ),
+    (((box_y2 + d_box_B)/2, 0, width/2), ))
+p.Set(faces=faces, name='Surf Sample')
+
 #+++++++++++++++++++++++++++++++++++++++++++++
 # REFERENCE POINT
 #+++++++++++++++++++++++++++++++++++++++++++++
@@ -592,7 +596,7 @@ p = model_name.parts['Bicrystal']
 v = p.vertices
 p.ReferencePoint(point=v.findAt(coordinates=(distGB, 0.0, width/2)))
 r = p.referencePoints
-refPoints=(r[24], ) #Function of the partitions done before
+refPoints=(r[25], ) #Function of the partitions done before
 p.Set(referencePoints=refPoints, name='Set-RP')
 
 #+++++++++++++++++++++++++++++++++++++++++++++
@@ -603,9 +607,9 @@ a.DatumCsysByDefault(CARTESIAN)
 p = model_name.parts['Bicrystal']
 a.Instance(name='Bicrystal-1', part=p, dependent=ON)
 f = a.instances['Bicrystal-1'].faces
-side1Faces = f.findAt((((d_box_A + box_y1)/2, 0, width/2), ), (((box_y1 + box_y2)/2, 0, width/2), ),
+faces = f.findAt((((d_box_A + box_y1)/2, 0, width/2), ), (((box_y1 + box_y2)/2, 0, width/2), ),
     (((box_y2 + d_box_B)/2, 0, width/2), ))
-a.Surface(side1Faces=side1Faces, name='Surf Sample')
+a.Surface(side1Faces=faces, name='Surf Sample')
 ''')
 
     def procSampleMeshing(self):
@@ -671,7 +675,7 @@ p.seedEdgeByBias(biasMethod=SINGLE, end1Edges=pickedEdges1, end2Edges=pickedEdge
 # MESHING
 #+++++++++++++++++++++++++++++++++++++++++++++
 p = model_name.parts['Bicrystal']
-p.generateMesh(regions=partInstances)
+p.generateMesh()
 
 c = p.cells
 cells1 = c.findAt((((d_box_A + box_y1)/2, -height/2, width/2), ), (((box_y1 + box_y2)/2, -height/2, width/2),

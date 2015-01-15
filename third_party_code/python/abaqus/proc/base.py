@@ -103,7 +103,8 @@ import step
 import interaction
 import load
 import mesh
-import optimization
+if ('12' in version) == True:
+    import optimization # Not available in versions released before Abaqus 6.12
 import job
 import sketch
 import visualization
@@ -312,7 +313,8 @@ elif friction == 0:
 # Contact Definition
 InstanceRoot = model_name.rootAssembly
 region1 = InstanceRoot.surfaces['Surf Indenter']
-region2 = InstanceRoot.surfaces['Surf Sample']
+#region2 = InstanceRoot.surfaces['Surf Sample']
+region2 = InstanceRoot.instances[final_sample_name].sets['Surf Sample']
 model_name.SurfaceToSurfaceContactStd(name='Interaction Indenter-Sample',
     createStepName='Initial',
     master=region1,
