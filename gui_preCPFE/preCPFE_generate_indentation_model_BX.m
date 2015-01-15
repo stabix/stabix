@@ -139,10 +139,10 @@ gui_BX.path_config_file = ...
     strrep(fullfile(proc_path), '\\\\', '\\');
 guidata(gcf, gui_BX);
 
-%% Move files to keep the directory cleaned and organized
+%% Move files and Generate material config. file
 % Move YAML file
-gui_BX.GB.Titlegbdatacompl_YAML = strcat(gui_BX.GB.Titlegbdatacompl, ...
-    '.yaml');
+gui_BX.GB.Titlegbdatacompl_YAML = ...
+    strcat(gui_BX.GB.Titlegbdatacompl, '.yaml');
 
 % Move Python file
 try
@@ -152,6 +152,7 @@ catch err
 end
 guidata(gcf, gui_BX);
 
+% Generation of material config. file
 preCPFE_generate_material_files(gui_BX.config.CPFEM.simulation_code, 2);
 
 % Move .mat file

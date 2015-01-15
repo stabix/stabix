@@ -1,6 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function preCPFE_save_data
-%% Function used to save active data for the generation of procedure file for Marc Mentat
+%% Function used to save active data for the generation of procedure file for Marc Mentat or Abaqus
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
@@ -47,9 +47,5 @@ end
 save(gui.GB.Titlegbdatacompl, '-struct', 'config_all_data');
 
 guidata(gcf, gui);
-
-% Also writing the bicrystal data into a YAML file which can be read in any editor
-%Titlegbdatacompl_YAML=strcat(config_all_data.titlegbdatacompl, '.yaml');
-%WriteYaml(Titlegbdatacompl_YAML, config_all_data);
 
 end

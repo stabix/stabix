@@ -129,10 +129,10 @@ gui_SX.path_config_file = ...
     strrep(fullfile(proc_path), '\\\\', '\\');
 guidata(gcf, gui_SX);
 
-%% Move files to keep the directory cleaned and organized
+%% Move files and Generate material config. file
 % Move YAML file
-gui_SX.GB.Titlegbdatacompl_YAML = strcat(gui_SX.GB.Titlegbdatacompl, ...
-    '.yaml');
+gui_SX.GB.Titlegbdatacompl_YAML = ...
+    strcat(gui_SX.GB.Titlegbdatacompl, '.yaml');
 
 % Move Python file
 try
@@ -141,6 +141,7 @@ catch err
     warning_commwin(err.message);
 end
 
+% Setting of Euler angles
 if gui_SX.GB.activeGrain == gui_SX.GB.GrainA
     gui_SX.GB.activeGrain_eul = gui_SX.GB.eulerA;
 elseif gui_SX.GB.activeGrain == gui_SX.GB.GrainB
@@ -148,6 +149,7 @@ elseif gui_SX.GB.activeGrain == gui_SX.GB.GrainB
 end
 guidata(gcf, gui_SX);
 
+% Generation of material config. file
 preCPFE_generate_material_files(gui_SX.config.CPFEM.simulation_code, 1);
 
 % Move .mat file

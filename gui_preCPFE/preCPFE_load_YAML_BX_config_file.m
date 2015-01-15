@@ -123,6 +123,16 @@ if interface == 2
     else
         GB_YAML.ca_ratio_B = cell2mat(GB_YAML.ca_ratio_B);
     end
+else
+    GB_YAML.eulerB = [];
+    GB_YAML.eulerB_ori = [];
+    GB_YAML.GrainB = [];
+    GB_YAML.Phase_B = [];
+    GB_YAML.GB_Inclination = [];
+    GB_YAML.GB_Trace_Angle = [];
+    GB_YAML.GB_Number = [];
+    GB_YAML.Material_B = [];
+    GB_YAML.ca_ratio_B = [];
 end
 
 if interface == 1
