@@ -33,8 +33,14 @@ if nargin == 0
     gui_BX.config_map.default_grain_file_type2 = 'random_GF2data.txt';
     gui_BX.config_map.default_reconstructed_boundaries_file = ...
         'random_RBdata.txt';
-    gui_BX.config_map.imported_YAML_GB_config_file = ...
-        'config_gui_BX_defaults.yaml';
+    if exist(sprintf('config_gui_BX_%s.yaml', gui_BX.config.username))
+        gui_BX.config_map.imported_YAML_GB_config_file = ...
+            sprintf('config_gui_BX_%s.yaml', gui_BX.config.username);
+    else
+        gui_BX.config_map.imported_YAML_GB_config_file = ...
+            'config_gui_BX_defaults.yaml';
+    end
+    
     
     guidata(gcf, gui_BX);
     preCPFE_load_YAML_BX_config_file(...

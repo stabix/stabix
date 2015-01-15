@@ -21,7 +21,7 @@ fem_solver_used: Mentat_2013.1
 
 # list of Python executables
 python_executables:
-    - 
+    - python
 
 # where you want the Mentat or Abaqus procedure file written
 #proc_file_path: /Users/<username>/Documents/mwn2/matlab #for MAC
