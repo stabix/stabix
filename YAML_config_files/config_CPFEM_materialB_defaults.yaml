@@ -2,10 +2,9 @@
 # Authors : D. Mercier and C. Zambaldi
 # Give only absolute paths and put a space after the comma in a list (e.g. [x, y, z]) !!!
 # Don't modify fieldnames !
-# material.config for DAMASK (cp-Ti (alpha))
 
 # Material and Constitutive Laws
-Phase2_material: Aluminum
+Phase2_material: Ti-beta
 Phase2_elasticity: hooke
 Phase2_plasticity: phenopowerlaw
 
@@ -22,17 +21,17 @@ Phase2_output9: accumulatedshear_twin
 Phase2_output10: totalvolfrac
 
 # Crystal properties
-Phase2_lattice_structure: fcc
-Phase2_c11:    106.75e9
-Phase2_c12:    60.41e9
-Phase2_c13:    28.34e9
+Phase2_lattice_structure: bcc
+Phase2_c11:    100e9
+Phase2_c12:    100e9
+Phase2_c44:    100e9
 
 # Slip systems
-Phase2_nslip:  12 # per family
+Phase2_nslip:  12 0 0 0# per family
 Phase2_gdot0_slip: 0.001
 Phase2_n_slip: 20
-Phase2_tau0_slip: 31e6 # per family
-Phase2_tausat_slip: 63e6 # per family
+Phase2_tau0_slip: 500e6 0 0 0# per family
+Phase2_tausat_slip: 1000e6 0 0 0# per family
 Phase2_a_slip: 2.25
 
 # Twin systems
