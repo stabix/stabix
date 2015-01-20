@@ -20,7 +20,8 @@ The strain transfer across grain boundaries can be defined by the four following
    *Figure 1 : Possible strain transfer across grain boundaries (GB) from Sutton and Balluffi.*
    
 Several authors proposed slip transfer parameters from modellings or experiments for the last 60 years.
-A non-exhaustive list of those criteria is given in the next part of this work, including geometrical parameter, stress and energetic functions, and recent combinations of the previous parameters.
+A non-exhaustive list of those criteria is given in the next part of this work, including geometrical parameter,
+stress and energetic functions, and recent combinations of the previous parameters.
 
 Geometrical Criteria
 --------------------
@@ -48,7 +49,8 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
     .. math:: N = \cos\psi\cos\kappa + \cos\gamma\cos\delta
         :label: n_factor_angle
         
-  Many authors referred to this criterion to analyze slip transmission [#HauserChamlers_1961]_, [#Davis_1966]_, [#HookHirth_1967_1]_, [#HookHirth_1967_2]_, [#Shen_1986]_, [#Shen_1988]_, [#Lee_1990_1]_, [#Lee_1990_2]_, [#Clark_1992]_ and [#Ueda_2002]_.
+  Many authors referred to this criterion to analyze slip transmission [#HauserChamlers_1961]_, [#Davis_1966]_, [#HookHirth_1967_1]_,
+  [#HookHirth_1967_2]_, [#Shen_1986]_, [#Shen_1988]_, [#Lee_1990_1]_, [#Lee_1990_2]_, [#Clark_1992]_ and [#Ueda_2002]_.
   Pond et al. proposed to compute this geometric criteria for hexagonal metals using Frank's method [#Pond_1986]_.      
 
   The |matlab| function used to calculate the N factor is: `N_factor.m <https://github.com/stabix/stabix/tree/master/slip_transfer/N_factor.m>`_
@@ -65,7 +67,8 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   Pond et al. proposed to compute this geometric criteria for hexagonal metals using Frank's method [#Pond_1986]_. 
   Recently, Spearot and Sangid have plotted this parameter as a function of the misorientation of the bicrystal using atomistic simulations [#SpearotSangid_2014]_.
   
-  [#Lee_1989]_, [#Lee_1990_1]_, [#Lee_1990_2]_, [#Clark_1992]_, [#Kehagias_1995]_, [#Kehagias_1996]_, [#Ashmawi_2001]_, [#Gemperle_2004]_, [#Gemperlova_2004]_ and [#Shi_2011]_ mentioned in their respective studies this geometrical parameter as a condition for slip transmission.
+  [#Lee_1989]_, [#Lee_1990_1]_, [#Lee_1990_2]_, [#Clark_1992]_, [#Kehagias_1995]_, [#Kehagias_1996]_, [#Ashmawi_2001]_, [#Gemperle_2004]_,
+  [#Gemperlova_2004]_ and [#Shi_2011]_ mentioned in their respective studies this geometrical parameter as a condition for slip transmission.
   
   The inclination of the grain boundary (:math:`\beta`) is required to evaluate this factor and the :math:`LRB` or :math:`M` factor should be maximized.
   
@@ -79,7 +82,8 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
     .. math:: m' = \cos\psi\cos\kappa
         :label: m_prime_angle
 
-  Many authors found that this :math:`m'` parameter, which takes into account the degree of coplanarity of slip systems, is promising to predict slip transmission [#WangNgan_2004]_, [#WoNgan_2004]_, [#Britton_2009]_, [#Bieler_2009]_, [#Bieler_2014]_ and [#Guo_2014]_.
+  Many authors found that this :math:`m'` parameter, which takes into account the degree of coplanarity of slip systems, is promising
+  to predict slip transmission [#WangNgan_2004]_, [#WoNgan_2004]_, [#Britton_2009]_, [#Bieler_2009]_, [#Bieler_2014]_ and [#Guo_2014]_.
   Both :math:`m'` and :math:`LRB` can be easily assessed in computational experiments [#Bieler_2014]_.
   This :math:`m'` factor should be maximized (1 means grain boundary is transparent and 0 means grain boundary is an impenetrable boundary).
   
@@ -110,11 +114,14 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
         
   The magnitude of this |rbv| should be minimized.
   
-  Shirokoff et al., Kehagias et al., and Kacher et al. used the |rbv| as a criterion to analyse slip transmission in cp-Ti (hex) [#Shirokoff_1993]_, [#Kehagias_1995]_, [#Kehagias_1996]_ and [#KacherRobertson_2014]_,
-  Lagow et al. in Mo (bcc) [#Lagow_2001]_, Gemperle et al. and Gemperlova et al. in FeSi (bcc) [#Gemperle_2004]_ and [#Gemperlova_2004]_, Kacher et al. in 304 stainless steel (fcc) [#KacherRobertson_2012]_,
+  Shirokoff et al., Kehagias et al., and Kacher et al. used the |rbv| as a criterion to analyse slip transmission in cp-Ti (hex)
+  [#Shirokoff_1993]_, [#Kehagias_1995]_, [#Kehagias_1996]_ and [#KacherRobertson_2014]_,
+  Lagow et al. in Mo (bcc) [#Lagow_2001]_, Gemperle et al. and Gemperlova et al. in FeSi (bcc) [#Gemperle_2004]_ and [#Gemperlova_2004]_,
+  Kacher et al. in 304 stainless steel (fcc) [#KacherRobertson_2012]_,
   and Jacques et al. for semiconductors [#Jacques_1990]_.
   
-  Patriarca et al. demonstrated for BCC material the role of the |rbv| in predicting slip transmission, by analysing strain field across GBs determined by digital image correlation [#Patriarca_2013]_. 
+  Patriarca et al. demonstrated for BCC material the role of the |rbv| in predicting slip transmission, by analysing strain field across GBs
+  determined by digital image correlation [#Patriarca_2013]_. 
   
   Misra and Gibala used the |rbv| to analyze slip across a fcc/bcc interphase boundary [#MisraGibala_1999]_.
   
@@ -122,10 +129,13 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
  
 * **The misorientation or disorientation** (:math:`\Delta g` or :math:`\Delta g_\text d`)  [#AustChen_1954]_, [#ClarkChalmers_1954]_ and [#WoNgan_2004]_
 
-  It has been observed during first experiments of bicrystals deformation in 1954, that the yield stress and the rate of work hardening increased with the orientation difference between the crystals [#AustChen_1954]_ and [#ClarkChalmers_1954]_.
+  It has been observed during first experiments of bicrystals deformation in 1954, that the yield stress and the rate of work hardening
+  increased with the orientation difference between the crystals [#AustChen_1954]_ and [#ClarkChalmers_1954]_.
   
-  Some authors demonstrated a strong correlation between misorientation between grains in a bicrystal and the grain boundary energy through crystal plasticity finite elements modelling and
-  molecular dynamics simulations [#SuttonBalluffi_1995]_, [#Ma_2006]_, [#Li_2009]_, [#Bachurin_2010]_, [#Sangid_2011]_ and [#Sangid_2012]_. Some authors studied the stability of grain boundaries by the calculations
+  Some authors demonstrated a strong correlation between misorientation between grains in a bicrystal and the grain boundary energy through
+  crystal plasticity finite elements modelling and
+  molecular dynamics simulations [#SuttonBalluffi_1995]_, [#Ma_2006]_, [#Li_2009]_, [#Bachurin_2010]_, [#Sangid_2011]_ and [#Sangid_2012]_.
+  Some authors studied the stability of grain boundaries by the calculations
   of energy difference vs. misorientation angle through the hexagonal c-axis/a-axis [#Faraoun_2006]_.
   
   The misorientation and disorientation equations are given in the `crystallographic properties of a bicrystal. <http://stabix.readthedocs.org/en/latest/bicrystal_definition.html>`_

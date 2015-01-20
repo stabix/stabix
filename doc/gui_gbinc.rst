@@ -10,8 +10,10 @@ At least three marks such as microindents are needed for registration of the ima
 
 Examples of `micrographs from serial polishing. <https://github.com/stabix/stabix/tree/master/gui_gbinc/sem_pictures_serial_polishing>`_
 
-To get started with gbinc toolbox, clone the repository, then run Matlab, and cd into the folder containing this README file. Then add the package path to the Matlab search path by typing "path_management".
-Finally you can start the launcher by typing `demo <https://github.com/stabix/stabix/blob/master/demo.m>`_ or `A_gui_gbinc <https://github.com/stabix/stabix/blob/master/gui_gbinc/A_gui_gbinc.m>`_ at the Matlab command prompt.
+To get started with gbinc toolbox, clone the repository, then run Matlab, and cd into the folder containing this README file.
+Then add the package path to the Matlab search path by typing "path_management".
+Finally you can start the launcher by typing `demo <https://github.com/stabix/stabix/blob/master/demo.m>`_ or
+`A_gui_gbinc <https://github.com/stabix/stabix/blob/master/gui_gbinc/A_gui_gbinc.m>`_ at the Matlab command prompt.
 
 How to use the toolbox ?
 ------------------------
@@ -62,6 +64,9 @@ How to use the toolbox ?
 
 See also
 ---------
+
+`V. Randle and Dingley D., "Measurement of boundary plane inclination in a scanning electron microscope.", Scripta Metall., 1989, 23, pp. 1565–1569. <http://dx.doi.org/10.1016/0036-9748(89)90129-4>`_
+
 `V. Randle, "A methodology for grain boundary plane assessment by single-section trace analysis.", Scripta Mater., 2001, 44, pp. 2789-2794. <http://dx.doi.org/10.1016/S1359-6462(01)00975-7>`_
 
 Links

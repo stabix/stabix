@@ -63,7 +63,7 @@ Residual Burgers vector
    :scale: 40 %
    :align: center
    
-   *Figure 5 :  Screenshot of the EBSD map GUI with an EBSD map of a Ti alloy (GBs color-coded in function of the maximum residual Burgers vector value)*
+   *Figure 5 : Screenshot of the EBSD map GUI with an EBSD map of a Ti alloy (GBs color-coded in function of the maximum residual Burgers vector value)*
    
 .. _Schmid_factor_slip_traces:
 
@@ -74,5 +74,5 @@ Schmid factor and slip trace analysis
    :scale: 40 %
    :align: center
    
-   *Figure 6 :  Screenshot of the EBSD map GUI with an EBSD map of a Ti alloy (slip plane plotted inside grain and 
+   *Figure 6 : Screenshot of the EBSD map GUI with an EBSD map of a Ti alloy (slip plane plotted inside grain and 
    slip traces plotted around unit cells, both in function of the maximum Schmid factor calculated with a given stress tensor)*

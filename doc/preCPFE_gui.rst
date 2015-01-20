@@ -175,8 +175,7 @@ Installing DAMASK
 ------------------
 
 For instructions on how to set up the DAMASK constitutive simulation code please visit
-http://DAMASK.mpie.de .
-
+http://DAMASK.mpie.de.
 
 Writing the CPFE input files
 -----------------------------
@@ -239,7 +238,7 @@ See also
 
 `Zambaldi C. and Raabe D., "Crystal plasticity modelling and experiments for deriving microstructure-property relationships in γ-TiAl based alloys.", Journal of Physics (2010) <http://dx.doi.org/10.1088/1742-6596/240/1/012140>`_
 
-`Zambaldi C., "Micromechanical modeling of γ-TiAl based alloys,", PhD Thesis (2010) <http://dx.doi.org/10.2370/9783832297176>`_
+`Zambaldi C., "Micromechanical modeling of γ-TiAl based alloys.", PhD Thesis (2010) <http://dx.doi.org/10.2370/9783832297176>`_
 
 `Zambaldi C. and Raabe D., "Plastic anisotropy of c-TiAl revealed by axisymmetric indentation.", Acta Materialia (2011) <http://dx.doi.org/10.1016/j.actamat.2010.02.025>`_
 
