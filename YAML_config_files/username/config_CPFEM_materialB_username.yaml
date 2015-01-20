@@ -27,11 +27,11 @@ Phase2_c12:    100e9
 Phase2_c44:    100e9
 
 # Slip systems
-Phase2_nslip:  12 0 0 0# per family
+Phase2_nslip: 12 0 # per family
 Phase2_gdot0_slip: 0.001
 Phase2_n_slip: 20
-Phase2_tau0_slip: 500e6 0 0 0# per family
-Phase2_tausat_slip: 1000e6 0 0 0# per family
+Phase2_tau0_slip: 500e6 0 0# per family
+Phase2_tausat_slip: 1000e6 0# per family
 Phase2_a_slip: 2.25
 
 # Twin systems
