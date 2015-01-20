@@ -124,6 +124,7 @@ class Indentation(Indenter, Tools):
         self.procSampleMeshing()
         self.procBoundaryConditionsIndent()
         self.procMaterial()
+        #self.procElastoPlasticMaterial # for elasto-plastic material
         self.procSectionsIndent()
         if geo == 'conical':
             self.procIndenterConical(coneHalfAngle=self.IndentParameters['coneHalfAngle'])
@@ -1292,7 +1293,7 @@ elements_selected = elements_sample.getByBoundingCylinder((0,0,-h_sample-smv),(0
 final_sample.Set(elements=elements_selected, name='All Elements')
 
 model_name.HomogeneousSolidSection(
-    name='Section ElastoPlastic', material='ElastoPlastic_Material-1', thickness=None)
+    name='Section ElastoPlastic', material='Material-1', thickness=None)
 
 # Assigning material properties
 final_sample = model_name.parts['Final Sample']

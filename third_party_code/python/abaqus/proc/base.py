@@ -243,31 +243,35 @@ model_name.setValues(description='%s')''' % description + '''
                                 StateVariableNumber=3,
                                 StateVariableValue=m)
 
+    def procElastoPlasticMaterial(self, name='hypela2', els='all_existing'):
+        self.proc.append('''
+#+++++++++++++++++++++++++++++++++++++++++++++
+# MATERIAL-DEFINITION
+#+++++++++++++++++++++++++++++++++++++++++++++
+model_name.Material(name='Material-1')
+model_name.materials['Material-1'].Density(table=((1.0, ), ))
+model_name.materials['Material-1'].Elastic(table=((45000.0, 0.3), ))
+model_name.materials['Material-1'].Plastic(table=((10.0, 0.0), (15.0, 0.15), (17.5, 0.3), (18.0, 0.4)))
+
+model_name.Material(name='Material-2')
+model_name.materials['Material-2'].Density(table=((1.0, ), ))
+model_name.materials['Material-2'].Elastic(table=((90000.0, 0.3), ))
+model_name.materials['Material-2'].Plastic(table=((20.0, 0.0), (30.0, 0.15), (35, 0.3), (36, 0.4)))''')
+
     def procMaterial(self, name='hypela2', els='all_existing'):
         self.proc.append('''
 #+++++++++++++++++++++++++++++++++++++++++++++
 # MATERIAL-DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
-model_name.Material(name='ElastoPlastic_Material-1')
-model_name.materials['ElastoPlastic_Material-1'].Density(table=((1.0, ), ))
-model_name.materials['ElastoPlastic_Material-1'].Elastic(table=((45000.0, 0.3), ))
-model_name.materials['ElastoPlastic_Material-1'].Plastic(table=((10.0, 0.0), (15.0, 0.15), (17.5, 0.3), (18.0, 0.4)))
+model_name.Material(name='Material-1')
+model_name.materials['Material-1'].Depvar(n=49)
+model_name.materials['Material-1'].UserMaterial(mechanicalConstants=(1.0, 1.0))
+model_name.materials['Material-1'].userMaterial.setValues(unsymm=ON)
 
-model_name.Material(name='ElastoPlastic_Material-2')
-model_name.materials['ElastoPlastic_Material-2'].Density(table=((1.0, ), ))
-model_name.materials['ElastoPlastic_Material-2'].Elastic(table=((90000.0, 0.3), ))
-model_name.materials['ElastoPlastic_Material-2'].Plastic(table=((20.0, 0.0), (30.0, 0.15), (35, 0.3), (36, 0.4)))''')
-
-    def procMaterialElast(self, name='hypela2', els='all_existing'):
-        self.header('MATERIAL DATA')
-        self.proc.append('''
-''' % (els))
-
-        for ic in self.initConds:
-            self.proc.append('''
-''' % ic)
-        self.proc.append('''
-''')
+model_name.Material(name='Material-2')
+model_name.materials['Material-2'].Depvar(n=49)
+model_name.materials['Material-2'].UserMaterial(mechanicalConstants=(1.0, 2.0))
+model_name.materials['Material-2'].userMaterial.setValues(unsymm=ON)''')
 
     def proc_copy_job(self,
                       jobname=None, # e.g. ori

@@ -227,6 +227,7 @@ class BicrystalIndent(Proc, Indenter):
         self.procBoundaryConditionsIndent()
         self.procRotationTranslation()
         self.procMaterial()
+        #self.procElastoPlasticMaterial # for elasto-plastic material
         self.procSectionsBicrystal()
         self.proc.append('''
 final_sample_name = 'Bicrystal-1'
@@ -722,12 +723,12 @@ if trace_ang !=0:
 #+++++++++++++++++++++++++++++++++++++++++++++
 # SECTIONS DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
-model_name.HomogeneousSolidSection(name='Section_Grain1', material='ElastoPlastic_Material-1', thickness=None)
-model_name.HomogeneousSolidSection(name='Section_Grain2', material='ElastoPlastic_Material-2', thickness=None)
+model_name.HomogeneousSolidSection(name='Section_Grain1', material='Material-1', thickness=None)
+model_name.HomogeneousSolidSection(name='Section_Grain2', material='Material-2', thickness=None)
 if distGB > 0:
-    model_name.HomogeneousSolidSection(name='Section_Grain1-GB', material='ElastoPlastic_Material-1', thickness=None)
+    model_name.HomogeneousSolidSection(name='Section_Grain1-GB', material='Material-1', thickness=None)
 elif distGB < 0:
-    model_name.HomogeneousSolidSection(name='Section_Grain2-GB', material='ElastoPlastic_Material-2', thickness=None)
+    model_name.HomogeneousSolidSection(name='Section_Grain2-GB', material='Material-2', thickness=None)
 
 p = model_name.parts['Bicrystal']
 
