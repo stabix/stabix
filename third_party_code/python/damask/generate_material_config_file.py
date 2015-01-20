@@ -278,6 +278,7 @@ def mat_config(gb_data, proc_path='./'):
                               'volume',
                               'orientation', # quaternion
                               'eulerangles', # orientation as Bunge triple
+                              'grainrotation',
                               'f', # deformation gradient tensor; synonyms: "defgrad"
                               'fe', # elastic deformation gradient tensor
                               'fp', # plastic deformation gradient tensor
@@ -292,6 +293,7 @@ def mat_config(gb_data, proc_path='./'):
         print('No Crystallite Output defined')
         pass
     mat.add_section('crystallite', 'essential_output', c)
+    #mat.add_section('crystallite', 'all', c)
 
     #---PHASE
     pA = Phase()
