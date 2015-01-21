@@ -356,6 +356,17 @@ else:
 # C3D8R = 8-node linear brick, reduced integration, hourglass control
 # Reduced integration means it will take less time, but it will be less accurate...
 
+    def procRefPointIndenter(self):
+        self.proc.append('''
+#+++++++++++++++++++++++++++++++++++++++++++++
+# REFERENCE POINT
+#+++++++++++++++++++++++++++++++++++++++++++++
+# Preliminary definitions (sets, surfaces, references points...)
+indenter = model_name.parts['indenter']
+v = indenter.vertices
+indenter.ReferencePoint(point=v.findAt(coordinates=(0.0, 0.0, 0.0)))
+''')
+
     def procLoadCaseIndent(self):
         self.proc.append('''
 #+++++++++++++++++++++++++++++++++++++++++++++

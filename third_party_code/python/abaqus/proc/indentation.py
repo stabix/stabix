@@ -135,7 +135,8 @@ class Indentation(Indenter, Tools):
         self.proc.append('''
 final_sample_name = 'Final Sample-1'
 ''')
-        self.procContactIndent() 
+        self.procContactIndent()
+        self.procRefPointIndenter()
         self.procLoadCaseIndent() #nSteps=self.IndentParameters['nSteps']
         self.procJobParameters()
         savename = modelname + '_' + label

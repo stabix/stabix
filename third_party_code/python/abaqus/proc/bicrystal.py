@@ -233,6 +233,7 @@ class BicrystalIndent(Proc, Indenter):
 final_sample_name = 'Bicrystal-1'
 ''')
         self.procContactIndent()
+        self.procRefPointIndenter()
         self.procLoadCaseIndent() #nSteps=self.IndentParameters['nSteps']
         self.procJobParameters()
         savename = modelname + '_' + label
@@ -589,16 +590,6 @@ p.Set(faces=faces, name='Surf-sides')
 faces = f.findAt((((d_box_A + box_y1)/2, 0, width/2), ), (((box_y1 + box_y2)/2, 0, width/2), ),
     (((box_y2 + d_box_B)/2, 0, width/2), ))
 p.Set(faces=faces, name='Surf Sample')
-
-#+++++++++++++++++++++++++++++++++++++++++++++
-# REFERENCE POINT
-#+++++++++++++++++++++++++++++++++++++++++++++
-p = model_name.parts['Bicrystal']
-v = p.vertices
-p.ReferencePoint(point=v.findAt(coordinates=(distGB, 0.0, width/2)))
-r = p.referencePoints
-refPoints=(r[25], ) #Function of the partitions done before
-p.Set(referencePoints=refPoints, name='Set-RP')
 
 #+++++++++++++++++++++++++++++++++++++++++++++
 # INSTANCES DEFINITION
