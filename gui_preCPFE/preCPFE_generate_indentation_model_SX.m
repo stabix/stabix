@@ -108,7 +108,7 @@ else
 end
 %cellfun(@display, py)
 
-fid = fopen([scriptname_bicrystal], 'w+');
+fid = fopen(scriptname_bicrystal, 'w+');
 for iln = 1:numel(py)
     fprintf(fid, '%s\n', py{iln});
 end
@@ -116,7 +116,7 @@ end
 fclose(fid);
 
 %% Execute the Python code that we just generated
-cmd = sprintf('%s %s', gui_SX.config.CPFEM.python_executable, ...
+cmd = sprintf('%s "%s"', gui_SX.config.CPFEM.python_executable, ...
     fullfile(pwd, scriptname_bicrystal));
 commandwindow;
 % if ~ isempty(gui_SX.config.CPFEM.pythonpath)
