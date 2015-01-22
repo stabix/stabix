@@ -18,6 +18,7 @@ if ~isdir(config_CPFEM.proc_file_path)
     config_CPFEM.proc_file_path = cd();
     warning_commwin(['Please modify proc_file_path field in ' ...
         'config_CPFEM YAML file !']);
+    %TODO: mkdir(config_CPFEM.proc_file_path) ??
 end
 
 end
