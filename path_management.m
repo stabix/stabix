@@ -53,7 +53,7 @@ if strcmpi(answer, 'y') || isempty(answer)
     %savepath;
     setenv(root_var, folder)
 elseif strcmpi(answer, 'rm')
-    fprintf('Removing %i entries from matlab search path\n', n_dirs);
+    fprintf('Removing %i entries from Matlab search path\n', n_dirs);
     rmpath(path_to_add);
     % delete environment variable, TODO: works on Linux?
     setenv(root_var, '') 
