@@ -241,10 +241,10 @@ else
                                 grains(grA).structure, ...
                                 grains(grB).structure) ;
                         end
-                        flag.CalculationFlag = 4;
                     else
                         Results(gbnum).misor = NaN ;
                     end
+                    flag.CalculationFlag = 4;
                 end
                 
                 %% Calculation of the c-axis misorientation
