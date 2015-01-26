@@ -16,7 +16,7 @@ Slip Transmission |matlab| toolbox
         :scale: 100 %
         :align: right
         
-        *Slip transmission analysis for an EBSD map of CP alpha-Ti.*
+        *Slip transmission analysis for an EBSD map of near alpha phase Ti alloy.*
    
 .. only:: latex
 

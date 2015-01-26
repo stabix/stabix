@@ -23,7 +23,7 @@ Plotting and analyzing a bicrystal
    :scale: 40 %
    :align: center
    
-   *Figure 1 : Screenshot of the Bicrystal GUI*
+   *Figure 1 : Screenshot of the Bicrystal GUI.*
    
 .. _all_mprime_values:
 
@@ -46,7 +46,7 @@ It is possible to set bicrystal properties (material, phase, Euler angles of bot
     - from a YAML configuration file (from the menu, by clicking on 'Bicrystal, and 'Load Bicrystal config. file').
 
 .. figure:: ./_pictures/GUIs/ebsd2bicrystal.png
-   :scale: 40 %
+   :scale: 50 %
    :align: center
    
    *Figure 3 : The different steps to set the bicrystal GUI.*

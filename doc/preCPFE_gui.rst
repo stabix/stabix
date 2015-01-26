@@ -34,7 +34,8 @@ CPFE simulation of single crystal indentation has an important role in clarifyin
 the influence of the single-slip behavior of different slip systems on the resulting 
 surface profiles.
 
-The function used to run the preCPFE GUI for SX indentation is: `A_preCPFE_windows_indentation_setting_SX.m <https://github.com/stabix/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_SX.m>`_
+The function used to run the preCPFE GUI for SX indentation is:
+`A_preCPFE_windows_indentation_setting_SX.m <https://github.com/stabix/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_SX.m>`_
 
 .. figure:: ./_pictures/GUIs/preCPFE_GUI_SX.png
    :scale: 40 %
@@ -69,7 +70,8 @@ are the subject of ongoing research, most geometrical and kinematic factors are 
 by employing a local phenomenological crystal plasticity formulation in the simulations.
 
 
-The function used to run the preCPFE GUI for BX indentation is: `A_preCPFE_windows_indentation_setting_BX.m <https://github.com/stabix/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_BX.m>`_
+The function used to run the preCPFE GUI for BX indentation is:
+`A_preCPFE_windows_indentation_setting_BX.m <https://github.com/stabix/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_BX.m>`_
 
 .. only:: html
 
@@ -104,7 +106,7 @@ It is possible to set SX or BX properties (material, phase, Euler angles, trace 
     - from a YAML configuration file (from the menu, by clicking on 'preCPFE-SX' or 'preCPFE-BX', and 'Load Single Crystal config. file' or 'Load Bicrystal config. file').
 
 .. figure:: ./_pictures/GUIs/bicrystal2cpfem.png
-   :scale: 40 %
+   :scale: 50 %
    :align: center
    
    *Figure 6 : The different steps to set the preCPFE GUIs.*
