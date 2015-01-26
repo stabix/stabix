@@ -79,28 +79,28 @@ if ~no_file
     set(gui.handles.pmcoordsyst, 'BackgroundColor', [0.9 0.9 0.9]);
     set(gui.handles.cbgbnum, 'Value', 0);
     interface_map_plotmap(1,1);
-    xlim([ 0 700]);ylim([-1100 0]);
+    xlim([0 400]);ylim([-600 -200]);
     SCREENSHOT_NUM = screenshot_function(...
         SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % Smoothing of GBs
     set(gui.handles.scale_gb_segments_bar, 'Value', 180);
     interface_map_plotmap(1,1);
-    xlim([ 0 700]);ylim([-1100 0]);
+    xlim([0 400]);ylim([-600 -200]);
     SCREENSHOT_NUM = screenshot_function(...
         SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % Increase of lattice cells size
-    set(gui.handles.scale_unitcell_bar, 'Value', 0.6);
+    set(gui.handles.scale_unitcell_bar, 'Value', 1);
     interface_map_plotmap(1,1);
-    xlim([ 0 700]);ylim([-1100 0]);
+    xlim([0 400]);ylim([-600 -200]);
     SCREENSHOT_NUM = screenshot_function(...
         SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % Misorientation calculation
     set(gui.handles.pmparam2plot4GB, 'Value', 8);
     interface_map_plotmap(1,1);
-    xlim([ 0 700]);ylim([-1100 0]);
+    xlim([0 400]);ylim([-600 -200]);
     SCREENSHOT_NUM = screenshot_function(...
         SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
@@ -108,7 +108,7 @@ if ~no_file
     set(gui.handles.pmlistslips1, 'Value', 3);
     set(gui.handles.pmparam2plot4GB, 'Value', 2);
     interface_map_plotmap(1,1);
-    xlim([ 0 700]);ylim([-1100 0]);
+    xlim([0 400]);ylim([-600 -200]);
     SCREENSHOT_NUM = screenshot_function(...
         SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
@@ -116,7 +116,7 @@ if ~no_file
     for ii = 3:1:11
         set(gui.handles.pmparam2plot4GB, 'Value', ii);
         interface_map_plotmap(1,1);
-        xlim([ 0 700]);ylim([-1100 0]);
+        xlim([0 400]);ylim([-600 -200]);
         SCREENSHOT_NUM = screenshot_function(...
             SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     end
@@ -124,7 +124,7 @@ if ~no_file
     % Plot slip with highest SF
     set(gui.handles.pmparam2plot4Grains, 'Value', 2);
     interface_map_plotmap(1,1);
-    xlim([ 0 700]);ylim([-1100 0]);
+    xlim([0 400]);ylim([-600 -200]);
     SCREENSHOT_NUM = screenshot_function(...
         SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
@@ -133,30 +133,34 @@ if ~no_file
     set(gui.handles.pmlistslips1, 'Value', [3 4]);
     set(gui.handles.pmparam2plot4GB, 'Value', 2);
     interface_map_plotmap(1,1);
-    xlim([ 0 700]);ylim([-1100 0]);
+    xlim([0 400]);ylim([-600 -200]);
     SCREENSHOT_NUM = screenshot_function(...
         SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % Plot slip with highest SF
     set(gui.handles.pmparam2plot4Grains, 'Value', 2);
     interface_map_plotmap(1,1);
-    xlim([ 0 700]);ylim([-1100 0]);
+    xlim([0 400]);ylim([-600 -200]);
     SCREENSHOT_NUM = screenshot_function(...
         SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
+    
+    set(gui.handles.cbsliptraces, 'value', 1) % Plot of slip traces
+    set(gui.handles.pmlegend, 'value', 1) % No legend
+    SCREENSHOT_NUM = screenshot_function(...
+        SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);   
     
     %Add GB numbers
     set(gui.handles.cbgbnum, 'Value', 1);
     interface_map_plotmap(1,1);
-    xlim([ 0 700]);ylim([-1100 0]);
+    xlim([0 400]);ylim([-600 -200]);
     SCREENSHOT_NUM = screenshot_function(...
         SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     % Zoom on EBSD map
-    zoom on;
-    zoom (2.5);
+    set(gui.handles.cbgbnum, 'Value', 0);
+    xlim([0 200]);ylim([-500 -300]);
     SCREENSHOT_NUM = screenshot_function(...
         SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
-    zoom off;
 end
 
 beep;
