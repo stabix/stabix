@@ -55,9 +55,9 @@ Then, from this misorientation matrix (:math:`\Delta g`), the rotation angle (:m
             v = \Delta g_{31} - \Delta g_{13} \\
             w = \Delta g_{12} - \Delta g_{21}
         :label: misorientation_axis
-        
-The |matlab| function used to calculate the misorientation angle is: `misorientation.m <https://github.com/stabix/stabix/blob/master/crystallo/misorientation.m>`_
-        
+
+The |matlab| function used to calculate the misorientation angle is: `misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/misorientation.m>`_
+
 The grain boundary plane normal :math:`n` can be determined knowing the grain boundary trace angle :math:`\alpha` and the grain boundary inclination :math:`\beta`.
         
 The grain boundary trace angle is obtained through the EBSD measurements (grain boundary endpoints coordinates) and the `grain boundary inclination <http://stabix.readthedocs.org/en/latest/gui_gbinc.html>`_ can be assessed

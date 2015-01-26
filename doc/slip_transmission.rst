@@ -98,13 +98,14 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
    :align: center
    
    *Figure 4 : Distribution of m' parameter calculated for prismatic <a> slip systems in function of  misorientation angle.*
+
    
    A resistance factor of the grain boundary can be described by the following equation : 
    
     .. math:: GB_\text{resfac} = 1 - m'
         :label: resistance_factor
         
-  This factor is equal to 0 (grain boundary transparent if the :math:`m'` parameter is equal to 1 (when slip perfectly aligns)).
+  This factor is equal to 0, when grain boundary is transparent to dislocations. This implies :math:`m'` parameter equal to 1 (slip perfectly aligned).
    
   The |matlab| function used to calculate the m' parameter is: `mprime.m <https://github.com/stabix/stabix/tree/master/slip_transfer/mprime.m>`_
      
@@ -116,14 +117,14 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   
   Shirokoff et al., Kehagias et al., and Kacher et al. used the |rbv| as a criterion to analyse slip transmission in cp-Ti (hex)
   [#Shirokoff_1993]_, [#Kehagias_1995]_, [#Kehagias_1996]_ and [#KacherRobertson_2014]_,
-  Lagow et al. in Mo (bcc) [#Lagow_2001]_, Gemperle et al. and Gemperlova et al. in FeSi (bcc) [#Gemperle_2004]_ and [#Gemperlova_2004]_,
-  Kacher et al. in 304 stainless steel (fcc) [#KacherRobertson_2012]_,
+  Lagow et al. in Mo (BCC) [#Lagow_2001]_, Gemperle et al. and Gemperlova et al. in FeSi (BCC) [#Gemperle_2004]_ and [#Gemperlova_2004]_,
+  Kacher et al. in 304 stainless steel (FCC) [#KacherRobertson_2012]_,
   and Jacques et al. for semiconductors [#Jacques_1990]_.
   
   Patriarca et al. demonstrated for BCC material the role of the |rbv| in predicting slip transmission, by analysing strain field across GBs
   determined by digital image correlation [#Patriarca_2013]_. 
   
-  Misra and Gibala used the |rbv| to analyze slip across a fcc/bcc interphase boundary [#MisraGibala_1999]_.
+  Misra and Gibala used the |rbv| to analyze slip across a FCC/BCC interphase boundary [#MisraGibala_1999]_.
   
   The |matlab| function used to calculate the |rbv| is: `residual_Burgers_vector.m <https://github.com/stabix/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_
  
@@ -141,7 +142,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   The misorientation and disorientation equations are given in the `crystallographic properties of a bicrystal. <http://stabix.readthedocs.org/en/latest/bicrystal_definition.html>`_
  
   The |matlab| function used to calculate the misorientation angle is: `misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/misorientation.m>`_
-
+  
 Stress Criteria
 -----------------
 * **Schmid Factor** (:math:`m`) [#Reid_1973]_, [#Seal_2012]_ and [#Abuzaid_2012]_
@@ -213,8 +214,8 @@ Slip transmission parameters implemented in the |matlab| Toolbox
    :header: "Slip transmission parameter", "Function", "|matlab| function", "Reference"
    :widths: 40, 40, 20, 10
 
-   "Misorientation angle (:math:`\omega`)", ":math:`\omega = cos^{-1}((tr(\Delta g)-1)/2)`", `misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/misorientation.m>`_, [#SuttonBalluffi_1995]_
-   "C-axis misorientation angle (hcp material) (:math:`\omega`)", , `c-axis misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/eul2Caxismisor.m>`_, [#SuttonBalluffi_1995]_
+   "Misorientation angle (FCC and BCC materials) (:math:`\omega`)", ":math:`\omega = cos^{-1}((tr(\Delta g)-1)/2)`", `misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/misorientation.m>`_, [#SuttonBalluffi_1995]_
+   "C-axis misorientation angle (HCP material) (:math:`\omega`)", , `c-axis misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/eul2Caxismisor.m>`_, [#SuttonBalluffi_1995]_
    ":math:`N` factor from Livingston and Chamlers", ":math:`N = \cos(\psi)\cdot\cos(\kappa) + \cos(\gamma)\cdot\cos(\delta)`", `N_factor.m <https://github.com/stabix/stabix/tree/master/slip_transfer/N_factor.m>`_, [#LivingstonChalmers_1957]_
    ":math:`LRB` factor from Shen et al.", ":math:`LRB = \cos(\theta)\cdot\cos(\kappa)`", `LRB_parameter.m <https://github.com/stabix/stabix/tree/master/slip_transfer/LRB_parameter.m>`_, [#Shen_1986]_ / [#Shen_1988]_
    ":math:`m'` parameter from Luster and Morris", ":math:`m' = \cos(\psi)\cdot\cos(\kappa)`", `mprime.m <https://github.com/stabix/stabix/tree/master/slip_transfer/mprime.m>`_, [#LusterMorris_1995]_
@@ -225,9 +226,9 @@ Slip transmission parameters implemented in the |matlab| Toolbox
 
 Slip and twin systems implemented in the |matlab| Toolbox
 ---------------------------------------------------------------------------
-* List of slip and twin systems for FCC phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_ and `DAMASK <http://damask.mpie.de/Documentation/FCC>`_.
-* List of slip and twin systems for BCC phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_ and `DAMASK <http://damask.mpie.de/Documentation/BCC>`_.
-* List of slip and twin systems for HCP phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_ and `DAMASK <http://damask.mpie.de/Documentation/Hex>`_.
+* List of slip and twin systems for FCC phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_ and `DAMASK - FCC <http://damask.mpie.de/Documentation/FCC>`_.
+* List of slip and twin systems for BCC phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_ and `DAMASK - BCC <http://damask.mpie.de/Documentation/BCC>`_.
+* List of slip and twin systems for HCP phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_ and `DAMASK - HCP <http://damask.mpie.de/Documentation/Hex>`_.
 
 References
 ----------

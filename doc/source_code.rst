@@ -1,4 +1,4 @@
-First of all, download the source code of the |matlab| toolbox.
+First of all, download the source code of the Matlab toolbox.
 
 .. figure:: ./_pictures/download.png
    :scale: 20 %

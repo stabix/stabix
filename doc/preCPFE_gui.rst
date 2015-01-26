@@ -46,7 +46,7 @@ The function used to run the preCPFE GUI for SX indentation is: `A_preCPFE_windo
    :scale: 40 %
    :align: center
    
-   *Figure 2 : Screenshot of the single crystal indentation model in Abaqus*
+   *Figure 2 : Screenshot of the single crystal indentation model in Abaqus.*
    
 Convention for the single crystal mesh
 ***************************************
@@ -77,7 +77,7 @@ The function used to run the preCPFE GUI for BX indentation is: `A_preCPFE_windo
        :scale: 40 %
        :align: center
        
-       *Figure 4 : Screenshots of the preCPFE GUI for the bicrystal indentation*
+       *Figure 4 : Screenshots of the preCPFE GUI for the bicrystal indentation.*
    
 .. only:: latex
 
@@ -85,7 +85,7 @@ The function used to run the preCPFE GUI for BX indentation is: `A_preCPFE_windo
        :scale: 40 %
        :align: center
        
-       *Figure 4 : Screenshot of the preCPFE GUI for the bicrystal indentation*
+       *Figure 4 : Screenshot of the preCPFE GUI for the bicrystal indentation.*
 
 Convention for the bicrystal mesh
 **********************************
@@ -95,6 +95,19 @@ Convention for the bicrystal mesh
    :align: center
    
    *Figure 5 : Convention used to define the bicrystal mesh.*
+   
+How to set crystallographic properties of the SX or of the BX ?
+----------------------------------------------------------------
+
+It is possible to set SX or BX properties (material, phase, Euler angles, trace angle...) :
+    - from the `Bicrystal GUI <http://stabix.readthedocs.org/en/latest/bicrystal_gui.html>`_ (by giving GB's number and pressing the button 'PLOT BICRYSTAL');
+    - from a YAML configuration file (from the menu, by clicking on 'preCPFE-SX' or 'preCPFE-BX', and 'Load Single Crystal config. file' or 'Load Bicrystal config. file').
+
+.. figure:: ./_pictures/GUIs/bicrystal2cpfem.png
+   :scale: 40 %
+   :align: center
+   
+   *Figure 6 : The different steps to set the preCPFE GUIs.*
    
 Indenter's geometry
 --------------------
@@ -123,7 +136,7 @@ It is possible to rotate directly into the GUIs, the Berkovich, Vickers, cube co
        :scale: 40 %
        :align: center
        
-       *Figure 6 : Screenshots of the preCPFE GUI for the bicrystal indentation with Berkovich indenter*
+       *Figure 7 : Screenshots of the preCPFE GUI for the bicrystal indentation with Berkovich indenter.*
    
 .. only:: latex
 
@@ -131,7 +144,7 @@ It is possible to rotate directly into the GUIs, the Berkovich, Vickers, cube co
        :scale: 40 %
        :align: center
        
-       *Figure 6 : Screenshot of the preCPFE GUI for the bicrystal indentation with Berkovich indenter*
+       *Figure 8 : Screenshot of the preCPFE GUI for the bicrystal indentation with Berkovich indenter.*
     
 AFM topography
 ***************
@@ -146,7 +159,7 @@ The |matlab| function used to load and read Gwyddion file is: `read_gwyddion_asc
    :scale: 40 %
    :align: center
    
-   *Figure 7 : Screenshot of the preCPFE GUI for the bicrystal indentation with loaded AFM topography of the indenter*
+   *Figure 9 : Screenshot of the preCPFE GUI for the bicrystal indentation with loaded AFM topography of the indenter.*
 
 Python setup
 -------------
@@ -214,6 +227,23 @@ Using the CPFE input files
 * *Abaqus*
     - 'File' ==> 'Set Work Directory...' ==> Select the folder containing input files
     - 'File' ==> 'Run Script' ==> Select the Python file containing the FEM model (\*.py)
+    
+Running a job with DAMASK
+---------------------------
+
+* *MSC.Mentat*
+    - In the JOB RUN menu choose USER SUBROUTINE FILE and select the interface routine DAMASK_marc.f90.
+
+Find the full documentation for the use of DAMASK with Marc here : http://damask.mpie.de/Usage/Marc.
+
+* *Abaqus*
+    - In the Job Manager > Create... specify the User subroutine file (either DAMASK_abaqus_std.f or DAMASK_abaqus_exp.f).
+
+Find the full documentation for the use of DAMASK with Abaqus here : http://damask.mpie.de/Usage/Abaqus.
+
+N.B.: For Abaqus, you may have to modify the extension of the subroutine:
+    - .f if the operating environment is Linux;
+    - .for if the operating environment is Windows.
 
 See also
 ----------

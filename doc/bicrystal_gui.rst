@@ -17,7 +17,7 @@ This includes:
 .. _bicrystal_from_map:
 
 Plotting and analyzing a bicrystal
-----------------------------------
+-----------------------------------
 
 .. figure:: ./_pictures/GUIs/BX.png
    :scale: 40 %
@@ -28,7 +28,7 @@ Plotting and analyzing a bicrystal
 .. _all_mprime_values:
 
 Distribution of all slip transmission parameters
-------------------------------------------------
+-------------------------------------------------
 
 It is possible to generate a new window, in which all values of the selected slip transmission parameter are plotted in function of selected slip families.
 
@@ -36,4 +36,19 @@ It is possible to generate a new window, in which all values of the selected sli
    :scale: 40 %
    :align: center
    
-   *Figure 2 : Screenshot of the distribution of all slip transmission parameters (e.g.: m' parameter for a 1 phase (hcp) bicrystal)*
+   *Figure 2 : Screenshot of the distribution of all slip transmission parameters (e.g.: m' parameter for a 1 phase (hcp) bicrystal).*
+
+How to set a bicrystal ?
+--------------------------
+
+It is possible to set bicrystal properties (material, phase, Euler angles of both grains, trace angle...) :
+    - from the `EBSD map GUI <http://stabix.readthedocs.org/en/latest/ebsd_map_gui.html>`_ (by giving GB's number and pressing the button 'PLOT BICRYSTAL');
+    - from a YAML configuration file (from the menu, by clicking on 'Bicrystal, and 'Load Bicrystal config. file').
+
+.. figure:: ./_pictures/GUIs/ebsd2bicrystal.png
+   :scale: 40 %
+   :align: center
+   
+   *Figure 3 : The different steps to set the bicrystal GUI.*
+
+

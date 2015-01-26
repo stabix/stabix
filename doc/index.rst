@@ -34,8 +34,8 @@ compatibility of the slip planes normals and Burgers vectors of incoming and out
 Other potential functions that could assess the potential to develop damage are implemented (e.g. residual Burgers vector
 [#Marcinkowski_1970]_ and [#Bollmann_1970]_, :math:`N` factor [#LivingstonChalmers_1957]_, resolved shear stress [#Bieler_2009]_, misorientation...).
 
-Furthermore, the GUI provides the possibility to plot and analyze the case of a bicrystal, and to model sphero-conical indentation performed
-close to grain boundaries (i.e. quasi bicrystal deformation).
+Furthermore, the toolbox provides the possibility to plot and analyze the case of a bicrystal, and to model sphero-conical indentation performed
+in a single crystal or close to grain boundaries (i.e. quasi bicrystal deformation).
 All of the data linked to the bicrystal indentation (indenter properties, indentation settings, grain boundary inclination, etc.) are collected through the GUI.
 A python\ :sup:`TM` \ file can be then exported in order to carry out a fully automatic 3D crystal plasticity finite element simulations of the indentation process
 using one of the constitutive models available in DAMASK [#Roters_2010]_ and [#DAMASK]_.
