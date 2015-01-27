@@ -91,5 +91,5 @@ Parts of this work were supported under the NSF/DFG Materials World Network prog
 
 Keywords
 ---------
-Matlab; Graphical User Interface (GUI); Grain Boundaries; Polycrystalline Metals; Grain Boundary Inclination; Serial Polishing;
+Matlab; Graphical User Interface (GUI); Grain Boundaries; Polycrystalline Metals ; Grain Boundary Inclination ; Serial Polishing ;
 Scanning electron microscope (SEM).

@@ -22,6 +22,19 @@ Currently the following models can be written:
     * :ref:`bicrystal_indentation` (MSC.Mentat and Abaqus)
     
 Please find here the `Python package used to generate the SX and BX indentation models <https://github.com/stabix/stabix/tree/master/third_party_code/python>`_.
+
+How to load crystallographic properties of the SX or of the BX ?
+----------------------------------------------------------------
+
+It is possible to set SX or BX properties (material, phase, Euler angles, trace angle...) :
+    - from the `Bicrystal GUI <http://stabix.readthedocs.org/en/latest/bicrystal_gui.html>`_ (by giving GB's number and pressing the button 'PLOT BICRYSTAL');
+    - from a YAML configuration file (from the menu, by clicking on 'preCPFE-SX' or 'preCPFE-BX', and 'Load Single Crystal config. file' or 'Load Bicrystal config. file').
+
+.. figure:: ./_pictures/GUIs/bicrystal2cpfem.png
+   :scale: 50 %
+   :align: center
+   
+   *Figure 1 : The different steps to set the preCPFE GUIs.*
     
 .. _single_crystal_indentation:
 
@@ -41,13 +54,13 @@ The function used to run the preCPFE GUI for SX indentation is:
    :scale: 40 %
    :align: center
    
-   *Figure 1 : Screenshot of the preCPFE GUI for the single crystal indentation*
+   *Figure 2 : Screenshot of the preCPFE GUI for the single crystal indentation*
    
 .. figure:: ./_pictures/fem_softwares/abaqus_SX_model.png
    :scale: 40 %
    :align: center
    
-   *Figure 2 : Screenshot of the single crystal indentation model in Abaqus.*
+   *Figure 3 : Screenshot of the single crystal indentation model in Abaqus.*
    
 Convention for the single crystal mesh
 ***************************************
@@ -56,7 +69,7 @@ Convention for the single crystal mesh
    :scale: 25 %
    :align: center
    
-   *Figure 3 : Convention used to define the single crystal mesh.*
+   *Figure 4 : Convention used to define the single crystal mesh.*
    
 .. _bicrystal_indentation:
 
@@ -79,7 +92,7 @@ The function used to run the preCPFE GUI for BX indentation is:
        :scale: 40 %
        :align: center
        
-       *Figure 4 : Screenshots of the preCPFE GUI for the bicrystal indentation.*
+       *Figure 5 : Screenshots of the preCPFE GUI for the bicrystal indentation.*
    
 .. only:: latex
 
@@ -87,7 +100,7 @@ The function used to run the preCPFE GUI for BX indentation is:
        :scale: 40 %
        :align: center
        
-       *Figure 4 : Screenshot of the preCPFE GUI for the bicrystal indentation.*
+       *Figure 6 : Screenshot of the preCPFE GUI for the bicrystal indentation.*
 
 Convention for the bicrystal mesh
 **********************************
@@ -96,20 +109,7 @@ Convention for the bicrystal mesh
    :scale: 25 %
    :align: center
    
-   *Figure 5 : Convention used to define the bicrystal mesh.*
-   
-How to set crystallographic properties of the SX or of the BX ?
-----------------------------------------------------------------
-
-It is possible to set SX or BX properties (material, phase, Euler angles, trace angle...) :
-    - from the `Bicrystal GUI <http://stabix.readthedocs.org/en/latest/bicrystal_gui.html>`_ (by giving GB's number and pressing the button 'PLOT BICRYSTAL');
-    - from a YAML configuration file (from the menu, by clicking on 'preCPFE-SX' or 'preCPFE-BX', and 'Load Single Crystal config. file' or 'Load Bicrystal config. file').
-
-.. figure:: ./_pictures/GUIs/bicrystal2cpfem.png
-   :scale: 50 %
-   :align: center
-   
-   *Figure 6 : The different steps to set the preCPFE GUIs.*
+   *Figure 7 : Convention used to define the bicrystal mesh.*
    
 Indenter's geometry
 --------------------
@@ -138,7 +138,7 @@ It is possible to rotate directly into the GUIs, the Berkovich, Vickers, cube co
        :scale: 40 %
        :align: center
        
-       *Figure 7 : Screenshots of the preCPFE GUI for the bicrystal indentation with Berkovich indenter.*
+       *Figure 8 : Screenshots of the preCPFE GUI for the bicrystal indentation with Berkovich indenter.*
    
 .. only:: latex
 
@@ -146,7 +146,7 @@ It is possible to rotate directly into the GUIs, the Berkovich, Vickers, cube co
        :scale: 40 %
        :align: center
        
-       *Figure 8 : Screenshot of the preCPFE GUI for the bicrystal indentation with Berkovich indenter.*
+       *Figure 9 : Screenshot of the preCPFE GUI for the bicrystal indentation with Berkovich indenter.*
     
 AFM topography
 ***************
@@ -161,7 +161,7 @@ The |matlab| function used to load and read Gwyddion file is: `read_gwyddion_asc
    :scale: 40 %
    :align: center
    
-   *Figure 9 : Screenshot of the preCPFE GUI for the bicrystal indentation with loaded AFM topography of the indenter.*
+   *Figure 10 : Screenshot of the preCPFE GUI for the bicrystal indentation with loaded AFM topography of the indenter.*
 
 Python setup
 -------------

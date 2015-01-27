@@ -9,7 +9,7 @@ Residual Burgers vector
 Kacher and Robertson (2012)
 ...........................
 
-Kacher and Robertson analyzed slip transfer in 304 stainless steel (fcc structure), using in situ TEM deformation [#KacherRobertson_2012]_.
+Kacher and Robertson analyzed slip transfer in 304 stainless steel (FCC structure), using in situ TEM deformation [#KacherRobertson_2012]_.
 In this work, a bicrystal with a misorientation angle of 36° and misorientation axis of [-11, -22,  -2] is characterized.
 Dislocation/grain boundary interactions are analysed and knowing the incoming system, the magnitude of residual dislocation Burgers vector is plotted in function
 of possible outgoing systems. Calculations are reproduced using the |matlab| toolbox and obtained values are compared to Kacher's results (see Figure 1).
@@ -23,7 +23,7 @@ of possible outgoing systems. Calculations are reproduced using the |matlab| too
 Patriarca et al. (2013)
 .......................
 
-Patriarca et al. analysed the deformation response of a FeCr polycrystal (bcc structure) by a combination of EBSD and digital image correlation (DIC) characterizations [#Patriarca_2013]_.
+Patriarca et al. analysed the deformation response of a FeCr polycrystal (BCC structure) by a combination of EBSD and digital image correlation (DIC) characterizations [#Patriarca_2013]_.
 The magnitude of residual dislocation Burgers vector is plotted for numerous grain boundaries, knowing incoming and outgoing slips.
 Calculations are reproduced using the |matlab| toolbox and results are compared to Patriarca's results (see Figure 2).
 
@@ -36,7 +36,7 @@ Calculations are reproduced using the |matlab| toolbox and results are compared 
 Kacher and Robertson (2014)
 ...........................
 
-Kacher and Robertson analyzed slip transfer in alpha cp-Ti (hcp structure), using in situ TEM deformation [#KacherRobertson_2014]_.
+Kacher and Robertson analyzed slip transfer in alpha cp-Ti (HCP structure), using in situ TEM deformation [#KacherRobertson_2014]_.
 In this work, a bicrystal with a misorientation angle of 32° and misorientation axis of [1 5 -6 16] is characterized.
 Dislocation/grain boundary interactions are analysed and knowing the incoming system, the magnitude of residual dislocation Burgers vector is plotted in function
 of possible outgoing systems. Calculations are reproduced using the |matlab| toolbox and obtained values are compared to Kacher's results (see Figure 3).
@@ -67,7 +67,7 @@ m' factor
 Guo et al. (2014)
 .................
 
-Guo et al. analyzed slip transfer in cp-Ti (hcp structure), by tensile test combined to in situ digital image correlation (DIC) [#Guo_2014]_.
+Guo et al. analyzed slip transfer in cp-Ti (HCP structure), by tensile test combined to in situ digital image correlation (DIC) [#Guo_2014]_.
 In this work, many bicrystals are characterized and slip band–grain boundary interactions are analyzed in term of stress concentration along the slip plane direction.
 The :math:`m'` factor is used to quantify the transmissivity across the GBs and calculations are reproduced using the Matlab toolbox (see Figure 5).
 

@@ -14,6 +14,19 @@ This includes:
 * :ref:`bicrystal_from_map`
 * :ref:`all_mprime_values`
 
+Loading Bicrystal data
+--------------------------
+
+It is possible to load bicrystal properties (material, phase, Euler angles of both grains, trace angle...) :
+    - from the `EBSD map GUI <http://stabix.readthedocs.org/en/latest/ebsd_map_gui.html>`_ (by giving GB's number and pressing the button 'PLOT BICRYSTAL');
+    - from a YAML configuration file (from the menu, by clicking on 'Bicrystal, and 'Load Bicrystal config. file').
+
+.. figure:: ./_pictures/GUIs/ebsd2bicrystal.png
+   :scale: 50 %
+   :align: center
+   
+   *Figure 1 : The different steps to set the bicrystal GUI.*
+
 .. _bicrystal_from_map:
 
 Plotting and analyzing a bicrystal
@@ -23,7 +36,7 @@ Plotting and analyzing a bicrystal
    :scale: 40 %
    :align: center
    
-   *Figure 1 : Screenshot of the Bicrystal GUI.*
+   *Figure 2 : Screenshot of the Bicrystal GUI.*
    
 .. _all_mprime_values:
 
@@ -36,19 +49,4 @@ It is possible to generate a new window, in which all values of the selected sli
    :scale: 40 %
    :align: center
    
-   *Figure 2 : Screenshot of the distribution of all slip transmission parameters (e.g.: m' parameter for a 1 phase (hcp) bicrystal).*
-
-How to set a bicrystal ?
---------------------------
-
-It is possible to set bicrystal properties (material, phase, Euler angles of both grains, trace angle...) :
-    - from the `EBSD map GUI <http://stabix.readthedocs.org/en/latest/ebsd_map_gui.html>`_ (by giving GB's number and pressing the button 'PLOT BICRYSTAL');
-    - from a YAML configuration file (from the menu, by clicking on 'Bicrystal, and 'Load Bicrystal config. file').
-
-.. figure:: ./_pictures/GUIs/ebsd2bicrystal.png
-   :scale: 50 %
-   :align: center
-   
-   *Figure 3 : The different steps to set the bicrystal GUI.*
-
-
+   *Figure 3 : Screenshot of the distribution of all slip transmission parameters (e.g.: m' parameter for a single phase (HCP) bicrystal).*

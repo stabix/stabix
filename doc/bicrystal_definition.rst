@@ -14,7 +14,8 @@ A bicrystal is formed by two adjacent crystals separated by a grain boundary.
 
 The rotation between the two crystals is defined by the rotation angle :math:`\omega` and the rotation axis common to both crystals :math:`[uvw]`.
 
-Using orientation matrix of both crystals obtained by EBSD measurements, the misorientation or disorientation matrix :math:`(\Delta g)` or :math:`(\Delta g_\text{d})` is calculated [#RandleEngler_2000]_ and [#Morawiec_2004]_ :
+Using orientation matrix of both crystals obtained by EBSD measurements, the misorientation or disorientation matrix :math:`(\Delta g)`
+or :math:`(\Delta g_\text{d})` is calculated [#RandleEngler_2000]_ and [#Morawiec_2004]_ :
 
   .. math:: \Delta g = g_\text{B}g_\text{A}^{-1} = g_\text{A}g_\text{B}^{-1}
         :label: misorientation_matrix
@@ -60,7 +61,8 @@ The |matlab| function used to calculate the misorientation angle is: `misorienta
 
 The grain boundary plane normal :math:`n` can be determined knowing the grain boundary trace angle :math:`\alpha` and the grain boundary inclination :math:`\beta`.
         
-The grain boundary trace angle is obtained through the EBSD measurements (grain boundary endpoints coordinates) and the `grain boundary inclination <http://stabix.readthedocs.org/en/latest/gui_gbinc.html>`_ can be assessed
+The grain boundary trace angle is obtained through the EBSD measurements (grain boundary endpoints coordinates) and the
+`grain boundary inclination <http://stabix.readthedocs.org/en/latest/gui_gbinc.html>`_ can be assessed
 by a serial polishing (chemical-mechanical polishing or FIB sectioning), either parallel or perpendicular to the surface of the sample (see Figure 2).
 
 .. figure:: ./_pictures/Schemes_SlipTransmission/bicrystal.png
