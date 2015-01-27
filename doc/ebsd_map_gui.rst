@@ -81,3 +81,15 @@ Schmid factor and slip trace analysis
    
    *Figure 6 : Screenshot of the EBSD map GUI with an EBSD map of near alpha phase Ti alloy (slip plane plotted inside grain and 
    slip traces plotted around unit cells, both in function of the maximum Schmid factor calculated with a given stress tensor).*
+   
+How to set a an EBSD map ?
+---------------------------
+
+For more details about the format of the EBSD data, see also the page `Experimental data <http://stabix.readthedocs.org/en/latest/experimental_data.html>`_.
+
+.. figure:: ./_pictures/GUIs/EBSD_map_setting.png
+   :scale: 50 %
+   :align: center
+   
+   *Figure 7 : How to set a an EBSD map ?*
+   
