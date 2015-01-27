@@ -14,6 +14,12 @@ Written by D. Mercier [1] and C. Zambaldi [1], based on previous work of T. R. B
 [1] Max-Planck-Institut für Eisenforschung, 40237 Düsseldorf, Germany
 [2] Chemical Engineering and Materials Science, Michigan State University, East Lansing 48824 MI, USA
 
+How to cite STABiX in your papers ?
+====================================
+
+.. image::
+  https://zenodo.org/badge/5888/stabix/stabix.svg
+  :target: http://dx.doi.org/10.5281/zenodo.14608
 
 Reference paper
 ================
