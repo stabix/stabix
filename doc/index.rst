@@ -60,11 +60,10 @@ Activation and transmission of slip are interpreted based on these simulations a
 
 `Download the documentation as a pdf file <https://media.readthedocs.org/pdf/stabix/latest/stabix.pdf>`_.
 
-How to cite STABiX in your papers
-==================================
+How to cite STABiX in your papers ?
+====================================
 
-.. image::
-   https://zenodo.org/badge/5888/stabix/stabix.svg
+.. image:: https://zenodo.org/badge/5888/stabix/stabix.svg
    :target: http://dx.doi.org/10.5281/zenodo.14608
 
 Contents
