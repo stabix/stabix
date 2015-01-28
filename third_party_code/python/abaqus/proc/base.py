@@ -372,10 +372,6 @@ indenter.ReferencePoint(point=v.findAt(coordinates=(0.0, 0.0, 0.0)))
 #+++++++++++++++++++++++++++++++++++++++++++++
 # LOADING STEP DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
-# Preliminary definitions (sets, surfaces, references points...)
-indenter = model_name.parts['indenter']
-v = indenter.vertices
-indenter.ReferencePoint(point=v.findAt(coordinates=(0.0, 0.0, 0.0)))
 
 # Definition of the indent step
 model_name.StaticStep(name='Indent', previous='Initial',
