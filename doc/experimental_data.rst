@@ -5,7 +5,8 @@
 
 To use the |stabix| toolbox, some experimental data are required :
 
-- average grain orientations (Euler angles (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees) or intragranular misorientation (misorientation axis :math:`[uvw]` / angle :math:`\omega`);
+- average grain orientations (Euler angles (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees) or
+intragranular misorientation (misorientation axis :math:`[uvw]` / angle :math:`\omega`);
 
 - grains boundaries positions (optional for the bicrystal analysis);
 
@@ -13,9 +14,11 @@ To use the |stabix| toolbox, some experimental data are required :
 
 - geometry of grain boundaries (trace angle and grain boundary inclination) (optional).
 
-TEM experiments can provide intragranular misorientation and EBSD measurements can provide average grain orientations, grains boundaries and grains positions, and grain boundary trace angle.
+TEM experiments can provide intragranular misorientation and EBSD measurements can provide average grain orientations,
+grains boundaries and grains positions, and grain boundary trace angle.
 
-Inclination of the grain boundary can be evaluated by serial polishing or focused ion beam (FIB) sectioning, either parallel or perpendicular to the surface of the sample.
+Inclination of the grain boundary can be evaluated by serial polishing or focused ion beam (FIB) sectioning,
+either parallel or perpendicular to the surface of the sample.
 
 EBSD map GUI - TSL-OIM data preparation
 ***************************************
@@ -34,7 +37,8 @@ Reference : OIM ANALYSIS 6.0 (user manual) / `EDAX website <http://www.edax.com/
 Reconstructed Boundaries File
 -----------------------------
 
-**Export "Reconstructed Boundaries File" of the cleaned dataset** (All data --> Export --> Reconstructed Boundaries), with the following options defined by default :
+**Export "Reconstructed Boundaries File" of the cleaned dataset**
+(All data --> Export --> Reconstructed Boundaries), with the following options defined by default :
 
 - Right hand average orientation (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees
 
@@ -47,13 +51,17 @@ Reconstructed Boundaries File
 - IDs of right hand and left hand grains
 
 .. note::
-    Reconstructed boundary methodology is only applied to data collected on a hexagonal grid. It is possible to convert a square grid into an hexagonal grid in TSL-OIM software.
+    Reconstructed boundary methodology is only applied to data collected on a hexagonal grid.
+    It is possible to convert a square grid into an hexagonal grid in TSL-OIM software.
 
-Example of "Reconstructed Boundary File": `MPIE_cpTi_reconstructed_boundaries_2013.txt <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/EBSD_data_Examples/MPIE_cpTi_reconstructed_boundaries_2013.txt>`_
+Example of "Reconstructed Boundary File": `MPIE_cpTi_reconstructed_boundaries_2013.txt
+<https://github.com/stabix/stabix/tree/master/gui_ebsd_map/EBSD_data_Examples/MPIE_cpTi_reconstructed_boundaries_2013.txt>`_
 
-The |matlab| function used to read "Reconstructed Boundary File" is: `read_oim_reconstructed_boundaries_file.m <https://github.com/stabix/stabix/tree/master/tsl_oim/read_oim_reconstructed_boundaries_file.m>`_
+The |matlab| function used to read "Reconstructed Boundary File" is:
+`read_oim_reconstructed_boundaries_file.m <https://github.com/stabix/stabix/tree/master/tsl_oim/read_oim_reconstructed_boundaries_file.m>`_
 
-If some GBs segments are missing or some wrong segments are exported, play with partition properties in the TSL-OIM software in order to export a more realistic Reconstructed Boundaries file:
+If some GBs segments are missing or some wrong segments are exported, play with partition
+properties in the TSL-OIM software in order to export a more realistic Reconstructed Boundaries file:
     - decrease/increase "Grain Tolerance Angle" ;
     - decrease/increase "Minimum Grain Size" ;
     - decrease/increase the maximum deviation between reconstructed boundary and corresponding boundary segments.
@@ -91,8 +99,8 @@ This .ang file is useful for the `MTEX Toolbox <http://mtex-toolbox.github.io/>`
 
 Example of an `.ang file. <https://github.com/stabix/stabix/blob/master/gui_ebsd_map/EBSD_data_Examples/validation1_AngFile(forMTEX).ang>`_
 
-Possible errors introduced during files exportation from TSL
-------------------------------------------------------------
+Possible errors introduced during files exportation from TSL-OIM
+------------------------------------------------------------------
 
 - "Grain File Type 2" --> Missing integer identifying grain
     - Solved when file is imported via the GUI.
@@ -103,14 +111,16 @@ Possible errors introduced during files exportation from TSL
 - "Reconstructed Boundary File" --> :math:`x`-axis and :math:`y`-axis not corrects…
     - :math:`y` coordinates is multiplied by -1 when file is imported via the GUI.
 
-All of these issues are taken into account and corrected automatically when user is loading his data via the EBSD map GUI.
+.. note::
+    All of these issues are taken into account and corrected automatically when user is loading his data via the EBSD map GUI.
 
 Bicrystal GUI - YAML configuration file
 ***************************************
 
 **The YAML configuration file provides a simple way to define a bicrystal.**
 
-An example of bicrystal configuration file is given here : `config_gui_BX_defaults.yaml <https://github.com/stabix/stabix/tree/master/YAML_config_files/config_gui_BX_defaults.yaml>`_
+An example of bicrystal configuration file is given here :
+`config_gui_BX_defaults.yaml <https://github.com/stabix/stabix/tree/master/YAML_config_files/config_gui_BX_defaults.yaml>`_
 
 Copy this example file and modify it with your data. Be careful to put a space after the comma in a list (e.g. [:math:`x`, :math:`y`, :math:`z`]).
 

@@ -27,7 +27,7 @@ For more details about the format of the EBSD data, see also the page `Experimen
    :scale: 50 %
    :align: center
    
-   *Figure 1 : How to set a an EBSD map ?*
+   *Figure 1 : The different steps to load data into tge EBSD map GUI.*
 
 .. _smoothing_GBs:
 

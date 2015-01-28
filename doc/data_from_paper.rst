@@ -4,13 +4,13 @@
 .. include:: includes.rst
 
 Residual Burgers vector
------------------------
+------------------------
 
 Kacher and Robertson (2012)
-...........................
+............................
 
 Kacher and Robertson analyzed slip transfer in 304 stainless steel (FCC structure), using in situ TEM deformation [#KacherRobertson_2012]_.
-In this work, a bicrystal with a misorientation angle of 36° and misorientation axis of [-11, -22,  -2] is characterized.
+In this work, a bicrystal with a misorientation angle of 36° and misorientation axis of [-11, -22, -2] is characterized.
 Dislocation/grain boundary interactions are analysed and knowing the incoming system, the magnitude of residual dislocation Burgers vector is plotted in function
 of possible outgoing systems. Calculations are reproduced using the |matlab| toolbox and obtained values are compared to Kacher's results (see Figure 1).
 
@@ -18,26 +18,29 @@ of possible outgoing systems. Calculations are reproduced using the |matlab| too
    :scale: 40 %
    :align: center
    
-   *Figure 1 : a) Plot of a bicrystal with a misorientation angle of 36° and misorientation axis of [-11, -22,  -2] from Kacher's paper. b) Magnitude of residual Burgers vector given in Kacher's paper compared to values calculated with the Matlab toolbox.*
+   *Figure 1 : a) Plot of a bicrystal with a misorientation angle of 36° and misorientation axis of
+   [-11, -22,  -2] from Kacher's paper. b) Magnitude of residual Burgers vector given in Kacher's paper
+   compared to values calculated with the Matlab toolbox.*
 
 Patriarca et al. (2013)
-.......................
+........................
 
-Patriarca et al. analysed the deformation response of a FeCr polycrystal (BCC structure) by a combination of EBSD and digital image correlation (DIC) characterizations [#Patriarca_2013]_.
-The magnitude of residual dislocation Burgers vector is plotted for numerous grain boundaries, knowing incoming and outgoing slips.
-Calculations are reproduced using the |matlab| toolbox and results are compared to Patriarca's results (see Figure 2).
+Patriarca et al. analysed the deformation response of a FeCr polycrystal (BCC structure) by a combination of EBSD and digital image correlation
+(DIC) characterizations [#Patriarca_2013]_. The magnitude of residual dislocation Burgers vector is plotted for numerous grain boundaries,
+knowing incoming and outgoing slips. Calculations are reproduced using the |matlab| toolbox and results are compared to Patriarca's results (see Figure 2).
 
   .. figure:: ./_pictures/data_from_papers/Patriarca2013_barcharts_cropped.png
    :scale: 20 %
    :align: center
    
-   *Figure 2 : Magnitude of residual Burgers vector given in Patriarca's paper compared to values calculated with the Matlab Toolbox for numerous grain boundaries.*
+   *Figure 2 : Magnitude of residual Burgers vector given in Patriarca's paper compared to values
+   calculated with the Matlab Toolbox for numerous grain boundaries.*
    
 Kacher and Robertson (2014)
-...........................
+............................
 
 Kacher and Robertson analyzed slip transfer in alpha cp-Ti (HCP structure), using in situ TEM deformation [#KacherRobertson_2014]_.
-In this work, a bicrystal with a misorientation angle of 32° and misorientation axis of [1 5 -6 16] is characterized.
+In this work, a bicrystal with a misorientation angle of 32° and misorientation axis of [1, 5, -6, 16] is characterized.
 Dislocation/grain boundary interactions are analysed and knowing the incoming system, the magnitude of residual dislocation Burgers vector is plotted in function
 of possible outgoing systems. Calculations are reproduced using the |matlab| toolbox and obtained values are compared to Kacher's results (see Figure 3).
 
@@ -45,10 +48,12 @@ of possible outgoing systems. Calculations are reproduced using the |matlab| too
    :scale: 40 %
    :align: center
    
-   *Figure 3 : a) Plot of a bicrystal with a misorientation angle of 32° and misorientation axis of [1 5 -6 16] from Kacher's paper. b) Magnitude of residual Burgers vector given in Kacher's paper compared to values calculated with the Matlab Toolbox for the bicrystal #2.*
+   *Figure 3 : a) Plot of a bicrystal with a misorientation angle of 32° and misorientation axis of
+   [1, 5, -6, 16] from Kacher's paper. b) Magnitude of residual Burgers vector given in Kacher's paper
+   compared to values calculated with the Matlab Toolbox for the bicrystal #2.*
    
 Cui et al. (2014)
-.................
+..................
 
 Cui et al. analyzed slip transfer in proton-irradiated 13Cr15Ni stainless steel (fcc structure), using in situ TEM deformation [#Cui_2014]_.
 In this work, two bicrystals with respectively a misorientation angles of 60° and 40° and a misorientation axis of [1, 1, -1] and [1, 0, 1] are characterized.
@@ -59,17 +64,20 @@ of possible outgoing systems. Calculations are reproduced using the |matlab| too
    :scale: 20 %
    :align: center
    
-   *Figure 4 : a) Plot of a bicrystal with a misorientation angle of 60° and misorientation axis of [1, 1, -1] from Cui's paper. b) Plot of a bicrystal with a misorientation angle of 40° and misorientation axis of [1, 0, 1] from Cui's paper. c) Magnitude of residual Burgers vector given in Cui's paper compared to values calculated with the Matlab Toolbox for the two bicrystals.*
+   *Figure 4 : a) Plot of a bicrystal with a misorientation angle of 60° and misorientation axis of
+   [1, 1, -1] from Cui's paper. b) Plot of a bicrystal with a misorientation angle of 40° and
+   misorientation axis of [1, 0, 1] from Cui's paper. c) Magnitude of residual Burgers vector
+   given in Cui's paper compared to values calculated with the Matlab Toolbox for the two bicrystals.*
 
 m' factor
----------
+----------
 
 Guo et al. (2014)
-.................
+..................
 
 Guo et al. analyzed slip transfer in cp-Ti (HCP structure), by tensile test combined to in situ digital image correlation (DIC) [#Guo_2014]_.
 In this work, many bicrystals are characterized and slip band–grain boundary interactions are analyzed in term of stress concentration along the slip plane direction.
-The :math:`m'` factor is used to quantify the transmissivity across the GBs and calculations are reproduced using the Matlab toolbox (see Figure 5).
+The :math:`m'` factor is used to quantify the transmissivity across the GBs and calculations are reproduced using the |matlab| toolbox (see Figure 5).
 
   .. figure:: ./_pictures/data_from_papers/Guo2014_barcharts_cropped.png
    :scale: 20 %

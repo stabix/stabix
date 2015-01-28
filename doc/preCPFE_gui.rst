@@ -243,7 +243,8 @@ Find the full documentation for the use of DAMASK with Marc here : http://damask
 
 Find the full documentation for the use of DAMASK with Abaqus here : http://damask.mpie.de/Usage/Abaqus.
 
-N.B.: For Abaqus, you may have to modify the extension of the subroutine:
+.. note::
+    For Abaqus, you may have to modify the extension of the subroutine :
     - .f if the operating environment is Linux;
     - .for if the operating environment is Windows.
 
@@ -263,6 +264,8 @@ See also
 `Zaafarani N. et al., "On the origin of deformation-induced rotation patterns below nanoindents.", Acta Materialia (2008) <http://dx.doi.org/10.1016/j.actamat.2007.09.001>`_
 
 `Casals O. and Forest S., "Finite element crystal plasticity analysis of spherical indentation in bulk single crystals and coatings.", Computational Materials Science (2009) <http://dx.doi.org/10.1016/j.commatsci.2008.09.030>`_
+
+`Gerday A. F. et al., "Interests and limitations of nanoindentation for bulk multiphase material identification: Application to the β phase of Ti-5553.", Acta Materialia (2009) <http://dx.doi.org/10.1016/j.actamat.2009.07.020>`_ 
 
 `Britton T.B. et al., "The effect of crystal orientation on the indentation response of commercially pure titanium: experiments and simulations.", Proc. R. Soc. A (2010) <http://dx.doi.org/10.1098/rspa.2009.0455>`_
 
