@@ -129,5 +129,5 @@ and the `Max-Planck-Institut für Eisenforschung <http://www.mpie.de/>`_ for sup
 Keywords
 =========
 
-|matlab| Toolbox; Graphical User Interface (GUI); Grain Boundary (GB); Polycrystalline Metals; Slip Transmission; Bi-Crystal (BX);
-Electron backscatter diffraction (EBSD); Instrumented indentation; Crystal Plasticity Finite Element Method (CPFEM); python\ :sup:`TM` \ Toolbox.
+|matlab| toolbox; Graphical User Interface (GUI) ; Grain Boundary (GB) ; Polycrystalline Metals ; Slip Transmission ; Bi-Crystal (BX) ;
+Electron backscatter diffraction (EBSD) ; Instrumented indentation ; Crystal Plasticity Finite Element Method (CPFEM) ; python\ :sup:`TM` \ toolbox.

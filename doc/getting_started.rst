@@ -45,10 +45,10 @@ Default YAML configuration files, stored in the folder `YAML_config_files <https
    
 You have to set your own YAML configuration files, by following instructions given in this `README <https://github.com/stabix/stabix/blob/master/YAML_config_files/README.txt>`_.
 
-If the OpenGL rendering is not satisfying, you can modify the corresponding option in the `config.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config.yaml>`_ file.
-
 `Visit the YAML website for more informations <http://www.yaml.org/>`_.
 
 `Visit the YAML code for Matlab <http://code.google.com/p/yamlmatlab/>`_.
+
+If the OpenGL rendering is not satisfying, you can modify the corresponding option in the `config.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config.yaml>`_ file.
 
 `Visit the Matlab page about OpenGL rendering <http://fr.mathworks.com/help/matlab/ref/opengl.html?refresh=true>`_.
