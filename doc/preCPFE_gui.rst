@@ -245,8 +245,8 @@ Find the full documentation for the use of DAMASK with Abaqus here : http://dama
 
 .. note::
     For Abaqus, you may have to modify the extension of the subroutine :
-    - .f if the operating environment is Linux;
-    - .for if the operating environment is Windows.
+        - .f if the operating environment is Linux ;
+        - .for if the operating environment is Windows.
 
 See also
 ----------
@@ -281,7 +281,7 @@ See also
 
 `Eidel B., "Crystal plasticity finite-element analysis versus experimental results of pyramidal indentation into (001) fcc single crystal.", Acta Materialia (2011) <http://dx.doi.org/10.1016/j.actamat.2010.11.042>`_
 
-`Zambaldi C. et al.,"Orientation informed nanoindentation of a-titanium: Indentation pileup in hexagonal metals deforming by prismatic slip.", J. Mater. Res. (2012) <http://dx.doi.org/10.1557/jmr.2011.334>`_
+`Zambaldi C. et al., "Orientation informed nanoindentation of a-titanium: Indentation pileup in hexagonal metals deforming by prismatic slip.", J. Mater. Res. (2012) <http://dx.doi.org/10.1557/jmr.2011.334>`_
 
 `Zahedi A. et al., "Indentation in f.c.c. single crystals.", Solid State Phenomena (2012) <http://dx.doi.org/10.4028/www.scientific.net/SSP.188.219>`_
 

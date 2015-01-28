@@ -19,7 +19,7 @@ of possible outgoing systems. Calculations are reproduced using the |matlab| too
    :align: center
    
    *Figure 1 : a) Plot of a bicrystal with a misorientation angle of 36° and misorientation axis of
-   [-11, -22,  -2] from Kacher's paper. b) Magnitude of residual Burgers vector given in Kacher's paper
+   [-11, -22, -2] from Kacher's paper. b) Magnitude of residual Burgers vector given in Kacher's paper
    compared to values calculated with the Matlab toolbox.*
 
 Patriarca et al. (2013)
@@ -34,7 +34,7 @@ knowing incoming and outgoing slips. Calculations are reproduced using the |matl
    :align: center
    
    *Figure 2 : Magnitude of residual Burgers vector given in Patriarca's paper compared to values
-   calculated with the Matlab Toolbox for numerous grain boundaries.*
+   calculated with the Matlab toolbox for numerous grain boundaries.*
    
 Kacher and Robertson (2014)
 ............................
@@ -50,7 +50,7 @@ of possible outgoing systems. Calculations are reproduced using the |matlab| too
    
    *Figure 3 : a) Plot of a bicrystal with a misorientation angle of 32° and misorientation axis of
    [1, 5, -6, 16] from Kacher's paper. b) Magnitude of residual Burgers vector given in Kacher's paper
-   compared to values calculated with the Matlab Toolbox for the bicrystal #2.*
+   compared to values calculated with the Matlab toolbox for the bicrystal #2.*
    
 Cui et al. (2014)
 ..................
@@ -67,7 +67,7 @@ of possible outgoing systems. Calculations are reproduced using the |matlab| too
    *Figure 4 : a) Plot of a bicrystal with a misorientation angle of 60° and misorientation axis of
    [1, 1, -1] from Cui's paper. b) Plot of a bicrystal with a misorientation angle of 40° and
    misorientation axis of [1, 0, 1] from Cui's paper. c) Magnitude of residual Burgers vector
-   given in Cui's paper compared to values calculated with the Matlab Toolbox for the two bicrystals.*
+   given in Cui's paper compared to values calculated with the Matlab toolbox for the two bicrystals.*
 
 m' factor
 ----------
@@ -83,7 +83,7 @@ The :math:`m'` factor is used to quantify the transmissivity across the GBs and 
    :scale: 20 %
    :align: center
    
-   *Figure 5 : m' factor values given in Guo's paper compared to values calculated with the Matlab Toolbox for 7 different bicrystals.*
+   *Figure 5 : m' factor values given in Guo's paper compared to values calculated with the Matlab toolbox for 7 different bicrystals.*
    
 .. [#Cui_2014] `B. Cui et al., "Influence of irradiation damage on slip transfer across grain boundaries.", Acta Materialia (2014), 65, pp. 150-160. <http://dx.doi.org/10.1016/j.actamat.2013.11.033>`_
 .. [#Guo_2014] `Y. Guo et al., "Slip band–grain boundary interactions in commercial-purity titanium.", Acta Materialia (2014), 76, pp. 1-12. <http://dx.doi.org/10.1016/j.actamat.2014.05.015>`_
