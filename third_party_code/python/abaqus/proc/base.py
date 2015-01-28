@@ -417,7 +417,7 @@ del model_name.fieldOutputRequests['F-Output-1']
 del model_name.historyOutputRequests['H-Output-1']
 
 model_name.FieldOutputRequest(name='Field output',
-    createStepName='Indent', variables=('S', 'PEEQ', 'U', 'SDV'), frequency=freq_field_output)
+    createStepName='Indent', variables=('S', 'PEEQ', 'U', 'SDV', 'COORD'), frequency=freq_field_output)
 regionDef=model_name.rootAssembly.instances['indenter-1'].sets['Ref_Indenter']
 model_name.HistoryOutputRequest(name='History output',
     createStepName='Indent', variables=('U3', 'RF3'), frequency=2,
