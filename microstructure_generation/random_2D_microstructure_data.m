@@ -5,6 +5,7 @@ function rdm_microstructure_dataset = ...
 % number_of_grains : Number of grains for the Voronoi tesselation
 % resolution : resolution along x and y axis for generation of seeds file
 % (see documentation in http://damask.mpie.de/)
+
 % author: d.mercier@mpie.de
 
 if nargin < 2
@@ -23,10 +24,10 @@ end
 rdm_microstructure_dataset = struct();
 
 %% Tesselation de Voronoi
-% Random EBSD map (with 10 grains)
-rdm_microstructure_dataset.x_positions = rand(number_of_grains, 1);   % Grains coordinates
-rdm_microstructure_dataset.y_positions = rand(number_of_grains, 1);   % Grains coordinates
-rdm_microstructure_dataset.z_positions = 0;   % Grains coordinates
+% Random EBSD map (with 10 grains) - Grains coordinates (X,Y,Z)
+rdm_microstructure_dataset.x_positions = rand(number_of_grains, 1);
+rdm_microstructure_dataset.y_positions = rand(number_of_grains, 1);
+rdm_microstructure_dataset.z_positions = 0;
 
 % GBs endpoints coordinates
 %[vx, vy] = voronoi(rdm_TSL_dataset.x,rdm_TSL_dataset.y);

@@ -90,8 +90,8 @@ fclose(fid);
 GF2.data = data;
 GF2.header = header;
 GF2.col_idx = header2struct(header);
-% Split relevant data into separate fields to be more flexible against changes in GF2
-% file format and contents.
+% Split relevant data into separate fields to be more flexible
+% against changes in GF2 file format and contents.
 if isfield(GF2.col_idx,'GRAIN_IDs')
     GF2.GRAIN_ID = data(:,GF2.col_idx.GRAIN_ID);
 end
@@ -112,8 +112,8 @@ if isfield(GF2.col_idx,'DIAM')
 end
 
 function col_idx = header2struct(header)
-% Seems that the format in which TSL-OIM exports reconstructed boundaries files
-% has changed slightly for OIM 7. So we need to be more flexible in
+% Seems that the format in which TSL-OIM exports reconstructed boundaries
+% files has changed slightly for OIM 7. So we need to be more flexible in
 % reading of the resulting RB and GF2 files.
 col_idx = struct();  % column indices
 for i_ln = 1:numel(header)

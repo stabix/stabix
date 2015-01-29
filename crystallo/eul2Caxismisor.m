@@ -3,6 +3,7 @@ function  caxis_misor = eul2Caxismisor(euler1, euler2, varargin )
 %% Function used to calculate c-axis misorientation for HCP material
 % euler1 : Euler angles of grain 1 in degrees
 % euler2 : Euler angles of grain 2 in degrees
+
 % author: suyang@egr.msu.edu
 
 caxis = [0 0 1];

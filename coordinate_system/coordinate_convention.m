@@ -15,7 +15,7 @@ function coordinate_convention_matrix = ...
 % -180  X left, Y up
 % -270  X down, Y left
 
-% author: c.zambaldi@mpie.de / d.mercier@mpie.de
+% authors: c.zambaldi@mpie.de / d.mercier@mpie.de
 
 if nargin == 0
     coordinate_angle = 0;

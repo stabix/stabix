@@ -1,7 +1,9 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function gui_handle = demo(app)
-%% Function to create the main window of the GUI (to select map, bicrystal or meshing interface)
-% author: d.mercier@mpie.de / c.zambaldi@mpie.de
+%% Function to create the main window of the GUI, 
+% to select map, bicrystal or meshing interfaces...
+
+% authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
 %% Initialization
 try
