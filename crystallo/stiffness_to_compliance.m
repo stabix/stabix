@@ -1,6 +1,7 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function compliances = compliance_to_stiffnesse(structure, elast_const, varargin)
+function compliances = stiffness_to_compliance(material, structure, varargin)
 %% Function used to give the elastic stiffness constants in 1/GPa
+% material : material to give in order to get the corresponding lattice
 % structure : structure of the given material (hcp, bcc, fcc, dia, tet or bct)
 % elast_const: [S11 S12 S13 S33 S44 S66] in 1/TPa;
 % compliances: [C11 C12 C13 C33 C44 C66] in TPa;
@@ -12,9 +13,11 @@ function compliances = compliance_to_stiffnesse(structure, elast_const, varargin
 % ISBN-13: 978-0198511656  ISBN-10: 0198511655
 
 if nargin < 2
-    elast_const = elastic_constants;
+    material = 'Ti';
     structure = 'hcp';
 end
+
+elast_const = listElasticConstants(material, structure);
 
 S11 = elast_const(1);
 S12 = elast_const(2);

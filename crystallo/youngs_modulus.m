@@ -1,7 +1,8 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function YM = youngs_modulus(struct, elast_const, euler, varargin)
+function YM = youngs_modulus(material, structure, euler, varargin)
 %% Function used to calculate elastic modulus to find compliance mismatch in three principal directions
-% struct: : hcp, bcc or fcc
+% material: material to give in order to get the corresponding lattice
+% struct: hcp, bcc or fcc
 % elast_const: [S11 S12 S13 S33 S44 S66] in 1/TPa;
 % YM: Young's modulus in GPa
 
@@ -16,9 +17,11 @@ if nargin < 3
 end
 
 if nargin < 2
-    elast_const = elastic_constants;
-    struct = 'hcp';
+    material = 'Ti';
+    structure = 'hcp';
 end
+
+elast_const = listElasticConstants(material, structure);
 
 % Calculation of rotation matrix from Euler angles
 rot_mat = eulers2g(euler);
@@ -28,14 +31,14 @@ elast_const = elast_const*1e-3; % TPa to GPa
 % Preallocation of YM variable
 YM(1:3) = NaN;
 
-if strcmp(struct, 'bcc') || strcmp(struct, 'fcc')
+if strcmp(structure, 'bcc') || strcmp(structure, 'fcc')
     % E(cube) = ( s11 - 2*(s11 - s12 - s44/2)*(x^2*y^2 + y^2*z^2 + z^2*x^2) )^-1
     for ii = 1:1:3
         YM(ii) = 1./(elast_const(1) - 2*(elast_const(1) - elast_const(2) - elast_const(5)/2) *...
             (rot_mat(1,ii)^2*rot_mat(2,ii)^2 + rot_mat(2,ii)^2*rot_mat(3,ii)^2 + rot_mat(3,ii)^2*rot_mat(1,ii)^2) );
     end
     
-elseif strcmp(struct, 'hcp')
+elseif strcmp(structure, 'hcp')
     % E(hex)  = ( s11 * (1-z^2)^2 + s33 * z^4 + (s44 + 2*s13)*(1-z^2)*z^2 )^-1
     for ii = 1:1:3
         YM(ii) = 1./(elast_const(1) * (1-rot_mat(3,ii)^2)^2 + elast_const(4) * rot_mat(3,ii)^4 +...

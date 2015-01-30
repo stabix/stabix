@@ -1,6 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function elast_const = elastic_constants(material, structure, varargin)
-%% Function used to give the elastic stiffness constants in 1/GPa
+function elast_const = listElasticConstants(material, structure, varargin)
+%% Function used to give the elastic stiffness constants in 1/TPa
 % material : material to give in order to get the corresponding lattice
 % parameter and the corresponding c/a ratio
 % structure : structure of the given material (hcp, bcc, fcc, dia, tet or bct)
@@ -180,4 +180,3 @@ if ~flag_error
     elast_const = [S11 S12 S13 S33 S44 S66];                               % in 1/TPa; 
     
 end
-
