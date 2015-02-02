@@ -105,11 +105,10 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
    *Figure 3 : Distribution of m' parameter in function of angles values.*
    
   .. figure:: ./_pictures/Schemes_SlipTransmission/mprime_values_vs_misorientation.png
-   :scale: 65 %
+   :scale: 50 %
    :align: center
-   
-   *Figure 4 : Distribution of m' parameter calculated for prismatic <a> slip systems in function of  misorientation angle.*
 
+   *Figure 4 : Distribution of m' parameter calculated for a) basal vs basal slip systems, b) basal vs prismatic <a> slip systems and c) prismatic <a> vs prismatic <a> slip systems in function of misorientation angle.*
    
    A resistance factor of the grain boundary can be described by the following equation : 
    
