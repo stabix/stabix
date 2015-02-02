@@ -243,13 +243,13 @@ accumulated shear :math:`\gamma` on each slip system, knowing the local stress t
 This leads to the following shear-informed version of a slip transfer parameter:
 
     .. math:: m_{\gamma}^{'} = {{\sum_{\alpha} \sum_{\beta} m_{\alpha\beta}^{'} \left(\gamma^{\alpha} \gamma^{\beta} \right)} \over {\sum_{\alpha} \sum_{\beta} \left(\gamma^{\alpha} \gamma^{\beta} \right)}}
-        :label: shear_weighted_mprime
+        :label: shear_weighting_mprime
         
     .. math:: LRB_{\gamma} = {{\sum_{\alpha} \sum_{\beta} LRB_{\alpha\beta}^{'} \left(\gamma^{\alpha} \gamma^{\beta} \right)} \over {\sum_{\alpha} \sum_{\beta} \left(\gamma^{\alpha} \gamma^{\beta} \right)}}
-        :label: shear_weighted_LRB
+        :label: shear_weighting_LRB
         
     .. math:: s_{\gamma} = {{\sum_{\alpha} \sum_{\beta} s_{\alpha\beta}^{'} \left(\gamma^{\alpha} \gamma^{\beta} \right)} \over {\sum_{\alpha} \sum_{\beta} \left(\gamma^{\alpha} \gamma^{\beta} \right)}}
-        :label: shear_weighted_sum_cosines
+        :label: shear_weighting_sum_cosines
         
     .. math:: s = \cos(\psi) \cdot \cos(\kappa) \cdot \cos(\theta)
         :label: sum_cosines
@@ -257,8 +257,8 @@ This leads to the following shear-informed version of a slip transfer parameter:
 Similarly, the :math:`m^{'}` parameter can be weighted using the Schmid factor :math:`m`
 on each slip system as a metric for the magnitude of slip transfer:
         
-    .. math:: m_{GSF}^{'} = {{\sum_{\alpha} \sum_{\beta} m_{\alpha\beta}^{'} \left(GSF^{\alpha} GSF^{\beta} \right)} \over {\sum_{\alpha} \sum_{\beta} \left(GSF^{\alpha} GSF^{\beta} \right)}}
-        :label: GSF_weighted_mprime
+    .. math:: m_{GSF}^{'} = {{\sum_{\alpha} \sum_{\beta} m_{\alpha\beta}^{'} \left(m^{\alpha} m^{\beta} \right)} \over {\sum_{\alpha} \sum_{\beta} \left(m^{\alpha} m^{\beta} \right)}}
+        :label: SchmidFactor_weighting_mprime
         
 Slip transmission parameters implemented in the STABiX toolbox
 -----------------------------------------------------------------------
