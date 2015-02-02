@@ -25,14 +25,19 @@ stress and energetic functions, and recent combinations of the previous paramete
 
 Geometrical Criteria
 --------------------
-Based on numerous investigations of dislocation-grain boundary interactions, quantitative geometrical expressions describing the slip transmission mechanisms have been developed. 
+Based on numerous investigations of dislocation-grain boundary interactions,
+quantitative geometrical expressions describing the slip transmission mechanisms have been developed. 
 A non-exhaustive list of geometrical criteria is detailed subsequently.
 The geometry of the slip transfer event is most of the time described by the scheme given Figure 2.
-:math:`\kappa` is the angle between slip directions, :math:`\theta` is the angle between the two slip plane intersections with the grain boundary,
-:math:`\psi` is the angle between slip plane normal directions, :math:`\gamma` is the angle between the direction of incoming slip and the plane normal of outgoing slip,
+:math:`\kappa` is the angle between slip directions, :math:`\theta`
+is the angle between the two slip plane intersections with the grain boundary,
+:math:`\psi` is the angle between slip plane normal directions, :math:`\gamma`
+is the angle between the direction of incoming slip and the plane normal of outgoing slip,
 and :math:`\delta` is between the direction of outgoing slip and the plane normal of incoming slip.
-:math:`n`, :math:`d` and :math:`l` are respectively the slip plane normals, slip directions and the lines of intersection of the slip plane and the grain boundary.
-:math:`\vec b` is the Burgers vector of the slip plane and :math:`\vec b_\text r` is the |rbv| of the residual dislocation at the grain boundary.
+:math:`n`, :math:`d` and :math:`l` are respectively the slip plane normals,
+slip directions and the lines of intersection of the slip plane and the grain boundary.
+:math:`\vec b` is the Burgers vector of the slip plane and :math:`\vec b_\text r`
+is the |rbv| of the residual dislocation at the grain boundary.
 The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming and outgoing slip systems, respectively.
   
 .. figure:: ./_pictures/Schemes_SlipTransmission/slip_transmission_scheme2.png
@@ -53,7 +58,8 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   [#HookHirth_1967_2]_, [#Shen_1986]_, [#Shen_1988]_, [#Lee_1990_1]_, [#Lee_1990_2]_, [#Clark_1992]_ and [#Ueda_2002]_.
   Pond et al. proposed to compute this geometric criteria for hexagonal metals using Frank's method [#Pond_1986]_.      
 
-  The |matlab| function used to calculate the N factor is: `N_factor.m <https://github.com/stabix/stabix/tree/master/slip_transfer/N_factor.m>`_
+  The |matlab| function used to calculate the N factor is:
+  `N_factor.m <https://github.com/stabix/stabix/tree/master/slip_transfer/N_factor.m>`_
   
 * :math:`LRB` **factor from Shen et al. in 1986** [#Shen_1986]_ and [#Shen_1988]_
 
@@ -63,16 +69,20 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
     .. math:: LRB = \cos(\theta) \cdot \cos(\kappa)
         :label: LRB_factor_angle
         
-  The original notation of this :math:`LRB` factor is :math:`M`, but unfortunately this notation is often used for the Taylor factor [#Bieler_2014]_.
+  The original notation of this :math:`LRB` factor is :math:`M`,
+  but unfortunately this notation is often used for the Taylor factor [#Bieler_2014]_.
   Pond et al. proposed to compute this geometric criteria for hexagonal metals using Frank's method [#Pond_1986]_. 
-  Recently, Spearot and Sangid have plotted this parameter as a function of the misorientation of the bicrystal using atomistic simulations [#SpearotSangid_2014]_.
+  Recently, Spearot and Sangid have plotted this parameter as a function of
+  the misorientation of the bicrystal using atomistic simulations [#SpearotSangid_2014]_.
   
   [#Lee_1989]_, [#Lee_1990_1]_, [#Lee_1990_2]_, [#Clark_1992]_, [#Kehagias_1995]_, [#Kehagias_1996]_, [#Ashmawi_2001]_, [#Gemperle_2004]_,
   [#Gemperlova_2004]_ and [#Shi_2011]_ mentioned in their respective studies this geometrical parameter as a condition for slip transmission.
   
-  The inclination of the grain boundary (:math:`\beta`) is required to evaluate this factor and the :math:`LRB` or :math:`M` factor should be maximized.
+  The inclination of the grain boundary (:math:`\beta`) is required to evaluate
+  this factor and the :math:`LRB` or :math:`M` factor should be maximized.
   
-  The |matlab| function used to calculate the LRB factor is: `LRB_parameter.m <https://github.com/stabix/stabix/tree/master/slip_transfer/LRB_parameter.m>`_
+  The |matlab| function used to calculate the LRB factor is:
+  `LRB_parameter.m <https://github.com/stabix/stabix/tree/master/slip_transfer/LRB_parameter.m>`_
 
 * :math:`m'` **parameter from Luster and Morris in 1995** [#LusterMorris_1995]_
         
@@ -85,7 +95,8 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   Many authors found that this :math:`m'` parameter, which takes into account the degree of coplanarity of slip systems, is promising
   to predict slip transmission [#WangNgan_2004]_, [#WoNgan_2004]_, [#Britton_2009]_, [#Bieler_2009]_, [#Bieler_2014]_ and [#Guo_2014]_.
   Both :math:`m'` and :math:`LRB` can be easily assessed in computational experiments [#Bieler_2014]_.
-  This :math:`m'` factor should be maximized (1 means grain boundary is transparent and 0 means grain boundary is an impenetrable boundary).
+  This :math:`m'` factor should be maximized (1 means grain boundary
+  is transparent and 0 means grain boundary is an impenetrable boundary).
   
   .. figure:: ./_pictures/Schemes_SlipTransmission/mprime_values.png
    :scale: 30 %
@@ -105,9 +116,11 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
     .. math:: GB_\text{resfac} = 1 - m'
         :label: resistance_factor
         
-  This factor is equal to 0, when grain boundary is transparent to dislocations. This implies :math:`m'` parameter equal to 1 (slip perfectly aligned).
+  This factor is equal to 0, when grain boundary is transparent to dislocations.
+  This implies :math:`m'` parameter equal to 1 (slip perfectly aligned).
    
-  The |matlab| function used to calculate the m' parameter is: `mprime.m <https://github.com/stabix/stabix/tree/master/slip_transfer/mprime.m>`_
+  The |matlab| function used to calculate the m' parameter is:
+  `mprime.m <https://github.com/stabix/stabix/tree/master/slip_transfer/mprime.m>`_
      
 * :math:`\vec b_\text r` **the residual Burgers vector** [#Marcinkowski_1970]_, [#Bollmann_1970]_, [#LimRaj_1985_1]_, [#LimRaj_1985_2]_, [#Clark_1989]_, [#Lee_1990_2]_ and [#Clark_1992]_.
     .. math:: \vec b_\text{r} = \vec g_\text{in}\cdot\vec b_\text{in} - \vec g_\text{out}\cdot\vec b_\text{out}
@@ -121,12 +134,13 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   Kacher et al. in 304 stainless steel (FCC) [#KacherRobertson_2012]_,
   and Jacques et al. for semiconductors [#Jacques_1990]_.
   
-  Patriarca et al. demonstrated for BCC material the role of the |rbv| in predicting slip transmission, by analysing strain field across GBs
-  determined by digital image correlation [#Patriarca_2013]_. 
+  Patriarca et al. demonstrated for BCC material the role of the |rbv| in predicting slip transmission,
+  by analysing strain field across GBs determined by digital image correlation [#Patriarca_2013]_. 
   
   Misra and Gibala used the |rbv| to analyze slip across a FCC/BCC interphase boundary [#MisraGibala_1999]_.
   
-  The |matlab| function used to calculate the |rbv| is: `residual_Burgers_vector.m <https://github.com/stabix/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_
+  The |matlab| function used to calculate the |rbv| is:
+  `residual_Burgers_vector.m <https://github.com/stabix/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_
  
 * **The misorientation or disorientation** (:math:`\Delta g` or :math:`\Delta g_\text d`)  [#AustChen_1954]_, [#ClarkChalmers_1954]_ and [#WoNgan_2004]_
 
@@ -139,9 +153,11 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   Some authors studied the stability of grain boundaries by the calculations
   of energy difference vs. misorientation angle through the hexagonal c-axis/a-axis [#Faraoun_2006]_.
   
-  The misorientation and disorientation equations are given in the `crystallographic properties of a bicrystal. <http://stabix.readthedocs.org/en/latest/bicrystal_definition.html>`_
+  The misorientation and disorientation equations are given in the
+  `crystallographic properties of a bicrystal. <http://stabix.readthedocs.org/en/latest/bicrystal_definition.html>`_
  
-  The |matlab| function used to calculate the misorientation angle is: `misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/misorientation.m>`_
+  The |matlab| function used to calculate the misorientation angle is:
+  `misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/misorientation.m>`_
   
 Stress Criteria
 -----------------
@@ -156,18 +172,22 @@ Stress Criteria
         :label: schmid_matrix
   
   :math:`\sigma` is an arbitrary stress state and :math:`\tau^i` the resolved shear stress on slip system :math:`i`.
-  :math:`{S_0}^i` is the Schmid matrix defined by the dyadic product of the slip plane normals :math:`\vec n` and the slip directions :math:`\vec d` of the slip system :math:`i`.
+  :math:`{S_0}^i` is the Schmid matrix defined by the dyadic product of the slip plane normals
+  :math:`\vec n` and the slip directions :math:`\vec d` of the slip system :math:`i`.
   The Schmid factor, :math:`m`, is defined as the ratio of the resolved shear stress :math:`\tau^{i}` to a given uniaxial stress.
   
-  Knowing the value of the highest Schmid factor of a given slip system for both grains in a bicrystal, Abuzaid et al. [#Abuzaid_2012]_ proposed the following criterion :
+  Knowing the value of the highest Schmid factor of a given slip system for both grains
+  in a bicrystal, Abuzaid et al. [#Abuzaid_2012]_ proposed the following criterion :
 
     .. math:: m_\text{GB} = m_\text{in} + m_\text{out}
         :label: schmid_factor_gb
         
-  The subscripts :math:`\text{GB}`, :math:`\text{in}`, and :math:`\text{out}` refer to the grain boundary, and the incoming and outgoing slip systems, respectively.
+  The subscripts :math:`\text{GB}`, :math:`\text{in}`, and :math:`\text{out}`
+  refer to the grain boundary, and the incoming and outgoing slip systems, respectively.
   This GB Schmid factor (:math:`m_\text{GB}`) factor should be maximized.
   
-  The |matlab| function used to calculate the Schmid factor is: `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_
+  The |matlab| function used to calculate the Schmid factor is:
+  `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_
   
 * **Generalized Schmid Factor** (:math:`GSF`) [#Reid_1973]_ and [#Bieler_2014]_
 
@@ -177,39 +197,50 @@ Stress Criteria
     .. math:: GSF = \vec d \cdot g \sigma g \cdot \vec n
         :label: generalized_schmid_factor
     
-  :math:`\vec n` and :math:`\vec d` are respectively the slip plane normals and the slip directions of the slip system. The :math:`g` is the orientation matrix for a given crystal.
+  :math:`\vec n` and :math:`\vec d` are respectively the slip plane normals and the slip directions
+  of the slip system. The :math:`g` is the orientation matrix for a given crystal.
         
-  The |matlab| function used to calculate the generalized Schmid factor is: `generalized_schmid_factor.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/generalized_schmid_factor.m>`_
+  The |matlab| function used to calculate the generalized Schmid factor is:
+  `generalized_schmid_factor.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/generalized_schmid_factor.m>`_
         
 * **Resolved Shear Stress** (:math:`\tau`) [#Lee_1989]_, [#Lee_1990_1]_, [#Lee_1990_2]_, [#Clark_1992]_, [#Lagow_2001]_, [#Bieler_2009]_,  [#Dewald1_2007]_, [#Dewald2_2007]_ and [#Dewald3_2011]_
   
-  The resolved shear stress :math:`\tau` acting on the outgoing slip system from the piled-up dislocations should be maximized. This criterion considers the local stress state.
+  The resolved shear stress :math:`\tau` acting on the outgoing slip system from the piled-up dislocations should be maximized.
+  This criterion considers the local stress state.
   
   The resolved shear stress on the grain boundary should be minimized.
   
-  For Shi and Zikry, the ratio of the resolved shear stress to the reference shear stress of the outgoing slip system (stress ratio) should be greater than a critical value (which is approximately 1) [#Shi_2011]_.
+  For Shi and Zikry, the ratio of the resolved shear stress to the reference shear stress of the outgoing slip system
+  (stress ratio) should be greater than a critical value (which is approximately 1) [#Shi_2011]_.
   
-  For Li et al. and Gao et al. the resolved shear stress acting on the incoming dislocation on the slip plane must be larger than the critical penetration stress.
-  From the energy point of view, only when the work by the external force on the incoming dislocation is greater than the summation of the GB energy
-  and strain energy of GB dislocation debris, it is possible that the incoming dislocation can penetrate through the GB [#Li_2009]_ and [#Gao_2011]_.
+  For Li et al. and Gao et al. the resolved shear stress acting on the incoming
+  dislocation on the slip plane must be larger than the critical penetration stress.
+  From the energy point of view, only when the work by the external force on the
+  incoming dislocation is greater than the summation of the GB energy
+  and strain energy of GB dislocation debris, it is possible that the incoming
+  dislocation can penetrate through the GB [#Li_2009]_ and [#Gao_2011]_.
   
   It is possible to assess the shear stress from the geometrical factor :math:`N` (Livingston and Chamlers) :
     
     .. math:: \tau_{\text{in}} = \tau_{\text{out}} * N
         :label: shear_stress_n_factor
     
-  Where :math:`\tau_{\text{out}}` is the shear stress at the head of the accumulated dislocations in their slip plane and
-  :math:`\tau_{\text{in}}` is the shear acting on the incoming slip system [#LivingstonChalmers_1957]_,  [#HookHirth_1967_1]_ and [#HookHirth_1967_2]_.
+  Where :math:`\tau_{\text{out}}` is the shear stress at the head of the
+  accumulated dislocations in their slip plane and :math:`\tau_{\text{in}}`
+  is the shear acting on the incoming slip system [#LivingstonChalmers_1957]_, 
+  [#HookHirth_1967_1]_ and [#HookHirth_1967_2]_.
   
-  The |matlab| function used to calculate the resolved shear stress is: `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_
+  The |matlab| function used to calculate the resolved shear stress is:
+  `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_
 
 Combination of Criteria
 -------------------------
 
 * **Geometrical function weighted by the accumulated shear stress or the Schmid factor** [#Bieler_2014]_ :
 
-Bieler et al. proposed to weight slip transfer parameters by the sum of accumulated shear :math:`\gamma_{\text{out}}` on each slip system, 
-knowing the local stress tensor. This leads to the following shear-informed version of a slip transfer parameter:
+Bieler et al. proposed to weight slip transfer parameters by the sum of
+accumulated shear :math:`\gamma` on each slip system, knowing the local stress tensor.
+This leads to the following shear-informed version of a slip transfer parameter:
 
     .. math:: m_{\gamma}^{'} = {{\sum_{\alpha} \sum_{\beta} m_{\alpha\beta}^{'} \left(\gamma^{\alpha} \gamma^{\beta} \right)} \over {\sum_{\alpha} \sum_{\beta} \left(\gamma^{\alpha} \gamma^{\beta} \right)}}
         :label: shear_weighted_mprime
@@ -223,14 +254,13 @@ knowing the local stress tensor. This leads to the following shear-informed vers
     .. math:: s = \cos(\psi) \cdot \cos(\kappa) \cdot \cos(\theta)
         :label: sum_cosines
         
-Similarly, the m0 parameter can be weighted using the Schmid
-factor m on each slip system as a metric for the magnitude of slip
-transfer:
+Similarly, the :math:`m^{'}` parameter can be weighted using the Schmid factor :math:`m`
+on each slip system as a metric for the magnitude of slip transfer:
         
     .. math:: m_{GSF}^{'} = {{\sum_{\alpha} \sum_{\beta} m_{\alpha\beta}^{'} \left(GSF^{\alpha} GSF^{\beta} \right)} \over {\sum_{\alpha} \sum_{\beta} \left(GSF^{\alpha} GSF^{\beta} \right)}}
         :label: GSF_weighted_mprime
         
-Slip transmission parameters implemented in the |matlab| Toolbox
+Slip transmission parameters implemented in the STABiX toolbox
 -----------------------------------------------------------------------
 .. csv-table::
    :header: "Slip transmission parameter", "Function", "|matlab| function", "Reference"
@@ -246,14 +276,14 @@ Slip transmission parameters implemented in the |matlab| Toolbox
    "Grain boundary Schmid factor", ":math:`m_\text{GB} = m_\text{in} + m_\text{out}`", `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_, [#Abuzaid_2012]_
    "Generalized Schmid Factor (:math:`GSF`)", ":math:`GSF = d \cdot g \sigma g \cdot n`", `generalized_schmid_factor.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/generalized_schmid_factor.m>`_, [#Reid_1973]_
 
-Slip and twin systems implemented in the |matlab| Toolbox
----------------------------------------------------------------------------
+Slip and twin systems implemented in the STABiX toolbox
+--------------------------------------------------------------
 * List of slip and twin systems for FCC phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_ and `DAMASK - FCC <http://damask.mpie.de/Documentation/FCC>`_.
 * List of slip and twin systems for BCC phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_ and `DAMASK - BCC <http://damask.mpie.de/Documentation/BCC>`_.
 * List of slip and twin systems for HCP phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_ and `DAMASK - HCP <http://damask.mpie.de/Documentation/Hex>`_.
 
 References
-----------
+-----------
 .. [#Abuzaid_2012] `W.Z. Abuzaid et al., "Slip transfer and plastic strain accumulation across grain boundaries in Hastelloy X.", J. of the Mech. and Phys. of Sol. (2012), 60(6) ,pp. 1201–1220. <http://dx.doi.org/10.1016/j.jmps.2012.02.001>`_
 .. [#Ashmawi_2001] `W.M. Ashmawi and M.A. Zikry, "Prediction of Grain-Boundary Interfacial Mechanisms in Polycrystalline Materials.", Journal of Engineering Materials and Technology (2001), 124(1), pp. 88-96. <http://dx.doi.org/10.1115/1.1421611>`_
 .. [#AustChen_1954] `K.T. Aust and N.K. Chen, "Effect of orientation difference on the plastic deformation of aluminum bicrystals.", Acta Metallurgica (1954), 2, pp. 632-638. <http://dx.doi.org/10.1016/0001-6160(54)90199-6>`_
@@ -279,7 +309,7 @@ References
 .. [#Faraoun_2006] `H. Faraoun et al., "Study of stability of twist grain boundaries in hcp zinc.", Scripta Materialia (2006), 54, pp. 865–868. <http://dx.doi.org/10.1016/j.scriptamat.2005.11.008>`_
 .. [#Gao_2011] `Y. Gao et al., "A hierarchical dislocation-grain boundary interaction model based on 3D discrete dislocation dynamics and molecular dynamics." Science China Physics, Mechanics and Astronomy (2011), 54(4), pp. 625-632. <http://dx.doi.org/10.1007/s11433-011-4298-9>`_
 .. [#Gemperle_2004] `A. Gemperle et al., "Interaction of slip dislocations with grain boundaries in body-centered cubic bicrystals.", Materials Science and Engineering A (2004), 378-389, pp. 46-50. <http://dx.doi.org/10.1016/j.msea.2004.03.081>`_
-.. [#Gemperlova_2004] `J. Gemperlova et al.,"Slip transfer across grain boundaries in Fe–Si bicrystals.", Journal of Alloys and Compounds (2004), 378(1-2), pp. 97-101. <http://dx.doi.org/10.1016/j.jallcom.2003.10.086>`_
+.. [#Gemperlova_2004] `J. Gemperlova et al., "Slip transfer across grain boundaries in Fe–Si bicrystals.", Journal of Alloys and Compounds (2004), 378(1-2), pp. 97-101. <http://dx.doi.org/10.1016/j.jallcom.2003.10.086>`_
 .. [#Guo_2014] `Y. Guo et al., "Slip band–grain boundary interactions in commercial-purity titanium.", Acta Materialia (2014), 76, pp. 1-12. <http://dx.doi.org/10.1016/j.actamat.2014.05.015>`_
 .. [#HauserChamlers_1961] `J.J. Hauser and B. Chamlers, "The plastic deformation of bicrystals of f.c.c. metals.", Acta Metallurgica (1961), 9(9), pp. 802-818. <http://dx.doi.org/10.1016/0001-6160(61)90183-3>`_
 .. [#Herbert_2011] `F.W. Herbert et al., "Nanoindentation Induced Deformation Near Grain Boundaries of Corrosion Resistant Nickel Alloys.", Mater. Res. Soc. Symp. Proc., (2011), 1297. <http://dx.doi.org/10.1557/opl.2011>`_
@@ -330,7 +360,7 @@ References
 .. [#SuttonBalluffi_1995] `A.P. Sutton and R.W. Balluffi, "Interfaces in Crystalline Materials.", OUP Oxford (1995). <http://ukcatalogue.oup.com/product/9780199211067.do>`_
 .. [#Tsurekawa_2014] `S. Tsurekawa et al., "Local plastic deformation in the vicinity of grain boundaries in Fe–3 mass% Si alloy bicrystals and tricrystal.", J. Mater. Sci., (2014), 49(14), pp. 4698–4704. <http://dx.doi.org/10.1007/s10853-014-8150-2>`_
 .. [#Ueda_2002] `M. Ueda et al., "Effect of grain boundary on martensite transformation behaviour in Fe–32 at.%Ni bicrystals.", Science and Technology of Advanced Materials (2002), 3(2), pp. 171. <http://dx.doi.org/10.1016/S1468-6996(02)00004-9>`_
-.. [#WangNgan_2004] `M.G. Wang and A.H.W. Ngan,"Indentation strain burst phenomenon induced by grain boundaries in niobium.", Journal of Materials Research (2004), 19(08), pp. 2478-2486. <http://dx.doi.org/10.1557/JMR.2004.0316>`_
+.. [#WangNgan_2004] `M.G. Wang and A.H.W. Ngan, "Indentation strain burst phenomenon induced by grain boundaries in niobium.", Journal of Materials Research (2004), 19(08), pp. 2478-2486. <http://dx.doi.org/10.1557/JMR.2004.0316>`_
 .. [#Werner_1990] `E. Werner and W. Prantl, "Slip transfer across grain and phase boundaries.", Acta Metallurgica et Materialia (1990), 38(3), pp. 533-537. <http://dx.doi.org/10.1016/0956-7151(90)90159-E>`_
 .. [#WestWas_2013] `E.A. West and G.S. Was, "Strain incompatibilities and their role in intergranular cracking of irradiated 316L stainless steel.", J. of Nucl. Mater. (2013), 441(1-3), pp. 623–632. <http://dx.doi.org/10.1016/j.jnucmat.2012.10.021>`_
 .. [#WoNgan_2004] `P.C. Wo and A.H.W. Ngan, "Investigation of slip transmission behavior across grain boundaries in polycrystalline Ni3Al using nanoindentation.", J. Mater. Res. (2004), 19(1), pp. 189-201. <http://dx.doi.org/10.1557/jmr.2004.19.1.189>`_
