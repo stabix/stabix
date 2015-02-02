@@ -31,10 +31,10 @@ if nargin == 0 % run test cases if called without arguments
         n2(ii,:) = perpendicular_vector(d2(ii,:));
         l2(ii,:) = perpendicular_vector(d2(ii,:));
     end
-    s1 = s_factor_opt(n1,d1,l1,n2,d2,l2)
-    s2 = s_factor_opt(n2,d2,l2,n1,d1,l1)
-    %assert(m1 == m2)
-    s = mprime_opt_vectorized(n1,d1,l1,n2,d2,l2);
+    s1 = s_factor_opt_vectorized(n1,d1,l1,n2,d2,l2)
+    s2 = s_factor_opt_vectorized(n2,d2,l2,n1,d1,l1)
+    %assert(s1 == s2)
+    s = s_factor_opt_vectorized(n1,d1,l1,n2,d2,l2);
     commandwindow;
     return
 end

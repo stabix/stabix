@@ -9,7 +9,7 @@ function mp = mprime(n1, d1, n2, d2, varargin)
 % n2 = normal of 2nd slip system
 % d2 = Burgers vector of 2nd slip system (= slip direction)
 %
-% Luster % Morris (1995):
+% Luster and Morris (1995):
 %     m' = dot(n1,n2)*dot(d1,d2) = cos(\phi) * cos(\kappa)
 % with
 %     phi = angle between normals

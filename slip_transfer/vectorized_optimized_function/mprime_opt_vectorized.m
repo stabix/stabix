@@ -10,20 +10,20 @@ function mp = mprime_opt_vectorized(n1, d1, n2, d2, varargin)
 % d2 = N-vector for Burgers vector of 2nd slip system (= slip direction)
 % N = Number of slip system
 %
-% Luster % Morris (1995):
+% Luster and Morris (1995):
 %     m' = dot(n1,n2)*dot(d1,d2) = cos(\phi) * cos(\kappa)
 % with
 %     phi = angle between normals
 %     kappa = angle between slip directions
 %
-% author: c.zambaldi@mpie.de / d.mercier@mpie.de
+% authors: c.zambaldi@mpie.de / d.mercier@mpie.de
 
 if nargin == 0 % run test cases if called without arguments
     for ii = 1:5
         d1(ii,:) = random_direction();
         n1(ii,:) = perpendicular_vector(d1(ii,:));
         d2(ii,:) = random_direction();
-        n2(ii,:) = perpendicular_vector(n2(ii,:));
+        n2(ii,:) = perpendicular_vector(d2(ii,:));
     end
     m1 = mprime_opt_vectorized(n1,d1,n2,d2)
     m2 = mprime_opt_vectorized(n2,d2,n1,d1)
