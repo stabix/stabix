@@ -46,7 +46,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
     .. math:: N = (\vec n_\text{in} \cdot \vec n_\text{out})(\vec d_\text{in} \cdot \vec d_\text{out}) + (\vec n_\text{in} \cdot \vec d_\text{out})(\vec n_\text{out} \cdot \vec d_\text{in})
         :label: n_factor
         
-    .. math:: N = \cos\psi\cos\kappa + \cos\gamma\cos\delta
+    .. math:: N = \cos(\psi) \cdot \cos(\kappa) + \cos(\gamma) \cdot \cos(\delta)
         :label: n_factor_angle
         
   Many authors referred to this criterion to analyze slip transmission [#HauserChamlers_1961]_, [#Davis_1966]_, [#HookHirth_1967_1]_,
@@ -60,7 +60,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
     .. math:: LRB = (\vec l_\text{in} \cdot \vec l_\text{out})(\vec d_\text{in} \cdot \vec d_\text{out})
         :label: LRB_factor
         
-    .. math:: LRB = \cos\theta\cos\kappa
+    .. math:: LRB = \cos(\theta) \cdot \cos(\kappa)
         :label: LRB_factor_angle
         
   The original notation of this :math:`LRB` factor is :math:`M`, but unfortunately this notation is often used for the Taylor factor [#Bieler_2014]_.
@@ -79,7 +79,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
     .. math:: m' = (\vec n_\text{in} \cdot \vec n_\text{out})(\vec d_\text{in} \cdot \vec d_\text{out}) 
         :label: m_prime
         
-    .. math:: m' = \cos\psi\cos\kappa
+    .. math:: m' = \cos(\psi) \cdot \cos(\kappa)
         :label: m_prime_angle
 
   Many authors found that this :math:`m'` parameter, which takes into account the degree of coplanarity of slip systems, is promising
@@ -206,8 +206,30 @@ Stress Criteria
 Combination of Criteria
 -------------------------
 
-* **Geometrical function weighted by the accumulated shear stress or the Schmid factor** [#Bieler_2014]_ (not yet implemented...)
+* **Geometrical function weighted by the accumulated shear stress or the Schmid factor** [#Bieler_2014]_ :
 
+Bieler et al. proposed to weight slip transfer parameters by the sum of accumulated shear :math:`\gamma_{\text{out}}` on each slip system, 
+knowing the local stress tensor. This leads to the following shear-informed version of a slip transfer parameter:
+
+    .. math:: m_{\gamma}^{'} = {{\sum_{\alpha} \sum_{\beta} m_{\alpha\beta}^{'} \left(\gamma^{\alpha} \gamma^{\beta} \right)} \over {\sum_{\alpha} \sum_{\beta} \left(\gamma^{\alpha} \gamma^{\beta} \right)}}
+        :label: shear_weighted_mprime
+        
+    .. math:: LRB_{\gamma} = {{\sum_{\alpha} \sum_{\beta} LRB_{\alpha\beta}^{'} \left(\gamma^{\alpha} \gamma^{\beta} \right)} \over {\sum_{\alpha} \sum_{\beta} \left(\gamma^{\alpha} \gamma^{\beta} \right)}}
+        :label: shear_weighted_LRB
+        
+    .. math:: s_{\gamma} = {{\sum_{\alpha} \sum_{\beta} s_{\alpha\beta}^{'} \left(\gamma^{\alpha} \gamma^{\beta} \right)} \over {\sum_{\alpha} \sum_{\beta} \left(\gamma^{\alpha} \gamma^{\beta} \right)}}
+        :label: shear_weighted_sum_cosines
+        
+    .. math:: s = \cos(\psi) \cdot \cos(\kappa) \cdot \cos(\theta)
+        :label: sum_cosines
+        
+Similarly, the m0 parameter can be weighted using the Schmid
+factor m on each slip system as a metric for the magnitude of slip
+transfer:
+        
+    .. math:: m_{GSF}^{'} = {{\sum_{\alpha} \sum_{\beta} m_{\alpha\beta}^{'} \left(GSF^{\alpha} GSF^{\beta} \right)} \over {\sum_{\alpha} \sum_{\beta} \left(GSF^{\alpha} GSF^{\beta} \right)}}
+        :label: GSF_weighted_mprime
+        
 Slip transmission parameters implemented in the |matlab| Toolbox
 -----------------------------------------------------------------------
 .. csv-table::
