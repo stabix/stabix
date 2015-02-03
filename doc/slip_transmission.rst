@@ -237,9 +237,11 @@ Combination of Criteria
 
 * **Geometrical function weighted by the accumulated shear stress or the Schmid factor** [#Bieler_2014]_ :
 
-Bieler et al. proposed to weight slip transfer parameters by the sum of
-accumulated shear :math:`\gamma` on each slip system, knowing the local stress tensor.
-This leads to the following shear-informed version of a slip transfer parameter:
+  Bieler et al. proposed to weight slip transfer parameters by the sum of
+  accumulated shear :math:`\gamma` on each slip system, knowing the local stress tensor.
+  From a crystal plasticity simulation, the accumulated shear is the total accumulated shear
+  on each slip system for a given integration point.
+  This leads to the following shear-informed version of a slip transfer parameter:  
 
     .. math:: m_{\gamma}^{'} = {{\sum_{\alpha} \sum_{\beta} m_{\alpha\beta}^{'} \left(\gamma^{\alpha} \gamma^{\beta} \right)} \over {\sum_{\alpha} \sum_{\beta} \left(\gamma^{\alpha} \gamma^{\beta} \right)}}
         :label: shear_weighting_mprime
@@ -253,8 +255,11 @@ This leads to the following shear-informed version of a slip transfer parameter:
     .. math:: s = \cos(\psi) \cdot \cos(\kappa) \cdot \cos(\theta)
         :label: sum_cosines
         
-Similarly, the :math:`m^{'}` parameter can be weighted using the Schmid factor :math:`m`
-on each slip system as a metric for the magnitude of slip transfer:
+  The |matlab| function used to calculate the :math:`s` function is:
+  `s_factor.m <https://github.com/stabix/stabix/tree/master/slip_transfer/s_factor.m>`_
+        
+  Similarly, the :math:`m^{'}` parameter can be weighted using the Schmid factor :math:`m`
+  on each slip system as a metric for the magnitude of slip transfer:
         
     .. math:: m_{GSF}^{'} = {{\sum_{\alpha} \sum_{\beta} m_{\alpha\beta}^{'} \left(m^{\alpha} m^{\beta} \right)} \over {\sum_{\alpha} \sum_{\beta} \left(m^{\alpha} m^{\beta} \right)}}
         :label: SchmidFactor_weighting_mprime
