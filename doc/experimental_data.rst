@@ -6,7 +6,7 @@
 To use the |stabix| toolbox, some experimental data are required :
 
 - average grain orientations (Euler angles (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees) or
-intragranular misorientation (misorientation axis :math:`[uvw]` / angle :math:`\omega`);
+  intragranular misorientation (misorientation axis :math:`[uvw]` / angle :math:`\omega`);
 
 - grains boundaries positions (optional for the bicrystal analysis);
 
@@ -62,9 +62,12 @@ The |matlab| function used to read "Reconstructed Boundary File" is:
 
 If some GBs segments are missing or some wrong segments are exported, play with partition
 properties in the TSL-OIM software in order to export a more realistic Reconstructed Boundaries file:
-    - decrease/increase "Grain Tolerance Angle" ;
-    - decrease/increase "Minimum Grain Size" ;
-    - decrease/increase the maximum deviation between reconstructed boundary and corresponding boundary segments.
+
+- decrease/increase "Grain Tolerance Angle" ;
+
+- decrease/increase "Minimum Grain Size" ;
+
+- decrease/increase the maximum deviation between reconstructed boundary and corresponding boundary segments.
 
 Grain File Type 2
 -----------------

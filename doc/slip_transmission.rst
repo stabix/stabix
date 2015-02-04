@@ -243,13 +243,13 @@ Combination of Criteria
   on each slip system for a given integration point.
   This leads to the following shear-informed version of a slip transfer parameter:  
 
-    .. math:: m_{\gamma}^{'} = {{\sum_{\alpha} \sum_{\beta} m_{\alpha\beta}^{'} \left(\gamma^{\alpha} \gamma^{\beta} \right)} \over {\sum_{\alpha} \sum_{\beta} \left(\gamma^{\alpha} \gamma^{\beta} \right)}}
+    .. math:: m_{\gamma}^{'} = \frac{\sum_{\alpha} \sum_{\beta} m_{\alpha\beta}^{'} \left(\gamma^{\alpha} \gamma^{\beta} \right)}{\sum_{\alpha} \sum_{\beta} \left(\gamma^{\alpha} \gamma^{\beta} \right)}
         :label: shear_weighting_mprime
         
-    .. math:: LRB_{\gamma} = {{\sum_{\alpha} \sum_{\beta} LRB_{\alpha\beta}^{'} \left(\gamma^{\alpha} \gamma^{\beta} \right)} \over {\sum_{\alpha} \sum_{\beta} \left(\gamma^{\alpha} \gamma^{\beta} \right)}}
+    .. math:: LRB_{\gamma} = \frac{\sum_{\alpha} \sum_{\beta} LRB_{\alpha\beta}^{'} \left(\gamma^{\alpha} \gamma^{\beta} \right)}{\sum_{\alpha} \sum_{\beta} \left(\gamma^{\alpha} \gamma^{\beta} \right)}
         :label: shear_weighting_LRB
         
-    .. math:: s_{\gamma} = {{\sum_{\alpha} \sum_{\beta} s_{\alpha\beta}^{'} \left(\gamma^{\alpha} \gamma^{\beta} \right)} \over {\sum_{\alpha} \sum_{\beta} \left(\gamma^{\alpha} \gamma^{\beta} \right)}}
+    .. math:: s_{\gamma} = \frac{\sum_{\alpha} \sum_{\beta} s_{\alpha\beta}^{'} \left(\gamma^{\alpha} \gamma^{\beta} \right)}{\sum_{\alpha} \sum_{\beta} \left(\gamma^{\alpha} \gamma^{\beta} \right)}
         :label: shear_weighting_sum_cosines
         
     .. math:: s = \cos(\psi) \cdot \cos(\kappa) \cdot \cos(\theta)
@@ -261,7 +261,7 @@ Combination of Criteria
   Similarly, the :math:`m^{'}` parameter can be weighted using the Schmid factor :math:`m`
   on each slip system as a metric for the magnitude of slip transfer:
         
-    .. math:: m_{GSF}^{'} = {{\sum_{\alpha} \sum_{\beta} m_{\alpha\beta}^{'} \left(m^{\alpha} m^{\beta} \right)} \over {\sum_{\alpha} \sum_{\beta} \left(m^{\alpha} m^{\beta} \right)}}
+    .. math:: m_{GSF}^{'} = \frac{\sum_{\alpha} \sum_{\beta} m_{\alpha\beta}^{'} \left(m^{\alpha} m^{\beta} \right)}{\sum_{\alpha} \sum_{\beta} \left(m^{\alpha} m^{\beta} \right)}
         :label: SchmidFactor_weighting_mprime
         
 Slip transmission parameters implemented in the STABiX toolbox
@@ -282,9 +282,12 @@ Slip transmission parameters implemented in the STABiX toolbox
 
 Slip and twin systems implemented in the STABiX toolbox
 --------------------------------------------------------------
-* List of slip and twin systems for FCC phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_ and `DAMASK - FCC <http://damask.mpie.de/Documentation/FCC>`_.
-* List of slip and twin systems for BCC phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_ and `DAMASK - BCC <http://damask.mpie.de/Documentation/BCC>`_.
-* List of slip and twin systems for HCP phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_ and `DAMASK - HCP <http://damask.mpie.de/Documentation/Hex>`_.
+* List of slip and twin systems for FCC phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_
+  and `DAMASK - FCC <http://damask.mpie.de/Documentation/FCC>`_.
+* List of slip and twin systems for BCC phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_
+  and `DAMASK - BCC <http://damask.mpie.de/Documentation/BCC>`_.
+* List of slip and twin systems for HCP phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_
+  and `DAMASK - HCP <http://damask.mpie.de/Documentation/Hex>`_.
 
 References
 -----------
