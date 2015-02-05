@@ -63,8 +63,8 @@ Activation and transmission of slip are interpreted based on these simulations a
 How to cite STABiX in your papers ?
 ====================================
 
-.. image:: https://zenodo.org/badge/5888/stabix/stabix.svg
-   :target: http://dx.doi.org/10.5281/zenodo.14665
+.. image:: https://zenodo.org/badge/doi/10.5281/zenodo.14854.svg
+   :target: http://dx.doi.org/10.5281/zenodo.14854
    
 Contents
 =========
