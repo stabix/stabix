@@ -7,7 +7,7 @@
 toolbox_name: 'STABiX'
 
 # Matlab toolbox version
-toolbox_version: '1.6.0'
+toolbox_version: '1.6.3'
 
 # Month, Year
 version_month: 'November'
