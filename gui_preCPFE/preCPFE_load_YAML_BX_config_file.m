@@ -1,7 +1,7 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function preCPFE_load_YAML_BX_config_file(YAML_GB_config_file_2_import, interface, varargin)
+function preCPFE_load_YAML_BX_config_file(YAML_GB_config_file, interface)
 %% Function to import YAML Bicrystal config. file
-% YAML_GB_config_file_2_import : Name of YAML GB config. to import
+% YAML_GB_config_file : Name of YAML GB config. to import
 % interface: type of interface (1 for SX or 2 for BX meshing interface)
 % See in http://code.google.com/p/yamlmatlab/
 
@@ -9,32 +9,32 @@ function preCPFE_load_YAML_BX_config_file(YAML_GB_config_file_2_import, interfac
 
 gui = guidata(gcf);
 
-if YAML_GB_config_file_2_import == 0
-    YAML_GB_config_file_2_import = ...
+if YAML_GB_config_file == 0
+    YAML_GB_config_file = ...
         uigetfile('*.yaml', 'Get YAML config. file');
     
     % Handle canceled file selection
-    if YAML_GB_config_file_2_import == 0
-        YAML_GB_config_file_2_import = '';
+    if YAML_GB_config_file == 0
+        YAML_GB_config_file = '';
     end
     
-    if isequal(YAML_GB_config_file_2_import, 0) ...
-            || strcmp(YAML_GB_config_file_2_import, '') == 1
+    if isequal(YAML_GB_config_file, 0) ...
+            || strcmp(YAML_GB_config_file, '') == 1
         disp('User selected Cancel');
         if interface == 1
-            YAML_GB_config_file_2_import = ...
+            YAML_GB_config_file = ...
                 sprintf('config_gui_SX_defaults.yaml');
         elseif interface == 2
-            YAML_GB_config_file_2_import = ...
+            YAML_GB_config_file = ...
                 sprintf('config_gui_BX_defaults.yaml');
         end
     else
-        disp(['User selected :', fullfile(YAML_GB_config_file_2_import)]);
+        disp(['User selected :', fullfile(YAML_GB_config_file)]);
     end
 end
 
 %% Loading YAML file
-GB_YAML = ReadYaml(YAML_GB_config_file_2_import);
+GB_YAML = ReadYaml(YAML_GB_config_file);
 
 %% Fill missing fields
 if ~isfield(GB_YAML, 'filenameGF2_BC')

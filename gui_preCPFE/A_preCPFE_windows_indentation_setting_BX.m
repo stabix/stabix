@@ -55,6 +55,16 @@ else
     gui_BX.GB.active_data = 'BX';
     gui_BX.title_str = set_gui_title(gui_BX, ...
         ['Bicrystal n°', num2str(gui_BX.GB.GB_Number)]);
+    guidata(gcf, gui_BX);
+
+    YAMLfile_title = strcat('config_gui_BX_number_', ...
+        num2str(gui_bicrystal.GB.GB_Number), '.yaml');
+    
+    preCPFE_write_YAML_BX_config_file(gui_BX.GB.pathnameGF2_BC, ...
+        YAMLfile_title);
+    
+    gui_BX.config_map.imported_YAML_GB_config_file = YAMLfile_title;
+    
 end
 gui_BX.config.username = username_get;
 guidata(gcf, gui_BX);
