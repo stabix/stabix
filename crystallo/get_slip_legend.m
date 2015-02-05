@@ -29,14 +29,14 @@ if strcmp(structure, 'hcp') == 1
         legend_slip = 'Pyr1 - <c+a>';
     elseif (slip >= 28 && slip <= 33)               % Pyramidal 2nd order <c+a>
         legend_slip = 'Pyr2 - <c+a>';
-    elseif slip >= 34 && slip <= 39                 %Twins
-        legend_slip = 'Twin{10-11}<10-1-2>';
-    elseif slip >= 40 && slip <= 45                 %Twins
-        legend_slip = 'Twin{10-12}<-1011>';
-    elseif slip >= 46 && slip <= 51                 %Twins
-        legend_slip = 'Twin{10-13}<30-2-2>';
-    elseif slip >= 52 && slip <= 57                 %Twins
+    elseif slip >= 34 && slip <= 39                 %Twins T1
         legend_slip = 'Twin{10-12}<10-1-1>';
+    elseif slip >= 40 && slip <= 45                 %Twins T2
+        legend_slip = 'Twin{11-21}<-1-126>';
+    elseif slip >= 46 && slip <= 51                 %Twins C1
+        legend_slip = 'Twin{10-11}<10-1-2>';
+    elseif slip >= 52 && slip <= 57                 %Twins C2
+        legend_slip = 'Twin{11-22}<11-2-3>';
     elseif slip == 100
         legend_slip = {'Basal - <a>';...
             'Prism1 - <a>';'Prism2 - <a>';...

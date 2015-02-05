@@ -26,6 +26,7 @@ legend_slipA = get_slip_legend(gui.GB.Phase_A, slipA);
 legend_slipB = get_slip_legend(gui.GB.Phase_B, slipB);
 legend_location_str = ...
     get_value_popupmenu(gui.handles.pmlegend_location, listLocation);
+legend_location_str = char(legend_location_str);
 
 %% Setting of slip direction and slip normal
 slipnormalA = gui.calculations.vectA(slipA, 1:3, gui.GB.GrainA);

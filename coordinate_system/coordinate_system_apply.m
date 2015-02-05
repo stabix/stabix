@@ -16,7 +16,7 @@ if nargin < 2
     e1 = [1;0;0];
     e2 = [0;1;0];
     e3 = [0;0;1];
-    CCM = [ e1, e2,e3];
+    CCM = [ e1, e2, e3];
     testFlag = false;
 end
 
@@ -24,7 +24,7 @@ if nargin == 0
     e1 = [1;0;0];
     e2 = [0;1;0];
     e3 = [0;0;1];
-    CCM = [ e1, e2,e3];
+    CCM = [ e1, e2, e3];
     eulers_in = randBunges;
     testFlag = true;
 end
