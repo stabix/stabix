@@ -64,8 +64,8 @@ How to cite STABiX in your papers ?
 ====================================
 
 .. image:: https://zenodo.org/badge/5888/stabix/stabix.svg
-   :target: http://dx.doi.org/10.5281/zenodo.14608
-
+   :target: http://dx.doi.org/10.5281/zenodo.14665
+   
 Contents
 =========
    
