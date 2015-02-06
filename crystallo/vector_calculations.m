@@ -20,21 +20,19 @@ for ig = grain
                     slip_syst(1,:,ss_ind), lattice_parameters(1));
                 ss_cart(2,:,ss_ind) = millerbravaisdir2cart(...
                     slip_syst(2,:,ss_ind), lattice_parameters(1));
-                ss_cart_norm(1,:,ss_ind) = ss_cart(1,:,ss_ind) / ...
-                    norm(ss_cart(1,:,ss_ind));
-                ss_cart_norm(2,:,ss_ind) = ss_cart(2,:,ss_ind) / ...
-                    norm(ss_cart(2,:,ss_ind));
             end
         else
             for ss_ind = 1:size(slip_syst, 3)
                 ss_cart(1,:,ss_ind) = slip_syst(1,:,ss_ind);
                 ss_cart(2,:,ss_ind) = slip_syst(2,:,ss_ind);
-                ss_cart_norm(1,:,ss_ind) = ss_cart(1,:,ss_ind) / ...
-                    norm(ss_cart(1,:,ss_ind));
-                ss_cart_norm(2,:,ss_ind) = ss_cart(2,:,ss_ind) / ...
-                    norm(ss_cart(2,:,ss_ind));
+                
             end
         end
+        % Normalization of vectors
+        ss_cart_norm(1,:,ss_ind) = ss_cart(1,:,ss_ind) / ...
+            norm(ss_cart(1,:,ss_ind));
+        ss_cart_norm(2,:,ss_ind) = ss_cart(2,:,ss_ind) / ...
+            norm(ss_cart(2,:,ss_ind));
     end
 end
 
