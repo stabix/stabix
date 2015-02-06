@@ -82,6 +82,7 @@ Contents
    preCPFE_gui
    data_from_paper
    gui_gbinc
+   references
 
 
 References
@@ -107,7 +108,7 @@ Contact
 
 [2] `Chemical Engineering and Materials Science, Michigan State University, East Lansing 48824 MI, USA <http://www.msu.edu/>`_
 
-.. image:: ./_pictures/logo_MPIE_MSU.png
+.. image:: ./_pictures/logos/logo_MPIE_MSU.png
    :scale: 50 %
 
 
