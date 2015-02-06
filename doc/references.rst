@@ -5,7 +5,7 @@ Related Projects
 ##################
 
 .. csv-table::
-   :widths: 1, 10
+   :widths: 10, 10
 
    .. figure:: ./_pictures/logos/logo_MTEX.png,   `MTEX <http://mtex-toolbox.github.io/>`_
    .. figure:: ./_pictures/logos/logo_DAMASK.png, `DAMASK <http://damask.mpie.de/>`_
@@ -14,7 +14,7 @@ Institutions
 ##################
 
 .. csv-table::
-   :widths: 1, 10
+   :widths: 10, 10
 
    .. figure:: ./_pictures/logos/logo_MPIE.png,        "`Max-Planck-Institut fuer Eisenforschung GmbH (Duesseldorf, Germany) <http://www.mpie.de/>`_"
    .. figure:: ./_pictures/logos/logo_MSU.png,         "`Department of Chemical Engineering and Materials Science / Michigan State University (East Lansing, MI, USA) <https://www.msu.edu/>`_"
