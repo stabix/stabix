@@ -21,14 +21,19 @@ Currently the following models can be written:
     * :ref:`single_crystal_indentation` (MSC.Mentat and Abaqus)
     * :ref:`bicrystal_indentation` (MSC.Mentat and Abaqus)
     
-Please find here the `Python package used to generate the SX and BX indentation models <https://github.com/stabix/stabix/tree/master/third_party_code/python>`_.
+Please find here the `Python package used to generate the SX and BX indentation models
+<https://github.com/stabix/stabix/tree/master/third_party_code/python>`_.
 
 How to load crystallographic properties of the SX or of the BX ?
 ----------------------------------------------------------------
 
 It is possible to set SX or BX properties (material, phase, Euler angles, trace angle...) :
-    - from the `Bicrystal GUI <http://stabix.readthedocs.org/en/latest/bicrystal_gui.html>`_ (by giving GB's number and pressing the button 'PLOT BICRYSTAL');
-    - from a YAML configuration file (from the menu, by clicking on 'preCPFE-SX' or 'preCPFE-BX', and 'Load Single Crystal config. file' or 'Load Bicrystal config. file').
+
+- from the `Bicrystal GUI <http://stabix.readthedocs.org/en/latest/bicrystal_gui.html>`_ 
+(by giving GB's number and pressing the button 'PLOT BICRYSTAL');
+
+- from a YAML configuration file (from the menu, by clicking on 'preCPFE-SX' or
+'preCPFE-BX', and 'Load Single Crystal config. file' or 'Load Bicrystal config. file').
 
 .. figure:: ./_pictures/GUIs/bicrystal2cpfem.png
    :scale: 50 %
@@ -48,7 +53,8 @@ the influence of the single-slip behavior of different slip systems on the resul
 surface profiles.
 
 The function used to run the preCPFE GUI for SX indentation is:
-`A_preCPFE_windows_indentation_setting_SX.m <https://github.com/stabix/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_SX.m>`_
+`A_preCPFE_windows_indentation_setting_SX.m
+<https://github.com/stabix/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_SX.m>`_
 
 .. figure:: ./_pictures/GUIs/preCPFE_GUI_SX.png
    :scale: 40 %
@@ -84,7 +90,8 @@ by employing a local phenomenological crystal plasticity formulation in the simu
 
 
 The function used to run the preCPFE GUI for BX indentation is:
-`A_preCPFE_windows_indentation_setting_BX.m <https://github.com/stabix/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_BX.m>`_
+`A_preCPFE_windows_indentation_setting_BX.m
+<https://github.com/stabix/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_BX.m>`_
 
 .. only:: html
 
@@ -122,14 +129,21 @@ Currently the following geometries can be used for CPFE simulations :
     * `flat punch <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_flat_punch_indenter.m>`_ ;
     * `free topography <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_indenter_topo_AFM.m>`_ (from an AFM measurement for instance).
     
-For the Berkovich, Vickers, cube corner indenters and the free topography, the faces and vertices are saved in a structure variable from a patch object.
-For the cono-spherical and the flat punch, geometries are already implemented in the Python package for *MSC.Mentat* and *Abaqus*.
-It is possible as well to call the |matlab| function `surf2patch <http://www.mathworks.fr/help/matlab/ref/surf2patch.html>`_, to return the faces and vertices from a surface object.
+For the Berkovich, Vickers, cube corner indenters and the free topography,
+the faces and vertices are saved in a structure variable from a patch object.
+For the cono-spherical and the flat punch, geometries are already implemented
+in the Python package for *MSC.Mentat* and *Abaqus*.
+It is possible as well to call the |matlab| function `surf2patch
+<http://www.mathworks.fr/help/matlab/ref/surf2patch.html>`_, to return
+the faces and vertices from a surface object.
 
 Then the function `patch2inp <https://github.com/stabix/stabix/blob/master/util/patch2inp.m>`_
-is used to generate an *Abaqus .inp* file, which is used when the CPFE model is created in *MSC.Mentat* or *Abaqus*.
+is used to generate an *Abaqus .inp* file, which is used
+when the CPFE model is created in *MSC.Mentat* or *Abaqus*.
 
-It is possible to rotate directly into the GUIs, the Berkovich, Vickers, cube corner indenters and the free topography before the generation of the *Abaqus .inp* file.
+It is possible to rotate directly into the GUIs, the Berkovich, Vickers,
+cube corner indenters and the free topography before the generation
+of the *Abaqus .inp* file.
 
 .. only:: html
 
@@ -152,7 +166,8 @@ AFM topography
 
 The topography from an AFM measurement has to be saved into a .txt file in the *Gwyddion ASCII* format.
 
-The |matlab| function used to load and read Gwyddion file is: `read_gwyddion_ascii.m <https://github.com/stabix/stabix/blob/master/gwyddion/read_gwyddion_ascii.m>`_
+The |matlab| function used to load and read Gwyddion file is: 
+`read_gwyddion_ascii.m <https://github.com/stabix/stabix/blob/master/gwyddion/read_gwyddion_ascii.m>`_
 
 `Visit the Gwyddion website for more information. <http://gwyddion.net/>`_
 
@@ -167,9 +182,11 @@ Python setup
 
 For the generation of the CPFE preprocessing scripts an installation of Python 
 is required together with the *Numpy* package.
-Often one of the `scientific Python distributions <http://www.scipy.org/install.html#scientific-python-distributions>`_ is the easiest way to get up and running (use a Python 2.x distribution).
+Often one of the `scientific Python distributions <http://www.scipy.org/install.html#scientific-python-distributions>`_
+is the easiest way to get up and running (use a Python 2.x distribution).
 To make sure that |stabix| can find the installed Python you will have to either 
-put it on the system's `PATH <http://en.wikipedia.org/wiki/PATH_%28variable%29>`_ or put it's exact location in the user configuration as detailed below.
+put it on the system's `PATH <http://en.wikipedia.org/wiki/PATH_%28variable%29>`_
+or put it's exact location in the user configuration as detailed below.
 
 Adjusting the configuration settings 
 -------------------------------------
@@ -221,9 +238,12 @@ Input files
 Using the CPFE input files
 -----------------------------
 
-* *MSC.Mentat*
+* *MSC.Mentat 2008 - 2012*
     - 'Files' ==> 'Current Directory' ==> Select the folder containing input files
     - 'Utils' ==> 'Procedures' ==> Select procedure file containing the FEM model (\*.proc)
+
+* *MSC.Mentat 2013 - 2014*
+    - 'Tools' ==> 'Procedures' ==> Select procedure file containing the FEM model (\*.proc)
 
 * *Abaqus*
     - 'File' ==> 'Set Work Directory...' ==> Select the folder containing input files
