@@ -108,7 +108,9 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
    :scale: 50 %
    :align: center
 
-   *Figure 4 : Distribution of m' parameter calculated for a) basal vs basal slip systems, b) basal vs prismatic <a> slip systems and c) prismatic <a> vs prismatic <a> slip systems in function of misorientation angle.*
+   *Figure 4 : Distribution of m' parameter calculated for a) basal vs basal slip systems,
+   b) basal vs prismatic <a> slip systems and c) prismatic <a> vs prismatic <a>
+   slip systems in function of misorientation angle.*
    
    A resistance factor of the grain boundary can be described by the following equation : 
    

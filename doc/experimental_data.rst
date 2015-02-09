@@ -1,5 +1,5 @@
 ﻿Experimental data
-=================
+===================
 
 .. include:: includes.rst
 
@@ -14,14 +14,15 @@ To use the |stabix| toolbox, some experimental data are required :
 
 - geometry of grain boundaries (trace angle and grain boundary inclination) (optional).
 
-TEM experiments can provide intragranular misorientation and EBSD measurements can provide average grain orientations,
-grains boundaries and grains positions, and grain boundary trace angle.
+TEM experiments can provide intragranular misorientation and EBSD measurements
+can provide average grain orientations, grains boundaries and grains positions,
+and grain boundary trace angle.
 
 Inclination of the grain boundary can be evaluated by serial polishing or focused ion beam (FIB) sectioning,
 either parallel or perpendicular to the surface of the sample.
 
 EBSD map GUI - TSL-OIM data preparation
-***************************************
+*****************************************
 
 Open you .osc (or your .ctf) file in the TSL-OIM Analysis Software.
 
@@ -40,15 +41,15 @@ Reconstructed Boundaries File
 **Export "Reconstructed Boundaries File" of the cleaned dataset**
 (All data --> Export --> Reconstructed Boundaries), with the following options defined by default :
 
-- Right hand average orientation (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees
+- Right hand average orientation (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees ;
 
-- Left hand average orientation (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees
+- Left hand average orientation (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees ;
 
-- Trace angle (in degrees)
+- Trace angle (in degrees) ;
 
-- (:math:`x,y`) coordinates of endpoints (in microns)
+- (:math:`x,y`) coordinates of endpoints (in microns) ;
 
-- IDs of right hand and left hand grains
+- IDs of right hand and left hand grains.
 
 .. note::
     Reconstructed boundary methodology is only applied to data collected on a hexagonal grid.
@@ -118,7 +119,7 @@ Possible errors introduced during files exportation from TSL-OIM
     All of these issues are taken into account and corrected automatically when user is loading his data via the EBSD map GUI.
 
 Bicrystal GUI - YAML configuration file
-***************************************
+*****************************************
 
 **The YAML configuration file provides a simple way to define a bicrystal.**
 
@@ -136,7 +137,7 @@ Load your YAML bicrystal configuration file via the menu in the bicrystal GUI.
 `Visit the YAML code for Matlab. <http://code.google.com/p/yamlmatlab/>`_
 
 Convention for bicrystal EBSD/indentation experiments
-*****************************************************
+*******************************************************
 
 .. figure:: ./_pictures/Schemes_SlipTransmission/Bicrystal_conventions.png
    :scale: 50 %

@@ -21,7 +21,8 @@ This includes:
 Loading EBSD data
 ---------------------------
 
-For more details about the format of the EBSD data, see also the page `Experimental data <http://stabix.readthedocs.org/en/latest/experimental_data.html>`_.
+For more details about the format of the EBSD data, see also the page
+`Experimental data <http://stabix.readthedocs.org/en/latest/experimental_data.html>`_.
 
 .. figure:: ./_pictures/GUIs/EBSD_map_setting.png
    :scale: 50 %
@@ -33,6 +34,9 @@ For more details about the format of the EBSD data, see also the page `Experimen
 
 Smoothing GBs segments
 ------------------------
+
+The smoothing algorithm allows to decrease the total number of
+grains boundaries in order to speed up calculations and plots.
 
 .. figure:: ./_pictures/GUIs/EBSD_map_loading_smoothing.png
    :scale: 40 %

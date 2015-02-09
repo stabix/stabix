@@ -30,10 +30,10 @@ How to load crystallographic properties of the SX or of the BX ?
 It is possible to set SX or BX properties (material, phase, Euler angles, trace angle...) :
 
 - from the `Bicrystal GUI <http://stabix.readthedocs.org/en/latest/bicrystal_gui.html>`_ 
-(by giving GB's number and pressing the button 'PLOT BICRYSTAL');
+  (by giving GB's number and pressing the button 'PLOT BICRYSTAL');
 
 - from a YAML configuration file (from the menu, by clicking on 'preCPFE-SX' or
-'preCPFE-BX', and 'Load Single Crystal config. file' or 'Load Bicrystal config. file').
+  'preCPFE-BX', and 'Load Single Crystal config. file' or 'Load Bicrystal config. file').
 
 .. figure:: ./_pictures/GUIs/bicrystal2cpfem.png
    :scale: 50 %

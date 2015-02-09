@@ -12,4 +12,5 @@ First of all, download the source code of the Matlab toolbox.
    :align: left
    :target: https://github.com/stabix/stabix/archive/master.zip
    
-`Download source code as a .zip file <https://github.com/stabix/stabix/archive/master.zip>`_.
+`Download source code as a .zip file
+<https://github.com/stabix/stabix/archive/master.zip>`_.
