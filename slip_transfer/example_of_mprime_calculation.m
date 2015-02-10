@@ -4,13 +4,18 @@ function example_of_mprime_calculation
 
 % author: d.mercier@mpie.de
 
+tabularasa;
+
 %% Data of user
-euler_1 = [0 0 0]; % Bunge notation (in degrees)
-euler_2 = [0 45 0]; % Bunge notation (in degrees)
-incoming_slip = [0  0  0  1 ; 2 -1 -1  0];
-outgoing_slip = [0  0  0  1 ; 2 -1 -1  0];
+euler_1 = [0 60 0]; % Bunge notation (in degrees)
+euler_2 = [45 45 0]; % Bunge notation (in degrees)
 material = 'Mg';
 phase = 'hcp';
+all_slips = slip_systems(phase);
+ind_slip_in = 1;
+ind_slip_out = 4;
+incoming_slip = all_slips(:,:,ind_slip_in);
+outgoing_slip = all_slips(:,:,ind_slip_out);
 
 %% Calculations
 % Eulers angle to rotation matrix
@@ -47,16 +52,23 @@ check_vectors_orthogonality(n2, d2);
 % Get cosine from the dot product
 cosine_n = cos_from_vectors(n1, n2);
 cosine_d = cos_from_vectors(d1, d2);
+cosine_n_inv = cos_from_vectors(n2, n1);
+cosine_d_inv = cos_from_vectors(d2, d1);
 
 % Get angle from cosine
 phi = ang_from_vectors(n1, n2);
 kappa = ang_from_vectors(d1, d2);
 
 % m' calculation
-mp = cosine_n * cosine_d;
+mp = abs(cosine_n * cosine_d);
+mp_inv = abs(cosine_n_inv * cosine_d_inv);
 
 %% Display
 commandwindow;
+figure;
+vis_lattice(phase, euler_1, ind_slip_in);
+figure;
+vis_lattice(phase, euler_2, ind_slip_out);
 display(euler_1');
 display(euler_2');
 display(incoming_slip);
@@ -64,5 +76,6 @@ display(outgoing_slip);
 display(phi);
 display(kappa);
 display(mp);
+display(mp_inv);
 
 end
