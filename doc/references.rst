@@ -55,3 +55,11 @@ Institutions
    :target: http://www.tu-darmstadt.de/
    
    `Physikalische Metallkunde TU Darmstadt (Darmstadt, Germany) <http://www.tu-darmstadt.de/>`_
+
+.. figure:: ./_pictures/logos/logo_RWTH.png
+   :scale: 50%
+   :align: center
+   :target: http://www.rwth-aachen.de/
+   
+   `RWTH Aachen University (Aachen, Germany) <http://www.rwth-aachen.de/>`_
+   
