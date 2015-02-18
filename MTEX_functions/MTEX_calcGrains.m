@@ -4,7 +4,7 @@ function grains = MTEX_calcGrains(ebsdData, segAngle, varargin)
 % .ang file ('ebsd' is default name use by MTEX...)
 % segAngle: Array of threshold angles per phase of mis/disorientation in radians
 
-% See in http://code.google.com/p/mtex/
+% See in http://mtex-toolbox.github.io/
 
 % author: d.mercier@mpie.de
 

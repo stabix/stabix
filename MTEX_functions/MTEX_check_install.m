@@ -2,6 +2,7 @@
 function installation_mtex = MTEX_check_install
 %% Check if MTEX is installed
 % See in http://mtex-toolbox.github.io/
+
 % author: d.mercier@mpie.de
 
 try

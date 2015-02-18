@@ -4,6 +4,7 @@ function ori_grain = ...
 %% Set orientation of a grain by using MTEX function
 % phase = Crystal Structure (CS for MTEX)
 % eulers_angle = Euler angles (Bunge) in degrees
+
 % See in http://mtex-toolbox.github.io/
 
 % author: d.mercier@mpie.de

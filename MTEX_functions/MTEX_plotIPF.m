@@ -3,6 +3,8 @@ function MTEX_plotIPF(orientations, xaxis_alignement, varargin)
 %% Plot IPDF with MTEX
 % orientations: Orientation of grains (at least 2 grains)
 
+% See in http://mtex-toolbox.github.io/
+
 % author: d.mercier@mpie.de
 
 if nargin < 2

@@ -4,7 +4,7 @@ function MTEX_plotGrainsStat(ebsdData, segAngle, varargin)
 % ebsdData : Name of the structure variable created after importing EBSD data
 % .ang file ('ebsd' is default name use by MTEX...)
 
-% See in http://code.google.com/p/mtex/
+% See in http://mtex-toolbox.github.io/
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
