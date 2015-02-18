@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function [grains, obj, fdata] = ...
+function [fpath, fname_GF2, fname_RB] = ...
     MTEX_convert2TSLdata(ebsd, angle_value, varargin)
 %% Function used to convert data loaded via the import_wizard of MTEX
 % into TSL format files (GF2 and RB files)
