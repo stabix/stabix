@@ -21,8 +21,17 @@ and grain boundary trace angle.
 Inclination of the grain boundary can be evaluated by serial polishing or focused ion beam (FIB) sectioning,
 either parallel or perpendicular to the surface of the sample.
 
-EBSD map GUI - TSL-OIM data preparation
-*****************************************
+EBSD map GUI
+***************
+
+To plot EBSD map in the EBSD map GUI, two types of TSL-OIM files are required :
+
+- Reconstructed Boundaries File ;
+
+- Grain File Type 2.
+
+TSL-OIM data preparation
+--------------------------
 
 Open you .osc (or your .ctf) file in the TSL-OIM Analysis Software.
 
@@ -36,7 +45,7 @@ Clean up your dataset (Filename --> Cleanup).
 Reference : OIM ANALYSIS 6.0 (user manual) / `EDAX website <http://www.edax.com/Products/EBSD/OIM-Data-Analysis-Microstructure-Analysis.aspx>`_
 
 Reconstructed Boundaries File
------------------------------
+-------------------------------
 
 **Export "Reconstructed Boundaries File" of the cleaned dataset**
 (All data --> Export --> Reconstructed Boundaries), with the following options defined by default :
@@ -71,7 +80,7 @@ properties in the TSL-OIM software in order to export a more realistic Reconstru
 - decrease/increase the maximum deviation between reconstructed boundary and corresponding boundary segments.
 
 Grain File Type 2
------------------
+-------------------
 
 **Export "Grain File Type 2" of the cleaned dataset** (All data --> Export --> Grain File), with the following options :
 
@@ -90,16 +99,29 @@ Grain File Type 2
 .. note::
     Export the "Grain File Type 2" in the same location as the corresponding "Reconstructed Boundary File".
 
-Example of "Grain Gile Type 2": `MPIE_cpTi_grain_file_type2_2013.txt <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/EBSD_data_Examples/MPIE_cpTi_grain_file_type2_2013.txt>`_
+Example of "Grain Gile Type 2":
+`MPIE_cpTi_grain_file_type2_2013.txt <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/EBSD_data_Examples/MPIE_cpTi_grain_file_type2_2013.txt>`_
 
-The |matlab| function used to read "Grain File Type 2" is: `read_oim_grain_file_type2.m <https://github.com/stabix/stabix/tree/master/tsl_oim/read_oim_grain_file_type2.m>`_
+The |matlab| function used to read "Grain File Type 2" is:
+`read_oim_grain_file_type2.m <https://github.com/stabix/stabix/tree/master/tsl_oim/read_oim_grain_file_type2.m>`_
 
-Scan Data (.ang file)
----------------------
+Loading other type of EBSD data files...
+-----------------------------------------
+
+It is possible to load other type of EBSD data files, using the 'import_wizard' of the MTEX toolbox.
+
+First, download and install the `MTEX Toolbox <http://mtex-toolbox.github.io/>`_.
+
+Then, import your EBSD data (e.g.: .ang file), using the 'import_wizard' and
+save it in the |matlab| workspace as a variable named 'ebsd'.
+
+The EBSD map is automatically plotted from the imported data.
+The coordinate system and the scan unit are set from the properties of the imported data.
+
+How to generate a .ang file with TSL-OIM software ?
+----------------------------------------------------
 
 **Export "Scan Data (.ang file)" of the cleaned dataset** (Filename --> Export --> Scan Data) (optional).
-
-This .ang file is useful for the `MTEX Toolbox <http://mtex-toolbox.github.io/>`_
 
 Example of an `.ang file. <https://github.com/stabix/stabix/blob/master/gui_ebsd_map/EBSD_data_Examples/validation1_AngFile(forMTEX).ang>`_
 
@@ -118,8 +140,8 @@ Possible errors introduced during files exportation from TSL-OIM
 .. note::
     All of these issues are taken into account and corrected automatically when user is loading his data via the EBSD map GUI.
 
-Bicrystal GUI - YAML configuration file
-*****************************************
+Bicrystal GUI 
+**************
 
 **The YAML configuration file provides a simple way to define a bicrystal.**
 
