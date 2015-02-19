@@ -29,9 +29,9 @@ grains = calcGrains(ebsd, 'angle', angle_value * degree);
 fpath = get_stabix_root;
 
 %% Grain File type 2
-fname_GF2 = 'testGF2.txt';
+fname_GF2 = 'importEBSDdata_fromMTEX_GF2.txt';
 
-fdata.title = 'Data from MTEX';
+fdata.title = 'EBSD data imported using import_wizard from MTEX toolbox';
 fdata.number_of_grains = grains.size(1);
 fdata.eul_ang = (grains.meanOrientation.Euler) * 180/pi;
 grain_position = grains.centroid;
@@ -44,7 +44,7 @@ fdata.grain_diameter = ((grains.area/pi).^0.5)./2;
 write_oim_grain_file_type2(fdata, fpath, fname_GF2);
 
 %% Reconstructed Boundaries file
-fname_RB = 'testRB.txt';
+fname_RB = 'importEBSDdata_fromMTEX_RB.txt';
 
 %p = patch('Faces',grains.boundary.F,'Vertices',grains.boundary.V,'FaceColor','w');
 %fdata.number_of_grain_boundaries = size(grains.boundary.F,1);
