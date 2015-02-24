@@ -29,6 +29,12 @@ Run one of these GUIs to play with the toolbox.
    `preCPFE_SX <https://github.com/stabix/stabix/blob/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_SX.m>`_, "Preprocess of CPFE model for SX indentation.", `config_CPFEM_defaults.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config_CPFEM_defaults.yaml>`_
    `preCPFE_BX <https://github.com/stabix/stabix/blob/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_BX.m>`_, "Preprocess of CPFE model for BX indentation.", `config_CPFEM_defaults.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config_CPFEM_defaults.yaml>`_
    `GBinc <https://github.com/stabix/stabix/blob/master/gui_gbinc/A_gui_gbinc.m>`_, "Calculation of grain boundaries inclination." 
+   
+.. figure:: ./_pictures/GUIs/all_GUIs.png
+   :scale: 50 %
+   :align: center
+   
+   *Figure 1 : The different GUIs of the STABiX toolbox.*
 
 Default YAML configuration files, stored in the folder `YAML_config_files <https://github.com/stabix/stabix/tree/master/YAML_config_files>`_, are loaded automatically to set the GUIs:
 
