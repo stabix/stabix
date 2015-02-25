@@ -151,6 +151,12 @@ if ~no_file
     set(gui.handles.pmlegend, 'value', 1) % No legend
     SCREENSHOT_NUM = screenshot_function(...
         SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);   
+
+    %Take a second picture for slip traces...
+    interface_map_plotmap(1,1);
+    xlim([0 400]);ylim([-600 -200]);
+    SCREENSHOT_NUM = screenshot_function(...
+        SCREENSHOT, SCREENSHOT_DIR, SCREENSHOT_NUM);
     
     %Add GB numbers
     set(gui.handles.cbgbnum, 'Value', 1);
