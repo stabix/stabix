@@ -6,6 +6,9 @@ function interface_map_screenshots
 tabularasa;
 no_file = 0;
 
+% Optimized for MPIE_Ti_alloy_GF2_RDdownTDright.txt and 
+% MPIE_Ti_alloy_RB_RDdownTDright.txt
+
 [filenameGF2, pathnameGF2] = ...
     uigetfile('.txt', 'Select the ''Grain File type 2'' file');
 if filenameGF2 == 0
