@@ -105,6 +105,7 @@ import load
 import mesh
 if ('12' in version) == True:
     import optimization # Not available in versions released before Abaqus 6.12
+
 import job
 import sketch
 import visualization
@@ -308,7 +309,6 @@ if friction != 0:
         pressureDependency=OFF, temperatureDependency=OFF, dependencies=0,
         table=((friction, ), ), shearStressLimit=None, maximumElasticSlip=FRACTION,
         fraction=0.005, elasticSlipStiffness=None)
-
 elif friction == 0:
     model_name.interactionProperties['Contact Properties'].TangentialBehavior(formulation=FRICTIONLESS)
     model_name.interactionProperties['Contact Properties'].NormalBehavior(pressureOverclosure=HARD, allowSeparation=ON,
