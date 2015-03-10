@@ -119,6 +119,7 @@ cliCommand("""session.journalOptions.setValues(replayGeometry=
     COORDINATE, recoverGeometry=COORDINATE)""")
 
 sample_name = 'sample'
+modelName = '%s' ''' % modelname + '''
 model_name = mdb.Model(name='%s')''' % modelname + '''
 model_name.setValues(description='%s')''' % description + '''
 ''')
