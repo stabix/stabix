@@ -9,7 +9,7 @@ function preCPFE_inp_file_generation(proc_path, Titlegbdata, ...
 
 % author: d.mercier@mpie.de
 
-proc_path_inp = fullfile(proc_path, strcat(Titlegbdata, '.inp'));
+proc_path_inp = fullfile(proc_path, strcat(Titlegbdata, '_Indenter.inp'));
 
 if strcmp(indenter_type, 'conical') ~= 1 && ...
         strcmp(indenter_type, 'flatPunch') ~= 1
