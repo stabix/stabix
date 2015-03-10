@@ -401,6 +401,8 @@ h_indent = %f #Indentation depth in um''' % h_indent + '''
 
 tolerance = 0.01+(float(width)/1500)
 
+orphanMesh = 0
+
 # SIZE OF THE SHEET FOR THE SKETCH
 if width > height:
     sheet_Size = 2 * width

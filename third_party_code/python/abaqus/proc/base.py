@@ -317,7 +317,11 @@ elif friction == 0:
 
 # Contact Definition
 InstanceRoot = model_name.rootAssembly
-region1 = InstanceRoot.surfaces['Surf Indenter']
+if orphanMesh == 0:
+    region1 = InstanceRoot.surfaces['Surf Indenter']
+elif orphanMesh == 1:
+    region1 = InstanceRoot.instances['indenter-1'].surfaces['Surf Indenter']
+
 #region2 = InstanceRoot.surfaces['Surf Sample']
 region2 = InstanceRoot.instances[final_sample_name].sets['Surf Sample']
 model_name.SurfaceToSurfaceContactStd(name='Interaction Indenter-Sample',
@@ -363,9 +367,14 @@ else:
 # REFERENCE POINT
 #+++++++++++++++++++++++++++++++++++++++++++++
 # Preliminary definitions (sets, surfaces, references points...)
-indenter = model_name.parts['indenter']
-v = indenter.vertices
-indenter.ReferencePoint(point=v.findAt(coordinates=(0.0, 0.0, 0.0)))
+if orphanMesh == 0:
+    indenter = model_name.parts['indenter']
+    v = indenter.vertices
+    indenter.ReferencePoint(point=v.findAt(coordinates=(0.0, 0.0, 0.0)))
+elif orphanMesh == 1:
+    indenter = model_name.parts['indenter']
+    nIndenter = indenter.nodes
+    indenter.ReferencePoint(point=nIndenter[2])
 ''')
 
     def procLoadCaseIndent(self):

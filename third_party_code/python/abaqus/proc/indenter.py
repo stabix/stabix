@@ -215,7 +215,40 @@ InstanceRoot.Surface(side1Faces=side1Faces1, name='Surf Indenter')
 #+++++++++++++++++++++++++++++++++++++++++++++
 # MODELING OF FREE TOPOGRAPHY OF INDENTER
 #+++++++++++++++++++++++++++++++++++++++++++++
+
+orphanMesh = 1
+
+# Loading of indenter geometry as an orphan mesh part with .inp file
+import os
+CurrentDirectory = os.getcwd()
+IndenterGeom_model_name = modelName + '_Indenter.inp'
+IndenterGeom_modelName = modelName + '_Indenter'
+IndenterGeomFile = CurrentDirectory + '/' + IndenterGeom_model_name
+mdb.ModelFromInputFile(name=IndenterGeom_modelName, inputFileName=IndenterGeomFile)
+InstanceRoot = model_name.rootAssembly         
+model_name.Part('indenter', mdb.models[IndenterGeom_modelName].parts['PART-1'])
+
+# Setting properties of the orphan mesh part
+model_name.parts['indenter'].setValues(space=THREE_D, type=DISCRETE_RIGID_SURFACE)
+InstanceRoot = model_name.rootAssembly
+InstanceRoot.regenerate()
+
+# Setting the orphan mesh part as an instance of the assembly
+InstanceRoot = model_name.rootAssembly
+p = model_name.parts['indenter']
+InstanceRoot.Instance(name='indenter-1', part=p, dependent=ON)
+InstanceRoot = model_name.rootAssembly
+InstanceRoot.regenerate()
+
+# Setting the surface of the indenter for the contact definition
+indenter_part = model_name.parts['indenter']
+s_indenter = indenter_part.elements
+side2Elements = s_indenter[1:4]
+indenter_part.Surface(side2Elements=side2Elements, name='Surf Indenter')
+
 ''')
+# or ANALYTIC_RIGID_SURFACE
+
     def procIndenterDeformable(self):
         self.proc.append('''
 ''')

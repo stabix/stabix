@@ -218,6 +218,8 @@ h_indent = %f #Indentation depth in um''' % self.IndentParameters['h_indent'] + 
 
 tolerance = 0.01+(float(D_sample)/1500)
 
+orphanMesh = 0
+
 # SIZE OF THE SHEET FOR THE SKETCH
 if D_sample > h_sample:
     sheet_Size = 2 * D_sample
