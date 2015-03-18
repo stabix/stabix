@@ -43,7 +43,23 @@ How to use the toolbox ?
 9) Do the measurement of the distance between edges (Vickers faces) or ridges of a unique Vickers indent (see Figure 2).
 10) Do the measurement of the distance between edges of a unique grain boundary.
 11) The value of the grain boundary inclination is finally given.
-  
+
+* Calculation of the thickness of removed material after polishing
+
+    .. math:: h = \frac{d}{\tan(90 - \alpha)}
+        :label: h_polished
+
+With :math:`d` the distance between edges (Vickers faces) or ridges of a unique Vickers indent (obtained before and after polishing),
+and :math:`\alpha` the angle between the Vickers indent and the surface of the sample (see Figure 2).
+
+* Calculation of grain boundary inclination
+
+    .. math:: GB_{inc} = \tan \frac{d_{GB}}{h}
+        :label: gb_inclination
+        
+With :math:`d_{GB}` the distance between grain boundary traces (obtained before and after polishing),
+and :math:`h` the thickness of removed material after polishing calculated
+        
 .. only:: html
 
     .. figure:: ./_pictures/GUIs/gui_gb_inc.png.gif
@@ -59,7 +75,7 @@ How to use the toolbox ?
        :align: center
        
        *Figure 1 : Screenshot of the Matlab GUI used to calculate grain boundary inclination.*
-       
+
 .. figure:: ./_pictures/Schemes_SlipTransmission/Vickers_indent.png
    :scale: 40 %
    :align: center
