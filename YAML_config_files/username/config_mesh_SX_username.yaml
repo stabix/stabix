@@ -4,9 +4,6 @@
 # Don't modify fieldnames !
 
 # Variables used to define the mesh of the single crystal indentation model
-coneAngle: 90 # Angle of cono-spherical indenter (in degrees)
-tipRadius: 1 # Radius of cono-spherical indenter (in microns)
-h_indent: 0.3 # Depth of indentation (in microns)
 r_center_frac: 0.25
 box_xfrac: 0.3
 box_zfrac: 0.3

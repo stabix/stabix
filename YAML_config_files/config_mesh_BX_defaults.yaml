@@ -4,9 +4,6 @@
 # Don't modify fieldnames !
 
 # Variables used to define the mesh of the bicrystal indentation model
-coneAngle: 90 # Angle of cono-spherical indenter (in degrees)
-tipRadius: 1 # Radius of cono-spherical indenter (in microns)
-h_indent: 0.3 # Depth of indentation (in microns)
 w_sample: 4
 h_sample: 4
 len_sample: 6
