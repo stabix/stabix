@@ -11,8 +11,9 @@ Authors
 
 Written by D. Mercier [1] and C. Zambaldi [1], based on previous work of T. R. Bieler [2] and C. Zambaldi [1].
 
-[1] Max-Planck-Institut für Eisenforschung, 40237 Düsseldorf, Germany
-[2] Chemical Engineering and Materials Science, Michigan State University, East Lansing 48824 MI, USA
+[1] `Max-Planck-Institut für Eisenforschung, 40237 Düsseldorf, Germany <http://www.mpie.de/>`_
+
+[2] `Chemical Engineering and Materials Science, Michigan State University, East Lansing 48824 MI, USA <http://www.msu.edu/>`_
 
 How to cite STABiX in your papers ?
 ====================================
