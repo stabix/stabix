@@ -189,10 +189,8 @@ Contact definition
     - The indenter is modeled by a rigid body and the sample by a deformable body.
     - The external surface of the indenter is defined as the "master" region.
     - The top surface of the (multilayer) sample is defined as the "slave" region.
-    - If the coefficient friction is different from 0, the classical isotropic Coulomb
-    friction model is used to define the contact between the indenter and the sample.
-    - If the coefficient friction is set to 0, the contact is defined by a frictionless
-    tangential behavior and a hard normal behavior.
+    - If the coefficient friction is different from 0, the classical isotropic Coulomb friction model is used to define the contact between the indenter and the sample.
+    - If the coefficient friction is set to 0, the contact is defined by a frictionless tangential behavior and a hard normal behavior.
 
 Mesh definition
 -------------------
@@ -202,8 +200,7 @@ Mesh definition
 
 * *Abaqus*
     - The mesh is defined by default by linear hexahedral eightnode elements (C3D8).
-    - It is possible to set quadratic elements (e.g.: C3D20), by changing in the python code
-    the value of the "linear_elements" variable from 1 to 0.
+    - It is possible to set quadratic elements (e.g.: C3D20), by changing in the python code the value of the "linear_elements" variable from 1 to 0.
 
 Python setup
 -------------
