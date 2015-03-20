@@ -91,7 +91,11 @@ gui_BX.handles.mesh = preCPFE_mesh_parameters_BX(gui_BX.defaults, ...
 gui_BX.handles.pm_Python = preCPFE_python_popup([2*x0 hu*2.6 wu*3 hu]);
 
 %% Creation of popup menu and slider for loaded AFM indenter topography
-gui_BX.handles.indenter = preCPFE_buttons_indenter(x0, hu, wu);
+[gui_BX.handles.indenter, indent_parameters] = ...
+    preCPFE_buttons_indenter(x0, hu, wu);
+gui_BX.defaults.variables.coneAngle = indent_parameters.coneAngle;
+gui_BX.defaults.variables.tipRadius = indent_parameters.tipRadius;
+gui_BX.defaults.variables.h_indent = indent_parameters.h_indent;
 
 %% Creation of buttons/popup menus (mesh quality, layout, Python, CPFEM...)
 gui_BX.handles.other_setting = preCPFE_buttons_gui(x0, hu, wu);

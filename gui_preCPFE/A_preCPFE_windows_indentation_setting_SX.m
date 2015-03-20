@@ -88,7 +88,11 @@ gui_SX.handles.mesh = preCPFE_mesh_parameters_SX(gui_SX.defaults, ...
 guidata(gcf, gui_SX);
 
 %% Creation of popup menu and slider for loaded AFM indenter topography
-gui_SX.handles.indenter = preCPFE_buttons_indenter(x0, hu, wu);
+[gui_SX.handles.indenter, indent_parameters] = ...
+    preCPFE_buttons_indenter(x0, hu, wu);
+gui_SX.defaults.variables.coneAngle = indent_parameters.coneAngle;
+gui_SX.defaults.variables.tipRadius = indent_parameters.tipRadius;
+gui_SX.defaults.variables.h_indent = indent_parameters.h_indent;
 
 %% Pop-up menu to select Python executable
 gui_SX.handles.pm_Python = preCPFE_python_popup([2*x0 hu*2.6 wu*3 hu]);
