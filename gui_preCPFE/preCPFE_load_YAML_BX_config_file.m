@@ -127,6 +127,7 @@ if interface == 2 %BX
     else
         GB_YAML.ca_ratio_B = cell2mat(GB_YAML.ca_ratio_B);
     end
+    GB_YAML.active_data = 'BX';
 else
     GB_YAML.eulerB = [];
     GB_YAML.eulerB_ori = [];
@@ -137,6 +138,7 @@ else
     GB_YAML.GB_Number = [];
     GB_YAML.Material_B = [];
     GB_YAML.ca_ratio_B = [];
+    GB_YAML.active_data = 'SX';
 end
 
 if interface == 1
