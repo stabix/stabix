@@ -176,6 +176,37 @@ The |matlab| function used to load and read Gwyddion file is:
    :align: center
    
    *Figure 10 : Screenshot of the preCPFE GUI for the bicrystal indentation with loaded AFM topography of the indenter.*
+   
+Contact definition
+-------------------
+
+* *MSC.Mentat*
+The indenter is modeled by a rigid body and the sample by a deformable body.
+
+A bilinear Coulomb friction model is used to describe the contact between the
+indenter and the sample. A default friction coefficient of 0.3 is set.
+
+* *Abaqus*
+The indenter is modeled by a rigid body and the sample by a deformable body.
+The external surface of the indenter is defined as the "master" region and
+the top surface of the (multilayer) sample is defined as the "slave" region.
+
+If the coefficient friction is different from 0, the classical isotropic Coulomb
+friction model is used to define the contact between the indenter and the sample.
+
+If the coefficient friction is set to 0, the contact is defined by a frictionless
+tangential behavior and a hard normal behavior.
+
+Mesh definition
+-------------------
+
+* *MSC.Mentat*
+The mesh is defined by default by hexahedral eightnode elements (hex8).
+
+* *Abaqus*
+The mesh is defined by default by linear hexahedral eightnode elements (C3D8).
+It is possible to set quadratic elements (e.g.: C3D20), by changing in the python code
+the value of the "linear_elements" variable from 1 to 0.
 
 Python setup
 -------------
