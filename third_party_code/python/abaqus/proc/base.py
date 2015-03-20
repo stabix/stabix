@@ -343,7 +343,8 @@ model_name.SurfaceToSurfaceContactStd(name='Interaction Indenter-Sample',
 #+++++++++++++++++++++++++++++++++++++++++++++
 # ELEMENTS DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
-if linear_elements == %i:''' % linear_elements + '''
+linear_elements_val = %i:''' % linear_elements + '''
+if linear_elements_val == 1
     # Linear elements
     elemType1 = mesh.ElemType(elemCode=C3D8, elemLibrary=STANDARD,
         secondOrderAccuracy=OFF, distortionControl=DEFAULT)
