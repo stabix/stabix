@@ -182,8 +182,7 @@ Contact definition
 
 * *MSC.Mentat*
     - The indenter is modeled by a rigid body and the sample by a deformable body.
-    - Contact is defined by a bilinear Coulomb friction model
-    - A default friction coefficient of 0.3 is set.
+    - Contact is defined by a bilinear Coulomb friction model.
 
 * *Abaqus*
     - The indenter is modeled by a rigid body and the sample by a deformable body.
@@ -192,6 +191,9 @@ Contact definition
     - If the coefficient friction is different from 0, the classical isotropic Coulomb friction model is used to define the contact between the indenter and the sample.
     - If the coefficient friction is set to 0, the contact is defined by a frictionless tangential behavior and a hard normal behavior.
 
+A friction coefficient of 0.3 is set by default for every CPFE simulation.
+It is possible to modify this parameter, by changing its value in the *preCPFE* GUIs.
+    
 Mesh definition
 -------------------
 
