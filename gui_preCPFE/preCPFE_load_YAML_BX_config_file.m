@@ -10,31 +10,35 @@ function preCPFE_load_YAML_BX_config_file(YAML_GB_config_file, interface)
 gui = guidata(gcf);
 
 if YAML_GB_config_file == 0
-    YAML_GB_config_file = ...
+    [YAML_GB_config_file, YAML_GB_config_path] = ...
         uigetfile('*.yaml', 'Get YAML config. file');
+    
+    YAML_GB_FILE = fullfile(YAML_GB_config_path, YAML_GB_config_file);
     
     % Handle canceled file selection
     if YAML_GB_config_file == 0
-        YAML_GB_config_file = '';
+        YAML_GB_FILE = '';
     end
     
     if isequal(YAML_GB_config_file, 0) ...
             || strcmp(YAML_GB_config_file, '') == 1
         disp('User selected Cancel');
         if interface == 1
-            YAML_GB_config_file = ...
+            YAML_GB_FILE = ...
                 sprintf('config_gui_SX_defaults.yaml');
         elseif interface == 2
-            YAML_GB_config_file = ...
+            YAML_GB_FILE = ...
                 sprintf('config_gui_BX_defaults.yaml');
         end
     else
-        disp(['User selected :', fullfile(YAML_GB_config_file)]);
+        disp(['User selected :', YAML_GB_FILE]);
     end
+else
+    YAML_GB_FILE = YAML_GB_config_file;
 end
 
 %% Loading YAML file
-GB_YAML = ReadYaml(YAML_GB_config_file);
+GB_YAML = ReadYaml(YAML_GB_FILE);
 
 %% Fill missing fields
 if ~isfield(GB_YAML, 'filenameGF2_BC')
@@ -86,7 +90,7 @@ else
     GB_YAML.ca_ratio_A = cell2mat(GB_YAML.ca_ratio_A);
 end
 
-if interface == 2
+if interface == 2 %BX
     if ~isfield(GB_YAML, 'eulerB')
         GB_YAML.eulerB = [45, 45, 0];
     else
