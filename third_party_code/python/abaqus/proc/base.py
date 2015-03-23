@@ -343,8 +343,8 @@ model_name.SurfaceToSurfaceContactStd(name='Interaction Indenter-Sample',
 #+++++++++++++++++++++++++++++++++++++++++++++
 # ELEMENTS DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
-linear_elements_val = %i:''' % linear_elements + '''
-if linear_elements_val == 1
+linear_elements_val = %i ''' % linear_elements + '''
+if linear_elements_val == 1:
     # Linear elements
     elemType1 = mesh.ElemType(elemCode=C3D8, elemLibrary=STANDARD,
         secondOrderAccuracy=OFF, distortionControl=DEFAULT)
@@ -375,7 +375,7 @@ if orphanMesh == 0:
 elif orphanMesh == 1:
     indenter = model_name.parts['indenter']
     nIndenter = indenter.nodes
-    indenter.ReferencePoint(point=nIndenter[2])
+    indenter.ReferencePoint(point=nIndenter[0])
 ''')
 
     def procLoadCaseIndent(self):
@@ -383,7 +383,6 @@ elif orphanMesh == 1:
 #+++++++++++++++++++++++++++++++++++++++++++++
 # LOADING STEP DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
-
 # Definition of the indent step
 model_name.StaticStep(name='Indent', previous='Initial',
     timePeriod=(ind_time+dwell_time+unload_time),
@@ -401,7 +400,11 @@ model_name.TabularAmplitude(data=(
 # Defining velocities in the different steps
 InstanceRoot = model_name.rootAssembly
 r1 = InstanceRoot.instances['indenter-1'].referencePoints
-refPoints1=(r1[2], )
+if orphanMesh == 0:
+    refPoints1=(r1[2], )
+elif orphanMesh == 1:
+    refPoints1=(r1[3], )
+
 region = regionToolset.Region(referencePoints=refPoints1)
 model_name.DisplacementBC(name='Indent', createStepName='Indent',
     region=region, u1=0.0, u2=0.0, u3=1, ur1=0.0, ur2=0.0, ur3=0.0,
@@ -417,10 +420,6 @@ model_name.DisplacementBC(name='Indent', createStepName='Indent',
 # JOB DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
 # Defining sets
-
-InstanceRoot = model_name.rootAssembly
-r1 = InstanceRoot.instances['indenter-1'].referencePoints
-refPoints1=(r1[2], )
 Ref_Indenter = indenter.Set(name='Ref_Indenter', referencePoints=refPoints1)
 
 #Defining output request
@@ -444,6 +443,7 @@ mdb.Job(name='Indentation_Job', model=model_name, description='%s',
 
 # Writing .inp
 mdb.jobs['Indentation_Job'].writeInput(consistencyChecking=OFF)''')
+# refPoints1 is defined in procLoadCaseIndent
 
     def procFriction(self):
         self.proc.append('''
