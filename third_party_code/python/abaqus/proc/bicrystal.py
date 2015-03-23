@@ -603,7 +603,7 @@ a.Instance(name='Bicrystal-1', part=p, dependent=ON)
 f = a.instances['Bicrystal-1'].faces
 faces = f.findAt((((d_box_A + box_y1)/2, 0, width/2), ), (((box_y1 + box_y2)/2, 0, width/2), ),
     (((box_y2 + d_box_B)/2, 0, width/2), ))
-a.Surface(side1Faces=faces, name='Surf Sample')
+a.regenerate()
 ''')
 
     def procSampleMeshing(self):

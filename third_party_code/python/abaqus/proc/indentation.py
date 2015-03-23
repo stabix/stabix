@@ -540,7 +540,8 @@ InstanceRoot.InstanceFromBooleanCut(name='Core_Sample_Bottom_Outer',
     cuttingInstances=(InstanceRoot.instances['Core_Sample_Bottom_Inner-1'], ), 
     originalInstances=SUPPRESS)
 InstanceRoot = model_name.rootAssembly
-InstanceRoot.features['Core_Sample_Bottom_Inner-1'].resume()''')
+InstanceRoot.features['Core_Sample_Bottom_Inner-1'].resume()
+InstanceRoot.regenerate()''')
 
     def procSampleMeshing(self):
         self.proc.append('''
