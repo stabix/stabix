@@ -215,14 +215,13 @@ InstanceRoot.Surface(side1Faces=side1Faces1, name='Surf Indenter')
 #+++++++++++++++++++++++++++++++++++++++++++++
 # MODELING OF FREE TOPOGRAPHY OF INDENTER
 #+++++++++++++++++++++++++++++++++++++++++++++
-
 orphanMesh = 1
 
 # Loading of indenter geometry as an orphan mesh part with .inp file
 import os
 CurrentDirectory = os.getcwd()
 IndenterGeom_model_name = modelName + '_Indenter.inp'
-IndenterGeom_modelName = modelName + '_Indenter'
+IndenterGeom_modelName = 'Indenter'
 IndenterGeomFile = CurrentDirectory + '/' + IndenterGeom_model_name
 mdb.ModelFromInputFile(name=IndenterGeom_modelName, inputFileName=IndenterGeomFile)
 InstanceRoot = model_name.rootAssembly         
@@ -245,7 +244,6 @@ indenter_part = model_name.parts['indenter']
 s_indenter = indenter_part.elements
 side2Elements = s_indenter[1:4]
 indenter_part.Surface(side2Elements=side2Elements, name='Surf Indenter')
-
 ''')
 # or ANALYTIC_RIGID_SURFACE
 
