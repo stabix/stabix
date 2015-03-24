@@ -24,6 +24,7 @@ class BicrystalIndent(Proc, Indenter):
                  geo = 'conical',  # angle of the conical indenter in degrees
                  h_indent = 0.3,  # depth of the indent in um
                  tipRadius = 1.4,  # radius of the spherical indenter in um
+                 numFaces = 3,  # number of faces of the customized indenter
                  gbn = None,  # grain boundary normal in xyz
                  trace_ang = None,  # 0deg // X, 90deg // Y
                  inclination = None,  # vertical = 90deg, 0.. 90 cuts through grain 1, 90 ..180  through grain 2
@@ -115,6 +116,7 @@ class BicrystalIndent(Proc, Indenter):
         self.IndentParameters['coneAngle'] = coneAngle
         self.IndentParameters['h_indent'] = h_indent
         self.IndentParameters['tipRadius'] = tipRadius
+        self.IndentParameters['numFaces'] = numFaces
         self.IndentParameters['friction'] = friction
         self.IndentParameters['indAxis'] = 'z'
         self.IndentParameters['smv'] = 1e-3
@@ -132,6 +134,7 @@ class BicrystalIndent(Proc, Indenter):
                            geo = geo,
                            h_indent = h_indent, # indentation depth
                            tipRadius = tipRadius,
+                           numFaces = numFaces,
                            label = label,
                            ori1 = ori1, #not used yet
                            ori2 = ori2, # not used yet
@@ -176,7 +179,8 @@ class BicrystalIndent(Proc, Indenter):
         if geo == 'flatPunch':
             self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
         if geo == 'customized':
-            self.procIndenterCustomizedTopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'])
+            self.procIndenterCustomizedTopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'],
+                                            numFaces=self.IndentParameters['numFaces'])
         self.procBicrystal(modelname = modelname,
                            coneAngle = coneAngle,
                            friction = friction,
@@ -259,6 +263,7 @@ final_sample_name = 'Bicrystal-1'
                       geo = None,
                       h_indent = None,
                       tipRadius = None,
+                      numFaces = None,
                       d = None,
                       hei = None,
                       wid = None,

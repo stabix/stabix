@@ -81,6 +81,9 @@ py{end+1} = sprintf('friction = %.5f,', gui_SX.variables.frictionCoeff);
 py{end+1} = sprintf('geo = ''%s'',', gui_SX.indenter_type_model);
 py{end+1} = sprintf('free_mesh_inp = ''%s'',', ...
     strcat(gui_SX.GB.Titlegbdata, '.inp'));
+if strfind(gui_SX.config.CPFEM.fem_solver_used, 'Abaqus') == 1
+    py{end+1} = sprintf('numFaces = %i,', gui_SX.indenter_faces);
+end
 py{end+1} = sprintf('D_sample = %.5f,', gui_SX.variables.D_sample);
 py{end+1} = sprintf('h_sample = %.5f,', gui_SX.variables.h_sample);
 py{end+1} = sprintf('sample_rep = %.5f,', gui_SX.variables.sample_rep);

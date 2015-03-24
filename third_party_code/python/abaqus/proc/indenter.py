@@ -17,7 +17,8 @@ class Indenter(Proc):
                           D_sample=None, geo='conical',
                           sample_rep=24, # 24, 48
                           Dexp=None,
-                          twoDimensional=False):
+                          twoDimensional=False,
+                          numFaces=None):
         coneAngle = 120.
         h_indent = 0.25
         tipRadius = 1.6
@@ -30,6 +31,7 @@ class Indenter(Proc):
             'h_indent': h_indent, # indentation depth
             #'sample_rep':sample_rep,
             'tipRadius': tipRadius,
+            'numFaces': numFaces,
             #'D_sample':D_sample, # not yet implemented, governed by h_indent
             #'ind_time':ind_time, # in seconds, since dotgamma_0 is in perSecond
             #'dwell_time':dwell_time, # time at maximum load
@@ -210,7 +212,7 @@ side1Faces1 = faces_indenter.findAt(((0, 0, sep_ind_samp), ), ((x_coor, y_coor, 
 InstanceRoot.Surface(side1Faces=side1Faces1, name='Surf Indenter')
 ''')
 
-    def procIndenterCustomizedTopo(self, free_mesh_inp):
+    def procIndenterCustomizedTopo(self, free_mesh_inp, numFaces):
         self.proc.append('''
 #+++++++++++++++++++++++++++++++++++++++++++++
 # MODELING OF FREE TOPOGRAPHY OF INDENTER
@@ -242,7 +244,7 @@ InstanceRoot.regenerate()
 # Setting the surface of the indenter for the contact definition
 indenter_part = model_name.parts['indenter']
 s_indenter = indenter_part.elements
-side2Elements = s_indenter[1:4]
+side2Elements = s_indenter[1:%i]''' % (self.IndentParameters['numFaces']) + ''' # number of points in the orphan mesh
 indenter_part.Surface(side2Elements=side2Elements, name='Surf Indenter')
 ''')
 # or ANALYTIC_RIGID_SURFACE

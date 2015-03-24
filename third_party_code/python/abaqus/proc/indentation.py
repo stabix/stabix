@@ -36,6 +36,7 @@ class Indentation(Indenter, Tools):
                 geo = 'conical',  # indenter geometry
                 coneAngle = 90,  # full cone angle (deg)
                 tipRadius = 1,  # indenter tip radius
+                numFaces = None,  # number of faces of the customized indenter
                 friction = 0.3,  # Coulomb friction coefficient
                 sample_rep = 24,  # 16, 24, 32, 48 # number of segments,
                                  # must be dividable by 8 if used with r_center_frac != 0
@@ -78,6 +79,7 @@ class Indentation(Indenter, Tools):
             'coneAngle': coneAngle,
             'coneHalfAngle': coneAngle / 2.,
             'tipRadius': tipRadius,
+            'numFaces': numFaces,
             'friction': friction,
             'geo': geo,
             'h_indent': h_indent, # indentation depth
@@ -131,7 +133,8 @@ class Indentation(Indenter, Tools):
         if geo == 'flatPunch':
             self.procIndenterFlatPunch(tipRadius=self.IndentParameters['tipRadius'])
         if geo == 'customized':
-            self.procIndenterCustomizedTopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'])
+            self.procIndenterCustomizedTopo(free_mesh_inp=self.IndentParameters['free_mesh_inp'],
+                                            numFaces=self.IndentParameters['numFaces'])
         self.proc.append('''
 final_sample_name = 'Final Sample-1'
 ''')
