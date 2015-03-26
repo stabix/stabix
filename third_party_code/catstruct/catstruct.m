@@ -38,11 +38,14 @@ function A = catstruct(varargin)
 %   NOTE: To concatenate similar arrays of structs, you can use simple
 %   concatenation: 
 %     A = dir('*.mat') ; B = dir('*.m') ; C = [A ; B] ;
+
+%   NOTE: This function relies on unique. Matlab changed the behavior of
+%   its set functions since 2013a, so this might cause some backward
+%   compatibility issues when dulpicated fieldnames are found.
 %
 %   See also CAT, STRUCT, FIELDNAMES, STRUCT2CELL, ORDERFIELDS
 
-% for Matlab R13 and up
-% version 3.0 (mar 2013)
+% version 4.1 (feb 2015), tested in R2014a
 % (c) Jos van der Geest
 % email: jos@jasen.nl
 
@@ -52,20 +55,24 @@ function A = catstruct(varargin)
 %   2.0 (sep 2007) removed bug when dealing with fields containing cell
 %                  arrays (Thanks to Rene Willemink)
 %   2.1 (sep 2008) added warning and error identifiers
-%   2.2 (oct 2008) fixed error when dealing with empty structs (Thanks to
+%   2.2 (oct 2008) fixed error when dealing with empty structs (thanks to
 %                  Lars Barring)
 %   3.0 (mar 2013) fixed problem when the inputs were array of structures
-%                  (thanks to Tor Inge Birkenes for pointing this out).
+%                  (thanks to Tor Inge Birkenes).
 %                  Rephrased the help section as well.
+%   4.0 (dec 2013) fixed problem with unique due to version differences in
+%                  ML. Unique(...,'last') is no longer the deafult.
+%                  (thanks to Isabel P)
+%   4.1 (feb 2015) fixed warning with narginchk
 
-error(nargchk(1,Inf,nargin)) ;
+narginchk(1,Inf) ;
 N = nargin ;
 
 if ~isstruct(varargin{end}),
     if isequal(varargin{end},'sorted'),
+        narginchk(2,Inf) ;
         sorted = 1 ;
         N = N-1 ;
-        error(nargchk(1,Inf,N)) ;
     else
         error('catstruct:InvalidArgument','Last argument should be a structure, or the string "sorted".') ;
     end
@@ -121,7 +128,12 @@ else
     VAL = cat(1,VAL{:}) ;    
     FN = squeeze(FN) ;
     VAL = squeeze(VAL) ;
-    [UFN,ind] = unique(FN) ;
+    
+    
+    [UFN,ind] = unique(FN, 'last') ;
+    % If this line errors, due to your matlab version not having UNIQUE
+    % accept the 'last' input, use the following line instead
+    % [UFN,ind] = unique(FN) ; % earlier ML versions, like 6.5
     
     if numel(UFN) ~= numel(FN),
         warning('catstruct:DuplicatesFound','Fieldnames are not unique between structures.') ;
