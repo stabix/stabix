@@ -2,13 +2,11 @@
    sphinx-quickstart on Fri Apr 04 20:28:37 2014.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
-   
 
 .. include:: includes.rst
 
-
 Slip Transmission |matlab| toolbox
-===================================
+====================================
 
 .. only:: html
 
@@ -65,10 +63,10 @@ How to cite STABiX in your papers ?
 
 .. image:: https://zenodo.org/badge/doi/10.5281/zenodo.14854.svg
    :target: http://dx.doi.org/10.5281/zenodo.14854
-   
+
 Contents
 =========
-   
+
 .. toctree::
    :maxdepth: 3
 
@@ -83,7 +81,6 @@ Contents
    data_from_paper
    gui_gbinc
    references
-
 
 References
 ===========
@@ -130,5 +127,5 @@ and the `Max-Planck-Institut für Eisenforschung <http://www.mpie.de/>`_ for sup
 Keywords
 =========
 
-|matlab| toolbox; Graphical User Interface (GUI) ; Grain Boundary (GB) ; Polycrystalline Metals ; Slip Transmission ; Bi-Crystal (BX) ;
-Electron backscatter diffraction (EBSD) ; Instrumented indentation ; Crystal Plasticity Finite Element Method (CPFEM) ; python\ :sup:`TM` \ toolbox.
+|matlab| toolbox ; Graphical User Interface (GUI) ; Grain Boundary (GB) ; Polycrystalline Metals ; Slip Transmission ; Bi-Crystal (BX) ;
+Electron backscatter diffraction (EBSD) ; Instrumented indentation ; Crystal Plasticity Finite Element Method (CPFEM) ; python\ :sup:`TM` \ toolbox ; DAMASK.

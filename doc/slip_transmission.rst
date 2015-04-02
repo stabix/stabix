@@ -108,7 +108,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
    :scale: 50 %
    :align: center
 
-   *Figure 4 : Distribution of m' parameter calculated for a) basal vs basal slip systems,
+   *Figure 4 : Distributions of m' parameter calculated for a) basal vs basal slip systems,
    b) basal vs prismatic <a> slip systems and c) prismatic <a> vs prismatic <a>
    slip systems in function of misorientation angle.*
    
@@ -129,7 +129,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
         
   The magnitude of this |rbv| should be minimized.
   
-  Shirokoff et al., Kehagias et al., and Kacher et al. used the |rbv| as a criterion to analyse slip transmission in cp-Ti (hex)
+  Shirokoff et al., Kehagias et al., and Kacher et al. used the |rbv| as a criterion to analyse slip transmission in cp-Ti (HCP)
   [#Shirokoff_1993]_, [#Kehagias_1995]_, [#Kehagias_1996]_ and [#KacherRobertson_2014]_,
   Lagow et al. in Mo (BCC) [#Lagow_2001]_, Gemperle et al. and Gemperlova et al. in FeSi (BCC) [#Gemperle_2004]_ and [#Gemperlova_2004]_,
   Kacher et al. in 304 stainless steel (FCC) [#KacherRobertson_2012]_,

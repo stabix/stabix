@@ -54,7 +54,7 @@ and :math:`\alpha` the angle between the Vickers indent and the surface of the s
 
 * Calculation of grain boundary inclination
 
-    .. math:: GB_{inc} = \tan \frac{d_{GB}}{h}
+    .. math:: GB_{inc} = \tan \left(\frac{d_{GB}}{h}\right)
         :label: gb_inclination
         
 With :math:`d_{GB}` the distance between grain boundary traces (obtained before and after polishing),
@@ -122,5 +122,5 @@ World Network program (DFG ZA 523/3-1 and NSF-DMR-1108211).
 Keywords
 ---------
 
-Matlab ; Graphical User Interface (GUI) ; Grain Boundaries; Polycrystalline Metals ; 
+Matlab ; Graphical User Interface (GUI) ; Grain Boundaries ; Polycrystalline Metals ; 
 Grain Boundary Inclination ; Serial Polishing ; Scanning electron microscope (SEM).
