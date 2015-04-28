@@ -63,6 +63,14 @@ How to cite STABiX in your papers ?
 
 .. image:: https://zenodo.org/badge/doi/10.5281/zenodo.14854.svg
    :target: http://dx.doi.org/10.5281/zenodo.14854
+   
+Reference paper
+================
+
+"A Matlab toolbox to analyze slip transfer through grain boundaries"
+D. Mercier, C. Zambaldi, T. R. Bieler, 17th International Conference on Textures of Materials (ICOTOM17), At Dresden, Germany (2014).
+IOP Conference Series: Materials Science and Engineering Volume 82 conference 1
+http://dx.doi.org/10.1088/1757-899X/82/1/012090
 
 Contents
 =========
