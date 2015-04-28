@@ -7,6 +7,7 @@ function config = get_config
 config = load_YAML_config_file;
 config.username = username_get;
 config.matlab_version = version('-release');
+config.matlab_version_year = strread(config.matlab_version);
 
 config.toolbox_version_str = num2str(config.toolbox_version);
 
