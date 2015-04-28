@@ -27,21 +27,21 @@ if strcmp(gui.indenter_type, 'conical') == 1
         gui.variables.coneAngle, 50, 0, 0, ...
         gui.variables.tipRadius - h_indent);
     gui.indenter_faces = 1;
-
+    
 elseif strcmp(gui.indenter_type, 'Berkovich') == 1
     [handle_indenter, ~] = preCPFE_3d_polygon_indenter(3, 65.3, ...
         2*gui.variables.h_indent, -h_indent);
-    gui.indenter_faces = size(handle_indenter.Faces, 1);
+    gui.indenter_faces = 4;
     
 elseif strcmp(gui.indenter_type, 'Vickers') == 1
     [handle_indenter, ~] = preCPFE_3d_polygon_indenter(4, 68, ...
         2*gui.variables.h_indent, -h_indent);
-    gui.indenter_faces = size(handle_indenter.Faces, 1);
+    gui.indenter_faces = 5;
     
 elseif strcmp(gui.indenter_type, 'cubeCorner') == 1
     [handle_indenter, ~] = preCPFE_3d_polygon_indenter(3, 35.26, ...
         2*gui.variables.h_indent, -h_indent);
-    gui.indenter_faces = size(handle_indenter.Faces, 1);
+    gui.indenter_faces = 4;
     
 elseif strcmp(gui.indenter_type, 'flatPunch') == 1
     handle_indenter = preCPFE_3d_flat_punch_indenter(...
