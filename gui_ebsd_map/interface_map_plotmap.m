@@ -368,6 +368,9 @@ if gui.flag.flag_lattice == 1
     end
     
     %% Set legends of slips
+    if gui.flag.pmparam2plot_value4Grains == 4
+        set(gui.handles.cbsliptraces, 'Value', 1)
+    end
     if get(gui.handles.cbsliptraces, 'Value') == 1
         set(gui.handles.pmlegend, 'Visible', 'on');
         if get(gui.handles.pmlegend, 'Value') ~= 1
