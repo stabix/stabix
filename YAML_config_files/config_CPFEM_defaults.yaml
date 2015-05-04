@@ -9,6 +9,7 @@ simulation_code: DAMASK
 
 # list of FEM solvers
 fem_solvers:
+    - Mentat_2014
     - Mentat_2013.1
     - Mentat_2013
     - Mentat_2012
