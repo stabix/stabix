@@ -62,7 +62,7 @@ The function used to run the preCPFE GUI for SX indentation is:
    
    *Figure 2 : Screenshot of the preCPFE GUI for the single crystal indentation*
    
-.. figure:: ./_pictures/fem_softwares/abaqus_SX_model.png
+.. figure:: ./_pictures/fem_models/abaqus_SX_model.png
    :scale: 40 %
    :align: center
    
