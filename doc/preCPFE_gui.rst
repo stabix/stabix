@@ -71,7 +71,7 @@ The function used to run the preCPFE GUI for SX indentation is:
 Convention for the single crystal mesh
 ***************************************
 
-.. figure:: ./_pictures/Schemes_SlipTransmission/SX_indentation_mesh_example.png
+.. figure:: ./_pictures/fem_models/SX_indentation_mesh_example.png
    :scale: 25 %
    :align: center
    
@@ -112,7 +112,7 @@ The function used to run the preCPFE GUI for BX indentation is:
 Convention for the bicrystal mesh
 **********************************
 
-.. figure:: ./_pictures/Schemes_SlipTransmission/BX_indentation_mesh_example.png
+.. figure:: ./_pictures/fem_models/BX_indentation_mesh_example.png
    :scale: 25 %
    :align: center
    
