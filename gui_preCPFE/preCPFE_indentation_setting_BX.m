@@ -399,10 +399,11 @@ if scratchTest
         str2num(get(gdata.handles.indenter.scratchLength_val, 'String'));
     gdata.variables.scratchDirection = ...
         str2num(get(gdata.handles.indenter.scratchDirection_val, 'String'));
-    x_scratch = gdata.variables.scratchLength * cosd(gdata.variables.scratchDirection);
-    y_scratch = gdata.variables.scratchLength * sind(gdata.variables.scratchDirection);
+    gdata.variables.xLengthScratch = gdata.variables.scratchLength * cosd(gdata.variables.scratchDirection);
+    gdata.variables.yLengthScratch = gdata.variables.scratchLength * sind(gdata.variables.scratchDirection);
     try
-        arrow([0, 0, 0.2], [x_scratch, y_scratch, 0.2], ...
+        arrow(...
+            [0, 0, 0.2], [gdata.variables.xLengthScratch, gdata.variables.yLengthScratch, 0.2], ...
             'Length', 20, 'FaceColor', 'w', 'TipAngle', 25, 'Width', 4);
     catch err
         warning_commwin(err.message);
