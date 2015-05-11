@@ -45,7 +45,12 @@ class BicrystalIndent(Indentation):
                  box_bias_y3=0.3,  # bias in y direction in the grain A
                  smv=0.01,  # small values
                  lvl=1,  # mesh quality value
-                 free_mesh_inp=None
+                 free_mesh_inp=None,
+                 scratchTest=0, #boolean variable (0 if not a scratch test and 1 if scratch test)
+                 scratchLength=3, # scratch length in microns
+                 scratchDirection=0, # scratch direction in degrees (0 along x-axis and 90 along y axis, from 0 to 360)
+                 xLength_scratchTest=None,
+                 yLength_scratchTest=None
     ):
         import math
 
@@ -114,7 +119,12 @@ class BicrystalIndent(Indentation):
             if d == 0:
                 len = 4.5 * (ind_size)
                 # length in the model is defined later in the code with the variable min_margin
-
+        if scratchTest >=1:
+            xLength_scratchTest = scratchLength * math.cos(scratchDirection)
+            yLength_scratchTest = scratchLength * math.sin(scratchDirection)
+        else:
+            xLength_scratchTest = 0
+            yLength_scratchTest = 0
         self.proc = []
         self.start()
         #self.procIndentDocCall()
@@ -138,6 +148,11 @@ class BicrystalIndent(Indentation):
         self.IndentParameters['w_sample'] = wid
         self.IndentParameters['len_sample'] = len/2
         self.IndentParameters['free_mesh_inp'] = free_mesh_inp
+        self.IndentParameters['scratchTest'] = scratchTest
+        self.IndentParameters['scratchLength'] = scratchLength
+        self.IndentParameters['scratchDirection'] = scratchDirection
+        self.IndentParameters['xLength_scratchTest'] = xLength_scratchTest
+        self.IndentParameters['yLength_scratchTest'] = yLength_scratchTest
         twoDimensional = False
         Dexp = None
         self.procParameters()
@@ -180,7 +195,10 @@ class BicrystalIndent(Indentation):
                            box_bias_y3=box_bias_y3,
                            smv=smv,
                            lvl=lvl,
-                           len_trace = len_trace)
+                           len_trace=len_trace,
+                           scratchTest=scratchTest,
+                           scratchLength=scratchLength,
+                           scratchDirection=scratchDirection)
         #lengthScale = lengthScale)
         print 'width: ', wid
         print 'length: ', len
@@ -265,8 +283,11 @@ class BicrystalIndent(Indentation):
                       box_bias_y2=None, # bias in y direction in the middle part
                       box_bias_y3=None, # bias in y direction in the grain A
                       smv=None, # small values    
-                      len_trace = None                      
-    ):
+                      len_trace = None,
+                      scratchTest=None, #boolean variable (0 if not a scratch test and 1 if scratch test)
+                      scratchLength=None, # scratch length in microns
+                      scratchDirection=None # scratch direction in degrees (0 along x-axis and 90 along y axis, from 0 to 360)
+                 ):
     #if lengthScale != 1.:
         #    vals=d,hei,wd,len,ind_size
         #    for val in d,hei,wd,len,ind_size = [x==None or x * lengthScale for ]

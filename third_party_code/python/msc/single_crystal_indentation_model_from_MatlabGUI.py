@@ -15,11 +15,11 @@ def doit(gb_data, proc_path = './'):
                modelname = str(gb_data['Titlegbdata'][0]), #name of model with GB identification....usw...
                #label=gb_data['GB_Number'], # informative label
                #ind_size = 1.,
-               h_indent = float(gb_data['h_indent'][0]), # depth of the indent in um
-               tipRadius = float(gb_data['tipRadius'][0]), # radius of the spherical indenter in um
+               h_indent = float(gb_data['h_indent'][0]), # depth of the indent in microns
+               tipRadius = float(gb_data['tipRadius'][0]), # radius of the spherical indenter in microns
                coneAngle = float(gb_data['coneAngle'][0]), # angle of the conical indenter in degrees
-               D_sample = float(gb_data['D_sample'][0]), # diameter of the sample in um
-               h_sample = float(gb_data['h_sample'][0]), # height of the sample in um
+               D_sample = float(gb_data['D_sample'][0]), # diameter of the sample in microns
+               h_sample = float(gb_data['h_sample'][0]), # height of the sample in microns
                sample_rep = float(gb_data['sample_rep'][0]), # 16, 24, 32, 48 # number of segments, dividable by 8 if used with r_center_frac!=0
                r_center_frac = float(gb_data['r_center_frac'][0]), # if >0 ==> insert a cylindrical column of brick elements in the centre to avoid collapsed elements under the indenter
                box_xfrac = float(gb_data['box_xfrac'][0]),  # size of the finer mesh box in horizontal direction

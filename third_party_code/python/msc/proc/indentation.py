@@ -66,6 +66,9 @@ class Indentation(Indenter, Tools):
                  smv=0.01,  # small value
                  label='',
                  free_mesh_inp=None,  #name of the .inp file for AFM topo for indenter
+                 scratchTest=0, #boolean variable (0 if not a scratch test and 1 if scratch test)
+                 scratchLength=3, # scratch length in microns
+                 scratchDirection=0, # scratch direction in degrees (0 along x-axis and 90 along y axis, from 0 to 360)
                  ori_list=None):
         self.callerDict = locals()
         if r_center_frac is not 0 and sample_rep not in [8, 16, 24, 32, 40, 48, 56]:
@@ -102,8 +105,12 @@ class Indentation(Indenter, Tools):
             'nSteps': nSteps,  # number of increments for indentation to hmax
             'smv': smv,  # small length for node selection
             'label': label,
-            'free_mesh_inp': free_mesh_inp #name of the .inp file for AFM topo for indenter
-        }
+            'free_mesh_inp': free_mesh_inp, # name of the .inp file for AFM topo for indenter
+            'scratchTest': scratchTest, # boolean variable (0 if not a scratch test and 1 if scratch test)
+            'scratchLength': scratchLength, # scratch length in microns
+            'scratchDirection': scratchDirection, # scratch direction in degrees (0 along x-axis and 90 along y axis, from 0 to 360)
+            'xLength_scratchTest': xLength_scratchTest, 
+            'yLength_scratchTest': yLength_scratchTest}
         if twoDimensional:
             self.IndentParameters['indAxis'] = 'y'
         print(repr(self.IndentParameters))
@@ -360,7 +367,7 @@ all_existing
 *sweep_all
 *renumber_all
 |+++++++++++++++++++++++++++++++++++++++++++++
-| PARAMETER-DEFINITION
+| PARAMETERS-DEFINITION
 |+++++++++++++++++++++++++++++++++++++++++++++
 |
 | GEOMETRY
@@ -614,7 +621,6 @@ all_selected
 *select_reset
 ''')
 
-
     def procContactIndent(self):
         self.proc.append(self.header('CONTACT DEFINITION'))
         if self.FEMSOFTWARE >= 2013:
@@ -638,11 +644,11 @@ all_existing
             self.proc.append('''
 *new_cbody geometry |mentat >= 2013
 *contact_option geometry_nodes:off | mentat >= 2013
-            ''')
+''')
         else:
             self.proc.append('''
 *new_contact_body  | mentat < 2013
-            ''')
+''')
         self.proc.append('''
 *contact_body_name
 indenter
@@ -676,13 +682,47 @@ ind_time  h_indent/ind_time
 |*colormap 5
 |*image_save_gif 1 indent3d_doc_motion.ps yes
 *colormap 1
+*apply_option ref_position:undeformed | Important for consistent load-displacement curves.
+''')
+        if self.IndentParameters['scratchTest'] >= 1:
+            self.proc.append('''
+*new_table |TABLE definition
+*table_name
+indenter_scratch
+*set_table_type
+time
+*table_add
+0        0
+ind_time        0
+ind_time        5/ind_time
+2*ind_time      5/ind_time
+2*ind_time      0
+3*ind_time      0
+*table_fit
+*table_filled
+*colormap 1
+''')
+        self.proc.append('''
 *contact_rigid
 *contact_option control:velocity
 *contact_value v%s''' % (self.IndentParameters['indAxis']) + '''
 1
-*cbody_table v%s''' % (self.IndentParameters['indAxis']) + '''0
+*cbody_table v%s''' % (self.IndentParameters['indAxis']) + '''
+0
 indenter_motion
-
+''')
+        if self.IndentParameters['scratchTest'] >= 1:
+            self.proc.append('''
+*contact_value vx
+%f''' % self.IndentParameters['xLength_scratchTest'] + '''
+*cbody_table vx0
+indenter_scratch
+*contact_value vy
+%f''' % self.IndentParameters['yLength_scratchTest'] + '''
+*cbody_table vy0
+indenter_scratch
+''')
+        self.proc.append('''
 *apply_option ref_position:undeformed | Important for consistent load-displacement curves.
 
 | CONTACT TABLE
@@ -741,13 +781,22 @@ indenter_motion
                            nSteps=800,
                            release_split=None,  # time ratio between rel1 and rel2
                            n_steps_release=None):
-        lc_ind = self.load_case_indent(
-            new=False,  # just rename default LC
-            name='indentation',
-            contact_table='ctable1',
-            time_str='ind_time',
-            nsteps=nSteps)
-        self.proc.append(lc_ind)
+        if self.IndentParameters['scratchTest'] >= 1:
+            lc_ind = self.load_case_indent(
+                new=False,  # just rename default LC
+                name='indentation_scratch',
+                contact_table='ctable1',
+                time_str='ind_time*2',
+                nsteps=nSteps*2)
+            self.proc.append(lc_ind)
+        else:
+            lc_ind = self.load_case_indent(
+                new=False,  # just rename default LC
+                name='indentation',
+                contact_table='ctable1',
+                time_str='ind_time',
+                nsteps=nSteps)
+            self.proc.append(lc_ind)
         if n_steps_release is None:
             n_steps_release = int(math.ceil(nSteps / 6.))
         # split number of increments evenly between release LCs but use less time for release1
@@ -809,10 +858,16 @@ all_selected
 *add_loadcase_cbodies %s''' % cbody + '''
 ''')
 
-
     def procJobDefIndent(self):
-        self.proc.append('''
+        if self.IndentParameters['scratchTest'] >= 1:
+            self.proc.append('''
+*add_job_loadcases indentation_scratch
+''')
+        else:
+            self.proc.append('''
 *add_job_loadcases indentation
+''')
+        self.proc.append('''
 *add_job_loadcases release1
 *add_job_loadcases release2
 *job_option frictype:coulomb_bilinear
