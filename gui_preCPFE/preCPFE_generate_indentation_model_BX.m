@@ -110,6 +110,11 @@ py{end+1} = sprintf('smv = %e,', gui_BX.variables.smv);
 %py{end+1} = sprintf('lvl = %i', gui_BX.variables.mesh_quality_lvl);
 % Don't export the 'lvl' variable because numbers of elements along x, y and z axis
 % are already function of the mesh quality level !
+py{end+1} = sprintf('scratchTest = %i,', gui_BX.defaults.variables.scratchTest);
+if gui_BX.defaults.variables.scratchTest;
+    py{end+1} = sprintf('scratchLength = %.3f,', gui_BX.variables.scratchLength);
+    py{end+1} = sprintf('scratchDirection = %.3f,', gui_BX.variables.scratchDirection);
+end
 py{end+1} = ')';
 py{end+1} = sprintf('proc_path = ''%s'' ', proc_path);
 py{end+1} = sprintf('tools.mkdir_p(proc_path)');

@@ -1,15 +1,19 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function [handles, indent_parameters] = preCPFE_buttons_indenter(x0, hu, wu)
+function [handles, indent_parameters] = ...
+    preCPFE_buttons_indenter(x0, hu, wu, scratchTest)
 %% Function to create buttons to set indenter
 % x0: origin of x coordinate
 % hu: heigth unit
 % wu: width unit
+% scratchTest: boolean variable (0 for indentation test and 1 for scratch test)
 
 % author: d.mercier@mpie.de
 
-indent_parameters.coneAngle = 90; %in um
-indent_parameters.tipRadius = 1; % in degree
-indent_parameters.h_indent = 0.3; % in um
+indent_parameters.coneAngle = 90; %in microns
+indent_parameters.tipRadius = 1; % in degrees
+indent_parameters.h_indent = 0.3; % in microns
+indent_parameters.scratchLength = 3; % in microns
+indent_parameters.scratchDirection = 0; % in degrees
 
 parent = gcf;
 fontSize = 10;
@@ -41,7 +45,7 @@ handles.move = uicontrol('Parent', parent,...
     'preCPFE_set_indenter');
 
 [handles.tipRadius_str, handles.tipRadius_val] = ...
-    set_inputs_boxes({'Tip radius of indenter (µm)'}, ...
+    set_inputs_boxes({'Tip radius of indenter (microns)'}, ...
     [22*x0 hu*18 wu*3 hu*0.5], indent_parameters.tipRadius, ...
     'preCPFE_set_indenter');
 
@@ -118,5 +122,19 @@ set([handles.pm_indenter, handles.move, ...
     'FontWeight', 'bold',...
     'FontSize', fontSize,...
     'HorizontalAlignment', 'center');
+
+%% Set scratch test parameters (length and direction)
+if scratchTest
+    [handles.scratchLength_str, handles.scratchLength_val] = ...
+    set_inputs_boxes({'Scratch length (microns)'}, ...
+    [22*x0 hu*14.5 wu*3 hu*0.5], indent_parameters.scratchLength, ...
+    'preCPFE_indentation_setting_BX');
+
+    [handles.scratchDirection_str, handles.scratchDirection_val] = ...
+    set_inputs_boxes({'Scratch direction (°)'}, ...
+    [22*x0 hu*14 wu*3 hu*0.5], indent_parameters.scratchDirection, ...
+    'preCPFE_indentation_setting_BX');
+    % (0 along x-axis and 90 along y axis, from 0 to 360)
+end
 
 end

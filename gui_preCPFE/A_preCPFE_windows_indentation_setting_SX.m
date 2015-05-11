@@ -5,8 +5,8 @@ function gui_handle = ...
 %% Setting of indentation inputs (tip radius, indentation depth...)
 % and setting of the mesh for a single crystal indentation experiment.
 
-% gui_bicrystal: Handle of the Bicrystal GUI
-% activeGrain: Number of the active grain in the Bicrystal
+% gui_bicrystal: handle of the Bicrystal GUI
+% activeGrain: number of the active grain in the Bicrystal
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 

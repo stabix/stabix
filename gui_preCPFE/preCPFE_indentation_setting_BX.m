@@ -4,6 +4,7 @@ function preCPFE_indentation_setting_BX
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
 gdata = guidata(gcf);
+scratchTest = gdata.defaults.variables.scratchTest;
 
 %% Store old view settings
 % Rotation of the bicrystal based on the GB trace angle
@@ -16,6 +17,10 @@ origin = [0,0,0];
 set_default_values_txtbox(gdata.handles.indenter.coneAngle_val, num2str(gdata.defaults.variables.coneAngle));
 set_default_values_txtbox(gdata.handles.indenter.tipRadius_val, num2str(gdata.defaults.variables.tipRadius));
 set_default_values_txtbox(gdata.handles.indenter.h_indent_val, num2str(gdata.defaults.variables.h_indent));
+if scratchTest
+    set_default_values_txtbox(gdata.handles.indenter.scratchLength_val, num2str(gdata.defaults.variables.scratchLength));
+    set_default_values_txtbox(gdata.handles.indenter.scratchDirection_val, num2str(gdata.defaults.variables.scratchDirection));
+end
 % Mesh parameters
 set_default_values_txtbox(gdata.handles.mesh.w_sample_val, num2str(gdata.defaults.variables.w_sample));
 set_default_values_txtbox(gdata.handles.mesh.h_sample_val, num2str(gdata.defaults.variables.h_sample));
@@ -385,6 +390,22 @@ preCPFE_mesh_plot_finalize;
 if strfind(gdata.config.CPFEM.fem_solver_used, 'Abaqus')
     if gdata.variables.ind_dist < 0 % in grain B, on the right of the GB
         gdata.variables.box_bias_y2 = -gdata.variables.box_bias_y2;
+    end
+end
+
+%% Plot scratch direction/length using the function arrow
+if scratchTest
+    gdata.variables.scratchLength = ...
+        str2num(get(gdata.handles.indenter.scratchLength_val, 'String'));
+    gdata.variables.scratchDirection = ...
+        str2num(get(gdata.handles.indenter.scratchDirection_val, 'String'));
+    x_scratch = gdata.variables.scratchLength * cosd(gdata.variables.scratchDirection);
+    y_scratch = gdata.variables.scratchLength * sind(gdata.variables.scratchDirection);
+    try
+        arrow([0, 0, 0.2], [x_scratch, y_scratch, 0.2], ...
+            'Length', 20, 'FaceColor', 'w', 'TipAngle', 25, 'Width', 4);
+    catch err
+        warning_commwin(err.message);
     end
 end
 
