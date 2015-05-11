@@ -707,8 +707,7 @@ ind_time        5/ind_time
 *contact_option control:velocity
 *contact_value v%s''' % (self.IndentParameters['indAxis']) + '''
 1
-*cbody_table v%s''' % (self.IndentParameters['indAxis']) + '''
-0
+*cbody_table v%s''' % (self.IndentParameters['indAxis']) + '''0
 indenter_motion
 ''')
         if self.IndentParameters['scratchTest'] >= 1:

@@ -120,8 +120,8 @@ class BicrystalIndent(Indentation):
                 len = 4.5 * (ind_size)
                 # length in the model is defined later in the code with the variable min_margin
         if scratchTest >=1:
-            xLength_scratchTest = scratchLength * math.cos(scratchDirection)
-            yLength_scratchTest = scratchLength * math.sin(scratchDirection)
+            xLength_scratchTest = scratchLength * math.cos(scratchDirection/ 180. * math.pi)
+            yLength_scratchTest = scratchLength * math.sin(scratchDirection/ 180. * math.pi)
         else:
             xLength_scratchTest = 0
             yLength_scratchTest = 0
