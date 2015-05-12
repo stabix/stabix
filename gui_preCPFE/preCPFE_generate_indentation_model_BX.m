@@ -88,7 +88,7 @@ py{end+1} = sprintf('coneAngle = %.5f,', gui_BX.variables.coneAngle);
 py{end+1} = sprintf('friction = %.5f,', gui_BX.variables.frictionCoeff);
 py{end+1} = sprintf('geo = ''%s'',', gui_BX.indenter_type_model);
 py{end+1} = sprintf('free_mesh_inp = ''%s'',', ...
-    strcat(gui_BX.GB.Titlegbdata, '.inp'));
+    strcat(gui_BX.GB.Titlegbdata, '_Indenter.inp'));
 if strfind(gui_BX.config.CPFEM.fem_solver_used, 'Abaqus') == 1
     py{end+1} = sprintf('numFaces = %i,', gui_BX.indenter_faces);
 end
