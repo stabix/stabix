@@ -20,6 +20,7 @@ Currently the following models can be written:
 
     * :ref:`single_crystal_indentation` (MSC.Mentat and Abaqus)
     * :ref:`bicrystal_indentation` (MSC.Mentat and Abaqus)
+    * :ref:`scratch_test` (MSC.Mentat and Abaqus)
     
 Please find here the `Python package used to generate the SX and BX indentation models
 <https://github.com/stabix/stabix/tree/master/third_party_code/python>`_.
@@ -107,7 +108,7 @@ The function used to run the preCPFE GUI for BX indentation is:
        :scale: 40 %
        :align: center
        
-       *Figure 6 : Screenshot of the preCPFE GUI for the bicrystal indentation.*
+       *Figure 5 : Screenshot of the preCPFE GUI for the bicrystal indentation.*
 
 Convention for the bicrystal mesh
 **********************************
@@ -116,7 +117,21 @@ Convention for the bicrystal mesh
    :scale: 25 %
    :align: center
    
-   *Figure 7 : Convention used to define the bicrystal mesh.*
+   *Figure 6 : Convention used to define the bicrystal mesh.*
+   
+.. _scratch_test:
+
+Scratch test
+--------------
+
+CPFE simulation of scratch test in a single crystal or close to a grain boundaries is implemented into this GUI.
+Scratch length and scratch direction have to be set by the user.
+
+.. figure:: ./_pictures/GUIs/preCPFE_GUI_scratch.png
+   :scale: 25 %
+   :align: center
+   
+   *Figure 7 : Screenshot of the preCPFE GUI for the scratch test.*
    
 Indenter's geometry
 --------------------
@@ -159,7 +174,7 @@ of the *Abaqus .inp* file.
        :scale: 40 %
        :align: center
        
-       *Figure 9 : Screenshot of the preCPFE GUI for the bicrystal indentation with Berkovich indenter.*
+       *Figure 8 : Screenshot of the preCPFE GUI for the bicrystal indentation with Berkovich indenter.*
     
 AFM topography
 ***************
@@ -175,7 +190,7 @@ The |matlab| function used to load and read Gwyddion file is:
    :scale: 40 %
    :align: center
    
-   *Figure 10 : Screenshot of the preCPFE GUI for the bicrystal indentation with loaded AFM topography of the indenter.*
+   *Figure 9 : Screenshot of the preCPFE GUI for the bicrystal indentation with loaded AFM topography of the indenter.*
    
 Contact definition
 -------------------
@@ -227,7 +242,6 @@ opened in the |matlab| editor.
 To benefit from later changes in the default settings, all
 configuration parameters that are not specific to the user's setup should be deleted 
 from the user's CPFE configuration file.
-
 
 Installing DAMASK
 ------------------
