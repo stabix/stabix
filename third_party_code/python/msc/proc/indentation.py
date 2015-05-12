@@ -662,7 +662,44 @@ indenter_surfaces
 *identify_contact *regen
 *identify_backfaces *regen | Flip if necessary
 *identify_none *regen
+''')
+        if self.IndentParameters['scratchTest'] >= 1:
+            self.proc.append('''
+*new_table |TABLE definition
+*table_name
+indenter_motion
+*set_table_type
+time
+*table_add
+0        -h_indent/ind_time
+ind_time -h_indent/ind_time
+ind_time 0
+2*ind_time  0
+2*ind_time  h_indent/ind_time
+3*ind_time h_indent/ind_time
+*table_fit
+*table_filled
+*colormap 1
+*apply_option ref_position:undeformed | Important for consistent load-displacement curves.
 
+*new_table |TABLE definition
+*table_name
+indenter_scratch
+*set_table_type
+time
+*table_add
+0        0
+ind_time        0
+ind_time        5/ind_time
+2*ind_time      5/ind_time
+2*ind_time      0
+3*ind_time      0
+*table_fit
+*table_filled
+*colormap 1
+''')
+        else:
+            self.proc.append('''
 *new_table |TABLE definition
 *table_name
 indenter_motion
@@ -683,24 +720,6 @@ ind_time  h_indent/ind_time
 |*image_save_gif 1 indent3d_doc_motion.ps yes
 *colormap 1
 *apply_option ref_position:undeformed | Important for consistent load-displacement curves.
-''')
-        if self.IndentParameters['scratchTest'] >= 1:
-            self.proc.append('''
-*new_table |TABLE definition
-*table_name
-indenter_scratch
-*set_table_type
-time
-*table_add
-0        0
-ind_time        0
-ind_time        5/ind_time
-2*ind_time      5/ind_time
-2*ind_time      0
-3*ind_time      0
-*table_fit
-*table_filled
-*colormap 1
 ''')
         self.proc.append('''
 *contact_rigid
