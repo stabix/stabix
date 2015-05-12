@@ -31,7 +31,7 @@ if flagEBSDdata
     subplot(4,1,1);
     hist(diamgr, binsdiam);
     %title ('Grain Diameter distribution');
-    xlabel('Grain diameter - µm');
+    xlabel('Grain diameter - microns');
     ylabel('Number of grains');
     
     %% Plot Grain Area distribution
@@ -40,7 +40,7 @@ if flagEBSDdata
     subplot(4,1,2);
     bar(hist(ar,binsar));
     xlabel('Grain Area distribution');
-    %xlabel('Grain Area - µm2');
+    %xlabel('Grain Area - microns^2');
     ylabel('Number of grains');
     
     %% Plot Grain Shape distribution

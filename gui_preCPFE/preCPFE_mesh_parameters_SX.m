@@ -9,8 +9,8 @@ function handles = preCPFE_mesh_parameters_SX(mesh_variables, x0, hu, wu, fem_so
 
 % author: d.mercier@mpie.de
 
-[handles.D_sample_str, handles.D_sample_val] = set_inputs_boxes({'D_sample (µm)'}, [x0 hu*16.9 wu*3 x0/2], mesh_variables.variables.D_sample, 'preCPFE_indentation_setting_SX');
-[handles.h_sample_str, handles.h_sample_val] = set_inputs_boxes({'h_sample (µm)'}, [x0 hu*16.3 wu*3 x0/2], mesh_variables.variables.h_sample, 'preCPFE_indentation_setting_SX');
+[handles.D_sample_str, handles.D_sample_val] = set_inputs_boxes({'D_sample (microns)'}, [x0 hu*16.9 wu*3 x0/2], mesh_variables.variables.D_sample, 'preCPFE_indentation_setting_SX');
+[handles.h_sample_str, handles.h_sample_val] = set_inputs_boxes({'h_sample (microns)'}, [x0 hu*16.3 wu*3 x0/2], mesh_variables.variables.h_sample, 'preCPFE_indentation_setting_SX');
 % txt boxes for subdivision
 [handles.r_center_frac_str, handles.r_center_frac_val] = set_inputs_boxes({'r_center_frac'}, [x0 hu*15.7 wu*3 x0/2], mesh_variables.variables.r_center_frac, 'preCPFE_indentation_setting_SX');
 [handles.box_xfrac_str, handles.box_xfrac_val] = set_inputs_boxes({'box_xfrac'}, [x0 hu*15.1 wu*3 x0/2], mesh_variables.variables.box_xfrac, 'preCPFE_indentation_setting_SX');

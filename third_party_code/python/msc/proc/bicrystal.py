@@ -23,10 +23,10 @@ class BicrystalIndent(Indentation):
                  inclination=None,  # vertical = 90°, 0.. 90 cuts through grain 1, 90 ..180  through grain 2
                  d=None,  # distance of indent from GB
                  len_trace=None,
-                 h_indent=0.3,  # depth of the indent in µm
-                 tipRadius=1.4,  # radius of the spherical indenter in µm
+                 h_indent=0.3,  # depth of the indent in microns
+                 tipRadius=1.4,  # radius of the spherical indenter in microns
                  geo='conical',
-                 coneAngle=90., # angle of the conical indenter in degree.
+                 coneAngle=90., # angle of the conical indenter in degrees
                  friction=0.3,  # Coulomb friction coefficient
                  ind_size=None,
                  #lengthScale = 1.
@@ -268,7 +268,7 @@ class BicrystalIndent(Indentation):
                       # d>0 := ind in grain #1 or grainA (left of the GB), d<0 ind in grain #2 or grainB (right of the GB)
                       ind_size=1., # approximate indent diameter
                       lvl=None, # mesh refining level, higher is finer
-                      #lengthScale = 1.  # switch between µm and SI (meter)
+                      #lengthScale = 1.  # switch between microns and SI (meter)
                       wid=None, # width of the sample
                       hei=None, # height of the sample
                       len=None, # length of the sample (dimension perpendicular to gb trace)

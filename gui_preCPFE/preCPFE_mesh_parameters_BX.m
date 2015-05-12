@@ -9,11 +9,11 @@ function handles = preCPFE_mesh_parameters_BX(mesh_variables, x0, hu, wu, fem_so
 
 % author: d.mercier@mpie.de
 
-[handles.w_sample_str, handles.w_sample_val]       = set_inputs_boxes({'w_sample (µm)'}, [x0 hu*17.5 wu*2.8 x0/2],mesh_variables.variables.w_sample, 'preCPFE_indentation_setting_BX');
-[handles.h_sample_str, handles.h_sample_val]       = set_inputs_boxes({'h_sample (µm)'}, [x0 hu*16.9 wu*2.8 x0/2],mesh_variables.variables.h_sample, 'preCPFE_indentation_setting_BX');
-[handles.len_sample_str, handles.len_sample_val]   = set_inputs_boxes({'len_sample (µm)'}, [x0 hu*16.3 wu*2.8 x0/2],mesh_variables.variables.len_sample, 'preCPFE_indentation_setting_BX');
-[handles.inclination_str, handles.inclination_val] = set_inputs_boxes({'Inclination (°)'}, [x0 hu*15.7 wu*2.8 x0/2],mesh_variables.variables.inclination, 'preCPFE_indentation_setting_BX');
-[handles.ind_dist_str, handles.ind_dist_val]       = set_inputs_boxes({'Distance GB-indent (µm)'}, [x0 hu*15.1 wu*2.8 x0/2],mesh_variables.variables.ind_dist, 'preCPFE_indentation_setting_BX');
+[handles.w_sample_str, handles.w_sample_val]       = set_inputs_boxes({'w_sample (microns)'}, [x0 hu*17.5 wu*2.8 x0/2],mesh_variables.variables.w_sample, 'preCPFE_indentation_setting_BX');
+[handles.h_sample_str, handles.h_sample_val]       = set_inputs_boxes({'h_sample (microns)'}, [x0 hu*16.9 wu*2.8 x0/2],mesh_variables.variables.h_sample, 'preCPFE_indentation_setting_BX');
+[handles.len_sample_str, handles.len_sample_val]   = set_inputs_boxes({'len_sample (microns)'}, [x0 hu*16.3 wu*2.8 x0/2],mesh_variables.variables.len_sample, 'preCPFE_indentation_setting_BX');
+[handles.inclination_str, handles.inclination_val] = set_inputs_boxes({'Inclination (degrees)'}, [x0 hu*15.7 wu*2.8 x0/2],mesh_variables.variables.inclination, 'preCPFE_indentation_setting_BX');
+[handles.ind_dist_str, handles.ind_dist_val]       = set_inputs_boxes({'Distance GB-indent (microns)'}, [x0 hu*15.1 wu*2.8 x0/2],mesh_variables.variables.ind_dist, 'preCPFE_indentation_setting_BX');
 % txt boxes for subdivision
 [handles.box_elm_nx_str, handles.box_elm_nx_val]   = set_inputs_boxes({'box_elm_nx'}, [x0 hu*14.5 wu*2.8 x0/2],mesh_variables.variables.box_elm_nx, 'preCPFE_indentation_setting_BX');
 [handles.box_elm_nz_str, handles.box_elm_nz_val]   = set_inputs_boxes({'box_elm_nz'}, [x0 hu*13.9 wu*2.8 x0/2],mesh_variables.variables.box_elm_nz, 'preCPFE_indentation_setting_BX');
