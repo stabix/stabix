@@ -50,7 +50,6 @@ if nargin == 0
     gui_BX.GB.activeGrain = gui_BX.GB.GrainA;
     gui_BX.title_str = set_gui_title(gui_BX, '');
     scratchTest = 0;
-    gui_BX.defaults.variables.scratchTest = 0;
 else
     gui_BX.flag           = gui_bicrystal.flag;
     gui_BX.config_map     = gui_bicrystal.config_map;
@@ -67,7 +66,6 @@ else
         YAMLfile_title);
     
     gui_BX.config_map.imported_YAML_GB_config_file = YAMLfile_title;
-    
 end
 gui_BX.config.username = username_get;
 guidata(gcf, gui_BX);
@@ -84,6 +82,11 @@ gui_BX.handles.hax = axes('Units', 'normalized',...
 %% Initialization of variables
 gui_BX.defaults.variables = ReadYaml('config_mesh_BX_defaults.yaml');
 gui_BX.defaults.variables.inclination = gui_BX.GB.GB_Inclination;
+if scratchTest == 0
+    gui_BX.defaults.variables.scratchTest = 0;
+else
+    gui_BX.defaults.variables.scratchTest = 1;
+end
 guidata(gcf, gui_BX);
 
 %% Creation of boxes to set indenter and indentation properties
@@ -101,7 +104,6 @@ gui_BX.defaults.variables.tipRadius = indent_parameters.tipRadius;
 gui_BX.defaults.variables.h_indent = indent_parameters.h_indent;
 gui_BX.defaults.variables.coneAngle = indent_parameters.coneAngle;
 if scratchTest
-    gui_BX.defaults.variables.scratchTest = 1;
     gui_BX.defaults.variables.scratchLength = indent_parameters.scratchLength;
     gui_BX.defaults.variables.scratchDirection = indent_parameters.scratchDirection;
 end
