@@ -399,6 +399,9 @@ if scratchTest
         str2num(get(gdata.handles.indenter.scratchLength_val, 'String'));
     gdata.variables.scratchDirection = ...
         str2num(get(gdata.handles.indenter.scratchDirection_val, 'String'));
+    gdata.variables.scratchDirection = rem(gdata.variables.scratchDirection, 360);
+    set(gdata.handles.indenter.scratchDirection_val, ...
+        'String', num2str(gdata.variables.scratchDirection));
     gdata.variables.xLengthScratch = gdata.variables.scratchLength * cosd(gdata.variables.scratchDirection);
     gdata.variables.yLengthScratch = gdata.variables.scratchLength * sind(gdata.variables.scratchDirection);
     try
