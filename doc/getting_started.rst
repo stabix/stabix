@@ -3,7 +3,13 @@
 
 .. include:: includes.rst
 
+Source Code
+***************
+
 .. include:: source_code.rst
+
+README and demo.m
+********************
 
 To have more details about the use of the toolbox, please have a look to :
 
@@ -16,6 +22,9 @@ Then, run the following |matlab| script and answer 'y' or 'yes' to add path to t
 .. code-block:: matlab
 
    path_management.m
+
+The GUIs
+**********
 
 Run one of these GUIs to play with the toolbox.
 
@@ -35,6 +44,9 @@ Run one of these GUIs to play with the toolbox.
    :align: center
    
    *Figure 1 : The different GUIs of the STABiX toolbox.*
+   
+The YAML configuration files
+*******************************
 
 Default YAML configuration files, stored in the folder `YAML_config_files <https://github.com/stabix/stabix/tree/master/YAML_config_files>`_, are loaded automatically to set the GUIs:
 
@@ -54,6 +66,14 @@ You have to set your own YAML configuration files, by following instructions giv
 `Visit the YAML website for more informations <http://www.yaml.org/>`_.
 
 `Visit the YAML code for Matlab <http://code.google.com/p/yamlmatlab/>`_.
+
+MTEX toolbox
+****************
+
+For some options and functions implemented in the STABiX toolbox, you have to download and install the `MTEX Toolbox <http://mtex-toolbox.github.io/>`_.
+
+OpenGL
+*********
 
 If the OpenGL rendering is not satisfying, you can modify the corresponding option in the `config.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config.yaml>`_ file.
 

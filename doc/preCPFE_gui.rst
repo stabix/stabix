@@ -128,7 +128,7 @@ CPFE simulation of scratch test in a single crystal or close to a grain boundari
 Scratch length and scratch direction have to be set by the user.
 
 .. figure:: ./_pictures/GUIs/preCPFE_GUI_scratch.png
-   :scale: 25 %
+   :scale: 40 %
    :align: center
    
    *Figure 7 : Screenshot of the preCPFE GUI for the scratch test.*
