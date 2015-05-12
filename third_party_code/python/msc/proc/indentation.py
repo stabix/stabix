@@ -488,7 +488,6 @@ h-smv h+smv
 all_selected
 #
 
-
 *expand_reset
 *set_expand_rotation z 0
 |*set_expand_translation z el_h
