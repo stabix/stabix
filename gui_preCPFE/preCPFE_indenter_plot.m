@@ -29,19 +29,22 @@ if strcmp(gui.indenter_type, 'conical') == 1
     gui.indenter_faces = 1;
     
 elseif strcmp(gui.indenter_type, 'Berkovich') == 1
-    [handle_indenter, ~] = preCPFE_3d_polygon_indenter(3, 65.3, ...
+    numberFaces = 3;
+    [handle_indenter, ~] = preCPFE_3d_polygon_indenter(numberFaces, 65.3, ...
         2*gui.variables.h_indent, -h_indent);
-    gui.indenter_faces = 4;
+    gui.indenter_faces = numberFaces + 1;
     
 elseif strcmp(gui.indenter_type, 'Vickers') == 1
-    [handle_indenter, ~] = preCPFE_3d_polygon_indenter(4, 68, ...
+    numberFaces = 4;
+    [handle_indenter, ~] = preCPFE_3d_polygon_indenter(numberFaces, 68, ...
         2*gui.variables.h_indent, -h_indent);
-    gui.indenter_faces = 5;
+    gui.indenter_faces = numberFaces + 1;
     
 elseif strcmp(gui.indenter_type, 'cubeCorner') == 1
-    [handle_indenter, ~] = preCPFE_3d_polygon_indenter(3, 35.26, ...
+    numberFaces = 3;
+    [handle_indenter, ~] = preCPFE_3d_polygon_indenter(numberFaces, 35.26, ...
         2*gui.variables.h_indent, -h_indent);
-    gui.indenter_faces = 4;
+    gui.indenter_faces = numberFaces + 1;
     
 elseif strcmp(gui.indenter_type, 'flatPunch') == 1
     handle_indenter = preCPFE_3d_flat_punch_indenter(...
@@ -75,7 +78,7 @@ guidata(gcf, gui);
 colormap white;
 
 %% Rotate indenter
-% rotation_angle: Angle to rotate indenter (from 0 to 360°) in degrees
+% rotation_angle: Angle to rotate indenter (from 0 to 360 degrees)
 rotation_angle = get(gui.handles.indenter.rotate_loaded_indenter, 'Value');
 rotation_angle = round(rotation_angle * 10) / 10; % 0.1 deg steps
 set(gui.handles.indenter.rotate_loaded_indenter, 'Value', rotation_angle);
