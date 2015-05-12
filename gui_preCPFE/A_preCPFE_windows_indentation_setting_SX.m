@@ -89,7 +89,7 @@ guidata(gcf, gui_SX);
 
 %% Creation of popup menu and slider for loaded AFM indenter topography
 [gui_SX.handles.indenter, indent_parameters] = ...
-    preCPFE_buttons_indenter(x0, hu, wu);
+    preCPFE_buttons_indenter(x0, hu, wu, 0);
 gui_SX.defaults.variables.coneAngle = indent_parameters.coneAngle;
 gui_SX.defaults.variables.tipRadius = indent_parameters.tipRadius;
 gui_SX.defaults.variables.h_indent = indent_parameters.h_indent;
