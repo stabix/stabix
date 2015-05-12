@@ -11,7 +11,11 @@ function gui_handle = ...
 
 %% Initialization
 gui_BX = preCPFE_init;
-gui_BX.description = 'Indentation of a bicrystal - ';
+if ~scratchTest
+    gui_BX.description = 'Indentation of a bicrystal - ';
+else
+    gui_BX.description = 'Scratch test of a bicrystal - ';
+end
 
 x0 = 0.025;
 hu = 0.05; % height unit
@@ -106,6 +110,7 @@ gui_BX.defaults.variables.coneAngle = indent_parameters.coneAngle;
 if scratchTest
     gui_BX.defaults.variables.scratchLength = indent_parameters.scratchLength;
     gui_BX.defaults.variables.scratchDirection = indent_parameters.scratchDirection;
+    
 end
 
 %% Creation of buttons/popup menus (mesh quality, layout, Python, CPFEM...)
