@@ -67,6 +67,9 @@ class Indentation(Indenter, Tools):
                 smv = 0.01,  # small value
                 label = '',
                 free_mesh_inp = '', # name of the .inp file for AFM topo for indenter
+                scratchTest=0, #boolean variable (0 if not a scratch test and 1 if scratch test)
+                scratchLength=3, # scratch length in microns
+                scratchDirection=0, # scratch direction in degrees (0 along x-axis and 90 along y axis, from 0 to 360)
                 ori_list = None):
         self.callerDict = locals()
         if r_center_frac is not 0 and sample_rep not in [8, 16, 24, 32, 40, 48, 56]:
@@ -111,7 +114,12 @@ class Indentation(Indenter, Tools):
             'nSteps': nSteps,  # number of increments for indentation to hmax
             'smv': smv,  # small length for node selection
             'free_mesh_inp': free_mesh_inp, #name of the .inp file for AFM topo for indenter
-            'label': label
+            'label': label,
+            'scratchTest': scratchTest, # boolean variable (0 if not a scratch test and 1 if scratch test)
+            'scratchLength': scratchLength, # scratch length in microns
+            'scratchDirection': scratchDirection, # scratch direction in degrees (0 along x-axis and 90 along y axis, from 0 to 360)
+            'xLength_scratchTest': xLength_scratchTest, 
+            'yLength_scratchTest': yLength_scratchTest
         }
         if twoDimensional:
             self.IndentParameters['indAxis'] = 'y'

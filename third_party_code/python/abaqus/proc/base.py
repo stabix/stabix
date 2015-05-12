@@ -383,6 +383,33 @@ elif orphanMesh == 1:
 #+++++++++++++++++++++++++++++++++++++++++++++
 # LOADING STEP DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
+''')
+        if self.IndentParameters['scratchTest'] >= 1:
+            self.proc.append('''
+# Definition of the indent step
+model_name.StaticStep(name='Indent', previous='Initial',
+    timePeriod=(ind_time),
+    maxNumInc=max_inc_indent, initialInc=ini_inc_indent, minInc=min_inc_indent_time,
+    maxInc=max_inc_indent_time, nlgeom=ON)
+# Definition of the scratch step
+model_name.StaticStep(name='Scratch', previous='Indent',
+    timePeriod=(ind_time),
+    maxNumInc=max_inc_indent, initialInc=ini_inc_indent, minInc=min_inc_indent_time,
+    maxInc=max_inc_indent_time, nlgeom=ON)
+
+# Generating velocity amplitude tables
+model_name.TabularAmplitude(data=(
+    (0.0, 0.0),
+    (ind_time, -(h_indent+sep_ind_samp))), \
+    name='Indent_Amplitude', smooth=SOLVER_DEFAULT, timeSpan=STEP)
+# Generating velocity amplitude tables
+model_name.TabularAmplitude(data=(
+    (0.0, 0.0),
+    (ind_time, 1)), \
+    name='Scratch_Amplitude', smooth=SOLVER_DEFAULT, timeSpan=STEP)
+''')
+        else:
+            self.proc.append('''
 # Definition of the indent step
 model_name.StaticStep(name='Indent', previous='Initial',
     timePeriod=(ind_time+dwell_time+unload_time),
@@ -396,7 +423,8 @@ model_name.TabularAmplitude(data=(
     (ind_time+dwell_time, -(h_indent+sep_ind_samp)),
     (ind_time+dwell_time+unload_time, 0)), \
     name='Indent_Amplitude', smooth=SOLVER_DEFAULT, timeSpan=STEP)
-
+''')
+        self.proc.append('''
 # Defining velocities in the different steps
 InstanceRoot = model_name.rootAssembly
 r1 = InstanceRoot.instances['indenter-1'].referencePoints
@@ -409,6 +437,16 @@ region = regionToolset.Region(referencePoints=refPoints1)
 model_name.DisplacementBC(name='Indent', createStepName='Indent',
     region=region, u1=0.0, u2=0.0, u3=1, ur1=0.0, ur2=0.0, ur3=0.0,
     amplitude='Indent_Amplitude', fixed=OFF, distributionType=UNIFORM,
+    fieldName='', localCsys=None)
+''')
+        if self.IndentParameters['scratchTest'] >= 1:
+            self.proc.append('''
+region = regionToolset.Region(referencePoints=refPoints1)
+model_name.DisplacementBC(name='Scratch', createStepName='Scratch',
+    region=region, u1=%f''' % self.IndentParameters['xLength_scratchTest'] + ''',
+    u2=%f''' % self.IndentParameters['yLength_scratchTest'] + ''',
+    u3=0, ur1=0.0, ur2=0.0, ur3=0.0,
+    amplitude='Scratch_Amplitude', fixed=OFF, distributionType=UNIFORM,
     fieldName='', localCsys=None)
 ''')
 

@@ -61,6 +61,11 @@ class BicrystalIndent(Proc, Indenter):
                  nSteps = 800,  # LC 'indent', No of increments
                  smv = 0.01,  # small value
                  free_mesh_inp = '', #name of the .inp file for AFM topo for indenter
+                 scratchTest=0, #boolean variable (0 if not a scratch test and 1 if scratch test)
+                 scratchLength=3, # scratch length in microns
+                 scratchDirection=0, # scratch direction in degrees (0 along x-axis and 90 along y axis, from 0 to 360)
+                 xLength_scratchTest=None,
+                 yLength_scratchTest=None,
                  ori_list = None):
         import math
 
@@ -104,7 +109,12 @@ class BicrystalIndent(Proc, Indenter):
             if d == 0:
                 len = 4.5 * (ind_size)
                 # length in the model is defined later in the code with the variable min_margin
-
+        if scratchTest >=1:
+            xLength_scratchTest = scratchLength * math.cos(scratchDirection/ 180. * math.pi)
+            yLength_scratchTest = scratchLength * math.sin(scratchDirection/ 180. * math.pi)
+        else:
+            xLength_scratchTest = 0
+            yLength_scratchTest = 0
         self.proc = []
         self.start(title='INDENTATION-MODEL (%s) %s' % (modelname, label))
         self.procNewModel(modelname=(modelname))
@@ -128,6 +138,11 @@ class BicrystalIndent(Proc, Indenter):
         self.IndentParameters['w_sample'] = wid
         self.IndentParameters['len_sample'] = len/2
         self.IndentParameters['free_mesh_inp'] = free_mesh_inp
+        self.IndentParameters['scratchTest'] = scratchTest
+        self.IndentParameters['scratchLength'] = scratchLength
+        self.IndentParameters['scratchDirection'] = scratchDirection
+        self.IndentParameters['xLength_scratchTest'] = xLength_scratchTest
+        self.IndentParameters['yLength_scratchTest'] = yLength_scratchTest
         self.procParameters(modelname = modelname,
                            coneAngle = coneAngle,
                            friction = friction,
@@ -173,6 +188,9 @@ class BicrystalIndent(Proc, Indenter):
                            nSteps = nSteps,
                            smv = smv,
                            free_mesh_inp = free_mesh_inp,
+                           scratchTest=scratchTest,
+                           scratchLength=scratchLength,
+                           scratchDirection=scratchDirection,
                            ori_list = ori_list)
         if geo == 'conical':
             self.procIndenterConical(coneHalfAngle=self.IndentParameters['coneHalfAngle'])
@@ -225,6 +243,9 @@ class BicrystalIndent(Proc, Indenter):
                            nSteps = nSteps,
                            smv = smv,
                            free_mesh_inp = free_mesh_inp,
+                           scratchTest = scratchTest,
+                           scratchLength = scratchLength,
+                           scratchDirection = scratchDirection,
                            ori_list = ori_list)
         self.procMeshParameters()
         self.procSampleMeshing()
@@ -298,6 +319,9 @@ final_sample_name = 'Bicrystal-1'
                       nSteps = None,
                       smv = None,
                       free_mesh_inp = None,
+                      scratchTest = None,
+                      scratchLength = None,
+                      scratchDirection = None,
                       ori_list = None):
         print('trace_ang: ', trace_ang)
         print 'inclination: ', inclination, '(in degrees)'
@@ -461,6 +485,9 @@ else:
                       nSteps = None,
                       smv = None,
                       free_mesh_inp = None,
+                      scratchTest = None,
+                      scratchLength = None,
+                      scratchDirection = None,
                       ori_list = None):
         self.proc.append('''
 #+++++++++++++++++++++++++++++++++++++++++++++
