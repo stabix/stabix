@@ -8,16 +8,19 @@ Source Code
 
 .. include:: source_code.rst
 
-README and demo.m
-********************
+READ ME
+********
 
 To have more details about the use of the toolbox, please have a look to :
 
 .. code-block:: matlab
 
    README.txt
+   
+Path management
+*****************
 
-Then, run the following |matlab| script and answer 'y' or 'yes' to add path to the |matlab| search paths :
+Run the following |matlab| script and answer 'y' or 'yes' to add path to the |matlab| search paths :
 
 .. code-block:: matlab
 
