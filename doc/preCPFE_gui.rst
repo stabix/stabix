@@ -124,7 +124,7 @@ Convention for the bicrystal mesh
 Scratch test
 --------------
 
-CPFE simulation of scratch test in a single crystal or close to a grain boundaries is implemented into this GUI.
+CPFE simulation of scratch test in a single crystal or close to a grain boundary is implemented into this GUI.
 Scratch length and scratch direction have to be set by the user.
 
 .. figure:: ./_pictures/GUIs/preCPFE_GUI_scratch.png
