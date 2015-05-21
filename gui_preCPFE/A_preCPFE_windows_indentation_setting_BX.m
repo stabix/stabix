@@ -9,6 +9,10 @@ function gui_handle = ...
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
+if nargin < 2
+    scratchTest = 0;
+end
+
 %% Initialization
 gui_BX = preCPFE_init;
 if ~scratchTest
