@@ -228,7 +228,9 @@ class BicrystalIndent(Indentation):
         self.procGeometricProperties()
         self.procContact()
         self.procContactIndent()
-        self.procLoadCaseIndent(nSteps=self.IndentParameters['nSteps'])
+        self.procLoadCaseIndent(nameLC='Indentation', nSteps=self.IndentParameters['nSteps'])
+        if scratchTest >=1:
+            self.procLoadCaseIndent(nameLC='Scratch', nSteps=2*self.IndentParameters['nSteps'], stepsRelease=0)
         self.procJobDef()
         self.procJobDefIndent()
         self.procFriction()

@@ -689,8 +689,8 @@ time
 *table_add
 0        0
 ind_time        0
-ind_time        5/ind_time
-2*ind_time      5/ind_time
+ind_time        1
+2*ind_time      1
 2*ind_time      0
 3*ind_time      0
 *table_fit
@@ -795,46 +795,41 @@ indenter_scratch
         return proc
 
     def procLoadCaseIndent(self,
+                           nameLC='Indentation',
                            nSteps=800,
+                           stepsRelease=None,
                            release_split=None,  # time ratio between rel1 and rel2
                            n_steps_release=None):
-        if self.IndentParameters['scratchTest'] >= 1:
-            lc_ind = self.load_case_indent(
-                new=False,  # just rename default LC
-                name='indentation_scratch',
-                contact_table='ctable1',
-                time_str='ind_time*2',
-                nsteps=nSteps*2)
-            self.proc.append(lc_ind)
-        else:
-            lc_ind = self.load_case_indent(
-                new=False,  # just rename default LC
-                name='indentation',
-                contact_table='ctable1',
-                time_str='ind_time',
-                nsteps=nSteps)
-            self.proc.append(lc_ind)
-        if n_steps_release is None:
-            n_steps_release = int(math.ceil(nSteps / 6.))
-        # split number of increments evenly between release LCs but use less time for release1
-        n_steps_rel1 = int(math.ceil(0.5 * n_steps_release))
-        n_steps_rel2 = n_steps_release - n_steps_rel1
-        if release_split is None:
-            release_split = 0.2
-        lc_rel_1 = self.load_case_indent(
-            name='release1',
+        lc_ind = self.load_case_indent(
+            name=nameLC,
             contact_table='ctable1',
-            time_str='%f*ind_time' % release_split,
-            nsteps='%i'%n_steps_rel1)
-        self.proc.append(lc_rel_1)
-        self.proc_release_cbody(cbody='indenter')  # Mentat < 2013
-        lc_rel_2 = self.load_case_indent(
-            name='release2',
-            contact_table='ctable1',
-            time_str='%f*ind_time' % (1.-release_split),
-            nsteps='%i' % n_steps_rel2)
-        self.proc.append(lc_rel_2)
-        self.proc_release_cbody(cbody='indenter')  # Mentat < 2013
+            time_str='ind_time',
+            nsteps=nSteps)
+        self.proc.append(lc_ind)
+        if stepsRelease is None:
+            stepsRelease=1
+        if stepsRelease==1:
+            if n_steps_release is None:
+                n_steps_release = int(math.ceil(nSteps / 6.))
+            # split number of increments evenly between release LCs but use less time for release1
+            n_steps_rel1 = int(math.ceil(0.5 * n_steps_release))
+            n_steps_rel2 = n_steps_release - n_steps_rel1
+            if release_split is None:
+                release_split = 0.2
+            lc_rel_1 = self.load_case_indent(
+                name='release1',
+                contact_table='ctable1',
+                time_str='%f*ind_time' % release_split,
+                nsteps='%i'%n_steps_rel1)
+            self.proc.append(lc_rel_1)
+            self.proc_release_cbody(cbody='indenter')  # Mentat < 2013
+            lc_rel_2 = self.load_case_indent(
+                name='release2',
+                contact_table='ctable1',
+                time_str='%f*ind_time' % (1.-release_split),
+                nsteps='%i' % n_steps_rel2)
+            self.proc.append(lc_rel_2)
+            self.proc_release_cbody(cbody='indenter')  # Mentat < 2013
 
     def procViewSetsIndent(self):
         self.proc.append('''|++++++++++++
@@ -876,14 +871,14 @@ all_selected
 ''')
 
     def procJobDefIndent(self):
+        self.proc.append('''
+*add_job_loadcases Indentation
+''')
         if self.IndentParameters['scratchTest'] >= 1:
             self.proc.append('''
-*add_job_loadcases indentation_scratch
+*add_job_loadcases Scratch
 ''')
-        else:
-            self.proc.append('''
-*add_job_loadcases indentation
-''')
+
         self.proc.append('''
 *add_job_loadcases release1
 *add_job_loadcases release2
