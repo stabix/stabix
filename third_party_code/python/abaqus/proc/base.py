@@ -74,8 +74,7 @@ class Proc(Tools):
 #| USAGE IN ABAQUS:
 #|   /!\ Save current model /!\, then
 #|   FILE > RUN SCRIPT
-#|+++++++++++++++++++++++++++++++++++++++++++++
-""")
+#|+++++++++++++++++++++++++++++++++++++++++++++""")
 
     def procNewModel(self,
                      modelname=None,
@@ -381,18 +380,21 @@ elif orphanMesh == 1:
     def procLoadCaseIndent(self):
         self.proc.append('''
 #+++++++++++++++++++++++++++++++++++++++++++++
-# LOADING STEP DEFINITION
+# LOADING STEPS DEFINITION
 #+++++++++++++++++++++++++++++++++++++++++++++
 ''')
         if self.IndentParameters['scratchTest'] >= 1:
             self.proc.append('''
-# Definition of the indent step
+# Definition of the indentation step
 model_name.StaticStep(name='Indent', previous='Initial',
-    timePeriod=(ind_time),
+    description='Indentation test',
+    timePeriod=(ind_time*2),
     maxNumInc=max_inc_indent, initialInc=ini_inc_indent, minInc=min_inc_indent_time,
     maxInc=max_inc_indent_time, nlgeom=ON)
+
 # Definition of the scratch step
 model_name.StaticStep(name='Scratch', previous='Indent',
+    description='Scratch test',
     timePeriod=(ind_time),
     maxNumInc=max_inc_indent, initialInc=ini_inc_indent, minInc=min_inc_indent_time,
     maxInc=max_inc_indent_time, nlgeom=ON)
@@ -402,7 +404,7 @@ model_name.TabularAmplitude(data=(
     (0.0, 0.0),
     (ind_time, -(h_indent+sep_ind_samp))), \
     name='Indent_Amplitude', smooth=SOLVER_DEFAULT, timeSpan=STEP)
-# Generating velocity amplitude tables
+
 model_name.TabularAmplitude(data=(
     (0.0, 0.0),
     (ind_time, 1)), \
@@ -412,11 +414,13 @@ model_name.TabularAmplitude(data=(
             self.proc.append('''
 # Definition of the indent step
 model_name.StaticStep(name='Indent', previous='Initial',
+    description='Indentation test',
     timePeriod=(ind_time+dwell_time+unload_time),
     maxNumInc=max_inc_indent, initialInc=ini_inc_indent, minInc=min_inc_indent_time,
     maxInc=max_inc_indent_time, nlgeom=ON)
+model_name.steps['Scratch'].setValues(description='Indentation test')
 
-# Generating velocity amplitude tables
+# Generating velocity amplitude table
 model_name.TabularAmplitude(data=(
     (0.0, 0.0),
     (ind_time, -(h_indent+sep_ind_samp)),
@@ -441,13 +445,16 @@ model_name.DisplacementBC(name='Indent', createStepName='Indent',
 ''')
         if self.IndentParameters['scratchTest'] >= 1:
             self.proc.append('''
-region = regionToolset.Region(referencePoints=refPoints1)
 model_name.DisplacementBC(name='Scratch', createStepName='Scratch',
     region=region, u1=%f''' % self.IndentParameters['xLength_scratchTest'] + ''',
     u2=%f''' % self.IndentParameters['yLength_scratchTest'] + ''',
-    u3=0, ur1=0.0, ur2=0.0, ur3=0.0,
+    u3=0, ur1=0, ur2=0, ur3=0,
     amplitude='Scratch_Amplitude', fixed=OFF, distributionType=UNIFORM,
     fieldName='', localCsys=None)
+model_name.boundaryConditions['Indent'].setValuesInStep(
+        stepName='Scratch', u1=FREED, u2=FREED, u3=0.0, amplitude='')
+model_name.boundaryConditions['Scratch'].setValuesInStep(
+        stepName='Scratch', u3=FREED, ur1=FREED, ur2=FREED, ur3=FREED)  
 ''')
 
     def procJobParameters(self,
