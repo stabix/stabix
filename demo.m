@@ -7,7 +7,7 @@ function gui_handle = demo(app)
 
 %% Initialization
 try
-    get_stabix_root; % ensure that environment is set
+    STABiXroot = get_stabix_root; % ensure that environment is set
 catch
     [startdir, dummy1, dummy2] = fileparts(mfilename('fullpath'));
     cd(startdir);
@@ -16,6 +16,7 @@ catch
 end
 
 gui.config = get_config;
+gui.config.stabix_root = STABiXroot;
 
 gui.description = 'Slip transmission analysis in crystal plasticity';
 gui.module_name = 'Demo';
