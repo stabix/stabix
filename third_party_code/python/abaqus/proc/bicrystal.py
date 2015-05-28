@@ -339,7 +339,7 @@ final_sample_name = 'Bicrystal-1'
 # |           \  /   /|                |
 # |inclination \/   / |                |
 # |            /   /  |                |
-# | Gr1       /   /   |        Gr2     | height
+# | GrA       /   /   |        GrB     | height
 # |          /   /    |                |
 # |         /   /     |                |
 # |        /   /      |                |
@@ -704,10 +704,10 @@ p = model_name.parts['Bicrystal']
 p.generateMesh()
 
 c = p.cells
-cells1 = c.findAt((((d_box_A + box_y1)/2, -height/2, width/2), ), (((box_y1 + box_y2)/2, -height/2, width/2),
-    ), (((box_y3 + d_box_B)/2, -height/2, width/2), ))
+cells1 = c.findAt((((d_box_A + box_y1)/2, 0, width/2), ), (((box_y1 + box_y2)/2, 0, width/2),
+    ), (((box_y3 + d_box_B)/2, 0, width/2), ))
 pickedRegions =(cells1, )
-p.setElementType(regions=pickedRegions, elemTypes=(elemType1, ))
+p.setElementType(regions=pickedRegions, elemTypes=(elemType1, elemType2, elemType3))
 ''')
 
     def procBoundaryConditionsIndent(self):
