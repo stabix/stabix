@@ -14,10 +14,13 @@ function [imageData, alpha] = export_fig(varargin)
 %   export_fig ... -a<val>
 %   export_fig ... -q<val>
 %   export_fig ... -p<val>
+%   export_fig ... -d<gs_option>
+%   export_fig ... -depsc
 %   export_fig ... -<renderer>
 %   export_fig ... -<colorspace>
 %   export_fig ... -append
 %   export_fig ... -bookmark
+%   export_fig ... -clipboard
 %   export_fig(..., handle)
 %
 % This function saves a figure or single axes to one or more vector and/or
@@ -86,7 +89,7 @@ function [imageData, alpha] = export_fig(varargin)
 %                  made transparent (png, pdf and eps output only).
 %   -m<val> - option where val indicates the factor to magnify the
 %             on-screen figure pixel dimensions by when generating bitmap
-%             outputs. Default: '-m1'.
+%             outputs (does not affect vector formats). Default: '-m1'.
 %   -r<val> - option val indicates the resolution (in pixels per inch) to
 %             export bitmap and vector outputs at, keeping the dimensions
 %             of the on-screen figure. Default: '-r864' (for vector output
@@ -131,8 +134,13 @@ function [imageData, alpha] = export_fig(varargin)
 %             of being overwritten (default).
 %   -bookmark - option to indicate that a bookmark with the name of the
 %               figure is to be created in the output file (pdf only).
+%   -clipboard - option to save output as an image on the system clipboard.
+%                Note: background transparency is not preserved in clipboard
 %   -d<gs_option> - option to indicate a ghostscript setting. For example,
 %                   -dMaxBitmap=0 or -dNoOutputFonts (Ghostscript 9.15+).
+%   -depsc - option to use EPS level-3 rather than the default level-2 print
+%            device. This solves some bugs with Matlab's default -depsc2 device
+%            such as discolored subplot lines on images (vector formats only).
 %   handle - The handle of the figure, axes or uipanels (can be an array of
 %            handles, but the objects must be in the same figure) to be
 %            saved. Default: gcf.
@@ -198,6 +206,15 @@ function [imageData, alpha] = export_fig(varargin)
 % 30/03/15: Fixed edge case bug introduced yesterday (commit #ae1755bd2e11dc4e99b95a7681f6e211b3fa9358)
 % 09/04/15: Consolidated header comment sections; initialize output vars only if requested (nargout>0)
 % 14/04/15: Workaround for issue #45: lines in image subplots are exported in invalid color
+% 15/04/15: Fixed edge-case in parsing input parameters; fixed help section to show the -depsc option (issue #45)
+% 21/04/15: Bug fix: Ghostscript croaks on % chars in output PDF file (reported by Sven on FEX page, 15-Jul-2014)
+% 22/04/15: Bug fix: Pdftops croaks on relative paths (reported by Tintin Milou on FEX page, 19-Jan-2015)
+% 04/05/15: Merged fix #63 (Kevin Mattheus Moerman): prevent tick-label changes during export
+% 07/05/15: Partial fix for issue #65: PDF export used painters rather than opengl renderer (thanks Nguyenr)
+% 08/05/15: Fixed issue #65: bad PDF append since commit #e9f3cdf 21/04/15 (thanks Robert Nguyen)
+% 12/05/15: Fixed issue #67: exponent labels cropped in export, since fix #63 (04/05/15)
+% 28/05/15: Fixed issue #69: set non-bold label font only if the string contains symbols (\beta etc.), followup to issue #21
+% 29/05/15: Added informative error message in case user requested SVG output (issue #72)
 %}
 
     if nargout
@@ -209,6 +226,7 @@ function [imageData, alpha] = export_fig(varargin)
     % Make sure the figure is rendered correctly _now_ so that properties like
     % axes limits are up-to-date.
     drawnow;
+    pause(0.05);  % this solves timing issues with Java Swing's EDT (http://undocumentedmatlab.com/blog/solving-a-matlab-hang-problem)
 
     % Parse the input arguments
     fig = get(0, 'CurrentFigure');
@@ -264,6 +282,9 @@ function [imageData, alpha] = export_fig(varargin)
             Xtick = make_cell(get(Hlims, 'XTickMode'));
             Ytick = make_cell(get(Hlims, 'YTickMode'));
             Ztick = make_cell(get(Hlims, 'ZTickMode'));
+            Xlabel = make_cell(get(Hlims, 'XTickLabelMode')); 
+            Ylabel = make_cell(get(Hlims, 'YTickLabelMode')); 
+            Zlabel = make_cell(get(Hlims, 'ZTickLabelMode')); 
         end
 
         % Set all axes limit and tick modes to manual, so the limits and ticks can't change
@@ -279,12 +300,14 @@ function [imageData, alpha] = export_fig(varargin)
         % ignore - fix issue #4 (using HG2 on R2014a and earlier)
     end
 
-    % Fix issue #21 (bold TeX axes labels/titles in R2014b)
+    % Fix issue #21 (bold TeX axes labels/titles in R2014b when exporting to EPS/PDF)
     try
-        if using_hg2(fig)
+        if using_hg2(fig) && isvector(options)
             % Set the FontWeight of axes labels/titles to 'normal'
+            % Fix issue #69: set non-bold font only if the string contains symbols (\beta etc.)
             texLabels = findall(fig, 'type','text', 'FontWeight','bold');
-            set(texLabels, 'FontWeight','normal');
+            symbolIdx = ~cellfun('isempty',strfind({texLabels.String},'\'));
+            set(texLabels(symbolIdx), 'FontWeight','normal');
         end
     catch
         % ignore
@@ -502,11 +525,12 @@ function [imageData, alpha] = export_fig(varargin)
                 imwrite(A, [options.name '.tif'], 'Resolution', options.magnify*get(0, 'ScreenPixelsPerInch'), 'WriteMode', append_mode{options.append+1});
             end
         end
+
         % Now do the vector formats
         if isvector(options)
             % Set the default renderer to painters
             if ~options.renderer
-                if isempty(findall(fig,'-property','FaceAlpha','-and','-not','FaceAlpha','1')) && ...
+                if isempty(findall(fig,'-property','FaceAlpha','-and','-not','FaceAlpha',1)) && ...
                         isempty(findall(fig,'type','patch'))
                     renderer = '-painters';
                 else
@@ -530,12 +554,16 @@ function [imageData, alpha] = export_fig(varargin)
                 tmp_nam = fullfile(fpath,[fname fext]);
                 isTempDirOk = false;
             end
+            if isTempDirOk
+                pdf_nam_tmp = [tempname '.pdf'];
+            else
+                pdf_nam_tmp = fullfile(fpath,[fname '.pdf']);
+            end
             if options.pdf
                 pdf_nam = [options.name '.pdf'];
-            elseif isTempDirOk
-                pdf_nam = [tempname '.pdf'];
+                try copyfile(pdf_nam, pdf_nam_tmp, 'f'); catch, end  % fix for issue #65
             else
-                pdf_nam = fullfile(fpath,[fname '.pdf']);
+                pdf_nam = pdf_nam_tmp;
             end
             % Generate the options for print
             p2eArgs = {renderer, sprintf('-r%d', options.resolution)};
@@ -574,7 +602,9 @@ function [imageData, alpha] = export_fig(varargin)
                     add_bookmark(tmp_nam, fig_nam);
                 end
                 % Generate a pdf
-                eps2pdf(tmp_nam, pdf_nam, 1, options.append, options.colourspace==2, options.quality, options.gs_options);
+                eps2pdf(tmp_nam, pdf_nam_tmp, 1, options.append, options.colourspace==2, options.quality, options.gs_options);
+                % Ghostscript croaks on % chars in the output PDF file, so use tempname and then rename the file
+                try movefile(pdf_nam_tmp, pdf_nam, 'f'); catch, end
             catch ex
                 % Delete the eps
                 delete(tmp_nam);
@@ -585,12 +615,16 @@ function [imageData, alpha] = export_fig(varargin)
             if options.eps
                 try
                     % Generate an eps from the pdf
-                    pdf2eps(pdf_nam, [options.name '.eps']);
+                    % since pdftops can't handle relative paths (e.g., '..\'), use a temp file
+                    eps_nam_tmp = strrep(pdf_nam_tmp,'.pdf','.eps');
+                    pdf2eps(pdf_nam, eps_nam_tmp);
+                    movefile(eps_nam_tmp,  [options.name '.eps'], 'f');
                 catch ex
                     if ~options.pdf
                         % Delete the pdf
                         delete(pdf_nam);
                     end
+                    try delete(eps_nam_tmp); catch, end
                     rethrow(ex);
                 end
                 if ~options.pdf
@@ -599,6 +633,8 @@ function [imageData, alpha] = export_fig(varargin)
                 end
             end
         end
+
+        % Revert the figure or close it (if requested)
         if cls || options.closeFig
             % Close the created figure
             close(fig);
@@ -608,7 +644,9 @@ function [imageData, alpha] = export_fig(varargin)
             % Reset the axes limit and tick modes
             for a = 1:numel(Hlims)
                 try
-                    set(Hlims(a), 'XLimMode', Xlims{a}, 'YLimMode', Ylims{a}, 'ZLimMode', Zlims{a}, 'XTickMode', Xtick{a}, 'YTickMode', Ytick{a}, 'ZTickMode', Ztick{a});
+                    set(Hlims(a), 'XLimMode', Xlims{a}, 'YLimMode', Ylims{a}, 'ZLimMode', Zlims{a},... 
+                                  'XTickMode', Xtick{a}, 'YTickMode', Ytick{a}, 'ZTickMode', Ztick{a},...
+                                  'XTickLabelMode', Xlabel{a}, 'YTickLabelMode', Ylabel{a}, 'ZTickLabelMode', Zlabel{a}); 
                 catch
                     % ignore - fix issue #4 (using HG2 on R2014a and earlier)
                 end
@@ -626,6 +664,84 @@ function [imageData, alpha] = export_fig(varargin)
             end
             % Revert figure units
             set(fig,'Units',oldFigUnits);
+        end
+
+        % Output to clipboard (if requested)
+        if options.clipboard
+            % Delete the output file if unchanged from the default name ('export_fig_out.png')
+            if strcmpi(options.name,'export_fig_out')
+                try
+                    fileInfo = dir('export_fig_out.png');
+                    if ~isempty(fileInfo)
+                        timediff = now - fileInfo.datenum;
+                        ONE_SEC = 1/24/60/60;
+                        if timediff < ONE_SEC
+                            delete('export_fig_out.png');
+                        end
+                    end
+                catch
+                    % never mind...
+                end
+            end
+
+            % Save the image in the system clipboard
+            % credit: Jiro Doke's IMCLIPBOARD: http://www.mathworks.com/matlabcentral/fileexchange/28708-imclipboard
+            try
+                error(javachk('awt', 'export_fig -clipboard output'));
+            catch
+                warning('export_fig -clipboard output failed: requires Java to work');
+                return;
+            end
+            try
+                % Import necessary Java classes
+                import java.awt.Toolkit.*
+                import java.awt.image.BufferedImage
+                import java.awt.datatransfer.DataFlavor
+
+                % Get System Clipboard object (java.awt.Toolkit)
+                cb = getDefaultToolkit.getSystemClipboard();
+
+                % Add java class (ImageSelection) to the path
+                if ~exist('ImageSelection', 'class')
+                    javaaddpath(fileparts(which(mfilename)), '-end');
+                end
+
+                % Get image size
+                ht = size(imageData, 1);
+                wd = size(imageData, 2);
+
+                % Convert to Blue-Green-Red format
+                try
+                    imageData2 = imageData(:, :, [3 2 1]);
+                catch
+                    % Probably gray-scaled image (2D, without the 3rd [RGB] dimension)
+                    imageData2 = imageData(:, :, [1 1 1]);
+                end
+
+                % Convert to 3xWxH format
+                imageData2 = permute(imageData2, [3, 2, 1]);
+
+                % Append Alpha data (unused - transparency is not supported in clipboard copy)
+                alphaData2 = uint8(permute(255*alpha,[3,2,1])); %=255*ones(1,wd,ht,'uint8')
+                imageData2 = cat(1, imageData2, alphaData2);
+
+                % Create image buffer
+                imBuffer = BufferedImage(wd, ht, BufferedImage.TYPE_INT_RGB);
+                imBuffer.setRGB(0, 0, wd, ht, typecast(imageData2(:), 'int32'), 0, wd);
+
+                % Create ImageSelection object from the image buffer
+                imSelection = ImageSelection(imBuffer);
+
+                % Set clipboard content to the image
+                cb.setContents(imSelection, []);
+            catch
+                warning('export_fig -clipboard output failed: %s', lasterr); %#ok<LERR>
+            end
+        end
+
+        % Don't output the data to console unless requested
+        if ~nargout
+            clear imageData alpha
         end
     catch err
         % Display possible workarounds before the error message
@@ -663,9 +779,10 @@ function [fig, options] = parse_args(nout, fig, varargin)
         'tif', false, ...
         'jpg', false, ...
         'bmp', false, ...
+        'clipboard', false, ...
         'colourspace', 0, ... % 0: RGB/gray, 1: CMYK, 2: gray
         'append', false, ...
-        'im', nout == 1, ...
+        'im',    nout == 1, ...
         'alpha', nout == 2, ...
         'aa_factor', 0, ...
         'bb_padding', 0, ...
@@ -725,21 +842,31 @@ function [fig, options] = parse_args(nout, fig, varargin)
                         options.bookmark = true;
                     case 'native'
                         native = true;
+                    case 'clipboard'
+                        options.clipboard = true;
+                        options.im = true;
+                        options.alpha = true;
+                    case 'svg'
+                        msg = ['SVG output is not supported by export_fig. Use one of the following alternatives:\n' ...
+                               '  1. saveas(gcf,''filename.svg'')\n' ...
+                               '  2. plot2svg utility: http://github.com/jschwizer99/plot2svg\n' ...
+                               '  3. export_fig to EPS/PDF, then convert to SVG using generic (non-Matlab) tools\n'];
+                        error(sprintf(msg)); %#ok<SPERR>
                     otherwise
                         if strcmpi(varargin{a}(1:2),'-d')
                             varargin{a}(2) = 'd';  % ensure lowercase 'd'
                             options.gs_options{end+1} = varargin{a};
                         else
                             val = str2double(regexp(varargin{a}, '(?<=-(m|M|r|R|q|Q|p|P))-?\d*.?\d+', 'match'));
-                            if isempty(val)
+                            if isempty(val) || isnan(val)
                                 % Issue #51: improved processing of input args (accept space between param name & value)
                                 val = str2double(varargin{a+1});
                                 if isscalar(val) && ~isnan(val)
                                     skipNext = true;
                                 end
                             end
-                            if ~isscalar(val) && ~isnan(val)
-                                error('option %s not recognised or cannot be parsed', varargin{a});
+                            if ~isscalar(val) || isnan(val)
+                                error('option %s is not recognised or cannot be parsed', varargin{a});
                             end
                             switch lower(varargin{a}(2))
                                 case 'm'
@@ -783,6 +910,12 @@ function [fig, options] = parse_args(nout, fig, varargin)
                             fig = -1;
                             return
                         end
+                    case '.svg'
+                        msg = ['SVG output is not supported by export_fig. Use one of the following alternatives:\n' ...
+                               '  1. saveas(gcf,''filename.svg'')\n' ...
+                               '  2. plot2svg utility: http://github.com/jschwizer99/plot2svg\n' ...
+                               '  3. export_fig to EPS/PDF, then convert to SVG using generic (non-Matlab) tools\n'];
+                        error(sprintf(msg)); %#ok<SPERR>
                     otherwise
                         options.name = varargin{a};
                 end
@@ -1002,6 +1135,7 @@ function set_tick_mode(Hlims, ax)
     end
     M = cellfun(@(c) strcmp(c, 'linear'), M);
     set(Hlims(M), [ax 'TickMode'], 'manual');
+    %set(Hlims(M), [ax 'TickLabelMode'], 'manual');  % this hides exponent label in HG2!
 end
 
 function change_rgb_to_cmyk(fname)  % convert RGB => CMYK within an EPS file
