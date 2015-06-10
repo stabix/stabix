@@ -80,6 +80,9 @@ gui.handles.main_window = figure('NumberTitle', 'off',...
 
 gui.title_str = set_gui_title(gui, '');
 
+%% Customized menu
+gui_gbinc_customized_menu;
+
 %% Buttons to import/analyze picture before serial polishing
 gui.handles.image_before_polishing = gui_gbinc_buttons_load_set_image(x0, ...
     hu, wu, 1, gui.config.defaults.picture_before.filename);
