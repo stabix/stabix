@@ -63,3 +63,9 @@ Institutions
    
    `RWTH Aachen University (Aachen, Germany) <http://www.rwth-aachen.de/>`_
    
+.. figure:: ./_pictures/logos/SolankiResearchGroup.png
+   :scale: 50%
+   :align: center
+   :target: http://multiphysics.lab.asu.edu/index.html
+   
+   `Solanki Research Group (Arizona State University, USA) <http://multiphysics.lab.asu.edu/index.html>`_

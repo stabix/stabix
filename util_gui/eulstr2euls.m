@@ -3,8 +3,8 @@ function eulers = eulstr2euls(eulerstr, varargin)
 %% Function used to convert a string containing Euler angles to a (horizontal) matrix
 % takes string or sell array of strings
 % doing it by regular expressions would be quite difficult
-% so we are just stripping away everything thats not a number and sscanf
-% the rest;
+% so we are just stripping away everything that is not a number and "sscanf"
+% the rest.
 
 % eulerstr: Euler angles given as a string
 

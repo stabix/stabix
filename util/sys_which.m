@@ -9,7 +9,7 @@ function locations = sys_which(cmd_str)
 %
 % not tested for MACs
 %
-% c.zambaldi@mpie.de
+% author: c.zambaldi@mpie.de
 
 if isunix || ismac
     evalc_str = sprintf('system(''which -a %s'');', cmd_str);
@@ -25,4 +25,6 @@ if ispc
         loc = strtrim(locations(ii));
         locations(1) = loc;
     end
+end
+
 end

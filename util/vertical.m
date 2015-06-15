@@ -1,6 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function vec = vertical(vec, varargin)
-%% Function used to ensure that a 3 component vector is vertical
+%% Function used to ensure that a 3 components vector is vertical
 % vec: Vector indices
 
 if nargin == 0

@@ -2,7 +2,7 @@
 function h_trd = triad(sz, pos, col, varargin)
 %% Function used to plots triad
 % sz: Size of the triad
-% pos: Position of the center of the triad
+% pos: Position of the centre of the triad
 % col: Color of the triad
 
 % Uses the function "arrow3D" in the ThirdPartCode folder

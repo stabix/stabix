@@ -5,7 +5,7 @@ function patch2inp(patch_obj, inp_full_path)
 %            with Faces and Vertices
 % inp_full_path: full path (foldername + filename)
 %
-% author: C. Zambaldi, MPIE, 2011
+% author: c.zambaldi@mpie.de
 
 if nargin < 2
     inp_full_path = fullfile(cd, 'patch2inp_test_export.inp')

@@ -5,7 +5,7 @@ function specific_slip = ...
 %% Script to check validity of slip system given by user in a YAML file
 % specific_slip_unstrcat_str: Slip system given as a concatenated string
 % slip_all_vect : all slips systems for a given phase
-% norm_or_dir: Flag to set the given vector as a direction or a normale to the slip plane
+% norm_or_dir: Flag to set the given vector as a direction or a normal to the slip plane
 
 if nargin < 2
     norm_or_dir = 2;
