@@ -1,6 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function gui_handle = demo(app)
-%% Function to create the main window of the GUI, 
+%% Function to create the main window of the GUI,
 % to select map, bicrystal or meshing interfaces...
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
@@ -13,6 +13,7 @@ catch
     cd(startdir);
     commandwindow;
     path_management;
+    STABiXroot = get_stabix_root; % ensure that environment is set
 end
 
 gui.config = get_config;
@@ -131,7 +132,7 @@ set([gui.handles.pb_help, ...
     'FontWeight','bold', ...
     'HorizontalAlignment', 'center', ...
     'FontSize', 8);
-    
+
 guidata(gcf, gui);
 
 gui_handle = gcf;

@@ -7,8 +7,8 @@ The *preCPFE* GUIs can rapidly transfer the experimental data into
 crystal plasticity finite element (CPFE) simulation input files. 
 The types of input files are :
 
-    * scripts to generate the finite element models in *MSC.Mentat* (*procedure* file format) 
-      or *Abaqus* (Python script) based on the experimental data and test geometry ;
+    * scripts to generate the finite element models in *MSC.Mentat* (2008 to 2014) (*procedure* file format) 
+      or *Abaqus* (6.12 to 6.14) (Python script) based on the experimental data and test geometry ;
     * the crystallographic orientations from the experimental data sets ;
     * material parameter files for the subroutines that implement the constitutive model.
 
@@ -50,7 +50,7 @@ Single crystal (SX) indentation
 Analysis of the orientation dependent pile-up topographies that are formed during 
 single crystal indentation provides insight into the operating deformation mechanisms.
 CPFE simulation of single crystal indentation has an important role in clarifying
-the influence of the single-slip behavior of different slip systems on the resulting 
+the influence of the single-slip behaviour of different slip systems on the resulting 
 surface profiles.
 
 The function used to run the preCPFE GUI for SX indentation is:

@@ -10,7 +10,7 @@ toolbox_name: 'STABiX'
 toolbox_version: '1.7'
 
 # Month, Year
-version_month: 'February'
+version_month: 'May'
 version_year: '2015'
 
 # Setting of opengl, e.g. 'software' or 'hardware' (optional)
