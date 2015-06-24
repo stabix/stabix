@@ -1,6 +1,8 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function write_oim_ang_file(fdata, fpath, fname, varargin)
+function fdata = write_oim_ang_file(fdata, fpath, fname, varargin)
 %% Function used to write TSL-OIM .Ang file
+% See TSL-OIM documentation for .Ang file format
+
 % fname : Name of the .Ang file to create
 % fpath : Path where to store the .Ang file
 % fdata : Data to store in the .Ang file
@@ -33,23 +35,23 @@ function write_oim_ang_file(fdata, fpath, fname, varargin)
 
 fpath_flag = 1;
 if nargin == 0
-    fdata = random_TSL_data(20, 100);
+    fdata = random_2D_microstructure_data(20, 100);
     fdata.eul_ang = randBunges((100*100))*pi/(180);  %in radians !!!
-    [fname, fpath] = uiputfile('*.txt', 'Save OIM .Ang file as');
+    [fname, fpath] = uiputfile('*.ang', 'Save OIM .Ang file as');
     if isequal(fpath,0)
         fpath_flag = 0;
     end
 end
 
 if nargin == 1
-    [fname, fpath] = uiputfile('*.txt', 'Save OIM .Ang file as');
+    [fname, fpath] = uiputfile('*.ang', 'Save OIM .Ang file as');
     if isequal(fpath,0)
         fpath_flag = 0;
     end
 end
 
 if nargin == 2
-    [fname] = uiputfile('*.txt', 'Save OIM .Ang file as');
+    [fname] = uiputfile('*.ang', 'Save OIM .Ang file as');
     if isequal(fpath,0)
         fpath_flag = 0;
     end
@@ -157,7 +159,7 @@ if fpath_flag
     fprintf(fid, '# Phase 1\n');
     fprintf(fid, '# MaterialName  	Titanium (Alpha)\n');
     fprintf(fid, '# Formula     	Ti\n');
-    fprintf(fid, '# Info\n');
+    fprintf(fid, '# Info 		\n');
     fprintf(fid, '# Symmetry              62\n');
     fprintf(fid, ['# LatticeConstants      ' ...
         '2.950 2.950 4.680  90.000  90.000 120.000\n']);
@@ -182,24 +184,24 @@ if fpath_flag
         '0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\n']);
     fprintf(fid, ['# ElasticConstants 	' ...
         '0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\n']);
-    fprintf(fid, '# Categories0 0 0 0 0\n');
+    fprintf(fid, '# Categories1 1 1 1 1 \n');
     fprintf(fid, '#\n');
     fprintf(fid, '# GRID: SqrGrid\n');
-    fprintf(fid, '# XSTEP: %6.2f\n', fdata.x_step);
-    fprintf(fid, '# YSTEP: %6.2f\n', fdata.y_step);
+    fprintf(fid, '# XSTEP: %6.6f\n', fdata.x_step);
+    fprintf(fid, '# YSTEP: %6.6f\n', fdata.y_step);
     fprintf(fid, '# NCOLS_ODD: %i\n', fdata.n_col_odd);
     fprintf(fid, '# NCOLS_EVEN: %i\n', fdata.n_col_even);
     fprintf(fid, '# NROWS: %i\n', fdata.n_rows);
     fprintf(fid, '#\n');
     fprintf(fid, '# OPERATOR: 	%s\n', fdata.user);
     fprintf(fid, '#\n');
-    fprintf(fid, '# SAMPLEID:\n');
+    fprintf(fid, '# SAMPLEID: 	\n');
     fprintf(fid, '#\n');
-    fprintf(fid, '# SCANID:\n');
+    fprintf(fid, '# SCANID: 	\n');
     fprintf(fid, '#\n');
     for ii = 1:length(fdata.x_pixel_pos)
-        fprintf(fid, ['%6.2f %6.2f %6.2f %6.2f %6.2f %6.2f ' ...
-            '%6.2f %6.2f %6.2f %6.2f \n\l'],...
+        fprintf(fid, ['  %6.5f   %6.5f   %6.5f      %6.5f      %6.5f %6.1f' ...
+            ' %6.3f  %i      %i %6.3f  0.000000  0.000000  0.000000  0.000000 \n'],...
             fdata.eul_ang(ii,1), fdata.eul_ang(ii,2), fdata.eul_ang(ii,3),...
             fdata.x_pixel_pos(ii), fdata.y_pixel_pos(ii),...
             fdata.image_quality(ii),...

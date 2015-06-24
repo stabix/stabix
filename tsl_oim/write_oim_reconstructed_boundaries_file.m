@@ -2,6 +2,8 @@
 function fdata = ...
     write_oim_reconstructed_boundaries_file(fdata, fpath, fname, varargin)
 %% Function used to write TSL-OIM reconstructed boundaries file
+% See TSL-OIM documentation for reconstructed boundaries file format
+
 % fname : Name of the reconstructed boundaries file to create
 % fpath : Path where to store the reconstructed boundaries file
 % fdata : Data to store in the reconstructed boundaries file
@@ -20,7 +22,7 @@ flag_missing_field = 0;
 fpath_flag = 1;
 
 if nargin == 0
-    fdata = random_TSL_data (200);
+    fdata = random_2D_microstructure_data(200);
     [fname, fpath] = ...
         uiputfile('*.txt', 'Save OIM reconstructed boundaries file as');
     if isequal(fpath,0)
@@ -28,7 +30,7 @@ if nargin == 0
     end
     if isfield(fdata, 'rdm_TSL_data_flag')
         while fdata.rdm_TSL_data_flag == 0
-            fdata = random_TSL_data (20);
+            fdata = random_2D_microstructure_data(20);
         end
     end
 end

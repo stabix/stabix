@@ -1,6 +1,8 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function write_oim_grain_file_type2(fdata, fpath, fname, varargin)
+function fdata = write_oim_grain_file_type2(fdata, fpath, fname, varargin)
 %% Function used to write TSL-OIM grain file type 2
+% See TSL-OIM documentation for grain file type 2 format
+
 % fname : Name of the grain file type 2 to create
 % fpath : Path where to store the grain file type 2
 % fdata : Data to store in the grain file type 2
@@ -22,7 +24,7 @@ flag_missing_field = 0;
 fpath_flag = 1;
 
 if nargin == 0
-    fdata = random_TSL_data (20);
+    fdata = random_2D_microstructure_data(20);
     [fname, fpath] = uiputfile('*.txt', 'Save OIM grain file type 2 as');
     if isequal(fpath,0)
         fpath_flag = 0;

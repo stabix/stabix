@@ -1,12 +1,17 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function rdm_microstructure_dataset = ...
-    random_2D_microstructure_data(number_of_grains, resolution, varargin)
+    random_2D_microstructure_data(number_of_grains, resolution, step_size, varargin)
 %% Function used to create random EBSD data based on TSL files (GF Type2 and RB file)
 % number_of_grains : Number of grains for the Voronoi tesselation
 % resolution : resolution along x and y axis for generation of seeds file
+% step_size : X and Y step size
 % (see documentation in http://damask.mpie.de/)
 
 % author: d.mercier@mpie.de
+
+if nargin < 3
+    step_size = 0.05;
+end
 
 if nargin < 2
     resolution = 100;
@@ -76,7 +81,7 @@ else
 end
 
 rdm_microstructure_dataset.title = 'Random EBSD Data';
-rdm_microstructure_dataset.user = 'No user - Random data';
+rdm_microstructure_dataset.user = 'Random data';
 
 rdm_microstructure_dataset.number_of_grains = number_of_grains;
 rdm_microstructure_dataset.number_of_grain_boundaries = length(GB);
@@ -99,19 +104,30 @@ rdm_microstructure_dataset.GB2cells = rdm_microstructure_dataset.GB2cells';
 rdm_microstructure_dataset.confidence_index = ...
     ones((resolution*resolution), 1);
 rdm_microstructure_dataset.image_quality = ...
-    ones((resolution*resolution), 1);
-rdm_microstructure_dataset.phase_ang = ones((resolution*resolution), 1);
+    randi(3000,(resolution*resolution),1);
+rdm_microstructure_dataset.phase_ang = zeros((resolution*resolution), 1);
 rdm_microstructure_dataset.detector_intensity = ...
     ones((resolution*resolution), 1);
 rdm_microstructure_dataset.fit = ones((resolution*resolution), 1);
 
-rdm_microstructure_dataset.x_pixel_pos = 1:(resolution*resolution);
-rdm_microstructure_dataset.y_pixel_pos = 1:(resolution*resolution);
-
-rdm_microstructure_dataset.x_step = resolution;
-rdm_microstructure_dataset.y_step = resolution;
+rdm_microstructure_dataset.x_step = step_size;
+rdm_microstructure_dataset.y_step = step_size;
 rdm_microstructure_dataset.n_col_odd = resolution;
 rdm_microstructure_dataset.n_col_even = resolution;
 rdm_microstructure_dataset.n_rows = resolution;
+
+XMax = (resolution * step_size)-step_size;
+YMax = (resolution * step_size)-step_size;
+
+jj = 1;
+kk = resolution;
+for ii = 1:resolution
+    rdm_microstructure_dataset.x_pixel_pos(jj:kk) = 0:step_size:XMax;
+    rdm_microstructure_dataset.y_pixel_pos(jj:kk) = rdm_microstructure_dataset.x_pixel_pos(ii);
+    jj = kk + 1;
+    kk = kk + resolution;
+end
+rdm_microstructure_dataset.x_pixel_pos = rdm_microstructure_dataset.x_pixel_pos';
+rdm_microstructure_dataset.y_pixel_pos = rdm_microstructure_dataset.y_pixel_pos';
 
 end
