@@ -150,58 +150,58 @@ if fpath_flag
     
     %% Creation of the ang. file
     fid = fopen(fname,'w+');
-    fprintf(fid, '# TEM_PIXperUM          1.000000\n');
-    fprintf(fid, '# x-star                0.507048\n');
-    fprintf(fid, '# y-star                0.818235\n');
-    fprintf(fid, '# z-star                0.663141\n');
-    fprintf(fid, '# WorkingDistance       22.000000\n');
-    fprintf(fid, '#\n');
-    fprintf(fid, '# Phase 1\n');
-    fprintf(fid, '# MaterialName  	Titanium (Alpha)\n');
-    fprintf(fid, '# Formula     	Ti\n');
-    fprintf(fid, '# Info 		\n');
-    fprintf(fid, '# Symmetry              62\n');
+    fprintf(fid, '# TEM_PIXperUM          1.000000\r\n');
+    fprintf(fid, '# x-star                0.507048\r\n');
+    fprintf(fid, '# y-star                0.818235\r\n');
+    fprintf(fid, '# z-star                0.663141\r\n');
+    fprintf(fid, '# WorkingDistance       22.000000\r\n');
+    fprintf(fid, '#\r\n');
+    fprintf(fid, '# Phase 1\r\n');
+    fprintf(fid, '# MaterialName  	Titanium (Alpha)\r\n');
+    fprintf(fid, '# Formula     	Ti\r\n');
+    fprintf(fid, '# Info 		\r\n');
+    fprintf(fid, '# Symmetry              62\r\n');
     fprintf(fid, ['# LatticeConstants      ' ...
-        '2.950 2.950 4.680  90.000  90.000 120.000\n']);
-    fprintf(fid, '# NumberFamilies        8\n');
-    fprintf(fid, '# hklFamilies   	 1  0  0 1 0.000000 1\n');
-    fprintf(fid, '# hklFamilies   	 0  0  2 1 0.000000 1\n');
-    fprintf(fid, '# hklFamilies   	 1  0  1 1 0.000000 1\n');
-    fprintf(fid, '# hklFamilies   	 1  0  2 1 0.000000 1\n');
-    fprintf(fid, '# hklFamilies   	 1  1  0 1 0.000000 1\n');
-    fprintf(fid, '# hklFamilies   	 1  0  3 1 0.000000 1\n');
-    fprintf(fid, '# hklFamilies   	 1  1  2 1 0.000000 1\n');
-    fprintf(fid, '# hklFamilies   	 2  0  1 1 0.000000 1\n');
+        '2.950 2.950 4.680  90.000  90.000 120.000\r\n']);
+    fprintf(fid, '# NumberFamilies        8\r\n');
+    fprintf(fid, '# hklFamilies   	 1  0  0 1 0.000000 1\r\n');
+    fprintf(fid, '# hklFamilies   	 0  0  2 1 0.000000 1\r\n');
+    fprintf(fid, '# hklFamilies   	 1  0  1 1 0.000000 1\r\n');
+    fprintf(fid, '# hklFamilies   	 1  0  2 1 0.000000 1\r\n');
+    fprintf(fid, '# hklFamilies   	 1  1  0 1 0.000000 1\r\n');
+    fprintf(fid, '# hklFamilies   	 1  0  3 1 0.000000 1\r\n');
+    fprintf(fid, '# hklFamilies   	 1  1  2 1 0.000000 1\r\n');
+    fprintf(fid, '# hklFamilies   	 2  0  1 1 0.000000 1\r\n');
     fprintf(fid, ['# ElasticConstants 	' ...
-        '0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\n']);
+        '0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\r\n']);
     fprintf(fid, ['# ElasticConstants 	' ...
-        '0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\n']);
+        '0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\r\n']);
     fprintf(fid, ['# ElasticConstants 	' ...
-        '0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\n']);
+        '0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\r\n']);
     fprintf(fid, ['# ElasticConstants 	' ...
-        '0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\n']);
+        '0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\r\n']);
     fprintf(fid, ['# ElasticConstants 	' ...
-        '0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\n']);
+        '0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\r\n']);
     fprintf(fid, ['# ElasticConstants 	' ...
-        '0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\n']);
-    fprintf(fid, '# Categories1 1 1 1 1 \n');
-    fprintf(fid, '#\n');
-    fprintf(fid, '# GRID: SqrGrid\n');
-    fprintf(fid, '# XSTEP: %6.6f\n', fdata.x_step);
-    fprintf(fid, '# YSTEP: %6.6f\n', fdata.y_step);
-    fprintf(fid, '# NCOLS_ODD: %i\n', fdata.n_col_odd);
-    fprintf(fid, '# NCOLS_EVEN: %i\n', fdata.n_col_even);
-    fprintf(fid, '# NROWS: %i\n', fdata.n_rows);
-    fprintf(fid, '#\n');
-    fprintf(fid, '# OPERATOR: 	%s\n', fdata.user);
-    fprintf(fid, '#\n');
-    fprintf(fid, '# SAMPLEID: 	\n');
-    fprintf(fid, '#\n');
-    fprintf(fid, '# SCANID: 	\n');
-    fprintf(fid, '#\n');
+        '0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\r\n']);
+    fprintf(fid, '# Categories1 1 1 1 1 \r\n');
+    fprintf(fid, '#\r\n');
+    fprintf(fid, '# GRID: SqrGrid\r\n');
+    fprintf(fid, '# XSTEP: %6.6f\r\n', fdata.x_step);
+    fprintf(fid, '# YSTEP: %6.6f\r\n', fdata.y_step);
+    fprintf(fid, '# NCOLS_ODD: %i\r\n', fdata.n_col_odd);
+    fprintf(fid, '# NCOLS_EVEN: %i\r\n', fdata.n_col_even);
+    fprintf(fid, '# NROWS: %i\r\n', fdata.n_rows);
+    fprintf(fid, '#\r\n');
+    fprintf(fid, '# OPERATOR: 	%s\r\n', fdata.user);
+    fprintf(fid, '#\r\n');
+    fprintf(fid, '# SAMPLEID: 	\r\n');
+    fprintf(fid, '#\r\n');
+    fprintf(fid, '# SCANID: 	\r\n');
+    fprintf(fid, '#\r\n');
     for ii = 1:length(fdata.x_pixel_pos)
         fprintf(fid, ['  %6.5f   %6.5f   %6.5f      %6.5f      %6.5f %6.1f' ...
-            ' %6.3f  %i      %i %6.3f  0.000000  0.000000  0.000000  0.000000 \n'],...
+            ' %6.3f  %i      %i %6.3f  0.000000  0.000000  0.000000  0.000000 \r\n'],...
             fdata.eul_ang(ii,1), fdata.eul_ang(ii,2), fdata.eul_ang(ii,3),...
             fdata.x_pixel_pos(ii), fdata.y_pixel_pos(ii),...
             fdata.image_quality(ii),...
