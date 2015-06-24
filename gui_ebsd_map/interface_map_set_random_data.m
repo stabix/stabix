@@ -18,7 +18,7 @@ if button_type == 1
     end
     
 elseif button_type == 2
-
+    
     %% Set directory and create folder
     if get(gui.handles.cb_rdm_TSLdata, 'value')
         
@@ -33,7 +33,7 @@ elseif button_type == 2
             strcat(timestamp_make, '_random_TSL_data'));
         
         mkdir(rdmData_path);
-
+        
         gui.rdm_TSL_dataset = random_2D_microstructure_data(round(get(...
             gui.handles.scale_rdm_TSLdata, 'value')));
         
@@ -65,9 +65,13 @@ elseif button_type == 2
         gui.flag.newDataFlag = 2;
         guidata(gcf, gui);
         interface_map_set_coordinate_convention;
+        interface_map_plotmap(1,1);
+        
+        %% Encapsulation of data
+        gui = guidata(gcf); guidata(gcf, gui);
         
     end
-
+    
 end
 
 guidata(gcf, gui);
