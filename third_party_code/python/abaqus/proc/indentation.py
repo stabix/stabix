@@ -72,6 +72,12 @@ class Indentation(Indenter, Tools):
                 scratchDirection=0, # scratch direction in degrees (0 along x-axis and 90 along y axis, from 0 to 360)
                 ori_list = None):
         self.callerDict = locals()
+        if scratchTest >=1:
+            xLength_scratchTest = scratchLength * math.cos(scratchDirection/ 180. * math.pi)
+            yLength_scratchTest = scratchLength * math.sin(scratchDirection/ 180. * math.pi)
+        else:
+            xLength_scratchTest = 0
+            yLength_scratchTest = 0
         if r_center_frac is not 0 and sample_rep not in [8, 16, 24, 32, 40, 48, 56]:
             print('For r_center_frac not 0, sample_rep needs to be dividable by 8')
             sample_rep = 24

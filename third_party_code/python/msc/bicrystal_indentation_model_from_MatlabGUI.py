@@ -41,8 +41,9 @@ def doit(gb_data, proc_path='./'):
                              smv = float(gb_data['smv'][0]), # small values
                              #lvl = float(gb_data['mesh_quality_lvl'][0]), # mesh quality level
                              scratchTest =  float(gb_data['scratchTest'][0]), # boolean variable (0 in not a scratch test and 1 if scratch test)
-                             scratchLength =  float(gb_data['scratchLength'][0]), # scratch length in microns
-                             scratchDirection =  float(gb_data['scratchDirection'][0]), # scratch direction in degrees (0 along x-axis and 90 along y axis, from 0 to 360)
+                             if scratchTest >= 1:
+                                 scratchLength =  float(gb_data['scratchLength'][0]), # scratch length in microns
+                                 scratchDirection =  float(gb_data['scratchDirection'][0]), # scratch direction in degrees (0 along x-axis and 90 along y axis, from 0 to 360)
     )
     msc.tools.mkdir_p(proc_path)
     indent.to_file(dst_path=proc_path, dst_name=gb_data['Titlegbdata'][0] + '.proc')
