@@ -13,7 +13,7 @@ function fdata = write_oim_ang_file(fdata, fpath, fname, varargin)
 % fdata.y_pixel_pos
 % fdata.image_quality
 % fdata.confidence_index
-% fdata.phase : Number of phase
+% fdata.phase_ang : Number of phase
 % fdata.detector_intensity
 % fdata.fit
 
@@ -102,7 +102,7 @@ if fpath_flag
             'No confidence index given by user for the .Ang file');
     end
     
-    if ~isfield(fdata, 'phase')
+    if ~isfield(fdata, 'phase_ang')
         fdata.phase_ang = zeros(length(fdata.x_pixel_pos), 1);
         warning_commwin('No phase given by user for the .Ang file');
     end
@@ -119,31 +119,31 @@ if fpath_flag
     end
     
     if ~isfield(fdata, 'x_step')
-        fdata.x_step = length(fdata.x_pixel_pos);
+        fdata.x_step = max(fdata.x_pixel_pos)/(length(fdata.x_pixel_pos)-1);
         warning_commwin(...
             'No x step values given by user for the .Ang file');
     end
     
     if ~isfield(fdata, 'y_step')
-        fdata.y_step = length(fdata.y_pixel_pos);
+        fdata.y_step = max(fdata.y_pixel_pos)/(length(fdata.y_pixel_pos)-1);
         warning_commwin(...
             'No y step values given by user for the .Ang file');
     end
     
     if ~isfield(fdata, 'n_col_odd')
-        fdata.n_col_odd = length(fdata.x_pixel_pos);
+        fdata.n_col_odd = length(fdata.y_pixel_pos)-1;
         warning_commwin(...
             'No n_col_odd values given by user for the .Ang file');
     end
     
     if ~isfield(fdata, 'n_col_even')
-        fdata.n_col_even = length(fdata.y_pixel_pos);
+        fdata.n_col_even = length(fdata.y_pixel_pos)-1;
         warning_commwin(...
             'No n_col_even values given by user for the .Ang file');
     end
     
     if ~isfield(fdata, 'n_rows')
-        fdata.n_rows = length(fdata.x_pixel_pos);
+        fdata.n_rows = length(fdata.x_pixel_pos)-1;
         warning_commwin(...
             'No n_rows values given by user for the .Ang file');
     end
