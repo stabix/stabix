@@ -50,12 +50,12 @@ if strcmp(CPFEM_code, 'GENMAT') == 1
     end
     fclose(fid);
     
-    try
-        movefile(scriptname_material, gui.path_config_file);
-    catch err
-        commandwindow;
-        error(err.message);
-    end
+    %     try
+    %         movefile(scriptname_material, gui.path_config_file);
+    %     catch err
+    %         commandwindow;
+    %         error(err.message);
+    %     end
     
     %% Copy material_<structure>.mpie (for GENMAT)
     genmat = struct();
@@ -68,15 +68,16 @@ if strcmp(CPFEM_code, 'GENMAT') == 1
     phaseA = gui.GB.Phase_A;
     if iscell(phaseA)
         phaseA = phaseA{1};
+        
+        fnameA = fullfile(genmat_material_dir, genmat.material_fname.(phaseA));
+        copyfile(fnameA, gui.path_config_file)
     end
-    fnameA = fullfile(genmat_material_dir, genmat.material_fname.(phaseA));
-    copyfile(fnameA, gui.path_config_file)
     phaseB = gui.GB.Phase_B;
     if iscell(phaseB)
         phaseB = phaseB{1};
+        fnameB = fullfile(genmat_material_dir, genmat.material_fname.(phaseB));
+        copyfile(fnameB, gui.path_config_file)
     end
-    fnameB = fullfile(genmat_material_dir, genmat.material_fname.(phaseB));
-    copyfile(fnameB, gui.path_config_file)
     
     %% Material config file for DAMASK
 elseif strcmp(CPFEM_code, 'DAMASK') == 1
