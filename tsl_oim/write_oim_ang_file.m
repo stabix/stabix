@@ -78,6 +78,16 @@ if fpath_flag
         warning_commwin('No Euler angles given by user for the .Ang file');
     end
     
+    % Check of Euler angles values
+    for ii = 1:3
+        for jj = 1:size(fdata.eul_ang,1)
+            if fdata.eul_ang(jj,ii) > 2*pi
+                fdata.eul_ang(jj,ii) = mod(fdata.eul_ang(jj,ii),2*pi);
+                warning_commwin('Recalculated Euler angles modulo 2 pi');
+            end
+        end
+    end
+    
     if ~isfield(fdata, 'x_pixel_pos')
         fdata.x_pixel_pos =  1:(100*100);
         warning_commwin(['No x positions of pixels given ' ...
@@ -118,32 +128,40 @@ if fpath_flag
         warning_commwin('No fit values given by user for the .Ang file');
     end
     
+    % Check of Euler angles values
+    for jj = 1:size(fdata.confidence_index,1)
+        if fdata.confidence_index < 1
+            fdata.fit(jj) = 0;
+            warning_commwin('Reset value of the fit');
+        end
+    end
+    
     if ~isfield(fdata, 'x_step')
-        fdata.x_step = max(fdata.x_pixel_pos)/(length(fdata.x_pixel_pos)-1);
+        fdata.x_step = fdata.x_pixel_pos(2) - fdata.x_pixel_pos(1);
         warning_commwin(...
             'No x step values given by user for the .Ang file');
     end
     
     if ~isfield(fdata, 'y_step')
-        fdata.y_step = max(fdata.y_pixel_pos)/(length(fdata.y_pixel_pos)-1);
+        fdata.y_step = fdata.x_step;
         warning_commwin(...
             'No y step values given by user for the .Ang file');
     end
     
     if ~isfield(fdata, 'n_col_odd')
-        fdata.n_col_odd = length(fdata.y_pixel_pos)-1;
+        fdata.n_col_odd = single(max(fdata.x_pixel_pos)/fdata.x_step);
         warning_commwin(...
             'No n_col_odd values given by user for the .Ang file');
     end
     
     if ~isfield(fdata, 'n_col_even')
-        fdata.n_col_even = length(fdata.y_pixel_pos)-1;
+        fdata.n_col_even = fdata.n_col_odd;
         warning_commwin(...
             'No n_col_even values given by user for the .Ang file');
     end
     
     if ~isfield(fdata, 'n_rows')
-        fdata.n_rows = length(fdata.x_pixel_pos)-1;
+        fdata.n_rows = single(max(fdata.y_pixel_pos)/fdata.x_step);
         warning_commwin(...
             'No n_rows values given by user for the .Ang file');
     end
