@@ -14,13 +14,16 @@ if ~exist(configYAML, 'file')
         username, ...
         ' ! Create your YAML config file and load it from the menu...');
     warning_commwin(warning_str);
-    config_map = ReadYaml('config_gui_EBSDmap_defaults.yaml');
+    configYAML_default = 'config_gui_EBSDmap_defaults.yaml';
+    config_map = ReadYaml(configYAML_default);
     config_map.default_grain_file_type2              ...
         = 'validation_grain_file_type2.txt';
     config_map.default_reconstructed_boundaries_file ...
         = 'validation_reconstructed_boundaries.txt';
+    config_map.YAMLFile = configYAML_default;
 else
     config_map = ReadYaml(configYAML);
+    config_map.YAMLFile = configYAML;
 end
 
 %% Setting of EBSD results data (filenames of GF2 and RB files)
