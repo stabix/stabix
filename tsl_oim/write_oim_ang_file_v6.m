@@ -1,6 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function fdata = write_oim_ang_file(fdata, fpath, fname, varargin)
-%% Function used to write TSL-OIM .Ang file
+function fdata = write_oim_ang_file_v6(fdata, fpath, fname, varargin)
+%% Function used to write TSL-OIM .Ang file for OIM Analysis 6
 % See TSL-OIM documentation for .Ang file format
 
 % fname : Name of the .Ang file to create
@@ -15,7 +15,6 @@ function fdata = write_oim_ang_file(fdata, fpath, fname, varargin)
 % fdata.confidence_index
 % fdata.phase_ang : Number of phase
 % fdata.detector_intensity
-% fdata.fit
 
 % The fields of each line in the body of the file are as follows:
 % j1 F j2 x y IQ CI Phase ID Detector Intensity Fit
@@ -27,9 +26,6 @@ function fdata = write_oim_ang_file(fdata, fpath, fname, varargin)
 % CI: The confidence index that describes how confident the software is that it has correctly indexed the EBSP, i.e., confidence that the angles are correct.
 % Phase ID: The material phase identifier. This field is 0 for single phase OIM scans or 1,2,3... for multi-phase scans.
 % Detector Intensity: An integer describing the intensity from whichever detector was hooked up to the OIM system at the time of data collection, typically a forward scatter detector.
-% Fit: The fit metric that describes how the indexing solution matches the bands detected by the Hough transform or manually by the user.
-% Footers:
-% In addition there also may be extra sections - such as EDS counts data.
 
 % author: d.mercier@mpie.de
 
@@ -219,14 +215,13 @@ if fpath_flag
     fprintf(fid, '#\r\n');
     for ii = 1:length(fdata.x_pixel_pos)
         fprintf(fid, ['  %6.5f   %6.5f   %6.5f      %6.5f      %6.5f %6.1f' ...
-            ' %6.3f  %i      %i %6.3f  0.000000  0.000000  0.000000  0.000000 \r\n'],...
+            ' %6.3f  %i      %i \r\n'],...
             fdata.eul_ang(ii,1), fdata.eul_ang(ii,2), fdata.eul_ang(ii,3),...
             fdata.x_pixel_pos(ii), fdata.y_pixel_pos(ii),...
             fdata.image_quality(ii),...
             fdata.confidence_index(ii),...
             fdata.phase_ang(ii),...
-            fdata.detector_intensity(ii),...
-            fdata.fit(ii));
+            fdata.detector_intensity(ii));
     end
     fclose(fid);
     
