@@ -5,7 +5,7 @@ function config_map = interface_map_load_YAML_config_file
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
 username = username_get;
-    
+
 configYAML = sprintf('config_gui_EBSDmap_%s.yaml', username);
 
 if ~exist(configYAML, 'file')
