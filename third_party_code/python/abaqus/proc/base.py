@@ -418,7 +418,6 @@ model_name.StaticStep(name='Indent', previous='Initial',
     timePeriod=(ind_time+dwell_time+unload_time),
     maxNumInc=max_inc_indent, initialInc=ini_inc_indent, minInc=min_inc_indent_time,
     maxInc=max_inc_indent_time, nlgeom=ON)
-model_name.steps['Scratch'].setValues(description='Indentation test')
 
 # Generating velocity amplitude table
 model_name.TabularAmplitude(data=(
