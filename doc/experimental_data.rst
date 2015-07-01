@@ -42,7 +42,7 @@ Change data properties for the detection of grain boundaries (All data --> Prope
 
 Clean up your dataset (Filename --> Cleanup).
 
-Reference : OIM ANALYSIS 6.0 (user manual) / `EDAX website <http://www.edax.com/Products/EBSD/OIM-Data-Analysis-Microstructure-Analysis.aspx>`_
+Reference : OIM ANALYSIS 6.0 (user manual) and OIM ANALYSIS 7.0 (user manual) / `EDAX website <http://www.edax.com/Products/EBSD/OIM-Data-Analysis-Microstructure-Analysis.aspx>`_
 
 Reconstructed Boundaries File
 -------------------------------
@@ -67,7 +67,7 @@ Reconstructed Boundaries File
 Example of "Reconstructed Boundary File": `MPIE_cpTi_reconstructed_boundaries_2013.txt
 <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/EBSD_data_Examples/MPIE_cpTi_reconstructed_boundaries_2013.txt>`_
 
-The |matlab| function used to read "Reconstructed Boundary File" is:
+The |matlab| function used to read "Reconstructed Boundary File" is :
 `read_oim_reconstructed_boundaries_file.m <https://github.com/stabix/stabix/tree/master/tsl_oim/read_oim_reconstructed_boundaries_file.m>`_
 
 If some GBs segments are missing or some wrong segments are exported, play with partition
@@ -102,7 +102,7 @@ Grain File Type 2
 Example of "Grain Gile Type 2":
 `MPIE_cpTi_grain_file_type2_2013.txt <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/EBSD_data_Examples/MPIE_cpTi_grain_file_type2_2013.txt>`_
 
-The |matlab| function used to read "Grain File Type 2" is:
+The |matlab| function used to read "Grain File Type 2" is :
 `read_oim_grain_file_type2.m <https://github.com/stabix/stabix/tree/master/tsl_oim/read_oim_grain_file_type2.m>`_
 
 Loading other type of EBSD data files...
@@ -124,6 +124,9 @@ How to generate a .ang file with TSL-OIM software ?
 **Export "Scan Data (.ang file)" of the cleaned dataset** (Filename --> Export --> Scan Data) (optional).
 
 Example of an `.ang file. <https://github.com/stabix/stabix/blob/master/gui_ebsd_map/EBSD_data_Examples/validation1_AngFile(forMTEX).ang>`_
+
+The |matlab| functions used to generate .ang file v6 and v7 are respectively:
+`write_oim_ang_file_v6.m <https://github.com/stabix/stabix/tree/master/tsl_oim/write_oim_ang_file_v6.m>`_ and `write_oim_ang_file_v7.m <https://github.com/stabix/stabix/tree/master/tsl_oim/write_oim_ang_file_v7.m>`_
 
 Possible errors introduced during files exportation from TSL-OIM
 ------------------------------------------------------------------
@@ -150,9 +153,10 @@ An example of bicrystal configuration file is given here :
 
 Copy this example file and modify it with your data. Be careful to put a space after the comma in a list (e.g. [:math:`x`, :math:`y`, :math:`z`]).
 
-Don't change fieldnames and don't round Euler angles. Euler angles are given in degrees.
+.. warning::
+    Don't change fieldnames and don't round Euler angles. Euler angles are given in degrees.
 
-Load your YAML bicrystal configuration file via the menu in the bicrystal GUI.
+Load your YAML bicrystal configuration file via the menu in the bicrystal GUI. You may have to run again the path_management.m |matlab| function, if your YAML bicrystal configuration file is not found by |matlab|.
 
 `Visit the YAML website for more informations. <http://www.yaml.org/>`_
 

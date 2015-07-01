@@ -5,7 +5,7 @@
  
 This GUI allows to analyze quantitatively slip transmission across grain boundaries for an EBSD map.
 
-The |matlab| function used to run the EBSD map GUI is: `A_gui_plotmap.m <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/A_gui_plotmap.m>`_
+The |matlab| function used to run the EBSD map GUI is : `A_gui_plotmap.m <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/A_gui_plotmap.m>`_
 
 This includes:
 

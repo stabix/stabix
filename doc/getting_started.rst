@@ -26,6 +26,9 @@ Run the following |matlab| script and answer 'y' or 'yes' to add path to the |ma
 
    path_management.m
 
+The |matlab| function used to set the |matlab| search paths is :
+`path_management.m <https://github.com/stabix/stabix/tree/master/path_management.m>`_
+
 The GUIs
 **********
 
@@ -51,7 +54,7 @@ Run one of these GUIs to play with the toolbox.
 The YAML configuration files
 *******************************
 
-Default YAML configuration files, stored in the folder `YAML_config_files <https://github.com/stabix/stabix/tree/master/YAML_config_files>`_, are loaded automatically to set the GUIs:
+Default YAML configuration files, stored in the folder `YAML_config_files <https://github.com/stabix/stabix/tree/master/YAML_config_files>`_, are loaded automatically to set the GUis :
 
 * `config.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config.yaml>`_
 * `config_CPFEM_defaults.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config_CPFEM_defaults.yaml>`_
@@ -65,6 +68,9 @@ Default YAML configuration files, stored in the folder `YAML_config_files <https
 * `config_mesh_SX_defaults.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config_mesh_SX_defaults.yaml>`_
    
 You have to set your own YAML configuration files, by following instructions given in this `README <https://github.com/stabix/stabix/blob/master/YAML_config_files/README.txt>`_.
+
+.. warning::
+    If you create your own YAML configuration files after running STABiX, you have to run again the path_management.m |matlab| function.
 
 `Visit the YAML website for more informations <http://www.yaml.org/>`_.
 

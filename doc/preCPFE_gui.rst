@@ -53,7 +53,7 @@ CPFE simulation of single crystal indentation has an important role in clarifyin
 the influence of the single-slip behaviour of different slip systems on the resulting 
 surface profiles.
 
-The function used to run the preCPFE GUI for SX indentation is:
+The function used to run the preCPFE GUI for SX indentation is :
 `A_preCPFE_windows_indentation_setting_SX.m
 <https://github.com/stabix/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_SX.m>`_
 
@@ -90,7 +90,7 @@ are the subject of ongoing research, most geometrical and kinematic factors are 
 by employing a local phenomenological crystal plasticity formulation in the simulations.
 
 
-The function used to run the preCPFE GUI for BX indentation is:
+The function used to run the preCPFE GUI for BX indentation is :
 `A_preCPFE_windows_indentation_setting_BX.m
 <https://github.com/stabix/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_BX.m>`_
 
@@ -181,7 +181,7 @@ AFM topography
 
 The topography from an AFM measurement has to be saved into a .txt file in the *Gwyddion ASCII* format.
 
-The |matlab| function used to load and read Gwyddion file is: 
+The |matlab| function used to load and read Gwyddion file is : 
 `read_gwyddion_ascii.m <https://github.com/stabix/stabix/blob/master/gwyddion/read_gwyddion_ascii.m>`_
 
 `Visit the Gwyddion website for more information. <http://gwyddion.net/>`_
@@ -236,7 +236,7 @@ Adjusting the configuration settings
 To write out the necessary files for finite element simulations it is likely that 
 the user wants to adjust some settings such as the used python installation or the 
 path where the files are written to. 
-This can be achieved in the custom menu of the preCPFE GUIs: ``Edit CPFEM config file``.
+This can be achieved in the custom menu of the preCPFE GUis : ``Edit CPFEM config file``.
 A user specific copy of the default configuration YAML file is created and 
 opened in the |matlab| editor. 
 To benefit from later changes in the default settings, all
