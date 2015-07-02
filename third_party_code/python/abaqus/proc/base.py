@@ -391,6 +391,7 @@ model_name.StaticStep(name='Indent', previous='Initial',
     timePeriod=(ind_time*2),
     maxNumInc=max_inc_indent, initialInc=ini_inc_indent, minInc=min_inc_indent_time,
     maxInc=max_inc_indent_time, nlgeom=ON)
+model_name.steps['Indent'].setValues(description='Indentation test')
 
 # Definition of the scratch step
 model_name.StaticStep(name='Scratch', previous='Indent',
@@ -398,6 +399,7 @@ model_name.StaticStep(name='Scratch', previous='Indent',
     timePeriod=(ind_time),
     maxNumInc=max_inc_indent, initialInc=ini_inc_indent, minInc=min_inc_indent_time,
     maxInc=max_inc_indent_time, nlgeom=ON)
+model_name.steps['Scratch'].setValues(description='Scratch test')
 
 # Generating velocity amplitude tables
 model_name.TabularAmplitude(data=(
@@ -418,6 +420,7 @@ model_name.StaticStep(name='Indent', previous='Initial',
     timePeriod=(ind_time+dwell_time+unload_time),
     maxNumInc=max_inc_indent, initialInc=ini_inc_indent, minInc=min_inc_indent_time,
     maxInc=max_inc_indent_time, nlgeom=ON)
+model_name.steps['Indent'].setValues(description='Indentation test')
 
 # Generating velocity amplitude table
 model_name.TabularAmplitude(data=(
