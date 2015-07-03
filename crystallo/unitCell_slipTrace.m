@@ -1,7 +1,7 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function h_trace = plot_slip_traces(slip, euler, phase, ca_ratio, ...
-    shiftXYZ, length_trace, trace_frac, varargin)
-%% Function to plot the slip traces
+function [h_cell, h_trace] = unitCell_slipTrace(slip, euler, phase, ...
+    ca_ratio, shiftXYZ, length_trace, trace_frac, varargin)
+%% Function to plot the unit cell and the slip traces
 % slip : slip number for the plot of the slip traces at the surface of the sample
 % (e.g. from 1 to 57 for hcp - see in slip_systems.m)
 % euler : Euler angles in degree of the grain
@@ -12,7 +12,7 @@ function h_trace = plot_slip_traces(slip, euler, phase, ca_ratio, ...
 % length_trace : Length of the trace (factor)
 % trace_frac : Fraction of the length trace
 
-% author: c.zambaldi@mpie.de
+% author: d.mercier@mpie.de
 
 if nargin == 0
     slip = randi(57);
@@ -25,28 +25,17 @@ if nargin == 0
     trace_frac = 0;
 end
 
-%% Set the encapsulation of data
-rotmat = eulers2g(euler);
+figure;
 
-all_slips_grain = slip_systems(phase, 9);
-
-slip_norm = all_slips_grain(1,:,slip);
-
-if strcmp(phase, 'hcp') == 1
-    slip_norm_cart = millerbravaisplane2cart(slip_norm, ca_ratio)';
-else
-    slip_norm_cart = slip_norm;
+if strcmp(phase, 'fcc') == 1
+    h_cell = vis_fcc(euler,slip);
+elseif strcmp(phase, 'bcc') == 1
+    h_cell = vis_bcc(euler,slip);
+elseif strcmp(phase, 'hcp') == 1
+    h_cell = vis_hex(euler,slip);
 end
 
-slip_norm_cart_rot = rotmat.'*slip_norm_cart';
-
-h_trace = plot_slip_trace(slip_norm_cart_rot, [0;0;1], ...
+h_trace = plot_slip_traces(slip, euler, phase, ca_ratio, ...
     shiftXYZ, length_trace, trace_frac);
-
-% Setting of the color of the slip trace
-slip_color = get_slip_color(phase, slip);
-set(h_trace, 'Color', slip_color);
-set(h_trace, 'Linewidth', 3);
-set(h_trace, 'Clipping', 'on');
 
 end
