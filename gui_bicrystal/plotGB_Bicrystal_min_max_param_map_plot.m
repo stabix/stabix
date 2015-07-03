@@ -73,7 +73,7 @@ set(gca,...
 %rotateticklabel(gca,45);
 
 ylabel(['Grain A - #', num2str(gui.GB.GrainA)]);
-xlabel(['Grain B - #', num2str(gui.GB.GrainA)]);
+xlabel(['Grain B - #', num2str(gui.GB.GrainB)]);
 colorbar ('Location', 'SouthOutside');
 
 guidata(gcf, gui);
