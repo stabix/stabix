@@ -18,6 +18,11 @@ end
 
 gui.config.CPFEM = preCPFE_config_CPFEM_check(gui.config.CPFEM);
 
+preCPFE_set_cpfem_interface_pm(gui.handles.other_setting.pm_FEM_interface, ...
+    gui.config.CPFEM.fem_solvers, gui.config.CPFEM.fem_solver_used);
+
+preCPFE_set_CPFEM_solver;
+
 guidata(gcf, gui)
 
 end
