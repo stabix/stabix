@@ -177,11 +177,11 @@ rbv(:,6) = rbv_recalc_min/max(rbv_recalc_min);
 
 rss = zeros(length(GB), 1);
 for igb = 1:length(GB)
-    stress_tensor =     [1.0157    0.2256   -1.9747;
+    stressTensor =     [1.0157    0.2256   -1.9747;
         0.2256   -0.5642    1.1849;
         -1.9747    1.1849   -0.4515];
     rss(igb) = resolved_shear_stress(GB(igb).eulerB, ...
-        GB(igb).SlipB_dir, GB(igb).SlipB_norm,  stress_tensor);
+        GB(igb).SlipB_dir, GB(igb).SlipB_norm, stressTensor);
 end
 
 %% Plot

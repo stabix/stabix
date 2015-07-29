@@ -39,7 +39,7 @@ gui.GB.eulerB = plotGB_Bicrystal_update_euler(gui.GB.eulerB_ori, ...
     gui.handles.getEulangGrB);
 
 %% Get stress tensor from map interface
-gui.stress_tensor = get_stress_tensor(gui.handles.stress_tensor);
+gui.stressTensor = get_stress_tensor(gui.handles.stressTensor);
 
 %% Store old view settings
 if isfield(gui.handles, 'h_gbax')

@@ -49,8 +49,8 @@ else
 end
 
 %% Refresh stress tensor
-gui.stress_tensor = get_stress_tensor(...
-    gui.handles.stress_tensor);
+gui.stressTensor = get_stress_tensor(...
+    gui.handles.stressTensor);
 
 %% Plot microstructure
 set(gcf, 'CurrentAxes', gui.handles.AxisGBmap);
