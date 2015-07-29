@@ -345,6 +345,8 @@ See also
 
 `Zahedi A. et al., "Indentation in f.c.c. single crystals.", Solid State Phenomena (2012) <http://dx.doi.org/10.4028/www.scientific.net/SSP.188.219>`_
 
+`Liu M. et al., "Crystal Plasticity Study of the Effect of the Initial Orientation on the Indentation Surface Profile Patterns and Micro-Textures of Aluminum Single Crystal", Advances in Materials and Processing Technologies (2013) <http://dx.doi.org/10.1002/srin.201300011>`_
+
 `Han F. et al., "Experiments and crystal plasticity finite element simulations of nanoindentation on Ti-6Al-4 V alloy.", Materials Science & Engineering A (2014) <http://dx.doi.org/10.1016/j.msea.2014.11.090>`_
 
 `Choudhury S.F. et al., "Single Crystal Plasticity Finite Element Analysis of Cu6Sn5 Intermetallic.", Metall. and Mat. Trans. A (2014) <http://dx.doi.org/10.1007/s11661-014-2696-0>`_
