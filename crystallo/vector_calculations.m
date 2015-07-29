@@ -91,6 +91,8 @@ if ~flag_error
             end
         end
     end
+else
+    slip_vec = 0;
 end
 
 end
