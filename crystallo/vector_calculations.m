@@ -15,7 +15,6 @@ if nargin < 6
 end
 
 % Normalization
-slip_vec = 0;
 for ig = grain
     [lattice_parameters, flag_error] = ...
         check_material_phase(material, phase);
@@ -51,7 +50,7 @@ end
 if ~flag_error
     if lattice_parameters(1) ~= 0
         % Preallocation
-        slip_vec = zeros(size(slip_syst, 3), 15);
+        slip_vec = zeros(size(slip_syst, 3), 17);
         g_mat    = zeros(3, 3, grain);
         
         for ig = grain
