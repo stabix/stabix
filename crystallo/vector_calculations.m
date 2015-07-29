@@ -1,11 +1,20 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function [slip_vec, flag_error] = ...
     vector_calculations(grain, material, ...
-    phase, euler, slip_syst, stress_tensor, flag_error)
+    phase, euler, slip_syst, stressTensor, flag_error, varargin)
 %% Vector calculation for a given grain
-
 % author: d.mercier@mpie.de
 
+if nargin < 7
+    flag_error = 0;
+end
+
+if nargin < 6
+    stressTensor = stress_tensor;
+    warning('No stress tensor given !');
+end
+
+% Normalization
 slip_vec = 0;
 for ig = grain
     [lattice_parameters, flag_error] = ...
@@ -38,6 +47,7 @@ for ig = grain
     end
 end
 
+% Rotation and other calculations (SF, RSS...)
 if ~flag_error
     if lattice_parameters(1) ~= 0
         % Preallocation
@@ -56,7 +66,7 @@ if ~flag_error
                 % Generalized Schmid Factor
                 slip_vec(ii,13) = generalized_schmid_factor(...
                     ss_cart_norm(1,:,ii), ss_cart_norm(2,:,ii), ...
-                    stress_tensor.sigma, g_mat(:,:,ig));
+                    stressTensor.sigma, g_mat(:,:,ig));
                 
                 if isnan(slip_vec(ii,13))
                     slip_vec(ii,14) = 0;
@@ -69,7 +79,7 @@ if ~flag_error
                     euler, ...
                     ss_cart_norm(2,:,ii), ...
                     ss_cart_norm(1,:,ii), ...
-                    stress_tensor.sigma_n);
+                    stressTensor.sigma_n);
                 if isnan(slip_vec(ii,15))
                     slip_vec(ii,16) = 0;
                 else
