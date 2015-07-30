@@ -17,7 +17,7 @@ function s = s_factor(n1, d1, l1, n2, d2, l2, varargin)
 % with
 %     phi = angle between normals
 %     kappa = angle between slip directions
-%     theta = is the angle between the two slip plane intersections with the grain boundary
+%     theta = angle between the two slip plane intersections with the grain boundary
 %
 % author: d.mercier@mpie.de
 
