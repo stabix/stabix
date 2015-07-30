@@ -165,10 +165,10 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   With this function, slip transmission is expected to occur only when the angle :math:`\psi` between 
   slip plane normal directions is lower than a given critical value (i.e. 15°) and the angle :math:`\kappa` between slip directions is lower than a given critical value (i.e. 45°).
 
-    .. math:: \lambda = \cos(\frac{90°}{\psi_c}\arcos(\vec n_\text{in} \cdot \vec n_\text{out}))\cos(\frac{90°}{\kappa_c}\arcos(\vec d_\text{in} \cdot \vec d_\text{out}))
+    .. math:: \lambda = \cos(\frac{90°}{\psi_c}\arccos(\vec n_\text{in} \cdot \vec n_\text{out}))\cos(\frac{90°}{\kappa_c}\arccos(\vec d_\text{in} \cdot \vec d_\text{out}))
         :label: lambda_function
         
-    .. math:: \lambda = \cos(\frac{90° * \psi}{\psi_c})\cos(\frac{90° * \kappa}{\kappa_c})
+    .. math:: \lambda = \cos(\frac{90° \psi}{\psi_c})\cos(\frac{90° \kappa}{\kappa_c})
         :label: lambda_function_ang
         
   The |matlab| function used to calculate the :math:`\lambda` function is :
@@ -176,19 +176,19 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
 
   The authors proposed to plot pseudo-3D view of the :math:`\lambda` map (see Figures 5 and 6) using the following equation [#Werner_1990]_ :
   
-    .. math:: \lambda = \sum\limits_{\alpha=1}^N \sum\limits_{\beta=1}^N \cos(\frac{90°}{\psi_c}\arcos(\vec n_{\text{in},\alpha} \cdot \vec n_{\text{out},\beta}))\cos(\frac{90°}{\kappa_c}\arcos(\vec d_{\text{in},\alpha} \cdot \vec d_{\text{out},\beta}))
+    .. math:: \lambda = \sum\limits_{\alpha=1}^N \sum\limits_{\beta=1}^N \cos(\frac{90°}{\psi_c}\arccos(\vec n_{\text{in},\alpha} \cdot \vec n_{\text{out},\beta}))\cos(\frac{90°}{\kappa_c}\arccos(\vec d_{\text{in},\alpha} \cdot \vec d_{\text{out},\beta}))
         :label: 3Dmap_lambda_function
         
   With :math:`N` the number of slip systems for each adjacent grains.
 
   .. figure:: ./_pictures/Schemes_SlipTransmission/lambda_fcc-fcc.png
-   :scale: 30 %
+   :scale: 50 %
    :align: center
    
    *Figure 5 : Pseudo-3D view of the lambda map for the fcc/fcc case.*
    
   .. figure:: ./_pictures/Schemes_SlipTransmission/lambda_bcc-bcc.png
-   :scale: 30 %
+   :scale: 50 %
    :align: center
    
    *Figure 6 : Pseudo-3D view of the lambda map for the bcc/bcc case.*
@@ -199,10 +199,10 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   This function is modified by Beyerlein et al., using the angle :math:`\theta` between the two slip plane intersections with the grain boundary, instead of using the angle :math:`\psi` between the two 
   slip plane normal directions [#Beyerlein_2012]_.
 
-    .. math:: \lambda = \cos(\frac{90°}{\theta_c}\arcos(\vec l_\text{in} \cdot \vec l_\text{out}))\cos(\frac{90°}{\kappa_c}\arcos(\vec d_\text{in} \cdot \vec d_\text{out}))
+    .. math:: \lambda = \cos(\frac{90°}{\theta_c}\arccos(\vec l_\text{in} \cdot \vec l_\text{out}))\cos(\frac{90°}{\kappa_c}\arccos(\vec d_\text{in} \cdot \vec d_\text{out}))
         :label: lambda_modified_function
         
-    .. math:: \lambda = \cos(\frac{90° * \theta}{\theta_c})\cos(\frac{90° * \kappa}{\kappa_c})
+    .. math:: \lambda = \cos(\frac{90° \theta}{\theta_c})\cos(\frac{90° \kappa}{\kappa_c})
         :label: lambda_modified_function_ang
 
   The |matlab| function used to calculate the modified :math:`\lambda` function is :
