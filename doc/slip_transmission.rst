@@ -159,7 +159,55 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
  
   The |matlab| function used to calculate the misorientation angle is :
   `misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/misorientation.m>`_
+
+* :math:`\lambda` **function from Werner and Prantl in 1990** [#Werner_1990]_
+
+  With this function, slip transmission is expected to occur only when the angle :math:`\psi` between 
+  slip plane normal directions is lower than a given critical value (i.e. 15°) and the angle :math:`\kappa` between slip directions is lower than a given critical value (i.e. 45°).
+
+    .. math:: \lambda = \cos(\frac{90°}{\psi_c}\arcos(\vec n_\text{in} \cdot \vec n_\text{out}))\cos(\frac{90°}{\kappa_c}\arcos(\vec d_\text{in} \cdot \vec d_\text{out}))
+        :label: lambda_function
+        
+    .. math:: \lambda = \cos(\frac{90° * \psi}{\psi_c})\cos(\frac{90° * \kappa}{\kappa_c})
+        :label: lambda_function_ang
+        
+  The |matlab| function used to calculate the :math:`\lambda` function is :
+  `lambda.m <https://github.com/stabix/stabix/tree/master/slip_transfer/lambda.m>`_
+
+  The authors proposed to plot pseudo-3D view of the :math:`\lambda` map (see Figures 5 and 6) using the following equation [#Werner_1990]_ :
   
+    .. math:: \lambda = \sum\limits_{\alpha=1}^N \sum\limits_{\beta=1}^N \cos(\frac{90°}{\psi_c}\arcos(\vec n_{\text{in},\alpha} \cdot \vec n_{\text{out},\beta}))\cos(\frac{90°}{\kappa_c}\arcos(\vec d_{\text{in},\alpha} \cdot \vec d_{\text{out},\beta}))
+        :label: 3Dmap_lambda_function
+        
+  With :math:`N` the number of slip systems for each adjacent grains.
+
+  .. figure:: ./_pictures/Schemes_SlipTransmission/lambda_fcc-fcc.png
+   :scale: 30 %
+   :align: center
+   
+   *Figure 5 : Pseudo-3D view of the lambda map for the fcc/fcc case.*
+   
+  .. figure:: ./_pictures/Schemes_SlipTransmission/lambda_bcc-bcc.png
+   :scale: 30 %
+   :align: center
+   
+   *Figure 6 : Pseudo-3D view of the lambda map for the bcc/bcc case.*
+   
+  The |matlab| function used to plot pseudo-3D view of the the :math:`\lambda` function is :
+  `lambda_plot_values.m <https://github.com/stabix/stabix/tree/master/slip_transfer/plots/lambda_plot_values.m>`_
+
+  This function is modified by Beyerlein et al., using the angle :math:`\theta` between the two slip plane intersections with the grain boundary, instead of using the angle :math:`\psi` between the two 
+  slip plane normal directions [#Beyerlein_2012]_.
+
+    .. math:: \lambda = \cos(\frac{90°}{\theta_c}\arcos(\vec l_\text{in} \cdot \vec l_\text{out}))\cos(\frac{90°}{\kappa_c}\arcos(\vec d_\text{in} \cdot \vec d_\text{out}))
+        :label: lambda_modified_function
+        
+    .. math:: \lambda = \cos(\frac{90° * \theta}{\theta_c})\cos(\frac{90° * \kappa}{\kappa_c})
+        :label: lambda_modified_function_ang
+
+  The |matlab| function used to calculate the modified :math:`\lambda` function is :
+  `lambda_modified.m <https://github.com/stabix/stabix/tree/master/slip_transfer/lambda_modified.m>`_
+
 Stress Criteria
 -----------------
 * **Schmid Factor** (:math:`m`) [#Reid_1973]_, [#Seal_2012]_ and [#Abuzaid_2012]_
@@ -278,6 +326,7 @@ Slip transmission parameters implemented in the STABiX toolbox
    ":math:`LRB` factor from Shen et al.", ":math:`LRB = \cos(\theta)\cdot\cos(\kappa)`", `LRB_parameter.m <https://github.com/stabix/stabix/tree/master/slip_transfer/LRB_parameter.m>`_, [#Shen_1986]_ / [#Shen_1988]_
    ":math:`m'` parameter from Luster and Morris", ":math:`m' = \cos(\psi)\cdot\cos(\kappa)`", `mprime.m <https://github.com/stabix/stabix/tree/master/slip_transfer/mprime.m>`_, [#LusterMorris_1995]_
    "|rbv| (:math:`\vec b_\text{r}`)", ":math:`\vec b_\text{r} = g_\text{in}\cdot\vec b_\text{in} - g_\text{out}\cdot\vec b_\text{out}`", `residual_Burgers_vector.m <https://github.com/stabix/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_, [#Marcinkowski_1970]_
+   ":math:`\lambda` factor from Werner and Prantl", "\lambda = \cos(\frac{90° * \psi}{\psi_c})\cos(\frac{90° * \kappa}{\kappa_c})", `lambda.m <https://github.com/stabix/stabix/tree/master/slip_transfer/lambda.m>`_, [#Werner_1990]_
    "Resolved Shear Stress (:math:`\tau^{i}`) / Schmid Factor", ":math:`\tau^{i} = \sigma : {S_0}^{i}` with :math:`{S_0}^{i} = d \otimes n`", `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_, [#Reid_1973]_
    "Grain boundary Schmid factor", ":math:`m_\text{GB} = m_\text{in} + m_\text{out}`", `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_, [#Abuzaid_2012]_
    "Generalized Schmid Factor (:math:`GSF`)", ":math:`GSF = d \cdot g \sigma g \cdot n`", `generalized_schmid_factor.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/generalized_schmid_factor.m>`_, [#Reid_1973]_
@@ -300,6 +349,7 @@ References
 .. [#Bachurin_2010] `D.V. Bachurin et al., "Dislocation–grain boundary interaction in <111> textured thin metal films.", Acta Materialia (2010), 58, pp. 5232–5241. <http://dx.doi.org/10.1016/j.actamat.2010.05.037>`_
 .. [#Bamford_1988] `T.A. Bamford et al., "A thermodynamic model of slip propagation.", Scripta Metallurgica (1988), 22(12), pp. 1911–1916. <http://dx.doi.org/10.1016/S0036-9748(88)80237-0>`_
 .. [#Bayerschen_2015] `E. Bayerschen et al., "On Slip Transmission Criteria in Experiments and Crystal Plasticity Models.", arXiv:1507.05748 (2015), pp. 1-9. <http://arxiv.org/abs/1507.05748>`_
+.. [#Beyerlein_2012] `I. Beyerlein al., "Structure–Property–Functionality of Bimetal Interfaces.", The Journal of The Minerals, Metals & Materials Society (TMS) (2012), pp. 1192-1207. <http://dx.doi.org/10.1007/s11837-012-0431-0>`_
 .. [#Bieler_2009] `T.R. Bieler et al., "The role of heterogeneous deformation on damage nucleation at grain boundaries in single phase metals.", Int. J. of Plast. (2009), 25(9), pp. 1655–1683. <http://dx.doi.org/10.1016/j.ijplas.2008.09.002>`_
 .. [#Bieler_2014] `T.R. Bieler et al., "Grain boundaries and interfaces in slip transfer.", Current Opinion in Solid State and Materials Science, (2014), 18(4), pp. 212-226. <http://dx.doi.org/10.1016/j.cossms.2014.05.003>`_
 .. [#Bollmann_1970] `W. Bollmann, "Crystal Defects and Crystalline Interfaces", Springer-Verlag (1970) <http://dx.doi.org/10.1007/978-3-642-49173-3>`_
