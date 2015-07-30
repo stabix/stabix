@@ -185,13 +185,13 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
    :scale: 50 %
    :align: center
    
-   *Figure 5 : Pseudo-3D view of the lambda map for the fcc/fcc case.*
+   *Figure 5 : Pseudo-3D view of the lambda map for the FCC/FCC case.*
    
   .. figure:: ./_pictures/Schemes_SlipTransmission/lambda_bcc-bcc.png
    :scale: 50 %
    :align: center
    
-   *Figure 6 : Pseudo-3D view of the lambda map for the bcc/bcc case.*
+   *Figure 6 : Pseudo-3D view of the lambda map for the BCC/BCC case.*
    
   The |matlab| function used to plot pseudo-3D view of the the :math:`\lambda` function is :
   `lambda_plot_values.m <https://github.com/stabix/stabix/tree/master/slip_transfer/plots/lambda_plot_values.m>`_
@@ -326,7 +326,7 @@ Slip transmission parameters implemented in the STABiX toolbox
    ":math:`LRB` factor from Shen et al.", ":math:`LRB = \cos(\theta)\cdot\cos(\kappa)`", `LRB_parameter.m <https://github.com/stabix/stabix/tree/master/slip_transfer/LRB_parameter.m>`_, [#Shen_1986]_ / [#Shen_1988]_
    ":math:`m'` parameter from Luster and Morris", ":math:`m' = \cos(\psi)\cdot\cos(\kappa)`", `mprime.m <https://github.com/stabix/stabix/tree/master/slip_transfer/mprime.m>`_, [#LusterMorris_1995]_
    "|rbv| (:math:`\vec b_\text{r}`)", ":math:`\vec b_\text{r} = g_\text{in}\cdot\vec b_\text{in} - g_\text{out}\cdot\vec b_\text{out}`", `residual_Burgers_vector.m <https://github.com/stabix/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_, [#Marcinkowski_1970]_
-   ":math:`\lambda` factor from Werner and Prantl", "\lambda = \cos(\frac{90° * \psi}{\psi_c})\cos(\frac{90° * \kappa}{\kappa_c})", `lambda.m <https://github.com/stabix/stabix/tree/master/slip_transfer/lambda.m>`_, [#Werner_1990]_
+   ":math:`\lambda` function from Werner and Prantl", ":math:`\lambda = \cos(\frac{90° * \psi}{\psi_c})\cos(\frac{90° * \kappa}{\kappa_c})`", `lambda.m <https://github.com/stabix/stabix/tree/master/slip_transfer/lambda.m>`_, [#Werner_1990]_
    "Resolved Shear Stress (:math:`\tau^{i}`) / Schmid Factor", ":math:`\tau^{i} = \sigma : {S_0}^{i}` with :math:`{S_0}^{i} = d \otimes n`", `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_, [#Reid_1973]_
    "Grain boundary Schmid factor", ":math:`m_\text{GB} = m_\text{in} + m_\text{out}`", `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_, [#Abuzaid_2012]_
    "Generalized Schmid Factor (:math:`GSF`)", ":math:`GSF = d \cdot g \sigma g \cdot n`", `generalized_schmid_factor.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/generalized_schmid_factor.m>`_, [#Reid_1973]_
