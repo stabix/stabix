@@ -69,7 +69,7 @@ if isempty(find(slip_check_1==0)) && isempty(find(slip_check_2==0)) % Check orth
     end
     
     if ~gui.flag.error
-        %% m', residual Burgers vector, N-factor and SF(GB) calculations
+        %% m', residual Burgers vector, N-factor, lambda and SF(GB) calculations
         gui = guidata(gcf);
         
         sizeA = gui.calculations.vectA(1,18,gui.GB.GrainA);
@@ -130,7 +130,7 @@ if isempty(find(slip_check_1==0)) && isempty(find(slip_check_2==0)) % Check orth
                     gui.calculations.vectA(:,4:6,gui.GB.GrainA), ...
                     gui.calculations.vectB(:,1:3,gui.GB.GrainB), ...
                     gui.calculations.vectB(:,4:6,gui.GB.GrainB));
-            case {22, 23, 24, 25, 26, 27, 28} % LRB paramter (Shen)
+            case {22, 23, 24, 25, 26, 27, 28} % LRB parameter (Shen)
                 d_gb(:,1) = (ones(1,size(gui.calculations.vectA, 1)) ...
                     * gui.GB_geometry.d_gb(1))';
                 d_gb(:,2) = (ones(1,size(gui.calculations.vectA, 1)) ...

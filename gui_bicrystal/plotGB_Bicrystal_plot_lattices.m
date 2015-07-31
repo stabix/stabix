@@ -60,7 +60,7 @@ elseif  valplot == 1
     % ipfB = plotIPF(GB2plot,grnum,RB,struct);
     if get(gui.handles.cblegend,'Value') == 1
         legend([ucgrA(3) ucgrB(3)], legend_slipA, legend_slipB, ...
-            'Location', legend_location_str{:});
+            'Location', legend_location_str);
     end
     if valplot > 1
         warning_commwin('No slip systems defined !');
@@ -76,7 +76,7 @@ elseif valplot == 2  %% Plot of slip plane (circle) for Grain A and B
     if get(gui.handles.cblegend, 'Value') == 1
         legend([slipplaneA.arrow slipplaneB.arrow], ...
             legend_slipA, legend_slipB, ...
-            'Location', legend_location_str{:});
+            'Location', legend_location_str);
     end
     
 elseif valplot == 3  %% Plot of slip plane (unit cell + circle) for Grain A and B

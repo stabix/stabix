@@ -59,7 +59,7 @@ if isempty(find(slip_check_1==0)) && isempty(find(slip_check_2==0)) % Check orth
     end
     
     if ~gui.flag.error
-        %% m', residual Burgers vector, N-factor and SF(GB) calculations
+        %% m', residual Burgers vector, N-factor, lambda, and SF(GB) calculations
         sizeA = vectA(1,18,gui.GB.GrainA);
         sizeB = vectB(1,18,gui.GB.GrainB);
         valcase = get(gui.handles.pmchoicecase, 'Value');
@@ -109,7 +109,7 @@ if isempty(find(slip_check_1==0)) && isempty(find(slip_check_2==0)) % Check orth
         if valcase == 22 || valcase == 23 || valcase == 24 || valcase == 25 || ...
                 valcase == 26 || valcase == 27 || valcase == 28 ...
                 || valcase == 37
-            % LRB paramter (Shen)
+            % LRB parameter (Shen)
             d_gb(:,1) = (ones(1,size(gui.calculations.vectA, 1)) ...
                 * gui.GB_geometry.d_gb(1))';
             d_gb(:,2) = (ones(1,size(gui.calculations.vectA, 1)) ...
@@ -129,7 +129,7 @@ if isempty(find(slip_check_1==0)) && isempty(find(slip_check_2==0)) % Check orth
         if valcase == 29 || valcase == 30 || valcase == 31 || valcase == 32 || ...
                 valcase == 33 || valcase == 34 || valcase == 35 ...
                 || valcase == 37
-            % lambda paramter (Werner and Prantl)
+            % lambda parameter (Werner and Prantl)
             gui.calculations.lambda_val_bc = zeros(sizeA, sizeB);
             for jj = 1:1:vectB(1,18,gui.GB.GrainB)
                 for kk = 1:1:vectA(1,18,gui.GB.GrainA)
@@ -189,7 +189,7 @@ if isempty(find(slip_check_1==0)) && isempty(find(slip_check_2==0)) % Check orth
                 res.nfact_SFmax = ...
                     nfact(res.SFmax_x, res.SFmax_y, gui.GB.GB_Number);
                 
-            case {22, 23, 24, 25, 26, 27, 28} % LRB paramter (Shen)
+            case {22, 23, 24, 25, 26, 27, 28} % LRB parameter (Shen)
                 LRBfact(:,:,gui.GB.GB_Number) = gui.calculations.LRB_val_bc;
                 [res.LRBfact_max1, res.x_LRBfact_max1, res.y_LRBfact_max1, ...
                     res.LRBfact_max2, res.x_LRBfact_max2, res.y_LRBfact_max2, ...
@@ -201,7 +201,7 @@ if isempty(find(slip_check_1==0)) && isempty(find(slip_check_2==0)) % Check orth
                 res.LRBfact_SFmax = ...
                     LRBfact(res.SFmax_x, res.SFmax_y, gui.GB.GB_Number);
                 
-            case {29, 30, 31, 32, 33, 34, 35} % lambda paramter (Werner and Prantl)
+            case {29, 30, 31, 32, 33, 34, 35} % lambda parameter (Werner and Prantl)
                 lambdafact(:,:,gui.GB.GB_Number) = gui.calculations.lambda_val_bc;
                 [res.lambdafact_max1, res.x_lambdafact_max1, res.y_lambdafact_max1, ...
                     res.lambdafact_max2, res.x_lambdafact_max2, res.y_lambdafact_max2, ...

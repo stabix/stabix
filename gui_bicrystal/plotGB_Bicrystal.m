@@ -97,7 +97,7 @@ set(gui.handles.getGBinclination, ...
 gui.GB_geometry.GB_inclined = ...
     plot_inclined_GB_plane([0;0;0], [0;0;0], ...
     gui.GB.GB_Trace_Angle, gui.GB.GB_Inclination);
-% Get the direction of the GB (for LRB paramter)
+% Get the direction of the GB (for LRB parameter)
 gui.GB_geometry.d_gb = gui.GB_geometry.GB_inclined(:,3) ...
     - gui.GB_geometry.GB_inclined(:,1);
 patch('Vertices', gui.GB_geometry.GB_inclined', ...
@@ -235,22 +235,22 @@ if ~gui.flag.error
                 param2plot = gui.calculations.LRB_val_bc_all;
                 param2plot_title = 'LRB_parameter';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,2);
-                handle_title = title('Maximum LRB paramter values');
+                handle_title = title('Maximum LRB parameter values');
             case {25, 26, 27}
                 param2plot = gui.calculations.LRB_val_bc_all;
                 param2plot_title = 'LRB_parameter';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,1);
-                handle_title = title('Minimum LRB paramter values');
+                handle_title = title('Minimum LRB parameter values');
             case {29, 30, 31, 35}
                 param2plot = gui.calculations.lambda_val_bc_all;
                 param2plot_title = 'lambda_parameter';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,2);
-                handle_title = title('Maximum lambda paramter values');
+                handle_title = title('Maximum lambda parameter values');
             case {32, 33, 34}
                 param2plot = gui.calculations.lambda_val_bc_all;
                 param2plot_title = 'lambda_parameter';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,1);
-                handle_title = title('Minimum lambda paramter values');
+                handle_title = title('Minimum lambda parameter values');
             case {36}
                 param2plot = gui.calculations.GB_Schmid_Factor_max;
                 param2plot_title = 'GB Schmid factor';
@@ -260,7 +260,7 @@ if ~gui.flag.error
                 subplot(4,2,8, 'replace');
                 axis off;
         end
-        set(handle_title, 'color', [0 0 0],'BackgroundColor', [1 1 1]);
+        set(handle_title, 'color', [0 0 0], 'BackgroundColor', [1 1 1]);
     else
         subplot(4,2,7, 'replace');
         axis off;
