@@ -163,7 +163,8 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
 * :math:`\lambda` **function from Werner and Prantl in 1990** [#Werner_1990]_
 
   With this function, slip transmission is expected to occur only when the angle :math:`\psi` between 
-  slip plane normal directions is lower than a given critical value (i.e. 15°) and the angle :math:`\kappa` between slip directions is lower than a given critical value (i.e. 45°).
+  slip plane normal directions is lower than a given critical value (:math:`\psi_c = 15°`) and
+  the angle :math:`\kappa` between slip directions is lower than a given critical value (:math:`\kappa_c = 45°`).
 
     .. math:: \lambda = \cos(\frac{90°}{\psi_c}\arccos(\vec n_\text{in} \cdot \vec n_\text{out}))\cos(\frac{90°}{\kappa_c}\arccos(\vec d_\text{in} \cdot \vec d_\text{out}))
         :label: lambda_function
@@ -326,7 +327,7 @@ Slip transmission parameters implemented in the STABiX toolbox
    ":math:`LRB` factor from Shen et al.", ":math:`LRB = \cos(\theta)\cdot\cos(\kappa)`", `LRB_parameter.m <https://github.com/stabix/stabix/tree/master/slip_transfer/LRB_parameter.m>`_, [#Shen_1986]_ / [#Shen_1988]_
    ":math:`m'` parameter from Luster and Morris", ":math:`m' = \cos(\psi)\cdot\cos(\kappa)`", `mprime.m <https://github.com/stabix/stabix/tree/master/slip_transfer/mprime.m>`_, [#LusterMorris_1995]_
    "|rbv| (:math:`\vec b_\text{r}`)", ":math:`\vec b_\text{r} = g_\text{in}\cdot\vec b_\text{in} - g_\text{out}\cdot\vec b_\text{out}`", `residual_Burgers_vector.m <https://github.com/stabix/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_, [#Marcinkowski_1970]_
-   ":math:`\lambda` function from Werner and Prantl", ":math:`\lambda = \cos(\frac{90° * \psi}{\psi_c})\cos(\frac{90° * \kappa}{\kappa_c})`", `lambda.m <https://github.com/stabix/stabix/tree/master/slip_transfer/lambda.m>`_, [#Werner_1990]_
+   ":math:`\lambda` function from Werner and Prantl", ":math:`\lambda = \cos(\frac{90° \psi}{\psi_c})\cos(\frac{90° \kappa}{\kappa_c})`", `lambda.m <https://github.com/stabix/stabix/tree/master/slip_transfer/lambda.m>`_, [#Werner_1990]_
    "Resolved Shear Stress (:math:`\tau^{i}`) / Schmid Factor", ":math:`\tau^{i} = \sigma : {S_0}^{i}` with :math:`{S_0}^{i} = d \otimes n`", `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_, [#Reid_1973]_
    "Grain boundary Schmid factor", ":math:`m_\text{GB} = m_\text{in} + m_\text{out}`", `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_, [#Abuzaid_2012]_
    "Generalized Schmid Factor (:math:`GSF`)", ":math:`GSF = d \cdot g \sigma g \cdot n`", `generalized_schmid_factor.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/generalized_schmid_factor.m>`_, [#Reid_1973]_
