@@ -164,6 +164,9 @@ if ~gui.flag.error
         
         gui.GB.LRBfact_specific = ...
             gui.calculations.LRB_val_bc(slipA, slipB);
+        
+        gui.GB.lambdafact_specific = ...
+            gui.calculations.lambda_val_bc(slipA, slipB);
     end
     guidata(gcf, gui);
     
@@ -194,7 +197,7 @@ if ~gui.flag.error
         axis fill;
         
         switch(valcase)
-            case {1, 2, 3, 7, 30}
+            case {1, 2, 3, 7, 37}
                 param2plot =  gui.calculations.mprime_val_bc_all;
                 param2plot_title = 'm_prime';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,2);
@@ -238,7 +241,17 @@ if ~gui.flag.error
                 param2plot_title = 'LRB_parameter';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,1);
                 handle_title = title('Minimum LRB paramter values');
-            case {29}
+            case {29, 30, 31, 35}
+                param2plot = gui.calculations.lambda_val_bc_all;
+                param2plot_title = 'lambda_parameter';
+                plotGB_Bicrystal_min_max_param_map_plot(param2plot,2);
+                handle_title = title('Maximum lambda paramter values');
+            case {32, 33, 34}
+                param2plot = gui.calculations.lambda_val_bc_all;
+                param2plot_title = 'lambda_parameter';
+                plotGB_Bicrystal_min_max_param_map_plot(param2plot,1);
+                handle_title = title('Minimum lambda paramter values');
+            case {36}
                 param2plot = gui.calculations.GB_Schmid_Factor_max;
                 param2plot_title = 'GB Schmid factor';
                 subplot(4,2,7, 'replace');

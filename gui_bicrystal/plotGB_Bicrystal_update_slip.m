@@ -39,7 +39,7 @@ switch(valcase)
     case {6}
         slipA = gui.GB.results.x_mp_min3;
         slipB = gui.GB.results.y_mp_min3;
-    case {7, 14, 21, 28, 29}
+    case {7, 14, 21, 28, 35, 36}
         slipA = gui.GB.results.SFmax_x;
         slipB = gui.GB.results.SFmax_y;
     case {8}
@@ -96,7 +96,25 @@ switch(valcase)
     case {27}
         slipA = gui.GB.results.x_LRBfact_min3;
         slipB = gui.GB.results.y_LRBfact_min3;
+    case {29}
+        slipA = gui.GB.results.x_lambdafact_max1;
+        slipB = gui.GB.results.y_lambdafact_max1;
     case {30}
+        slipA = gui.GB.results.x_lambdafact_max2;
+        slipB = gui.GB.results.y_lambdafact_max2;
+    case {31}
+        slipA = gui.GB.results.x_lambdafact_max3;
+        slipB = gui.GB.results.y_lambdafact_max3;
+    case {32}
+        slipA = gui.GB.results.x_lambdafact_min1;
+        slipB = gui.GB.results.y_lambdafact_min1;
+    case {33}
+        slipA = gui.GB.results.x_lambdafact_min2;
+        slipB = gui.GB.results.y_lambdafact_min2;
+    case {34}
+        slipA = gui.GB.results.x_lambdafact_min3;
+        slipB = gui.GB.results.y_lambdafact_min3;
+    case {37}
         if isempty(get(gui.handles.getSlipA, 'String'))
             plotGB_Bicrystal_set_slips_indices(gui.handles.getSlipA, ...
                 gui.GB.slipA_all_vect(1,:,gui.GB.slipA_user_spec), ...

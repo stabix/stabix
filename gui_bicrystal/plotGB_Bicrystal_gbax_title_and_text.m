@@ -80,13 +80,29 @@ if no_slip == 0
             idm = sprintf('LRB-fact(SF) = %.2f', ...
                 gui.GB.results.LRBfact_SFmax);
         case{29}
+            idm = sprintf('lambda = %.2f', gui.GB.results.lambdafact_max1);
+        case{30}
+            idm = sprintf('lambda = %.2f', gui.GB.results.lambdafact_max2);
+        case{31}
+            idm = sprintf('lambda = %.2f', gui.GB.results.lambdafact_max3);
+        case{32}
+            idm = sprintf('lambda = %.2f', gui.GB.results.lambdafact_min1);
+        case{33}
+            idm = sprintf('lambda = %.2f', gui.GB.results.lambdafact_min2);
+        case{34}
+            idm = sprintf('lambda = %.2f', gui.GB.results.lambdafact_min3);
+        case{35}
+            idm = sprintf('lambda(SF) = %.2f', ...
+                gui.GB.results.lambdafact_SFmax);
+        case{36}
             idm = sprintf('SF(GB) = %.2f', ...
                 gui.GB.results.GB_Schmid_Factor_max);
-        case{30}
+        case{37}
             idm = sprintf(['m'' = %.2f | RBV = %.2f | ', ...
-                'N-fact = %.2f | LRB-fact = %.2f'], ...
+                'N-fact = %.2f | LRB-fact = %.2f | lambda = %.2f'], ...
                 gui.GB.mprime_specific, gui.GB.rbv_specific, ...
-                gui.GB.nfact_specific, gui.GB.LRBfact_specific);
+                gui.GB.nfact_specific, gui.GB.LRBfact_specific, ...
+                gui.GB.lambdafact_specific);
     end
     
 elseif no_slip == 1
