@@ -250,6 +250,10 @@ if gui.flag.pmparam2plot_value4GB ~= 1
                 slipA = gui.results(gbnum).n_factor_max_slipA(1);
             elseif gui.flag.pmparam2plot_value4GB == 13
                 slipA = gui.results(gbnum).n_factor_min_slipA(1);
+            elseif gui.flag.pmparam2plot_value4GB == 14
+                slipA = gui.results(gbnum).lambda_max_slipA(1);
+            elseif gui.flag.pmparam2plot_value4GB == 15
+                slipA = gui.results(gbnum).lambda_min_slipA(1);
             end
             plot_slip_traces(slipA, eulers_vis_A, structure_A, ...
                 ca_ratio_A(1), shiftxyz_gb_grA, szFac, 0);
@@ -279,6 +283,10 @@ if gui.flag.pmparam2plot_value4GB ~= 1
                 slipB = gui.results(gbnum).n_factor_max_slipB(1);
             elseif gui.flag.pmparam2plot_value4GB == 13
                 slipB = gui.results(gbnum).n_factor_min_slipB(1);
+            elseif gui.flag.pmparam2plot_value4GB == 14
+                slipB = gui.results(gbnum).lambda_max_slipB(1);
+            elseif gui.flag.pmparam2plot_value4GB == 15
+                slipB = gui.results(gbnum).lambda_min_slipB(1);
             end
             
             ca_ratio_B = ...

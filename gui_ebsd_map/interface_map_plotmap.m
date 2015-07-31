@@ -114,10 +114,14 @@ elseif gui.flag.pmparam2plot_value4GB == 10 ...
 elseif gui.flag.pmparam2plot_value4GB == 12 ...
         || gui.flag.pmparam2plot_value4GB == 13
     gui.flag.pmparam2plot_value4GB_functype = 5;
-elseif gui.flag.pmparam2plot_value4GB == 14
+elseif gui.flag.pmparam2plot_value4GB == 14 ...
+        || gui.flag.pmparam2plot_value4GB == 15
     gui.flag.pmparam2plot_value4GB_functype = 6;
-elseif gui.flag.pmparam2plot_value4GB == 15
+elseif gui.flag.pmparam2plot_value4GB == 16
     gui.flag.pmparam2plot_value4GB_functype = 7;
+elseif gui.flag.pmparam2plot_value4GB == 17
+    gui.flag.pmparam2plot_value4GB_functype = 8;
+    
 end
 
 if gui.flag.pmparam2plot_value4Grains == 1
@@ -233,11 +237,19 @@ if gui.flag.flag_lattice == 1
             Colorbar_title = 'Minimum N-factor';
             gui.calculations.func2plot = [gui.results.n_factor_min];
             
-        elseif gui.flag.pmparam2plot_value4GB == 14 % GB Schmid factor
+        elseif gui.flag.pmparam2plot_value4GB == 14 % lambda
+            Colorbar_title = 'Maximum lambda';
+            gui.calculations.func2plot = [gui.results.lambda_max];
+            
+        elseif gui.flag.pmparam2plot_value4GB == 15 % lambda
+            Colorbar_title = 'Minimum lambda';
+            gui.calculations.func2plot = [gui.results.lambda_min];
+            
+        elseif gui.flag.pmparam2plot_value4GB == 16 % GB Schmid factor
             Colorbar_title = 'GB Schmid factor';
             gui.calculations.func2plot = [gui.results.gb_schmid_factor];
             
-        elseif gui.flag.pmparam2plot_value4GB == 15 % Other function
+        elseif gui.flag.pmparam2plot_value4GB == 17 % Other function
             Colorbar_title = 'Other function';
             gui.calculations.func2plot = [gui.results.oth_func_val];
             
@@ -249,15 +261,21 @@ if gui.flag.flag_lattice == 1
             
             %% Plot parameter values ==> txt on GB
             mprime_format = '%0.2f'; % float with 2 digits
-            txt_dy = 0; % delta y for text labels
+            if get(gui.handles.cbgbnum, 'Value') == 1
+                txt_dx = 0.05*max(GF2(:,5)); % delta x for text labels
+                txt_dy = 0.05*max(GF2(:,6)); % delta y for text labels
+            else
+                txt_dx = 0; % delta x for text labels
+                txt_dy = 0; % delta y for text labels
+            end
             h_val  = zeros(size(RB,1),1); % Preallocation
             
             if get(gui.handles.cbdatavalues, 'Value') == 1
                 for gbnum = 1:1:size(RB,1)
                     x_mp = ((gui.GBs(gbnum).pos_x1 ...
-                        + gui.GBs(gbnum).pos_x2)/2);
+                        + gui.GBs(gbnum).pos_x2)/2) + txt_dx;
                     y_mp = ((gui.GBs(gbnum).pos_y1 ...
-                        + gui.GBs(gbnum).pos_y2)/2) + txt_dy;
+                        + gui.GBs(gbnum).pos_y2)/2) - txt_dy;
                     h_val(gbnum) = text(x_mp, y_mp, sprintf(...
                         mprime_format, gui.calculations.func2plot(gbnum)), ...
                         'Color', [.5 0 0]);
@@ -287,10 +305,21 @@ if gui.flag.flag_lattice == 1
             if gui.flag.pmparam2plot_value4GB == 6  % only highest m' max
                 minval   = minval + (9*step_elem);
                 step_tot = maxval - minval;
-                
             elseif gui.flag.pmparam2plot_value4GB == 7  % only lowest m' max
                 maxval   = minval + (step_elem);
                 step_tot = maxval - minval;
+            end
+            
+            if  gui.flag.pmparam2plot_value4GB == 14  % only highest lambda
+                if sum(gui.calculations.func2plot(:)) == 1
+                    minval   = 0;
+                    step_tot = 0.2;
+                end
+            elseif gui.flag.pmparam2plot_value4GB == 15  % only lowest lambda
+                if sum(gui.calculations.func2plot(:)) == 0
+                    maxval   = 1;
+                    step_tot = 0.2;
+                end
             end
             
             step_Colorbar = step_tot/size(cmap(:,:),1);

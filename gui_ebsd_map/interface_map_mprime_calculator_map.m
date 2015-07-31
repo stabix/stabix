@@ -140,6 +140,8 @@ else
             size(slip_systems,3));
         n_factor_val = zeros(size(slip_systems,3), ...
             size(slip_systems,3));
+        lambda_val = zeros(size(slip_systems,3), ...
+            size(slip_systems,3)); 
         
         for gbnum = 1:size(RB,1)
             clearvars mprime_val rbv_bc_val res_Burgers_vector_val;
@@ -162,7 +164,7 @@ else
                 if numphase == 1 || numphase == 2
                     % mprime
                     if flag.pmparam2plot_value4GB ~= 1 ...
-                            && flag.pmparam2plot_value4GB < 8                      
+                            && flag.pmparam2plot_value4GB < 8
                         % Vectorized form
                         mprime_val = mprime_opt_vectorized(...
                             vect(:,1:3,grA), vect(:,4:6,grA),...
@@ -201,8 +203,19 @@ else
                         
                         flag.CalculationFlag = 3;
                         
+                    elseif flag.pmparam2plot_value4GB == 14 ...
+                            || flag.pmparam2plot_value4GB == 15
+                        for jj = 1:1:vect(1,18,grB)
+                            for kk = 1:1:vect(1,18,grA)
+                                lambda_val(kk, jj) = lambda(...
+                                    vect(kk,1:3,grA), vect(kk,4:6,grA),...
+                                    vect(jj,1:3,grB), vect(jj,4:6,grB));
+                            end
+                        end
+                        flag.CalculationFlag = 4;
+                        
                         % GB Schmid factor
-                    elseif flag.pmparam2plot_value4GB == 14
+                    elseif flag.pmparam2plot_value4GB == 16
                         Results(gbnum).gb_schmid_factor = ...
                             vect(:,21,grA) + vect(:,21,grB);
                         flag.CalculationFlag = 5;
@@ -244,7 +257,7 @@ else
                     else
                         Results(gbnum).misor = NaN ;
                     end
-                    flag.CalculationFlag = 4;
+                    flag.CalculationFlag = 6;
                 end
                 
                 %% Calculation of the c-axis misorientation
@@ -256,16 +269,16 @@ else
                     else
                         Results(gbnum).caxis_misor = NaN ;
                     end
-                    flag.CalculationFlag = 4;
+                    flag.CalculationFlag = 6;
                 end
                 
                 %% Calculation of new function's values
-                if flag.pmparam2plot_value4GB == 15
+                if flag.pmparam2plot_value4GB == 17
                     Results(gbnum).oth_func_val = ...
                         Other_Function(vect(:,:,grA), vect(:,:,grB), ...
                         grcen(grA,10:18),grcen(grB,10:18), ...
                         grA, grB, phgrA, phgrB, RB(8));
-                    flag.CalculationFlag = 6;
+                    flag.CalculationFlag = 7;
                 end
                 
                 %% Get max/min values and slip indices of mprime or RBV
@@ -332,6 +345,24 @@ else
                         Results(gbnum).n_factor_max_slipB] = ...
                         find(abs(n_factor_val) ...
                         >= Results(gbnum).n_factor_max);
+                    
+                elseif flag.CalculationFlag == 4 % lambda
+                    % Sort lambda
+                    Results(gbnum).lambda_min ...
+                        = min(min(abs(lambda_val)));
+                    
+                    [Results(gbnum).lambda_min_slipA, ...
+                        Results(gbnum).lambda_min_slipB] = ...
+                        find(abs(lambda_val) ...
+                        <= Results(gbnum).lambda_min);
+                    
+                    Results(gbnum).lambda_max ...
+                        = max(max(abs(lambda_val)));
+                    
+                    [Results(gbnum).lambda_max_slipA, ...
+                        Results(gbnum).lambda_max_slipB] = ...
+                        find(abs(lambda_val) ...
+                        >= Results(gbnum).lambda_max);
                     
                 end
             end
