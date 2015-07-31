@@ -166,10 +166,10 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   slip plane normal directions is lower than a given critical value (:math:`\psi_c = 15°`) and
   the angle :math:`\kappa` between slip directions is lower than a given critical value (:math:`\kappa_c = 45°`).
 
-    .. math:: \lambda = \cos(\frac{90°}{\psi_c}\arccos(\vec n_\text{in} \cdot \vec n_\text{out}))\cos(\frac{90°}{\kappa_c}\arccos(\vec d_\text{in} \cdot \vec d_\text{out}))
+    .. math:: \lambda = \cos\left(\frac{90°}{\psi_c}\arccos(\vec n_\text{in} \cdot \vec n_\text{out})\right)\cos\left(\frac{90°}{\kappa_c}\arccos(\vec d_\text{in} \cdot \vec d_\text{out})\right)
         :label: lambda_function
         
-    .. math:: \lambda = \cos(\frac{90° \psi}{\psi_c})\cos(\frac{90° \kappa}{\kappa_c})
+    .. math:: \lambda = \cos\left(\frac{90° \psi}{\psi_c}\right)\cos\left(\frac{90° \kappa}{\kappa_c}\right)
         :label: lambda_function_ang
         
   The |matlab| function used to calculate the :math:`\lambda` function is :
@@ -177,7 +177,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
 
   The authors proposed to plot pseudo-3D view of the :math:`\lambda` map (see Figures 5 and 6) using the following equation [#Werner_1990]_ :
   
-    .. math:: \lambda = \sum\limits_{\alpha=1}^N \sum\limits_{\beta=1}^N \cos(\frac{90°}{\psi_c}\arccos(\vec n_{\text{in},\alpha} \cdot \vec n_{\text{out},\beta}))\cos(\frac{90°}{\kappa_c}\arccos(\vec d_{\text{in},\alpha} \cdot \vec d_{\text{out},\beta}))
+    .. math:: \lambda = \sum\limits_{\alpha=1}^N \sum\limits_{\beta=1}^N \cos\left(\frac{90°}{\psi_c}\arccos(\vec n_{\text{in},\alpha} \cdot \vec n_{\text{out},\beta})\right)\cos\left(\frac{90°}{\kappa_c}\arccos(\vec d_{\text{in},\alpha} \cdot \vec d_{\text{out},\beta})\right)
         :label: 3Dmap_lambda_function
         
   With :math:`N` the number of slip systems for each adjacent grains.
@@ -200,10 +200,10 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   This function is modified by Beyerlein et al., using the angle :math:`\theta` between the two slip plane intersections with the grain boundary, instead of using the angle :math:`\psi` between the two 
   slip plane normal directions [#Beyerlein_2012]_.
 
-    .. math:: \lambda = \cos(\frac{90°}{\theta_c}\arccos(\vec l_\text{in} \cdot \vec l_\text{out}))\cos(\frac{90°}{\kappa_c}\arccos(\vec d_\text{in} \cdot \vec d_\text{out}))
+    .. math:: \lambda = \cos\left(\frac{90°}{\theta_c}\arccos(\vec l_\text{in} \cdot \vec l_\text{out})\right)\cos\left(\frac{90°}{\kappa_c}\arccos(\vec d_\text{in} \cdot \vec d_\text{out})\right)
         :label: lambda_modified_function
         
-    .. math:: \lambda = \cos(\frac{90° \theta}{\theta_c})\cos(\frac{90° \kappa}{\kappa_c})
+    .. math:: \lambda = \cos\left(\frac{90° \theta}{\theta_c}\right)\cos\left(\frac{90° \kappa}{\kappa_c}\right)
         :label: lambda_modified_function_ang
 
   The |matlab| function used to calculate the modified :math:`\lambda` function is :
