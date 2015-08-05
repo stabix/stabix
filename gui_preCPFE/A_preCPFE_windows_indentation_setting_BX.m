@@ -1,13 +1,19 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function gui_handle = ...
-    A_preCPFE_windows_indentation_setting_BX(gui_bicrystal, scratchTest, varargin)
+    A_preCPFE_windows_indentation_setting_BX(gui_bicrystal, ...
+    scratchTest, activeGrain, varargin)
 %% Setting of indentation inputs (tip radius, indentation depth...)
 % and setting of the mesh for a bicrystal indentation experiment.
 
 % gui_bicrystal: handle of the Bicrystal GUI
 % scratchTest: boolean variable (0 for indentation test and 1 for scratch test)
+% activeGrain: grain where to do/to start indentation/scratch test
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
+
+if nargin < 3
+    activeGrain = 0;
+end
 
 if nargin < 2
     scratchTest = 0;
@@ -18,7 +24,11 @@ gui_BX = preCPFE_init;
 if ~scratchTest
     gui_BX.description = 'Indentation of a bicrystal - ';
 else
-    gui_BX.description = 'Scratch test of a bicrystal - ';
+    if ~activeGrain
+        gui_BX.description = 'Scratch test of a bicrystal - ';
+    else
+        gui_BX.description = 'Scratch test of a single crystal - ';
+    end
 end
 
 x0 = 0.025;
@@ -34,7 +44,7 @@ gui_BX.handles.gui_BX_win = figure(...
 guidata(gcf, gui_BX);
 
 %% Set Matlab and CPFEM configurations
-if nargin == 0
+if nargin == 0 || isempty(gui_bicrystal)
     gui_BX.config_map.Sample_IDs   = [];
     gui_BX.config_map.Sample_ID    = [];
     gui_BX.config_map.Material_IDs = [];
@@ -49,20 +59,34 @@ if nargin == 0
         gui_BX.config_map.imported_YAML_GB_config_file = ...
             'config_gui_BX_defaults.yaml';
     end
-    
     guidata(gcf, gui_BX);
     preCPFE_load_YAML_BX_config_file(...
         gui_BX.config_map.imported_YAML_GB_config_file, 2);
     gui_BX = guidata(gcf); guidata(gcf, gui_BX);
-    gui_BX.GB.active_data = 'BX';
-    gui_BX.GB.activeGrain = gui_BX.GB.GrainA;
+    if ~activeGrain
+        gui_BX.GB.active_data = 'BX';
+    else
+        gui_BX.GB.active_data = 'SX';
+        gui_BX.GB.activeGrain = gui_BX.GB.GrainA;
+        gui_BX.GB = set_BX2SX(gui_BX, gui_BX.GB.activeGrain);
+    end
     gui_BX.title_str = set_gui_title(gui_BX, '');
-    scratchTest = 0;
 else
     gui_BX.flag           = gui_bicrystal.flag;
     gui_BX.config_map     = gui_bicrystal.config_map;
     gui_BX.GB             = gui_bicrystal.GB;
-    gui_BX.GB.active_data = 'BX';
+    
+    if activeGrain == 1
+        gui_BX.GB.active_data = 'SX';
+        gui_BX.GB.activeGrain = gui_BX.GB.GrainA;
+        gui_BX.GB = set_BX2SX(gui_BX, gui_BX.GB.activeGrain);
+    elseif activeGrain == 2
+        gui_BX.GB.active_data = 'SX';
+        gui_BX.GB.activeGrain = gui_BX.GB.GrainB;
+        gui_BX.GB = set_BX2SX(gui_BX, gui_BX.GB.activeGrain);
+    else
+        gui_BX.GB.active_data = 'BX';
+    end
     gui_BX.title_str = set_gui_title(gui_BX, ...
         ['Bicrystal n°', num2str(gui_BX.GB.GB_Number)]);
     guidata(gcf, gui_BX);
@@ -94,6 +118,11 @@ if scratchTest == 0
     gui_BX.defaults.variables.scratchTest = 0;
 else
     gui_BX.defaults.variables.scratchTest = 1;
+    if activeGrain
+        gui_BX.defaults.variables.inclination = 90;
+        gui_BX.GB.GB_Trace_Angle = 0;
+        gui_BX.GB.GB_Inclination = 90;
+    end
 end
 guidata(gcf, gui_BX);
 
@@ -114,7 +143,6 @@ gui_BX.defaults.variables.coneAngle = indent_parameters.coneAngle;
 if scratchTest
     gui_BX.defaults.variables.scratchLength = indent_parameters.scratchLength;
     gui_BX.defaults.variables.scratchDirection = indent_parameters.scratchDirection;
-    
 end
 
 %% Creation of buttons/popup menus (mesh quality, layout, Python, CPFEM...)
@@ -130,15 +158,18 @@ guidata(gcf, gui_BX);
 guidata(gcf, gui_BX);
 
 %% Run the plot of the meshing
-gui_BX.indenter_type = 'conical'; guidata(gcf, gui_BX);
+gui_BX.indenter_type = 'conical';
+guidata(gcf, gui_BX);
+
 preCPFE_set_CPFEM_solver;
 gui_BX = guidata(gcf); guidata(gcf, gui_BX);
+
 preCPFE_indentation_setting_BX;
 gui_BX = guidata(gcf); guidata(gcf, gui_BX);
 
 gui_handle = gui_BX.handles.gui_BX_win;
 
 %% Set logo of the GUI
-java_icon_gui;
+java_icon_gui(gui_handle);
 
 end

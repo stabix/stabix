@@ -112,15 +112,18 @@ guidata(gcf, gui_SX);
 guidata(gcf, gui_SX);
 
 %% Run the plot of the meshing
-gui_SX.indenter_type = 'conical'; guidata(gcf, gui_SX);
+gui_SX.indenter_type = 'conical';
+guidata(gcf, gui_SX);
+
 preCPFE_set_CPFEM_solver;
 gui_BX = guidata(gcf); guidata(gcf, gui_BX);
+
 preCPFE_indentation_setting_SX;
 gui_SX = guidata(gcf); guidata(gcf, gui_SX);
 
 gui_handle = gui_SX.handles.gui_SX_win;
 
 %% Set logo of the GUI
-java_icon_gui;
+java_icon_gui(gui_handle);
 
 end

@@ -13,7 +13,7 @@ indent_parameters.coneAngle = 90; %in microns
 indent_parameters.tipRadius = 1; % in degrees
 indent_parameters.h_indent = 0.3; % in microns
 indent_parameters.scratchLength = 3; % in microns
-indent_parameters.scratchDirection = 0; % in degrees
+indent_parameters.scratchDirection = 270; % in degrees
 
 parent = gcf;
 fontSize = 10;

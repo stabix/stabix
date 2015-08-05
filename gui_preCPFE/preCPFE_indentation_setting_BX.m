@@ -295,6 +295,12 @@ elseif get(gdata.handles.other_setting.pm_mesh_color, 'Value') == 2
     color_gb = 'k';
 end
 
+if strcmp(gdata.GB.active_data, 'SX')
+    color_grB = color_grA;
+    color_inter_gr_gb = color_grA;
+    color_gb = color_grA;
+end
+
 % Plot of the mesh (part 1/2)
 gdata.handles.mesh.meshBX(1) = surf(gdata.variables_geom.top1256_x, gdata.variables_geom.top1256_y, gdata.variables_geom.top1256_z, 'FaceColor', color_grA); hold on;
 gdata.handles.mesh.meshBX(2) = surf(gdata.variables_geom.top3487_x, gdata.variables_geom.top3487_y, gdata.variables_geom.top3487_z, 'FaceColor', color_grB); hold on;
@@ -350,10 +356,15 @@ rotate(gdata.handles.mesh.sample_patch, ...
     direction, rotation_angle, origin);
 
 % Legend
-legend(strcat('GrainA n°', num2str(gdata.GB.GrainA)), ...
-    strcat('GrainB n°', num2str(gdata.GB.GrainB)), ...
-    strcat('GB n°', num2str(gdata.GB.GB_Number)), ...
-    'Distance GB-indenter', 'Location', 'southeast');
+if strcmp(gdata.GB.active_data, 'SX')
+    legend(strcat('Grain n°', num2str(gdata.GB.activeGrain)), ...
+        'Location', 'southeast');
+else
+    legend(strcat('GrainA n°', num2str(gdata.GB.GrainA)), ...
+        strcat('GrainB n°', num2str(gdata.GB.GrainB)), ...
+        strcat('GB n°', num2str(gdata.GB.GB_Number)), ...
+        'Distance GB-indenter', 'Location', 'southeast');
+end
 
 % Axis setting
 %triad(1, [gdata.variables.sample_coordx_frontface, ...

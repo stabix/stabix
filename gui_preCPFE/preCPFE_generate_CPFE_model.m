@@ -10,12 +10,11 @@ gui = guidata(gcf);
 set(gui.handles.indenter.h_indent_str, 'Value', 0);
 preCPFE_set_indenter;
 
-if strfind(gui.description, 'single crystal')
-    preCPFE_generate_indentation_model_SX
-end
-
-if strfind(gui.description, 'bicrystal')
-    preCPFE_generate_indentation_model_BX
+if strfind(gui.description, 'single crystal') & ~strfind(gui.description, 'Scratch')
+    preCPFE_generate_indentation_model_SX;
+elseif (strfind(gui.description, 'single crystal') & strfind(gui.description, 'Scratch')) ...
+        | strfind(gui.description, 'bicrystal')
+    preCPFE_generate_indentation_model_BX;
 end
 
 end
