@@ -121,8 +121,8 @@ Convention for the bicrystal mesh
    
 .. _scratch_test:
 
-Scratch test
---------------
+Scratch test on SX and BX
+--------------------------
 
 CPFE simulation of scratch test in a single crystal or close to a grain boundary is implemented into this GUI.
 Scratch length and scratch direction have to be set by the user.
@@ -218,6 +218,10 @@ Mesh definition
 * *Abaqus*
     - The mesh is defined by default by linear hexahedral eightnode elements (C3D8).
     - It is possible to set quadratic elements (e.g.: C3D20), by changing in the python code the value of the "linear_elements" variable from 1 to 0.
+
+.. note::
+    `Note that DAMASK incorporates a limited number of different types of element geometries. <http://damask.mpie.de/Documentation/ElementType>`_
+    For a detailed information about the characteristics of each element refer to MSC.Marc and Abaqus user's manuals.
 
 Python setup
 -------------
