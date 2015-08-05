@@ -7,7 +7,11 @@ function handle_indenter = preCPFE_indenter_plot
 gui = guidata(gcf);
 
 if isfield(gui, 'handle_indenter')
-    del_if_handle(gui.handle_indenter);
+    if gui.handle_indenter == 0
+        disp('No indenter to delete !');
+    else
+        del_if_handle(gui.handle_indenter);
+    end
 end
 
 %% Set indentation depth
@@ -62,16 +66,20 @@ elseif strcmp(gui.indenter_type, 'AFM') == 1
     
     if ~isfield(gui, 'indenter_topo')
         guidata(gcf, gui);
-        preCPFE_load_AFM_indenter;
+        file_AFM = preCPFE_load_AFM_indenter;
         gui = guidata(gcf);
     end
     
-    [gui.afm_topo_indenter.X, gui.afm_topo_indenter.Y,...
-        gui.afm_topo_indenter.data, fvc, ...
-        handle_indenter] =...
-        preCPFE_3d_indenter_topo_AFM(gui.indenter_topo,...
-        h_indent, smooth_factor);
-    gui.indenter_faces = size(fvc.faces, 1) + 1;
+    if file_AFM
+        [gui.afm_topo_indenter.X, gui.afm_topo_indenter.Y,...
+            gui.afm_topo_indenter.data, fvc, ...
+            handle_indenter] =...
+            preCPFE_3d_indenter_topo_AFM(gui.indenter_topo,...
+            h_indent, smooth_factor);
+        gui.indenter_faces = size(fvc.faces, 1) + 1;
+    else
+        handle_indenter = 0;
+    end
 end
 
 guidata(gcf, gui);
