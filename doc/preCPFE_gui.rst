@@ -374,3 +374,5 @@ See also
 `Zambaldi C. et al., "Orientation dependent deformation by slip and twinning in magnesium during single crystal indentation", Acta Materialia (2015) <http://dx.doi.org/10.1016/j.actamat.2015.01.046>`_
 
 `Sánchez-Martín R. et al., "High temperature deformation mechanisms in pure magnesium studied by nanoindentation", Scripta Materialia (2015) <http://dx.doi.org/10.1016/j.scriptamat.2015.03.012>`_
+
+`Mao L. et al., "Explore the anisotropic indentation pile-up patterns of single-crystal coppers by crystal plasticity finite element modelling", Materials Letters (2015) <http://dx.doi.org/10.1016/j.matlet.2015.08.093>`_

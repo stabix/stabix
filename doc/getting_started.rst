@@ -32,7 +32,7 @@ The |matlab| function used to set the |matlab| search paths is :
 The GUIs
 **********
 
-Run one of these GUIs to play with the toolbox.
+Run one of these Graphical User Interfaces (GUIs) to play with the toolbox.
 
 .. csv-table::
    :header: "|matlab| function", "Features", "YAML config. file"
@@ -53,6 +53,8 @@ Run one of these GUIs to play with the toolbox.
    
 The YAML configuration files
 *******************************
+
+*"YAML is a human friendly data serialization standard for all programming languages."*
 
 Default YAML configuration files, stored in the folder `YAML_config_files <https://github.com/stabix/stabix/tree/master/YAML_config_files>`_, are loaded automatically to set the GUis :
 
