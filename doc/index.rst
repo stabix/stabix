@@ -72,7 +72,7 @@ D. Mercier, C. Zambaldi, T. R. Bieler, 17th International Conference on Textures
 IOP Conference Series: Materials Science and Engineering Volume 82 conference 1.
 http://dx.doi.org/10.1088/1757-899X/82/1/012090
 
-`"Spherical indentation and crystal plasticity modeling near grain boundaries in alpha-Ti." <http://dx.doi.org/10.13140/RG.2.1.3044.8486 >`_
+`"Spherical indentation and crystal plasticity modeling near grain boundaries in alpha-Ti." <http://dx.doi.org/10.13140/RG.2.1.3044.8486>`_
 D. Mercier, C. Zambaldi, P. Eisenlohr, Y. Su, M. A. Crimp, T. R. Bieler,
 Poster presented at "Indentation 2014" Conference in Strasbourg (France) (December 2014).
 http://dx.doi.org/10.13140/RG.2.1.3044.8486 
