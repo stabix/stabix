@@ -46,7 +46,7 @@ specific_slip_A = get_slip_indices(...
     specific_slipA_unstrcat_str_dir, slipA_all_vect, 2);
 
 specific_slip_B = get_slip_indices(...
-    specific_slipB_unstrcat_str_dir, slipA_all_vect, 2);
+    specific_slipB_unstrcat_str_dir, slipB_all_vect, 2);
 
 specific_slips_AB = [specific_slip_A, specific_slip_B];
 

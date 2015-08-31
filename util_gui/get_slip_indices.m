@@ -14,26 +14,29 @@ if nargin < 2
 end
 
 for ii = 1:1:size(slip_all_vect, 3)
-    slipA_all_vect_str = num2str(slip_all_vect(norm_or_dir,:,ii));
-    slipA_all_vect_str(ismember(slipA_all_vect_str,' ')) = [];
-    slipA_all_vect_str(norm_or_dir,:,ii) = slipA_all_vect_str;
+    slip_all_vect_str = num2str(slip_all_vect(norm_or_dir,:,ii));
+    slip_all_vect_str(ismember(slip_all_vect_str,' ')) = [];
+    slip_all_vect_str(norm_or_dir,:,ii) = slip_all_vect_str;
     
     specific_slip = 1;
     flag_match = 0;
     
     if strcmp(specific_slip_unstrcat_str, ...
-            slipA_all_vect_str(norm_or_dir,:,ii)) == 1
+            slip_all_vect_str(norm_or_dir,:,ii)) == 1
         specific_slip = ii;
         flag_match = 1;
         break;
     end
     
-    slipA_all_vect_str = num2str(-slip_all_vect(norm_or_dir,:,ii));
-    slipA_all_vect_str(ismember(slipA_all_vect_str,' ')) = [];
-    slipA_all_vect_str(norm_or_dir,:,ii) = slipA_all_vect_str;
+end
+
+for ii = 1:1:size(slip_all_vect, 3) & flag_match == 0
+    slip_all_vect_str = num2str(-slip_all_vect(norm_or_dir,:,ii));
+    slip_all_vect_str(ismember(slip_all_vect_str,' ')) = [];
+    slip_all_vect_str(norm_or_dir,:,ii) = slip_all_vect_str;
     
     if strcmp(specific_slip_unstrcat_str, ...
-            slipA_all_vect_str(norm_or_dir,:,ii)) == 1
+            slip_all_vect_str(norm_or_dir,:,ii)) == 1
         specific_slip = -ii;
         flag_match = 1;
         break;
@@ -43,7 +46,7 @@ end
 
 if ~flag_match
     display(['No matching between slip system given ' ...
-        'by user and slip system database']);
+        'by user and slip systems in the database !']);
 end
 
 end
