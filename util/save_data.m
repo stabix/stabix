@@ -22,7 +22,8 @@ if strcmp(pathname_sav_data,'random_inputs') == 1 || strcmp(pathname_sav_data,'m
 end
 
 %% Select directory to save the data file
-[filename_sav_data, pathname_sav_data] = uiputfile({'*.yaml'}, 'Save Data As');
+[filename_sav_data, pathname_sav_data] = uiputfile({'*.yaml'}, 'Save Data As', ...
+    pathname_sav_data);
 
 if isequal(filename_sav_data,0)
     disp('User selected Cancel');
@@ -30,7 +31,7 @@ else
     %date_str = strcat(datestr(now,'yyyy-mmm-dd_HH'),'H',datestr(now,'MM'),'min',datestr(now,'ss'),'s');
 
     %% Exportation of data in a .yaml format
-    WriteYaml(filename_sav_data, current_data);
+    WriteYaml(fullfile(pathname_sav_data, filename_sav_data), current_data);
     display(strcat('Data saved in the file: ', filename_sav_data));
     
 end
