@@ -186,6 +186,8 @@ else
     gui.GB.slipB_user_spec = abs(specific_slips_AB(2));
     gui.GB.slipA = gui.GB.slipA_user_spec;
     gui.GB.slipB = gui.GB.slipB_user_spec;
+    gui.GB.slipA_all_vect = slipA_all_vect;
+    gui.GB.slipB_all_vect = slipB_all_vect;
     
     %% Setting of GB's properties
     Names = fieldnames(gui.GB_YAML);

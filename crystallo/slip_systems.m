@@ -156,17 +156,19 @@ for ii = 1:1:size(slip_system, 2) % If more than 1 slip/twin system is defined b
                 || slip_system(ii) == 9
             slip_syst(:,:,1) =  [ 0  1  1 ;  1 -1  1];                                     %Index 1 in Damask
             slip_syst(:,:,2) =  [ 0  1  1 ; -1 -1  1];                                     %Index 2 in Damask
-            slip_syst(:,:,3) =  [ 0 -1  1 ;  1  1  1];                                     %Index 3 in Damask
             
+            slip_syst(:,:,3) =  [ 0 -1  1 ;  1  1  1];                                     %Index 3 in Damask
             slip_syst(:,:,4) =  [ 0 -1  1 ; -1  1  1];                                     %Index 4 in Damask
+            
             slip_syst(:,:,5) =  [ 1  0  1 ; -1  1  1];                                     %Index 5 in Damask
             slip_syst(:,:,6) =  [ 1  0  1 ; -1 -1  1];                                     %Index 6 in Damask
             
             slip_syst(:,:,7) =  [-1  0  1 ;  1  1  1];                                     %Index 7 in Damask
             slip_syst(:,:,8) =  [-1  0  1 ;  1 -1  1];                                     %Index 8 in Damask
-            slip_syst(:,:,9) =  [ 1  1  0 ; -1  1  1];                                     %Index 9 in Damask
             
+            slip_syst(:,:,9) =  [ 1  1  0 ; -1  1  1];                                     %Index 9 in Damask
             slip_syst(:,:,10) = [ 1  1  0 ; -1  1 -1];                                     %Index 10 in Damask
+            
             slip_syst(:,:,11) = [-1  1  0 ;  1  1  1];                                     %Index 11 in Damask
             slip_syst(:,:,12) = [-1  1  0 ;  1  1 -1];                                     %Index 12 in Damask
         end
@@ -176,17 +178,19 @@ for ii = 1:1:size(slip_system, 2) % If more than 1 slip/twin system is defined b
             % Mode 2,   plane direction, Define four points in the plane
             slip_syst(:,:,13) = [ 2  1  1 ; -1  1  1];                                     %Index 13 in Damask
             slip_syst(:,:,14) = [-2  1  1 ;  1  1  1];                                     %Index 14 in Damask
-            slip_syst(:,:,15) = [ 2 -1  1 ;  1  1 -1];                                     %Index 15 in Damask
             
+            slip_syst(:,:,15) = [ 2 -1  1 ;  1  1 -1];                                     %Index 15 in Damask
             slip_syst(:,:,16) = [ 2  1 -1 ;  1 -1  1];                                     %Index 16 in Damask
+            
             slip_syst(:,:,17) = [ 1  2  1 ;  1 -1  1];                                     %Index 17 in Damask
             slip_syst(:,:,18) = [-1  2  1 ;  1  1 -1];                                     %Index 18 in Damask
             
             slip_syst(:,:,19) = [ 1 -2  1 ;  1  1  1];                                     %Index 19 in Damask
             slip_syst(:,:,20) = [ 1  2 -1 ; -1  1  1];                                     %Index 20 in Damask
-            slip_syst(:,:,21) = [ 1  1  2 ;  1  1 -1];                                     %Index 21 in Damask
             
+            slip_syst(:,:,21) = [ 1  1  2 ;  1  1 -1];                                     %Index 21 in Damask
             slip_syst(:,:,22) = [-1  1  2 ;  1 -1  1];                                     %Index 22 in Damask
+            
             slip_syst(:,:,23) = [ 1 -1  2 ; -1  1  1];                                     %Index 23 in Damask
             slip_syst(:,:,24) = [ 1  1 -2 ;  1  1  1];                                     %Index 24 in Damask
         end
