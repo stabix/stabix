@@ -91,4 +91,4 @@ OpenGL
 
 If the OpenGL rendering is not satisfying, you can modify the corresponding option in the `config.yaml <https://github.com/stabix/stabix/blob/master/yaml_config_files/config.yaml>`_ file.
 
-`Visit the Matlab page about OpenGL rendering <http://fr.mathworks.com/help/matlab/ref/opengl.html?refresh=true>`_.
+`Visit the Matlab page about OpenGL rendering <http://mathworks.com/help/matlab/ref/opengl.html?refresh=true>`_.
