@@ -17,7 +17,7 @@ Loading Bicrystal data
 
 It is possible to load bicrystal properties (material, phase, Euler angles of both grains, trace angle...) :
     - from the `EBSD map GUI <http://stabix.readthedocs.org/en/latest/ebsd_map_gui.html>`_ (by giving GB's number and pressing the button 'PLOT BICRYSTAL');
-    - from a `YAML config. bicrystal <https://github.com/stabix/stabix/tree/master/gui_bicrystal/gui_bicrystal_data/kacher_2012/kacher_2012_Fig.12.yaml>`_ (from the menu, by clicking on 'Bicrystal, and 'Load Bicrystal config. file'). 
+    - from a `YAML config. bicrystal <https://github.com/stabix/stabix/tree/master/gui_bicrystal/gui_bicrystal_data/kacher_2012/Kacher2012_Fig.12.yaml>`_ (from the menu, by clicking on 'Bicrystal, and 'Load Bicrystal config. file'). 
     
 .. figure:: ./_pictures/GUIs/ebsd2bicrystal.png
    :scale: 50 %
