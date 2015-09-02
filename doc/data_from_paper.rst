@@ -20,7 +20,7 @@ the magnitude of residual dislocation Burgers vector is plotted in function
 of possible outgoing systems. Calculations are reproduced using the |matlab| 
 toolbox and obtained values are compared to Kacher's results (see Figure 1).
 
-  .. figure:: ./_pictures/data_from_papers/Kacher2012_barcharts.png
+  .. figure:: ./_pictures/data_from_papers/kacher_2012_barcharts.png
    :scale: 40 %
    :align: center
    
@@ -57,7 +57,7 @@ dislocation Burgers vector is plotted in function of possible outgoing systems.
 Calculations are reproduced using the |matlab| toolbox and obtained values
 are compared to Kacher's results (see Figure 3).
 
-  .. figure:: ./_pictures/data_from_papers/Kacher2014_barcharts.png
+  .. figure:: ./_pictures/data_from_papers/kacher_2014_barcharts.png
    :scale: 40 %
    :align: center
    
@@ -78,7 +78,7 @@ Burgers vector is plotted in function of possible outgoing systems.
 Calculations are reproduced using the |matlab| toolbox and obtained
 values are compared to Cui's results (see Figure 4).
 
-  .. figure:: ./_pictures/data_from_papers/Cui2014_barcharts.png
+  .. figure:: ./_pictures/data_from_papers/cui_2014_barcharts.png
    :scale: 20 %
    :align: center
    
@@ -101,7 +101,7 @@ along the slip plane direction. The :math:`m'` factor is used to
 quantify the transmissivity across the GBs and calculations are
 reproduced using the |matlab| toolbox (see Figure 5).
 
-  .. figure:: ./_pictures/data_from_papers/Guo2014_barcharts_cropped.png
+  .. figure:: ./_pictures/data_from_papers/guo_2014_barcharts_cropped.png
    :scale: 20 %
    :align: center
    

@@ -6,28 +6,28 @@
 
 %% Initialization
 tabularasa;
-installation_mtex = MTEX_check_install;
+installation_mtex = mtex_check_install;
 
 GB(1) = load_YAML_BX_example_config_file(...
-    'Kacher2014_Gr7-Gr8_1_rbv2.4.yaml');
+    'kacher_2014_Gr7-Gr8_1_rbv2.4.yaml');
 GB(2) = load_YAML_BX_example_config_file(...
-    'Kacher2014_Gr7-Gr8_2_rbv3.6.yaml');
+    'kacher_2014_Gr7-Gr8_2_rbv3.6.yaml');
 GB(3) = load_YAML_BX_example_config_file(...
-    'Kacher2014_Gr7-Gr8_3_rbv1.1.yaml');
+    'kacher_2014_Gr7-Gr8_3_rbv1.1.yaml');
 GB(4) = load_YAML_BX_example_config_file(...
-    'Kacher2014_Gr7-Gr8_4_rbv4.5.yaml');
+    'kacher_2014_Gr7-Gr8_4_rbv4.5.yaml');
 GB(5) = load_YAML_BX_example_config_file(...
-    'Kacher2014_Gr7-Gr8_5_rbv6.1.yaml');
+    'kacher_2014_Gr7-Gr8_5_rbv6.1.yaml');
 GB(6) = load_YAML_BX_example_config_file(...
-    'Kacher2014_Gr7-Gr8_6_rbv5.6.yaml');
+    'kacher_2014_Gr7-Gr8_6_rbv5.6.yaml');
 GB(7) = load_YAML_BX_example_config_file(...
-    'Kacher2014_Gr7-Gr8_7_rbv6.1.yaml');
+    'kacher_2014_Gr7-Gr8_7_rbv6.1.yaml');
 GB(8) = load_YAML_BX_example_config_file(...
-    'Kacher2014_Gr7-Gr8_8_rbv5.2.yaml');
+    'kacher_2014_Gr7-Gr8_8_rbv5.2.yaml');
 GB(9) = load_YAML_BX_example_config_file(...
-    'Kacher2014_Gr7-Gr8_9_rbv4.0.yaml');
+    'kacher_2014_Gr7-Gr8_9_rbv4.0.yaml');
 GB(10) = load_YAML_BX_example_config_file(...
-    'Kacher2014_Gr7-Gr8_10_rbv5.0.yaml');% Not working !
+    'kacher_2014_Gr7-Gr8_10_rbv5.0.yaml');% Not working !
 GB(10).slipB_ind(2,:) = [0 0 0 -3]; % Slip doesn't exist in "slip_system" and is replaced by default by basal slip...
 
 %% Calculations

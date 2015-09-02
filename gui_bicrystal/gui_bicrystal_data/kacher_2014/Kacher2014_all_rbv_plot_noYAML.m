@@ -6,12 +6,12 @@
 
 %% Initialization
 tabularasa;
-installation_mtex = MTEX_check_install;
+installation_mtex = mtex_check_install;
 plot_matlab = 1;
 latt_param_Ti = latt_param('Ti', 'hcp');
 
 %% Loading of GB data
-folder_name = which('Kacher2014_all_rbv_plot_noYAML');
+folder_name = which('kacher_2014_all_rbv_plot_noYAML');
 [pathstr,name,ext] = fileparts(folder_name);
 parent_directory = pathstr;
 
@@ -89,14 +89,14 @@ for igb = 1:length(GB)
     
     %% Misorientation
     if installation_mtex == 1
-        oriA = MTEX_setOrientation('hcp', latt_param_Ti(1), ...
+        oriA = mtex_setOrientation('hcp', latt_param_Ti(1), ...
             GB(igb).eulerA);
-        oriB = MTEX_setOrientation('hcp', latt_param_Ti(1), ...
+        oriB = mtex_setOrientation('hcp', latt_param_Ti(1), ...
             GB(igb).eulerB);
-        oriB2 = MTEX_setOrientation('hcp', latt_param_Ti(1), ...
+        oriB2 = mtex_setOrientation('hcp', latt_param_Ti(1), ...
             GB(igb).eulerB2);
-        mis(igb,1) = MTEX_getBX_misorientation(oriA, oriB); % MTEX function
-        mis(igb,2) = MTEX_getBX_misorientation(oriA, oriB2); % MTEX function
+        mis(igb,1) = mtex_getBX_misorientation(oriA, oriB); % MTEX function
+        mis(igb,2) = mtex_getBX_misorientation(oriA, oriB2); % MTEX function
         axisMTEX(igb) = axis(oriA, oriB);
     else
         mis(igb, 1) = NaN;
@@ -152,4 +152,4 @@ if plot_matlab
 end
 
 %% Export results in a .txt file
-save_txt_file(parent_directory, 'Data_Kacher2014_noYAML.txt', rbv);
+save_txt_file(parent_directory, 'Data_kacher_2014_noYAML.txt', rbv);

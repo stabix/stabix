@@ -6,12 +6,12 @@
 
 %% Initialization
 tabularasa;
-installation_mtex = MTEX_check_install;
+installation_mtex = mtex_check_install;
 plot_matlab = 1;
 latt_param_Ti = latt_param('Ti', 'hcp');
 
 %% Loading of GB data
-folder_name = which('Cui2014_1_plot');
+folder_name = which('cui_2014_1_plot');
 [pathstr,name,ext] = fileparts(folder_name);
 parent_directory = pathstr;
 
@@ -88,11 +88,11 @@ for igb = 1:length(GB)
     
     %% Misorientation
     if installation_mtex == 1
-        oriA = MTEX_setOrientation('fcc', latt_param_Ti(1), ...
+        oriA = mtex_setOrientation('fcc', latt_param_Ti(1), ...
             GB(igb).eulerA);
-        oriB = MTEX_setOrientation('fcc', latt_param_Ti(1), ...
+        oriB = mtex_setOrientation('fcc', latt_param_Ti(1), ...
             GB(igb).eulerB);
-        mis(igb,1) = MTEX_getBX_misorientation(oriA, oriB);
+        mis(igb,1) = mtex_getBX_misorientation(oriA, oriB);
     else
         mis(igb,1) = NaN;
     end
@@ -144,4 +144,4 @@ if plot_matlab
 end
 
 %% Export results in a .txt file
-save_txt_file(parent_directory, 'Data_Cui2014.txt', rbv);
+save_txt_file(parent_directory, 'Data_cui_2014.txt', rbv);

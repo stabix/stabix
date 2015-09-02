@@ -6,18 +6,18 @@
 
 %% Initialization
 tabularasa;
-installation_mtex = MTEX_check_install;
+installation_mtex = mtex_check_install;
 plot_matlab = 1;
 
 %% Loading of GB data
-folder_name = which('Kacher2014_all_rbv_plot');
+folder_name = which('kacher_2014_all_rbv_plot');
 [pathstr,name,ext] = fileparts(folder_name);
 parent_directory = pathstr;
 
-GB(1) = load_YAML_BX_example_config_file('Kacher2014_Gr1-Gr2_rbv4.1.yaml'); % misorientation founded with DAMASK scripts, but not with Matlab functions...
-GB(2) = load_YAML_BX_example_config_file('Kacher2014_Gr3-Gr4_rbv4.2.yaml');
-GB(3) = load_YAML_BX_example_config_file('Kacher2014_Gr5-Gr6_rbv1.2.yaml');
-GB(4) = load_YAML_BX_example_config_file('Kacher2014_Gr7-Gr8_rbv1.1.yaml');
+GB(1) = load_YAML_BX_example_config_file('kacher_2014_Gr1-Gr2_rbv4.1.yaml'); % misorientation founded with DAMASK scripts, but not with Matlab functions...
+GB(2) = load_YAML_BX_example_config_file('kacher_2014_Gr3-Gr4_rbv4.2.yaml');
+GB(3) = load_YAML_BX_example_config_file('kacher_2014_Gr5-Gr6_rbv1.2.yaml');
+GB(4) = load_YAML_BX_example_config_file('kacher_2014_Gr7-Gr8_rbv1.1.yaml');
 
 %% Calculations
 rbv = zeros(length(GB),2);
@@ -59,11 +59,11 @@ for igb = 1:1:length(GB)
     
     %% Misorientation
     if installation_mtex == 1
-        oriA = MTEX_setOrientation(GB(igb).Phase_A, ...
+        oriA = mtex_setOrientation(GB(igb).Phase_A, ...
             GB(igb).ca_ratio_A(1), GB(igb).eulerA);
-        oriB = MTEX_setOrientation(GB(igb).Phase_B, ...
+        oriB = mtex_setOrientation(GB(igb).Phase_B, ...
             GB(igb).ca_ratio_A(1), GB(igb).eulerB);
-        mis(igb,1) = MTEX_getBX_misorientation(oriA, oriB); % MTEX function
+        mis(igb,1) = mtex_getBX_misorientation(oriA, oriB); % MTEX function
     else
         mis(igb,1) = NaN;
     end
@@ -115,4 +115,4 @@ if plot_matlab
 end
 
 %% Export results in a .txt file
-save_txt_file(parent_directory, 'Data_Kacher2014.txt', rbv);
+save_txt_file(parent_directory, 'Data_kacher_2014.txt', rbv);

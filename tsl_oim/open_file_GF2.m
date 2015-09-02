@@ -17,7 +17,7 @@ function open_file_GF2(starting_folder, varargin)
 if nargin == 0
     starting_folder = ...
         fullfile(get_stabix_root, ...
-        'gui_ebsd_map', 'EBSD_data_Examples');
+        'gui_ebsd_map', 'ebsd_dataExamples');
 end
 
 %% Get data from the GUI

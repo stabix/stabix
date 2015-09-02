@@ -49,14 +49,14 @@ function misorientation = ...
 
 if nargin < 2
     ca_ratio = latt_param('Ti', 'hcp');
-    ori_grainB = MTEX_setOrientation('hcp', ...
+    ori_grainB = mtex_setOrientation('hcp', ...
         ca_ratio(1), randBunges);
     display(ori_grainB);
 end
 
 if nargin < 1
     ca_ratio = latt_param('Ti', 'hcp');
-    ori_grainA = MTEX_setOrientation('hcp', ...
+    ori_grainA = mtex_setOrientation('hcp', ...
         ca_ratio(1), randBunges);
     display(ori_grainA)
 end

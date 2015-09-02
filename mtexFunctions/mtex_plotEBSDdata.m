@@ -26,7 +26,7 @@ if flagEBSDdata
     plot(ebsdData, 'property', 'phase');
     
     %% Plot Inverse Pole Figure
-    MTEX_plotIPF(ebsdData.orientations);
+    mtex_plotIPF(ebsdData.orientations);
     
 end
 

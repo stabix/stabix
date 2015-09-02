@@ -65,7 +65,7 @@ Reconstructed Boundaries File
     It is possible to convert a square grid into an hexagonal grid in TSL-OIM software.
 
 Example of "Reconstructed Boundary File": `MPIE_cpTi_reconstructed_boundaries_2013.txt
-<https://github.com/stabix/stabix/tree/master/gui_ebsd_map/EBSD_data_Examples/MPIE_cpTi_reconstructed_boundaries_2013.txt>`_
+<https://github.com/stabix/stabix/tree/master/gui_ebsd_map/ebsd_dataExamples/MPIE_cpTi_reconstructed_boundaries_2013.txt>`_
 
 The |matlab| function used to read "Reconstructed Boundary File" is :
 `read_oim_reconstructed_boundaries_file.m <https://github.com/stabix/stabix/tree/master/tsl_oim/read_oim_reconstructed_boundaries_file.m>`_
@@ -100,7 +100,7 @@ Grain File Type 2
     Export the "Grain File Type 2" in the same location as the corresponding "Reconstructed Boundary File".
 
 Example of "Grain Gile Type 2":
-`MPIE_cpTi_grain_file_type2_2013.txt <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/EBSD_data_Examples/MPIE_cpTi_grain_file_type2_2013.txt>`_
+`MPIE_cpTi_grain_file_type2_2013.txt <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/ebsd_dataExamples/MPIE_cpTi_grain_file_type2_2013.txt>`_
 
 The |matlab| function used to read "Grain File Type 2" is :
 `read_oim_grain_file_type2.m <https://github.com/stabix/stabix/tree/master/tsl_oim/read_oim_grain_file_type2.m>`_
@@ -123,7 +123,7 @@ How to generate a .ang file with TSL-OIM software ?
 
 **Export "Scan Data (.ang file)" of the cleaned dataset** (Filename --> Export --> Scan Data) (optional).
 
-Example of an `.ang file. <https://github.com/stabix/stabix/blob/master/gui_ebsd_map/EBSD_data_Examples/validation1_AngFile(forMTEX).ang>`_
+Example of an `.ang file. <https://github.com/stabix/stabix/blob/master/gui_ebsd_map/ebsd_dataExamples/validation1_AngFile(forMTEX).ang>`_
 
 The |matlab| functions used to generate .ang file v6 and v7 are respectively:
 `write_oim_ang_file_v6.m <https://github.com/stabix/stabix/tree/master/tsl_oim/write_oim_ang_file_v6.m>`_ and `write_oim_ang_file_v7.m <https://github.com/stabix/stabix/tree/master/tsl_oim/write_oim_ang_file_v7.m>`_
@@ -149,7 +149,7 @@ Bicrystal GUI
 **The YAML configuration file provides a simple way to define a bicrystal.**
 
 An example of bicrystal configuration file is given here :
-`config_gui_BX_defaults.yaml <https://github.com/stabix/stabix/tree/master/YAML_config_files/config_gui_BX_defaults.yaml>`_
+`config_gui_BX_defaults.yaml <https://github.com/stabix/stabix/tree/master/yaml_config_files/config_gui_BX_defaults.yaml>`_
 
 Copy this example file and modify it with your data. Be careful to put a space after the comma in a list (e.g. [:math:`x`, :math:`y`, :math:`z`]).
 

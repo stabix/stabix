@@ -21,7 +21,7 @@ end
 
 if flagEBSDdata
     %% Detection of grains
-    grains = MTEX_calcGrains(ebsdData, segAngle);
+    grains = mtex_calcGrains(ebsdData, segAngle);
     
     %% Plot Grain Diameter distribution
     diamgr = diameter(grains);

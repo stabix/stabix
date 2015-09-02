@@ -7,9 +7,9 @@ function mtex_setEBSDdata
 
 gui = guidata(gcf);
 
-MTEX_env = getMTEXpref;
+mtex_env = getMTEXpref;
 
-[fpath, fname_GF2, fname_RB] = MTEX_convert2TSLdata(gui.ebsdMTEX);
+[fpath, fname_GF2, fname_RB] = mtex_convert2TSLdata(gui.ebsdMTEX);
 
 % Set paths in the GUI
 set(gui.handles.FileGF2, 'String', fullfile(fpath, fname_GF2));
@@ -21,8 +21,8 @@ gui.config_map.pathname_reconstructed_boundaries_file = fpath;
 gui.flag.newDataFlag = 1;
 
 % Set coordinate sytem
-CoordSysVal = MTEX_setCoordSys(MTEX_env.xAxisDirection, ...
-    MTEX_env.zAxisDirection);
+CoordSysVal = mtex_setCoordSys(mtex_env.xAxisDirection, ...
+    mtex_env.zAxisDirection);
 set(gui.handles.pmcoordsyst, 'Value', CoordSysVal);
 
 % Set scan unit

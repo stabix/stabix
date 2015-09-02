@@ -63,11 +63,11 @@ for igb = 1:1:length(GB)
     
     %% Misorientation
     if installation_mtex == 1
-        oriA = MTEX_setOrientation(GB(igb).Phase_A, ...
+        oriA = mtex_setOrientation(GB(igb).Phase_A, ...
             GB(igb).ca_ratio_A(1), GB(igb).eulerA);
-        oriB = MTEX_setOrientation(GB(igb).Phase_B, ...
+        oriB = mtex_setOrientation(GB(igb).Phase_B, ...
             GB(igb).ca_ratio_A(1), GB(igb).eulerB);
-        mis(igb,1) = MTEX_getBX_misorientation(oriA, oriB); % MTEX function
+        mis(igb,1) = mtex_getBX_misorientation(oriA, oriB); % MTEX function
     else
         mis(igb,1) = NaN;
     end

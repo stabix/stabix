@@ -6,7 +6,7 @@
 
 %% Initialization
 tabularasa;
-installation_mtex = MTEX_check_install;
+installation_mtex = mtex_check_install;
 plot_matlab = 1;
 
 latt_param_Ti = latt_param('Ti', 'hcp');
@@ -128,14 +128,14 @@ for igb = 1:length(GB)
     
     %% Misorientation
     if installation_mtex == 1
-        oriA = MTEX_setOrientation('hcp', latt_param_Ti(1), ...
+        oriA = mtex_setOrientation('hcp', latt_param_Ti(1), ...
             GB(igb).eulerA);
-        oriB = MTEX_setOrientation('hcp', latt_param_Ti(1), ...
+        oriB = mtex_setOrientation('hcp', latt_param_Ti(1), ...
             GB(igb).eulerB);
-        oriB2 = MTEX_seOrientation('hcp', latt_param_Ti(1), ...
+        oriB2 = mtex_seOrientation('hcp', latt_param_Ti(1), ...
             GB(igb).eulerB2);
-        mis(igb,1) = MTEX_getBX_misorientation(oriA, oriB); % MTEX function
-        mis(igb,2) = MTEX_getBX_misorientation(oriA, oriB2); % MTEX function
+        mis(igb,1) = mtex_getBX_misorientation(oriA, oriB); % MTEX function
+        mis(igb,2) = mtex_getBX_misorientation(oriA, oriB2); % MTEX function
         axisMTEX(igb) = axis(oriA, oriB);
     else
         mis(igb, 1) = NaN;

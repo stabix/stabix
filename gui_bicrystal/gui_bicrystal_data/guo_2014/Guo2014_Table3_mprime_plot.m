@@ -6,21 +6,21 @@
 
 %% Initialization
 tabularasa;
-%installation_mtex = MTEX_check_install;
+%installation_mtex = mtex_check_install;
 plot_matlab = 1;
 
 %% Loading of GB data
-folder_name = which('Guo2014_Table3_mprime_plot');
+folder_name = which('guo_2014_Table3_mprime_plot');
 [pathstr,name,ext] = fileparts(folder_name);
 parent_directory = pathstr;
 
-GB(1) = load_YAML_BX_example_config_file('Guo2014_Table3Case1.yaml');
-GB(2) = load_YAML_BX_example_config_file('Guo2014_Table3Case2.yaml');
-GB(3) = load_YAML_BX_example_config_file('Guo2014_Table3Case3.yaml');
-GB(4) = load_YAML_BX_example_config_file('Guo2014_Table3Case4.yaml');
-GB(5) = load_YAML_BX_example_config_file('Guo2014_Table3Case5.yaml');
-GB(6) = load_YAML_BX_example_config_file('Guo2014_Table3Case6.yaml');
-GB(7) = load_YAML_BX_example_config_file('Guo2014_Table3Case7.yaml');
+GB(1) = load_YAML_BX_example_config_file('guo_2014_Table3Case1.yaml');
+GB(2) = load_YAML_BX_example_config_file('guo_2014_Table3Case2.yaml');
+GB(3) = load_YAML_BX_example_config_file('guo_2014_Table3Case3.yaml');
+GB(4) = load_YAML_BX_example_config_file('guo_2014_Table3Case4.yaml');
+GB(5) = load_YAML_BX_example_config_file('guo_2014_Table3Case5.yaml');
+GB(6) = load_YAML_BX_example_config_file('guo_2014_Table3Case6.yaml');
+GB(7) = load_YAML_BX_example_config_file('guo_2014_Table3Case7.yaml');
 
 slip_ind(:,:,:) = slip_systems;
 
@@ -98,4 +98,4 @@ if plot_matlab
 end
 
 %% Export results in a .txt file
-save_txt_file(parent_directory, 'Data_Guo2014.txt', mprime_data);
+save_txt_file(parent_directory, 'Data_guo_2014.txt', mprime_data);
