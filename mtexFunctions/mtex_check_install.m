@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function installation_mtex = MTEX_check_install
+function installation_mtex = mtex_check_install
 %% Check if MTEX is installed
 % See in http://mtex-toolbox.github.io/
 

@@ -1,4 +1,4 @@
-function grains = MTEX_calcGrains(ebsdData, segAngle, varargin)
+function grains = mtex_calcGrains(ebsdData, segAngle, varargin)
 %% Function for grains detection
 % ebsdData : Name of the structure variable created after importing EBSD data
 % .ang file ('ebsd' is default name use by MTEX...)

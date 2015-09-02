@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function MTEX_plotIPF(orientations, xaxis_alignement, varargin)
+function mtex_plotIPF(orientations, xaxis_alignement, varargin)
 %% Plot IPDF with MTEX
 % orientations: Orientation of grains (at least 2 grains)
 

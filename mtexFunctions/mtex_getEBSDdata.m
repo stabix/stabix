@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function MTEX_getEBSDdata
+function mtex_getEBSDdata
 %% Import data with MTEX toolbox
 % See in http://mtex-toolbox.github.io/
 

@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function MTEX_plotGrainsStat(ebsdData, segAngle, varargin)
+function mtex_plotGrainsStat(ebsdData, segAngle, varargin)
 %% Visualization of grains statistics (grain size, distribution...) with MTEX Toolbox
 % ebsdData : Name of the structure variable created after importing EBSD data
 % .ang file ('ebsd' is default name use by MTEX...)

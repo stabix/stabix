@@ -1,6 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function [misor_angle, misor_axis] = ...
-    PitschSchraderOR(euler1, euler2, struct1, struct2, varargin)
+    pitsch_schrader_or(euler1, euler2, struct1, struct2, varargin)
 % Calculation of the angular deviations of bcc-hcp misorientations to the
 % Pitsch-Schrader orientation relationships
 % From W. Pitsch, A. Schrader - Arch. Eisenhüttenwes., 29 (1958), p.485/p.715

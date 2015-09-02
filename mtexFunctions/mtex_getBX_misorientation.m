@@ -1,6 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function misorientation = ...
-    MTEX_getBX_misorientation(ori_grainA, ori_grainB, varargin)
+    mtex_getBX_misorientation(ori_grainA, ori_grainB, varargin)
 %% MTEX function used for the calculation of the misorientation between 2 grains in degrees
 % Cho J.-H. et al., "Determination of a Mean Orientation in Electron
 % Backscatter Diffraction Measurements", Met. & Mat. Trans. A, 2005, Vol.36A, pp. 3427.

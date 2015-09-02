@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function CoordSysVal = MTEX_setCoordSys(xAxisDirection, zAxisDirection)
+function CoordSysVal = mtex_setCoordSys(xAxisDirection, zAxisDirection)
 %% Import data with MTEX toolbox
 % See in http://mtex-toolbox.github.io/
 
