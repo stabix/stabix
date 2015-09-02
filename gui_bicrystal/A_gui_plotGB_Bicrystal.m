@@ -289,6 +289,7 @@ elseif nargin == 2
     gui.GB.slipB_user_spec = gui.GB.slipB;
     gui.description        = 'From CPFE model';
     gui.title_str          = set_gui_title(gui, '');
+    gui.GB = plotGB_Bicrystal_check_GB_data(gui.GB);
     guidata(gcf, gui);
     
     %% Popup menus
