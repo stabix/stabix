@@ -39,10 +39,10 @@ Run one of these Graphical User Interfaces (GUIs) to play with the toolbox.
    :widths: 25, 25, 25
   
    `demo <https://github.com/stabix/stabix/blob/master/demo.m>`_, "Start and run other GUIs." 
-   `EBSD map GUI <https://github.com/stabix/stabix/blob/master/gui_ebsd_map/A_gui_plotmap.m>`_, "Analysis of slip transmission across GBs for an EBSD map.", `config_gui_EBSDmap_defaults.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config_gui_EBSDmap_defaults.yaml>`_
+   `EBSD map GUI <https://github.com/stabix/stabix/blob/master/gui_ebsd_map/A_gui_plotmap.m>`_, "Analysis of slip transmission across GBs for an EBSD map.", `config_gui_EBSDmap_defaults.yaml <https://github.com/stabix/stabix/blob/master/yaml_config_files/config_gui_EBSDmap_defaults.yaml>`_
    `Bicrystal GUI <https://github.com/stabix/stabix/blob/master/gui_bicrystal/A_gui_plotGB_Bicrystal.m>`_, "Analysis of slip transfer in a bicrystal." 
-   `preCPFE_SX <https://github.com/stabix/stabix/blob/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_SX.m>`_, "Preprocess of CPFE models for indentation or scratch in a SX.", `config_CPFEM_defaults.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config_CPFEM_defaults.yaml>`_
-   `preCPFE_BX <https://github.com/stabix/stabix/blob/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_BX.m>`_, "Preprocess of CPFE models for indentation or scratch in a BX.", `config_CPFEM_defaults.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config_CPFEM_defaults.yaml>`_
+   `preCPFE_SX <https://github.com/stabix/stabix/blob/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_SX.m>`_, "Preprocess of CPFE models for indentation or scratch in a SX.", `config_CPFEM_defaults.yaml <https://github.com/stabix/stabix/blob/master/yaml_config_files/config_CPFEM_defaults.yaml>`_
+   `preCPFE_BX <https://github.com/stabix/stabix/blob/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_BX.m>`_, "Preprocess of CPFE models for indentation or scratch in a BX.", `config_CPFEM_defaults.yaml <https://github.com/stabix/stabix/blob/master/yaml_config_files/config_CPFEM_defaults.yaml>`_
    `GBinc <https://github.com/stabix/stabix/blob/master/gui_gbinc/A_gui_gbinc.m>`_, "Calculation of grain boundaries inclination." 
    
 .. figure:: ./_pictures/GUIs/all_GUIs.png
@@ -59,20 +59,20 @@ The YAML configuration files
 
 *"YAML is a human friendly data serialization standard for all programming languages."*
 
-Default YAML configuration files, stored in the folder `YAML_config_files <https://github.com/stabix/stabix/tree/master/YAML_config_files>`_, are loaded automatically to set the GUis :
+Default YAML configuration files, stored in the folder `yaml_config_files <https://github.com/stabix/stabix/tree/master/yaml_config_files>`_, are loaded automatically to set the GUis :
 
-* `config.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config.yaml>`_
-* `config_CPFEM_defaults.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config_CPFEM_defaults.yaml>`_
-* `config_CPFEM_material_defaults.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config_CPFEM_material_defaults.yaml>`_
-* `config_CPFEM_materialA_defaults.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config_CPFEM_materialA_defaults.yaml>`_
-* `config_CPFEM_materialB_defaults.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config_CPFEM_materialB_defaults.yaml>`_
-* `config_gui_EBSDmap_defaults.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config_gui_EBSDmap_defaults.yaml>`_
-* `config_gui_BX_defaults.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config_gui_BX_defaults.yaml>`_
-* `config_gui_SX_defaults.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config_gui_SX_defaults.yaml>`_
-* `config_mesh_BX_defaults.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config_mesh_BX_defaults.yaml>`_
-* `config_mesh_SX_defaults.yaml <https://github.com/stabix/stabix/blob/master/YAML_config_files/config_mesh_SX_defaults.yaml>`_
+* `config.yaml <https://github.com/stabix/stabix/blob/master/yaml_config_files/config.yaml>`_
+* `config_CPFEM_defaults.yaml <https://github.com/stabix/stabix/blob/master/yaml_config_files/config_CPFEM_defaults.yaml>`_
+* `config_CPFEM_material_defaults.yaml <https://github.com/stabix/stabix/blob/master/yaml_config_files/config_CPFEM_material_defaults.yaml>`_
+* `config_CPFEM_materialA_defaults.yaml <https://github.com/stabix/stabix/blob/master/yaml_config_files/config_CPFEM_materialA_defaults.yaml>`_
+* `config_CPFEM_materialB_defaults.yaml <https://github.com/stabix/stabix/blob/master/yaml_config_files/config_CPFEM_materialB_defaults.yaml>`_
+* `config_gui_EBSDmap_defaults.yaml <https://github.com/stabix/stabix/blob/master/yaml_config_files/config_gui_EBSDmap_defaults.yaml>`_
+* `config_gui_BX_defaults.yaml <https://github.com/stabix/stabix/blob/master/yaml_config_files/config_gui_BX_defaults.yaml>`_
+* `config_gui_SX_defaults.yaml <https://github.com/stabix/stabix/blob/master/yaml_config_files/config_gui_SX_defaults.yaml>`_
+* `config_mesh_BX_defaults.yaml <https://github.com/stabix/stabix/blob/master/yaml_config_files/config_mesh_BX_defaults.yaml>`_
+* `config_mesh_SX_defaults.yaml <https://github.com/stabix/stabix/blob/master/yaml_config_files/config_mesh_SX_defaults.yaml>`_
    
-You have to set your own YAML configuration files, by following instructions given in this `README <https://github.com/stabix/stabix/blob/master/YAML_config_files/README.txt>`_.
+You have to set your own YAML configuration files, by following instructions given in this `README <https://github.com/stabix/stabix/blob/master/yaml_config_files/README.txt>`_.
 
 .. warning::
     If you create your own YAML configuration files after running STABiX, you have to run again the path_management.m |matlab| function.
