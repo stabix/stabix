@@ -15,19 +15,22 @@ if nargin < 1
     flagEBSDdata = 0;
 end
 
-if flagEBSDdata   
-    %% Orientation of Grains
-    figure('Name', 'EBSDmap'); hold on;
-    oM = ipdfHSVOrientationMapping(ebsdData);
-    plot(ebsdData,oM.orientation2color(ebsdData.orientations))
-    
-    %% Phase
-    figure('Name', 'Phase'); hold on;
-    plot(ebsdData, 'property', 'phase');
-    
-    %% Plot Inverse Pole Figure
-    mtex_plotIPF(ebsdData.orientations);
-    
+if flagEBSDdata
+    if max(ebsdData.phase) == 1
+        %% Orientation of Grains
+        figure('Name', 'EBSDmap'); hold on;
+        oM = ipdfHSVOrientationMapping(ebsdData);
+        plot(ebsdData,oM.orientation2color(ebsdData.orientations))
+        
+        %% Phase
+        figure('Name', 'Phase'); hold on;
+        plot(ebsdData, 'property', 'phase');
+        
+        %% Plot Inverse Pole Figure
+        mtex_plotIPF(ebsdData.orientations);
+    else
+        display('Only permitted for a single phase!');
+    end
 end
 
 end
