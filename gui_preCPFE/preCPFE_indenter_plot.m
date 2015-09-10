@@ -68,6 +68,8 @@ elseif strcmp(gui.indenter_type, 'AFM') == 1
         guidata(gcf, gui);
         file_AFM = preCPFE_load_AFM_indenter;
         gui = guidata(gcf);
+    else
+        file_AFM = 1;
     end
     
     if file_AFM
