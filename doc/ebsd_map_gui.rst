@@ -45,8 +45,8 @@ grains boundaries in order to speed up calculations and plots.
    *Figure 2 : Screenshot of the EBSD map GUI with an EBSD map of near alpha phase
    Ti alloy a) before smoothing and b) after smoothing.*
 
-  The |matlab| function used to smooth GBs is :
-  `interface_map_GB_segments_opti.m <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/interface_map_GB_segments_opti.m>`_
+The |matlab| function used to smooth GBs is :
+`interface_map_GB_segments_opti.m <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/interface_map_GB_segments_opti.m>`_
 
 .. _misorientation_angle:
 
