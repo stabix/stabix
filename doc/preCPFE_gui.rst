@@ -179,7 +179,7 @@ of the *Abaqus .inp* file.
 AFM topography
 ***************
 
-The topography from an AFM measurement has to be saved into a .txt file in the *Gwyddion ASCII* format.
+The topography from an Atomic Force Microscopy (AFM) measurement has to be saved into a .txt file in the *Gwyddion ASCII* format.
 
 The |matlab| function used to load and read Gwyddion file is : 
 `read_gwyddion_ascii.m <https://github.com/stabix/stabix/blob/master/gwyddion/read_gwyddion_ascii.m>`_

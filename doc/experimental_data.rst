@@ -62,7 +62,10 @@ Reconstructed Boundaries File
 
 .. note::
     Reconstructed boundary methodology is only applied to data collected on a hexagonal grid.
-    It is possible to convert a square grid into an hexagonal grid in TSL-OIM software.
+    Nevertheless, it is possible to convert a square grid into an hexagonal grid in TSL-OIM software.
+
+.. warning::
+    It is not possible to export a "Reconstructed Boundaries File", containing "opened" grain boundaries.
 
 Example of "Reconstructed Boundary File": `MPIE_cpTi_reconstructed_boundaries_2013.txt
 <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/ebsd_dataExamples/MPIE_cpTi_reconstructed_boundaries_2013.txt>`_
