@@ -25,13 +25,14 @@ SCRSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCRSHOT_NUM);
 % % Load and rotate Berkovich indenter
 set(gui.handles.indenter.pm_indenter, 'Value', 2);
 preCPFE_set_indenter;
-for angle = 0:6:360
+for angle = 0:18:360 % 20 screenshots
     set(gui.handles.indenter.rotate_loaded_indenter, 'Value', angle);
     preCPFE_indentation_setting_BX;
     SCRSHOT_NUM = screenshot_function(SCREENSHOT, SCREENSHOT_DIR, SCRSHOT_NUM);
 end
 
-% Increase of mesh level
+% Increase of mesh level with spherical indenter
+set(gui.handles.indenter.pm_indenter, 'Value', 1);
 for ii = 1:1:6
     preCPFE_mesh_level(0.1);
     preCPFE_indentation_setting_BX;
