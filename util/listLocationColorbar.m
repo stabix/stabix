@@ -1,7 +1,7 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function listLocation = listLocation
+function list_Location = listLocationColorbar
 
-listLocation = {...
+list_Location = {...
     'North'; ... % Top of axes	Horizontal
     'South'; ... % Bottom of axes	Horizontal
     'East'; ... % Right side of axes	Vertical
