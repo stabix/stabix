@@ -15,8 +15,8 @@ fem_solvers:
     - Mentat_2012
     - Mentat_2010
     - Mentat_2008
-    - Abaqus_2012
     - Abaqus_2014
+    - Abaqus_2012
 
 # the FEM solvers that you want to use, e.g. Mentat2012 or Mentat2013
 fem_solver_used: Mentat_2013.1
