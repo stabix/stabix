@@ -24,6 +24,9 @@ gui = guidata(gcf);
 
 gui.flag.flag_lattice = 1;
 
+%% Set LaTeX interpreter
+LaTeX_flag = get(gui.handles.latex, 'Value');
+
 %% Refresh time/date
 set(gui.handles.date_str_interface,'String', timestamp_make);
 
@@ -372,12 +375,22 @@ if gui.flag.flag_lattice == 1
                 set(get(Colorbargb, 'xlabel'), ...
                     'String', Colorbar_title, ...
                     'Fontsize', fontsize_axis);
+                if LaTeX_flag
+                    set(get(Colorbargb, 'xlabel'), 'Interpreter', 'latex');
+                else
+                    set(get(Colorbargb, 'xlabel'), 'Interpreter', 'none');
+                end
             elseif location_num == 3 || location_num == 4 || ...
                     location_num == 7 || location_num == 8
                 set(Colorbargb, 'YTick', bins);
                 set(get(Colorbargb, 'ylabel'), ...
                     'String', Colorbar_title, ...
                     'Fontsize', fontsize_axis);
+                if LaTeX_flag
+                    set(get(Colorbargb, 'ylabel'), 'Interpreter', 'latex');
+                else
+                    set(get(Colorbargb, 'ylabel'), 'Interpreter', 'none');
+                end
             end
             set(Colorbargb, 'Location', location_str{:});
             
@@ -413,7 +426,11 @@ if gui.flag.flag_lattice == 1
                 end
             end
             slip_color = cell2mat(get_slip_color(structure_legend, 100));
-            slip_legend = get_slip_legend(structure_legend, 100);
+            if LaTeX_flag
+                slip_legend = get_slip_legend_latex(structure_legend, 100);
+            else
+                slip_legend = get_slip_legend(structure_legend, 100);
+            end
             h_slip = zeros(1,length(slip_color));
             for ii = 1:length(slip_color)
                 h_slip(ii) = plot(0,0, 'Color', ...
@@ -422,6 +439,11 @@ if gui.flag.flag_lattice == 1
             h_slip_legend = legend(h_slip, slip_legend);
             set(h_slip_legend, 'Visible', 'on', 'Location', 'SouthWest');
             set(h_slip, 'Visible', 'off');
+            if LaTeX_flag
+                set(h_slip_legend, 'Interpreter', 'latex');
+            else
+                set(h_slip_legend, 'Interpreter', 'none');
+            end
         else
             legend('off'); legend('hide');
         end
@@ -462,11 +484,18 @@ if gui.flag.flag_lattice == 1
     %% Get unit of EBSD map
     gui.config_map.unit_string = ...
         get_value_popupmenu(gui.handles.pm_unit, listLengthUnit);
-    xlabel(strcat('x axis - (',gui.config_map.unit_string{:},')'), ...
+    h_xLabel = xlabel(strcat('x axis - (',gui.config_map.unit_string{:},')'), ...
         'fontsize', fontsize_axis);
-    ylabel(strcat('y axis - (',gui.config_map.unit_string{:},')'), ...
+    h_yLabel = ylabel(strcat('y axis - (',gui.config_map.unit_string{:},')'), ...
         'fontsize', fontsize_axis);
     set(gca, 'fontsize', fontsize_axis, 'color', 'w');
+    if LaTeX_flag
+        set(h_xLabel, 'Interpreter', 'latex');
+        set(h_yLabel, 'Interpreter', 'latex');
+    else
+        set(h_xLabel, 'Interpreter', 'none');
+        set(h_yLabel, 'Interpreter', 'none');
+    end
     
     %% Set flags
     pmslips = [gui.handles.pmlistslips1; gui.handles.pmlistslips2];
