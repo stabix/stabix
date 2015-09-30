@@ -57,9 +57,23 @@ set(gca,...
     'ytick',         tick_y,...
     'ticklength',    [0 0]);
 
-xlabel(['Grain A - #', num2str(gui.GB.GrainA)]);
-ylabel(['Grain B - #', num2str(gui.GB.GrainB)]);
+if gui.flag.LaTeX_flag
+    str_Ylabel = ['Grain A - \#', num2str(gui.GB.GrainA)];
+    str_Xlabel = ['Grain B - \#', num2str(gui.GB.GrainB)];
+else
+    str_Ylabel = ['Grain A - #', num2str(gui.GB.GrainA)];
+    str_Xlabel = ['Grain B - #', num2str(gui.GB.GrainB)];
+end
+
+Y_Label = ylabel(str_Ylabel);
+X_Label = xlabel(str_Xlabel);
 colorbar;
+
+if gui.flag.LaTeX_flag
+    set([X_Label Y_Label], 'interpreter', 'latex');
+else
+    set([X_Label Y_Label], 'interpreter', 'none');
+end
 
 guidata(gcf, gui);
 

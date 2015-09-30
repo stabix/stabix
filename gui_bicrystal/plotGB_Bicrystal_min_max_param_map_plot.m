@@ -34,30 +34,56 @@ textcolors = repmat(param_bc(:) < midvalue,1,3);
 set(gui.handles.hstrings,{'color'}, num2cell(textcolors, 2));
 
 if strcmp(gui.GB.Phase_A, 'hcp') == 1
-    gui.handles.legend_x = ...
-        {'bas','pri1<a>','pri2<a>','pyr1<a>','pyr1<a+c>','pyr2<a+c>'};
-    tick_x   = 1:6;
+    if gui.flag.LaTeX_flag
+        gui.handles.legend_x = ...
+            {'bas','pri1$<a>$','pri2$<a>$','pyr1$<a>$','pyr1$<a+c>$','pyr2$<a+c>$'};
+    else
+        gui.handles.legend_x = ...
+            {'bas','pri1<a>','pri2<a>','pyr1<a>','pyr1<a+c>','pyr2<a+c>'};
+    end
+    tick_x = 1:6;
 end
 if strcmp(gui.GB.Phase_B, 'hcp') == 1
-    gui.handles.legend_y = ...
-        {'bas','pri1<a>','pri2<a>','pyr1<a>','pyr1<a+c>','pyr2<a+c>'};
-    tick_y   = 1:6;
+    if gui.flag.LaTeX_flag
+        gui.handles.legend_y = ...
+            {'bas','pri1$<a>$','pri2$<a>$','pyr1$<a>$','pyr1$<a+c>$','pyr2$<a+c>$'};
+    else
+        gui.handles.legend_y = ...
+            {'bas','pri1<a>','pri2<a>','pyr1<a>','pyr1<a+c>','pyr2<a+c>'};
+    end
+    tick_y = 1:6;
 end
 if strcmp(gui.GB.Phase_A, 'bcc') == 1
-    gui.handles.legend_x = {'{110}<111>','{112}<111>','{123}<111>'};
-    tick_x   = 1:3;
+    if gui.flag.LaTeX_flag
+        gui.handles.legend_x = {'$\{110\}<111>$','$\{112\}<111>$','$\{123\}<111>$'};
+    else
+        gui.handles.legend_x = {'{110}<111>','{112}<111>','{123}<111>'};
+    end
+    tick_x = 1:3;
 end
 if  strcmp(gui.GB.Phase_B, 'bcc') == 1
-    gui.handles.legend_y = {'{110}<111>','{112}<111>','{123}<111>'};
-    tick_y   = 1:3;
+    if gui.flag.LaTeX_flag
+        gui.handles.legend_y = {'$\{110\}<111>$','$\{112\}<111>$','$\{123\}<111>$'};
+    else
+        gui.handles.legend_y = {'{110}<111>','{112}<111>','{123}<111>'};
+    end
+    tick_y = 1:3;
 end
 if strcmp(gui.GB.Phase_A, 'fcc') == 1
-    gui.handles.legend_x = {'{111}<110>'};
-    tick_x   = 1:1;
+    if gui.flag.LaTeX_flag
+        gui.handles.legend_x = {'$\{111\}<110>$'};
+    else
+        gui.handles.legend_x = {'{111}<110>'};
+    end
+    tick_x = 1:1;
 end
 if strcmp(gui.GB.Phase_B, 'fcc') == 1
-    gui.handles.legend_y = {'{111}<110>'};
-    tick_y   = 1:1;
+    if gui.flag.LaTeX_flag
+        gui.handles.legend_y = {'$\{111\}<110>$'};
+    else
+        gui.handles.legend_y = {'{111}<110>'};
+    end
+    tick_y = 1:1;
 end
 
 % change the axes tick marks and tick labels
@@ -72,9 +98,27 @@ set(gca,...
 
 %rotateticklabel(gca,45);
 
-ylabel(['Grain A - #', num2str(gui.GB.GrainA)]);
-xlabel(['Grain B - #', num2str(gui.GB.GrainB)]);
+if gui.flag.LaTeX_flag
+    str_Ylabel = ['Grain A - \#', num2str(gui.GB.GrainA)];
+    str_Xlabel = ['Grain B - \#', num2str(gui.GB.GrainB)];
+else
+    str_Ylabel = ['Grain A - #', num2str(gui.GB.GrainA)];
+    str_Xlabel = ['Grain B - #', num2str(gui.GB.GrainB)];
+end
+
+Y_Label = ylabel(str_Ylabel);
+X_Label = xlabel(str_Xlabel);
 colorbar ('Location', 'SouthOutside');
+
+if gui.flag.LaTeX_flag
+    set([X_Label Y_Label], 'interpreter', 'latex');
+    set(gca, 'TickLabelInterpreter', 'latex');
+else
+    set([X_Label Y_Label], 'interpreter', 'none');
+    set(gca, 'TickLabelInterpreter', 'none');
+end
+
+%gui.handles.legend_x gui.handles.legend_y
 
 guidata(gcf, gui);
 

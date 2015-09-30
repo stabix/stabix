@@ -11,11 +11,19 @@ function plotGB_Bicrystal_gbax_title_and_text(no_slip, ...
 %% Set the encapsulation of data
 gui = guidata(gcf);
 
-idgb  = sprintf('GB #%i', gui.GB.GB_Number);
-idgra = sprintf('gr.A #%i', gui.GB.GrainA);
-idgrb = sprintf('gr.B #%i', gui.GB.GrainB);
-idmis = sprintf('mis = %.1f°', gui.GB.misorientation);
-idcaxis_mis = sprintf('c-mis = %.1f°', gui.GB.caxis_misor);
+if gui.flag.LaTeX_flag
+    idgb  = sprintf('GB \\#%i', gui.GB.GB_Number);
+    idgra = sprintf('gr.A \\#%i', gui.GB.GrainA);
+    idgrb = sprintf('gr.B \\#%i', gui.GB.GrainB);
+    idmis = sprintf('mis = %.1f$^\\circ$', gui.GB.misorientation);
+    idcaxis_mis = sprintf('c-mis = %.1f$^\\circ$', gui.GB.caxis_misor);
+else
+    idgb  = sprintf('GB #%i', gui.GB.GB_Number);
+    idgra = sprintf('gr.A #%i', gui.GB.GrainA);
+    idgrb = sprintf('gr.B #%i', gui.GB.GrainB);
+    idmis = sprintf('mis = %.1f°', gui.GB.misorientation);
+    idcaxis_mis = sprintf('c-mis = %.1f°', gui.GB.caxis_misor);
+end
 
 %% Selection of m' value
 valcase = get(gui.handles.pmchoicecase, 'Value');
@@ -111,23 +119,29 @@ end
 
 %% New title of the plot
 if valcase ~= 30
-    title(sprintf('%s | %s | %s | %s | %s | %s ', ...
-        idgb, idgra, idgrb, idmis, idcaxis_mis, idm),...
-        'color', [0 0 0],'BackgroundColor', [1 1 1]);
+    title_String = sprintf('%s | %s | %s | %s | %s | %s ', ...
+        idgb, idgra, idgrb, idmis, idcaxis_mis, idm);
 else
-    title(sprintf('%s | %s | %s | %s ', ...
-        idgb, idmis, idcaxis_mis, idm),...
-        'color', [0 0 0],'BackgroundColor', [1 1 1]);
+    title_String = sprintf('%s | %s | %s | %s ', ...
+        idgb, idmis, idcaxis_mis, idm);
 end
+
+hTitle = title(char(title_String), 'color', [0 0 0],'BackgroundColor', [1 1 1]);
 
 del_if_handle({'h_lblA', 'h_lblB'})
 
-text(shiftXYZA(1)-gui.GB_geometry.gb_vec(1), ...
+h_txt1 = text(shiftXYZA(1)-gui.GB_geometry.gb_vec(1), ...
     shiftXYZA(2)-gui.GB_geometry.gb_vec(2), -2.5,...
     idgra, 'HorizontalAlignment', 'center');
 
-text(shiftXYZB(1)-gui.GB_geometry.gb_vec(1), ...
+h_txt2 = text(shiftXYZB(1)-gui.GB_geometry.gb_vec(1), ...
     shiftXYZB(2)-gui.GB_geometry.gb_vec(2), -2.5,...
     idgrb, 'HorizontalAlignment', 'center');
+
+if gui.flag.LaTeX_flag
+    set([hTitle h_txt1 h_txt2], 'interpreter', 'latex');
+else
+    set([hTitle h_txt1 h_txt2], 'interpreter', 'none');
+end
 
 end

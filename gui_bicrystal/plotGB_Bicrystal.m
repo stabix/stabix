@@ -13,6 +13,8 @@ else
     set(gui.handles.pmlegend_location, 'Visible', 'off');
 end
 
+gui.flag.LaTeX_flag = get(gui.handles.latex, 'Value');
+
 %% Set of plot type
 % Get value of popupmenu to plot m' value (max, min...?)
 valcase = get(gui.handles.pmchoicecase, 'Value');
@@ -192,6 +194,8 @@ if ~gui.flag.error
     view(old_az, old_el);
     
     %% Plotting of slip transmission parameter map
+    LaTeX_flag = get(gui.handles.latex, 'Value');
+    
     if ~no_slip
         subplot(4, 2, [7 8], 'Position', [0.25, 0, 0.65, 0.2]);
         axis fill;
@@ -261,6 +265,11 @@ if ~gui.flag.error
                 axis off;
         end
         set(handle_title, 'color', [0 0 0], 'BackgroundColor', [1 1 1]);
+        if gui.flag.LaTeX_flag
+            set(handle_title, 'interpreter', 'latex');
+        else
+            set(handle_title, 'interpreter', 'none');
+        end
     else
         subplot(4,2,7, 'replace');
         axis off;
