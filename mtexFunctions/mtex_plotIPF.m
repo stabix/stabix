@@ -19,40 +19,52 @@ if nargin < 1
     no_orientation = 1;
 end
 
+%% Specify how to align the x-axis in plots
+switch(xaxis_alignement)
+    case {1}
+        plotx2east; %set the default plot direction of the xaxis
+    case {2}
+        plotx2north; %set the default plot direction of the xaxis
+    case {3}
+        plotx2south; %set the default plot direction of the xaxis
+    case {4}
+        plotx2west; %set the default plot direction of the xaxis
+    case {5}
+        plotzIntoPlane; %set the default plot direction of the zaxis
+    case {6}
+        plotzOutOfPlane; %set the default plot direction of the zaxis
+end
+
+%% Plot IPF for the bicrystal
+v = vector3d(0, 0, 1); %zvector
+figure('Name', 'IPF'); hold on;
+
 if ~no_orientation
-    if max(ebsdData.phase) == 1
-        %% Specify how to align the x-axis in plots
-        switch(xaxis_alignement)
-            case {1}
-                plotx2east; %set the default plot direction of the xaxis
-            case {2}
-                plotx2north; %set the default plot direction of the xaxis
-            case {3}
-                plotx2south; %set the default plot direction of the xaxis
-            case {4}
-                plotx2west; %set the default plot direction of the xaxis
-            case {5}
-                plotzIntoPlane; %set the default plot direction of the zaxis
-            case {6}
-                plotzOutOfPlane; %set the default plot direction of the zaxis
+    if isfield(ebsdData, 'phase') && isfield (ebsdData, 'orientations')
+        if max(ebsdData.phase) == 1
+            oM = ipdfHSVOrientationMapping(ebsdData.orientations);
+            plot(oM); hold on;
+            
+            plotIPDF(ebsdData.orientations, v, ...
+                'markerSize', 5, ...
+                'points', length(ebsdData.orientations), ...
+                'marker', 'o', ...
+                'markerfacecolor', 'none', ...
+                'markeredgecolor', 'k');
+        else
+            display('Only permitted for a single phase!');
         end
-        
+    else
         %% Plot IPF for the bicrystal
-        v = vector3d(0, 0, 1); %zvector
-        figure('Name', 'IPF'); hold on;
-        
-        oM = ipdfHSVOrientationMapping(ebsdData.orientations);
+        oM = ipdfHSVOrientationMapping(ebsdData);
         plot(oM); hold on;
         
-        plotIPDF(ebsdData.orientations, v, ...
+        plotIPDF(ebsdData, v, ...
             'markerSize', 5, ...
-            'points', length(ebsdData.orientations), ...
+            'points', length(ebsdData), ...
             'marker', 'o', ...
             'markerfacecolor', 'none', ...
             'markeredgecolor', 'k');
-        
-    else
-        display('Only permitted for a single phase!');
     end
 end
 end
