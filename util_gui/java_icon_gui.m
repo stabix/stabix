@@ -7,7 +7,7 @@ function java_icon_gui(gui_handle, logo, varargin)
 % author: d.mercier@mpie.de
 
 if nargin < 2
-    logo = fullfile('doc', '_pictures', 'icon_github.png');
+    logo = fullfile('doc', '_pictures', 'icon.png');
 end
 
 if nargin < 1
