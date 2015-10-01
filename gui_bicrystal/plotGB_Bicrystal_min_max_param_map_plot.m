@@ -118,8 +118,6 @@ else
     set(gca, 'TickLabelInterpreter', 'none');
 end
 
-%gui.handles.legend_x gui.handles.legend_y
-
 guidata(gcf, gui);
 
 end

@@ -194,8 +194,6 @@ if ~gui.flag.error
     view(old_az, old_el);
     
     %% Plotting of slip transmission parameter map
-    LaTeX_flag = get(gui.handles.latex, 'Value');
-    
     if ~no_slip
         subplot(4, 2, [7 8], 'Position', [0.25, 0, 0.65, 0.2]);
         axis fill;
@@ -205,12 +203,20 @@ if ~gui.flag.error
                 param2plot =  gui.calculations.mprime_val_bc_all;
                 param2plot_title = 'm_prime';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,2);
-                handle_title = title('Maximum m'' values');
+                if gui.flag.LaTeX_flag
+                    handle_title = title('Maximum $m''$ values');
+                else
+                    handle_title = title('Maximum m'' values');
+                end
             case {4, 5, 6}
                 param2plot =  gui.calculations.mprime_val_bc_all;
                 param2plot_title = 'm_prime';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,1);
-                handle_title = title('Minimum m'' values');
+                if gui.flag.LaTeX_flag
+                    handle_title = title('Minimum $m''$ values');
+                else
+                    handle_title = title('Minimum m'' values');
+                end
             case {8, 9, 10, 14}
                 param2plot = ...
                     gui.calculations.residual_Burgers_vector_val_bc_all;
@@ -229,32 +235,56 @@ if ~gui.flag.error
                 param2plot = gui.calculations.n_fact_val_bc_all;
                 param2plot_title = 'N_factor';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,2);
-                handle_title = title('Maximum N-factor values');
+                if gui.flag.LaTeX_flag
+                    handle_title = title('Maximum $N$-factor values');
+                else
+                    handle_title = title('Maximum N-factor values');
+                end
             case {18, 19, 20}
                 param2plot = gui.calculations.n_fact_val_bc_all;
                 param2plot_title = 'N_factor';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,1);
-                handle_title = title('Minimum N-factor values');
+                if gui.flag.LaTeX_flag
+                    handle_title = title('Minimum $N$-factor values');
+                else
+                    handle_title = title('Minimum N-factor values');
+                end
             case {22, 23, 24, 28}
                 param2plot = gui.calculations.LRB_val_bc_all;
                 param2plot_title = 'LRB_parameter';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,2);
-                handle_title = title('Maximum LRB parameter values');
+                if gui.flag.LaTeX_flag
+                    handle_title = title('Maximum $LRB$-factor values');
+                else
+                    handle_title = title('Maximum LRB-factor values');
+                end
             case {25, 26, 27}
                 param2plot = gui.calculations.LRB_val_bc_all;
                 param2plot_title = 'LRB_parameter';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,1);
-                handle_title = title('Minimum LRB parameter values');
+                if gui.flag.LaTeX_flag
+                    handle_title = title('Minimum $LRB$-factor values');
+                else
+                    handle_title = title('Minimum LRB-factor values');
+                end
             case {29, 30, 31, 35}
                 param2plot = gui.calculations.lambda_val_bc_all;
                 param2plot_title = 'lambda_parameter';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,2);
-                handle_title = title('Maximum lambda parameter values');
+                if gui.flag.LaTeX_flag
+                    handle_title = title('Maximum $\lambda$ values');
+                else
+                    handle_title = title('Maximum lambda values');
+                end
             case {32, 33, 34}
                 param2plot = gui.calculations.lambda_val_bc_all;
                 param2plot_title = 'lambda_parameter';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,1);
-                handle_title = title('Minimum lambda parameter values');
+                if gui.flag.LaTeX_flag
+                    handle_title = title('Minimum $\lambda$ values');
+                else
+                    handle_title = title('Minimum lambda values');
+                end
             case {36}
                 param2plot = gui.calculations.GB_Schmid_Factor_max;
                 param2plot_title = 'GB Schmid factor';
