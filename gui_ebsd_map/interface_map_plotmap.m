@@ -193,35 +193,67 @@ if gui.flag.flag_lattice == 1
     if gui.flag.pmparam2plot_value4GB ~= 1
         
         if gui.flag.pmparam2plot_value4GB == 2  % m' max
-            Colorbar_title = 'Maximum m'' values';
+            if LaTeX_flag
+                Colorbar_title = 'Maximum $m''$ values';
+            else
+                Colorbar_title = 'Maximum m'' values';
+            end
             gui.calculations.func2plot = [gui.results.mp_max];
             
         elseif gui.flag.pmparam2plot_value4GB == 3  % m' min
-            Colorbar_title = 'Minimum m'' values';
+            if LaTeX_flag
+                Colorbar_title = 'Minimum $m''$ values';
+            else
+                Colorbar_title = 'Minimum m'' values';
+            end
             gui.calculations.func2plot = [gui.results.mp_min];
             
         elseif gui.flag.pmparam2plot_value4GB == 4 % m' with slips with highest Generalized Schmid Factor
-            Colorbar_title = 'm'' with highest Generalized Schmid Factor';
+            if LaTeX_flag
+                Colorbar_title = '$m''$ with highest Generalized Schmid Factor';
+            else
+                Colorbar_title = 'm'' with highest Generalized Schmid Factor';
+            end
             gui.calculations.func2plot = [gui.results.mp_SFmax];
             
         elseif gui.flag.pmparam2plot_value4GB == 5 % m' with slips with highest Resolved Shear Stress
-            Colorbar_title = 'm'' with highest Resolved Shear Stress';
+            if LaTeX_flag
+                Colorbar_title = '$m''$ with highest Resolved Shear Stress';
+            else
+                Colorbar_title = 'm'' with highest Resolved Shear Stress';
+            end
             gui.calculations.func2plot = [gui.results.mp_RSSmax];
             
         elseif gui.flag.pmparam2plot_value4GB == 6  % only highest m' max
-            Colorbar_title = 'Maximum m'' values (-10%)';
+            if LaTeX_flag
+                Colorbar_title = 'Maximum $m''$ values ($-10\%$)';
+            else
+                Colorbar_title = 'Maximum m'' values (-10%)';
+            end
             gui.calculations.func2plot = [gui.results.mp_max];
             
         elseif gui.flag.pmparam2plot_value4GB == 7  % only lowest m' min
-            Colorbar_title = 'Minimum m'' values (+10%)';
+            if LaTeX_flag
+                Colorbar_title = 'Minimum $m''$ values ($+10\%$)';
+            else
+                Colorbar_title = 'Minimum m'' values (+10%)';
+            end
             gui.calculations.func2plot = [gui.results.mp_min];
             
         elseif gui.flag.pmparam2plot_value4GB == 8 % Misorientation
-            Colorbar_title = 'Misorientation (°)';
+            if LaTeX_flag
+                Colorbar_title = 'Misorientation ($^\circ$)';
+            else
+                Colorbar_title = 'Misorientation (°)';
+            end
             gui.calculations.func2plot = [gui.results.misor];
             
         elseif gui.flag.pmparam2plot_value4GB == 9 % C-axis Misorientation
-            Colorbar_title = 'C-axis Misorientation (°)';
+            if LaTeX_flag
+                Colorbar_title = 'C-axis Misorientation ($^\circ$)';
+            else
+                Colorbar_title = 'C-axis Misorientation (°)';
+            end
             gui.calculations.func2plot = [gui.results.caxis_misor];
             
         elseif gui.flag.pmparam2plot_value4GB == 10  % Maximum residual Burgers vector
@@ -233,19 +265,35 @@ if gui.flag.flag_lattice == 1
             gui.calculations.func2plot = [gui.results.rbv_min];
             
         elseif gui.flag.pmparam2plot_value4GB == 12 % N-factor
-            Colorbar_title = 'Maximum N-factor';
+            if LaTeX_flag
+                Colorbar_title = 'Maximum $N$-factor';
+            else
+                Colorbar_title = 'Maximum N-factor';
+            end
             gui.calculations.func2plot = [gui.results.n_factor_max];
             
         elseif gui.flag.pmparam2plot_value4GB == 13 % N-factor
-            Colorbar_title = 'Minimum N-factor';
+            if LaTeX_flag
+                Colorbar_title = 'Minimum $N$-factor';
+            else
+                Colorbar_title = 'Minimum N-factor';
+            end
             gui.calculations.func2plot = [gui.results.n_factor_min];
             
         elseif gui.flag.pmparam2plot_value4GB == 14 % lambda
-            Colorbar_title = 'Maximum lambda';
+            if LaTeX_flag
+                Colorbar_title = 'Maximum $\lambda$';
+            else
+                Colorbar_title = 'Maximum lambda';
+            end
             gui.calculations.func2plot = [gui.results.lambda_max];
             
         elseif gui.flag.pmparam2plot_value4GB == 15 % lambda
-            Colorbar_title = 'Minimum lambda';
+            if LaTeX_flag
+                Colorbar_title = 'Minimum $\lambda$';
+            else
+                Colorbar_title = 'Minimum lambda';
+            end
             gui.calculations.func2plot = [gui.results.lambda_min];
             
         elseif gui.flag.pmparam2plot_value4GB == 16 % GB Schmid factor
@@ -484,18 +532,18 @@ if gui.flag.flag_lattice == 1
     %% Get unit of EBSD map
     gui.config_map.unit_string = ...
         get_value_popupmenu(gui.handles.pm_unit, listLengthUnit);
-    h_Label_unit = strcat('(',gui.config_map.unit_string{:},')');
+    h_Label_unit = gui.config_map.unit_string{:};
     
     if LaTeX_flag && strcmp(gui.config_map.unit_string, 'nm')
-        h_Label_unit = '($nm$)';
+        h_Label_unit = '$nm$';
     elseif LaTeX_flag && strcmp(gui.config_map.unit_string, 'micron')
-        h_Label_unit = '($\mu m$)';
+        h_Label_unit = '$\mu m$';
     elseif LaTeX_flag && strcmp(gui.config_map.unit_string, 'mm')
-        h_Label_unit = '($mm$)';
+        h_Label_unit = '$mm$';
     end
     
-    h_xLabel = xlabel(strcat('x axis - ', h_Label_unit));
-    h_yLabel = ylabel(strcat('y axis - ', h_Label_unit));
+    h_xLabel = xlabel(strcat('x axis (', h_Label_unit, ')'));
+    h_yLabel = ylabel(strcat('y axis (', h_Label_unit, ')'));
     
     set([h_xLabel, h_yLabel], 'fontsize', fontsize_axis);
     set(gca, 'fontsize', fontsize_axis, 'color', 'w');
