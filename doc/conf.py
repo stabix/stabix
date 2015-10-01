@@ -96,13 +96,18 @@ pygments_style = 'sphinx'
 # If true, keep warnings as "system message" paragraphs in the built documents.
 #keep_warnings = False
 
+# Numbering of figures, tables...
+numfig = True
+numfig_format = {'figure': 'Figure %s', 'table': 'Table %s', 'code-block': 'Code %s'}
 
 # -- Options for HTML output ----------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 # See http://sphinx-doc.org/theming.html
-html_theme = 'default'
+#html_theme = 'default'
+html_theme = 'classic'
+#html_theme = 'alabaster'
 #html_theme = 'agogo'
 #html_theme =  'traditional'
 #html_theme =  'pyramid'

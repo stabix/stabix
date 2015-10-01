@@ -19,42 +19,22 @@ It is possible to load bicrystal properties (material, phase, Euler angles of bo
     - from the `EBSD map GUI <http://stabix.readthedocs.org/en/latest/ebsd_map_gui.html>`_ (by giving GB's number and pressing the button 'PLOT BICRYSTAL') ;
     - from a `YAML config. bicrystal <https://github.com/stabix/stabix/tree/master/gui_bicrystal/gui_bicrystal_data/kacher_2012/Kacher2012_Fig.12.yaml>`_ (from the menu, by clicking on 'Bicrystal, and 'Load Bicrystal config. file').
 
-.. only:: html
-
-    .. figure:: ./_pictures/GUIs/ebsd2bicrystal.png
-       :scale: 50 %
-       :align: center
-       
-       *Figure 1 : The different steps to set the Bicrystal GUI.*
-
-.. only:: latex
-
-    .. figure:: ./_pictures/GUIs/ebsd2bicrystal.png
-       :scale: 50 %
-       :align: center
-       
-       *The different steps to set the Bicrystal GUI.*
+.. figure:: ./_pictures/GUIs/ebsd2bicrystal.png
+   :scale: 50 %
+   :align: center
+   
+   *The different steps to set the Bicrystal GUI.*
 
 .. _bicrystal_from_map:
 
 Plotting and analyzing a bicrystal
 ------------------------------------
 
-.. only:: html
-
-    .. figure:: ./_pictures/GUIs/BX.png
-       :scale: 40 %
-       :align: center
-       
-       *Figure 2 : Screenshot of the Bicrystal GUI.*
-
-.. only:: latex
-
-    .. figure:: ./_pictures/GUIs/BX.png
-       :scale: 40 %
-       :align: center
-       
-       *Screenshot of the Bicrystal GUI.*
+.. figure:: ./_pictures/GUIs/BX.png
+   :scale: 40 %
+   :align: center
+   
+   *Screenshot of the Bicrystal GUI.*
 
 .. _all_mprime_values:
 
@@ -63,18 +43,8 @@ Distribution of all slip transmission parameters
 
 It is possible to generate a new window, in which all values of the selected slip transmission parameter are plotted in function of selected slip families.
 
-.. only:: html
-
-    .. figure:: ./_pictures/GUIs/all_mprime_values.png
-       :scale: 40 %
-       :align: center
-       
-       *Figure 3 : Screenshot of the distribution of all slip transmission parameters (e.g.: m' parameter for a single phase (HCP) bicrystal).*
-
-.. only:: latex
-
-    .. figure:: ./_pictures/GUIs/all_mprime_values.png
-       :scale: 40 %
-       :align: center
-       
-       *Screenshot of the distribution of all slip transmission parameters (e.g.: m' parameter for a single phase (HCP) bicrystal).*
+.. figure:: ./_pictures/GUIs/all_mprime_values.png
+   :scale: 40 %
+   :align: center
+   
+   *Screenshot of the distribution of all slip transmission parameters (e.g.: m' parameter for a single phase (HCP) bicrystal).*

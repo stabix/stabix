@@ -63,39 +63,21 @@ The grain boundary plane normal :math:`n` can be determined knowing the grain bo
         
 The grain boundary trace angle is obtained through the EBSD measurements (grain boundary endpoints coordinates) and the
 `grain boundary inclination <http://stabix.readthedocs.org/en/latest/gui_gbinc.html>`_ can be assessed
-by a serial polishing (chemical-mechanical polishing or FIB sectioning), either parallel or perpendicular to the surface of the sample (see Figure 2).
+by a serial polishing (chemical-mechanical polishing or FIB sectioning), either parallel or perpendicular to the surface of the sample (see :numref:`gb_inc_calc`).
 
-.. only:: html
+.. figure:: ./_pictures/Schemes_SlipTransmission/bicrystal.png
+   :name: scheme_bicrystal
+   :scale: 50 %
+   :align: center
+   
+   *Schematic of a bicrystal.*
 
-    .. figure:: ./_pictures/Schemes_SlipTransmission/bicrystal.png
-       :scale: 50 %
-       :align: center
-       
-       *Figure 1 : Schematic of a bicrystal.*
-       
-.. only:: latex
-
-    .. figure:: ./_pictures/Schemes_SlipTransmission/bicrystal.png
-       :scale: 50 %
-       :align: center
-       
-       *Schematic of a bicrystal.*
-
-.. only:: html
-
-    .. figure:: ./_pictures/GUIs/gui_gb_inc.png
-       :scale: 50 %
-       :align: center
-       
-       *Figure 2 : Screenshot of the Matlab GUI used to calculate grain boundary inclination.*
-       
-.. only:: latex
-
-    .. figure:: ./_pictures/GUIs/gui_gb_inc.png
-       :scale: 50 %
-       :align: center
-       
-       *Screenshot of the Matlab GUI used to calculate grain boundary inclination.*
+.. figure:: ./_pictures/GUIs/gui_gb_inc.png
+   :name: gb_inc_calc
+   :scale: 50 %
+   :align: center
+   
+   *Screenshot of the Matlab GUI used to calculate grain boundary inclination.*
 
 .. [#Kocks_2000] `U.F. Kocks et al., "Texture and Anisotropy: Preferred Orientations in Polycrystals and Their Effect on Materials Properties." Cambridge University Press (2000). <http://www.cambridge.org/gb/academic/subjects/engineering/materials-science/texture-and-anisotropy-preferred-orientations-polycrystals-and-their-effect-materials-properties>`_
 .. [#Morawiec_2004] `A. Morawiec, "Orientations and Rotations: Computations in Crystallographic Textures.", Springer, 2004. <http://www.springer.com/materials/book/978-3-540-40734-8>`_

@@ -18,27 +18,16 @@ misorientation axis of [-11, -22, -2] is characterized. Dislocation/grain
 boundary interactions are analysed and knowing the incoming system,
 the magnitude of residual dislocation Burgers vector is plotted in function
 of possible outgoing systems. Calculations are reproduced using the |matlab| 
-toolbox and obtained values are compared to Kacher's results (see Figure 1).
+toolbox and obtained values are compared to Kacher's results (see :numref:`kacher2012_barcharts`).
 
-.. only:: html
+.. figure:: ./_pictures/data_from_papers/Kacher2012_barcharts.png
+    :name: kacher2012_barcharts
+    :scale: 40 %
+    :align: center
 
-      .. figure:: ./_pictures/data_from_papers/Kacher2012_barcharts.png
-       :scale: 40 %
-       :align: center
-       
-       *Figure 1 : a) Plot of a bicrystal with a misorientation angle of 36°and misorientation axis of
-       [-11, -22, -2] from Kacher's paper. b) Magnitude of residual Burgers vector given in Kacher's paper
-       compared to values calculated with the Matlab toolbox.*
-
-.. only:: latex
-
-      .. figure:: ./_pictures/data_from_papers/Kacher2012_barcharts.png
-       :scale: 40 %
-       :align: center
-       
-       *a) Plot of a bicrystal with a misorientation angle of 36°and misorientation axis of
-       [-11, -22, -2] from Kacher's paper. b) Magnitude of residual Burgers vector given in Kacher's paper
-       compared to values calculated with the Matlab toolbox.*
+    *a) Plot of a bicrystal with a misorientation angle of 36°and misorientation axis of
+    [-11, -22, -2] from Kacher's paper. b) Magnitude of residual Burgers vector given in Kacher's paper
+    compared to values calculated with the Matlab toolbox.*
 
 Patriarca et al. (2013)
 ........................
@@ -48,25 +37,15 @@ Patriarca et al. analysed the deformation response of a FeCr polycrystal
 (DIC) characterizations [#Patriarca_2013]_. The magnitude of residual
 dislocation Burgers vector is plotted for numerous grain boundaries, knowing
 incoming and outgoing slips. Calculations are reproduced using the |matlab|
-toolbox and results are compared to Patriarca's results (see Figure 2).
+toolbox and results are compared to Patriarca's results (see :numref:`patriarca2013_barcharts_cropped`).
 
-.. only:: html
+.. figure:: ./_pictures/data_from_papers/Patriarca2013_barcharts_cropped.png
+    :name: patriarca2013_barcharts_cropped
+    :scale: 20 %
+    :align: center
 
-  .. figure:: ./_pictures/data_from_papers/Patriarca2013_barcharts_cropped.png
-   :scale: 20 %
-   :align: center
-   
-   *Figure 2 : Magnitude of residual Burgers vector given in Patriarca's paper compared to values
-   calculated with the Matlab toolbox for numerous grain boundaries.*
-
-.. only:: latex
-
-  .. figure:: ./_pictures/data_from_papers/Patriarca2013_barcharts_cropped.png
-   :scale: 20 %
-   :align: center
-   
-   *Magnitude of residual Burgers vector given in Patriarca's paper compared to values
-   calculated with the Matlab toolbox for numerous grain boundaries.*
+    *Magnitude of residual Burgers vector given in Patriarca's paper compared to values
+    calculated with the Matlab toolbox for numerous grain boundaries.*
 
 Kacher and Robertson (2014)
 ............................
@@ -78,27 +57,16 @@ a bicrystal with a misorientation angle of 32° and misorientation axis of
 are analysed and knowing the incoming system, the magnitude of residual
 dislocation Burgers vector is plotted in function of possible outgoing systems.
 Calculations are reproduced using the |matlab| toolbox and obtained values
-are compared to Kacher's results (see Figure 3).
+are compared to Kacher's results (see :numref:`kacher2014_barcharts`).
 
-.. only:: html
+.. figure:: ./_pictures/data_from_papers/Kacher2014_barcharts.png
+    :name: kacher2014_barcharts
+    :scale: 40 %
+    :align: center
 
-  .. figure:: ./_pictures/data_from_papers/Kacher2014_barcharts.png
-   :scale: 40 %
-   :align: center
-   
-   *Figure 3 : a) Plot of a bicrystal with a misorientation angle of 32° and misorientation axis of
-   [1, 5, -6, 16] from Kacher's paper. b) Magnitude of residual Burgers vector given in Kacher's paper
-   compared to values calculated with the Matlab toolbox for the bicrystal #2.*
-
-.. only:: latex
-
-  .. figure:: ./_pictures/data_from_papers/Kacher2014_barcharts.png
-   :scale: 40 %
-   :align: center
-   
-   *a) Plot of a bicrystal with a misorientation angle of 32° and misorientation axis of
-   [1, 5, -6, 16] from Kacher's paper. b) Magnitude of residual Burgers vector given in Kacher's paper
-   compared to values calculated with the Matlab toolbox for the bicrystal #2.*
+    *a) Plot of a bicrystal with a misorientation angle of 32° and misorientation axis of
+    [1, 5, -6, 16] from Kacher's paper. b) Magnitude of residual Burgers vector given in Kacher's paper
+    compared to values calculated with the Matlab toolbox for the bicrystal #2.*
 
 Cui et al. (2014)
 ..................
@@ -111,29 +79,17 @@ are characterized. Dislocation/grain boundary interactions are analysed
 and knowing the incoming system, the magnitude of residual dislocation
 Burgers vector is plotted in function of possible outgoing systems.
 Calculations are reproduced using the |matlab| toolbox and obtained
-values are compared to Cui's results (see Figure 4).
+values are compared to Cui's results (see :numref:`cui2014_barcharts`).
 
-.. only:: html
+.. figure:: ./_pictures/data_from_papers/Cui2014_barcharts.png
+    :name: cui2014_barcharts
+    :scale: 20 %
+    :align: center
 
-  .. figure:: ./_pictures/data_from_papers/Cui2014_barcharts.png
-   :scale: 20 %
-   :align: center
-
-   *Figure 4 : a) Plot of a bicrystal with a misorientation angle of 60° and misorientation axis of
-   [1, 1, -1] from Cui's paper. b) Plot of a bicrystal with a misorientation angle of 40° and
-   misorientation axis of [1, 0, 1] from Cui's paper. c) Magnitude of residual Burgers vector
-   given in Cui's paper compared to values calculated with the Matlab toolbox for the two bicrystals.*
-
-.. only:: latex
-
-  .. figure:: ./_pictures/data_from_papers/Cui2014_barcharts.png
-   :scale: 20 %
-   :align: center
-
-   *a) Plot of a bicrystal with a misorientation angle of 60° and misorientation axis of
-   [1, 1, -1] from Cui's paper. b) Plot of a bicrystal with a misorientation angle of 40° and
-   misorientation axis of [1, 0, 1] from Cui's paper. c) Magnitude of residual Burgers vector
-   given in Cui's paper compared to values calculated with the Matlab toolbox for the two bicrystals.*
+    *a) Plot of a bicrystal with a misorientation angle of 60° and misorientation axis of
+    [1, 1, -1] from Cui's paper. b) Plot of a bicrystal with a misorientation angle of 40° and
+    misorientation axis of [1, 0, 1] from Cui's paper. c) Magnitude of residual Burgers vector
+    given in Cui's paper compared to values calculated with the Matlab toolbox for the two bicrystals.*
 
 m' factor
 ----------
@@ -147,23 +103,14 @@ In this work, many bicrystals are characterized and slip band–grain
 boundary interactions are analyzed in term of stress concentration
 along the slip plane direction. The :math:`m'` factor is used to
 quantify the transmissivity across the GBs and calculations are
-reproduced using the |matlab| toolbox (see Figure 5).
+reproduced using the |matlab| toolbox (see :numref:`guo2014_barcharts_cropped`).
 
-.. only:: html
+.. figure:: ./_pictures/data_from_papers/Guo2014_barcharts_cropped.png
+    :name: guo2014_barcharts_cropped
+    :scale: 20 %
+    :align: center
 
-  .. figure:: ./_pictures/data_from_papers/Guo2014_barcharts_cropped.png
-   :scale: 20 %
-   :align: center
-   
-   *Figure 5 : m' factor values given in Guo's paper compared to values calculated with the Matlab toolbox for 7 different bicrystals.*
-
-.. only:: latex
-
-  .. figure:: ./_pictures/data_from_papers/Guo2014_barcharts_cropped.png
-   :scale: 20 %
-   :align: center
-   
-   *m' factor values given in Guo's paper compared to values calculated with the Matlab toolbox for 7 different bicrystals.*
+    *m' factor values given in Guo's paper compared to values calculated with the Matlab toolbox for 7 different bicrystals.*
 
 .. [#Cui_2014] `B. Cui et al., "Influence of irradiation damage on slip transfer across grain boundaries.", Acta Materialia (2014), 65, pp. 150-160. <http://dx.doi.org/10.1016/j.actamat.2013.11.033>`_
 .. [#Guo_2014] `Y. Guo et al., "Slip band–grain boundary interactions in commercial-purity titanium.", Acta Materialia (2014), 76, pp. 1-12. <http://dx.doi.org/10.1016/j.actamat.2014.05.015>`_
