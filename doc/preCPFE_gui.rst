@@ -36,12 +36,22 @@ It is possible to set SX or BX properties (material, phase, Euler angles, trace 
 - from a YAML configuration file (from the menu, by clicking on 'preCPFE-SX' or
   'preCPFE-BX', and 'Load Single Crystal config. file' or 'Load Bicrystal config. file').
 
-.. figure:: ./_pictures/GUIs/bicrystal2cpfem.png
-   :scale: 50 %
-   :align: center
-   
-   *Figure 1 : The different steps to set the preCPFE GUIs.*
-    
+.. only:: html
+
+    .. figure:: ./_pictures/GUIs/bicrystal2cpfem.png
+       :scale: 50 %
+       :align: center
+       
+       *Figure 1 : The different steps to set the preCPFE GUIs.*
+
+.. only:: latex
+
+    .. figure:: ./_pictures/GUIs/bicrystal2cpfem.png
+       :scale: 50 %
+       :align: center
+       
+       *The different steps to set the preCPFE GUIs.*
+
 .. _single_crystal_indentation:
 
 Single crystal (SX) indentation
@@ -57,27 +67,53 @@ The function used to run the preCPFE GUI for SX indentation is :
 `A_preCPFE_windows_indentation_setting_SX.m
 <https://github.com/stabix/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_SX.m>`_
 
-.. figure:: ./_pictures/GUIs/preCPFE_GUI_SX.png
-   :scale: 40 %
-   :align: center
-   
-   *Figure 2 : Screenshot of the preCPFE GUI for the single crystal indentation*
-   
-.. figure:: ./_pictures/fem_models/abaqus_SX_model.png
-   :scale: 40 %
-   :align: center
-   
-   *Figure 3 : Screenshot of the single crystal indentation model in Abaqus.*
-   
+.. only:: html
+
+    .. figure:: ./_pictures/GUIs/preCPFE_GUI_SX.png
+       :scale: 40 %
+       :align: center
+       
+       *Figure 2 : Screenshot of the preCPFE GUI for the single crystal indentation*
+       
+    .. figure:: ./_pictures/fem_models/abaqus_SX_model.png
+       :scale: 40 %
+       :align: center
+       
+       *Figure 3 : Screenshot of the single crystal indentation model in Abaqus.*
+
+.. only:: latex
+
+    .. figure:: ./_pictures/GUIs/preCPFE_GUI_SX.png
+       :scale: 40 %
+       :align: center
+       
+       *Screenshot of the preCPFE GUI for the single crystal indentation*
+       
+    .. figure:: ./_pictures/fem_models/abaqus_SX_model.png
+       :scale: 40 %
+       :align: center
+       
+       *Screenshot of the single crystal indentation model in Abaqus.*
+
 Convention for the single crystal mesh
 ***************************************
 
-.. figure:: ./_pictures/fem_models/SX_indentation_mesh_example.png
-   :scale: 25 %
-   :align: center
-   
-   *Figure 4 : Convention used to define the single crystal mesh.*
-   
+.. only:: html
+
+    .. figure:: ./_pictures/fem_models/SX_indentation_mesh_example.png
+       :scale: 25 %
+       :align: center
+       
+       *Figure 4 : Convention used to define the single crystal mesh.*
+
+.. only:: latex
+
+    .. figure:: ./_pictures/fem_models/SX_indentation_mesh_example.png
+       :scale: 25 %
+       :align: center
+       
+       *Convention used to define the single crystal mesh.*
+
 .. _bicrystal_indentation:
 
 Bicrystal (BX) indentation
@@ -108,17 +144,27 @@ The function used to run the preCPFE GUI for BX indentation is :
        :scale: 40 %
        :align: center
        
-       *Figure 5 : Screenshot of the preCPFE GUI for the bicrystal indentation.*
+       *Screenshot of the preCPFE GUI for the bicrystal indentation.*
 
 Convention for the bicrystal mesh
 **********************************
 
-.. figure:: ./_pictures/fem_models/BX_indentation_mesh_example.png
-   :scale: 25 %
-   :align: center
-   
-   *Figure 6 : Convention used to define the bicrystal mesh.*
-   
+.. only:: html
+
+    .. figure:: ./_pictures/fem_models/BX_indentation_mesh_example.png
+       :scale: 25 %
+       :align: center
+       
+       *Figure 6 : Convention used to define the bicrystal mesh.*
+
+.. only:: latex
+
+    .. figure:: ./_pictures/fem_models/BX_indentation_mesh_example.png
+       :scale: 25 %
+       :align: center
+       
+       *Convention used to define the bicrystal mesh.*
+
 .. _scratch_test:
 
 Scratch test on SX and BX
@@ -127,12 +173,22 @@ Scratch test on SX and BX
 CPFE simulation of scratch test in a single crystal or close to a grain boundary is implemented into this GUI.
 Scratch length and scratch direction have to be set by the user.
 
-.. figure:: ./_pictures/GUIs/preCPFE_GUI_scratch.png
-   :scale: 40 %
-   :align: center
-   
-   *Figure 7 : Screenshot of the preCPFE GUI for the scratch test.*
-   
+.. only:: html
+
+    .. figure:: ./_pictures/GUIs/preCPFE_GUI_scratch.png
+       :scale: 40 %
+       :align: center
+       
+       *Figure 7 : Screenshot of the preCPFE GUI for the scratch test.*
+
+.. only:: latex
+
+    .. figure:: ./_pictures/GUIs/preCPFE_GUI_scratch.png
+       :scale: 40 %
+       :align: center
+       
+       *Screenshot of the preCPFE GUI for the scratch test.*
+
 Indenter's geometry
 --------------------
 
@@ -174,7 +230,7 @@ of the *Abaqus .inp* file.
        :scale: 40 %
        :align: center
        
-       *Figure 8 : Screenshot of the preCPFE GUI for the bicrystal indentation with Berkovich indenter.*
+       *Screenshot of the preCPFE GUI for the bicrystal indentation with Berkovich indenter.*
     
 AFM topography
 ***************
@@ -186,12 +242,22 @@ The |matlab| function used to load and read Gwyddion file is :
 
 `Visit the Gwyddion website for more information. <http://gwyddion.net/>`_
 
-.. figure:: ./_pictures/GUIs/preCPFE_GUI_BX_AFM_topo_indenter.png
-   :scale: 40 %
-   :align: center
-   
-   *Figure 9 : Screenshot of the preCPFE GUI for the bicrystal indentation with loaded AFM topography of the indenter.*
-   
+.. only:: html
+
+    .. figure:: ./_pictures/GUIs/preCPFE_GUI_BX_AFM_topo_indenter.png
+       :scale: 40 %
+       :align: center
+       
+       *Figure 9 : Screenshot of the preCPFE GUI for the bicrystal indentation with loaded AFM topography of the indenter.*
+
+.. only:: latex
+
+    .. figure:: ./_pictures/GUIs/preCPFE_GUI_BX_AFM_topo_indenter.png
+       :scale: 40 %
+       :align: center
+       
+       *Screenshot of the preCPFE GUI for the bicrystal indentation with loaded AFM topography of the indenter.*
+
 Contact definition
 -------------------
 

@@ -13,12 +13,22 @@ The strain transfer across grain boundaries can be defined by the four following
 
  4) no transmission and the grain boundary acts as an impenetrable boundary, which implies stress accumulations, localized rotations, pile-up of dislocations... (Figure 1-d).
 
-.. figure:: ./_pictures/Schemes_SlipTransmission/slip_transfer.png
-   :scale: 40 %
-   :align: center
-   
-   *Figure 1 : Possible strain transfer across grain boundaries (GB) from Sutton and Balluffi.*
-   
+.. only:: html
+
+    .. figure:: ./_pictures/Schemes_SlipTransmission/slip_transfer.png
+       :scale: 40 %
+       :align: center
+       
+       *Figure 1 : Possible strain transfer across grain boundaries (GB) from Sutton and Balluffi.*
+
+.. only:: latex
+
+    .. figure:: ./_pictures/Schemes_SlipTransmission/slip_transfer.png
+       :scale: 40 %
+       :align: center
+       
+       *Possible strain transfer across grain boundaries (GB) from Sutton and Balluffi.*
+       
 Several authors proposed slip transfer parameters from modellings or experiments for the last 60 years.
 A non-exhaustive list of those criteria is given in the next part of this work, including geometrical parameter,
 stress and energetic functions, and recent combinations of the previous parameters.
@@ -39,13 +49,23 @@ slip directions and the lines of intersection of the slip plane and the grain bo
 :math:`\vec b` is the Burgers vector of the slip plane and :math:`\vec b_\text r`
 is the |rbv| of the residual dislocation at the grain boundary.
 The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming and outgoing slip systems, respectively.
-  
-.. figure:: ./_pictures/Schemes_SlipTransmission/slip_transmission_scheme2.png
-   :scale: 45 %
-   :align: center
-   
-   *Figure 2 : Geometrical description of the slip transfer.*
-   
+
+.. only:: html
+
+    .. figure:: ./_pictures/Schemes_SlipTransmission/slip_transmission_scheme2.png
+       :scale: 45 %
+       :align: center
+       
+       *Figure 2 : Geometrical description of the slip transfer.*
+
+.. only:: latex
+
+    .. figure:: ./_pictures/Schemes_SlipTransmission/slip_transmission_scheme2.png
+       :scale: 45 %
+       :align: center
+       
+       *Geometrical description of the slip transfer.*
+
 * :math:`N` **factor from Livingston and Chalmers in 1957** [#LivingstonChalmers_1957]_ 
 
     .. math:: N = (\vec n_\text{in} \cdot \vec n_\text{out})(\vec d_\text{in} \cdot \vec d_\text{out}) + (\vec n_\text{in} \cdot \vec d_\text{out})(\vec n_\text{out} \cdot \vec d_\text{in})
@@ -97,20 +117,39 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   Both :math:`m'` and :math:`LRB` can be easily assessed in computational experiments [#Bieler_2014]_.
   This :math:`m'` factor should be maximized (1 means grain boundary
   is transparent and 0 means grain boundary is an impenetrable boundary).
-  
-  .. figure:: ./_pictures/Schemes_SlipTransmission/mprime_values.png
-   :scale: 30 %
-   :align: center
-   
-   *Figure 3 : Distribution of m' parameter in function of angles values.*
-   
-  .. figure:: ./_pictures/Schemes_SlipTransmission/mprime_values_vs_misorientation.png
-   :scale: 50 %
-   :align: center
 
-   *Figure 4 : Distributions of m' parameter calculated for a) basal vs basal slip systems,
-   b) basal vs prismatic <a> slip systems and c) prismatic <a> vs prismatic <a>
-   slip systems in function of misorientation angle.*
+    .. only:: html
+
+      .. figure:: ./_pictures/Schemes_SlipTransmission/mprime_values.png
+       :scale: 30 %
+       :align: center
+       
+       *Figure 3 : Distribution of m' parameter in function of angles values.*
+       
+      .. figure:: ./_pictures/Schemes_SlipTransmission/mprime_values_vs_misorientation.png
+       :scale: 50 %
+       :align: center
+
+       *Figure 4 : Distributions of m' parameter calculated for a) basal vs basal slip systems,
+       b) basal vs prismatic <a> slip systems and c) prismatic <a> vs prismatic <a>
+       slip systems in function of misorientation angle.*
+       
+    .. only:: latex
+
+      .. figure:: ./_pictures/Schemes_SlipTransmission/mprime_values.png
+       :scale: 30 %
+       :align: center
+       
+       *Distribution of m' parameter in function of angles values.*
+       
+      .. figure:: ./_pictures/Schemes_SlipTransmission/mprime_values_vs_misorientation.png
+       :scale: 50 %
+       :align: center
+
+       *Distributions of m' parameter calculated for a) basal vs basal slip systems,
+       b) basal vs prismatic <a> slip systems and c) prismatic <a> vs prismatic <a>
+       slip systems in function of misorientation angle.*
+
    
    A resistance factor of the grain boundary can be described by the following equation : 
    
@@ -179,21 +218,37 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   
     .. math:: \lambda = \sum\limits_{\alpha=1}^N \sum\limits_{\beta=1}^N \cos\left(\frac{90°}{\psi_c}\arccos(\vec n_{\text{in},\alpha} \cdot \vec n_{\text{out},\beta})\right)\cos\left(\frac{90°}{\kappa_c}\arccos(\vec d_{\text{in},\alpha} \cdot \vec d_{\text{out},\beta})\right)
         :label: 3Dmap_lambda_function
-        
+
   With :math:`N` the number of slip systems for each adjacent grains.
 
-  .. figure:: ./_pictures/Schemes_SlipTransmission/lambda_fcc-fcc.png
-   :scale: 50 %
-   :align: center
-   
-   *Figure 5 : Pseudo-3D view of the lambda map for the FCC/FCC case.*
-   
-  .. figure:: ./_pictures/Schemes_SlipTransmission/lambda_bcc-bcc.png
-   :scale: 50 %
-   :align: center
-   
-   *Figure 6 : Pseudo-3D view of the lambda map for the BCC/BCC case.*
-   
+    .. only:: html
+
+      .. figure:: ./_pictures/Schemes_SlipTransmission/lambda_fcc-fcc.png
+       :scale: 50 %
+       :align: center
+       
+       *Figure 5 : Pseudo-3D view of the lambda map for the FCC/FCC case.*
+       
+      .. figure:: ./_pictures/Schemes_SlipTransmission/lambda_bcc-bcc.png
+       :scale: 50 %
+       :align: center
+       
+       *Figure 6 : Pseudo-3D view of the lambda map for the BCC/BCC case.*
+
+    .. only:: latex
+
+      .. figure:: ./_pictures/Schemes_SlipTransmission/lambda_fcc-fcc.png
+       :scale: 50 %
+       :align: center
+       
+       *Pseudo-3D view of the lambda map for the FCC/FCC case.*
+       
+      .. figure:: ./_pictures/Schemes_SlipTransmission/lambda_bcc-bcc.png
+       :scale: 50 %
+       :align: center
+       
+       *Pseudo-3D view of the lambda map for the BCC/BCC case.*
+
   The |matlab| function used to plot pseudo-3D view of the the :math:`\lambda` function is :
   `lambda_plot_values.m <https://github.com/stabix/stabix/tree/master/slip_transfer/plots/lambda_plot_values.m>`_
 

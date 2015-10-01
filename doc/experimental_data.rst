@@ -168,8 +168,18 @@ Load your YAML bicrystal configuration file via the menu in the bicrystal GUI. Y
 Convention for bicrystal EBSD/indentation experiments
 *******************************************************
 
-.. figure:: ./_pictures/Schemes_SlipTransmission/Bicrystal_conventions.png
-   :scale: 50 %
-   :align: center
-   
-   *Figure 1 : Geometrical convention of a bicrystal.*
+.. only:: html
+
+    .. figure:: ./_pictures/Schemes_SlipTransmission/Bicrystal_conventions.png
+       :scale: 50 %
+       :align: center
+       
+       *Figure 1 : Geometrical convention of a bicrystal.*
+
+.. only:: latex
+
+    .. figure:: ./_pictures/Schemes_SlipTransmission/Bicrystal_conventions.png
+       :scale: 50 %
+       :align: center
+       
+       *Geometrical convention of a bicrystal.*

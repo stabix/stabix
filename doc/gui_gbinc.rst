@@ -68,19 +68,25 @@ and :math:`h` the thickness of removed material after polishing calculated
        
        *Figure 1 : Screenshots of the Matlab GUI used to calculate grain boundary inclination.*
 
+    .. figure:: ./_pictures/Schemes_SlipTransmission/Vickers_indent.png
+       :scale: 40 %
+       :align: center
+       
+       *Figure 2 : Schemes of a) the top view of a Vickers indent (before and after polishing) and of b) the cross-section view.*
+
 .. only:: latex
 
     .. figure:: ./_pictures/GUIs/gui_gb_inc.png
        :scale: 100 %
        :align: center
        
-       *Figure 1 : Screenshot of the Matlab GUI used to calculate grain boundary inclination.*
+       *Screenshot of the Matlab GUI used to calculate grain boundary inclination.*
 
-.. figure:: ./_pictures/Schemes_SlipTransmission/Vickers_indent.png
-   :scale: 40 %
-   :align: center
-   
-   *Figure 2 : Schemes of a) the top view of a Vickers indent (before and after polishing) and of b) the cross-section view.*
+    .. figure:: ./_pictures/Schemes_SlipTransmission/Vickers_indent.png
+       :scale: 40 %
+       :align: center
+       
+       *Schemes of a) the top view of a Vickers indent (before and after polishing) and of b) the cross-section view.*
 
 .. note::
     Images should have the same scale factor.
