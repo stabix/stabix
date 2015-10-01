@@ -19,7 +19,7 @@ if nargin < 1
     import_wizard;
 end
 
-if max(gui.ebsdMTEX.phase) == 1
+if max(ebsd.phase) == 0
     %% Grains definition
     grains = calcGrains(ebsd, 'angle', angle_value * degree);
     % subSet function to get only 1 grain
@@ -30,7 +30,7 @@ if max(gui.ebsdMTEX.phase) == 1
     fpath = get_stabix_root;
     
     %% Grain File type 2
-    fname_GF2 = 'importEBSDdata_frommtex_GF2.txt';
+    fname_GF2 = 'EBSD_data_from_MTEX_GF2.txt';
     
     fdata.title = 'EBSD data imported using import_wizard from MTEX toolbox';
     fdata.number_of_grains = grains.size(1);
@@ -38,14 +38,14 @@ if max(gui.ebsdMTEX.phase) == 1
     grain_position = grains.centroid;
     fdata.x_positions = grain_position(:,1);
     fdata.y_positions = grain_position(:,2);
-    fdata.phase = nonzeros(grains.phaseId);
+    fdata.phase = grains.phase;
     fdata.grain_diameter = ((grains.area/pi).^0.5)./2;
     
     % Write TSL-OIM grain file type 2
     write_oim_grain_file_type2(fdata, fpath, fname_GF2);
     
     %% Reconstructed Boundaries file
-    fname_RB = 'importEBSDdata_frommtex_RB.txt';
+    fname_RB = 'EBSD_data_from_MTEX_RB.txt';
     
     %p = patch('Faces',grains.boundary.F,'Vertices',grains.boundary.V,'FaceColor','w');
     %fdata.number_of_grain_boundaries = size(grains.boundary.F,1);
