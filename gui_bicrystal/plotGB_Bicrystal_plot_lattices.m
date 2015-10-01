@@ -10,8 +10,8 @@ function [shiftXYZA, shiftXYZB, ucgrA, ucgrB, arrow_grA, arrow_grB] = ...
 
 %% Set the encapsulation of data
 gui = guidata(gcf);
-
 valplot = get(gui.handles.pmchoiceplot, 'Value');
+
 %% Color of arrow
 arrowcolora = plot_arrow_color(gui.GB.Phase_A, slipA);
 arrowcolorb = plot_arrow_color(gui.GB.Phase_B, slipB);
@@ -66,7 +66,7 @@ elseif  valplot == 1
         warning_commwin('No slip systems defined !');
     end
     
-elseif valplot == 2  %% Plot of slip plane (circle) for Grain A and B
+elseif valplot == 2  %% Plot of slip plane (circle) for Grains A and B
     radius = 1;
     slipplaneA = plot_slip_plane(slipnormalA, slipdirectionA, ...
         +shiftXYZA, radius, arrowcolora);
@@ -79,7 +79,7 @@ elseif valplot == 2  %% Plot of slip plane (circle) for Grain A and B
             'Location', legend_location_str);
     end
     
-elseif valplot == 3  %% Plot of slip plane (unit cell + circle) for Grain A and B
+elseif valplot == 3  %% Plot of slip plane (unit cell + circle) for Grains A and B
     radius = 1;
     ucgrA  = vis_lattice(gui.GB.Phase_A, gui.GB.eulerA, ...
         slipA, shiftXYZA, .4);

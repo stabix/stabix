@@ -213,17 +213,17 @@ else
     end
 end
 
-hTitle = title(char(title_String), 'color', [0 0 0],'BackgroundColor', [1 1 1]);
+hTitle = title(char(title_String), 'color', [0 0 0], 'BackgroundColor', [1 1 1]);
 
 del_if_handle({'h_lblA', 'h_lblB'})
 
 h_txt1 = text(shiftXYZA(1)-gui.GB_geometry.gb_vec(1), ...
-    shiftXYZA(2)-gui.GB_geometry.gb_vec(2), -2.5,...
-    idgra, 'HorizontalAlignment', 'center');
+    shiftXYZA(2)-gui.GB_geometry.gb_vec(2), -2.5, idgra);
 
 h_txt2 = text(shiftXYZB(1)-gui.GB_geometry.gb_vec(1), ...
-    shiftXYZB(2)-gui.GB_geometry.gb_vec(2), -2.5,...
-    idgrb, 'HorizontalAlignment', 'center');
+    shiftXYZB(2)-gui.GB_geometry.gb_vec(2), -2.5, idgrb);
+
+set([h_txt1, h_txt2], 'HorizontalAlignment', 'center');
 
 if gui.flag.LaTeX_flag
     set([hTitle h_txt1 h_txt2], 'interpreter', 'latex');
