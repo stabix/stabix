@@ -484,17 +484,26 @@ if gui.flag.flag_lattice == 1
     %% Get unit of EBSD map
     gui.config_map.unit_string = ...
         get_value_popupmenu(gui.handles.pm_unit, listLengthUnit);
-    h_xLabel = xlabel(strcat('x axis - (',gui.config_map.unit_string{:},')'), ...
-        'fontsize', fontsize_axis);
-    h_yLabel = ylabel(strcat('y axis - (',gui.config_map.unit_string{:},')'), ...
-        'fontsize', fontsize_axis);
+    h_Label_unit = strcat('(',gui.config_map.unit_string{:},')');
+    
+    if LaTeX_flag && strcmp(gui.config_map.unit_string, 'nm')
+        h_Label_unit = '($nm$)';
+    elseif LaTeX_flag && strcmp(gui.config_map.unit_string, 'micron')
+        h_Label_unit = '($\mu m$)';
+    elseif LaTeX_flag && strcmp(gui.config_map.unit_string, 'mm')
+        h_Label_unit = '($mm$)';
+    end
+    
+    h_xLabel = xlabel(strcat('x axis - ', h_Label_unit));
+    h_yLabel = ylabel(strcat('y axis - ', h_Label_unit));
+    
+    set([h_xLabel, h_yLabel], 'fontsize', fontsize_axis);
     set(gca, 'fontsize', fontsize_axis, 'color', 'w');
+    
     if LaTeX_flag
-        set(h_xLabel, 'Interpreter', 'latex');
-        set(h_yLabel, 'Interpreter', 'latex');
+        set([h_xLabel, h_yLabel], 'Interpreter', 'latex');
     else
-        set(h_xLabel, 'Interpreter', 'none');
-        set(h_yLabel, 'Interpreter', 'none');
+        set([h_xLabel, h_yLabel], 'Interpreter', 'none');
     end
     
     %% Set flags
