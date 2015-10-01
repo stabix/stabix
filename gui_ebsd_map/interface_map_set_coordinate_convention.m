@@ -23,7 +23,7 @@ gui.COORDSYS_eulers = coordinate_convention(coord_angles(coord_idx));
 
 %% Replot COORDSYS
 del_if_handle(gui.handles.PlotMapAxis);
-gui.handles.PlotMapAxis = axes('Position', [0.94 0.94 0.02 0.02]);
+gui.handles.PlotMapAxis = axes('Position', [0.9 0.9 0.04 0.04]);
 gui.handles.PlotCoordSys = ...
     interface_map_plot_coordsys(gui.COORDSYS_eulers);
 axis off;

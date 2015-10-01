@@ -433,8 +433,11 @@ gui.handles.date_str_interface = uicontrol(...
     'String', datestr(datenum(clock),'mmm.dd,yyyy HH:MM'),...
     'Position', [0.87 0.97 0.12 0.025]);
 
+%% Coordinate system (initialization)
+% See "interface_map_set_coordinate_convention"
+gui.handles.PlotMapAxis = axes('Position', [0.9 0.9 0.04 0.04]);
+
 %% EBSD Map
-gui.handles.PlotMapAxis = axes('Position', [0.94 0.94 0.02 0.02]);
 gui.handles.AxisGBmap = axes('Position', [0.375 0.078 0.6 0.75]);
 set(gcf, 'CurrentAxes', gui.handles.AxisGBmap);
 
