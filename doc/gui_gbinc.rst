@@ -1,5 +1,5 @@
 ﻿A Matlab toolbox to analyze grain boundary inclination from SEM images
-======================================================================
+========================================================================
 
 .. include:: includes.rst
 
@@ -17,7 +17,7 @@ Finally you can start the launcher by typing `demo <https://github.com/stabix/st
 `A_gui_gbinc <https://github.com/stabix/stabix/blob/master/gui_gbinc/A_gui_gbinc.m>`_ at the Matlab command prompt.
 
 How to use the toolbox ?
-------------------------
+--------------------------
 
 1) Run the function `A_gui_gbinc.m. <https://github.com/stabix/stabix/blob/master/gui_gbinc/A_gui_gbinc.m>`_
 2) Select your first image before serial polishing.
@@ -42,7 +42,7 @@ How to use the toolbox ?
 8) Save the overlay in the same folder than the 1st picture loaded (as a screenshot.png) (optional).
 9) Do the measurement of the distance between edges (Vickers faces) or ridges of a unique Vickers indent (see :numref:`vickers_indent`).
 10) Do the measurement of the distance between edges of a unique grain boundary.
-11) The value of the grain boundary inclination is finally given.
+11) The value of the grain boundary inclination is finally given in degrees.
 
 * Calculation of the thickness of removed material after polishing
 
@@ -124,4 +124,4 @@ Keywords
 ---------
 
 Matlab ; Graphical User Interface (GUI) ; Grain Boundaries ; Polycrystalline Metals ; 
-Grain Boundary Inclination ; Serial Polishing ; Scanning electron microscope (SEM).
+Grain Boundary Inclination ; Serial Polishing ; Scanning Electron Microscope (SEM).

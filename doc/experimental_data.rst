@@ -115,11 +115,15 @@ It is possible to load other type of EBSD data files, using the 'import_wizard' 
 
 First, download and install the `MTEX Toolbox <http://mtex-toolbox.github.io/>`_.
 
-Then, import your EBSD data (e.g.: .ang file), using the 'import_wizard' and
-save it in the |matlab| workspace as a variable named 'ebsd'.
+Then, import your EBSD data (e.g.: .ang file) and set the coordinate systme, using the 'import_wizard' and
+save the EBSD dataset in the |matlab| workspace as a variable named 'ebsd'.
 
 The EBSD map is automatically plotted from the imported data.
 The coordinate system and the scan unit are set from the properties of the imported data.
+
+.. note::
+    For a single phase material, the phase number is 0. For a two phases material, the phase numbers are 1 and 2.
+    For non-indexed pixels, the phase is numbered as -1.
 
 How to generate a .ang file with TSL-OIM software ?
 ----------------------------------------------------
@@ -129,7 +133,10 @@ How to generate a .ang file with TSL-OIM software ?
 Example of an `.ang file. <https://github.com/stabix/stabix/blob/master/gui_ebsd_map/ebsd_dataExamples/validation1_AngFile(forMTEX).ang>`_
 
 The |matlab| functions used to generate .ang file v6 and v7 are respectively:
-`write_oim_ang_file_v6.m <https://github.com/stabix/stabix/tree/master/tsl_oim/write_oim_ang_file_v6.m>`_ and `write_oim_ang_file_v7.m <https://github.com/stabix/stabix/tree/master/tsl_oim/write_oim_ang_file_v7.m>`_
+
+- `write_oim_ang_file_v6.m <https://github.com/stabix/stabix/tree/master/tsl_oim/write_oim_ang_file_v6.m>`_ ;
+
+- `write_oim_ang_file_v7.m <https://github.com/stabix/stabix/tree/master/tsl_oim/write_oim_ang_file_v7.m>`_.
 
 Possible errors introduced during files exportation from TSL-OIM
 ------------------------------------------------------------------

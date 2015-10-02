@@ -26,7 +26,7 @@ Please find here the `Python package used to generate the SX and BX indentation 
 <https://github.com/stabix/stabix/tree/master/third_party_code/python>`_.
 
 How to load crystallographic properties of the SX or of the BX ?
-----------------------------------------------------------------
+------------------------------------------------------------------
 
 It is possible to set SX or BX properties (material, phase, Euler angles, trace angle...) :
 
@@ -88,7 +88,6 @@ of the local micromechanics in this experiment.
 While models that take into account the micromechanical effect of the boundary 
 are the subject of ongoing research, most geometrical and kinematic factors are taken into account
 by employing a local phenomenological crystal plasticity formulation in the simulations.
-
 
 The function used to run the preCPFE GUI for BX indentation is :
 `A_preCPFE_windows_indentation_setting_BX.m
