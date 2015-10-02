@@ -22,8 +22,13 @@ shiftXYZA = shiftXYZ+[0;0;-1];
 shiftXYZB = -(shiftXYZ+[0;0;+1]);
 
 %% Setting of legend
-legend_slipA = get_slip_legend(gui.GB.Phase_A, slipA);
-legend_slipB = get_slip_legend(gui.GB.Phase_B, slipB);
+if gui.flag.LaTeX_flag
+    legend_slipA = get_slip_legend_latex(gui.GB.Phase_A, slipA);
+    legend_slipB = get_slip_legend_latex(gui.GB.Phase_B, slipB);
+else
+    legend_slipA = get_slip_legend(gui.GB.Phase_A, slipA);
+    legend_slipB = get_slip_legend(gui.GB.Phase_B, slipB);
+end
 legend_location_str = ...
     get_value_popupmenu(gui.handles.pmlegend_location, listLocationLegend);
 legend_location_str = char(legend_location_str);
@@ -59,8 +64,7 @@ elseif  valplot == 1
         slipB, shiftXYZB, 0.5);
     % ipfB = plotIPF(GB2plot,grnum,RB,struct);
     if get(gui.handles.cblegend,'Value') == 1
-        legend([ucgrA(3) ucgrB(3)], legend_slipA, legend_slipB, ...
-            'Location', legend_location_str);
+        hLeg = legend([ucgrA(3) ucgrB(3)], legend_slipA, legend_slipB);
     end
     if valplot > 1
         warning_commwin('No slip systems defined !');
@@ -74,9 +78,8 @@ elseif valplot == 2  %% Plot of slip plane (circle) for Grains A and B
         shiftXYZB, radius, arrowcolorb);
     
     if get(gui.handles.cblegend, 'Value') == 1
-        legend([slipplaneA.arrow slipplaneB.arrow], ...
-            legend_slipA, legend_slipB, ...
-            'Location', legend_location_str);
+        hLeg = legend([slipplaneA.arrow slipplaneB.arrow], ...
+            legend_slipA, legend_slipB);
     end
     
 elseif valplot == 3  %% Plot of slip plane (unit cell + circle) for Grains A and B
@@ -92,8 +95,7 @@ elseif valplot == 3  %% Plot of slip plane (unit cell + circle) for Grains A and
         shiftXYZB, radius, arrowcolorb);
     
     if get(gui.handles.cblegend, 'Value') == 1
-        legend([ucgrA(3) ucgrB(3)], legend_slipA, legend_slipB, ...
-            'Location', legend_location_str);
+        hLeg = legend([ucgrA(3) ucgrB(3)], legend_slipA, legend_slipB);
     end
     
 elseif valplot == 4  %% Plot of Burgers vectors
@@ -121,6 +123,18 @@ elseif valplot == 4  %% Plot of Burgers vectors
             [shiftXYZB(3) shiftXYZB(3)+slipdirectionB(3)*radius], ...
             'Color', arrowcolorb, 'LineWidth',4);
         warning_commwin(err.message);
+    end
+    if get(gui.handles.cblegend, 'Value') == 1
+        hLeg = legend([ucgrA(3) ucgrB(3)], legend_slipA, legend_slipB);
+    end
+end
+
+if get(gui.handles.cblegend, 'Value') == 1
+    set(hLeg, 'Location', legend_location_str);
+    if gui.flag.LaTeX_flag
+        set(hLeg, 'Interpreter', 'LaTeX');
+    else
+        set(hLeg, 'Interpreter', 'none');
     end
 end
 
