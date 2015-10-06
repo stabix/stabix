@@ -295,6 +295,7 @@ if ~gui.flag.error
                 axis off;
         end
         set(handle_title, 'color', [0 0 0], 'BackgroundColor', [1 1 1]);
+        set(handle_title, 'Position', [3.5,-2.75,0]);
         if gui.flag.LaTeX_flag
             set(handle_title, 'interpreter', 'latex');
         else
