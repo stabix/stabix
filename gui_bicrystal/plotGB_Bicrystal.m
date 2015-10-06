@@ -191,8 +191,9 @@ if ~gui.flag.error
     triad_lines;
     axis off;
     axis tight;
+    rotate3d on;
     view(old_az, old_el);
-    
+
     %% Plotting of slip transmission parameter map
     if ~no_slip
         subplot(4, 2, [7 8], 'Position', [0.25, 0, 0.65, 0.2]);

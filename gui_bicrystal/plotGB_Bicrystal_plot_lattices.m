@@ -138,10 +138,4 @@ if get(gui.handles.cblegend, 'Value') == 1
     end
 end
 
-triad_lines;
-axis off;
-axis tight;
-view([0,0,1]);
-rotate3d on;
-
 end

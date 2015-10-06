@@ -367,10 +367,6 @@ else
 end
 
 % Axis setting
-%triad(1, [gdata.variables.sample_coordx_frontface, ...
-%   gdata.variables.sample_coordy_rightface, ...
-%   gdata.variables.sample_coordz_bottomface], ...
-%   2);
 view(old_az, old_el);
 
 preCPFE_mesh_plot_finalize;
