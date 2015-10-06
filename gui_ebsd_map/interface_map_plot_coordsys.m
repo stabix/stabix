@@ -1,6 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function XYZtxt = interface_map_plot_coordsys(...
-    CCM, scale_factor, shiftXYZ, varargin)
+    CCM, scale_factor, shiftXYZ, interpreter, varargin)
 %% Function used to set the coordinates system for the map interface
 % CCM : Coordinate Convention Matrix
 % scale_factor : Scale factor
@@ -8,6 +8,10 @@ function XYZtxt = interface_map_plot_coordsys(...
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
+if nargin < 4
+    %interpreter = 'none';
+    interpreter = 'latex';
+end
 if nargin < 3
     shiftXYZ = [0,0,0];
 end
@@ -18,7 +22,7 @@ if nargin < 1
     e1 = [1;0;0];
     e2 = [0;1;0];
     e3 = [0;0;1];
-	CCM = [e1, e2, e3];
+    CCM = [e1, e2, e3];
 end
 
 shiftXYZ = [shiftXYZ(1); shiftXYZ(2); shiftXYZ(3)];
@@ -43,10 +47,6 @@ Xend = Xend * scale_factor + shiftXYZ;
 Yend = Yend * scale_factor + shiftXYZ;
 Zend = Zend * scale_factor + shiftXYZ;
 
-%arrow3d(Xstart',Xend',20); hold on;
-%arrow3d(Ystart',Yend',20); hold on;
-%arrow3d(Zstart',Zend',20); hold on;
-
 XYZ(1) = plot3([Xstart(1),Xend(1)], [Xstart(2),Xend(2)], ...
     [Xstart(3),Xend(3)], '-k'); hold on;
 XYZ(2) = plot3([Ystart(1),Yend(1)], [Ystart(2),Yend(2)], ...
@@ -59,16 +59,15 @@ set(XYZ,'LineWidth',1.6);
 Xpos = Xstart + (Xend-Xstart) * 1.4;
 Ypos = Xstart + (Yend-Ystart) * 1.4;
 Zpos = Xstart + (Zend-Zstart) * 1.4;
-XYZtxt(1) = text(Xpos(1), Xpos(2), Xpos(3), labels(1), ...
-    'HorizontalAlignment', 'center');%,'Rotation',crang)
-XYZtxt(2) = text(Ypos(1), Ypos(2), Ypos(3), labels(2), ...
-    'HorizontalAlignment', 'center');%,'Rotation',crang)
+XYZtxt(1) = text(Xpos(1), Xpos(2), Xpos(3), labels(1));
+XYZtxt(2) = text(Ypos(1), Ypos(2), Ypos(3), labels(2));
 [~,el] = view();
 
 if abs(el) ~= 90
-    XYZtxt(3) = text(Zpos(1), Zpos(2), Zpos(3), labels(3), ...
-        'HorizontalAlignment', 'center');%,'Rotation',crang)
+    XYZtxt(3) = text(Zpos(1), Zpos(2), Zpos(3), labels(3));
 end
-set(XYZtxt, 'FontSize', floor(10));
+set(XYZtxt, 'FontSize', floor(10),...
+    'HorizontalAlignment', 'center', ...
+    'Interpreter', interpreter);%,'Rotation',crang)
 
 end
