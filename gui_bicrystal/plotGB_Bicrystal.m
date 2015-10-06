@@ -201,106 +201,76 @@ if ~gui.flag.error
         switch(valcase)
             case {1, 2, 3, 7, 37}
                 param2plot =  gui.calculations.mprime_val_bc_all;
-                param2plot_title = 'm_prime';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,2);
-                if gui.flag.LaTeX_flag
-                    handle_title = title('Maximum $m''$ values');
-                else
-                    handle_title = title('Maximum m'' values');
-                end
+                titleLaTeX = 'Maximum $m''$ values';
+                titleNoLaTeX = 'Maximum m'' values';
             case {4, 5, 6}
                 param2plot =  gui.calculations.mprime_val_bc_all;
-                param2plot_title = 'm_prime';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,1);
-                if gui.flag.LaTeX_flag
-                    handle_title = title('Minimum $m''$ values');
-                else
-                    handle_title = title('Minimum m'' values');
-                end
+                titleLaTeX = 'Minimum $m''$ values';
+                titleNoLaTeX = 'Minimum m'' values';
             case {8, 9, 10, 14}
                 param2plot = ...
                     gui.calculations.residual_Burgers_vector_val_bc_all;
-                param2plot_title = 'Residual Burgers Vector';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,2);
-                handle_title = ...
-                    title('Maximum residual Burgers vector values');
+                titleLaTeX = ...
+                    'Maximum residual Burgers vector values';
+                titleNoLaTeX = ...
+                    'Maximum residual Burgers vector values';
             case {11, 12, 13}
                 param2plot = ...
                     gui.calculations.residual_Burgers_vector_val_bc_all;
-                param2plot_title = 'Residual Burgers Vector';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,1);
-                handle_title = ...
-                    title('Minimum residual Burgers vector values');
+                titleLaTeX = ...
+                    'Minimum residual Burgers vector values';
+                titleNoLaTeX = ...
+                    'Minimum residual Burgers vector values';
             case {15, 16, 17, 21}
                 param2plot = gui.calculations.n_fact_val_bc_all;
-                param2plot_title = 'N_factor';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,2);
-                if gui.flag.LaTeX_flag
-                    handle_title = title('Maximum $N$-factor values');
-                else
-                    handle_title = title('Maximum N-factor values');
-                end
+                titleLaTeX = 'Maximum $N$-factor values';
+                titleNoLaTeX = 'Maximum N-factor values';
             case {18, 19, 20}
                 param2plot = gui.calculations.n_fact_val_bc_all;
-                param2plot_title = 'N_factor';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,1);
-                if gui.flag.LaTeX_flag
-                    handle_title = title('Minimum $N$-factor values');
-                else
-                    handle_title = title('Minimum N-factor values');
-                end
+                titleLaTeX = 'Minimum $N$-factor values';
+                titleNoLaTeX = 'Minimum N-factor values';
             case {22, 23, 24, 28}
                 param2plot = gui.calculations.LRB_val_bc_all;
-                param2plot_title = 'LRB_parameter';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,2);
-                if gui.flag.LaTeX_flag
-                    handle_title = title('Maximum $LRB$-factor values');
-                else
-                    handle_title = title('Maximum LRB-factor values');
-                end
+                titleLaTeX = 'Maximum $LRB$-factor values';
+                titleNoLaTeX = 'Maximum LRB-factor values';
             case {25, 26, 27}
                 param2plot = gui.calculations.LRB_val_bc_all;
-                param2plot_title = 'LRB_parameter';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,1);
-                if gui.flag.LaTeX_flag
-                    handle_title = title('Minimum $LRB$-factor values');
-                else
-                    handle_title = title('Minimum LRB-factor values');
-                end
+                titleLaTeX = 'Minimum $LRB$-factor values';
+                titleNoLaTeX = 'Minimum LRB-factor values';
             case {29, 30, 31, 35}
                 param2plot = gui.calculations.lambda_val_bc_all;
-                param2plot_title = 'lambda_parameter';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,2);
-                if gui.flag.LaTeX_flag
-                    handle_title = title('Maximum $\lambda$ values');
-                else
-                    handle_title = title('Maximum lambda values');
-                end
+                titleLaTeX = 'Maximum $\lambda$ values';
+                titleNoLaTeX = 'Maximum lambda values';
             case {32, 33, 34}
                 param2plot = gui.calculations.lambda_val_bc_all;
-                param2plot_title = 'lambda_parameter';
                 plotGB_Bicrystal_min_max_param_map_plot(param2plot,1);
-                if gui.flag.LaTeX_flag
-                    handle_title = title('Minimum $\lambda$ values');
-                else
-                    handle_title = title('Minimum lambda values');
-                end
+                titleLaTeX = 'Minimum $\lambda$ values';
+                titleNoLaTeX = 'Minimum lambda values';
             case {36}
                 param2plot = gui.calculations.GB_Schmid_Factor_max;
-                param2plot_title = 'GB Schmid factor';
+                titleLaTeX = 'No parameter to plot';
+                titleNoLaTeX = 'No parameter to plot';
                 subplot(4,2,7, 'replace');
                 axis off;
-                handle_title = title('No parameter to plot');
                 subplot(4,2,8, 'replace');
                 axis off;
         end
-        set(handle_title, 'color', [0 0 0], 'BackgroundColor', [1 1 1]);
-        set(handle_title, 'Position', [3.5,-2.75,0]);
         if gui.flag.LaTeX_flag
-            set(handle_title, 'interpreter', 'latex');
+            handle_title = title(titleLaTeX, 'interpreter', 'latex');
         else
-            set(handle_title, 'interpreter', 'none');
+            handle_title = title(titleNoLaTeX, 'interpreter', 'none');
         end
+        set(handle_title, 'color', [0 0 0], 'BackgroundColor', [1 1 1], ...
+            'Position', [3.5,-2.75,0]);
     else
         subplot(4,2,7, 'replace');
         axis off;
@@ -308,7 +278,7 @@ if ~gui.flag.error
         axis off;
     end
     gui.GB.param2plot = param2plot;
-    gui.GB.param2plot_title = param2plot_title;
+    gui.GB.param2plot_title = titleNoLaTeX; % For all parameter values matrix
     guidata(gcf, gui);
     
 end
