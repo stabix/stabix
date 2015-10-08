@@ -1,16 +1,22 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function align_crop_3DEBSD_dataset(fname_prefix, fpath, maxDataFiles, varargin)
+function align_crop_3DEBSD_dataset(fname_prefix, fpath, maxDataFiles, ...
+    dir_output, varargin)
 %% Function to load several TSL-OIM .Ang files from 3D EBSD experiment
 % and to center/crop dataset
 
 % author: d.mercier@mpie.de
 
+if nargin < 4
+    dir_output = 'AlignedCroppedData';
+end
+
 if nargin < 3
-    maxDataFiles = 9;
+    maxDataFiles = 8;
 end
 
 if nargin < 2
-    fpath = 'D:\Samples\11-TiAl5Sn2.5\2015-06-19_3DEBSD\';
+    froot = get_stabix_root;
+    fpath = [froot, '\gui_ebsd_map\ebsd_dataExamples\3DEBSD'];
 end
 
 if nargin < 1
@@ -385,11 +391,16 @@ for ii = 1:maxDataFiles
 end
 
 %% Generation of TSL-OIM .Ang files
+fpath_output = fullfile(fpath, dir_output);
+if ~exist(fpath_output, 'dir')
+    mkdir(fpath_output);
+end
+
 for ii = 1:maxDataFiles
-    fname = ['b12_scan0', num2str(ii), '.ang'];
-    fname_modified = [fname, '_cropped.ang'];
-    fpath_output = fullfile(fpath, 'AlignedCroppedData_DavidRoutine');
-    
-    write_oim_ang_file(shiftedCroppedRes(ii), fpath_output, fname_modified);
+    fname_file = [fname_prefix, num2str(ii), '.ang'];
+    fname_modified = [fname_file, '_cropped.ang'];
+    % Use the .ang file v7 zriting function to be read by the software QUBE
+    % for 3D EBSD reconstruction written by P.J.Konijnenberg.
+    write_oim_ang_file_v7(shiftedCroppedRes(ii), fpath_output, fname_modified);
 end
 end
