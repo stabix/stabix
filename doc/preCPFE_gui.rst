@@ -272,11 +272,12 @@ Input files
 Using the CPFE input files
 -----------------------------
 
-* *MSC.Mentat 2008 - 2012*
+* *MSC.Mentat 'classic interface'*
     - 'Files' ==> 'Current Directory' ==> Select the folder containing input files
     - 'Utils' ==> 'Procedures' ==> Select procedure file containing the FEM model (\*.proc)
 
-* *MSC.Mentat 2013 - 2014*
+* *MSC.Mentat 'new interface (> 2012)'*
+    - 'Files' ==> 'Current Directory' ==> Select the folder containing input files
     - 'Tools' ==> 'Procedures' ==> Select procedure file containing the FEM model (\*.proc)
 
 * *Abaqus*
