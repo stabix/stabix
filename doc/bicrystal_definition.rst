@@ -65,14 +65,14 @@ The grain boundary trace angle is obtained through the EBSD measurements (grain 
 `grain boundary inclination <http://stabix.readthedocs.org/en/latest/gui_gbinc.html>`_ can be assessed
 by a serial polishing (chemical-mechanical polishing or FIB sectioning), either parallel or perpendicular to the surface of the sample (see :numref:`gb_inc_calc`).
 
-.. figure:: ./_pictures/Schemes_SlipTransmission/bicrystal.png
+.. figure:: ./_pictures/schemes_slip_transmission/bicrystal.png
    :name: scheme_bicrystal
    :scale: 50 %
    :align: center
    
    *Schematic of a bicrystal.*
 
-.. figure:: ./_pictures/GUIs/gui_gb_inc.png
+.. figure:: ./_pictures/gui/gui_gb_inc.png
    :name: gb_inc_calc
    :scale: 50 %
    :align: center

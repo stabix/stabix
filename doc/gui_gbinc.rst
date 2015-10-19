@@ -62,7 +62,7 @@ and :math:`h` the thickness of removed material after polishing calculated
         
 .. only:: html
 
-    .. figure:: ./_pictures/GUIs/gui_gb_inc.png.gif
+    .. figure:: ./_pictures/gui/gui_gb_inc.png.gif
        :scale: 100 %
        :align: center
        
@@ -70,13 +70,13 @@ and :math:`h` the thickness of removed material after polishing calculated
 
 .. only:: latex
 
-    .. figure:: ./_pictures/GUIs/gui_gb_inc.png
+    .. figure:: ./_pictures/gui/gui_gb_inc.png
        :scale: 100 %
        :align: center
        
        *Screenshot of the Matlab GUI used to calculate grain boundary inclination.*
 
-.. figure:: ./_pictures/Schemes_SlipTransmission/Vickers_indent.png
+.. figure:: ./_pictures/schemes_slip_transmission/Vickers_indent.png
    :name: vickers_indent
    :scale: 40 %
    :align: center

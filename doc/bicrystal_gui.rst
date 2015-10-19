@@ -19,7 +19,7 @@ It is possible to load bicrystal properties (material, phase, Euler angles of bo
     - from the `EBSD map GUI <http://stabix.readthedocs.org/en/latest/ebsd_map_gui.html>`_ (by giving GB number and pressing the button 'PLOT BICRYSTAL') ;
     - from a `YAML config. bicrystal <https://github.com/stabix/stabix/tree/master/gui_bicrystal/gui_bicrystal_data/kacher_2012/Kacher2012_Fig.12.yaml>`_ (from the menu, by clicking on 'Bicrystal, and 'Load Bicrystal config. file').
 
-.. figure:: ./_pictures/GUIs/ebsd2bicrystal.png
+.. figure:: ./_pictures/gui/ebsd2bicrystal.png
    :scale: 50 %
    :align: center
    
@@ -30,7 +30,7 @@ It is possible to load bicrystal properties (material, phase, Euler angles of bo
 Plotting and analyzing a bicrystal
 ------------------------------------
 
-.. figure:: ./_pictures/GUIs/BX.png
+.. figure:: ./_pictures/gui/BX.png
    :scale: 40 %
    :align: center
    
@@ -43,7 +43,7 @@ Distribution of all slip transmission parameters
 
 It is possible to generate a new window, in which all values of the selected slip transmission parameter are plotted in function of selected slip families.
 
-.. figure:: ./_pictures/GUIs/all_mprime_values.png
+.. figure:: ./_pictures/gui/all_mprime_values.png
    :scale: 40 %
    :align: center
    

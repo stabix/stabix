@@ -152,6 +152,21 @@ Possible errors introduced during files exportation from TSL-OIM
 
 .. note::
     All of these issues are taken into account and corrected automatically when user is loading his data via the EBSD map GUI.
+	
+Issues with plot of EBSD maps
+---------------------------------
+
+Sometimes, grain boundaries coordinates are too big compared to the grain size, because of
+the Voronoi tesselation for example. Thus, the following plot can be obtained :
+
+.. figure:: ./_pictures/gui/error_axis_limits.png
+   :scale: 40 %
+   :align: center
+   
+   *Screenshot of the EBSD map GUI with a problem of axis limits.*
+   
+In this case, it is advised to use the `'zoom' function of Matlab <http://de.mathworks.com/help/matlab/creating_plots/enlarging-the-view.html>`_
+to zoom in and zoom out in the center of the EBSD map, to vizualize the grains.
 
 Bicrystal GUI 
 **************
@@ -175,7 +190,7 @@ Load your YAML bicrystal configuration file via the menu in the bicrystal GUI. Y
 Convention for bicrystal EBSD/indentation experiments
 *******************************************************
 
-.. figure:: ./_pictures/Schemes_SlipTransmission/Bicrystal_conventions.png
+.. figure:: ./_pictures/schemes_slip_transmission/Bicrystal_conventions.png
    :name: gb_convention
    :scale: 50 %
    :align: center

@@ -24,7 +24,7 @@ Loading EBSD data
 For more details about the format of the EBSD data, see also the page
 `Experimental data <http://stabix.readthedocs.org/en/latest/experimental_data.html>`_.
 
-.. figure:: ./_pictures/GUIs/EBSD_map_setting.png
+.. figure:: ./_pictures/gui/EBSD_map_setting.png
    :scale: 50 %
    :align: center
    
@@ -38,7 +38,7 @@ Smoothing GBs segments
 The smoothing algorithm allows to decrease the total number of
 grains boundaries in order to speed up calculations and plots.
 
-.. figure:: ./_pictures/GUIs/EBSD_map_loading_smoothing.png
+.. figure:: ./_pictures/gui/EBSD_map_loading_smoothing.png
    :scale: 40 %
    :align: center
    
@@ -54,7 +54,7 @@ The |matlab| function used to smooth GBs is :
 Misorientation angle
 --------------------
 
-.. figure:: ./_pictures/GUIs/EBSD_map_misor.png
+.. figure:: ./_pictures/gui/EBSD_map_misor.png
    :scale: 40 %
    :align: center
    
@@ -66,14 +66,14 @@ Misorientation angle
 m' parameter
 ------------
 
-.. figure:: ./_pictures/GUIs/EBSD_map_max_mprime.png
+.. figure:: ./_pictures/gui/EBSD_map_max_mprime.png
    :scale: 40 %
    :align: center
    
    *Screenshot of the EBSD map GUI with an EBSD map of near alpha phase Ti alloy
    (GBs color-coded in function of the maximum m' value).*
 
-.. figure:: ./_pictures/GUIs/EBSD_map_mprime_GSF.png
+.. figure:: ./_pictures/gui/EBSD_map_mprime_GSF.png
    :scale: 40 %
    :align: center
    
@@ -85,7 +85,7 @@ m' parameter
 Residual Burgers vector
 -----------------------
 
-.. figure:: ./_pictures/GUIs/EBSD_map_minRBV.png
+.. figure:: ./_pictures/gui/EBSD_map_minRBV.png
    :scale: 40 %
    :align: center
    
@@ -97,7 +97,7 @@ Residual Burgers vector
 Schmid factor and slip trace analysis
 -------------------------------------
 
-.. figure:: ./_pictures/GUIs/EBSD_map_max_mprime_SF_slip_traces.png
+.. figure:: ./_pictures/gui/EBSD_map_max_mprime_SF_slip_traces.png
    :scale: 40 %
    :align: center
    

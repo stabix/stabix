@@ -13,7 +13,7 @@ The strain transfer across grain boundaries can be defined by the four following
 
  4) no transmission and the grain boundary acts as an impenetrable boundary, which implies stress accumulations, localized rotations, pile-up of dislocations... (:numref:`sutton_balluffi`-d).
 
-.. figure:: ./_pictures/Schemes_SlipTransmission/slip_transfer.png
+.. figure:: ./_pictures/schemes_slip_transmission/slip_transfer.png
    :name: sutton_balluffi
    :scale: 40 %
    :align: center
@@ -41,7 +41,7 @@ slip directions and the lines of intersection of the slip plane and the grain bo
 is the |rbv| of the residual dislocation at the grain boundary.
 The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming and outgoing slip systems, respectively.
 
-.. figure:: ./_pictures/Schemes_SlipTransmission/slip_transmission_scheme2.png
+.. figure:: ./_pictures/schemes_slip_transmission/slip_transmission_scheme2.png
    :name: slip_transmission_scheme2
    :scale: 45 %
    :align: center
@@ -100,14 +100,14 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   This :math:`m'` factor should be maximized (1 means grain boundary
   is transparent and 0 means grain boundary is an impenetrable boundary).
 
-   .. figure:: ./_pictures/Schemes_SlipTransmission/mprime_values.png
+   .. figure:: ./_pictures/schemes_slip_transmission/mprime_values.png
       :name: mprime_values
       :scale: 30 %
       :align: center
       
       *Distribution of m' parameter in function of angles values.*
 
-   .. figure:: ./_pictures/Schemes_SlipTransmission/mprime_values_vs_misorientation.png
+   .. figure:: ./_pictures/schemes_slip_transmission/mprime_values_vs_misorientation.png
       :name: mprime_values_vs_misorientation
       :scale: 50 %
       :align: center
@@ -186,14 +186,14 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
 
   With :math:`N` the number of slip systems for each adjacent grains.
 
-   .. figure:: ./_pictures/Schemes_SlipTransmission/lambda_fcc-fcc.png
+   .. figure:: ./_pictures/schemes_slip_transmission/lambda_fcc-fcc.png
       :name: lambda_fcc_fcc
       :scale: 50 %
       :align: center
       
       *Pseudo-3D view of the lambda map for the FCC-FCC case.*
 
-   .. figure:: ./_pictures/Schemes_SlipTransmission/lambda_bcc-bcc.png
+   .. figure:: ./_pictures/schemes_slip_transmission/lambda_bcc-bcc.png
       :name: lambda_bcc_bcc
       :scale: 50 %
       :align: center

@@ -45,7 +45,7 @@ Run one of these Graphical User Interfaces (GUIs) to play with the toolbox.
    `preCPFE_BX <https://github.com/stabix/stabix/blob/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_BX.m>`_, "Preprocess of CPFE models for indentation or scratch in a BX.", `config_CPFEM_defaults.yaml <https://github.com/stabix/stabix/blob/master/yaml_config_files/config_CPFEM_defaults.yaml>`_
    `GBinc <https://github.com/stabix/stabix/blob/master/gui_gbinc/A_gui_gbinc.m>`_, "Calculation of grain boundaries inclination." 
 
-.. figure:: ./_pictures/GUIs/all_GUIs.png
+.. figure:: ./_pictures/gui/all_GUIs.png
    :scale: 50 %
    :align: center
    

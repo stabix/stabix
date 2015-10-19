@@ -36,7 +36,7 @@ It is possible to set SX or BX properties (material, phase, Euler angles, trace 
 - from a YAML configuration file (from the menu, by clicking on 'preCPFE-SX' or
   'preCPFE-BX', and 'Load Single Crystal config. file' or 'Load Bicrystal config. file').
 
-.. figure:: ./_pictures/GUIs/bicrystal2cpfem.png
+.. figure:: ./_pictures/gui/bicrystal2cpfem.png
    :scale: 50 %
    :align: center
    
@@ -57,7 +57,7 @@ The function used to run the preCPFE GUI for SX indentation is :
 `A_preCPFE_windows_indentation_setting_SX.m
 <https://github.com/stabix/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_SX.m>`_
 
-.. figure:: ./_pictures/GUIs/preCPFE_GUI_SX.png
+.. figure:: ./_pictures/gui/preCPFE_GUI_SX.png
    :scale: 40 %
    :align: center
    
@@ -93,7 +93,7 @@ The function used to run the preCPFE GUI for BX indentation is :
 `A_preCPFE_windows_indentation_setting_BX.m
 <https://github.com/stabix/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_BX.m>`_
 
-.. figure:: ./_pictures/GUIs/preCPFE_GUI_BX.png
+.. figure:: ./_pictures/gui/preCPFE_GUI_BX.png
    :scale: 40 %
    :align: center
    
@@ -116,7 +116,7 @@ Scratch test on SX and BX
 CPFE simulation of scratch test in a single crystal or close to a grain boundary is implemented into this GUI.
 Scratch length and scratch direction have to be set by the user.
 
-.. figure:: ./_pictures/GUIs/preCPFE_GUI_scratch.png
+.. figure:: ./_pictures/gui/preCPFE_GUI_scratch.png
    :scale: 40 %
    :align: center
    
@@ -151,7 +151,7 @@ of the *Abaqus .inp* file.
 
 .. only:: html
 
-    .. figure:: ./_pictures/GUIs/BX_Berko_rotate.gif
+    .. figure:: ./_pictures/gui/BX_Berko_rotate.gif
        :scale: 40 %
        :align: center
        
@@ -159,7 +159,7 @@ of the *Abaqus .inp* file.
    
 .. only:: latex
 
-    .. figure:: ./_pictures/GUIs/BX_Berko_rotate.png
+    .. figure:: ./_pictures/gui/BX_Berko_rotate.png
        :scale: 40 %
        :align: center
        
@@ -175,7 +175,7 @@ The |matlab| function used to load and read Gwyddion file is :
 
 `Visit the Gwyddion website for more information. <http://gwyddion.net/>`_
 
-.. figure:: ./_pictures/GUIs/preCPFE_GUI_BX_AFM_topo_indenter.png
+.. figure:: ./_pictures/gui/preCPFE_GUI_BX_AFM_topo_indenter.png
    :scale: 40 %
    :align: center
    
