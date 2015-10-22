@@ -98,7 +98,7 @@ pygments_style = 'sphinx'
 
 # Numbering of figures, tables...
 numfig = True
-numfig_format = {'figure': 'Figure %s', 'table': 'Table %s', 'code-block': 'Code %s'}
+numfig_format = {'figure': 'Figure %s - ', 'table': 'Table %s - ', 'code-block': 'Code %s - '}
 
 # -- Options for HTML output ----------------------------------------------
 
