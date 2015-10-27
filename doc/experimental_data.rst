@@ -111,7 +111,7 @@ The |matlab| function used to read "Grain File Type 2" is :
 Loading other type of EBSD data files...
 -----------------------------------------
 
-It is possible to load other type of EBSD data files, using the 'import_wizard' of the MTEX toolbox.
+It is possible to load other type of EBSD data files (e.g. : .ctf files), using the 'import_wizard' of the MTEX toolbox.
 
 First, download and install the `MTEX Toolbox <http://mtex-toolbox.github.io/>`_.
 
@@ -122,8 +122,8 @@ The EBSD map is automatically plotted from the imported data.
 The coordinate system and the scan unit are set from the properties of the imported data.
 
 .. note::
-    For a single phase material, the phase number is 0. For a two phases material, the phase numbers are 1 and 2.
-    For non-indexed pixels, the phase is numbered as -1.
+    For a single phase material, the phase number is 0 or 1. For a two phases material, the phase numbers are
+    respectively 1 and 2. For non-indexed pixels, the phase is numbered as -1.
 
 How to generate a .ang file with TSL-OIM software ?
 ----------------------------------------------------
