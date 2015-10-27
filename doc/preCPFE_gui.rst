@@ -369,3 +369,5 @@ See also
 
 `Mao L. et al., "Crystal plasticity FEM study of nanoindentation behaviors
 of Cu bicrystals and Cu–Al bicrystals", J. Mater. Res., (2015). <http://dx.doi.org/10.1557/jmr.2015.223>`_
+
+`Renner E. et al., "Sensitivity of the residual topography to single crystal plasticity parameters in Berkovich nanoindentation on FCC nickel", International Journal of Plasticity, (2015). <http://dx.doi.org/10.1016/j.ijplas.2015.10.002>`_
