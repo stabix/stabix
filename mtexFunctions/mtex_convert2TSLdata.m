@@ -16,10 +16,13 @@ if nargin < 2
 end
 
 if nargin < 1
-    import_wizard;
+    mtex_getEBSDdata;
+    ebsd = evalin('base','ebsd'); 
 end
 
-if max(ebsd.phase) == 0
+ebsd = ebsd('indexed');
+
+if max(ebsd.phase) == 0 || max(ebsd.phase) == 1
     %% Grains definition
     grains = calcGrains(ebsd, 'angle', angle_value * degree);
     % subSet function to get only 1 grain

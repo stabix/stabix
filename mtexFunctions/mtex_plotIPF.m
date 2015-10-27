@@ -41,7 +41,7 @@ figure('Name', 'IPF'); hold on;
 
 if ~no_orientation
     if isfield(ebsdData, 'phase') && isfield (ebsdData, 'orientations')
-        if max(ebsdData.phase) == 0
+        if max(ebsdData.phase) == 0 || max(ebsdData.phase) == 1
             oM = ipdfHSVOrientationMapping(ebsdData.orientations);
             plot(oM); hold on;
             

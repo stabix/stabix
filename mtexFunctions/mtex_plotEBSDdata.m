@@ -16,7 +16,7 @@ if nargin < 1
 end
 
 if flagEBSDdata
-    if max(ebsdData.phase) == 0
+    if max(ebsdData.phase) == 0 || max(ebsdData.phase) == 1
         %% Orientation of Grains
         figure('Name', 'EBSDmap'); hold on;
         oM = ipdfHSVOrientationMapping(ebsdData);

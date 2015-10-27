@@ -9,7 +9,7 @@ gui = guidata(gcf);
 
 mtex_env = getMTEXpref;
 
-if max(gui.ebsdMTEX.phase) == 0
+if max(gui.ebsdMTEX.phase) == 0 || max(gui.ebsdMTEX.phase) == 1
     [fpath, fname_GF2, fname_RB] = mtex_convert2TSLdata(gui.ebsdMTEX);
     
     % Set paths in the GUI

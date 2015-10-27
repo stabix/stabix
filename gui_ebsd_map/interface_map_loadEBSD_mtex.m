@@ -12,6 +12,7 @@ if gui.flag.installation_mtex == 1
     mtex_getEBSDdata;
     
     gui.ebsdMTEX = evalin('base','ebsd'); % To import 'ebsd' variable from the workspace
+    gui.ebsdMTEX = gui.ebsdMTEX('indexed');
     guidata(gcf, gui);
     
     try
