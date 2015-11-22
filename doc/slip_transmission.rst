@@ -45,7 +45,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
    :name: slip_transmission_scheme2
    :scale: 45 %
    :align: center
-   
+   B
    *Geometrical description of the slip transfer.*
 
 * :math:`N` **factor from Livingston and Chalmers in 1957** [#LivingstonChalmers_1957]_ 
@@ -356,6 +356,9 @@ References
 .. [#Bachurin_2010] `D.V. Bachurin et al., "Dislocation–grain boundary interaction in <111> textured thin metal films.", Acta Materialia (2010), 58, pp. 5232–5241. <http://dx.doi.org/10.1016/j.actamat.2010.05.037>`_
 .. [#Bamford_1988] `T.A. Bamford et al., "A thermodynamic model of slip propagation.", Scripta Metallurgica (1988), 22(12), pp. 1911–1916. <http://dx.doi.org/10.1016/S0036-9748(88)80237-0>`_
 .. [#Bayerschen_2015] `E. Bayerschen et al., "On Slip Transmission Criteria in Experiments and Crystal Plasticity Models.", arXiv:1507.05748 (2015), pp. 1-9. <http://arxiv.org/abs/1507.05748>`_
+.. [#Bayerschen_2015_2] `E. Bayerschen et al., "On Slip Transmission Criteria in Experiments and Crystal Plasticity Models.", J. Mater. Sci. (2015), pp. 1-16. <http://dx.doi.org/10.1007/s10853-015-9553-4>`_
+Review on slip transmission criteria in experiments and crystal plasticity models
+
 .. [#Beyerlein_2012] `I. Beyerlein al., "Structure–Property–Functionality of Bimetal Interfaces.", The Journal of The Minerals, Metals & Materials Society (TMS) (2012), pp. 1192-1207. <http://dx.doi.org/10.1007/s11837-012-0431-0>`_
 .. [#Bieler_2009] `T.R. Bieler et al., "The role of heterogeneous deformation on damage nucleation at grain boundaries in single phase metals.", Int. J. of Plast. (2009), 25(9), pp. 1655–1683. <http://dx.doi.org/10.1016/j.ijplas.2008.09.002>`_
 .. [#Bieler_2014] `T.R. Bieler et al., "Grain boundaries and interfaces in slip transfer.", Current Opinion in Solid State and Materials Science, (2014), 18(4), pp. 212-226. <http://dx.doi.org/10.1016/j.cossms.2014.05.003>`_
