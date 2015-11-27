@@ -10,6 +10,7 @@ function plotGB_Bicrystal_min_max_param_map_plot(param2plot, min_max)
 
 %% Set the encapsulation of data
 gui = guidata(gcf);
+config = get_config;
 
 % Get min or max values
 if min_max == 1
@@ -34,7 +35,7 @@ textcolors = repmat(param_bc(:) < midvalue,1,3);
 set(gui.handles.hstrings,{'color'}, num2cell(textcolors, 2));
 
 if strcmp(gui.GB.Phase_A, 'hcp') == 1
-    if gui.flag.LaTeX_flag
+    if gui.flag.LaTeX_flag && config.matlab_version_year > 2014
         gui.handles.legend_x = ...
             {'bas','pri1$<a>$','pri2$<a>$','pyr1$<a>$','pyr1$<a+c>$','pyr2$<a+c>$'};
     else
@@ -44,7 +45,7 @@ if strcmp(gui.GB.Phase_A, 'hcp') == 1
     tick_x = 1:6;
 end
 if strcmp(gui.GB.Phase_B, 'hcp') == 1
-    if gui.flag.LaTeX_flag
+    if gui.flag.LaTeX_flag && config.matlab_version_year > 2014
         gui.handles.legend_y = ...
             {'bas','pri1$<a>$','pri2$<a>$','pyr1$<a>$','pyr1$<a+c>$','pyr2$<a+c>$'};
     else
@@ -54,7 +55,7 @@ if strcmp(gui.GB.Phase_B, 'hcp') == 1
     tick_y = 1:6;
 end
 if strcmp(gui.GB.Phase_A, 'bcc') == 1
-    if gui.flag.LaTeX_flag
+    if gui.flag.LaTeX_flag && config.matlab_version_year > 2014
         gui.handles.legend_x = {'$\{110\}<111>$','$\{112\}<111>$','$\{123\}<111>$'};
     else
         gui.handles.legend_x = {'{110}<111>','{112}<111>','{123}<111>'};
@@ -62,7 +63,7 @@ if strcmp(gui.GB.Phase_A, 'bcc') == 1
     tick_x = 1:3;
 end
 if  strcmp(gui.GB.Phase_B, 'bcc') == 1
-    if gui.flag.LaTeX_flag
+    if gui.flag.LaTeX_flag && config.matlab_version_year > 2014
         gui.handles.legend_y = {'$\{110\}<111>$','$\{112\}<111>$','$\{123\}<111>$'};
     else
         gui.handles.legend_y = {'{110}<111>','{112}<111>','{123}<111>'};
@@ -70,7 +71,7 @@ if  strcmp(gui.GB.Phase_B, 'bcc') == 1
     tick_y = 1:3;
 end
 if strcmp(gui.GB.Phase_A, 'fcc') == 1
-    if gui.flag.LaTeX_flag
+    if gui.flag.LaTeX_flag && config.matlab_version_year > 2014
         gui.handles.legend_x = {'$\{111\}<110>$'};
     else
         gui.handles.legend_x = {'{111}<110>'};
@@ -78,7 +79,7 @@ if strcmp(gui.GB.Phase_A, 'fcc') == 1
     tick_x = 1:1;
 end
 if strcmp(gui.GB.Phase_B, 'fcc') == 1
-    if gui.flag.LaTeX_flag
+    if gui.flag.LaTeX_flag && config.matlab_version_year > 2014
         gui.handles.legend_y = {'$\{111\}<110>$'};
     else
         gui.handles.legend_y = {'{111}<110>'};
@@ -110,12 +111,14 @@ Y_Label = ylabel(str_Ylabel);
 X_Label = xlabel(str_Xlabel);
 colorbar ('Location', 'SouthOutside');
 
-if gui.flag.LaTeX_flag
-    set([X_Label Y_Label], 'interpreter', 'latex');
-    set(gca, 'TickLabelInterpreter', 'latex');
-else
-    set([X_Label Y_Label], 'interpreter', 'none');
-    set(gca, 'TickLabelInterpreter', 'none');
+if config.matlab_version_year > 2014
+    if gui.flag.LaTeX_flag
+        set([X_Label Y_Label], 'interpreter', 'latex');
+        set(gca, 'TickLabelInterpreter', 'latex');
+    else
+        set([X_Label Y_Label], 'interpreter', 'none');
+        set(gca, 'TickLabelInterpreter', 'none');
+    end
 end
 
 guidata(gcf, gui);

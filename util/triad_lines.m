@@ -56,8 +56,16 @@ end
 XYZtxt(3) = text(Zpos(1),Zpos(2),Zpos(3),labels(3));
 
 set(XYZtxt, 'FontSize',floor(10+scale_factor*10), ...
-    'HorizontalAlignment','center', ...
-    'Interpreter', interpreter); %,'Rotation',crang)
+    'HorizontalAlignment','center'); %,'Rotation',crang)
+
+% Plots and graphics disappear if 'Latex' is used
+% as an text interpreter for Matlab2014a...
+config = get_config;
+if config.matlab_version_year > 2014
+    set(XYZtxt, 'Interpreter', interpreter);
+else
+    set(XYZtxt, 'Interpreter', 	'none');
+end
 
 % Create handle structure
 h_struct = struct();
