@@ -373,3 +373,5 @@ of Cu bicrystals and Cu–Al bicrystals", J. Mater. Res., (2015). <http://dx.doi
 `Renner E. et al., "Sensitivity of the residual topography to single crystal plasticity parameters in Berkovich nanoindentation on FCC nickel", International Journal of Plasticity, (2015). <http://dx.doi.org/10.1016/j.ijplas.2015.10.002>`_
 
 `Juran P. et al., "Investigation of indentation-, impact- and scratch-induced mechanically affected zones in a copper single crystal", Comptes Rendus Mécanique, (2015). <http://dx.doi.org/10.1016/j.crme.2015.03.003>`_
+
+`Materna A. et al., "A Numerical Investigation of the Effect of Cubic Crystals Orientation on the Indentation Modulus", Acta Physica Polonica A, (2015). <http://dx.doi.org/10.12693/APhysPolA.128.693>`_
