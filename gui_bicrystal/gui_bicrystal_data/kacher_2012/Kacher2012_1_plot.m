@@ -6,7 +6,7 @@
 
 %% Initialization
 tabularasa;
-%installation_mtex = mtex_check_install;
+%installation_mtex = mtex_checkInstall;
 installation_mtex = 0;
 plot_matlab = 1;
 latt_param_Ti = latt_param('Ti', 'hcp');

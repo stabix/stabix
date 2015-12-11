@@ -36,7 +36,7 @@ else
 end
 
 if ~gui_main_flag
-    gui.flag.installation_mtex = mtex_check_install;
+    gui.flag.installation_mtex = mtex_checkInstall;
 end
 
 %% Window Coordinates Configuration

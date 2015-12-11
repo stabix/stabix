@@ -6,7 +6,7 @@
 
 %% Initialization
 tabularasa;
-installation_mtex = mtex_check_install;
+installation_mtex = mtex_checkInstall;
 plot_matlab = 1;
 
 %% Loading of GB data

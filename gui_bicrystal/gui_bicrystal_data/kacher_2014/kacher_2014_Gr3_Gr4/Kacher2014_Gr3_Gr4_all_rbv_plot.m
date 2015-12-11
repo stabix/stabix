@@ -6,7 +6,7 @@
 
 %% Initialization
 tabularasa;
-installation_mtex = mtex_check_install;
+installation_mtex = mtex_checkInstall;
 
 GB(1) = load_YAML_BX_example_config_file(...
     'kacher_2014_Gr3-Gr4_1_rbv1.5.yaml');
