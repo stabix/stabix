@@ -21,7 +21,7 @@ fem_solvers:
 # the FEM solvers that you want to use, e.g. Mentat2012 or Mentat2013
 fem_solver_used: Mentat_2013.1
 
-# list of Python executables
+# list of Python executables (e.g.: 'C:\Python27\python.exe')
 python_executables:
     - python
 
