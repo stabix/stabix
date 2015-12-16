@@ -29,7 +29,7 @@ Geometrical Criteria
 Based on numerous investigations of dislocation-grain boundary interactions,
 quantitative geometrical expressions describing the slip transmission mechanisms have been developed. 
 A non-exhaustive list of geometrical criteria is detailed subsequently.
-The geometry of the slip transfer event is most of the time described by the scheme given :numref:`slip_transmission_scheme2`.
+The geometry of the slip transfer event is most of the time described by the scheme given :numref:`slipTransmissionScheme`.
 :math:`\kappa` is the angle between slip directions, :math:`\theta`
 is the angle between the two slip plane intersections with the grain boundary,
 :math:`\psi` is the angle between slip plane normal directions, :math:`\gamma`
@@ -42,7 +42,7 @@ is the |rbv| of the residual dislocation at the grain boundary.
 The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming and outgoing slip systems, respectively.
 
 .. figure:: ./_pictures/schemes_slip_transmission/slip_transmission_scheme2.png
-   :name: slip_transmission_scheme2
+   :name: slipTransmissionScheme
    :scale: 45 %
    :align: center
    B
