@@ -45,7 +45,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
    :name: slipTransmissionScheme
    :scale: 45 %
    :align: center
-   B
+
    *Geometrical description of the slip transfer.*
 
 * :math:`N` **factor from Livingston and Chalmers in 1957** [#LivingstonChalmers_1957]_ 
