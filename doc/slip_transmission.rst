@@ -95,7 +95,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
         :label: m_prime_angle
 
   Many authors found that this :math:`m'` parameter, which takes into account the degree of coplanarity of slip systems, is promising
-  to predict slip transmission [#WangNgan_2004]_, [#WoNgan_2004]_, [#Britton_2009]_, [#Bieler_2009]_, [#Bieler_2014]_ , [#Guo_2014]_, [#Wang_2014]_ and [#Guo_2015]_.
+  to predict slip transmission [#WangNgan_2004]_, [#WoNgan_2004]_, [#Britton_2009]_, [#Bieler_2009]_, [#Bieler_2014]_ , [#Guo_2014]_, [#Wang_2014]_, [#Guo_2015]_ and [#Nervo_2016].
   Both :math:`m'` and :math:`LRB` can be easily assessed in computational experiments [#Bieler_2014]_.
   This :math:`m'` factor should be maximized (1 means grain boundary
   is transparent and 0 means grain boundary is an impenetrable boundary).
@@ -405,6 +405,7 @@ References
 .. [#Ma_2006] `A. Ma et al., "On the consideration of interactions between dislocations and grain boundaries in crystal plasticity finite element modeling – Theory, experiments, and simulations.", Acta Materialia (2006), 54(8), pp.2181-2194. <http://dx.doi.org/10.1016/j.actamat.2006.01.004>`_
 .. [#Marcinkowski_1970] `M.J. Marcinkowski and W.F. Tseng, "Dislocation behavior at tilt boundaries of infinite extent.", Metal. Trans. (1970), 1(12), pp. 3397-3401. <http://dx.doi.org/10.1007/BF03037870>`_
 .. [#MisraGibala_1999] `A. Misra and R. Gibala, "Slip Transfer and Dislocation Nucleation Processes in Multiphase Ordered Ni-Fe-Al Alloys", Metallurgical and Materials Trans. A (1999), 30A, pp. 991-1001. <http://dx.doi.org/10.1007/s11661-999-0152-3>`_
+.. [#Nervo_2016] `L. Nervo et al., "A study of deformation twinning in a titanium alloy by X-ray diffraction contrast tomography", Acta Materialia (2016), 105, pp. 417-428. <http://dx.doi.org/10.1016/j.actamat.2015.12.032>`_
 .. [#Nibur_2003] `K.A. Nibur and D.F. Bahr, "Indentation Techniques for the Study of Deformation Across Grain Boundaries.", Mat. Res. Soc. Symp. Proc. (2003), 778, pp. 129-134. <http://dx.doi.org/10.1557/PROC-778-U4.10>`_
 .. [#Ohmura_2005] `T. Ohmura et al., "Nanoindentation-Induced Deformation Behavior in the Vicinity of Single Grain Boundary of Interstitial-Free Steel.", Materials Transactions (2005), 46(9), pp. 2026-2029. <http://dx.doi.org/10.2320/matertrans.46.2026>`_
 .. [#Pathak_2009] `S. Pathak et al., "Measurement of the local mechanical properties in polycrystalline samples using spherical nanoindentation and orientation imaging microscopy.", Acta Materialia (2009), 57, pp. 3020–3028. <http://dx.doi.org/10.1016/j.actamat.2009.03.008>`_
