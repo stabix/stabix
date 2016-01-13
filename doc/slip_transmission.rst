@@ -431,8 +431,7 @@ References
 .. [#SpearotSangid_2014] `D.E. Spearot and M.D. Sangid, "Insights on slip transmission at grain boundaries from atomistic simulations.", Current Opinion in Solid State and Materials Science (2014), in press. <http://dx.doi.org/10.1016/j.cossms.2014.04.001>`_
 .. [#SuttonBalluffi_1995] `A.P. Sutton and R.W. Balluffi, "Interfaces in Crystalline Materials.", OUP Oxford (1995). <http://dx.doi.org/10.1007/s100080050033>`_
 .. [#Tsurekawa_2014] `S. Tsurekawa et al., "Local plastic deformation in the vicinity of grain boundaries in Fe–3 mass% Si alloy bicrystals and tricrystal.", J. Mater. Sci., (2014), 49(14), pp. 4698–4704. <http://dx.doi.org/10.1007/s10853-014-8150-2>`_
-.. [#Tsuru_2016] `T. Tsuru et al., "A predictive model for transferability of plastic deformation through grain
-boundaries.", AIP ADVANCES, (2016), 6(015004). <http://dx.doi.org/10.1063/1.4939819>`_
+.. [#Tsuru_2016] `T. Tsuru et al., "A predictive model for transferability of plastic deformation through grain boundaries.", AIP ADVANCES, (2016), 6(015004). <http://dx.doi.org/10.1063/1.4939819>`_
 .. [#Ueda_2002] `M. Ueda et al., "Effect of grain boundary on martensite transformation behaviour in Fe–32 at.%Ni bicrystals.", Science and Technology of Advanced Materials (2002), 3(2), pp. 171. <http://dx.doi.org/10.1016/S1468-6996(02)00004-9>`_
 .. [#Wang_2014] `Wang F. et al., "In situ observation of collective grain-scale mechanics in Mg and Mg–rare earth alloys." Acta Materialia, (2014), 80, pp. 77–93. <http://dx.doi.org/10.1016/j.actamat.2014.07.048>`_
 .. [#WangNgan_2004] `M.G. Wang and A.H.W. Ngan, "Indentation strain burst phenomenon induced by grain boundaries in niobium.", Journal of Materials Research (2004), 19(08), pp. 2478-2486. <http://dx.doi.org/10.1557/JMR.2004.0316>`_
