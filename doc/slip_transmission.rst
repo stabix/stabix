@@ -60,8 +60,6 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   [#HookHirth_1967_2]_, [#Shen_1986]_, [#Shen_1988]_, [#Lee_1990_1]_, [#Lee_1990_2]_, [#Clark_1992]_ and [#Ueda_2002]_.
   Pond et al. proposed to compute this geometric criteria for hexagonal metals using Frank's method [#Pond_1986]_.
   
-  In 2016, Tsuru et al. proposed a new criterion, based on the :math:`N` factor, for the transferability of dislocations through  a  GB     that  considers  both  the intergranular  crystallographic  orientation  of slip systems and the applied stress condition [#Tsuru_2016]_   .
-  
   The |matlab| function used to calculate the N factor is :
   `N_factor.m <https://github.com/stabix/stabix/tree/master/slip_transfer/N_factor.m>`_
   
@@ -322,6 +320,8 @@ Combination of Criteria
         
     .. math:: m_{GSF}^{'} = \frac{\sum_{\alpha} \sum_{\beta} m_{\alpha\beta}^{'} \left(m^{\alpha} m^{\beta} \right)}{\sum_{\alpha} \sum_{\beta} \left(m^{\alpha} m^{\beta} \right)}
         :label: SchmidFactor_weighting_mprime
+        
+  In 2016, Tsuru et al. proposed a new criterion, based on the :math:`N` factor, for the transferability of dislocations through  a  GB     that  considers  both  the intergranular  crystallographic  orientation  of slip systems and the applied stress condition [#Tsuru_2016]_   .
         
 Slip transmission parameters implemented in the STABiX toolbox
 -----------------------------------------------------------------------
