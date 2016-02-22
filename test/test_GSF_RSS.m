@@ -42,6 +42,6 @@ commandwindow;
 fprintf('Euler angles = [%.3f %.3f %.3f]\n', eulers);
 
 resolved_shear_stress(eulers, d, n, T)
-generalized_schmid_factor(n, d, T, g)
+generalized_schmid_factor(g, d, n, T)
 
 end

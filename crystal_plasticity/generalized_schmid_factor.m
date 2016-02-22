@@ -1,6 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function GSF = generalized_schmid_factor(...
-    n, d, sigma, g, testFlag, varargin)
+function GSF = generalized_schmid_factor(g, d, n, sigma, testFlag, varargin)
 %% Function used to calculate the generalized schmid factor
 % Calculates the generalized Schmid factor from :
 % From C.N. Reid," Deformation Geometry for Materials Scientists, Pergamon Press, Oxford, United Kingdom, 1973 (p.156).
@@ -26,10 +25,6 @@ function GSF = generalized_schmid_factor(...
 % GSF = b.gsgT.(n)^-1
 
 % authors: d.mercier@mpie.de/bieler@egr.msu.edu
-
-%% Tolerances definition
-tol = 1e-9; % tolerance for tests and for checking if normals and directions are perpendicular;
-tol_GSF = 0.5; % tolerance for tests and for checking if GSF<=0.5;
 
 %% Setting if no argument or less than 5
 if nargin < 5
@@ -58,10 +53,9 @@ n = n/norm(n);
 d = d/norm(d);
 
 sigma_n = sigma/norm(sigma,'fro');  % Frobenius normalization
-        
-if dot(n,d) > tol
-    warning_commwin('n,b not perpendicular');
-end
+
+tol = 1e-9; % tolerance for tests and for checking if normals and directions are perpendicular;
+check_vectors_orthogonality(n, d, tol);
 
 gsgT = g * sigma_n * g';
 
@@ -74,6 +68,8 @@ if testFlag
         '[%.3f %.3f %.3f\n %.3f %.3f %.3f\n %.3f %.3f %.3f]\n '], g);
     fprintf('Generalized Schmid Factor = %.4f\n', GSF);
 end
+
+tol_GSF = 0.5; % tolerance for tests and for checking if GSF<=0.5;
 
 if abs(GSF) > tol_GSF
     % Generalized Schmid factors are greater than 0.5 in some instances because the
