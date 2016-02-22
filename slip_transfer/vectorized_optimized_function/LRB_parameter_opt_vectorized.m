@@ -20,9 +20,9 @@ function LRB = LRB_parameter_opt_vectorized(l1, d1, l2, d2, varargin)
 
 if nargin == 0 % run test cases if called without arguments
     d1 = random_direction();
-    l1 = perpendicular_vector(d1);
+    l1 = orthogonal_vector(d1);
     d2 = random_direction();
-    l2 = perpendicular_vector(d2);
+    l2 = orthogonal_vector(d2);
     LRB_test = LRB_parameter_opt_vectorized(l1,d1,l2,d2)
     LRB = NaN;
     return

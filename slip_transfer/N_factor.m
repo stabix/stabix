@@ -17,9 +17,9 @@ function n_fact = N_factor(n1, d1, n2, d2, varargin)
 
 if nargin == 0 % run test cases if called without arguments
     n1 = random_direction();
-    d1 = perpendicular_vector(n1);
+    d1 = orthogonal_vector(n1);
     n2 = random_direction();
-    d2 = perpendicular_vector(n2);
+    d2 = orthogonal_vector(n2);
     n_factor = N_factor(n1,d1,n2,d2)
     n_fact = NaN;
     return

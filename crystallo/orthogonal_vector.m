@@ -1,7 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function ov = orthogonal_vector(vIn, varargin)
 % after MTEX geometry/orth
-
 % an arbitrary (normalized) orthogonal vector
 %
 % convention:

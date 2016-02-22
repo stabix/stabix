@@ -9,7 +9,7 @@ end
 if nargin < 1
     for ii = 1 : 1e4
         v1 = random_direction() * rand;
-        v2 = perpendicular_vector(v1);
+        v2 = orthogonal_vector(v1);
         %         v2 = random_direction();
         %         assert(~check_vectors_orthogonality(v1,v2));
         res = check_vectors_orthogonality(v1,v2);

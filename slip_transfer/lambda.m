@@ -1,6 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function lambdaValues = lambda(n1, d1, n2, d2, phi_c, kappa_c, varargin)
-%% Function used to calculate the geometric compatibility function lambd1,
+%% Function used to calculate the geometric compatibility function lambda,
 % defined by Werner and Prantl (1990)
 % DOI ==> 10.1016/0956-7151(90)90159-E
 %
@@ -32,9 +32,9 @@ end
 
 if nargin == 0 % run test cases if called without arguments
     n1 = random_direction();
-    d1 = perpendicular_vector(n1);
+    d1 = orthogonal_vector(n1);
     n2 = random_direction();
-    d2 = perpendicular_vector(n2);
+    d2 = orthogonal_vector(n2);
     lambdaValues = lambda(n1,d1,n2,d2)
     return
 end

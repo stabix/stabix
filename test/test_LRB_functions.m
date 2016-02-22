@@ -15,9 +15,9 @@ l2 = zeros(3, GB_number);
 d2 = zeros(3, GB_number);
 for ii = 1:GB_number
     d1(:, ii) = random_direction();
-    l1(:, ii) = perpendicular_vector(d1(:, ii));
+    l1(:, ii) = orthogonal_vector(d1(:, ii));
     d2(:, ii) = random_direction();
-    l2(:, ii) = perpendicular_vector(d2(:, ii));
+    l2(:, ii) = orthogonal_vector(d2(:, ii));
 end
 
 mprime_val = zeros(GB_number);

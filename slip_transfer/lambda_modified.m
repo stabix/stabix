@@ -32,9 +32,9 @@ end
 
 if nargin == 0 % run test cases if called without arguments
     l1 = random_direction();
-    d1 = perpendicular_vector(l1);
+    d1 = orthogonal_vector(l1);
     l2 = random_direction();
-    d2 = perpendicular_vector(l2);
+    d2 = orthogonal_vector(l2);
     lambdaValues = lambda(l1,d1,l2,d2)
     return
 end

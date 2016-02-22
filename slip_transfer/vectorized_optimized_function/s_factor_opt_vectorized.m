@@ -25,11 +25,11 @@ function s = s_factor_opt_vectorized(n1, d1, l1, n2, d2, l2, varargin)
 if nargin == 0 % run test cases if called without arguments
     for ii = 1:5
         d1(ii,:) = random_direction();
-        n1(ii,:) = perpendicular_vector(d1(ii,:));
-        l1(ii,:) = perpendicular_vector(d1(ii,:));
+        n1(ii,:) = orthogonal_vector(d1(ii,:));
+        l1(ii,:) = orthogonal_vector(d1(ii,:));
         d2(ii,:) = random_direction();
-        n2(ii,:) = perpendicular_vector(d2(ii,:));
-        l2(ii,:) = perpendicular_vector(d2(ii,:));
+        n2(ii,:) = orthogonal_vector(d2(ii,:));
+        l2(ii,:) = orthogonal_vector(d2(ii,:));
     end
     s1 = s_factor_opt_vectorized(n1,d1,l1,n2,d2,l2)
     s2 = s_factor_opt_vectorized(n2,d2,l2,n1,d1,l1)

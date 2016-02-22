@@ -19,9 +19,9 @@ function mp = mprime_opt(n1, d1, n2, d2, varargin)
 
 if nargin == 0 % run test cases if called without arguments
     n1 = random_direction();
-    d1 = perpendicular_vector(n1);
+    d1 = orthogonal_vector(n1);
     n2 = random_direction();
-    d2 = perpendicular_vector(n2);
+    d2 = orthogonal_vector(n2);
     m1 = mprime_opt(n1,d1,n2,d2)
     m2 = mprime_opt(n2,d2,n1,d1)
     assert(m1 == m2);
