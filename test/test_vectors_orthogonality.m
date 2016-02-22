@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function res = check_vectors_orthogonality(v1, v2, tol)
+function res = test_vectors_orthogonality(v1, v2, tol)
 %% Check orthogonality between 2 vectors (v1 and v2)
 
 if nargin < 3
@@ -11,8 +11,8 @@ if nargin < 1
         v1 = random_direction() * rand;
         v2 = orthogonal_vector(v1);
         %         v2 = random_direction();
-        %         assert(~check_vectors_orthogonality(v1,v2));
-        res = check_vectors_orthogonality(v1,v2);
+        %         assert(~test_vectors_orthogonality(v1,v2));
+        res = test_vectors_orthogonality(v1,v2);
     end
     return
 end

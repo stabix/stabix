@@ -46,8 +46,8 @@ d1 = d1_cart_rot ./ norm(d1_cart_rot);
 d2 = d2_cart_rot ./ norm(d2_cart_rot);
 
 % Check of orthogonality
-check_vectors_orthogonality(n1, d1);
-check_vectors_orthogonality(n2, d2);
+test_vectors_orthogonality(n1, d1);
+test_vectors_orthogonality(n2, d2);
 
 % Get cosine from the dot product
 cosine_n = cos_from_vectors(n1, n2);

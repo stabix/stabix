@@ -302,7 +302,7 @@ end
 check_flag = zeros(size(slip_syst,3),1);
 for ii = 1:size(slip_syst,3)
     if ~isnan(slip_syst_check(1,:,ii)) & ~isnan(slip_syst_check(2,:,ii))
-        check_flag(ii) = check_vectors_orthogonality(...
+        check_flag(ii) = test_vectors_orthogonality(...
             slip_syst_check(1,:,ii), slip_syst_check(2,:,ii));
     else
         check_flag(ii) = 1;

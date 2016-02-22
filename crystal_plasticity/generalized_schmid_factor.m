@@ -55,7 +55,7 @@ d = d/norm(d);
 sigma_n = sigma/norm(sigma,'fro');  % Frobenius normalization
 
 tol = 1e-9; % tolerance for tests and for checking if normals and directions are perpendicular;
-check_vectors_orthogonality(n, d, tol);
+test_vectors_orthogonality(n, d, tol);
 
 gsgT = g * sigma_n * g';
 

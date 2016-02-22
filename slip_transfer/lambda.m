@@ -39,8 +39,8 @@ if nargin == 0 % run test cases if called without arguments
     return
 end
 
-check_vectors_orthogonality(n1, d1);
-check_vectors_orthogonality(n2, d2);
+test_vectors_orthogonality(n1, d1);
+test_vectors_orthogonality(n2, d2);
 
 cos_phi = cos_from_vectors(n1, n2);
 cos_kappa = cos_from_vectors(d1, d2);

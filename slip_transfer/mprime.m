@@ -29,8 +29,8 @@ if nargin == 0 % run test cases if called without arguments
     return
 end
 
-check_vectors_orthogonality(n1, d1);
-check_vectors_orthogonality(n2, d2);
+test_vectors_orthogonality(n1, d1);
+test_vectors_orthogonality(n2, d2);
 
 % abs is introduced to get the maximum value of m' because of the bidirectionnality of the slip
 % but for the twins the sense of the slip direction has to be taken into account

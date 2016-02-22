@@ -106,8 +106,8 @@ for ii = 1:eulerTot
             d1 = vectCleaned_1(jj,4:6,1); % Euler = [0 0 0] ==> Reference
             d2 = vectCleaned_2(kk,4:6,ii);
             
-            check_vectors_orthogonality(n1, d1);
-            check_vectors_orthogonality(n2, d2);
+            test_vectors_orthogonality(n1, d1);
+            test_vectors_orthogonality(n2, d2);
 
             cos_phi(jj,kk,ii) = cos_from_vectors(n1, n2);
             cos_kappa(jj,kk,ii) = cos_from_vectors(d1, d2);
