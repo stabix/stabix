@@ -35,10 +35,21 @@ guidata(gcf, gui);
 [listslipA, listslipB, no_slip] = plotGB_Bicrystal_listslips;
 
 %% Update of Euler angles
+gui.handles.pmEulerUnit_str = get_value_popupmenu(gui.handles.pmEulerUnit, ...
+    get(gui.handles.pmEulerUnit, 'String'));
+
 gui.GB.eulerA = plotGB_Bicrystal_update_euler(gui.GB.eulerA_ori, ...
-    gui.handles.getEulangGrA);
+    gui.handles.getEulangGrA, gui.handles.pmEulerUnit_str);
 gui.GB.eulerB = plotGB_Bicrystal_update_euler(gui.GB.eulerB_ori, ...
-    gui.handles.getEulangGrB);
+    gui.handles.getEulangGrB, gui.handles.pmEulerUnit_str);
+
+if strcmp(gui.handles.pmEulerUnit_str, 'Radian')
+    gui.GB.eulerA = gui.GB.eulerA * 180/pi;
+    gui.GB.eulerB = gui.GB.eulerB * 180/pi;
+    gui.GB.eulerA_ori = gui.GB.eulerA;
+    gui.GB.eulerB_ori = gui.GB.eulerB;
+end
+guidata(gcf, gui);
 
 %% Get stress tensor from map interface
 gui.stressTensor = get_stress_tensor(gui.handles.stressTensor);
@@ -194,7 +205,7 @@ if ~gui.flag.error
     axis tight;
     rotate3d on;
     view(old_az, old_el);
-
+    
     %% Plotting of slip transmission parameter map
     if ~no_slip
         subplot(4, 2, [7 8], 'Position', [0.25, 0, 0.65, 0.2]);
