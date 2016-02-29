@@ -21,13 +21,25 @@ if isempty(get(gui.handles.getSlipB, 'String'))
         slipB_all_vect(1,:,1), slipB_all_vect(2,:,1));
 end
 
-specific_slipA_strcat  = get(gui.handles.getSlipA, 'String');
-specific_slipB_strcat  = get(gui.handles.getSlipB, 'String');
+specific_slipA_strcat = get(gui.handles.getSlipA, 'String');
+specific_slipB_strcat = get(gui.handles.getSlipB, 'String');
 
 specific_slipA_unstrcat = strsplit(specific_slipA_strcat, ...
     {'(', '[', ']', ')'});
 specific_slipB_unstrcat = strsplit(specific_slipB_strcat, ...
     {'(', '[', ']', ')'});
+
+%% Get the slip normals of slips A and B from the GUI
+specific_slipA_unstrcat_num_norm = cell2mat(specific_slipA_unstrcat(2));
+specific_slipB_unstrcat_num_norm = cell2mat(specific_slipB_unstrcat(2));
+
+specific_slipA_unstrcat_str_norm = num2str(specific_slipA_unstrcat_num_norm);
+specific_slipB_unstrcat_str_norm = num2str(specific_slipB_unstrcat_num_norm);
+
+specific_slipA_unstrcat_str_norm(...
+    ismember(specific_slipA_unstrcat_str_norm,' ')) = [];
+specific_slipB_unstrcat_str_norm(...
+    ismember(specific_slipB_unstrcat_str_norm,' ')) = [];
 
 %% Get the slip directions of slips A and B from the GUI
 specific_slipA_unstrcat_num_dir = cell2mat(specific_slipA_unstrcat(4));
@@ -43,10 +55,12 @@ specific_slipB_unstrcat_str_dir(...
 
 %% Definition of slips A and B
 specific_slip_A = get_slip_indices(...
-    specific_slipA_unstrcat_str_dir, slipA_all_vect, 2);
+    specific_slipA_unstrcat_str_norm, specific_slipA_unstrcat_str_dir, ...
+    slipA_all_vect, 2);
 
 specific_slip_B = get_slip_indices(...
-    specific_slipB_unstrcat_str_dir, slipB_all_vect, 2);
+    specific_slipB_unstrcat_str_norm, specific_slipB_unstrcat_str_dir, ...
+    slipB_all_vect, 2);
 
 specific_slips_AB = [specific_slip_A, specific_slip_B];
 

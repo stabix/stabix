@@ -119,9 +119,11 @@ GB_YAML.slipB_str_dir(ismember(GB_YAML.slipB_str_dir,' ')) = [];
 slipA_all_vect = slip_systems(GB_YAML.Phase_A, 9);
 slipB_all_vect = slip_systems(GB_YAML.Phase_B, 9);
 specific_slips_A = ...
-    get_slip_indices(GB_YAML.slipA_str_dir, slipA_all_vect, 2);
+    get_slip_indices(GB_YAML.slipA_str_norm, GB_YAML.slipA_str_dir, ...
+    slipA_all_vect, 2);
 specific_slips_B = ...
-    get_slip_indices(GB_YAML.slipB_str_dir, slipB_all_vect, 2);
+    get_slip_indices(GB_YAML.slipB_str_norm, GB_YAML.slipB_str_dir, ...
+    slipB_all_vect, 2);
 
 specific_slips_AB = [specific_slips_A, specific_slips_B];
 
