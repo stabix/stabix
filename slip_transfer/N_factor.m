@@ -28,7 +28,7 @@ end
 test_vectors_orthogonality(n1, d1);
 test_vectors_orthogonality(n2, d2);
 
-n_fact = cos_from_vectors(n1, n2) * cos_from_vectors(d1, d2) + ...
-    cos_from_vectors(n1, d2) * cos_from_vectors(n2, d1);
+n_fact = cosFromVectors(n1, n2) * cosFromVectors(d1, d2) + ...
+    cosFromVectors(n1, d2) * cosFromVectors(n2, d1);
 
 end

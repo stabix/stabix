@@ -22,8 +22,8 @@ if nargin == 0 % run test cases if called without arguments
     d1 = orthogonal_vector(n1);
     n2 = random_direction();
     d2 = orthogonal_vector(n2);
-    m1 = mprime(n1,d1,n2,d2)
-    m2 = mprime(n2,d2,n1,d1)
+    m1 = mprime(n1,d1,n2,d2);
+    m2 = mprime(n1,d1,n2,d2);
     assert(m1 == m2);
     mp = NaN;
     return
@@ -34,7 +34,7 @@ test_vectors_orthogonality(n2, d2);
 
 % abs is introduced to get the maximum value of m' because of the bidirectionnality of the slip
 % but for the twins the sense of the slip direction has to be taken into account
-mp = cos_from_vectors(n1, n2) * cos_from_vectors(d1, d2);
+mp = cosFromVectors(n1, n2) * cosFromVectors(d1, d2);
 mp = abs(mp); % dealing with bidirectional slip here
 
 end

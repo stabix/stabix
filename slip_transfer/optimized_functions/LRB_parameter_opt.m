@@ -27,6 +27,6 @@ if nargin == 0 % run test cases if called without arguments
     return
 end
 
-LRB = cos_from_vectors(l1, l2) * cos_from_vectors(d1, d2);
+LRB = cosFromVectors(l1, l2) * cosFromVectors(d1, d2);
 
 end

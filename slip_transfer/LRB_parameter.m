@@ -30,6 +30,6 @@ end
 test_vectors_orthogonality(l1, d1);
 test_vectors_orthogonality(l2, d2);
 
-LRB = cos_from_vectors(l1, l2) * cos_from_vectors(d1, d2);
+LRB = cosFromVectors(l1, l2) * cosFromVectors(d1, d2);
 
 end

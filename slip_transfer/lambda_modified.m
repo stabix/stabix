@@ -42,8 +42,8 @@ end
 test_vectors_orthogonality(l1, d1);
 test_vectors_orthogonality(l2, d2);
 
-cos_theta = cos_from_vectors(l1, l2);
-cos_kappa = cos_from_vectors(d1, d2);
+cos_theta = cosFromVectors(l1, l2);
+cos_kappa = cosFromVectors(d1, d2);
 
 % Next checks used to avoid complex values returned
 % by acosd function for theta and kappa calculations

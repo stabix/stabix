@@ -31,7 +31,7 @@ end
 
 % abs is introduced to get the maximum value of m' because of the bidirectionnality of the slip
 % but for the twins the sense of the slip direction has to be taken into account
-%     mp = cos_from_vectors(n1, n2) * cos_from_vectors(d1, d2);
+%     mp = cosFromVectors(n1, n2) * cosFromVectors(d1, d2);
 mp = dot(n1, n2) * dot(d1, d2);
 mp = abs(mp); % dealing with bidirectional slip here
 

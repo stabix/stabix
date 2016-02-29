@@ -25,7 +25,7 @@ if nargin == 0 % run test cases if called without arguments
     return
 end
 
-n_fact = cos_from_vectors(n1, n2) * cos_from_vectors(d1, d2) + ...
-    cos_from_vectors(n1, d2) * cos_from_vectors(n2, d1);
+n_fact = cosFromVectors(n1, n2) * cosFromVectors(d1, d2) + ...
+    cosFromVectors(n1, d2) * cosFromVectors(n2, d1);
 
 end

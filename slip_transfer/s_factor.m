@@ -39,7 +39,7 @@ test_vectors_orthogonality(n1, d1);
 test_vectors_orthogonality(n2, d2);
 test_vectors_orthogonality(l2, l2);
 
-s = cos_from_vectors(n1, n2) * cos_from_vectors(d1, d2) * cos_from_vectors(l1, l2);
+s = cosFromVectors(n1, n2) * cosFromVectors(d1, d2) * cosFromVectors(l1, l2);
 
 end
 

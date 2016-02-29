@@ -109,8 +109,8 @@ for ii = 1:eulerTot
             test_vectors_orthogonality(n1, d1);
             test_vectors_orthogonality(n2, d2);
 
-            cos_phi(jj,kk,ii) = cos_from_vectors(n1, n2);
-            cos_kappa(jj,kk,ii) = cos_from_vectors(d1, d2);
+            cos_phi(jj,kk,ii) = cosFromVectors(n1, n2);
+            cos_kappa(jj,kk,ii) = cosFromVectors(d1, d2);
             
             % Next checks used to avoid complex values returned 
             % by acosd function for phi and kappa calculations

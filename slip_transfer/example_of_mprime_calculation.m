@@ -50,10 +50,10 @@ test_vectors_orthogonality(n1, d1);
 test_vectors_orthogonality(n2, d2);
 
 % Get cosine from the dot product
-cosine_n = cos_from_vectors(n1, n2);
-cosine_d = cos_from_vectors(d1, d2);
-cosine_n_inv = cos_from_vectors(n2, n1);
-cosine_d_inv = cos_from_vectors(d2, d1);
+cosine_n = cosFromVectors(n1, n2);
+cosine_d = cosFromVectors(d1, d2);
+cosine_n_inv = cosFromVectors(n2, n1);
+cosine_d_inv = cosFromVectors(d2, d1);
 
 % Get angle from cosine
 phi = ang_from_vectors(n1, n2);

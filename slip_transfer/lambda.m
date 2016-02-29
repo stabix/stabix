@@ -42,8 +42,8 @@ end
 test_vectors_orthogonality(n1, d1);
 test_vectors_orthogonality(n2, d2);
 
-cos_phi = cos_from_vectors(n1, n2);
-cos_kappa = cos_from_vectors(d1, d2);
+cos_phi = cosFromVectors(n1, n2);
+cos_kappa = cosFromVectors(d1, d2);
 
 % Next checks used to avoid complex values returned
 % by acosd function for phi and kappa calculations
