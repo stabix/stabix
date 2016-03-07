@@ -43,8 +43,11 @@ In this way the stress and strain fields close to the grain boundary can be rapi
 Activation and transmission of slip are interpreted based on these simulations and the mechanical resistance of grain boundaries can be quantified.
 
 :download:`Source code is hosted at Github. <https://github.com/stabix/stabix>`
+
 :download:`Download source code as a .zip file. <https://github.com/stabix/stabix/archive/master.zip>`
+
 :download:`Find here the reference paper for this toolbox. <http://dx.doi.org/10.5281/zenodo.11561>`
+
 :download:`Download the documentation as a pdf file. <https://media.readthedocs.org/pdf/stabix/latest/stabix.pdf>`
 
 How to cite STABiX in your papers ?
