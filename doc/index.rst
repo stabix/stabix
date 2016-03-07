@@ -42,20 +42,17 @@ instrumented sphero-conical indentation, and measurement of the resulting surfac
 In this way the stress and strain fields close to the grain boundary can be rapidly assessed.
 Activation and transmission of slip are interpreted based on these simulations and the mechanical resistance of grain boundaries can be quantified.
 
-Download :download:`the source code hosted at Github <https://github.com/stabix/stabix>`.
-   
-Download :download:`the source code as a .zip file <https://github.com/stabix/stabix/archive/master.zip>`.
-   
-Download :download:`the reference paper for this toolbox <http://dx.doi.org/10.5281/zenodo.11561>`.
-   
-Download :download:`the documentation as a pdf file <https://media.readthedocs.org/pdf/stabix/latest/stabix.pdf>`.
+How to get STABiX code ?
+===========================
+
+.. include:: source_code.rst
 
 How to cite STABiX in your papers ?
 ====================================
 
 .. image:: https://zenodo.org/badge/doi/10.5281/zenodo.14854.svg
    :target: http://dx.doi.org/10.5281/zenodo.14854
-   
+
 Reference paper
 ================
 
@@ -67,7 +64,9 @@ http://dx.doi.org/10.1088/1757-899X/82/1/012090
 `"Spherical indentation and crystal plasticity modeling near grain boundaries in alpha-Ti." <http://dx.doi.org/10.13140/RG.2.1.3044.8486>`_
 D. Mercier, C. Zambaldi, P. Eisenlohr, Y. Su, M. A. Crimp, T. R. Bieler,
 Poster presented at "Indentation 2014" Conference in Strasbourg (France) (December 2014).
-http://dx.doi.org/10.13140/RG.2.1.3044.8486 
+http://dx.doi.org/10.13140/RG.2.1.3044.8486
+
+`"STABiX documentation." <https://media.readthedocs.org/pdf/stabix/latest/stabix.pdf>`_
 
 Contents
 =========
