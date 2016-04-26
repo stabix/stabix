@@ -321,8 +321,15 @@ Combination of Criteria
     .. math:: m_{GSF}^{'} = \frac{\sum_{\alpha} \sum_{\beta} m_{\alpha\beta}^{'} \left(m^{\alpha} m^{\beta} \right)}{\sum_{\alpha} \sum_{\beta} \left(m^{\alpha} m^{\beta} \right)}
         :label: SchmidFactor_weighting_mprime
         
-  In 2016, Tsuru et al. proposed a new criterion, based on the :math:`N` factor, for the transferability of dislocations through  a  GB     that  considers  both  the intergranular  crystallographic  orientation  of slip systems and the applied stress condition [#Tsuru_2016]_   .
+  In 2016, Tsuru et al. proposed a new criterion, based on the :math:`N` factor, for the transferability of dislocations through  a  GB that  considers  both  the intergranular  crystallographic  orientation  of slip systems and the applied stress condition [#Tsuru_2016]_   .
         
+Relationships between slip transmission criteria
+-----------------------------------------------------------------------
+
+  Some authors proposed to study relationships between slip transmission criteria [#Guo_2014]_ and [#Wang_2016]_.
+  Thus, it is possible to find in the litterature the :math:`m'` parameter plotted in function of the Schmid factor or the misorientation angle.
+  Such plots based on experimental values allow to map slip transmissivity at grain boundaries for a given material.
+		
 Slip transmission parameters implemented in the STABiX toolbox
 -----------------------------------------------------------------------
 .. csv-table::
@@ -433,7 +440,8 @@ References
 .. [#Tsurekawa_2014] `S. Tsurekawa et al., "Local plastic deformation in the vicinity of grain boundaries in Fe–3 mass% Si alloy bicrystals and tricrystal.", J. Mater. Sci., (2014), 49(14), pp. 4698–4704. <http://dx.doi.org/10.1007/s10853-014-8150-2>`_
 .. [#Tsuru_2016] `T. Tsuru et al., "A predictive model for transferability of plastic deformation through grain boundaries.", AIP ADVANCES, (2016), 6(015004). <http://dx.doi.org/10.1063/1.4939819>`_
 .. [#Ueda_2002] `M. Ueda et al., "Effect of grain boundary on martensite transformation behaviour in Fe–32 at.%Ni bicrystals.", Science and Technology of Advanced Materials (2002), 3(2), pp. 171. <http://dx.doi.org/10.1016/S1468-6996(02)00004-9>`_
-.. [#Wang_2014] `Wang F. et al., "In situ observation of collective grain-scale mechanics in Mg and Mg–rare earth alloys." Acta Materialia, (2014), 80, pp. 77–93. <http://dx.doi.org/10.1016/j.actamat.2014.07.048>`_
+.. [#Wang_2014] `Wang F. et al., "In situ observation of collective grain-scale mechanics in Mg and Mg–rare earth alloys.", Acta Materialia, (2014), 80, pp. 77–93. <http://dx.doi.org/10.1016/j.actamat.2014.07.048>`_
+.. [#Wang_2016] `Wang H. et al., "In situ analysis of the slip activity during tensile deformation of cast and extruded Mg-10Gd-3Y-0.Zr(wt.%) at 250°C", Materials characterization, (2016), 116, pp. 8-17. <http://dx.doi.org/10.1016/j.matchar.2016.04.001>`_
 .. [#WangNgan_2004] `M.G. Wang and A.H.W. Ngan, "Indentation strain burst phenomenon induced by grain boundaries in niobium.", Journal of Materials Research (2004), 19(08), pp. 2478-2486. <http://dx.doi.org/10.1557/JMR.2004.0316>`_
 .. [#Werner_1990] `E. Werner and W. Prantl, "Slip transfer across grain and phase boundaries.", Acta Metallurgica et Materialia (1990), 38(3), pp. 533-537. <http://dx.doi.org/10.1016/0956-7151(90)90159-E>`_
 .. [#WestWas_2013] `E.A. West and G.S. Was, "Strain incompatibilities and their role in intergranular cracking of irradiated 316L stainless steel.", J. of Nucl. Mater. (2013), 441(1-3), pp. 623–632. <http://dx.doi.org/10.1016/j.jnucmat.2012.10.021>`_

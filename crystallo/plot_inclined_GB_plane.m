@@ -6,7 +6,7 @@ function GB_inclined = plot_inclined_GB_plane(GB_endpoint_1, ...
 % GB_endpoint_2: Coordinates 2 of GB segment (at the sample's surface) obtained from EBSD measurement
 % GB_trace_angle: Trace angle of GB segment (at the sample's surface) obtained from EBSD measurement
 % GB_inclination: Inclination of the GB in the sample.
-% authors: d.mercier@mpie.de
+% author: d.mercier@mpie.de
 
 if nargin == 0
     GB_endpoint_1 = [0;0;0];
