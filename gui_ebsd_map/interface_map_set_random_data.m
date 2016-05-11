@@ -25,50 +25,63 @@ elseif button_type == 2
         if nargin < 2
             pathname_random_TSL_files = uigetdir(pwd, ...
                 'Select a directory to store random TSL files');
+            if isequal(pathname_random_TSL_files,0)
+                disp('User selected Cancel');
+                set(gui.handles.cb_rdm_TSLdata, 'Value', 0);
+                set(gui.handles.scale_rdm_TSLdata, 'Visible', 'off');
+                pathname_random_TSL_files_flag = 0;
+            else
+                disp(['User selected ', fullfile(pathname, filename)]);
+                pathname_random_TSL_files_flag = 1;
+            end
         else
             pathname_random_TSL_files = pathname;
         end
         
-        rdmData_path = fullfile(pathname_random_TSL_files, ...
-            strcat(timestamp_make, '_random_TSL_data'));
-        
-        mkdir(rdmData_path);
-        
-        gui.rdm_TSL_dataset = random_2D_microstructure_data(round(get(...
-            gui.handles.scale_rdm_TSLdata, 'value')));
-        
-        %% Creation of Grain File Type 2 (.txt file)
-        gui.rdm_TSL_dataset.GF2filename = sprintf('random_GF2data.txt');
-        
-        gui.rdm_TSL_dataset.GF2pathname = rdmData_path;
-        
-        write_oim_grain_file_type2(gui.rdm_TSL_dataset, ...
-            gui.rdm_TSL_dataset.GF2pathname, ...
-            gui.rdm_TSL_dataset.GF2filename);
-        
-        %% Creation of Reconstructed Boundaries (.txt file)
-        gui.rdm_TSL_dataset.RBfilename = sprintf('random_RBdata.txt');
-        
-        gui.rdm_TSL_dataset.RBpathname = rdmData_path;
-        
-        write_oim_reconstructed_boundaries_file(gui.rdm_TSL_dataset, ...
-            gui.rdm_TSL_dataset.GF2pathname, ...
-            gui.rdm_TSL_dataset.RBfilename);
-        
-        %% Set paths and flags
-        gui.flag.newDataFlag = 2;
-        guidata(gcf, gui);
-        interface_map_read_TSL_data;
-        gui = guidata(gcf);
-        
-        %% Run the plot
-        gui.flag.newDataFlag = 2;
-        guidata(gcf, gui);
-        interface_map_set_coordinate_convention;
-        interface_map_plotmap(1,1);
-        
-        %% Encapsulation of data
-        gui = guidata(gcf); guidata(gcf, gui);
+        if pathname_random_TSL_files_flag
+            rdmData_path = fullfile(pathname_random_TSL_files, ...
+                strcat(timestamp_make, '_random_TSL_data'));
+            
+            mkdir(rdmData_path);
+            
+            gui.rdm_TSL_dataset = random_2D_microstructure_data(round(get(...
+                gui.handles.scale_rdm_TSLdata, 'value')));
+            
+            %% Creation of Grain File Type 2 (.txt file)
+            gui.rdm_TSL_dataset.GF2filename = sprintf('random_GF2data.txt');
+            
+            gui.rdm_TSL_dataset.GF2pathname = rdmData_path;
+            
+            
+            write_oim_grain_file_type2(gui.rdm_TSL_dataset, ...
+                gui.rdm_TSL_dataset.GF2pathname, ...
+                gui.rdm_TSL_dataset.GF2filename);
+            
+            
+            %% Creation of Reconstructed Boundaries (.txt file)
+            gui.rdm_TSL_dataset.RBfilename = sprintf('random_RBdata.txt');
+            
+            gui.rdm_TSL_dataset.RBpathname = rdmData_path;
+            
+            write_oim_reconstructed_boundaries_file(gui.rdm_TSL_dataset, ...
+                gui.rdm_TSL_dataset.GF2pathname, ...
+                gui.rdm_TSL_dataset.RBfilename);
+            
+            %% Set paths and flags
+            gui.flag.newDataFlag = 2;
+            guidata(gcf, gui);
+            interface_map_read_TSL_data;
+            gui = guidata(gcf);
+            
+            %% Run the plot
+            gui.flag.newDataFlag = 2;
+            guidata(gcf, gui);
+            interface_map_set_coordinate_convention;
+            interface_map_plotmap(1,1);
+            
+            %% Encapsulation of data
+            gui = guidata(gcf); guidata(gcf, gui);
+        end
         
     end
     
