@@ -11,7 +11,9 @@ function hPatch = vis_fcc_atoms(eulers, slip, shiftXYZ, szFac, plotAxes, fast, .
 % numph : phase_number
 % line_width
 % authors: d.mercier@mpie.de/c.zambaldi@mpie.de
+
 tabularasa;
+
 if nargin < 8
     line_width = 2;
 end
@@ -52,7 +54,7 @@ cub = [...
     -a/2   -a/2     a/2; %5
     a/2   -a/2     a/2; %6
     a/2    a/2     a/2; %7
-    -a/2    a/2     a/2];%8
+    -a/2    a/2     a/2]; %8
 
 fcc = [...
     0   0    -a/2; % bottom 1
@@ -60,7 +62,25 @@ fcc = [...
     0    a/2    0; %3
     0    -a/2   0; %4
     -a/2   0    0; %5
-    a/2    0     0];%6
+    a/2    0     0]; %6
+
+interstitielOct = [0 0 0]; %2
+
+interstitielTetra = [
+    1/4 1/4 1/4;
+    1/4 1/4 -1/4;
+    -1/4 -1/4 1/4;
+    -1/4 -1/4 -1/4;
+    -1/4 1/4 1/4;
+    -1/4 1/4 -1/4;
+    1/4 -1/4 -1/4;
+    1/4 -1/4 1/4];
+
+ptsTet = [...
+    0   0   a/2;
+    a/2 a/2 a/2;
+    a/2 0 0;
+    0 a/2 0];
 
 %% Rotate the lattice cell points
 gg  = g_glob;
@@ -77,6 +97,24 @@ pts2 = pts2*szFac;
 pts2(:,1) = pts2(:,1)+shiftXYZ(1);
 pts2(:,2) = pts2(:,2)+shiftXYZ(2);
 pts2(:,3) = pts2(:,3)+shiftXYZ(3);
+
+pts3 = interstitielOct;
+pts3 = pts3*szFac;
+pts3(:,1) = pts3(:,1)+shiftXYZ(1);
+pts3(:,2) = pts3(:,2)+shiftXYZ(2);
+pts3(:,3) = pts3(:,3)+shiftXYZ(3);
+
+pts4 = interstitielTetra;
+pts4 = pts4*szFac;
+pts4(:,1) = pts4(:,1)+shiftXYZ(1);
+pts4(:,2) = pts4(:,2)+shiftXYZ(2);
+pts4(:,3) = pts4(:,3)+shiftXYZ(3);
+
+pts5 = ptsTet;
+pts5 = pts5*szFac;
+pts5(:,1) = pts5(:,1)+shiftXYZ(1);
+pts5(:,2) = pts5(:,2)+shiftXYZ(2);
+pts5(:,3) = pts5(:,3)+shiftXYZ(3);
 
 if ~fast
     axis;
@@ -97,7 +135,7 @@ twins_planes3 = [4 5 7];
 twins_planes4 = [2 5 7];
 %-------------------------------------------------------------------------------------------------------------------------------------------
 %% Patch definition
-fAlph = 0.7; % Transparency
+fAlph = 0.3; % Transparency
 
 top = [1 2 3 4;
     5 6 7 8];
@@ -178,29 +216,73 @@ end
 
 % Plot of atoms as spheres
 hold on;
-sphR = 0.05;
+sphRAtom = 0.04;
+sphRInst = 0.02;
+colorAtom = 'k';
+colorInstOct = 'r';
+colorInstTet = 'b';
 
 for ii = 1:length(pts)
     [x,y,z] = sphere(30);
-    x = (x.*sphR)+pts(ii,1);
-    y = (y.*sphR)+pts(ii,2);
-    z = (z.*sphR)+pts(ii,3);
-    surf(x,y,z);
-    colormap([0 0 0; 0 0 0]);
+    x = (x.*sphRAtom)+pts(ii,1);
+    y = (y.*sphRAtom)+pts(ii,2);
+    z = (z.*sphRAtom)+pts(ii,3);
+    surf(x,y,z, 'FaceColor', colorAtom,'EdgeColor','none');
     hold on;
 end
 
 for ii = 1:length(pts2)
     [x,y,z] = sphere(30);
-    x = (x.*sphR)+pts2(ii,1);
-    y = (y.*sphR)+pts2(ii,2);
-    z = (z.*sphR)+pts2(ii,3);
-    surf(x,y,z);
-    colormap([0 0 0; 0 0 0]);
+    x = (x.*sphRAtom)+pts2(ii,1);
+    y = (y.*sphRAtom)+pts2(ii,2);
+    z = (z.*sphRAtom)+pts2(ii,3);
+    surf(x,y,z, 'FaceColor', colorAtom,'EdgeColor','none');
     hold on;
 end
 
+for ii = 1:1
+    [x,y,z] = sphere(30);
+    x = (x.*sphRInst)+pts3(ii,1);
+    y = (y.*sphRInst)+pts3(ii,2);
+    z = (z.*sphRInst)+pts3(ii,3);
+    OctSite = surf(x,y,z, 'FaceColor', colorInstOct, 'EdgeColor','none');
+    hold on;
+end
+
+for ii = 1:1 %size(pts4,1)
+    [x,y,z] = sphere(30);
+    x = (x.*sphRInst)+pts4(ii,1);
+    y = (y.*sphRInst)+pts4(ii,2);
+    z = (z.*sphRInst)+pts4(ii,3);
+    TetSite = surf(x,y,z, 'FaceColor', colorInstTet, 'EdgeColor','none');
+    hold on;
+end
+
+legend([OctSite, TetSite], 'Octahedral site', 'Tetrahedral site', ...
+    'Location', 'SouthOutside');
+
 axis equal;
 view([30 10]);
+
+facesOct = [1 3 5;
+    1 4 5;
+    1 3 6;
+    1 4 6;
+    2 3 5;
+    2 4 5;
+    2 3 6;
+    2 4 6];
+
+facesTet = [1 2 3;
+    2 3 4;
+    4 1 2;
+    1 3 4];
+
+% Plot of octohedral and tetragonal sites
+hOct = patch('Vertices',pts2,'Faces',facesOct,...
+    'FaceColor',colorInstOct,'FaceAlpha',fAlph);
+
+hTet = patch('Vertices',pts5,'Faces',facesTet ,...
+    'FaceColor',colorInstTet,'FaceAlpha',fAlph);
 
 return
