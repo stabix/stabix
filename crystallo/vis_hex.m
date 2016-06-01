@@ -1,6 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function hPatch = vis_hex(eulers, slip, shiftXYZ, szFac, plotAxes, fast, ...
-    numph, line_width, varargin)
+    numph, line_width, interstitial, varargin)
 %% Visualization of an hexagonal unit cell in a given orientation
 % eulers: Bunge Euler angles in degrees
 % slip : slip to plot
@@ -10,8 +10,13 @@ function hPatch = vis_hex(eulers, slip, shiftXYZ, szFac, plotAxes, fast, ...
 % fast: do not change daspect or axis modes to gain performance
 % numph : phase_number
 % line_width
+% interstitial: plot of interstitial sites (octahedral and tetragonal)
+
 % authors: d.mercier@mpie.de/c.zambaldi@mpie.de
 
+if nargin < 9
+    interstitial = 0;
+end
 if nargin < 8
     line_width = 2;
 end
@@ -62,9 +67,14 @@ hcp = [0           0         0; % bottom 1
     -a            0         c; %15
     -a*cosd(60) -a*sind(60)    c;%16
     a*cosd(60) -a*sind(60)    c;%17
-    0            0         3*c]; % 3*top %18
+    0            0         3*c; % 3*top %18
+    0  a/3*sind(60)+(a*(3^0.5)/2) c/2]; %19
 
 hcp(:,3) = hcp(:,3)-c/2;
+
+interstitielOct = [0 (a/3*sind(60)+(a*(3^0.5)/2))/2 c/4];
+
+interstitielTet = [0      -2*a/3*sind(60)  c/3];
 
 % if nargin == 0
 %     %clc
@@ -87,6 +97,21 @@ pts = pts*szFac;
 pts(:,1) = pts(:,1)+shiftXYZ(1);
 pts(:,2) = pts(:,2)+shiftXYZ(2);
 pts(:,3) = pts(:,3)+shiftXYZ(3);
+
+pts2 = (gg*interstitielOct');
+pts2 = pts2';
+pts2 = pts2*szFac;
+pts2(:,1) = pts2(:,1)+shiftXYZ(1);
+pts2(:,2) = pts2(:,2)+shiftXYZ(2);
+pts2(:,3) = pts2(:,3)+shiftXYZ(3);
+
+pts3 = (gg*interstitielTet');
+pts3 = pts3';
+pts3 = pts3*szFac;
+pts3(:,1) = pts3(:,1)+shiftXYZ(1);
+pts3(:,2) = pts3(:,2)+shiftXYZ(2);
+pts3(:,3) = pts3(:,3)+shiftXYZ(3);
+
 if ~fast
     axis;
     hold on;
@@ -108,12 +133,15 @@ if plotAxes
         [shiftXYZ(3)+pts(1,3) pts(11,3)],'Color','k');
     haxt(4) = text(pts(11,1),pts(11,2),pts(11,3),'   c');
 end
+
 %% definition and plotting of the planes
+% planes
+%-------------------------------------------------------------------------------------------------------------------------------------------
 % basal <a> - glide [Cd Be Zn Mg Re Ti Re] - {00.1} <11.0> - slips number : 1-3
 basalfaces = [
     2 3 4 5 6 7;
     12 13 14 15 16 17];
-%-------------------------------------------------------------------------------------------------------------------------------------------
+
 % prisma1 <a> - glide [Ti Zr Re Be Re Mg] - 1st order - {10.0} <11.0> - slips number : 4-6
 prisma1 = [
     3 13 14 4;
@@ -132,7 +160,7 @@ prisma2 = [
     2 6 16 12;
     4 2 12 14
     ];
-%-------------------------------------------------------------------------------------------------------------------------------------------
+
 % pyramidal <a> - glide [Mg Ti] - 1st order - {-11.1} <11.0> - slips number : 10-15
 pyramidal_a = [
     6 7 11;
@@ -160,6 +188,7 @@ pyramidal2_ac = [
     3 5 16 12;
     5 7 12 14];
 %-------------------------------------------------------------------------------------------------------------------------------------------
+% twins
 % {10.2}<-10.1> T1 - Tension twins twshzr = 0.17; corr = -1.3; [all but compression for Zn and Cd] - Index : 34-39
 twin1 = [
     4 5 17 12;
@@ -168,6 +197,7 @@ twin1 = [
     7 2 14 15;
     5 6 12 13;
     3 4 16 17];
+
 % {-1-1.1}<11.6> T2 - Tension twins: twshzr = 0.63;  corr = -0.4; [Ti Zr Re] - Index : 40-45
 twin2 = [
     7 3 11;
@@ -176,6 +206,7 @@ twin2 = [
     4 6 11;
     6 2 11;
     2 4 11;];
+
 % {10.1}<10.-2> C1 - Compression twins: twshzr = 0.10; corr = 1.1; [Ti Zr Mg] - Index : 46-51
 twin3 = [
     4 5 16 13;
@@ -194,7 +225,6 @@ twin4 = [
     6 2 13 15;
     2 4 15 17];
 
-%-------------------------------------------------------------------------------------------------------------------------------------------
 %% Patch definition
 if ~fast
     daspect([1 1 1])
@@ -289,6 +319,73 @@ else
     end
     hPatch = [hBas,hPri,hslip];
     
+end
+
+if interstitial
+    % Plot of atoms as spheres
+    hold on;
+    sphRAtom = 0.06;
+    sphRInst = 0.03;
+    colorAtom = 'k';
+    colorInstOct = 'r';
+    colorInstTet = 'b';
+    
+    for ii = 1:length(pts)-2
+        [x,y,z] = sphere(30);
+        x = (x.*sphRAtom)+pts(ii,1);
+        y = (y.*sphRAtom)+pts(ii,2);
+        z = (z.*sphRAtom)+pts(ii,3);
+        surf(x,y,z, 'FaceColor', colorAtom,'EdgeColor','none');
+        hold on;
+    end
+    
+    [x,y,z] = sphere(30);
+    x = (x.*sphRAtom)+pts(19,1);
+    y = (y.*sphRAtom)+pts(19,2);
+    z = (z.*sphRAtom)+pts(19,3);
+    surf(x,y,z, 'FaceColor', colorAtom,'EdgeColor','none');
+    hold on;
+    
+    [x,y,z] = sphere(30);
+    x = (x.*sphRInst)+pts2(1,1);
+    y = (y.*sphRInst)+pts2(1,2);
+    z = (z.*sphRInst)+pts2(1,3);
+    OctSite = surf(x,y,z, 'FaceColor', colorInstOct,'EdgeColor','none');
+    hold on;
+    
+    [x,y,z] = sphere(30);
+    x = (x.*sphRInst)+pts3(1,1);
+    y = (y.*sphRInst)+pts3(1,2);
+    z = (z.*sphRInst)+pts3(1,3);
+    TetSite = surf(x,y,z, 'FaceColor', colorInstTet,'EdgeColor','none');
+    hold on;
+    
+    legend([OctSite, TetSite], 'Octahedral site', 'Tetrahedral site', ...
+        'Location', 'SouthOutside');
+    
+    axis equal;
+    view([-128 6]);
+    
+    facesOct = [11 13 14;
+        13 14 19;
+        19 8 9;
+        11 8 9;
+        11 13 8;
+        19 13 8;
+        19 14 9;
+        11 14 9];
+    
+    facesTet = [16 17 11;
+        16 17 10;
+        16 11 10;
+        17 11 10];
+    
+    % Plot of octohedral and tetragonal sites
+    hOct = patch('Vertices',pts,'Faces',facesOct,...
+        'FaceColor',colorInstOct,'FaceAlpha',fAlph/2.5);
+    
+    hTet = patch('Vertices',pts,'Faces',facesTet ,...
+        'FaceColor',colorInstTet,'FaceAlpha',fAlph/2.5);
 end
 
 if ~fast
