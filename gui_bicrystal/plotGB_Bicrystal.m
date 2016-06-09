@@ -20,8 +20,12 @@ gui.flag.LaTeX_flag = get(gui.handles.latex, 'Value');
 valcase = get(gui.handles.pmchoicecase, 'Value');
 
 %% Setting of popupmenu
-[gui.GB.Phase_A, gui.GB.Phase_B] = plotGB_Bicrystal_get_struct;
-[gui.GB.Material_A, gui.GB.Material_B] = plotGB_Bicrystal_get_material;
+[Phase_A, Phase_B] = plotGB_Bicrystal_get_struct;
+[Material_A, Material_B] = plotGB_Bicrystal_get_material;
+gui.GB.Phase_A = char(Phase_A);
+gui.GB.Phase_B = char(Phase_B);
+gui.GB.Material_A = char(Material_A);
+gui.GB.Material_B = char(Material_B);
 
 listSlipsA = listSlipSystems(gui.GB.Phase_A);
 listSlipsB = listSlipSystems(gui.GB.Phase_B);
@@ -50,6 +54,13 @@ if strcmp(gui.handles.pmEulerUnit_str, 'Radian')
     gui.GB.eulerB_ori = gui.GB.eulerB;
 end
 guidata(gcf, gui);
+
+%% Update of phase number
+if strcmp(gui.GB.Phase_A, gui.GB.Phase_B) == 1
+    gui.GB.number_phase    = 1;
+else
+    gui.GB.number_phase    = 2;
+end
 
 %% Get stress tensor from map interface
 gui.stressTensor = get_stress_tensor(gui.handles.stressTensor);
