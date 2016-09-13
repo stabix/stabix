@@ -37,6 +37,15 @@ D. Mercier, C. Zambaldi, P. Eisenlohr, Y. Su, M. A. Crimp, T. R. Bieler,
 Poster presented at "Indentation 2014" Conference in Strasbourg (France) (December 2014).
 http://dx.doi.org/10.13140/RG.2.1.3044.8486
 
+`"Grain Boundaries and Plasticity." <http://dx.doi.org/10.13140/RG.2.2.27427.66084>`_
+D. Mercier, C. Zambaldi, P. Eisenlohr, M. A. Crimp, T. R. Bieler, R. Sánchez Martín.
+Invited talk at "MTEX Workshop 2016" Conference in Chemnitz (Germany) (February 2016).
+http://dx.doi.org/10.13140/RG.2.2.27427.66084
+
+`"Quantifying deformation processes near grain boundaries in α titanium using nanoindentation and crystal plasticity modeling." <http://dx.doi.org/10.1016/j.ijplas.2016.08.007>`_
+Y. Su, C. Zambaldi, D. Mercier, P. Eisenlohr, T.R. Bieler, M.A. Crimp, International Journal of Plasticity, (2016).
+http://dx.doi.org/10.1016/j.ijplas.2016.08.007
+
 Contributors
 =============
 
