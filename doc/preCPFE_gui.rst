@@ -377,3 +377,7 @@ of Cu bicrystals and Cu–Al bicrystals", J. Mater. Res., (2015). <http://dx.doi
 `Materna A. et al., "A Numerical Investigation of the Effect of Cubic Crystals Orientation on the Indentation Modulus", Acta Physica Polonica A, (2015). <http://dx.doi.org/10.12693/APhysPolA.128.693>`_
 
 `Csanádi T. et al., "Nanoindentation induced deformation anisotropy in β-Si3N4 ceramic crystals", Journal of the European Ceramic Society, (2015). <http://dx.doi.org/10.1016/j.jeurceramsoc.2015.11.028>`_
+
+`Liu M. et al., "A combined experimental-numerical approach for determining mechanical properties of aluminum subjects to nanoindentation.", Scientific Reports, (2015). <http://dx.doi.org/10.1038/srep15072>`_
+
+`Su Y. et al., "Quantifying deformation processes near grain boundaries in α titanium using nanoindentation and crystal plasticity modeling.", International Journal of Plasticity, (2016). <http://dx.doi.org/10.1016/j.ijplas.2016.08.007>`_
