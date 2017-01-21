@@ -381,3 +381,5 @@ of Cu bicrystals and Cu–Al bicrystals", J. Mater. Res., (2015). <http://dx.doi
 `Liu M. et al., "A combined experimental-numerical approach for determining mechanical properties of aluminum subjects to nanoindentation.", Scientific Reports, (2015). <http://dx.doi.org/10.1038/srep15072>`_
 
 `Su Y. et al., "Quantifying deformation processes near grain boundaries in α titanium using nanoindentation and crystal plasticity modeling.", International Journal of Plasticity, (2016). <http://dx.doi.org/10.1016/j.ijplas.2016.08.007>`_
+
+`Han F. et al., "Indentation Pileup Behavior of Ti-6Al-4V Alloy: Experiments and Nonlocal Crystal Plasticity Finite Element Simulations.", Metallurgical and Materials Transactions A, (2017). <http://dx.doi.org/10.1007/s11661-016-3946-0>`_
