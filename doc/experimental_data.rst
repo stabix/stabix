@@ -116,7 +116,7 @@ It is possible to load other type of EBSD data files (e.g. : .ctf files), using 
 First, download and install the `MTEX Toolbox <http://mtex-toolbox.github.io/>`_.
 
 Then, import your EBSD data (e.g.: .ang file) and set the coordinate systme, using the 'import_wizard' and
-save the EBSD dataset in the |matlab| workspace as a variable named 'ebsd'.
+save the EBSD dataset in the |matlab| workspace as a variable named 'ebsd', and press 'Finish'.
 
 The EBSD map is automatically plotted from the imported data.
 The coordinate system and the scan unit are set from the properties of the imported data.
@@ -166,7 +166,7 @@ the Voronoi tesselation for example. Thus, the following plot can be obtained :
    *Screenshot of the EBSD map GUI with a problem of axis limits.*
    
 In this case, it is advised to use the `'zoom' function of Matlab <http://de.mathworks.com/help/matlab/creating_plots/enlarging-the-view.html>`_
-to zoom in and zoom out in the center of the EBSD map, to vizualize the grains.
+to zoom in and zoom out in the center of the EBSD map, to vizualize the grains. It is also possible to set directly the limits of axis (e.g.: xlim([0 1500]); ylim([-1000 0]);) in the command window of Matlab.
 
 Bicrystal GUI 
 **************
