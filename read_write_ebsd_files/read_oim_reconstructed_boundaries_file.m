@@ -87,6 +87,7 @@ while feof(fid) ~= 1
     end
 end
 fclose(fid);
+RB.path = fpath;
 RB.data = data;
 RB.header = header;
 RB.col_idx = header2struct(header);

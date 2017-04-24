@@ -87,6 +87,7 @@ while feof(fid) ~= 1
     end
 end
 fclose(fid);
+GF2.path = fpath;
 GF2.data = data;
 GF2.header = header;
 GF2.col_idx = header2struct(header);

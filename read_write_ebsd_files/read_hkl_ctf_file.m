@@ -71,6 +71,7 @@ while feof(fid) ~= 1
     end
 end
 fclose(fid);
+fdata.path = fpath;
 fdata.data = data;
 fdata.header = header;
 end
