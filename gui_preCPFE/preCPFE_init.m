@@ -52,4 +52,10 @@ gui.config.CPFEM.python_executables = ...
 
 gui.config.CPFEM.python = python_check;
 
+if gui.config.CPFEM.python.scipy_version
+    v = char(gui.config.CPFEM.python.scipy_version);
+    [x, y] = sscanf(v, '%i.%i.%i');
+    if x(2) > 16
+        error('Version of scipy is higher than 0.16 ! You have to downgrade scipy...');
+    end
 end
