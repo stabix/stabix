@@ -16,7 +16,7 @@ function fdata = read_hkl_ctf_file(fname, fpath, varargin)
 % fdata.detector_intensity
 % fdata.fit
 
-% The fields of each line in the body of the file are as follows:
+% The fields of each line in the body of the .ctf file are as follows:
 % Phase	X Y	Bands Error Euler1 Euler2 Euler3 MAD BC BS
 
 % author: d.mercier@mpie.de
