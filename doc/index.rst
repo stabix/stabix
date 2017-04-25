@@ -35,7 +35,7 @@ Other potential functions that could assess the potential to develop damage are 
 Furthermore, the toolbox provides the possibility to plot and analyze the case of a bicrystal, and to model sphero-conical indentation performed
 in a single crystal or close to grain boundaries (i.e. quasi bicrystal deformation).
 All of the data linked to the bicrystal indentation (indenter properties, indentation settings, grain boundary inclination, etc.) are collected through the GUI.
-A python\ :sup:`TM` \ file can be then exported in order to carry out a fully automatic 3D crystal plasticity finite element simulations of the indentation process
+A Python\ :sup:`TM` \ file can be then exported in order to carry out a fully automatic 3D crystal plasticity finite element simulations of the indentation process
 using one of the constitutive models available in DAMASK [#Roters_2010]_ and [#DAMASK]_.
 The plasticity of single crystals is quantified by a combination of crystal lattice orientation mapping,
 instrumented sphero-conical indentation, and measurement of the resulting surface topography [#Zambaldi_2012]_ and [#Zambaldi_SX]_.

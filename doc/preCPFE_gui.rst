@@ -216,7 +216,7 @@ Python setup
 -------------
 
 For the generation of the CPFE preprocessing scripts an installation of Python 
-is required together with the *Numpy* package.
+is required together with the *Numpy 1.10.4* ans *Scipy 0.16.0* packages.
 Often one of the `scientific Python distributions <http://www.scipy.org/install.html#scientific-python-distributions>`_
 is the easiest way to get up and running (use a Python 2.x distribution).
 To make sure that |stabix| can find the installed Python you will have to either 
