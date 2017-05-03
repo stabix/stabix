@@ -54,18 +54,25 @@ if max(ebsd.phase) == 0 || max(ebsd.phase) == 1
     %fdata.number_of_grain_boundaries = size(grains.boundary.F,1);
     
     [grains_x, grains_y] = centroid(grains);
-    
-    [fdata.GBvx, ...
-        fdata.GBvy, ...
-        fdata.GB2cells, ...
-        fdata.flag_VorFailed] = ...
-        neighbooring_edge_of_2cells(...
-        grains_x', grains_y');
-    
-    fdata.GBvx = fdata.GBvx';
-    fdata.GBvy = fdata.GBvy';
-    fdata.GB2cells = fdata.GB2cells';
-    fdata.number_of_grain_boundaries = size(fdata.GBvx, 1);
+
+	% From Voronoi's tessellation (faster but GBs segments are lost frome real microstructure)
+%     [fdata.GBvx, ...
+%         fdata.GBvy, ...
+%         fdata.GB2cells, ...
+%         fdata.flag_VorFailed] = ...
+%         neighbooring_edge_of_2cells(...
+%         grains_x', grains_y');
+
+%	 fdata.GBvx = fdata.GBvx';
+% 	 fdata.GBvy = fdata.GBvy';
+%	 fdata.GB2cells = fdata.GB2cells';
+	
+	% From MTEX (real microstructure, with all GBs segments --> very slow)
+    gB = grains.boundary('indexed');
+    fdata.GBvx = [gB.V(gB.F(:,1),1), gB.V(gB.F(:,2),1)];
+    fdata.GBvy = [gB.V(gB.F(:,1),2), gB.V(gB.F(:,2),2)];
+    fdata.GB2cells = gB.grainId;
+    fdata.number_of_grain_boundaries = gB.length;
     
     % Write TSL-OIM grain file type 2
     write_oim_reconstructed_boundaries_file(fdata, fpath, fname_RB);
