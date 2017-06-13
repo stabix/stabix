@@ -68,4 +68,19 @@ Institutions
    :align: center
    :target: http://multiphysics.lab.asu.edu/index.html
    
-   `Solanki Research Group (Arizona State University, USA) <http://multiphysics.lab.asu.edu/index.html>`_
+   `Arizona State University, Solanki Research Group (Tempe, USA) <http://multiphysics.lab.asu.edu/index.html>`_
+   
+.. figure:: ./_pictures/logos/logo_QueensUniv.png
+   :scale: 50%
+   :align: center
+   :target: http://my.me.queensu.ca/Research/Nuclear/
+   
+   `Queen's University, NSERC Research Chair in Nuclear Materials (Kingston, Canada) <http://my.me.queensu.ca/Research/Nuclear/>`_
+   
+.. figure:: ./_pictures/logos/logo_NUI.png
+   :scale: 50%
+   :align: center
+   :target: http://www.nuigalway.ie/
+   
+   `National University of Ireland (Galway, Ireland) <http://www.nuigalway.ie/>`_
+   
