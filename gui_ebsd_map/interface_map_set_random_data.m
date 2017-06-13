@@ -31,7 +31,7 @@ elseif button_type == 2
                 set(gui.handles.scale_rdm_TSLdata, 'Visible', 'off');
                 pathname_random_TSL_files_flag = 0;
             else
-                disp(['User selected ', fullfile(pathname, filename)]);
+                disp(['User selected ', pathname_random_TSL_files]);
                 pathname_random_TSL_files_flag = 1;
             end
         else
