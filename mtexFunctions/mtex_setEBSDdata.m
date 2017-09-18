@@ -9,7 +9,7 @@ gui = guidata(gcf);
 
 mtex_env = getMTEXpref;
 
-if max(gui.ebsdMTEX.phase) == 0 || max(gui.ebsdMTEX.phase) == 1
+if max(gui.ebsdMTEX.phase) < 3
     [fpath, fname_GF2, fname_RB] = mtex_convert2TSLdata(gui.ebsdMTEX, 5, ...
         gui.COORDSYS_eulers);
     
@@ -44,7 +44,7 @@ if max(gui.ebsdMTEX.phase) == 0 || max(gui.ebsdMTEX.phase) == 1
     % Run the plot of the loaded EBSD data
     interface_map_set_coordinate_convention;
 else
-    display('Only permitted for a single phase!');
+    display('Only permitted for a single phase or a 2 phases material!');
 end
 
 end
