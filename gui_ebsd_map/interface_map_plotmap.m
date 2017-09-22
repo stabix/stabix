@@ -379,6 +379,9 @@ if gui.flag.flag_lattice == 1
             if maxval < 0.1 || (maxval - minval) < 0.1
                 bins = round(10000*linspace(minval, maxval, 5))/10000;
             end
+            if minval == maxval
+                bins = round(10000*linspace(0.9*minval, 1.1*maxval, 5))/10000;
+            end
             
             Colorgb = zeros(size(RB,1), 1);
             for gbnum = 1:1:size(RB,1)
@@ -416,7 +419,11 @@ if gui.flag.flag_lattice == 1
         
         try
             Colorbargb = colorbar;
-            caxis([minval maxval]);
+            if minval == maxval
+                caxis([0.9*minval 1.1*maxval]);
+            else
+                caxis([minval maxval]);
+            end
             if location_num == 1 || location_num == 2 || ...
                     location_num == 5 || location_num == 6
                 set(Colorbargb, 'XTick', bins);
