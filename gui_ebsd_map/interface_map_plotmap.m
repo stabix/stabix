@@ -159,31 +159,32 @@ if gui.flag.flag_lattice == 1
     end
     
     %% Plot GB segments and inclined plane
-    if gui.flag.pmparam2plot_value4GB == 1
-        h_gbseg = zeros(size(RB,1), 1); % Preallocation
-        for gbnum = 1:1:size(RB,1)
-            h_gbseg(gbnum) = plot(...
-                [gui.GBs(gbnum).pos_x1; gui.GBs(gbnum).pos_x2], ...
-                [gui.GBs(gbnum).pos_y1; gui.GBs(gbnum).pos_y2], ...
-                'LineWidth', wid, 'color', 'k');
-            
-            % The following lines should be uncommented if user wants arrows for GBs plot instead of pure segments...
-            %             try
-            %                 h_gbseg(gbnum) = arrow(...
-            %                     [gui.GBs(gbnum).pos_x1; gui.GBs(gbnum).pos_y1; 0], ...
-            %                     [gui.GBs(gbnum).pos_x2; gui.GBs(gbnum).pos_y2; 0], ...
-            %                     'LineWidth', wid, 'color', 'k');
-            %             catch err
-            %                 warning_commwin(err.message);
-            %             end
-            
-            % The following lines should be uncommented if user wants to plot GB inclined planes
-            % h_inclined_planes = plot_inclined_GB_plane(...
-            % [gui.GBs(gbnum).pos_x1; gui.GBs(gbnum).pos_y1; 0], ...
-            % [gui.GBs(gbnum).pos_x2; gui.GBs(gbnum).pos_y2; 0], 0 ,90);
+    if get(gui.handles.cbGB, 'Value')
+        if gui.flag.pmparam2plot_value4GB == 1
+            h_gbseg = zeros(size(RB,1), 1); % Preallocation
+            for gbnum = 1:1:size(RB,1)
+                h_gbseg(gbnum) = plot(...
+                    [gui.GBs(gbnum).pos_x1; gui.GBs(gbnum).pos_x2], ...
+                    [gui.GBs(gbnum).pos_y1; gui.GBs(gbnum).pos_y2], ...
+                    'LineWidth', wid, 'color', 'k');
+                
+                % The following lines should be uncommented if user wants arrows for GBs plot instead of pure segments...
+                %             try
+                %                 h_gbseg(gbnum) = arrow(...
+                %                     [gui.GBs(gbnum).pos_x1; gui.GBs(gbnum).pos_y1; 0], ...
+                %                     [gui.GBs(gbnum).pos_x2; gui.GBs(gbnum).pos_y2; 0], ...
+                %                     'LineWidth', wid, 'color', 'k');
+                %             catch err
+                %                 warning_commwin(err.message);
+                %             end
+                
+                % The following lines should be uncommented if user wants to plot GB inclined planes
+                % h_inclined_planes = plot_inclined_GB_plane(...
+                % [gui.GBs(gbnum).pos_x1; gui.GBs(gbnum).pos_y1; 0], ...
+                % [gui.GBs(gbnum).pos_x2; gui.GBs(gbnum).pos_y2; 0], 0 ,90);
+            end
         end
     end
-    
     %% Plot unit cell / phase / GB Number / Grains Number / Slip for the highest Schmid factor
     guidata(gcf, gui);
     szFac = interface_map_plotmap_nodata;
@@ -307,155 +308,155 @@ if gui.flag.flag_lattice == 1
         end
         
         %% Plot function results along GBs
-        if gui.flag.CalculationFlag ~= 0 ...
-                && gui.flag.pmparam2plot_value4GB ~= 1
-            
-            %% Plot parameter values ==> txt on GB
-            mprime_format = '%0.2f'; % float with 2 digits
-            if get(gui.handles.cbgbnum, 'Value') == 1
-                txt_dx = 0.05*max(GF2(:,5)); % delta x for text labels
-                txt_dy = 0.05*max(GF2(:,6)); % delta y for text labels
-            else
-                txt_dx = 0; % delta x for text labels
-                txt_dy = 0; % delta y for text labels
-            end
-            h_val  = zeros(size(RB,1),1); % Preallocation
-            
-            if get(gui.handles.cbdatavalues, 'Value') == 1
-                for gbnum = 1:1:size(RB,1)
-                    x_mp = ((gui.GBs(gbnum).pos_x1 ...
-                        + gui.GBs(gbnum).pos_x2)/2) + txt_dx;
-                    y_mp = ((gui.GBs(gbnum).pos_y1 ...
-                        + gui.GBs(gbnum).pos_y2)/2) - txt_dy;
-                    h_val(gbnum) = text(x_mp, y_mp, sprintf(...
-                        mprime_format, gui.calculations.func2plot(gbnum)), ...
-                        'Color', [.5 0 0]);
-                    set(h_val(gbnum), 'HorizontalAlignment', 'Right', ...
-                        'VerticalAlignment', 'bottom', 'Clipping', 'on');
+        if get(gui.handles.cbGB, 'Value')
+            if gui.flag.CalculationFlag ~= 0 ...
+                    && gui.flag.pmparam2plot_value4GB ~= 1
+                
+                %% Plot parameter values ==> txt on GB
+                mprime_format = '%0.2f'; % float with 2 digits
+                if get(gui.handles.cbgbnum, 'Value') == 1
+                    txt_dx = 0.05*max(GF2(:,5)); % delta x for text labels
+                    txt_dy = 0.05*max(GF2(:,6)); % delta y for text labels
+                else
+                    txt_dx = 0; % delta x for text labels
+                    txt_dy = 0; % delta y for text labels
                 end
-            end
-            
-            %% GB Colored according to the scaled parameter
-            minval = min(gui.calculations.func2plot(:));
-            maxval = max(gui.calculations.func2plot(:));
-            if (maxval - minval) > 0.3 && maxval > 0.5
-                minval = round(minval);
-                maxval = round(maxval);
-            end
-            if (max(gui.calculations.func2plot(:)) ...
-                    - min(gui.calculations.func2plot(:))) > 0.3 ...
-                    && min(gui.calculations.func2plot(:)) > 0.5 ...
-                    && max(gui.calculations.func2plot(:)) < 1
-                minval = round(10*min(gui.calculations.func2plot(:)))/10;
-                maxval = round(10*max(gui.calculations.func2plot(:)))/10;
-            end
-            step_tot = max(gui.calculations.func2plot(:)) - ...
-                min(gui.calculations.func2plot(:));
-            step_elem = step_tot/10;
-            
-            if gui.flag.pmparam2plot_value4GB == 6  % only highest m' max
-                minval   = minval + (9*step_elem);
-                step_tot = maxval - minval;
-            elseif gui.flag.pmparam2plot_value4GB == 7  % only lowest m' max
-                maxval   = minval + (step_elem);
-                step_tot = maxval - minval;
-            end
-            
-            if  gui.flag.pmparam2plot_value4GB == 14  % only highest lambda
-                if sum(gui.calculations.func2plot(:)) == 1
-                    minval   = 0;
-                    step_tot = 0.2;
-                end
-            elseif gui.flag.pmparam2plot_value4GB == 15  % only lowest lambda
-                if sum(gui.calculations.func2plot(:)) == 0
-                    maxval   = 1;
-                    step_tot = 0.2;
-                end
-            end
-            
-            step_Colorbar = step_tot/size(cmap(:,:),1);
-            
-            bins = round(100*linspace(minval, maxval, 5))/100;
-            if maxval < 0.1 || (maxval - minval) < 0.1
-                bins = round(10000*linspace(minval, maxval, 5))/10000;
-            end
-            if minval == maxval
-                bins = round(10000*linspace(0.9*minval, 1.1*maxval, 5))/10000;
-            end
-            
-            Colorgb = zeros(size(RB,1), 1);
-            for gbnum = 1:1:size(RB,1)
-                if gui.calculations.func2plot(gbnum) >= minval ...
-                        && gui.calculations.func2plot(gbnum) <= maxval
-                    step_vec = ...
-                        (gui.calculations.func2plot(gbnum) - minval);
-                    Colorgb(gbnum) = round(step_vec/step_Colorbar);
-                    if Colorgb(gbnum) > length(cmap)
-                        Colorgb(gbnum) = length(cmap);
+                h_val  = zeros(size(RB,1),1); % Preallocation
+                
+                if get(gui.handles.cbdatavalues, 'Value') == 1
+                    for gbnum = 1:1:size(RB,1)
+                        x_mp = ((gui.GBs(gbnum).pos_x1 ...
+                            + gui.GBs(gbnum).pos_x2)/2) + txt_dx;
+                        y_mp = ((gui.GBs(gbnum).pos_y1 ...
+                            + gui.GBs(gbnum).pos_y2)/2) - txt_dy;
+                        h_val(gbnum) = text(x_mp, y_mp, sprintf(...
+                            mprime_format, gui.calculations.func2plot(gbnum)), ...
+                            'Color', [.5 0 0]);
+                        set(h_val(gbnum), 'HorizontalAlignment', 'Right', ...
+                            'VerticalAlignment', 'bottom', 'Clipping', 'on');
                     end
                 end
-            end
-            
-            for gbnum = 1:1:size(RB,1)
-                if gui.calculations.func2plot(gbnum) < minval
-                    Colorgb(gbnum) = min(Colorgb(:));
-                elseif gui.calculations.func2plot(gbnum) > maxval
-                    Colorgb(gbnum) = max(Colorgb(:));
+                
+                %% GB Colored according to the scaled parameter
+                minval = min(gui.calculations.func2plot(:));
+                maxval = max(gui.calculations.func2plot(:));
+                if (maxval - minval) > 0.3 && maxval > 0.5
+                    minval = round(minval);
+                    maxval = round(maxval);
+                end
+                if (max(gui.calculations.func2plot(:)) ...
+                        - min(gui.calculations.func2plot(:))) > 0.3 ...
+                        && min(gui.calculations.func2plot(:)) > 0.5 ...
+                        && max(gui.calculations.func2plot(:)) < 1
+                    minval = round(10*min(gui.calculations.func2plot(:)))/10;
+                    maxval = round(10*max(gui.calculations.func2plot(:)))/10;
+                end
+                step_tot = max(gui.calculations.func2plot(:)) - ...
+                    min(gui.calculations.func2plot(:));
+                step_elem = step_tot/10;
+                
+                if gui.flag.pmparam2plot_value4GB == 6  % only highest m' max
+                    minval   = minval + (9*step_elem);
+                    step_tot = maxval - minval;
+                elseif gui.flag.pmparam2plot_value4GB == 7  % only lowest m' max
+                    maxval   = minval + (step_elem);
+                    step_tot = maxval - minval;
+                end
+                
+                if  gui.flag.pmparam2plot_value4GB == 14  % only highest lambda
+                    if sum(gui.calculations.func2plot(:)) == 1
+                        minval   = 0;
+                        step_tot = 0.2;
+                    end
+                elseif gui.flag.pmparam2plot_value4GB == 15  % only lowest lambda
+                    if sum(gui.calculations.func2plot(:)) == 0
+                        maxval   = 1;
+                        step_tot = 0.2;
+                    end
+                end
+                
+                step_Colorbar = step_tot/size(cmap(:,:),1);
+                
+                bins = round(100*linspace(minval, maxval, 5))/100;
+                if maxval < 0.1 || (maxval - minval) < 0.1
+                    bins = round(10000*linspace(minval, maxval, 5))/10000;
+                end
+                if minval == maxval
+                    bins = round(10000*linspace(0.9*minval, 1.1*maxval, 5))/10000;
+                end
+                
+                Colorgb = zeros(size(RB,1), 1);
+                for gbnum = 1:1:size(RB,1)
+                    if gui.calculations.func2plot(gbnum) >= minval ...
+                            && gui.calculations.func2plot(gbnum) <= maxval
+                        step_vec = ...
+                            (gui.calculations.func2plot(gbnum) - minval);
+                        Colorgb(gbnum) = round(step_vec/step_Colorbar);
+                        if Colorgb(gbnum) > length(cmap)
+                            Colorgb(gbnum) = length(cmap);
+                        end
+                    end
+                end
+                
+                for gbnum = 1:1:size(RB,1)
+                    if gui.calculations.func2plot(gbnum) < minval
+                        Colorgb(gbnum) = min(Colorgb(:));
+                    elseif gui.calculations.func2plot(gbnum) > maxval
+                        Colorgb(gbnum) = max(Colorgb(:));
+                    end
+                end
+                
+                for gbnum = 1:1:size(RB,1)
+                    if Colorgb(gbnum) == 0 | isnan(Colorgb(gbnum))
+                        Colorgb(gbnum) = 1;
+                    end
+                    plot([gui.GBs(gbnum).pos_x1; gui.GBs(gbnum).pos_x2], ...
+                        [gui.GBs(gbnum).pos_y1; gui.GBs(gbnum).pos_y2], ...
+                        'Linewidth', wid, 'Color', cmap(Colorgb(gbnum),:));
                 end
             end
-            
-            for gbnum = 1:1:size(RB,1)
-                if Colorgb(gbnum) == 0 | isnan(Colorgb(gbnum))
-                    Colorgb(gbnum) = 1;
-                end
-                plot([gui.GBs(gbnum).pos_x1; gui.GBs(gbnum).pos_x2], ...
-                    [gui.GBs(gbnum).pos_y1; gui.GBs(gbnum).pos_y2], ...
-                    'Linewidth', wid, 'Color', cmap(Colorgb(gbnum),:));
-            end
-        end
-        
-        %% Plot of the Colorbar
-        colorbar('delete');
-        
-        try
-            Colorbargb = colorbar;
-            if minval == maxval
-                caxis([0.9*minval 1.1*maxval]);
-            else
-                caxis([minval maxval]);
-            end
-            if location_num == 1 || location_num == 2 || ...
-                    location_num == 5 || location_num == 6
-                set(Colorbargb, 'XTick', bins);
-                set(get(Colorbargb, 'xlabel'), ...
-                    'String', Colorbar_title, ...
-                    'Fontsize', fontsize_axis);
-                if LaTeX_flag
-                    set(get(Colorbargb, 'xlabel'), 'Interpreter', 'latex');
-                else
-                    set(get(Colorbargb, 'xlabel'), 'Interpreter', 'none');
-                end
-            elseif location_num == 3 || location_num == 4 || ...
-                    location_num == 7 || location_num == 8
-                set(Colorbargb, 'YTick', bins);
-                set(get(Colorbargb, 'ylabel'), ...
-                    'String', Colorbar_title, ...
-                    'Fontsize', fontsize_axis);
-                if LaTeX_flag
-                    set(get(Colorbargb, 'ylabel'), 'Interpreter', 'latex');
-                else
-                    set(get(Colorbargb, 'ylabel'), 'Interpreter', 'none');
-                end
-            end
-            set(Colorbargb, 'Location', location_str{:});
-            
-        catch err
-            commandwindow;
-            display(err.message);
+            %% Plot of the Colorbar
             colorbar('delete');
-            set(gui.handles.cbdatavalues, 'Value', 1);
+            
+            try
+                Colorbargb = colorbar;
+                if minval == maxval
+                    caxis([0.9*minval 1.1*maxval]);
+                else
+                    caxis([minval maxval]);
+                end
+                if location_num == 1 || location_num == 2 || ...
+                        location_num == 5 || location_num == 6
+                    set(Colorbargb, 'XTick', bins);
+                    set(get(Colorbargb, 'xlabel'), ...
+                        'String', Colorbar_title, ...
+                        'Fontsize', fontsize_axis);
+                    if LaTeX_flag
+                        set(get(Colorbargb, 'xlabel'), 'Interpreter', 'latex');
+                    else
+                        set(get(Colorbargb, 'xlabel'), 'Interpreter', 'none');
+                    end
+                elseif location_num == 3 || location_num == 4 || ...
+                        location_num == 7 || location_num == 8
+                    set(Colorbargb, 'YTick', bins);
+                    set(get(Colorbargb, 'ylabel'), ...
+                        'String', Colorbar_title, ...
+                        'Fontsize', fontsize_axis);
+                    if LaTeX_flag
+                        set(get(Colorbargb, 'ylabel'), 'Interpreter', 'latex');
+                    else
+                        set(get(Colorbargb, 'ylabel'), 'Interpreter', 'none');
+                    end
+                end
+                set(Colorbargb, 'Location', location_str{:});
+                
+            catch err
+                commandwindow;
+                display(err.message);
+                colorbar('delete');
+                set(gui.handles.cbdatavalues, 'Value', 1);
+            end
         end
-        
         
     elseif gui.flag.pmparam2plot_value4GB == 1
         colorbar('off');
