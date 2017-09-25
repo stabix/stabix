@@ -441,7 +441,7 @@ gui.handles.date_str_interface = uicontrol(...
 gui.handles.PlotMapAxis = axes('Position', [0.9 0.9 0.04 0.04]);
 
 %% EBSD Map
-gui.handles.AxisGBmap = axes('Position', [0.375 0.078 0.6 0.75]);
+gui.handles.AxisGBmap = axes('Position', [0.375 0.10 0.6 0.7]);
 set(gcf, 'CurrentAxes', gui.handles.AxisGBmap);
 
 %% Clear all & Save & Quit & Help
