@@ -75,6 +75,10 @@ http://dx.doi.org/10.13140/RG.2.2.27427.66084
 Y. Su, C. Zambaldi, D. Mercier, P. Eisenlohr, T.R. Bieler, M.A. Crimp, International Journal of Plasticity, (2016).
 http://dx.doi.org/10.1016/j.ijplas.2016.08.007
 
+`"Evaluation of an inverse methodology for estimating constitutive parameters in face-centered cubic materials from single crystal indentations." <http://dx.doi.org/10.1016/j.euromechsol.2017.06.012>`_
+A. Chakraborty, P. Eisenlohr, European Journal of Mechanics - A/Solids, (2017).
+http://dx.doi.org/10.1016/j.euromechsol.2017.06.012
+
 `"STABiX documentation." <https://media.readthedocs.org/pdf/stabix/latest/stabix.pdf>`_
 
 Contents
