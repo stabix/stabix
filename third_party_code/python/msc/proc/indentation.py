@@ -359,8 +359,8 @@ all_existing
         if self.IndentParameters['r_center_frac'] != 0. and not \
                     self.IndentParameters['2D'] == True:
             self.proc.append('''
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Insert the CENTER COLUMN ELEMENTS because R_CENTER_FRAC is not 0.      
+|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+| Insert the CENTER COLUMN ELEMENTS because R_CENTER_FRAC is not 0.      
 *remove_elements
 all_existing
 *remove_nodes
@@ -481,7 +481,13 @@ center_flat
 *store_elements center_top
 all_selected
 #
-
+''')
+        if self.FEMSOFTWAREVERSION > 2013:
+            self.proc.append('''
+*merge_sets center_top
+center_flat
+''')
+        self.proc.append('''
 *select_clear
 
 *select_method_box
@@ -493,7 +499,13 @@ h-smv h+smv
 *store_elements center_bottom
 all_selected
 #
-
+''')
+        if self.FEMSOFTWAREVERSION > 2013:
+            self.proc.append('''
+*merge_sets center_bottom
+center_top
+''')
+        self.proc.append('''
 *expand_reset
 *set_expand_rotation z 0
 |*set_expand_translation z el_h
@@ -639,13 +651,13 @@ all_selected
 sample
 *contact_deformable
 ''')
-        if self.FEMSOFTWARE < 2013:
+        if self.FEMSOFTWAREVERSION < 2013:
             self.proc_friction_value() # only needed for 2010
         self.proc.append('''
 *add_contact_body_elements
 all_existing
 ''')
-        if self.FEMSOFTWARE >= 2013:
+        if self.FEMSOFTWAREVERSION >= 2013:
             self.proc.append('''
 *new_cbody geometry |mentat >= 2013
 *contact_option geometry_nodes:off | mentat >= 2013
@@ -755,7 +767,7 @@ indenter_scratch
 *contact_table_option $ctbody1 $ctbody2 project_stress_free:on
 |*contact_table_option_all detection:default
 ''')
-#        if self.FEMSOFTWARE >= 2013:
+#        if self.FEMSOFTWAREVERSION >= 2013:
 #            self.proc.append('''
 #|*ctable_set_default_touch
 #''')
@@ -768,7 +780,7 @@ indenter_scratch
         self.proc_friction_value()  # 2010 + 2013 account for changes in mentat2013
 
     def proc_friction_value(self):
-        if self.FEMSOFTWARE >= 2013:
+        if self.FEMSOFTWAREVERSION >= 2013:
             self.proc.append('''| mentat version > 2013
 |*stop
 |*new_interact mesh:geometry *interact_option state_1:solid  |2013.1
@@ -871,7 +883,7 @@ all_selected
 ''')
 
     def proc_release_cbody(self, cbody=None):
-        if self.FEMSOFTWARE < 2013 and (cbody is not None):
+        if self.FEMSOFTWAREVERSION < 2013 and (cbody is not None):
             self.proc.append('''| MENTAT < 2013, release contact bodies
 *add_loadcase_cbodies %s''' % cbody + '''
 ''')
