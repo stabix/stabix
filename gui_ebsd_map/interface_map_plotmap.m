@@ -79,7 +79,13 @@ location_num = get(gui.handles.pmcolorbar_loc, 'Value');
 location_str = ...
     get_value_popupmenu(gui.handles.pmcolorbar_loc, listLocationColorbar);
 % Colormap properties
-colormap(color_def{:});
+[token, remain] = strtok(color_def);
+if strcmp(token,'DivergingMap') == 1
+    [RGB1, RGB2] = listDivCmap(str2num(char(remain)));
+    colormap(diverging_map(0:(1/(64-1)):1,RGB1,RGB2));
+else
+    colormap(color_def{:});
+end
 cmap = colormap;
 
 %% Set axis
