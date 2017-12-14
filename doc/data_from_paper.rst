@@ -112,9 +112,9 @@ reproduced using the |matlab| toolbox (see :numref:`guo2014_barcharts_cropped`).
 
     *m' factor values given in Guo's paper compared to values calculated with the Matlab toolbox for 7 different bicrystals.*
 
-.. [#Cui_2014] `B. Cui et al., "Influence of irradiation damage on slip transfer across grain boundaries.", Acta Materialia (2014), 65, pp. 150-160. <http://dx.doi.org/10.1016/j.actamat.2013.11.033>`_
-.. [#Guo_2014] `Y. Guo et al., "Slip band–grain boundary interactions in commercial-purity titanium.", Acta Materialia (2014), 76, pp. 1-12. <http://dx.doi.org/10.1016/j.actamat.2014.05.015>`_
-.. [#KacherRobertson_2012] `J. Kacher and I.M. Robertson, "Quasi-four-dimensional analysis of dislocation interactions with grain boundaries in 304 stainless steel.", Acta Materialia (2012), 60(19), pp. 6657–6672. <http://dx.doi.org/10.1016/j.actamat.2012.08.036>`_
-.. [#KacherRobertson_2014] `J. Kacher and I.M. Robertson, "In situ and tomographic analysis of dislocation/grain boundary interactions in α-titanium.", Philosophical Magazine (2014), 94(8), pp. 814-829. <http://dx.doi.org/10.1080/14786435.2013.868942>`_
-.. [#Kehagias_1995] `T. Kehagias et al., "Slip transfer across low-angle grain boundaries of deformed titanium.", Interface Science (1995), 3(3), pp. 195-201. <http://dx.doi.org/10.1007/BF00191046>`_
-.. [#Patriarca_2013] `L. Patriarca et al., "Slip transmission in bcc FeCr polycrystal.", Materials Science&Engineering (2013), A588, pp. 308–317. <http://dx.doi.org/10.1016/j.msea.2013.08.050>`_
+.. [#Cui_2014] `B. Cui et al., "Influence of irradiation damage on slip transfer across grain boundaries.", Acta Materialia (2014), 65, pp. 150-160. <https://www.doi.org/10.1016/j.actamat.2013.11.033>`_
+.. [#Guo_2014] `Y. Guo et al., "Slip band–grain boundary interactions in commercial-purity titanium.", Acta Materialia (2014), 76, pp. 1-12. <https://www.doi.org/10.1016/j.actamat.2014.05.015>`_
+.. [#KacherRobertson_2012] `J. Kacher and I.M. Robertson, "Quasi-four-dimensional analysis of dislocation interactions with grain boundaries in 304 stainless steel.", Acta Materialia (2012), 60(19), pp. 6657–6672. <https://www.doi.org/10.1016/j.actamat.2012.08.036>`_
+.. [#KacherRobertson_2014] `J. Kacher and I.M. Robertson, "In situ and tomographic analysis of dislocation/grain boundary interactions in α-titanium.", Philosophical Magazine (2014), 94(8), pp. 814-829. <https://www.doi.org/10.1080/14786435.2013.868942>`_
+.. [#Kehagias_1995] `T. Kehagias et al., "Slip transfer across low-angle grain boundaries of deformed titanium.", Interface Science (1995), 3(3), pp. 195-201. <https://www.doi.org/10.1007/BF00191046>`_
+.. [#Patriarca_2013] `L. Patriarca et al., "Slip transmission in bcc FeCr polycrystal.", Materials Science&Engineering (2013), A588, pp. 308–317. <https://www.doi.org/10.1016/j.msea.2013.08.050>`_

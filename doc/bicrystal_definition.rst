@@ -83,6 +83,6 @@ by a serial polishing (chemical-mechanical polishing or FIB sectioning), either 
 .. [#Morawiec_2004] `A. Morawiec, "Orientations and Rotations: Computations in Crystallographic Textures.", Springer, 2004. <http://www.springer.com/materials/book/978-3-540-40734-8>`_
 .. [#Priester_2013] `L. Priester, "Grain Boundaries: From Theory to Engineering.", Springer Series in Materials Science (2013). <http://www.springer.com/materials/surfaces+interfaces/book/978-94-007-4968-9>`_
 .. [#RandleEngler_2000] `V. Randle and O. Engler, "Introduction to Texture Analysis : Macrotexture, Microtexture and Orientation Mapping.", CRC Press (2000). <http://www.crcpress.com/product/isbn/9781420063653>`_
-.. [#Randle_2001] `V. Randle, "A methodology for grain boundary plane assessment by single-section trace analysis.", Scripta Mater., 2001, 44, pp. 2789-2794. <http://dx.doi.org/10.1016/S1359-6462(01)00975-7>`_ 
-.. [#Randle_2005] `V. Randle, "Five-parameter’ analysis of grain boundary networks by electron backscatter diffraction.", J. Microscopy, 2005, 222, pp. 69-75. <http://dx.doi.org/10.1111/j.1365-2818.2006.01575.x>`_
+.. [#Randle_2001] `V. Randle, "A methodology for grain boundary plane assessment by single-section trace analysis.", Scripta Mater., 2001, 44, pp. 2789-2794. <https://www.doi.org/10.1016/S1359-6462(01)00975-7>`_ 
+.. [#Randle_2005] `V. Randle, "Five-parameter’ analysis of grain boundary networks by electron backscatter diffraction.", J. Microscopy, 2005, 222, pp. 69-75. <https://www.doi.org/10.1111/j.1365-2818.2006.01575.x>`_
 .. [#SuttonBalluffi_1995] `A.P. Sutton and R.W. Balluffi, "Interfaces in Crystalline Materials.", OUP Oxford (1995). <http://ukcatalogue.oup.com/product/9780199211067.do>`_
