@@ -3,7 +3,7 @@
 
 .. include:: includes.rst
 
-The strain transfer across grain boundaries can be defined by the four following mechanisms (see :numref:`sutton_balluffi`) [#LimRaj_1985_1]_, [#SuttonBalluffi_1995]_, [#Zaefferer_2003]_ and [#Priester_2013]_ :
+The strain transfer across grain boundaries can be defined by the four following mechanisms (see :numref:`sutton_balluffi`) [#LimRaj_1985_1]_, [#SuttonBalluffi_1995]_, [#Zaefferer_2003]_ and [#Priester_2013]_:
 
  1) direct transmission with slip systems having the same Burgers vector, and the grain boundary is transparent to dislocations (no strengthening effect) (:numref:`sutton_balluffi`-a);
 
@@ -25,7 +25,7 @@ A non-exhaustive list of those criteria is given in the next part of this work, 
 stress and energetic functions, and recent combinations of the previous parameters.
 
 .. note::
-    Most of the time, following criteria are used to quantify slip transmission across grain boundaries in monophasic bicrystals. But in case of bimetal interfaces, it sounds that stress-based criteria are more relevant than geometrical criteria, given much higher stresses required for for slip transmission [#Hunter_2017]_ .
+    Most of the time, following criteria are used to quantify slip transmission across grain boundaries in monophasic bicrystals. But in case of bimetal interfaces, it sounds that stress-based criteria are more relevant than geometrical criteria, given much higher stresses required for slip transmission [#Hunter_2017]_.
 
 Geometrical Criteria
 -----------------------
@@ -63,7 +63,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   [#HookHirth_1967_2]_, [#Shen_1986]_, [#Shen_1988]_, [#Lee_1990_1]_, [#Lee_1990_2]_, [#Clark_1992]_ and [#Ueda_2002]_.
   Pond et al. proposed to compute this geometric criteria for hexagonal metals using Frank's method [#Pond_1986]_.
   
-  The |matlab| function used to calculate the N factor is :
+  The |matlab| function used to calculate the N factor is:
   `N_factor.m <https://github.com/stabix/stabix/tree/master/slip_transfer/N_factor.m>`_
   
 * :math:`LRB` **factor from Shen et al. in 1986** [#Shen_1986]_ and [#Shen_1988]_
@@ -86,7 +86,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   The inclination of the grain boundary (:math:`\beta`) is required to evaluate
   this factor and the :math:`LRB` or :math:`M` factor should be maximized.
   
-  The |matlab| function used to calculate the LRB factor is :
+  The |matlab| function used to calculate the LRB factor is:
   `LRB_parameter.m <https://github.com/stabix/stabix/tree/master/slip_transfer/LRB_parameter.m>`_
 
 * :math:`m'` **parameter from Luster and Morris in 1995** [#LusterMorris_1995]_
@@ -119,7 +119,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
       b) basal vs prismatic <a> slip systems and c) prismatic <a> vs prismatic <a>
       slip systems in function of misorientation angle.*
 
-   A resistance factor of the grain boundary can be described by the following equation : 
+   A resistance factor of the grain boundary can be described by the following equation:
    
     .. math:: GB_\text{resfac} = 1 - m'
         :label: resistance_factor
@@ -127,7 +127,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   This factor is equal to 0, when grain boundary is transparent to dislocations.
   This implies :math:`m'` parameter equal to 1 (slip perfectly aligned).
    
-  The |matlab| function used to calculate the m' parameter is :
+  The |matlab| function used to calculate the m' parameter is;
   `mprime.m <https://github.com/stabix/stabix/tree/master/slip_transfer/mprime.m>`_
      
 * :math:`\vec b_\text r` **the residual Burgers vector** [#Marcinkowski_1970]_, [#Bollmann_1970]_, [#LimRaj_1985_1]_, [#LimRaj_1985_2]_, [#Clark_1989]_, [#Lee_1990_2]_ and [#Clark_1992]_.
@@ -164,7 +164,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   The misorientation and disorientation equations are given in the
   `crystallographic properties of a bicrystal. <http://stabix.readthedocs.org/en/latest/bicrystal_definition.html>`_
  
-  The |matlab| function used to calculate the misorientation angle is :
+  The |matlab| function used to calculate the misorientation angle is:
   `misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/misorientation.m>`_
 
 * :math:`\lambda` **function from Werner and Prantl in 1990** [#Werner_1990]_
@@ -179,7 +179,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
     .. math:: \lambda = \cos\left(\frac{90° \psi}{\psi_c}\right)\cos\left(\frac{90° \kappa}{\kappa_c}\right)
         :label: lambda_function_ang
         
-  The |matlab| function used to calculate the :math:`\lambda` function is :
+  The |matlab| function used to calculate the :math:`\lambda` function is:
   `lambda.m <https://github.com/stabix/stabix/tree/master/slip_transfer/lambda.m>`_
 
   The authors proposed to plot pseudo-3D view of the :math:`\lambda` map (see Figures 5 and 6) using the following equation [#Werner_1990]_ :
@@ -203,7 +203,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
       
       *Pseudo-3D view of the lambda map for the BCC-BCC case.*
 
-  The |matlab| function used to plot pseudo-3D view of the the :math:`\lambda` function is :
+  The |matlab| function used to plot pseudo-3D view of the the :math:`\lambda` function is:
   `lambda_plot_values.m <https://github.com/stabix/stabix/tree/master/slip_transfer/plots/lambda_plot_values.m>`_
 
   This function is modified by Beyerlein et al., using the angle :math:`\theta` between the two slip plane intersections with the grain boundary, instead of using the angle :math:`\psi` between the two 
@@ -236,7 +236,7 @@ Stress Criteria
   The Schmid factor, :math:`m`, is defined as the ratio of the resolved shear stress :math:`\tau^{i}` to a given uniaxial stress.
   
   Knowing the value of the highest Schmid factor of a given slip system for both grains
-  in a bicrystal, Abuzaid et al. [#Abuzaid_2012]_ proposed the following criterion :
+  in a bicrystal, Abuzaid et al. [#Abuzaid_2012]_ proposed the following criterion:
 
     .. math:: m_\text{GB} = m_\text{in} + m_\text{out}
         :label: schmid_factor_gb
@@ -245,7 +245,7 @@ Stress Criteria
   refer to the grain boundary, and the incoming and outgoing slip systems, respectively.
   This GB Schmid factor (:math:`m_\text{GB}`) factor should be maximized.
   
-  The |matlab| function used to calculate the Schmid factor is :
+  The |matlab| function used to calculate the Schmid factor is:
   `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_
   
 * **Generalized Schmid Factor** (:math:`GSF`) [#Reid_1973]_ and [#Bieler_2014]_
@@ -259,7 +259,7 @@ Stress Criteria
   :math:`\vec n` and :math:`\vec d` are respectively the slip plane normals and the slip directions
   of the slip system. The :math:`g` is the orientation matrix for a given crystal.
         
-  The |matlab| function used to calculate the generalized Schmid factor is :
+  The |matlab| function used to calculate the generalized Schmid factor is:
   `generalized_schmid_factor.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/generalized_schmid_factor.m>`_
         
 * **Resolved Shear Stress** (:math:`\tau`) [#Lee_1989]_, [#Lee_1990_1]_, [#Lee_1990_2]_, [#Clark_1992]_, [#Lagow_2001]_, [#Bieler_2009]_,  [#Dewald1_2007]_, [#Dewald2_2007]_ and [#Dewald3_2011]_
@@ -279,7 +279,7 @@ Stress Criteria
   and strain energy of GB dislocation debris, it is possible that the incoming
   dislocation can penetrate through the GB [#Li_2009]_ and [#Gao_2011]_.
   
-  It is possible to assess the shear stress from the geometrical factor :math:`N` (Livingston and Chamlers) :
+  It is possible to assess the shear stress from the geometrical factor :math:`N` (Livingston and Chamlers):
     
     .. math:: \tau_{\text{in}} = \tau_{\text{out}} * N
         :label: shear_stress_n_factor
@@ -295,7 +295,7 @@ Stress Criteria
 Combination of Criteria
 -------------------------
 
-* **Geometrical function weighted by the accumulated shear stress or the Schmid factor** [#Bieler_2014]_ :
+* **Geometrical function weighted by the accumulated shear stress or the Schmid factor** [#Bieler_2014]_:
 
   Bieler et al. proposed to weight slip transfer parameters by the sum of
   accumulated shear :math:`\gamma` on each slip system, knowing the local stress tensor.
@@ -315,7 +315,7 @@ Combination of Criteria
     .. math:: s = \cos(\psi) \cdot \cos(\kappa) \cdot \cos(\theta)
         :label: sum_cosines
         
-  The |matlab| function used to calculate the :math:`s` function is :
+  The |matlab| function used to calculate the :math:`s` function is:
   `s_factor.m <https://github.com/stabix/stabix/tree/master/slip_transfer/s_factor.m>`_
         
   Similarly, the :math:`m^{'}` parameter can be weighted using the Schmid factor :math:`m`
