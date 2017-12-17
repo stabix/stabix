@@ -59,7 +59,7 @@ The YAML configuration files
 
 *"YAML is a human friendly data serialization standard for all programming languages."*
 
-Default YAML configuration files, stored in the folder `yaml_config_files <https://github.com/stabix/stabix/tree/master/yaml_config_files>`_, are loaded automatically to set the GUis :
+Default YAML configuration files, stored in the folder `yaml_config_files <https://github.com/stabix/stabix/tree/master/yaml_config_files>`_, are loaded automatically to set the GUIs :
 
 * `config.yaml <https://github.com/stabix/stabix/blob/master/yaml_config_files/config.yaml>`_
 * `config_CPFEM_defaults.yaml <https://github.com/stabix/stabix/blob/master/yaml_config_files/config_CPFEM_defaults.yaml>`_
@@ -84,7 +84,7 @@ You have to set your own YAML configuration files, by following instructions giv
 MTEX toolbox
 ****************
 
-For some options and functions implemented in the STABiX toolbox, you have to download and install the `MTEX Toolbox <http://mtex-toolbox.github.io/>`_.
+For some options and functions implemented in the STABiX toolbox, you have to download and to install the `MTEX Toolbox <http://mtex-toolbox.github.io/>`_.
 
 OpenGL
 *********

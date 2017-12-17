@@ -24,6 +24,11 @@ Several authors proposed slip transfer parameters from modellings or experiments
 A non-exhaustive list of those criteria is given in the next part of this work, including geometrical parameter,
 stress and energetic functions, and recent combinations of the previous parameters.
 
+.. note::
+    Most of the time, following criteria are used to quantify slip transmission across grain boundaries in monophasic bicrystals.
+	But in case of bimetal interfaces, it sounds that stress-based criteria are more relevant than
+	geometrical criteria, given much higher stresses required for for slip transmission [#Hunter_2017]_ .
+
 Geometrical Criteria
 -----------------------
 Based on numerous investigations of dislocation-grain boundary interactions,
@@ -392,7 +397,8 @@ References
 .. [#HauserChamlers_1961] `J.J. Hauser and B. Chamlers, "The plastic deformation of bicrystals of f.c.c. metals.", Acta Metallurgica (1961), 9(9), pp. 802-818. <https://www.doi.org/10.1016/0001-6160(61)90183-3>`_
 .. [#Herbert_2011] `F.W. Herbert et al., "Nanoindentation Induced Deformation Near Grain Boundaries of Corrosion Resistant Nickel Alloys.", Mater. Res. Soc. Symp. Proc., (2011), 1297. <https://www.doi.org/10.1557/opl.2011>`_
 .. [#HookHirth_1967_1] `R.E. Hook and J.P. Hirth, "The deformation behavior of isoaxial bicrystals of Fe-3%Si.", Acta Metallurgica (1967), 15(3), pp. 535-551. <https://www.doi.org/10.1016/0001-6160(67)90087-9>`_
-.. [#HookHirth_1967_2] `R.E. Hook and J.P. Hirth, "The deformation behavior of non-isoaxial bicrystals of Fe-3% Si.", Acta Metallurgica(1967), 15(7), pp. 1099-1110. <https://www.doi.org/10.1016/0001-6160(67)90383-5>`_
+.. [#HookHirth_1967_2] `R.E. Hook and J.P. Hirth, "The deformation behavior of non-isoaxial bicrystals of Fe-3% Si.", Acta Metallurgica (1967), 15(7), pp. 1099-1110. <https://www.doi.org/10.1016/0001-6160(67)90383-5>`_
+.. [#Hunter_2017] `A. Hunter et al., "A review of slip transfer: applications of mesoscale techniques.", Journal of Materials Science (2017), pp. 1-20. <https://www.doi.org/10.1007/s10853-017-1844-5>`_
 .. [#Jacques_1990] `A. Jacques et al., "New results on dislocation transmission by grain boundaries in elemental semiconductors.", Le Journal de Physique Colloques (1990), 51(C1), pp. 531-536. <https://www.doi.org/10.1051/jphyscol:1990183>`_
 .. [#KacherRobertson_2012] `J. Kacher and I.M. Robertson, "Quasi-four-dimensional analysis of dislocation interactions with grain boundaries in 304 stainless steel.", Acta Materialia (2012), 60(19), pp. 6657–6672. <https://www.doi.org/10.1016/j.actamat.2012.08.036>`_
 .. [#KacherRobertson_2014] `J. Kacher and I.M. Robertson, "In situ and tomographic analysis of dislocation/grain boundary interactions in α-titanium.", Philosophical Magazine (2014), 94(8), pp. 814-829. <https://www.doi.org/10.1080/14786435.2013.868942>`_
