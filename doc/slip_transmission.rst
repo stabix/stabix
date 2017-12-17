@@ -25,9 +25,7 @@ A non-exhaustive list of those criteria is given in the next part of this work, 
 stress and energetic functions, and recent combinations of the previous parameters.
 
 .. note::
-    Most of the time, following criteria are used to quantify slip transmission across grain boundaries in monophasic bicrystals.
-	But in case of bimetal interfaces, it sounds that stress-based criteria are more relevant than
-	geometrical criteria, given much higher stresses required for for slip transmission [#Hunter_2017]_ .
+    Most of the time, following criteria are used to quantify slip transmission across grain boundaries in monophasic bicrystals. But in case of bimetal interfaces, it sounds that stress-based criteria are more relevant than geometrical criteria, given much higher stresses required for for slip transmission [#Hunter_2017]_ .
 
 Geometrical Criteria
 -----------------------
