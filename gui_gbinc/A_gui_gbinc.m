@@ -6,21 +6,26 @@ function A_gui_gbinc
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
+gui.config = get_config;
+
 %% Check License of Image Toolbox
 license_msg = ['Sorry, no license found for the Matlab ', ...
     'Image Processing Toolbox™ !'];
 if  license('checkout', 'Image_Toolbox') == 0
     helpdlg(license_msg, ' Error');
     gui.flag.licenceFlag = 0;
+    errordlg('No Image Processing Toolbox!');
 else
     gui.flag.licenceFlag = 1;
+    if strcmp(gui.config.matlab_version, '2014a');
+        gui.flag.licenceFlag = 0;
+    end
+    errordlg('Matlab version is 2014a and some functions of Image Processing Toolbox don''t work!');
 end
 
 if gui.flag.licenceFlag
     
-    %% Toolbox configuration
-    gui.config = get_config;
-    
+    %% Toolbox configuration 
     gui.config.gbinc_root_fullpath = mfilename('fullpath');
     [gui.config.gbinc_root, gui.config.gbinc_root_filename,...
         gui.config.gbinc_ext] = fileparts(gui.config.gbinc_root_fullpath);
