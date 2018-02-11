@@ -5,6 +5,8 @@
 
 Please, find `here <https://github.com/stabix/stabix/tree/master/gui_bicrystal/gui_bicrystal_data>`_ the |matlab| functions to analyze results and to plot data from the following papers.
 
+The small differences between values given in the litterature and values found with STABiX toolbox may come from the rounding of Euler angles and the rounding of slip transmission criteria.
+
 Residual Burgers vector
 ------------------------
 
@@ -25,7 +27,7 @@ toolbox and obtained values are compared to Kacher's results (see :numref:`kache
     :scale: 40 %
     :align: center
 
-    *a) Plot of a bicrystal with a misorientation angle of 36°and misorientation axis of
+    *a) Plot of a bicrystal with a misorientation angle of 36° and misorientation axis of
     [-11, -22, -2] from Kacher's paper. b) Magnitude of residual Burgers vector given in Kacher's paper
     compared to values calculated with the Matlab toolbox.*
 
