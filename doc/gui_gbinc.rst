@@ -92,9 +92,9 @@ and :math:`h` the thickness of removed material after polishing calculated
 See also
 ---------
 
-`V. Randle and Dingley D., "Measurement of boundary plane inclination in a scanning electron microscope.", Scripta Metall., 1989, 23, pp. 1565–1569. <https://www.doi.org/10.1016/0036-9748(89)90129-4>`_
+`V. Randle and Dingley D., "Measurement of boundary plane inclination in a scanning electron microscope.", Scripta Metall., 1989, 23, pp. 1565–1569. <https://doi.org/10.1016/0036-9748(89)90129-4>`_
 
-`V. Randle, "A methodology for grain boundary plane assessment by single-section trace analysis.", Scripta Mater., 2001, 44, pp. 2789-2794. <https://www.doi.org/10.1016/S1359-6462(01)00975-7>`_
+`V. Randle, "A methodology for grain boundary plane assessment by single-section trace analysis.", Scripta Mater., 2001, 44, pp. 2789-2794. <https://doi.org/10.1016/S1359-6462(01)00975-7>`_
 
 Links
 ------

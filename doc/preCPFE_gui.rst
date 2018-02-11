@@ -305,85 +305,85 @@ Find the full documentation for the use of DAMASK with Abaqus here : http://dama
 See also
 ----------
 
-`Wang Y. et al., "Orientation dependence of nanoindentation pile-up patterns and of nanoindentation microtextures in copper single crystals", Acta Materialia (2004). <https://www.doi.org/10.1016/j.actamat.2004.01.016>`_
+`Wang Y. et al., "Orientation dependence of nanoindentation pile-up patterns and of nanoindentation microtextures in copper single crystals", Acta Materialia (2004). <https://doi.org/10.1016/j.actamat.2004.01.016>`_
 
-`Liu Y. et al., "Combined numerical simulation and nanoindentation for determining mechanical properties of single crystal copper at mesoscale", Journal of the Mechanics and Physics of Solids (2005). <https://www.doi.org/10.1016/j.jmps.2005.07.003>`_
+`Liu Y. et al., "Combined numerical simulation and nanoindentation for determining mechanical properties of single crystal copper at mesoscale", Journal of the Mechanics and Physics of Solids (2005). <https://doi.org/10.1016/j.jmps.2005.07.003>`_
 
-`Zaafarani N. et al., "Three-dimensional investigation of the texture and microstructure below a nanoindent in a Cu single crystal using 3D EBSD and crystal plasticity finite element simulations", Acta Materialia (2006). <https://www.doi.org/10.1016/j.actamat.2005.12.014>`_
+`Zaafarani N. et al., "Three-dimensional investigation of the texture and microstructure below a nanoindent in a Cu single crystal using 3D EBSD and crystal plasticity finite element simulations", Acta Materialia (2006). <https://doi.org/10.1016/j.actamat.2005.12.014>`_
 
-`Zambaldi C. et al., "Modeling and experiments on the indentation deformation and recrystallization of a single-crystal nickel-base superalloy", Materials Science and Engineering A (2007). <https://www.doi.org/10.1016/j.msea.2006.11.068>`_
+`Zambaldi C. et al., "Modeling and experiments on the indentation deformation and recrystallization of a single-crystal nickel-base superalloy", Materials Science and Engineering A (2007). <https://doi.org/10.1016/j.msea.2006.11.068>`_
 
-`Liu Y. et al., "Orientation effects in nanoindentation of single crystal copper", International Journal of Plasticity (2008). <https://www.doi.org/10.1016/j.ijplas.2008.02.009>`_
+`Liu Y. et al., "Orientation effects in nanoindentation of single crystal copper", International Journal of Plasticity (2008). <https://doi.org/10.1016/j.ijplas.2008.02.009>`_
 
-`Zaafarani N. et al., "On the origin of deformation-induced rotation patterns below nanoindents", Acta Materialia (2008). <https://www.doi.org/10.1016/j.actamat.2007.09.001>`_
+`Zaafarani N. et al., "On the origin of deformation-induced rotation patterns below nanoindents", Acta Materialia (2008). <https://doi.org/10.1016/j.actamat.2007.09.001>`_
 
-`Casals O. and Forest S., "Finite element crystal plasticity analysis of spherical indentation in bulk single crystals and coatings", Computational Materials Science (2009). <https://www.doi.org/10.1016/j.commatsci.2008.09.030>`_
+`Casals O. and Forest S., "Finite element crystal plasticity analysis of spherical indentation in bulk single crystals and coatings", Computational Materials Science (2009). <https://doi.org/10.1016/j.commatsci.2008.09.030>`_
 
-`Gerday A. F. et al., "Interests and limitations of nanoindentation for bulk multiphase material identification: Application to the β phase of Ti-5553", Acta Materialia (2009). <https://www.doi.org/10.1016/j.actamat.2009.07.020>`_ 
+`Gerday A. F. et al., "Interests and limitations of nanoindentation for bulk multiphase material identification: Application to the β phase of Ti-5553", Acta Materialia (2009). <https://doi.org/10.1016/j.actamat.2009.07.020>`_ 
 
-`Britton T.B. et al., "The effect of crystal orientation on the indentation response of commercially pure titanium: experiments and simulations", Proc. R. Soc. A (2010). <https://www.doi.org/10.1098/rspa.2009.0455>`_
+`Britton T.B. et al., "The effect of crystal orientation on the indentation response of commercially pure titanium: experiments and simulations", Proc. R. Soc. A (2010). <https://doi.org/10.1098/rspa.2009.0455>`_
 
-`Chang H.-J. et al., "Multiscale modelling of indentation in FCC metals: From atomic to continuum", C. R. Physique (2010). <https://www.doi.org/10.1016/j.crhy.2010.07.007>`_
+`Chang H.-J. et al., "Multiscale modelling of indentation in FCC metals: From atomic to continuum", C. R. Physique (2010). <https://doi.org/10.1016/j.crhy.2010.07.007>`_
 
-`Zambaldi C. and Raabe D., "Crystal plasticity modelling and experiments for deriving microstructure-property relationships in γ-TiAl based alloys", Journal of Physics (2010). <https://www.doi.org/10.1088/1742-6596/240/1/012140>`_
+`Zambaldi C. and Raabe D., "Crystal plasticity modelling and experiments for deriving microstructure-property relationships in γ-TiAl based alloys", Journal of Physics (2010). <https://doi.org/10.1088/1742-6596/240/1/012140>`_
 
-`Zambaldi C., "Micromechanical modeling of γ-TiAl based alloys", PhD Thesis (2010). <https://www.doi.org/10.2370/9783832297176>`_
+`Zambaldi C., "Micromechanical modeling of γ-TiAl based alloys", PhD Thesis (2010). <https://doi.org/10.2370/9783832297176>`_
 
-`Zambaldi C. and Raabe D., "Plastic anisotropy of c-TiAl revealed by axisymmetric indentation", Acta Materialia (2011). <https://www.doi.org/10.1016/j.actamat.2010.02.025>`_
+`Zambaldi C. and Raabe D., "Plastic anisotropy of c-TiAl revealed by axisymmetric indentation", Acta Materialia (2011). <https://doi.org/10.1016/j.actamat.2010.02.025>`_
 
-`Vu-Hoang S. et al., "Crystal Plasticity of Single Crystal and Film on Substrate Probed by Nano-lndentation: Simulations and Experiments", Mater. Res. Soc. Symp. Proc. (2011). <https://www.doi.org/10.1557/opl.2011.1510>`_
+`Vu-Hoang S. et al., "Crystal Plasticity of Single Crystal and Film on Substrate Probed by Nano-lndentation: Simulations and Experiments", Mater. Res. Soc. Symp. Proc. (2011). <https://doi.org/10.1557/opl.2011.1510>`_
 
-`Eidel B., "Crystal plasticity finite-element analysis versus experimental results of pyramidal indentation into (001) fcc single crystal", Acta Materialia (2011). <https://www.doi.org/10.1016/j.actamat.2010.11.042>`_
+`Eidel B., "Crystal plasticity finite-element analysis versus experimental results of pyramidal indentation into (001) fcc single crystal", Acta Materialia (2011). <https://doi.org/10.1016/j.actamat.2010.11.042>`_
 
-`Zambaldi C. et al., "Orientation informed nanoindentation of a-titanium: Indentation pileup in hexagonal metals deforming by prismatic slip", J. Mater. Res. (2012). <https://www.doi.org/10.1557/jmr.2011.334>`_
+`Zambaldi C. et al., "Orientation informed nanoindentation of a-titanium: Indentation pileup in hexagonal metals deforming by prismatic slip", J. Mater. Res. (2012). <https://doi.org/10.1557/jmr.2011.334>`_
 
-`Zahedi A. et al., "Indentation in f.c.c. single crystals", Solid State Phenomena (2012). <https://www.doi.org/10.4028/www.scientific.net/SSP.188.219>`_
+`Zahedi A. et al., "Indentation in f.c.c. single crystals", Solid State Phenomena (2012). <https://doi.org/10.4028/www.scientific.net/SSP.188.219>`_
 
-`Liu M. et al., "Crystal Plasticity Study of the Effect of the Initial Orientation on the Indentation Surface Profile Patterns and Micro-Textures of Aluminum Single Crystal", Advances in Materials and Processing Technologies (2013). <https://www.doi.org/10.1002/srin.201300011>`_
+`Liu M. et al., "Crystal Plasticity Study of the Effect of the Initial Orientation on the Indentation Surface Profile Patterns and Micro-Textures of Aluminum Single Crystal", Advances in Materials and Processing Technologies (2013). <https://doi.org/10.1002/srin.201300011>`_
 
-`Han F. et al., "Experiments and crystal plasticity finite element simulations of nanoindentation on Ti-6Al-4 V alloy", Materials Science & Engineering A (2014). <https://www.doi.org/10.1016/j.msea.2014.11.090>`_
+`Han F. et al., "Experiments and crystal plasticity finite element simulations of nanoindentation on Ti-6Al-4 V alloy", Materials Science & Engineering A (2014). <https://doi.org/10.1016/j.msea.2014.11.090>`_
 
-`Choudhury S.F. et al., "Single Crystal Plasticity Finite Element Analysis of Cu6Sn5 Intermetallic", Metall. and Mat. Trans. A (2014). <https://www.doi.org/10.1007/s11661-014-2696-0>`_
+`Choudhury S.F. et al., "Single Crystal Plasticity Finite Element Analysis of Cu6Sn5 Intermetallic", Metall. and Mat. Trans. A (2014). <https://doi.org/10.1007/s11661-014-2696-0>`_
 
-`González D. et al., "Numerical analysis of the indentation size effect using a strain gradient crystal plasticity model", Computational Materials Science (2014). <https://www.doi.org/10.1016/j.commatsci.2013.10.004>`_
+`González D. et al., "Numerical analysis of the indentation size effect using a strain gradient crystal plasticity model", Computational Materials Science (2014). <https://doi.org/10.1016/j.commatsci.2013.10.004>`_
 
-`Esqué-de los Ojos D. et al., "Sharp indentation crystal plasticity finite element simulations: Assessment of crystallographic anisotropy effects on the mechanical response of thin fcc single crystalline films", Computational Materials Science (2014). <https://www.doi.org/10.1016/j.commatsci.2014.01.064>`_
+`Esqué-de los Ojos D. et al., "Sharp indentation crystal plasticity finite element simulations: Assessment of crystallographic anisotropy effects on the mechanical response of thin fcc single crystalline films", Computational Materials Science (2014). <https://doi.org/10.1016/j.commatsci.2014.01.064>`_
 
-`Kitahara H. et al., "Anisotropic deformation induced by spherical indentation of pure Mg single crystals", Acta Materialia (2014). <https://www.doi.org/10.1016/j.actamat.2014.06.039>`_
+`Kitahara H. et al., "Anisotropic deformation induced by spherical indentation of pure Mg single crystals", Acta Materialia (2014). <https://doi.org/10.1016/j.actamat.2014.06.039>`_
 
-`Kucharski S. et al., "Surface Pile-Up Patterns in Indentation Testing of Cu Single Crystals", Experimental Mechanics (2014). <https://www.doi.org/10.1007/s11340-014-9883-1>`_
+`Kucharski S. et al., "Surface Pile-Up Patterns in Indentation Testing of Cu Single Crystals", Experimental Mechanics (2014). <https://doi.org/10.1007/s11340-014-9883-1>`_
 
-`Liu M. et al., "A crystal plasticity study of the effect of friction on the evolution of texture and mechanical behaviour in the nano-indentation of an aluminium single crystal", Computational Materials Science (2014). <https://www.doi.org/10.1016/j.commatsci.2013.05.030>`_
+`Liu M. et al., "A crystal plasticity study of the effect of friction on the evolution of texture and mechanical behaviour in the nano-indentation of an aluminium single crystal", Computational Materials Science (2014). <https://doi.org/10.1016/j.commatsci.2013.05.030>`_
 
-`Yao W.Z. et al., "Plastic material parameters and plastic anisotropy of tungsten single crystal: a spherical micro-indentation study", J. Mater. Sci. (2014). <https://www.doi.org/10.1007/s10853-014-8080-z>`_
+`Yao W.Z. et al., "Plastic material parameters and plastic anisotropy of tungsten single crystal: a spherical micro-indentation study", J. Mater. Sci. (2014). <https://doi.org/10.1007/s10853-014-8080-z>`_
 
 `Charleux L., "Abapy Documentation". <http://abapy.readthedocs.org/en/latest/index.html>`_
 
 `CPFEM simulations of nanoindentation - ongoing research. <http://tonyfast.com/nsf-goali/2014/10/23/cpfem-nanoindentation-simulations/>`_
 
-`Zambaldi C. et al., "Orientation dependent deformation by slip and twinning in magnesium during single crystal indentation", Acta Materialia (2015). <https://www.doi.org/10.1016/j.actamat.2015.01.046>`_
+`Zambaldi C. et al., "Orientation dependent deformation by slip and twinning in magnesium during single crystal indentation", Acta Materialia (2015). <https://doi.org/10.1016/j.actamat.2015.01.046>`_
 
-`Sánchez-Martín R. et al., "High temperature deformation mechanisms in pure magnesium studied by nanoindentation", Scripta Materialia (2015). <https://www.doi.org/10.1016/j.scriptamat.2015.03.012>`_
+`Sánchez-Martín R. et al., "High temperature deformation mechanisms in pure magnesium studied by nanoindentation", Scripta Materialia (2015). <https://doi.org/10.1016/j.scriptamat.2015.03.012>`_
 
-`Mao L. et al., "Explore the anisotropic indentation pile-up patterns of single-crystal coppers by crystal plasticity finite element modelling", Materials Letters (2015). <https://www.doi.org/10.1016/j.matlet.2015.08.093>`_
+`Mao L. et al., "Explore the anisotropic indentation pile-up patterns of single-crystal coppers by crystal plasticity finite element modelling", Materials Letters (2015). <https://doi.org/10.1016/j.matlet.2015.08.093>`_
 
 `Mao L. et al., "Crystal plasticity FEM study of nanoindentation behaviors
-of Cu bicrystals and Cu–Al bicrystals", J. Mater. Res., (2015). <https://www.doi.org/10.1557/jmr.2015.223>`_
+of Cu bicrystals and Cu–Al bicrystals", J. Mater. Res., (2015). <https://doi.org/10.1557/jmr.2015.223>`_
 
-`Renner E. et al., "Sensitivity of the residual topography to single crystal plasticity parameters in Berkovich nanoindentation on FCC nickel", International Journal of Plasticity, (2015). <https://www.doi.org/10.1016/j.ijplas.2015.10.002>`_
+`Renner E. et al., "Sensitivity of the residual topography to single crystal plasticity parameters in Berkovich nanoindentation on FCC nickel", International Journal of Plasticity, (2015). <https://doi.org/10.1016/j.ijplas.2015.10.002>`_
 
-`Juran P. et al., "Investigation of indentation-, impact- and scratch-induced mechanically affected zones in a copper single crystal", Comptes Rendus Mécanique, (2015). <https://www.doi.org/10.1016/j.crme.2015.03.003>`_
+`Juran P. et al., "Investigation of indentation-, impact- and scratch-induced mechanically affected zones in a copper single crystal", Comptes Rendus Mécanique, (2015). <https://doi.org/10.1016/j.crme.2015.03.003>`_
 
-`Materna A. et al., "A Numerical Investigation of the Effect of Cubic Crystals Orientation on the Indentation Modulus", Acta Physica Polonica A, (2015). <https://www.doi.org/10.12693/APhysPolA.128.693>`_
+`Materna A. et al., "A Numerical Investigation of the Effect of Cubic Crystals Orientation on the Indentation Modulus", Acta Physica Polonica A, (2015). <https://doi.org/10.12693/APhysPolA.128.693>`_
 
-`Csanádi T. et al., "Nanoindentation induced deformation anisotropy in β-Si3N4 ceramic crystals", Journal of the European Ceramic Society, (2015). <https://www.doi.org/10.1016/j.jeurceramsoc.2015.11.028>`_
+`Csanádi T. et al., "Nanoindentation induced deformation anisotropy in β-Si3N4 ceramic crystals", Journal of the European Ceramic Society, (2015). <https://doi.org/10.1016/j.jeurceramsoc.2015.11.028>`_
 
-`Liu M. et al., "A combined experimental-numerical approach for determining mechanical properties of aluminum subjects to nanoindentation", Scientific Reports, (2015). <https://www.doi.org/10.1038/srep15072>`_
+`Liu M. et al., "A combined experimental-numerical approach for determining mechanical properties of aluminum subjects to nanoindentation", Scientific Reports, (2015). <https://doi.org/10.1038/srep15072>`_
 
-`Su Y. et al., "Quantifying deformation processes near grain boundaries in α titanium using nanoindentation and crystal plasticity modeling", International Journal of Plasticity, (2016). <https://www.doi.org/10.1016/j.ijplas.2016.08.007>`_
+`Su Y. et al., "Quantifying deformation processes near grain boundaries in α titanium using nanoindentation and crystal plasticity modeling", International Journal of Plasticity, (2016). <https://doi.org/10.1016/j.ijplas.2016.08.007>`_
 
-`Weaver J.S. et al., "On capturing the grain-scale elastic and plastic anisotropy of alpha-Ti with spherical nanoindentation and electron back-scattered diffraction", Acta Materialia, (2016). <https://www.doi.org/10.1016/j.actamat.2016.06.053>`_
+`Weaver J.S. et al., "On capturing the grain-scale elastic and plastic anisotropy of alpha-Ti with spherical nanoindentation and electron back-scattered diffraction", Acta Materialia, (2016). <https://doi.org/10.1016/j.actamat.2016.06.053>`_
 
-`Han F. et al., "Indentation Pileup Behavior of Ti-6Al-4V Alloy: Experiments and Nonlocal Crystal Plasticity Finite Element Simulations", Metallurgical and Materials Transactions A, (2017). <https://www.doi.org/10.1007/s11661-016-3946-0>`_
+`Han F. et al., "Indentation Pileup Behavior of Ti-6Al-4V Alloy: Experiments and Nonlocal Crystal Plasticity Finite Element Simulations", Metallurgical and Materials Transactions A, (2017). <https://doi.org/10.1007/s11661-016-3946-0>`_
 
-`Chakraborty A. and Eisenlohr P., "Evaluation of an inverse methodology for estimating constitutive parameters in face-centered cubic materials from single crystal indentations", European Journal of Mechanics - A/Solids, (2017). <https://www.doi.org/10.1016/j.euromechsol.2017.06.012>`_
+`Chakraborty A. and Eisenlohr P., "Evaluation of an inverse methodology for estimating constitutive parameters in face-centered cubic materials from single crystal indentations", European Journal of Mechanics - A/Solids, (2017). <https://doi.org/10.1016/j.euromechsol.2017.06.012>`_

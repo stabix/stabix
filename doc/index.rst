@@ -51,33 +51,33 @@ How to cite STABiX in your papers ?
 ====================================
 
 .. image:: https://zenodo.org/badge/doi/10.5281/zenodo.14854.svg
-   :target: https://www.doi.org/10.5281/zenodo.14854
+   :target: https://doi.org//10.5281/zenodo.14854
 
 Reference paper
 ================
 
-`"A Matlab toolbox to analyze slip transfer through grain boundaries" <https://www.doi.org/10.1088/1757-899X/82/1/012090>`_
+`"A Matlab toolbox to analyze slip transfer through grain boundaries" <https://doi.org//10.1088/1757-899X/82/1/012090>`_
 D. Mercier, C. Zambaldi, T. R. Bieler, 17th International Conference on Textures of Materials (ICOTOM17), at Dresden, Germany (2014).
 IOP Conference Series: Materials Science and Engineering Volume 82 conference 1.
-https://www.doi.org/10.1088/1757-899X/82/1/012090
+https://doi.org//10.1088/1757-899X/82/1/012090
 
-`"Spherical indentation and crystal plasticity modeling near grain boundaries in alpha-Ti." <https://www.doi.org/10.13140/RG.2.1.3044.8486>`_
+`"Spherical indentation and crystal plasticity modeling near grain boundaries in alpha-Ti." <https://doi.org//10.13140/RG.2.1.3044.8486>`_
 D. Mercier, C. Zambaldi, P. Eisenlohr, Y. Su, M. A. Crimp, T. R. Bieler,
 Poster presented at "Indentation 2014" Conference in Strasbourg (France) (December 2014).
-https://www.doi.org/10.13140/RG.2.1.3044.8486
+https://doi.org//10.13140/RG.2.1.3044.8486
 
-`"Grain Boundaries and Plasticity." <https://www.doi.org/10.13140/RG.2.2.27427.66084>`_
+`"Grain Boundaries and Plasticity." <https://doi.org//10.13140/RG.2.2.27427.66084>`_
 D. Mercier, C. Zambaldi, P. Eisenlohr, M. A. Crimp, T. R. Bieler, R. Sánchez Martín.
 Invited talk at "MTEX Workshop 2016" Conference in Chemnitz (Germany) (February 2016).
-https://www.doi.org/10.13140/RG.2.2.27427.66084
+https://doi.org//10.13140/RG.2.2.27427.66084
 
-`"Quantifying deformation processes near grain boundaries in α titanium using nanoindentation and crystal plasticity modeling." <https://www.doi.org/10.1016/j.ijplas.2016.08.007>`_
+`"Quantifying deformation processes near grain boundaries in α titanium using nanoindentation and crystal plasticity modeling." <https://doi.org//10.1016/j.ijplas.2016.08.007>`_
 Y. Su, C. Zambaldi, D. Mercier, P. Eisenlohr, T.R. Bieler, M.A. Crimp, International Journal of Plasticity, (2016).
-https://www.doi.org/10.1016/j.ijplas.2016.08.007
+https://doi.org//10.1016/j.ijplas.2016.08.007
 
-`"Evaluation of an inverse methodology for estimating constitutive parameters in face-centered cubic materials from single crystal indentations." <https://www.doi.org/10.1016/j.euromechsol.2017.06.012>`_
+`"Evaluation of an inverse methodology for estimating constitutive parameters in face-centered cubic materials from single crystal indentations." <https://doi.org//10.1016/j.euromechsol.2017.06.012>`_
 A. Chakraborty, P. Eisenlohr, European Journal of Mechanics - A/Solids, (2017).
-https://www.doi.org/10.1016/j.euromechsol.2017.06.012
+https://doi.org//10.1016/j.euromechsol.2017.06.012
 
 `"STABiX documentation." <https://media.readthedocs.org/pdf/stabix/latest/stabix.pdf>`_
 
@@ -102,14 +102,14 @@ Contents
 References
 ===========
 
-.. [#LusterMorris_1995] `J. Luster and M.A. Morris, "Compatibility of deformation in two-phase Ti-Al alloys: Dependence on microstructure and orientation relationships.", Metal. and Mat. Trans. A (1995), 26(7), pp. 1745-1756. <https://www.doi.org/10.1007/BF02670762>`_
-.. [#Marcinkowski_1970] `M.J. Marcinkowski and W.F. Tseng, "Dislocation behavior at tilt boundaries of infinite extent.", Metal. Trans. (1970), 1(12), pp. 3397-3401. <https://www.doi.org/10.1007/BF03037870>`_
-.. [#Bollmann_1970] `W. Bollmann, "Crystal Defects and Crystalline Interfaces", Springer-Verlag (1970). <https://www.doi.org/10.1007/978-3-642-49173-3>`_
-.. [#LivingstonChalmers_1957] `J.D. Livingston and B. Chalmers, "Multiple slip in bicrystal deformation.", Acta Metallurgica (1957), 5(6), pp. 322-327. <https://www.doi.org/10.1016/0001-6160(57)90044-5>`_
-.. [#Bieler_2009] `T.R. Bieler et al., "The role of heterogeneous deformation on damage nucleation at grain boundaries in single phase metals.", Int. J. of Plast. (2009), 25(9), pp. 1655–1683. <https://www.doi.org/10.1016/j.ijplas.2008.09.002>`_
-.. [#Roters_2010] `F. Roters et al., "Overview of constitutive laws, kinematics, homogenization and multiscale methods in crystal plasticity finite-element modeling: Theory, experiments, applications.",  Acta Materialia (2010), 58(4), pp. 1152-1211. <https://www.doi.org/10.1016/j.actamat.2009.10.058>`_
+.. [#LusterMorris_1995] `J. Luster and M.A. Morris, "Compatibility of deformation in two-phase Ti-Al alloys: Dependence on microstructure and orientation relationships.", Metal. and Mat. Trans. A (1995), 26(7), pp. 1745-1756. <https://doi.org//10.1007/BF02670762>`_
+.. [#Marcinkowski_1970] `M.J. Marcinkowski and W.F. Tseng, "Dislocation behavior at tilt boundaries of infinite extent.", Metal. Trans. (1970), 1(12), pp. 3397-3401. <https://doi.org//10.1007/BF03037870>`_
+.. [#Bollmann_1970] `W. Bollmann, "Crystal Defects and Crystalline Interfaces", Springer-Verlag (1970). <https://doi.org//10.1007/978-3-642-49173-3>`_
+.. [#LivingstonChalmers_1957] `J.D. Livingston and B. Chalmers, "Multiple slip in bicrystal deformation.", Acta Metallurgica (1957), 5(6), pp. 322-327. <https://doi.org//10.1016/0001-6160(57)90044-5>`_
+.. [#Bieler_2009] `T.R. Bieler et al., "The role of heterogeneous deformation on damage nucleation at grain boundaries in single phase metals.", Int. J. of Plast. (2009), 25(9), pp. 1655–1683. <https://doi.org//10.1016/j.ijplas.2008.09.002>`_
+.. [#Roters_2010] `F. Roters et al., "Overview of constitutive laws, kinematics, homogenization and multiscale methods in crystal plasticity finite-element modeling: Theory, experiments, applications.",  Acta Materialia (2010), 58(4), pp. 1152-1211. <https://doi.org//10.1016/j.actamat.2009.10.058>`_
 .. [#DAMASK] `DAMASK — the Düsseldorf Advanced Material Simulation Kit. <http://damask.mpie.de/>`_
-.. [#Zambaldi_2012] `C. Zambaldi et al., "Orientation informed nanoindentation of α-titanium: Indentation pileup in hexagonal metals deforming by prismatic slip", J. Mater. Res. (2012), 27(01), pp. 356-367. <https://www.doi.org/10.1557/jmr.2011.334>`_
+.. [#Zambaldi_2012] `C. Zambaldi et al., "Orientation informed nanoindentation of α-titanium: Indentation pileup in hexagonal metals deforming by prismatic slip", J. Mater. Res. (2012), 27(01), pp. 356-367. <https://doi.org//10.1557/jmr.2011.334>`_
 .. [#Zambaldi_SX] `C. Zambaldi, "Anisotropic indentation pile-up in single crystals". <http://zambaldi.de/sx-indent/>`_
 
 
