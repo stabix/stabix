@@ -84,3 +84,9 @@ Institutions
    
    `National University of Ireland (Galway, Ireland) <http://www.nuigalway.ie/>`_
    
+.. figure:: ./_pictures/logos/logo_USC.png
+   :scale: 50%
+   :align: center
+   :target: https://viterbischool.usc.edu/
+   
+   `USC Viterbi School of Engineering (Los Angeles, USA) <https://viterbischool.usc.edu/>`_
