@@ -71,7 +71,7 @@ Example of "Reconstructed Boundary File": `MPIE_cpTi_reconstructed_boundaries_20
 <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/ebsd_dataExamples/MPIE_cpTi_reconstructed_boundaries_2013.txt>`_
 
 The |matlab| function used to read "Reconstructed Boundary File" is :
-`read_oim_reconstructed_boundaries_file.m <https://github.com/stabix/stabix/tree/master/tsl_oim/read_oim_reconstructed_boundaries_file.m>`_
+`read_oim_reconstructed_boundaries_file.m <https://github.com/stabix/stabix/tree/master/read_write_ebsd_files/read_oim_reconstructed_boundaries_file.m>`_
 
 If some GBs segments are missing or some wrong segments are exported, play with partition
 properties in the TSL-OIM software in order to export a more realistic Reconstructed Boundaries file:
@@ -106,7 +106,7 @@ Example of "Grain Gile Type 2":
 `MPIE_cpTi_grain_file_type2_2013.txt <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/ebsd_dataExamples/MPIE_cpTi_grain_file_type2_2013.txt>`_
 
 The |matlab| function used to read "Grain File Type 2" is :
-`read_oim_grain_file_type2.m <https://github.com/stabix/stabix/tree/master/tsl_oim/read_oim_grain_file_type2.m>`_
+`read_oim_grain_file_type2.m <https://github.com/stabix/stabix/tree/master/read_write_ebsd_files/read_oim_grain_file_type2.m>`_
 
 Loading other type of EBSD data files...
 -----------------------------------------
@@ -134,9 +134,9 @@ Example of an `.ang file. <https://github.com/stabix/stabix/blob/master/gui_ebsd
 
 The |matlab| functions used to generate .ang file v6 and v7 are respectively:
 
-- `write_oim_ang_file_v6.m <https://github.com/stabix/stabix/tree/master/tsl_oim/write_oim_ang_file_v6.m>`_ ;
+- `write_oim_ang_file_v6.m <https://github.com/stabix/stabix/tree/master/read_write_ebsd_files/write_oim_ang_file_v6.m>`_ ;
 
-- `write_oim_ang_file_v7.m <https://github.com/stabix/stabix/tree/master/tsl_oim/write_oim_ang_file_v7.m>`_.
+- `write_oim_ang_file_v7.m <https://github.com/stabix/stabix/tree/master/read_write_ebsd_files/write_oim_ang_file_v7.m>`_.
 
 Possible errors introduced during files exportation from TSL-OIM
 ------------------------------------------------------------------
