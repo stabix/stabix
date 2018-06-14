@@ -56,6 +56,8 @@ How to cite STABiX in your papers ?
 Reference paper
 ================
 
+`"STABiX documentation." <https://media.readthedocs.org/pdf/stabix/latest/stabix.pdf>`_
+
 `"A Matlab toolbox to analyze slip transfer through grain boundaries" <https://doi.org//10.1088/1757-899X/82/1/012090>`_
 D. Mercier, C. Zambaldi, T. R. Bieler, 17th International Conference on Textures of Materials (ICOTOM17), at Dresden, Germany (2014).
 IOP Conference Series: Materials Science and Engineering Volume 82 conference 1.
@@ -79,7 +81,9 @@ https://doi.org//10.1016/j.ijplas.2016.08.007
 A. Chakraborty, P. Eisenlohr, European Journal of Mechanics - A/Solids, (2017).
 https://doi.org//10.1016/j.euromechsol.2017.06.012
 
-`"STABiX documentation." <https://media.readthedocs.org/pdf/stabix/latest/stabix.pdf>`_
+`"Investigation of single crystal and bi-crystal deformation in body-centered cubic tantalum using indentation." <https://search.proquest.com/openview/b91c4b357cd85972c6c9b5be34ba9688/1?pq-origsite=gscholar&cbl=18750&diss=y>`_
+B. Dunlap, PhD thesis, Michigan State University (2018).
+
 
 Contents
 =========
