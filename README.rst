@@ -27,6 +27,8 @@ How to cite STABiX in your papers ?
 Reference paper
 ================
 
+`"STABiX documentation." <https://media.readthedocs.org/pdf/stabix/latest/stabix.pdf>`_
+
 `"A Matlab toolbox to analyze slip transfer through grain boundaries" <http://dx.doi.org/10.1088/1757-899X/82/1/012090>`_
 D. Mercier, C. Zambaldi, T. R. Bieler, 17th International Conference on Textures of Materials (ICOTOM17), at Dresden, Germany (2014).
 IOP Conference Series: Materials Science and Engineering Volume 82 conference 1.
