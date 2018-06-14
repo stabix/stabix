@@ -46,6 +46,9 @@ http://dx.doi.org/10.13140/RG.2.2.27427.66084
 Y. Su, C. Zambaldi, D. Mercier, P. Eisenlohr, T.R. Bieler, M.A. Crimp, International Journal of Plasticity, (2016).
 http://dx.doi.org/10.1016/j.ijplas.2016.08.007
 
+`"Investigation of single crystal and bi-crystal deformation in body-centered cubic tantalum using indentation." <https://search.proquest.com/openview/b91c4b357cd85972c6c9b5be34ba9688/1?pq-origsite=gscholar&cbl=18750&diss=y>`_
+B. Dunlap, PhD thesis, Michigan State University (2018).
+
 Contributors
 =============
 
