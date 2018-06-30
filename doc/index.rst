@@ -84,6 +84,8 @@ https://doi.org//10.1016/j.euromechsol.2017.06.012
 `"Investigation of single crystal and bi-crystal deformation in body-centered cubic tantalum using indentation." <https://search.proquest.com/openview/b91c4b357cd85972c6c9b5be34ba9688/1?pq-origsite=gscholar&cbl=18750&diss=y>`_
 B. Dunlap, PhD thesis, Michigan State University (2018).
 
+`"Study of Bi-Crystal Grain Boundary Deformation in Commercially Pure Tantalum." <http://dx.doi.org/10.13140/RG.2.2.30343.91049`_
+B. Dunlap et al., CHEMS Forum (2015).
 
 Contents
 =========
