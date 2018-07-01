@@ -52,7 +52,7 @@ Y. Su, C. Zambaldi, D. Mercier, P. Eisenlohr, T.R. Bieler, M.A. Crimp, Internati
 http://dx.doi.org/10.1016/j.ijplas.2016.08.007
 
 `"Micromechanics of magnesium and its alloys studied by nanoindentation." <http://hdl.handle.net/10016/24981>`_
- R. Sánchez Martín, PhD thesis, Universidad Carlos III de Madrid (2017).
+R. Sánchez Martín, PhD thesis, Universidad Carlos III de Madrid (2017).
 
 `"Investigation of single crystal and bi-crystal deformation in body-centered cubic tantalum using indentation." <https://search.proquest.com/openview/b91c4b357cd85972c6c9b5be34ba9688/1?pq-origsite=gscholar&cbl=18750&diss=y>`_
 B. Dunlap, PhD thesis, Michigan State University (2018).
