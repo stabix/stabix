@@ -68,6 +68,9 @@ D. Mercier, C. Zambaldi, P. Eisenlohr, Y. Su, M. A. Crimp, T. R. Bieler,
 Poster presented at "Indentation 2014" Conference in Strasbourg (France) (December 2014).
 https://doi.org//10.13140/RG.2.1.3044.8486
 
+`"Study of Bi-Crystal Grain Boundary Deformation in Commercially Pure Tantalum." <http://dx.doi.org/10.13140/RG.2.2.30343.91049>`_
+B. Dunlap et al., CHEMS Forum (2015).
+
 `"Grain Boundaries and Plasticity." <https://doi.org//10.13140/RG.2.2.27427.66084>`_
 D. Mercier, C. Zambaldi, P. Eisenlohr, M. A. Crimp, T. R. Bieler, R. Sánchez Martín.
 Invited talk at "MTEX Workshop 2016" Conference in Chemnitz (Germany) (February 2016).
@@ -83,9 +86,6 @@ https://doi.org//10.1016/j.euromechsol.2017.06.012
 
 `"Investigation of single crystal and bi-crystal deformation in body-centered cubic tantalum using indentation." <https://search.proquest.com/openview/b91c4b357cd85972c6c9b5be34ba9688/1?pq-origsite=gscholar&cbl=18750&diss=y>`_
 B. Dunlap, PhD thesis, Michigan State University (2018).
-
-`"Study of Bi-Crystal Grain Boundary Deformation in Commercially Pure Tantalum." <http://dx.doi.org/10.13140/RG.2.2.30343.91049>`_
-B. Dunlap et al., CHEMS Forum (2015).
 
 Contents
 =========
