@@ -18,9 +18,9 @@ Written by D. Mercier [1] and C. Zambaldi [1], based on previous work of T. R. B
 How to cite STABiX in your papers ?
 ====================================
 
-`"STABiX v1.6." <https://doi.org/10.5281/zenodo.14854>`_ = https://doi.org/10.5281/zenodo.14854
+`"STABiX v1.6" <https://doi.org/10.5281/zenodo.14854>`_ = https://doi.org/10.5281/zenodo.14854
 
-`"STABiX v2.0." <https://dx.doi.org/10.13140/RG.2.2.31387.67362>`_ = https://dx.doi.org/10.13140/RG.2.2.31387.67362
+`"STABiX v2.0" <https://dx.doi.org/10.13140/RG.2.2.31387.67362>`_ = https://dx.doi.org/10.13140/RG.2.2.31387.67362
 
 Reference paper
 ================
