@@ -50,8 +50,9 @@ How to get STABiX code ?
 How to cite STABiX in your papers ?
 ====================================
 
-.. image:: https://zenodo.org/badge/doi/10.5281/zenodo.14854.svg
-   :target: https://doi.org//10.5281/zenodo.14854
+`"STABiX v1.6" <https://doi.org/10.5281/zenodo.14854>`_ = https://doi.org/10.5281/zenodo.14854
+
+`"STABiX v2.0" <https://dx.doi.org/10.13140/RG.2.2.31387.67362>`_ = https://dx.doi.org/10.13140/RG.2.2.31387.67362
 
 Reference paper
 ================
@@ -125,7 +126,7 @@ References
 Contact
 ========
 
-:Authors: `David Mercier <d.mercier@mpie.de>`_ [1], `Claudio Zambaldi <c.zambaldi@mpie.de>`_ [1] and `Thomas R. Bieler <bieler@egr.msu.edu>`_ [2].
+:Authors: `David Mercier <d.mercier@mpie.de>`_ [1] and `Claudio Zambaldi <c.zambaldi@mpie.de>`_ [1], based on previous work of `Thomas R. Bieler <bieler@egr.msu.edu>`_ [2] and `Claudio Zambaldi <c.zambaldi@mpie.de>`_ [1].
 
 [1] `Max-Planck-Institut für Eisenforschung, 40237 Düsseldorf, Germany <http://www.mpie.de/>`_
 
