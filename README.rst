@@ -18,9 +18,9 @@ Written by D. Mercier [1] and C. Zambaldi [1], based on previous work of T. R. B
 How to cite STABiX in your papers ?
 ====================================
 
-.. image::
-  https://zenodo.org/badge/5888/stabix/stabix.svg
-  :target: http://dx.doi.org/10.5281/zenodo.14608
+`"STABiX v1.6." <http://dx.doi.org/10.5281/zenodo.14608>`_
+
+`"STABiX v2.0." <http://dx.doi.org/10.13140/RG.2.2.31387.67362>`_
 
 Reference paper
 ================
