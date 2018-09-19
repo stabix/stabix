@@ -126,7 +126,7 @@ References
 Contact
 ========
 
-:Authors: `David Mercier <david9684@gmail.com>`_ [1] and Claudio Zambaldi [1], based on previous work of `Thomas R. Bieler <bieler@egr.msu.edu>`_ [2] and Claudio Zambaldi [1].
+:Author: `David Mercier <david9684@gmail.com>`_ [1] and C. Zambaldi [1], based on previous work of T. R. Bieler [2] and C. Zambaldi [1].
 
 [1] `Max-Planck-Institut für Eisenforschung, 40237 Düsseldorf, Germany <http://www.mpie.de/>`_
 
