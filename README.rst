@@ -9,7 +9,7 @@ See the full documentation at http://stabix.readthedocs.org.
 Authors
 ========
 
-Written by D. Mercier [1] and C. Zambaldi [1], based on previous work of T. R. Bieler [2] and C. Zambaldi [1].
+:Author: `David Mercier <david9684@gmail.com>`_ [1] and C. Zambaldi [1], based on previous work of T. R. Bieler [2] and C. Zambaldi [1].
 
 [1] `Max-Planck-Institut für Eisenforschung, 40237 Düsseldorf, Germany <http://www.mpie.de/>`_
 
