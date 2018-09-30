@@ -359,8 +359,6 @@ See also
 
 `Charleux L., "Abapy Documentation". <http://abapy.readthedocs.org/en/latest/index.html>`_
 
-`CPFEM simulations of nanoindentation - ongoing research. <http://tonyfast.com/nsf-goali/2014/10/23/cpfem-nanoindentation-simulations/>`_
-
 `Zambaldi C. et al., "Orientation dependent deformation by slip and twinning in magnesium during single crystal indentation", Acta Materialia (2015). <https://doi.org/10.1016/j.actamat.2015.01.046>`_
 
 `Sánchez-Martín R. et al., "High temperature deformation mechanisms in pure magnesium studied by nanoindentation", Scripta Materialia (2015). <https://doi.org/10.1016/j.scriptamat.2015.03.012>`_

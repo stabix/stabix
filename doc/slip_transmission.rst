@@ -393,7 +393,7 @@ References
 .. [#Guo_2014] `Y. Guo et al., "Slip band–grain boundary interactions in commercial-purity titanium.", Acta Materialia (2014), 76, pp. 1-12. <https://doi.org/10.1016/j.actamat.2014.05.015>`_
 .. [#Guo_2015] `Y. Guo et al., "Measurements of stress fields near a grain boundary: Exploring blocked arrays of dislocations in 3D.", Acta Materialia (2015), 96, pp. 229-236. <https://doi.org/10.1016/j.actamat.2015.05.041>`_
 .. [#HauserChamlers_1961] `J.J. Hauser and B. Chamlers, "The plastic deformation of bicrystals of f.c.c. metals.", Acta Metallurgica (1961), 9(9), pp. 802-818. <https://doi.org/10.1016/0001-6160(61)90183-3>`_
-.. [#Herbert_2011] `F.W. Herbert et al., "Nanoindentation Induced Deformation Near Grain Boundaries of Corrosion Resistant Nickel Alloys.", Mater. Res. Soc. Symp. Proc., (2011), 1297. <https://doi.org/10.1557/opl.2011>`_
+.. [#Herbert_2011] `F.W. Herbert et al., "Nanoindentation Induced Deformation Near Grain Boundaries of Corrosion Resistant Nickel Alloys.", Mater. Res. Soc. Symp. Proc., (2011), 1297. <https://doi.org/10.1557/opl.2011.463>`_
 .. [#HookHirth_1967_1] `R.E. Hook and J.P. Hirth, "The deformation behavior of isoaxial bicrystals of Fe-3%Si.", Acta Metallurgica (1967), 15(3), pp. 535-551. <https://doi.org/10.1016/0001-6160(67)90087-9>`_
 .. [#HookHirth_1967_2] `R.E. Hook and J.P. Hirth, "The deformation behavior of non-isoaxial bicrystals of Fe-3% Si.", Acta Metallurgica (1967), 15(7), pp. 1099-1110. <https://doi.org/10.1016/0001-6160(67)90383-5>`_
 .. [#Hunter_2017] `A. Hunter et al., "A review of slip transfer: applications of mesoscale techniques.", Journal of Materials Science (2017), pp. 1-20. <https://doi.org/10.1007/s10853-017-1844-5>`_

@@ -40,7 +40,7 @@ developed validated against the collected indent characteristics.
 .. [#Shen_1986] `Z. Shen et al., "Dislocation pile-up and grain boundary interactions in 304 stainless steel.", Scripta Metallurgica (1986), 20(6), pp. 921–926. <https://doi.org/10.1016/0036-9748(86)90467-9>`_
 .. [#Shen_1988] `Z. Shen et al., "Dislocation and grain boundary interactions in metals.", Acta Metallurgica (1988), 36(12), pp. 3231–3242. <https://doi.org/10.1016/0001-6160(88)90058-2>`_
 .. [#LusterMorris_1995] `J. Luster and M.A. Morris, "Compatibility of deformation in two-phase Ti-Al alloys: Dependence on microstructure and orientation relationships.", Metal. and Mat. Trans. A (1995), 26(7), pp. 1745-1756. <https://doi.org/10.1007/BF02670762>`_
-.. [#Marcinkowski_1970] `M.J. Marcinkowski and W.F. Tseng, "Dislocation behavior at tilt boundaries of infinite extent.", Metal. Trans. (1970), 1(12), pp. 3397-3401. <https://doi.org/10.1007/BF03037870>`_
+.. [#Marcinkowski_1970] `M.J. Marcinkowski and W.F. Tseng, "Dislocation behavior at tilt boundaries of infinite extent.", Metal. Trans. (1970), 1(12), pp. 3397-3401. <https://link.springer.com/article/10.1007/BF03037870>`_
 .. [#Bollmann_1970] `W. Bollmann, "Crystal Defects and Crystalline Interfaces", Springer-Verlag (1970) <https://doi.org/10.1007/978-3-642-49173-3>`_
 .. [#LimRaj_1985] `L.C. Lim and R. Raj, "Continuity of slip screw and mixed crystal dislocations across bicrystals of nickel at 573K.", Acta Metallurgica (1985), 33, pp. 1577. <https://doi.org/10.1016/0001-6160(85)90057-4>`_
 .. [#Lee_1989] `T.C. Lee et al., "Prediction of slip transfer mechanisms across grain boundaries.", Scripta Metallurgica, (1989), 23(5), pp. 799–803. <https://doi.org/10.1016/0036-9748(89)90534-6>`_
