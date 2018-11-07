@@ -50,9 +50,11 @@ How to get STABiX code ?
 How to cite STABiX in your papers ?
 ====================================
 
-`"STABiX v1.6" <https://doi.org/10.5281/zenodo.14854>`_ = https://doi.org/10.5281/zenodo.14854
+.. only:: html
 
-`"STABiX v2.0" <https://dx.doi.org/10.13140/RG.2.2.25845.83687/1>`_ = https://dx.doi.org/10.13140/RG.2.2.25845.83687/1
+    `"STABiX v1.6" <https://doi.org/10.5281/zenodo.14854>`_ = https://doi.org/10.5281/zenodo.14854
+
+    `"STABiX v2.0" <https://dx.doi.org/10.13140/RG.2.2.25845.83687/1>`_ = https://dx.doi.org/10.13140/RG.2.2.25845.83687/1
 
 Reference paper
 ================
