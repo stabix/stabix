@@ -135,7 +135,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
         :label: resistance_factor
         
   This factor is equal to :math:`0`, when grain boundary is transparent to dislocations.
-  This implies :math:`m'` parameter equal to :math:`1` (slip perfectly aligned).
+  This implies :math:`m'` parameter equal to :math:`1` (slips perfectly aligned).
    
   The |matlab| function used to calculate the m' parameter is;
   `mprime.m <https://github.com/stabix/stabix/tree/master/slip_transfer/mprime.m>`_
@@ -157,7 +157,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   
   Misra and Gibala used the |rbv| to analyze slip across a FCC/BCC interphase boundary [#MisraGibala_1999]_.
   
-  The |matlab| function used to calculate the |rbv| is :
+  The |matlab| function used to calculate the |rbv| is:
   `residual_Burgers_vector.m <https://github.com/stabix/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_
  
 * **The misorientation or disorientation** (:math:`\Delta g` or :math:`\Delta g_\text d`)  [#AustChen_1954]_, [#ClarkChalmers_1954]_ and [#WoNgan_2004]_
@@ -192,7 +192,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   The |matlab| function used to calculate the :math:`\lambda` function is:
   `lambda.m <https://github.com/stabix/stabix/tree/master/slip_transfer/lambda.m>`_
 
-  The authors proposed to plot pseudo-3D view of the :math:`\lambda` map (see Figures 5 and 6) using the following equation [#Werner_1990]_ :
+  The authors proposed to plot pseudo-3D view of the :math:`\lambda` map (see Figures 5 and 6) using the following equation [#Werner_1990]_:
   
     .. math:: \lambda = \sum\limits_{\alpha=1}^N \sum\limits_{\beta=1}^N \cos\left(\frac{90°}{\psi_c}\arccos(\vec n_{\text{in},\alpha} \cdot \vec n_{\text{out},\beta})\right)\cos\left(\frac{90°}{\kappa_c}\arccos(\vec d_{\text{in},\alpha} \cdot \vec d_{\text{out},\beta})\right)
         :label: 3Dmap_lambda_function
@@ -225,7 +225,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
     .. math:: \lambda = \cos\left(\frac{90° \theta}{\theta_c}\right)\cos\left(\frac{90° \kappa}{\kappa_c}\right)
         :label: lambda_modified_function_ang
 
-  The |matlab| function used to calculate the modified :math:`\lambda` function is :
+  The |matlab| function used to calculate the modified :math:`\lambda` function is:
   `lambda_modified.m <https://github.com/stabix/stabix/tree/master/slip_transfer/lambda_modified.m>`_
 
 Stress Criteria
@@ -299,7 +299,7 @@ Stress Criteria
   is the shear acting on the incoming slip system [#LivingstonChalmers_1957]_, 
   [#HookHirth_1967_1]_ and [#HookHirth_1967_2]_.
   
-  The |matlab| function used to calculate the resolved shear stress is :
+  The |matlab| function used to calculate the resolved shear stress is:
   `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_
 
 Combination of Criteria
@@ -340,7 +340,7 @@ Relationships between slip transmission criteria
 -----------------------------------------------------------------------
 
   Some authors proposed to study relationships between slip transmission criteria [#Guo_2014]_ and [#Wang_2016]_.
-  Thus, it is possible to find in the litterature the :math:`m'` parameter plotted in function of the Schmid factor or the misorientation angle.
+  Thus, it is possible to find in the literature the :math:`m'` parameter plotted in function of the Schmid factor or the misorientation angle.
   Such plots based on experimental values allow to map slip transmissivity at grain boundaries for a given material.
 		
 Slip transmission parameters implemented in the STABiX toolbox
