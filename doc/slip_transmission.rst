@@ -98,10 +98,11 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
         :label: m_prime_angle
 
   Many authors found that this :math:`m'` parameter, which takes into account the degree of coplanarity of slip systems, is promising
-  to predict slip transmission [#WangNgan_2004]_, [#WoNgan_2004]_, [#Britton_2009]_, [#Bieler_2009]_, [#Bieler_2014]_ , [#Guo_2014]_, [#Wang_2014]_, [#Guo_2015]_ and [#Nervo_2016].
+  to predict slip transmission [#WangNgan_2004]_, [#WoNgan_2004]_, [#Britton_2009]_, [#Bieler_2009]_, [#Bieler_2014]_ , [#Guo_2014]_, [#Wang_2014]_, [#Guo_2015]_ and [#Nervo_2016]_.
   Both :math:`m'` and :math:`LRB` can be easily assessed in computational experiments [#Bieler_2014]_.
   This :math:`m'` factor should be maximized (1 means grain boundary
   is transparent and 0 means grain boundary is an impenetrable boundary).
+  Negative values for :math:`m'` factor means that slip plane direction or slip plane normals are in different directions. A value of :math:`-1` for the :math:`m'` factor means that grain boundary is transparent, but slip transmission may not occur, given different slip directions.
 
    .. figure:: ./_pictures/schemes_slip_transmission/mprime_values.png
       :name: mprime_values
@@ -118,6 +119,14 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
       *Distributions of m' parameter calculated for a) basal vs basal slip systems,
       b) basal vs prismatic <a> slip systems and c) prismatic <a> vs prismatic <a>
       slip systems in function of misorientation angle.*
+      
+   .. figure:: ./_pictures/schemes_slip_transmission/specialSlipAlignment.png
+      :name: specialSlipAlignment
+      :scale: 50 %
+      :align: center
+      
+      *Example of special slips alignments giving negative value of m' parameter.
+      The concept of incoming slip in the right example is thus absurd.*
 
    A resistance factor of the grain boundary can be described by the following equation:
    
