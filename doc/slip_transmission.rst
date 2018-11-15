@@ -20,7 +20,7 @@ The strain transfer across grain boundaries can be defined by the four following
    
    *Possible strain transfer across grain boundaries (GB) from Sutton and Balluffi.*
        
-Several authors proposed slip transfer parameters from modellings or experiments for the last 60 years.
+Several authors proposed slip transfer parameters from modelings or experiments for the last 60 years.
 A non-exhaustive list of those criteria is given in the next part of this work, including geometrical parameter,
 stress and energetic functions, and recent combinations of the previous parameters.
 
@@ -100,9 +100,10 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   Many authors found that this :math:`m'` parameter, which takes into account the degree of coplanarity of slip systems, is promising
   to predict slip transmission [#WangNgan_2004]_, [#WoNgan_2004]_, [#Britton_2009]_, [#Bieler_2009]_, [#Bieler_2014]_ , [#Guo_2014]_, [#Wang_2014]_, [#Guo_2015]_ and [#Nervo_2016]_.
   Both :math:`m'` and :math:`LRB` can be easily assessed in computational experiments [#Bieler_2014]_.
-  This :math:`m'` factor should be maximized (1 means grain boundary
-  is transparent and 0 means grain boundary is an impenetrable boundary).
-  Negative values for :math:`m'` factor means that slip plane direction or slip plane normals are in different directions. A value of :math:`-1` for the :math:`m'` factor means that grain boundary is transparent, but slip transmission may not occur, given different slip directions.
+  This :math:`m'` factor should be maximized (:math:`1` means grain boundary
+  is transparent and :math:`0` means grain boundary is an impenetrable boundary).
+  Negative values for :math:`m'` factor means that slip plane direction or slip plane normals are in different directions.
+  A value of :math:`-1` for the :math:`m'` factor means that grain boundary is transparent, but slip transmission may not occur, given different slip directions.
 
    .. figure:: ./_pictures/schemes_slip_transmission/mprime_values.png
       :name: mprime_values
@@ -133,8 +134,8 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
     .. math:: GB_\text{resfac} = 1 - m'
         :label: resistance_factor
         
-  This factor is equal to 0, when grain boundary is transparent to dislocations.
-  This implies :math:`m'` parameter equal to 1 (slip perfectly aligned).
+  This factor is equal to :math:`0`, when grain boundary is transparent to dislocations.
+  This implies :math:`m'` parameter equal to :math:`1` (slip perfectly aligned).
    
   The |matlab| function used to calculate the m' parameter is;
   `mprime.m <https://github.com/stabix/stabix/tree/master/slip_transfer/mprime.m>`_
