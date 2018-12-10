@@ -19,7 +19,7 @@ try
     cylZ = -cylZ * gui_SX.variables.h_sample;
     h_sample.cyl = surf(cylX, cylY, cylZ);
 catch id
-    display(id)
+    disp(id)
     h_sample.cyl(1) = plotCircle3D([0,0,1], ...
         [0,0,0], gui_SX.variables.D_sample/2);
     h_sample.cyl(2) = plotCircle3D([0,0,1], ...

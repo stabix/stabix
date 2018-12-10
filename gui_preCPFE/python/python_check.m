@@ -26,17 +26,17 @@ python.finds_scipy = ~ system(sprintf('%s -c "import scipy"', python_loc));
 
 cmd = sprintf('%s %s', python_loc, numpy_check_path);
 commandwindow;
-display(cmd);
+disp(cmd);
 python.numpy_version = strtrim(evalc('system(cmd);'));
 
 cmd = sprintf('%s %s', python_loc, scipy_check_path);
 commandwindow;
-display(cmd);
+disp(cmd);
 python.scipy_version = strtrim(evalc('system(cmd);'));
 
 cmd = sprintf('%s --version', python_loc);
 commandwindow;
-display(cmd);
+disp(cmd);
 python.version = strtrim(evalc('system(cmd);'));
 
 %if all(cell2mat(struct2cell(python)))

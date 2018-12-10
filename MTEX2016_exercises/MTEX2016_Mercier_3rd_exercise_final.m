@@ -104,7 +104,7 @@ if resA < tol && resB < tol
     orthoVal = 1;
 else
     orthoVal = 0;
-    display('Vectors are not orthogonals !');
+    disp('Vectors are not orthogonals !');
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -125,7 +125,7 @@ if resA < tol && resB < tol
     orthoVal = 1;
 else
     orthoVal = 0;
-    display('Vectors are not orthogonals !');
+    disp('Vectors are not orthogonals !');
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

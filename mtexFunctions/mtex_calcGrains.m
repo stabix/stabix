@@ -18,7 +18,7 @@ try
 catch err
     grains = 0;
     commandwindow;
-    display(err.message);
+    disp(err.message);
 end
 
 end

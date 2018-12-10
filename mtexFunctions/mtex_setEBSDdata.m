@@ -44,7 +44,7 @@ if max(gui.ebsdMTEX.phase) < 3
     % Run the plot of the loaded EBSD data
     interface_map_set_coordinate_convention;
 else
-    display('Only permitted for a single phase or a 2 phases material!');
+    disp('Only permitted for a single phase or a 2 phases material!');
 end
 
 end

@@ -52,7 +52,7 @@ if ~no_orientation
                 'markerfacecolor', 'none', ...
                 'markeredgecolor', 'k');
         else
-            display('Only permitted for a single phase!');
+            disp('Only permitted for a single phase!');
         end
     else
         %% Plot IPF for the bicrystal

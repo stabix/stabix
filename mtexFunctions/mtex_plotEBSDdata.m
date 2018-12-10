@@ -29,7 +29,7 @@ if flagEBSDdata
         %% Plot Inverse Pole Figure
         mtex_plotIPF(ebsdData.orientations);
     else
-        display('Only permitted for a single phase!');
+        disp('Only permitted for a single phase!');
     end
 end
 

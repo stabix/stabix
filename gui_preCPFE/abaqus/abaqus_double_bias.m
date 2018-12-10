@@ -44,7 +44,7 @@ end
 
 if testing
     f0 = linspace(f1, f2, num_elements+1);
-    display(f0');
+    disp(f0');
     plot(f0, zeros(size(f0)), 'ob'); hold on;
     plot(f, zeros(size(f)), 'sr');
     shg;

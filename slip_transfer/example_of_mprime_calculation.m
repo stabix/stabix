@@ -69,13 +69,13 @@ figure;
 vis_lattice(phase, euler_1, ind_slip_in);
 figure;
 vis_lattice(phase, euler_2, ind_slip_out);
-display(euler_1');
-display(euler_2');
-display(incoming_slip);
-display(outgoing_slip);
-display(phi);
-display(kappa);
-display(mp);
-display(mp_inv);
+disp(euler_1');
+disp(euler_2');
+disp(incoming_slip);
+disp(outgoing_slip);
+disp(phi);
+disp(kappa);
+disp(mp);
+disp(mp_inv);
 
 end

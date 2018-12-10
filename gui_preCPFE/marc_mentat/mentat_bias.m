@@ -48,8 +48,8 @@ end
 if testing
     % for x0 = 0.075, xN = .3 and N = 5
     t_ref = [0.075,.1128,.1542,.1992,.2478,0.3];
-    display(biased_elem);
-    display(t_ref);
+    disp(biased_elem);
+    disp(t_ref);
     plot(biased_elem,zeros(size(biased_elem)),'ob'); hold on;
     plot(t_ref,zeros(size(t_ref)),'sr');
     shg;

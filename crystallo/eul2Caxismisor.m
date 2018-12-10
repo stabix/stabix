@@ -8,8 +8,8 @@ function  caxis_misor = eul2Caxismisor(euler1, euler2, varargin )
 
 caxis = [0 0 1];
 if nargin < 2
-    euler1 = randBunges; display(euler1);
-    euler2 = randBunges; display(euler2);
+    euler1 = randBunges; disp(euler1);
+    euler2 = randBunges; disp(euler2);
 end
 
 g1 = eulers2g(euler1);  %rotation matrix of grain 1

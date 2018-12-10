@@ -8,13 +8,13 @@ function [lattice_parameters, flag_error] = ...
 if nargin < 2
     phaseList = listPhase;
     phase = phaseList(randi(length(phaseList)));
-    display(phase);
+    disp(phase);
 end
    
 if nargin < 1
     materialList = listMaterial;
     material = materialList(randi(length(materialList)));
-    display(material);
+    disp(material);
 end
 
 % Get the lattice parameter for the grain

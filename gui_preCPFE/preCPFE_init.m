@@ -60,7 +60,7 @@ if gui.config.CPFEM.python.scipy_version
             error('Version of scipy is higher than 0.16 ! You have to downgrade scipy...');
         end
     else
-        display('Check scipy installation...');
+        disp('Check scipy installation...');
     end
 end
 end

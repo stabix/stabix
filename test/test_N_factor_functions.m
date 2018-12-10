@@ -35,9 +35,9 @@ end
 
 N_factor_opt_vect_val = N_factor_opt_vectorized(n1', d1', n2', d2');
 
-display(N_factor_val);
-display(N_factor_opt_val);
-display(N_factor_opt_vect_val);
+disp(N_factor_val);
+disp(N_factor_opt_val);
+disp(N_factor_opt_vect_val);
 
 Tol = 1e-15;
 for jj = 1:GB_number

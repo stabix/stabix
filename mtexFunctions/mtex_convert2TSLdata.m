@@ -1,13 +1,13 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function [fpath, fname_GF2, fname_RB] = ...
-    mtex_convert2TSLdata(ebsd, angle_value, COORDSYS_eulers, varargin)
+    mtex_convert2TSLdata(ebsd, angle_value, varargin)
 %% Function used to convert data loaded via the import_wizard of MTEX
 % into TSL format files (GF2 and RB files)
 % ebsd: MTEX structure variable
 % angle_value: A grain is defined as a region, in which the misorientation
 % of neighbored measurements is less than the given angle.
 
-% See in http://mtex-toolbox.github.io/
+% See in http://mtex-toolbox.github.io
 
 % author: d.mercier@mpie.de
 
@@ -111,7 +111,7 @@ if max(ebsd.phase) < 3
     % Write TSL-OIM grain file type 2
     write_oim_reconstructed_boundaries_file(fdata, fpath, fname_RB);
 else
-    display('Only permitted for a single phase or a 2 phases material!');
+    disp('Only permitted for a single phase or a 2 phases material!');
 end
 
 end

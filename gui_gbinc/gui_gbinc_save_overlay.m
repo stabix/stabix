@@ -17,6 +17,6 @@ end
 name4overlay = [path4overlay, timestamp_make, 'overlay.png'];
 
 imwrite(im, name4overlay, 'png');
-display(['Overlay saved in ', name4overlay]);
+disp(['Overlay saved in ', name4overlay]);
 
 end

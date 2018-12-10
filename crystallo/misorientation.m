@@ -16,8 +16,8 @@ if nargin < 4
 end
 
 if nargin < 2
-    euler1 = randBunges; display(euler1);
-    euler2 = randBunges; display(euler2);
+    euler1 = randBunges; disp(euler1);
+    euler2 = randBunges; disp(euler2);
 end
 
 g1 = eulers2g(euler1);

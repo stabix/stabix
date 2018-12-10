@@ -12,7 +12,7 @@ if nargin < 2
 end
 
 if nargin < 1
-    display('Give at least a direction in Miller-Bravais notation');
+    disp('Give at least a direction in Miller-Bravais notation');
     return
 end
 

@@ -82,7 +82,7 @@ for ii = 1:1:size(slip_all_vect, 3) & flag_match == 0
 end
 
 if ~flag_match
-    display(['No matching between slip system given ' ...
+    disp(['No matching between slip system given ' ...
         'by user and slip systems in the database !']);
 end
 

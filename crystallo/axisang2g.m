@@ -7,11 +7,11 @@ function g_mat = axisang2g(axis, ang, varargin)
 % real cc, ss, rnorm, rsum, axis(3), axis2(3), ang,rot(3,3)
 
 if nargin < 2
-    ang = 45; display(ang);
+    ang = 45; disp(ang);
 end
 
 if nargin == 0
-    axis = [1 0 0]; display(axis);
+    axis = [1 0 0]; disp(axis);
 end
 
 flag_error = 0;

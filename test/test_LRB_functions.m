@@ -35,9 +35,9 @@ end
 
 mprime_opt_vect_val = LRB_parameter_opt_vectorized(l1', d1', l2', d2');
 
-display(mprime_val);
-display(mprime_opt_val);
-display(mprime_opt_vect_val);
+disp(mprime_val);
+disp(mprime_opt_val);
+disp(mprime_opt_vect_val);
 
 Tol = 1e-15;
 for jj = 1:GB_number

@@ -38,7 +38,7 @@ figure(...
 try
     colormap(color_map);
 catch err
-    display(err);
+    disp(err);
     colormap('hot');
 end
 

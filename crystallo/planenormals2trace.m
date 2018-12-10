@@ -17,8 +17,8 @@ n2U = n2/norm(n2);
 
 if norm(cross(n1U,n2U)) < tol % planes parallel
     fprintf('Planes parallel:\n')
-    display(n1U);
-    display(n2U);
+    disp(n1U);
+    disp(n2U);
     v = NaN;
     return
 else % planes not parallel

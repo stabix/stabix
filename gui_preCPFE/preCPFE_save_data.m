@@ -39,7 +39,7 @@ elseif strcmp(gui.config.CPFEM.simulation_code, 'DAMASK') == 1
     end
     
 else
-    display('No CPFEM code given in YAML CPFEM config. file !');
+    disp('No CPFEM code given in YAML CPFEM config. file !');
     
 end
 

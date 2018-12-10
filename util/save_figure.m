@@ -40,7 +40,7 @@ else
     
     %% Exportation of the figure in a .png format
     export_fig(isolated_figure_title, isolated_figure);
-    display(strcat('Figure saved as: ', filename_sav_fig));
+    disp(strcat('Figure saved as: ', filename_sav_fig));
     
 end
 

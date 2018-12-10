@@ -10,7 +10,7 @@ function eulers = g2eulers(g_mat, varargin)
 
 if nargin == 0
     g_mat = eulers2g;
-    display(g_mat);
+    disp(g_mat);
 end
 
 tol2 = 1e-6; % insertion made by C. Zambaldi

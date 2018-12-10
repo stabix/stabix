@@ -27,8 +27,8 @@ else
 end
 
 if nargin < 2
-    eulers1 = randBunges; display(eulers1);
-    eulers2 = randBunges; display(eulers2);
+    eulers1 = randBunges; disp(eulers1);
+    eulers2 = randBunges; disp(eulers2);
 end
 
 fi1 = [eulers1(1) eulers2(1)];

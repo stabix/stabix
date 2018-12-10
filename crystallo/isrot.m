@@ -7,7 +7,7 @@ function bool = isrot(g_mat, varargin)
 
 if nargin == 0
     g_mat = eulers2g;
-    display(g_mat);
+    disp(g_mat);
 end
 
 if abs(det(g_mat)-1) > 1e-14

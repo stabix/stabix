@@ -14,7 +14,7 @@ function ov = orthogonal_vector(vIn, varargin)
 %ov = ov ./norm(ov);
 
 if nargin == 0
-    vIn = [1,0,0]; display(vIn);
+    vIn = [1,0,0]; disp(vIn);
 end
 
 if vIn(1) == 0

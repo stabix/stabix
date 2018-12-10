@@ -41,13 +41,13 @@ if nargin == 0
     R_out = eulers2g(eul_out);
     rotated_b_in = R_in'*b_in';
     rotated_b_out = R_out'*b_out';
-    display(b_in);
-    display(b_out);
-    display(eul_in);
-    display(eul_in);
+    disp(b_in);
+    disp(b_out);
+    disp(eul_in);
+    disp(eul_in);
     
 elseif nargin < 2
-    display('Not enough inputs');
+    disp('Not enough inputs');
     return
 end
 
@@ -56,7 +56,7 @@ try
     rbv_norm = norm(rbv);
 catch err
     commandwindow;
-    display(strcat(err.message, ' Or missing function eulers2g...'));
+    disp(strcat(err.message, ' Or missing function eulers2g...'));
 end
 
 end

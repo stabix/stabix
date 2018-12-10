@@ -79,7 +79,7 @@ if testing
         f0_bias(ii) = f0_bias(ii-1) + dist0(ii-1);
     end
     f0_bias(end+1) = xN;
-    display(f0_bias);
+    disp(f0_bias);
     plot(f0_bias, zeros(size(f0_bias)), 'ob'); hold on;
     plot(biased_elem, zeros(size(biased_elem)), 'sr');
     shg;

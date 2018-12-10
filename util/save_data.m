@@ -32,7 +32,7 @@ else
 
     %% Exportation of data in a .yaml format
     WriteYaml(fullfile(pathname_sav_data, filename_sav_data), current_data);
-    display(strcat('Data saved in the file: ', filename_sav_data));
+    disp(strcat('Data saved in the file: ', filename_sav_data));
     
 end
 

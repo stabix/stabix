@@ -23,7 +23,7 @@ end
 
 if number_of_grains < 3
     number_of_grains = 20;
-    display('3 Grains are needed at least for Voronoi tessalation...');
+    disp('3 Grains are needed at least for Voronoi tessalation...');
 end
 
 rdm_microstructure_dataset = struct();

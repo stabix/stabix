@@ -458,7 +458,7 @@ if gui.flag.flag_lattice == 1
                 
             catch err
                 commandwindow;
-                display(err.message);
+                disp(err.message);
                 colorbar('delete');
                 set(gui.handles.cbdatavalues, 'Value', 1);
             end

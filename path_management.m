@@ -40,7 +40,7 @@ fprintf('%s\n', folder)
 if nargin > 0 && ischar(varargin{1})
     answer = varargin{1};
 else
-    display(['Add the above folder with subfolders ' ...
+    disp(['Add the above folder with subfolders ' ...
         'to the Matlab search path?'])
     fprintf('(%i items)\n', n_dirs)
     answer = input('([y](default)/n/rm(remove))','s');
@@ -58,7 +58,7 @@ elseif strcmpi(answer, 'rm')
     % delete environment variable, TODO: works on Linux?
     setenv(root_var, '') 
 else
-    display('doing nothing');
+    disp('doing nothing');
 end
 
 %% Optionally display the matlab search path after modifications with the 'path' command

@@ -12,13 +12,13 @@ function h_trans = preCPFE_indentation_transition_depth(...
 
 if nargin < 2
     cone_angle = 90; % in degrees
-    display(strcat('cone_angle =', num2str(cone_angle), ('degrees')));
+    disp(strcat('cone_angle =', num2str(cone_angle), ('degrees')));
 end
 
 if nargin < 1
     tip_radius = 1; % in microns
-    display(strcat('tip_radius =', num2str(tip_radius), ('microns')));
-    display('transition depth in microns');
+    disp(strcat('tip_radius =', num2str(tip_radius), ('microns')));
+    disp('transition depth in microns');
 end
 
 h_trans = tip_radius * (1 - sind(cone_angle));
