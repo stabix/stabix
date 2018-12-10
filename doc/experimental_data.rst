@@ -3,7 +3,7 @@
 
 .. include:: includes.rst
 
-To use the |stabix| toolbox, some experimental data are required :
+To use the |stabix| toolbox, some experimental data are required:
 
 - average grain orientations (Euler angles (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees) or
   intragranular misorientation (misorientation axis :math:`[uvw]` / angle :math:`\omega`);
@@ -24,9 +24,9 @@ either parallel or perpendicular to the surface of the sample.
 EBSD map GUI
 ***************
 
-To plot EBSD map in the EBSD map GUI, two types of TSL-OIM files are required :
+To plot EBSD map in the EBSD map GUI, two types of TSL-OIM files are required:
 
-- Reconstructed Boundaries File ;
+- Reconstructed Boundaries File;
 
 - Grain File Type 2.
 
@@ -48,15 +48,15 @@ Reconstructed Boundaries File
 -------------------------------
 
 **Export "Reconstructed Boundaries File" of the cleaned dataset**
-(All data --> Export --> Reconstructed Boundaries), with the following options defined by default :
+(All data --> Export --> Reconstructed Boundaries), with the following options defined by default:
 
-- Right hand average orientation (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees ;
+- Right hand average orientation (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees;
 
-- Left hand average orientation (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees ;
+- Left hand average orientation (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees;
 
-- Trace angle (in degrees) ;
+- Trace angle (in degrees);
 
-- (:math:`x,y`) coordinates of endpoints (in microns) ;
+- (:math:`x,y`) coordinates of endpoints (in microns);
 
 - IDs of right hand and left hand grains.
 
@@ -70,32 +70,32 @@ Reconstructed Boundaries File
 Example of "Reconstructed Boundary File": `MPIE_cpTi_reconstructed_boundaries_2013.txt
 <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/ebsd_dataExamples/MPIE_cpTi_reconstructed_boundaries_2013.txt>`_
 
-The |matlab| function used to read "Reconstructed Boundary File" is :
+The |matlab| function used to read "Reconstructed Boundary File" is:
 `read_oim_reconstructed_boundaries_file.m <https://github.com/stabix/stabix/blob/master/read_write_ebsd_files/read_oim_reconstructed_boundaries_file.m>`_
 
 If some GBs segments are missing or some wrong segments are exported, play with partition
 properties in the TSL-OIM software in order to export a more realistic Reconstructed Boundaries file:
 
-- decrease/increase "Grain Tolerance Angle" ;
+- decrease/increase "Grain Tolerance Angle";
 
-- decrease/increase "Minimum Grain Size" ;
+- decrease/increase "Minimum Grain Size";
 
 - decrease/increase the maximum deviation between reconstructed boundary and corresponding boundary segments.
 
 Grain File Type 2
 -------------------
 
-**Export "Grain File Type 2" of the cleaned dataset** (All data --> Export --> Grain File), with the following options :
+**Export "Grain File Type 2" of the cleaned dataset** (All data --> Export --> Grain File), with the following options:
 
-- Integer identifying grain ;
+- Integer identifying grain;
 
-- Average orientation (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees ;
+- Average orientation (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees;
 
-- Average position (:math:`x,y`) in microns ;
+- Average position (:math:`x,y`) in microns;
 
-- An integer identifying the phase ;
+- An integer identifying the phase;
 
-- Edge or interior grain (optional) ;
+- Edge or interior grain (optional);
 
 - Diameter of the grain in microns (optional).
 
@@ -115,8 +115,10 @@ It is possible to load other type of EBSD data files (e.g. : .ctf files), using 
 
 First, download and install the `MTEX Toolbox <http://mtex-toolbox.github.io/>`_.
 
-Then, import your EBSD data (e.g.: .ang file) and set the coordinate systme, using the 'import_wizard' and
-save the EBSD dataset in the |matlab| workspace as a variable named 'ebsd', and press 'Finish'.
+Then, import your EBSD data (e.g.: .ang file), by pressing the dedicated button on the main GUI.
+Set the crystal symmetry by selecting the .cif file corresponding to your material, set the coordinate system and set the reference frame.
+
+The 'import_wizard' tool from the MTEX toolbox can be alternatively used to import your EBSD data (see comments in the `function <https://github.com/stabix/stabix/blob/master/mtexFunctions/mtex_getEBSDdata.m>`_). In this case, you have to save the EBSD dataset in the |matlab| workspace as a variable named 'ebsd', and press 'Finish'.
 
 The EBSD map is automatically plotted from the imported data.
 The coordinate system and the scan unit are set from the properties of the imported data.
@@ -125,7 +127,7 @@ The coordinate system and the scan unit are set from the properties of the impor
     For a single phase material, the phase number is 0 or 1. For a two phases material, the phase numbers are
     respectively 1 and 2. For non-indexed pixels, the phase is numbered as -1.
 
-How to generate a .ang file with TSL-OIM software ?
+How to generate a .ang file with TSL-OIM software?
 ----------------------------------------------------
 
 **Export "Scan Data (.ang file)" of the cleaned dataset** (Filename --> Export --> Scan Data) (optional).
@@ -157,7 +159,7 @@ Issues with plot of EBSD maps
 ---------------------------------
 
 Sometimes, grain boundaries coordinates are too big compared to the grain size, because of
-the Voronoi tesselation for example. Thus, the following plot can be obtained :
+the Voronoi tesselation for example. Thus, the following plot can be obtained:
 
 .. figure:: ./_pictures/gui/error_axis_limits.png
    :scale: 40 %
