@@ -9,19 +9,22 @@ gui = guidata(gcf);
 
 if gui.flag.installation_mtex == 1
     
-    mtex_getEBSDdata;
+    gui.ebsdMTEX = mtex_getEBSDdata;
     
-    gui.ebsdMTEX = evalin('base','ebsd'); % To import 'ebsd' variable from the workspace
-    gui.ebsdMTEX = gui.ebsdMTEX('indexed');
-    guidata(gcf, gui);
-    
-    try
-        mtex_setEBSDdata;
-    catch
-        warning_commwin('Please reload your data and save it as a variable named ebsd !');
+    if ~isempty(gui.ebsdMTEX)
+        %gui.ebsdMTEX = evalin('base','ebsd'); % To import 'ebsd' variable from
+        %the workspace, when using import_wizard from MTEX
+        gui.ebsdMTEX = gui.ebsdMTEX('indexed');
+        guidata(gcf, gui);
+        
+        try
+            mtex_setEBSDdata;
+        catch
+            warning_commwin('Please reload your data and save it as a variable named ebsd !');
+        end
     end
 else
     warning_commwin('MTEX not installed!');
-end;
+end
 
 end
