@@ -5,11 +5,11 @@
 
 The *preCPFE* GUIs can rapidly transfer the experimental data into 
 crystal plasticity finite element (CPFE) simulation input files. 
-The types of input files are :
+The types of input files are:
 
     * scripts to generate the finite element models in *MSC.Mentat* (2008 to 2014) (*procedure* file format) 
-      or *Abaqus* (6.12 to 6.14) (Python script) based on the experimental data and test geometry ;
-    * the crystallographic orientations from the experimental data sets ;
+      or *Abaqus* (6.12 to 6.14) (Python script) based on the experimental data and test geometry;
+    * the crystallographic orientations from the experimental data sets;
     * material parameter files for the subroutines that implement the constitutive model.
 
 A parametrized visualization of the bicrystal indentation model through the GUI 
@@ -25,7 +25,7 @@ Currently the following models can be written:
 Please find here the `Python package used to generate the SX and BX indentation models
 <https://github.com/stabix/stabix/tree/master/third_party_code/python>`_.
 
-How to load crystallographic properties of the SX or of the BX ?
+How to load crystallographic properties of the SX or of the BX?
 ------------------------------------------------------------------
 
 It is possible to set SX or BX properties (material, phase, Euler angles, trace angle...) :
@@ -89,7 +89,7 @@ While models that take into account the micromechanical effect of the boundary
 are the subject of ongoing research, most geometrical and kinematic factors are taken into account
 by employing a local phenomenological crystal plasticity formulation in the simulations.
 
-The function used to run the preCPFE GUI for BX indentation is :
+The function used to run the preCPFE GUI for BX indentation is:
 `A_preCPFE_windows_indentation_setting_BX.m
 <https://github.com/stabix/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_BX.m>`_
 
@@ -298,8 +298,8 @@ Find the full documentation for the use of DAMASK with Marc here : http://damask
 Find the full documentation for the use of DAMASK with Abaqus here : http://damask.mpie.de/Usage/Abaqus.
 
 .. note::
-    For Abaqus, you may have to modify the extension of the subroutine :
-        - .f if the operating environment is Linux ;
+    For Abaqus, you may have to modify the extension of the subroutine:
+        - .f if the operating environment is Linux;
         - .for if the operating environment is Windows.
 
 See also
