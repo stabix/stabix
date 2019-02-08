@@ -103,3 +103,16 @@ Schmid factor and slip trace analysis
    
    *Screenshot of the EBSD map GUI with an EBSD map of near alpha phase Ti alloy (slip plane plotted inside grain and 
    slip traces plotted around unit cells, both in function of the maximum Schmid factor calculated with a given stress tensor).*
+   
+Plot options
+-------------------------------------
+
+The |matlab| function used to plot cell lattice is : `vis_lattice.m <https://github.com/stabix/stabix/tree/master/crystallo/vis_lattice.m>`_
+
+It is also possible to plot the structure of octahedral and tetrahedral interstitial defects.
+
+.. figure:: ./_pictures/lattice_interstitialSite.png
+   :scale: 40 %
+   :align: center
+   
+   *Octahedral (red) and tetrahedral (blue) interstitial symmetry polyhedra in a face-centered cubic, body centered cubic and hexagonal lattices.*
