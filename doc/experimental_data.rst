@@ -111,17 +111,19 @@ The |matlab| function used to read "Grain File Type 2" is :
 Loading other type of EBSD data files...
 -----------------------------------------
 
-It is possible to load other type of EBSD data files (e.g. : .ctf files), using the 'import_wizard' of the MTEX toolbox.
+It is possible to load other type of EBSD data files (e.g. : .ang files, .ctf files, ...), using the 'import_wizard' of the MTEX toolbox. It is always better to process (cropping, cleaning, filling, etc...) EBSD dataset using commercial EBSD software before loading it in the STABiX toolbox.
 
 First, download and install the `MTEX Toolbox <http://mtex-toolbox.github.io/>`_.
 
-Then, import your EBSD data (e.g.: .ang file), by pressing the dedicated button on the main GUI.
+Then, import your EBSD data, by pressing the dedicated button on the main GUI.
 Set the crystal symmetry by selecting the .cif file corresponding to your material, set the coordinate system and set the reference frame.
 
 The 'import_wizard' tool from the MTEX toolbox can be alternatively used to import your EBSD data (see comments in the `function <https://github.com/stabix/stabix/blob/master/mtexFunctions/mtex_getEBSDdata.m>`_). In this case, you have to save the EBSD dataset in the |matlab| workspace as a variable named 'ebsd', and press 'Finish'.
 
 The EBSD map is automatically plotted from the imported data.
 The coordinate system and the scan unit are set from the properties of the imported data.
+
+GF2 and RB files are automatically created after this raw EBSD data loading step and saved in the main Matlab search path. The function for this step is: https://github.com/stabix/stabix/blob/master/mtexFunctions/mtex_convert2TSLdata.m
 
 .. note::
     For a single phase material, the phase number is 0 or 1. For a two phases material, the phase numbers are
