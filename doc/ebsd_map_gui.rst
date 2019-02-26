@@ -25,7 +25,7 @@ For more details about the format of the EBSD data, see also the page
 `Experimental data <http://stabix.readthedocs.org/en/latest/experimental_data.html>`_.
 
 .. figure:: ./_pictures/gui/EBSD_map_setting.png
-   :scale: 50 %
+   :scale: 40 %
    :align: center
    
    *The different steps to load data into tge EBSD map GUI.*
@@ -111,7 +111,7 @@ The |matlab| function used to plot cell lattice is : `vis_lattice.m <https://git
 
 It is also possible to plot the structure of octahedral and tetrahedral interstitial defects.
 
-.. figure:: ./_pictures/lattice_interstitialSite.png
+.. figure:: ./_pictures/plot/lattice_interstitialSite.png
    :scale: 40 %
    :align: center
    
