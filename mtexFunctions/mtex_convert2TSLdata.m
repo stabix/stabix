@@ -1,18 +1,19 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function [fpath, fname_GF2, fname_RB] = ...
-    mtex_convert2TSLdata(ebsd, angle_value, varargin)
+    mtex_convert2TSLdata(ebsd, GrainCalc, varargin)
 %% Function used to convert data loaded via the import_wizard of MTEX
 % into TSL format files (GF2 and RB files)
 % ebsd: MTEX structure variable
 % angle_value: A grain is defined as a region, in which the misorientation
-% of neighbored measurements is less than the given angle.
+% of neighbored measurements is less than the given angle. Or using 'unitcell'
+% method (omit voronoi decomposition and treat a unitcell lattice).
 
 % See in http://mtex-toolbox.github.io
 
 % author: d.mercier@mpie.de
 
 if nargin < 2
-    angle_value = 5;
+    GrainCalc = 5; %Default value for misorientation angle
 end
 
 if nargin < 1
@@ -24,7 +25,11 @@ ebsd = ebsd('indexed');
 
 if max(ebsd.phase) < 3
     %% Grains definition
-    grains = calcGrains(ebsd, 'angle', angle_value * degree);
+    if ~strcmp(GrainCalc, 'unitcell')
+        grains = calcGrains(ebsd, 'angle', GrainCalc * degree);
+    else
+        grains = calcGrains(ebsd, 'unitcell');
+    end
     % subSet function to get only 1 grain
     
     % grains = smooth(grains,iter,..,param,val,..);

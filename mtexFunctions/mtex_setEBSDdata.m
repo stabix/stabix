@@ -10,8 +10,7 @@ gui = guidata(gcf);
 mtex_env = getMTEXpref;
 
 if max(gui.ebsdMTEX.phase) < 3
-    [fpath, fname_GF2, fname_RB] = mtex_convert2TSLdata(gui.ebsdMTEX, 5, ...
-        gui.COORDSYS_eulers);
+    [fpath, fname_GF2, fname_RB] = mtex_convert2TSLdata(gui.ebsdMTEX, gui.ebsdMTEXParam.calcgrain);
     
     % Set paths in the GUI
     set(gui.handles.FileGF2, 'String', fullfile(fpath, fname_GF2));

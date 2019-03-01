@@ -9,7 +9,7 @@ gui = guidata(gcf);
 
 if gui.flag.installation_mtex == 1
     
-    gui.ebsdMTEX = mtex_getEBSDdata;
+    [gui.ebsdMTEX, gui.ebsdMTEXParam] = mtex_getEBSDdata;
     
     if ~isempty(gui.ebsdMTEX)
         %gui.ebsdMTEX = evalin('base','ebsd'); % To import 'ebsd' variable from

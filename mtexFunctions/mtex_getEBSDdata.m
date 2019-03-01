@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function ebsd = mtex_getEBSDdata
+function [ebsd, ebsdParam] = mtex_getEBSDdata
 %% Import data with MTEX toolbox
 % See in http://mtex-toolbox.github.io/
 
@@ -30,9 +30,21 @@ if p
     
     CS = loadCIF(char(listCS(indCS)));
     
+    %% Set graind calculation  
+    ebsdParam.calcgrain = questdlg('Which method to apply for grain calculation?', ...
+	'MTEX grains calculation', ...
+	'Misorientation angle','Unit cell','Misorientation angle');
+    
+    if strcmp(ebsdParam.calcgrain, 'Misorientation angle')
+        prompt = {'Enter angle value:'};
+        title = 'Input';
+        dims = [1 35];
+        definput = {'5'};
+        ebsdParam.calcgrain = inputdlg(prompt,title,dims,definput);
+    end
+    
     %% Set coordinate system
     list_coordsys = listCoordSys;
-    
     [CoordSysVal,tf] = listdlg('ListString',list_coordsys,'SelectionMode','single');
     
     
