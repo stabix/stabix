@@ -26,13 +26,13 @@ S33 = elast_const(4);
 S44 = elast_const(5);
 S66 = elast_const(6);
 
-if strcmp(structure, 'bcc') || strcmp(structure, 'fcc') %All classes
+if strcmp(structure, 'bcc') || strcmp(structure, 'fcc') % All classes
     C11 = (S11 + S12)/((S11 - S12)*(S11 + 2*S12));
     C12 = -S12/((S11 - S12)*(S11 + 2*S12));
     C44 = 1/S44;
     C13 = C12; C33 = C11; C66 = C44;
     
-elseif strcmp(structure, 'hcp') %All classes
+elseif strcmp(structure, 'hcp') % All classes
     s = S33*(S11+S12)-2*(S13)^2;
     
     C11 = 0.5*((S33/s)+(1/(S11-S12)));
@@ -42,7 +42,7 @@ elseif strcmp(structure, 'hcp') %All classes
     C44 = 1/S44;
     C66 = (S11 - S12)/2;
     
-elseif strcmp(structure, 'bct') || strcmp(structure, 'fct') %Classes 4mm, 42m, 422, 4/mmm
+elseif strcmp(structure, 'bct') || strcmp(structure, 'fct') % Classes 4mm, 42m, 422, 4/mmm
     s = S33*(S11+S12)-2*(S13)^2;
     
     C11 = 0.5*((S33/s)+(1/(S11-S12)));
@@ -52,7 +52,7 @@ elseif strcmp(structure, 'bct') || strcmp(structure, 'fct') %Classes 4mm, 42m, 4
     C44 = 1/S44;
     C66 = 1/S66;
     
-elseif strcmp(structure, 'tri') %Classes 3m, 32, 3m
+elseif strcmp(structure, 'tri') % Classes 3m, 32, 3m
     
 end
 

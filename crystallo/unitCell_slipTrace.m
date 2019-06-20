@@ -19,7 +19,7 @@ if nargin == 0
     euler = randBunges;
     phase = 'hcp';
     lpTi = listLattParam('Ti', phase);
-    ca_ratio = lpTi(3);
+    ca_ratio = lpTi(1);
     shiftXYZ = [0;0;1];
     length_trace = 1;
     trace_frac = 0;

@@ -4,7 +4,7 @@ function lattice_parameters = listLattParam(material, structure, varargin)
 % the c/a ratio for a given material
 % material : material to give in order to get the corresponding lattice
 % parameter and the corresponding c/a ratio
-% structure : structure of the given material (hcp, bcc, fcc, dia, tet or bct)
+% structure : structure of the given material (hcp, bcc, fcc, dia, bct, fct, tri)
 % author: d.mercier@mpie.de
 
 % [DAVEY 1925] DOI ==> 10.1103/PhysRev.25.753
