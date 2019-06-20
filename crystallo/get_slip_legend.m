@@ -45,7 +45,7 @@ if strcmp(structure, 'hcp') == 1
             'Pyr2 - <c+a>';'Twins'};
     end
     
-elseif strcmp(structure, 'bcc') == 1
+elseif strcmp(structure, 'bcc') == 1 || strcmp(structure, 'bct') == 1
     if slip == 0
         legend_slip = 'No Slip !';
     elseif (slip >= 1 && slip <= 12)                % Slips {110}
@@ -62,7 +62,7 @@ elseif strcmp(structure, 'bcc') == 1
             'Twin <111>{112}'};
     end
     
-elseif strcmp(structure, 'fcc') == 1
+elseif strcmp(structure, 'fcc') == 1 || strcmp(structure, 'fct') == 1
     if slip == 0
         legend_slip = 'No Slip !';
     elseif (slip >= 1 && slip <= 12)                % Slips

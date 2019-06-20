@@ -54,7 +54,7 @@ if strcmp(gui.GB.Phase_B, 'hcp') == 1
     end
     tick_y = 1:6;
 end
-if strcmp(gui.GB.Phase_A, 'bcc') == 1
+if strcmp(gui.GB.Phase_A, 'bcc') || strcmp(gui.GB.Phase_A, 'bct')
     if gui.flag.LaTeX_flag && config.matlab_version_year > 2014
         gui.handles.legend_x = {'$\{110\}<111>$','$\{112\}<111>$','$\{123\}<111>$'};
     else
@@ -62,7 +62,7 @@ if strcmp(gui.GB.Phase_A, 'bcc') == 1
     end
     tick_x = 1:3;
 end
-if  strcmp(gui.GB.Phase_B, 'bcc') == 1
+if  strcmp(gui.GB.Phase_B, 'bcc') || strcmp(gui.GB.Phase_B, 'bct')
     if gui.flag.LaTeX_flag && config.matlab_version_year > 2014
         gui.handles.legend_y = {'$\{110\}<111>$','$\{112\}<111>$','$\{123\}<111>$'};
     else
@@ -70,7 +70,7 @@ if  strcmp(gui.GB.Phase_B, 'bcc') == 1
     end
     tick_y = 1:3;
 end
-if strcmp(gui.GB.Phase_A, 'fcc') == 1
+if strcmp(gui.GB.Phase_A, 'fcc') || strcmp(gui.GB.Phase_A, 'fct')
     if gui.flag.LaTeX_flag && config.matlab_version_year > 2014
         gui.handles.legend_x = {'$\{111\}<110>$'};
     else
@@ -78,7 +78,7 @@ if strcmp(gui.GB.Phase_A, 'fcc') == 1
     end
     tick_x = 1:1;
 end
-if strcmp(gui.GB.Phase_B, 'fcc') == 1
+if strcmp(gui.GB.Phase_B, 'fcc') || strcmp(gui.GB.Phase_B, 'fct')
     if gui.flag.LaTeX_flag && config.matlab_version_year > 2014
         gui.handles.legend_y = {'$\{111\}<110>$'};
     else

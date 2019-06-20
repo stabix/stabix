@@ -18,7 +18,7 @@ if nargin == 0
     slip = randi(57);
     euler = randBunges;
     phase = 'hcp';
-    lpTi = latt_param('Ti', phase);
+    lpTi = listLattParam('Ti', phase);
     ca_ratio = lpTi(3);
     shiftXYZ = [0;0;1];
     length_trace = 1;
@@ -28,9 +28,13 @@ end
 figure;
 
 if strcmp(phase, 'fcc') == 1
-    h_cell = vis_fcc(euler,slip);
+    h_cell = vis_fcc(euler,slip,[0 0 0], 0.5, 0, 0, 0, 2, 0, phase);
+elseif strcmp(phase, 'fct') == 1
+    h_cell = vis_fcc(euler,slip,[0 0 0], 0.5, 0, 0, 0, 2, 0, phase);
 elseif strcmp(phase, 'bcc') == 1
-    h_cell = vis_bcc(euler,slip);
+    h_cell = vis_bcc(euler,slip,[0 0 0], 0.5, 0, 0, 0, 2, 0, phase);
+elseif strcmp(phase, 'bct') == 1
+    h_cell = vis_bcc(euler,slip,[0 0 0], 0.5, 0, 0, 0, 2, 0, phase);
 elseif strcmp(phase, 'hcp') == 1
     h_cell = vis_hex(euler,slip);
 end

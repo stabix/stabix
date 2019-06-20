@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function lattice_parameters = latt_param(material, structure, varargin)
+function lattice_parameters = listLattParam(material, structure, varargin)
 %% Function used to give the lattice parameter in Angstrom and to calculate
 % the c/a ratio for a given material
 % material : material to give in order to get the corresponding lattice
@@ -13,9 +13,10 @@ function lattice_parameters = latt_param(material, structure, varargin)
 % [ASHCROFT 1976] : Ashcroft and Mermin - "Solid State Physics"
 % [YOO 1981] : DOI ==> 10.1007/BF02648537
 % [LANDOLT-BORNSTEIN 2002] : DOI ==> 10.1007/10832182_543
-% [BATTAINI 2008] : PhD thesis of Battaini M. -
-% "Deformation behaviour and twinning mechanisms of commercially pure titanium alloys"
+% [BATTAINI 2008] : PhD thesis of Battaini M., "Deformation behaviour and twinning mechanisms of commercially pure titanium alloys"
 % [SEAL 2012] : http://dx.doi.org/10.1016/j.msea.2012.04.114
+% [PICHUGIN 1978] : Pichugin, I.G., Tiachala, M. Izv. Akad. Nauk SSSR, Neorg. Mater. 14 (1978) 175. 
+% [ZAMBALDI 2012] : PhD thesis of Zambaldi C., "Micromechanical modeling of gamma-TiAl based alloys" - Shaker Verlag Aachen 2010
 
 % Initialization
 flag_error = 0;
@@ -172,15 +173,20 @@ if ~flag_error
         end
         c = a;
         
-    elseif strcmp(structure,'tet') == 1
+    elseif strcmp(structure,'bct') == 1
         if strcmp(material,'Sn') == 1                                      % || strcmp(material,'alpha-Sn') == 1
             c = 3.1815; a = 5.8316;                                        % from [LANDOLT-BORNSTEIN 2002] or [RAYNE 1960]
         end
+        if strcmp(material,'In') == 1                                      
+            c = 5.7034; a = 3.5446;                                        % from [PICHUGIN 1978]
+        end
         
-    elseif strcmp(material,'bct') == 1
-        c = 0; a = 1;
+    elseif strcmp(structure,'fct') == 1
+        if strcmp(material,'TiAl') == 1                                    
+            c = 4.07; a = 4.00;                                            % from [ZAMBALDI 2012]
+        end
         
-    elseif strcmp(material,'tri') == 1
+    elseif strcmp(structure,'tri') == 1
         if strcmp(material,'Bi') == 1
             c = 3.1815; a = 5.8316;                                        % from [DAVEY 1925]
         end

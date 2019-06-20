@@ -14,7 +14,7 @@ if nargin < 2
     slip = 1;
 end
 
-if strcmp(structure, 'hcp') == 1
+if strcmp(structure, 'hcp')
     if slip == 0
         slip_color = 'NaN';
     elseif (slip >= 1 && slip <= 3)                 % Basal <a>
@@ -43,7 +43,7 @@ if strcmp(structure, 'hcp') == 1
             [0.137,0.545,0.137]};
     end
     
-elseif strcmp(structure, 'bcc') == 1
+elseif strcmp(structure, 'bcc') || strcmp(structure, 'bct')
     if slip == 0
         slip_color = 'NaN';
     elseif (slip >= 1 && slip <= 12)                % Slips {110}
@@ -59,7 +59,7 @@ elseif strcmp(structure, 'bcc') == 1
             [0.137,0.545,0.137]};
     end
     
-elseif strcmp(structure, 'fcc') == 1
+elseif strcmp(structure, 'fcc') || strcmp(structure, 'fct')
     if slip == 0
         slip_color = 'NaN';
     elseif (slip >= 1 && slip <= 12)                % Slips

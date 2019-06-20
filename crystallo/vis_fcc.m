@@ -1,6 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function hPatch = vis_fcc(eulers, slip, shiftXYZ, szFac, plotAxes, fast, ...
-    numph, line_width, interstitial, varargin)
+    numph, line_width, interstitial, phase, varargin)
 %% Visualization of a fcc unit cell in a given orientation
 % eulers: Bunge Euler angles in degrees
 % slip : slip to plot
@@ -14,6 +14,9 @@ function hPatch = vis_fcc(eulers, slip, shiftXYZ, szFac, plotAxes, fast, ...
 
 % authors: d.mercier@mpie.de/c.zambaldi@mpie.de
 
+if nargin < 10
+    phase = 'fcc';
+end
 if nargin < 9
     interstitial = 0;
 end
@@ -47,21 +50,26 @@ g_glob = eulers2g(eulers)';
 
 % Lattice constants (normalized value)
 a = 1;
+if strcmp(phase, 'fcc')
+    c = a;
+else
+    c = 1.5*a;
+end
 
 % Indexation counterclockwise
 cub = [...
-    -a/2   -a/2    -a/2; % bottom 1
-    a/2   -a/2    -a/2; %2
-    a/2    a/2    -a/2; %3
-    -a/2    a/2    -a/2; %4
-    -a/2   -a/2     a/2; %5
-    a/2   -a/2     a/2; %6
-    a/2    a/2     a/2; %7
-    -a/2    a/2     a/2];%8
+    -a/2   -a/2    -c/2; % bottom 1
+    a/2   -a/2    -c/2; %2
+    a/2    a/2    -c/2; %3
+    -a/2    a/2    -c/2; %4
+    -a/2   -a/2     c/2; %5
+    a/2   -a/2     c/2; %6
+    a/2    a/2     c/2; %7
+    -a/2    a/2     c/2];%8
 
 fcc = [...
-    0   0    -a/2; % bottom 1
-    0   0   a/2; %2
+    0   0    -c/2; % bottom 1
+    0   0   c/2; %2
     0    a/2    0; %3
     0    -a/2   0; %4
     -a/2   0    0; %5
@@ -80,8 +88,8 @@ interstitielTetra = [
     1/4 -1/4 1/4];
 
 ptsTet = [...
-    0   0   a/2;
-    a/2 a/2 a/2;
+    0   0   c/2;
+    a/2 a/2 c/2;
     a/2 0 0;
     0 a/2 0];
 

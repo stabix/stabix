@@ -85,7 +85,7 @@ if ~isfield(GB_YAML, 'Material_A')
 end
 
 if ~isfield(GB_YAML, 'ca_ratio_A')
-    GB_YAML.ca_ratio_A = latt_param(GB_YAML.Material_A, GB_YAML.Phase_A);
+    GB_YAML.ca_ratio_A = listLattParam(GB_YAML.Material_A, GB_YAML.Phase_A);
 else
     GB_YAML.ca_ratio_A = cell2mat(GB_YAML.ca_ratio_A);
 end
@@ -123,7 +123,7 @@ if interface == 2 %BX
     end
     
     if ~isfield(GB_YAML, 'ca_ratio_B')
-        GB_YAML.ca_ratio_B = latt_param(GB_YAML.Material_B, GB_YAML.Phase_B);
+        GB_YAML.ca_ratio_B = listLattParam(GB_YAML.Material_B, GB_YAML.Phase_B);
     else
         GB_YAML.ca_ratio_B = cell2mat(GB_YAML.ca_ratio_B);
     end

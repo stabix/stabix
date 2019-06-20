@@ -35,9 +35,9 @@ gui.GB.GB_Inclination  = randi(40,1) + 70;
 gui.GB.GB_Trace_Angle  = randi(180);
 gui.GB.GB_Number       = randi(100);
 gui.GB.Material_A      = 'Ti';
-gui.GB.ca_ratio_A      = latt_param(gui.GB.Material_A, gui.GB.Phase_A);
+gui.GB.ca_ratio_A      = listLattParam(gui.GB.Material_A, gui.GB.Phase_A);
 gui.GB.Material_B      = 'Ti';
-gui.GB.ca_ratio_B      = latt_param(gui.GB.Material_B, gui.GB.Phase_B);
+gui.GB.ca_ratio_B      = listLattParam(gui.GB.Material_B, gui.GB.Phase_B);
 gui.GB.activeGrain     = gui.GB.GrainA;
 gui.GB.misorientation  = misorientation(gui.GB.eulerA, gui.GB.eulerB, ...
     gui.GB.Phase_A, gui.GB.Phase_B);

@@ -48,14 +48,14 @@ function misorientation = ...
 % author: d.mercier@mpie.de
 
 if nargin < 2
-    ca_ratio = latt_param('Ti', 'hcp');
+    ca_ratio = listLattParam('Ti', 'hcp');
     ori_grainB = mtex_setOrientation('hcp', ...
         ca_ratio(1), randBunges);
     disp(ori_grainB);
 end
 
 if nargin < 1
-    ca_ratio = latt_param('Ti', 'hcp');
+    ca_ratio = listLattParam('Ti', 'hcp');
     ori_grainA = mtex_setOrientation('hcp', ...
         ca_ratio(1), randBunges);
     disp(ori_grainA)

@@ -15,6 +15,10 @@ function elast_const = listElasticConstants(material, structure, varargin)
 % Chapter 7 / p. 97
 % ISBN-13: 978-0124457607  ISBN-10: 0124457606
 
+% [NYE 1985] : J.F. Nye, "Physical properties of crystals - Their representation by
+% tensors and matrices." (1985) Oxford Univ. Presse (p. 147)
+% ISBN-13: 978-0198511656  ISBN-10: 0198511655
+
 % Initialization
 flag_error = 0;
 S11 = 0;
@@ -164,13 +168,22 @@ if ~flag_error
         end
         S13 = S12; S33 = S11; S66 = S44;
         
-    elseif strcmp(structure,'tet') == 1
-        if strcmp(material,'Sn') == 1                                      % || strcmp(material,'alpha-Sn') == 1
-            S11 = 73.293; S12 = -19.304; S44 = 138.696;
+    elseif strcmp(structure,'bct') == 1
+        if strcmp(material,'Sn') == 1                                      % [NYE 1985]
+            S11 = 0.185; S12 = -0.099; S13 = -0.025; S33 = 0.118; S44 = 0.57; S66 = 0.1357;
+        end
+        if strcmp(material,'In') == 1                                      % 
+            %C11=0.045 in TPa / C12=0.0395 / C13=0.0405 / C33=0.044 /
+            %C44=0.00655 / C66=0.0122 from Vold 1977
+            S11 = 10.09; S12 = -4.00; S13 = -2.42; S33 = 7.98; S44 = 31.18; S66 = 28.17;
         end
         
-    elseif strcmp(material,'bct') == 1
-        S11 = 0; S12 = 0; S13 = 0; S33 = 0; S44 = 0; S66 = 0;
+    elseif strcmp(material,'fct') == 1
+        if strcmp(material,'TiAl') == 1
+            %C11=0.19 in TPa / C12=0.105 / C23=0.0.09 / C33=0.185 /
+            %C44=0.120 / C66=0.05 from Zambaldi 2010
+            S11 = 10.09; S12 = -4.00; S13 = -2.42; S33 = 7.98; S44 = 31.18; S66 = 28.17;
+        end
         
     else
         S11 = 0; S12 = 0; S13 = 0; S33 = 0; S44 = 0; S66 = 0;

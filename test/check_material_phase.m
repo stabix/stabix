@@ -18,7 +18,7 @@ if nargin < 1
 end
 
 % Get the lattice parameter for the grain
-lattice_parameters = latt_param(material, phase);
+lattice_parameters = listLattParam(material, phase);
 if lattice_parameters(1) == 0
     warning_commwin('Wrong input for material and structure !!!');
     flag_error = 1;

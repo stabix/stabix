@@ -251,9 +251,9 @@ elseif nargin == 1
     gui.GB.GB_Trace_Angle  = gui_map.GBs(gui.GB.active_GB).trace_angle;
     gui.GB.GB_Number       = gui_map.GBs(gui.GB.active_GB).ID;
     gui.GB.Material_A      = gui_map.grains(gui.GB.GrainA).material;
-    gui.GB.ca_ratio_A      = latt_param(gui.GB.Material_A, gui.GB.Phase_A);
+    gui.GB.ca_ratio_A      = listLattParam(gui.GB.Material_A, gui.GB.Phase_A);
     gui.GB.Material_B      = gui_map.grains(gui.GB.GrainB).material;
-    gui.GB.ca_ratio_B      = latt_param(gui.GB.Material_B, gui.GB.Phase_B);
+    gui.GB.ca_ratio_B      = listLattParam(gui.GB.Material_B, gui.GB.Phase_B);
     gui.GB.activeGrain     = gui.GB.GrainA;
     gui.config_map         = gui_map.config_map;
     gui.config             = gui_map.config;

@@ -37,10 +37,10 @@ listSlips_fcc = {'All Slips and Twins';...
 if strcmp(lattice_type,'hcp') == 1
     list = listSlips_hex;
     
-elseif strcmp(lattice_type,'fcc') == 1
+elseif strcmp(lattice_type,'fcc') == 1 || strcmp(lattice_type,'fct') == 1
     list = listSlips_fcc;
     
-elseif strcmp(lattice_type,'bcc') == 1
+elseif strcmp(lattice_type,'bcc') == 1 || strcmp(lattice_type,'bct') == 1
     list = listSlips_bcc;
     
 end

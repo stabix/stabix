@@ -47,10 +47,16 @@ if strcmp(lattice_type,'hcp') == 1
         fast, numph, line_width);
 elseif strcmp(lattice_type,'fcc') == 1
     h_lattice = vis_fcc(eulers, slip, shiftXYZ, 1.5*sz, plotAxes, ...
-        fast, numph, line_width);
+        fast, numph, line_width, 0, lattice_type);
 elseif strcmp(lattice_type,'bcc') == 1
     h_lattice = vis_bcc(eulers, slip, shiftXYZ, 1.5*sz, plotAxes, ...
-        fast, numph, line_width);
+        fast, numph, line_width, 0, lattice_type);
+elseif strcmp(lattice_type,'fct') == 1
+    h_lattice = vis_fcc(eulers, slip, shiftXYZ, 1.5*sz, plotAxes, ...
+        fast, numph, line_width, 0, lattice_type);
+elseif strcmp(lattice_type,'bct') == 1
+    h_lattice = vis_bcc(eulers, slip, shiftXYZ, 1.5*sz, plotAxes, ...
+        fast, numph, line_width, 0, lattice_type);    
 end
 set(h_lattice, 'LineWidth', 2);
 

@@ -13,7 +13,7 @@ if nargin < 2
     slip = 1;
 end
 
-if strcmp(structure, 'hcp') == 1
+if strcmp(structure, 'hcp')
     if (slip >= 1 && slip <= 3)                     % Basal <a>
         arrowcolor = 'b';
     elseif (slip >= 4 && slip <= 6)                 % Prismatic <a> 1st order
@@ -30,7 +30,7 @@ if strcmp(structure, 'hcp') == 1
         arrowcolor = [0.137,0.545,0.137];           % [0.137,0.545,0.137] = Green forest
     end
     
-elseif strcmp(structure, 'bcc') == 1
+elseif strcmp(structure, 'bcc') || strcmp(structure, 'bct')
     if (slip >= 1 && slip <= 12)                    % Slips {110}
         arrowcolor = 'b';
     elseif (slip >= 13 && slip <= 24)               % Slips {211}
@@ -41,7 +41,7 @@ elseif strcmp(structure, 'bcc') == 1
         arrowcolor = [0.137,0.545,0.137];           % [0.137,0.545,0.137]=Green forest
     end
     
-elseif strcmp(structure, 'fcc') == 1
+elseif strcmp(structure, 'fcc') || strcmp(structure, 'fct')
     if (slip >= 1 && slip <= 12)                    % Slips
         arrowcolor = 'b';
     elseif (slip >= 13 && slip <= 24)               % Twins

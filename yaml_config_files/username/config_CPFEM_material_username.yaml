@@ -23,7 +23,7 @@ Phase1_output10: totalvolfrac
 
 # Crystal properties
 Phase1_lattice_structure: hex
-# c/a ratio automatically calculated by using the Matlab file : "latt_param"
+# c/a ratio automatically calculated by using the Matlab file : "listLattParam"
 # M. Levy, Handbook of Elastic Properties of Solids, Liquids, and Gases (2001)
 Phase1_c11:    160e9
 Phase1_c12:    90e9

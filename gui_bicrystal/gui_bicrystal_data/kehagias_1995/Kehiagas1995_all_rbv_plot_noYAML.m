@@ -9,7 +9,7 @@ tabularasa;
 installation_mtex = mtex_checkInstall;
 plot_matlab = 1;
 
-latt_param_Ti = latt_param('Ti', 'hcp');
+latt_param_Ti = listLattParam('Ti', 'hcp');
 e_norm = sqrt(1.5)*latt_param_Ti(3)/10;
 
 folder_name = which('Kehiagas1995_all_rbv_plot_noYAML');

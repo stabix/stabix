@@ -27,7 +27,7 @@ end
 g = eulers2g(eulers); % Calculation of the rotation matrix
 
 if testFlag
-        lattice_parameters = latt_param('Ti', 'hcp');
+        lattice_parameters = listLattParam('Ti', 'hcp');
         for ii = randi(size(slip_systems_indices,3))
             d = millerbravaisplane2cart(slip_systems_indices(1,:,ii), lattice_parameters(1))';
             n = millerbravaisdir2cart(slip_systems_indices(2,:,ii), lattice_parameters(1))';

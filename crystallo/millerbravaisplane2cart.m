@@ -8,7 +8,7 @@ function normal = millerbravaisplane2cart(hkil, c_over_a, varargin)
 % author: c.zambaldi@mpie.de
 
 if nargin < 2
-    c_over_a = latt_param('Ti', 'hcp');
+    c_over_a = listLattParam('Ti', 'hcp');
     c_over_a = c_over_a(1);
 end
 

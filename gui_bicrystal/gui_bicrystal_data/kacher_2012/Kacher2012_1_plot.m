@@ -9,7 +9,7 @@ tabularasa;
 %installation_mtex = mtex_checkInstall;
 installation_mtex = 0;
 plot_matlab = 1;
-latt_param_Ti = latt_param('Ti', 'hcp');
+latt_param_Ti = listLattParam('Ti', 'hcp');
 
 %% Loading of GB data
 folder_name = which('kacher_2012_1_plot');

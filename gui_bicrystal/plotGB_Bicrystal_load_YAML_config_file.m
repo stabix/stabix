@@ -87,7 +87,7 @@ else
     
     if ~isfield(gui.GB_YAML, 'ca_ratio_A')
         gui.GB_YAML.ca_ratio_A = ...
-            latt_param(gui.GB_YAML.Material_A, gui.GB_YAML.Phase_A);
+            listLattParam(gui.GB_YAML.Material_A, gui.GB_YAML.Phase_A);
     else
         gui.GB_YAML.ca_ratio_A = cell2mat(gui.GB_YAML.ca_ratio_A);
     end
@@ -104,7 +104,7 @@ else
     
     if ~isfield(gui.GB_YAML, 'ca_ratio_B')
         gui.GB_YAML.ca_ratio_B = ...
-            latt_param(gui.GB_YAML.Material_B, gui.GB_YAML.Phase_B);
+            listLattParam(gui.GB_YAML.Material_B, gui.GB_YAML.Phase_B);
     else
         gui.GB_YAML.ca_ratio_B = cell2mat(gui.GB_YAML.ca_ratio_B);
     end
@@ -139,10 +139,10 @@ else
         if strcmp (gui.GB_YAML.Phase_A, 'hcp') == 1
             gui.GB_YAML.GB_YAML_slipA_unstrcat_num_norm = [0, 0, 0, 1];
             gui.GB_YAML.GB_YAML_slipA_unstrcat_num_dir  = [2 -1 -1 0];
-        elseif strcmp(gui.GB_YAML.Phase_A, 'bcc') == 1
+        elseif strcmp(gui.GB_YAML.Phase_A, 'bcc') == 1 || strcmp(gui.GB_YAML.Phase_A, 'bct') == 1
             gui.GB_YAML.GB_YAML_slipA_unstrcat_num_norm = [0,  1,  1];
             gui.GB_YAML.GB_YAML_slipA_unstrcat_num_dir  = [1, -1,  1];
-        elseif strcmp(gui.GB_YAML.Phase_A, 'fcc') == 1
+        elseif strcmp(gui.GB_YAML.Phase_A, 'fcc') == 1 || strcmp(gui.GB_YAML.Phase_A, 'fct') == 1
             gui.GB_YAML.GB_YAML_slipA_unstrcat_num_norm = [1,  1,  1];
             gui.GB_YAML.GB_YAML_slipA_unstrcat_num_dir  = [0,  1, -1];
         end
@@ -153,10 +153,10 @@ else
         if strcmp (gui.GB_YAML.Phase_B, 'hcp') == 1
             gui.GB_YAML.GB_YAML_slipB_unstrcat_num_norm = [0, 0, 0, 1];
             gui.GB_YAML.GB_YAML_slipB_unstrcat_num_dir  = [2 -1 -1 0];
-        elseif strcmp(gui.GB_YAML.Phase_B, 'bcc') == 1
+        elseif strcmp(gui.GB_YAML.Phase_B, 'bcc') == 1 || strcmp(gui.GB_YAML.Phase_B, 'bct') == 1
             gui.GB_YAML.GB_YAML_slipB_unstrcat_num_norm = [0,  1,  1];
             gui.GB_YAML.GB_YAML_slipB_unstrcat_num_dir  = [1, -1,  1];
-        elseif strcmp(gui.GB_YAML.Phase_B, 'fcc') == 1
+        elseif strcmp(gui.GB_YAML.Phase_B, 'fcc') == 1 || strcmp(gui.GB_YAML.Phase_B, 'fct') == 1
             gui.GB_YAML.GB_YAML_slipB_unstrcat_num_norm = [1,  1,  1];
             gui.GB_YAML.GB_YAML_slipB_unstrcat_num_dir  = [0,  1, -1];
         end

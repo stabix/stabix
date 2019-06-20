@@ -38,16 +38,16 @@ end
 if strcmp(gui.GB.Phase_B, 'hcp') == 1
     tick_y = 1:66;
 end
-if strcmp(gui.GB.Phase_A, 'bcc') == 1
+if strcmp(gui.GB.Phase_A, 'bcc') == 1 || strcmp(gui.GB.Phase_A, 'bct') == 1
     tick_x = 1:60;
 end
-if  strcmp(gui.GB.Phase_B, 'bcc') == 1
+if strcmp(gui.GB.Phase_B, 'bcc') == 1 || strcmp(gui.GB.Phase_B, 'bct') == 1
     tick_y = 1:60;
 end
-if strcmp(gui.GB.Phase_A, 'fcc') == 1
+if strcmp(gui.GB.Phase_A, 'fcc') == 1 || strcmp(gui.GB.Phase_A, 'fct') == 1
     tick_x = 1:24;
 end
-if strcmp(gui.GB.Phase_B, 'fcc') == 1
+if strcmp(gui.GB.Phase_B, 'fcc') == 1 || strcmp(gui.GB.Phase_B, 'fct') == 1
     tick_y = 1:24;
 end
 

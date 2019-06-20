@@ -83,7 +83,7 @@ if ~isfield(GB_YAML, 'Material_A')
 end
 
 if ~isfield(GB_YAML, 'ca_ratio_A')
-    GB_YAML.ca_ratio_A = latt_param(GB_YAML.Material_A, GB_YAML.Phase_A);
+    GB_YAML.ca_ratio_A = listLattParam(GB_YAML.Material_A, GB_YAML.Phase_A);
 end
 
 if ~isfield(GB_YAML, 'Material_B')
@@ -91,7 +91,7 @@ if ~isfield(GB_YAML, 'Material_B')
 end
 
 if ~isfield(GB_YAML, 'ca_ratio_B')
-    GB_YAML.ca_ratio_B = latt_param(GB_YAML.Material_B, GB_YAML.Phase_B);
+    GB_YAML.ca_ratio_B = listLattParam(GB_YAML.Material_B, GB_YAML.Phase_B);
 end
 
 %% Set specific slips for grains A and B

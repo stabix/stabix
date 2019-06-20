@@ -18,7 +18,7 @@ if nargin == 0
     slip = randi(57);
     euler = randBunges;
     phase = 'hcp';
-    lpTi = latt_param('Ti', phase);
+    lpTi = listLattParam('Ti', phase);
     ca_ratio = lpTi(3);
     shiftXYZ = [0;0;1];
     length_trace = 1;

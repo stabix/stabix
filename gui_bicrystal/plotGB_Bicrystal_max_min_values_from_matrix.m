@@ -63,7 +63,8 @@ if strcmp(max_min, 'max') == 1
         p_max_min_bc(6,5) = max(max(matrix(28:33,16:27))); %Pyr2<c+a>-Pyr1<c+a>
         p_max_min_bc(6,6) = max(max(matrix(28:33,28:33))); %Pyr2<c+a>-Pyr2<c+a>
         
-    elseif strcmp(phase_A, 'bcc') == 1 && strcmp(phase_B, 'bcc') == 1
+    elseif (strcmp(phase_A, 'bcc') == 1 && strcmp(phase_B, 'bcc') == 1) || ...
+            (strcmp(phase_A, 'bct') == 1 && strcmp(phase_B, 'bct') == 1)
         
         p_max_min_bc(1,1) = max(max(matrix(1:12,1:12)));
         p_max_min_bc(1,2) = max(max(matrix(1:12,13:24)));
@@ -77,7 +78,8 @@ if strcmp(max_min, 'max') == 1
         p_max_min_bc(3,2) = max(max(matrix(25:48,13:24)));
         p_max_min_bc(3,3) = max(max(matrix(25:48,25:48)));
         
-    elseif strcmp(phase_A, 'fcc') == 1 && strcmp(phase_B, 'fcc') == 1
+    elseif (strcmp(phase_A, 'fcc') == 1 && strcmp(phase_B, 'fcc') == 1) || ...
+            (strcmp(phase_A, 'fct') == 1 && strcmp(phase_B, 'fct') == 1)
         
         p_max_min_bc(1,1) = max(max(matrix(1:12,1:12)));
         

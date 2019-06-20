@@ -26,9 +26,9 @@ end
 
 if strcmp(structure, 'hcp') == 1
     slip_syst =  NaN(2, 4, 57);
-elseif strcmp(structure, 'bcc') == 1
+elseif strcmp(structure, 'bcc') == 1 || strcmp(structure, 'bct') == 1
     slip_syst =  NaN(2, 3, 60);
-elseif strcmp(structure, 'fcc') == 1
+elseif strcmp(structure, 'fcc') == 1 || strcmp(structure, 'fct') == 1
     slip_syst =  NaN(2, 3, 24);
 end
 
@@ -150,7 +150,7 @@ for ii = 1:1:size(slip_system, 2) % If more than 1 slip/twin system is defined b
     end
     
     %% bcc structure - Slip system
-    if strcmp(structure,'bcc')
+    if strcmp(structure,'bcc') || strcmp(structure, 'bct')
         if slip_system(ii) == 1 ...
                 || slip_system(ii) == 2 ...
                 || slip_system(ii) == 9
@@ -247,7 +247,7 @@ for ii = 1:1:size(slip_system, 2) % If more than 1 slip/twin system is defined b
     end
     
     %% fcc structure - Slip system
-    if strcmp(structure,'fcc')
+    if strcmp(structure,'fcc') || strcmp(structure,'fct')
         if slip_system(ii) == 1 || slip_system(ii) == 9
             % Mode 1,  plane direction, Define four points in the plane       For TiAl, 1,4,7,10 are ordinary dislocations
             slip_syst(:,:,1) =  [ 1  1  1 ;  0  1 -1];                                     %Index 1 in Damask

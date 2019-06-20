@@ -1,7 +1,7 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function hPatch = vis_bcc(eulers, slip, shiftXYZ, szFac, plotAxes, fast, ...
-    numph, line_width, interstitial, varargin)
-%% Visualization of a bcc unit cell in a given orientation
+    numph, line_width, interstitial, phase, varargin)
+%% Visualization of a body centered cubic or tetragonal unit cell in a given orientation
 % eulers: Bunge Euler angles in degrees
 % slip : slip to plot
 % shiftXYZ: translate the cell
@@ -14,6 +14,9 @@ function hPatch = vis_bcc(eulers, slip, shiftXYZ, szFac, plotAxes, fast, ...
 
 % authors: d.mercier@mpie.de/c.zambaldi@mpie.de
 
+if nargin < 10
+    phase = 'bcc';
+end
 if nargin < 9
     interstitial = 0;
 end
@@ -47,71 +50,76 @@ g_glob = eulers2g(eulers)';
 
 % Lattice constants (normalized value)
 a = 1;
+if strcmp(phase, 'bcc')
+    c = a;
+else
+    c = 1.5*a;
+end
 
 % Indexation counterclockwise
-cub = [-a/2   -a/2    -a/2; %1 (bottom)
-    a/2   -a/2    -a/2; %2
-    a/2    a/2    -a/2; %3
-    -a/2    a/2    -a/2; %4
-    -a/2   -a/2     a/2; %5 (top)
-    a/2   -a/2     a/2; %6
-    a/2    a/2     a/2; %7
-    -a/2    a/2     a/2; %8
+cub = [-a/2   -a/2    -c/2; %1 (bottom)
+    a/2   -a/2    -c/2; %2
+    a/2    a/2    -c/2; %3
+    -a/2    a/2    -c/2; %4
+    -a/2   -a/2     c/2; %5 (top)
+    a/2   -a/2     c/2; %6
+    a/2    a/2     c/2; %7
+    -a/2    a/2     c/2; %8
     
-    0     -a/2    -a/2; %9=(1+2)/2
-    a/2    0      -a/2; %10=(2+3)/2
-    0      a/2    -a/2; %11=(3+4)/2
-    -a/2    0      -a/2; %12=(4+1)/2
-    0     -a/2     a/2; %13=(1+2)/2
-    a/2    0       a/2; %14=(2+3)/2
-    0      a/2     a/2; %15=(3+4)/2
-    -a/2    0       a/2; %16=(4+1)/2
+    0     -a/2    -c/2; %9=(1+2)/2
+    a/2    0      -c/2; %10=(2+3)/2
+    0      a/2    -c/2; %11=(3+4)/2
+    -a/2    0      -c/2; %12=(4+1)/2
+    0     -a/2     c/2; %13=(1+2)/2
+    a/2    0       c/2; %14=(2+3)/2
+    0      a/2     c/2; %15=(3+4)/2
+    -a/2    0       c/2; %16=(4+1)/2
     -a/2   -a/2       0; %17=(1+5)/2
     a/2   -a/2       0; %18=(2+6)/2
     a/2    a/2       0; %19=(3+7)/2
     -a/2    a/2       0; %20=(4+8)/2
     
-    -a/6   -a/2    -a/2;%21
-    a/6   -a/2    -a/2;%22
-    a/2   -a/6    -a/2;%23
-    a/2    a/6    -a/2;%24
-    a/6    a/2    -a/2;%25
-    -a/6    a/2    -a/2;%26
-    -a/2    a/6    -a/2;%27
-    -a/2   -a/6    -a/2;%28
-    -a/2   -a/2    -a/6;%29
-    a/2   -a/2    -a/6;%30
-    a/2    a/2    -a/6;%31
-    -a/2    a/2    -a/6;%32
-    -a/2   -a/2     a/6;%33
-    a/2   -a/2     a/6;%34
-    a/2    a/2     a/6;%35
-    -a/2    a/2     a/6;%36
-    -a/6   -a/2     a/2;%37
-    a/6   -a/2     a/2;%38
-    a/2   -a/6     a/2;%39
-    a/2    a/6     a/2;%40
-    a/6    a/2     a/2;%41
-    -a/6    a/2     a/2;%42
-    -a/2    a/6     a/2;%43
-    -a/2   -a/6     a/2%44
+    -a/6   -a/2    -c/2;%21
+    a/6   -a/2    -c/2;%22
+    a/2   -a/6    -c/2;%23
+    a/2    a/6    -c/2;%24
+    a/6    a/2    -c/2;%25
+    -a/6    a/2    -c/2;%26
+    -a/2    a/6    -c/2;%27
+    -a/2   -a/6    -c/2;%28
+    -a/2   -a/2    -c/6;%29
+    a/2   -a/2    -c/6;%30
+    a/2    a/2    -c/6;%31
+    -a/2    a/2    -c/6;%32
+    -a/2   -a/2     c/6;%33
+    a/2   -a/2     c/6;%34
+    a/2    a/2     c/6;%35
+    -a/2    a/2     c/6;%36
+    -a/6   -a/2     c/2;%37
+    a/6   -a/2     c/2;%38
+    a/2   -a/6     c/2;%39
+    a/2    a/6     c/2;%40
+    a/6    a/2     c/2;%41
+    -a/6    a/2     c/2;%42
+    -a/2    a/6     c/2;%43
+    -a/2   -a/6     c/2%44
     ];
 
 bcc = [...
     0 0 0;
-    0 0 a;
-    0 0 -a];
+    0 0 c;
+    0 0 -c];
 
 fcc = [...
-    0   0    -a/2; % bottom 1
-    0   0   a/2; %2
+    0   0    -c/2; % bottom 1
+    0   0   c/2; %2
     0    a/2    0; %3
     0    -a/2   0; %4
     -a/2   0    0; %5
     a/2    0     0]; %6
 
 tet = [...
-    0 a/4 -a/2];
+    0 a/4 -c/2];
 
 %% Rotate the lattice cell points
 gg  = g_glob;

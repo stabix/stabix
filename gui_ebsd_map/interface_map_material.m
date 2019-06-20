@@ -23,7 +23,7 @@ if nargin < 4
 end
 
 [hmat, pmMat] = set_popupmenu(strcat('Material', str), ...
-    pos, 13, listMaterial, callback_1, parent);
+    pos, find(strcmp(listMaterial,'Ti')), listMaterial, callback_1, parent);
 
 posS = pos;
 posS(2) = pos(2)-0.22;

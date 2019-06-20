@@ -23,7 +23,7 @@ rot_mat1 = eulers2g(euler_1);
 rot_mat2 = eulers2g(euler_2);
 
 % Lattice parameters
-ca_ratio = latt_param(material, phase);
+ca_ratio = listLattParam(material, phase);
 
 if strcmp(phase, 'hcp') == 1
     % Miller-Bravais to Cartesian coordinates

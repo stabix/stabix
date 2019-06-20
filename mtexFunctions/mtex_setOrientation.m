@@ -14,7 +14,7 @@ if nargin < 3
 end
 
 if nargin < 2
-    ca_ratio = latt_param('Ti', 'hcp');
+    ca_ratio = listLattParam('Ti', 'hcp');
 end
 
 if nargin < 1
@@ -25,11 +25,11 @@ end
 if strcmp (phase, 'hcp') == 1
     CS = crystalSymmetry('hexagonal', [1 1 ca_ratio(1)]);
     
-elseif strcmp (phase, 'fcc') == 1
+elseif strcmp (phase, 'fcc') == 1 || strcmp (phase, 'bcc') == 1
     CS = crystalSymmetry('cubic');
     
-elseif strcmp (phase, 'bcc') == 1
-    CS = crystalSymmetry('cubic');
+elseif strcmp (phase, 'bct') == 1 || strcmp (phase, 'fct') == 1
+    CS = crystalSymmetry('tetragonal');
     
 end
 

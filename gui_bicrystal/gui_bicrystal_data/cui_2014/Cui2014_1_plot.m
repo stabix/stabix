@@ -8,7 +8,7 @@
 tabularasa;
 installation_mtex = mtex_checkInstall;
 plot_matlab = 1;
-latt_param_Ti = latt_param('Ti', 'hcp');
+latt_param_Ti = listLattParam('Ti', 'hcp');
 
 %% Loading of GB data
 folder_name = which('cui_2014_1_plot');
