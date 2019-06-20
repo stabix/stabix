@@ -91,7 +91,7 @@ Institutions
    
    `USC Viterbi School of Engineering (Los Angeles, USA) <https://viterbischool.usc.edu/>`_
    
-   .. figure:: ./_pictures/logos/logo_los_alamos.png
+.. figure:: ./_pictures/logos/logo_los_alamos.png
    :scale: 50%
    :align: center
    :target: https://www.lanl.gov/
