@@ -1,6 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function h_lattice = vis_lattice(lattice_type, eulers, slip, shiftXYZ, ...
-    sz, plotAxes, fast, numph, line_width, varargin)
+    sz, plotAxes, fast, numph, line_width, interstitial, phase, varargin)
 %% Function to plot lattice cell for hcp, bcc and fcc crystals
 % lattice_type : hcp, bcc or fcc
 % eulers : Bunge Euler angles in degrees
@@ -13,6 +13,12 @@ function h_lattice = vis_lattice(lattice_type, eulers, slip, shiftXYZ, ...
 % line_width
 % authors: d.mercier@mpie.de/c.zambaldi@mpie.de
 
+if nargin < 11
+    phase = 'fct';
+end
+if nargin < 10
+    interstitial = 1;
+end
 if nargin < 9
     line_width = 2;
 end
@@ -44,19 +50,19 @@ end
 
 if strcmp(lattice_type,'hcp') == 1
     h_lattice = vis_hex(eulers, slip, shiftXYZ, sz, plotAxes, ...
-        fast, numph, line_width);
+        fast, numph, line_width, interstitial);
 elseif strcmp(lattice_type,'fcc') == 1
     h_lattice = vis_fcc(eulers, slip, shiftXYZ, 1.5*sz, plotAxes, ...
-        fast, numph, line_width, 0, lattice_type);
+        fast, numph, line_width, interstitial, lattice_type);
 elseif strcmp(lattice_type,'bcc') == 1
     h_lattice = vis_bcc(eulers, slip, shiftXYZ, 1.5*sz, plotAxes, ...
-        fast, numph, line_width, 0, lattice_type);
+        fast, numph, line_width, interstitial, lattice_type);
 elseif strcmp(lattice_type,'fct') == 1
     h_lattice = vis_fcc(eulers, slip, shiftXYZ, 1.5*sz, plotAxes, ...
-        fast, numph, line_width, 0, lattice_type);
+        fast, numph, line_width, interstitial, lattice_type, 'fct');
 elseif strcmp(lattice_type,'bct') == 1
     h_lattice = vis_bcc(eulers, slip, shiftXYZ, 1.5*sz, plotAxes, ...
-        fast, numph, line_width, 0, lattice_type);    
+        fast, numph, line_width, interstitial, lattice_type, 'bct');    
 end
 set(h_lattice, 'LineWidth', 2);
 
