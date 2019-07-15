@@ -17,7 +17,7 @@ if nargin < 11
     phase = 'fct';
 end
 if nargin < 10
-    interstitial = 1;
+    interstitial = 0;
 end
 if nargin < 9
     line_width = 2;
@@ -53,16 +53,16 @@ if strcmp(lattice_type,'hcp') == 1
         fast, numph, line_width, interstitial);
 elseif strcmp(lattice_type,'fcc') == 1
     h_lattice = vis_fcc(eulers, slip, shiftXYZ, 1.5*sz, plotAxes, ...
-        fast, numph, line_width, interstitial, lattice_type);
+        fast, numph, line_width, interstitial, lattice_type, phase);
 elseif strcmp(lattice_type,'bcc') == 1
     h_lattice = vis_bcc(eulers, slip, shiftXYZ, 1.5*sz, plotAxes, ...
-        fast, numph, line_width, interstitial, lattice_type);
+        fast, numph, line_width, interstitial, lattice_type, phase);
 elseif strcmp(lattice_type,'fct') == 1
     h_lattice = vis_fcc(eulers, slip, shiftXYZ, 1.5*sz, plotAxes, ...
-        fast, numph, line_width, interstitial, lattice_type, 'fct');
+        fast, numph, line_width, interstitial, lattice_type, phase);
 elseif strcmp(lattice_type,'bct') == 1
     h_lattice = vis_bcc(eulers, slip, shiftXYZ, 1.5*sz, plotAxes, ...
-        fast, numph, line_width, interstitial, lattice_type, 'bct');    
+        fast, numph, line_width, interstitial, lattice_type, phase);    
 end
 set(h_lattice, 'LineWidth', 2);
 
