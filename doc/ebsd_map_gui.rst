@@ -5,7 +5,7 @@
  
 This GUI allows to analyze quantitatively slip transmission across grain boundaries for an EBSD map.
 
-The |matlab| function used to run the EBSD map GUI is : `A_gui_plotmap.m <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/A_gui_plotmap.m>`_
+The |matlab| function used to run the EBSD map GUI is: `A_gui_plotmap.m <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/A_gui_plotmap.m>`_
 
 This includes:
 
@@ -21,7 +21,7 @@ This includes:
 Loading EBSD data
 ---------------------------
 
-For more details about the format of the EBSD data, see also the page
+For more details about the format of the EBSD data, see also the page:
 `Experimental data <http://stabix.readthedocs.org/en/latest/experimental_data.html>`_.
 
 .. figure:: ./_pictures/gui/EBSD_map_setting.png
@@ -29,6 +29,9 @@ For more details about the format of the EBSD data, see also the page
    :align: center
    
    *The different steps to load data into tge EBSD map GUI.*
+   
+.. warning::
+    Be careful when importing datasets with high number of grains (e.g. > 300 grains), the loading and plotting steps may take few minutes...
 
 .. _smoothing_GBs:
 
@@ -46,7 +49,7 @@ grains boundaries in order to speed up calculations and plots.
    Ti alloy a) before smoothing and b) after smoothing.*
 
 
-The |matlab| function used to smooth GBs is :
+The |matlab| function used to smooth GBs is:
 `interface_map_GB_segments_opti.m <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/interface_map_GB_segments_opti.m>`_
 
 .. _misorientation_angle:
@@ -102,7 +105,7 @@ Schmid factor and slip trace analysis
    :align: center
    
    *Screenshot of the EBSD map GUI with an EBSD map of near alpha phase Ti alloy (slip plane plotted inside grain and 
-   slip traces plotted around unit cells, both in function of the maximum Schmid factor calculated with a given stress tensor).*
+   slip trace plotted around unit cells, both in function of the maximum Schmid factor calculated with a given stress tensor).*
    
 Plot options
 -------------------------------------

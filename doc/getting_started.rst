@@ -20,13 +20,13 @@ To have more details about the use of the toolbox, please have a look to :
 Path management
 *****************
 
-Run the following |matlab| script and answer 'y' or 'yes' to add path to the |matlab| search paths :
+Run the following |matlab| script and answer 'y' or 'yes' to add path to the |matlab| search paths:
 
 .. code-block:: matlab
 
    path_management.m
 
-The |matlab| function used to set the |matlab| search paths is :
+The |matlab| function used to set the |matlab| search paths is:
 `path_management.m <https://github.com/stabix/stabix/tree/master/path_management.m>`_
 
 The GUIs

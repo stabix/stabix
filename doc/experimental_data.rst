@@ -43,9 +43,9 @@ Change data properties for the detection of grain boundaries (All data --> Prope
 Clean up your dataset (Filename --> Cleanup).
 
 Reference : OIM ANALYSIS 6.0 (user manual) and OIM ANALYSIS 7.0 (user manual) / `EDAX website <http://www.edax.com/Products/EBSD/OIM-Data-Analysis-Microstructure-Analysis.aspx>`_
-
-Reconstructed Boundaries File
--------------------------------
+	
+Reconstructed Boundaries File (RB)
+----------------------------------
 
 **Export "Reconstructed Boundaries File" of the cleaned dataset**
 (All data --> Export --> Reconstructed Boundaries), with the following options defined by default:
@@ -82,8 +82,8 @@ properties in the TSL-OIM software in order to export a more realistic Reconstru
 
 - decrease/increase the maximum deviation between reconstructed boundary and corresponding boundary segments.
 
-Grain File Type 2
--------------------
+Grain File Type 2 (GF2)
+-----------------------
 
 **Export "Grain File Type 2" of the cleaned dataset** (All data --> Export --> Grain File), with the following options:
 
@@ -157,6 +157,9 @@ Possible errors introduced during files exportation from TSL-OIM
 .. note::
     All of these issues are taken into account and corrected automatically when user is loading his data via the EBSD map GUI.
 	
+.. warning::
+    It is required to create GF2 and RB files with grain indexation starting from 0. Be careful with cropped datasets.
+	
 Issues with plot of EBSD maps
 ---------------------------------
 
@@ -183,7 +186,7 @@ An example of bicrystal configuration file is given here :
 Copy this example file and modify it with your data. Be careful to put a space after the comma in a list (e.g. [:math:`x`, :math:`y`, :math:`z`]).
 
 .. warning::
-    Don't change fieldnames and don't round Euler angles. Euler angles are given in degrees.
+    Don't change field names and don't round Euler angles. Euler angles are given in degrees.
 
 Load your YAML bicrystal configuration file via the menu in the bicrystal GUI. You may have to run again the path_management.m |matlab| function, if your YAML bicrystal configuration file is not found by |matlab|.
 

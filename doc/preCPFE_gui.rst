@@ -28,7 +28,7 @@ Please find here the `Python package used to generate the SX and BX indentation 
 How to load crystallographic properties of the SX or of the BX?
 ------------------------------------------------------------------
 
-It is possible to set SX or BX properties (material, phase, Euler angles, trace angle...) :
+It is possible to set SX or BX properties (material, phase, Euler angles, trace angle...):
 
 - from the `Bicrystal GUI <http://stabix.readthedocs.org/en/latest/bicrystal_gui.html>`_ 
   (by giving GB's number and pressing the button 'PLOT BICRYSTAL');
@@ -125,7 +125,7 @@ Scratch length and scratch direction have to be set by the user.
 Indenter's geometry
 --------------------
 
-Currently the following geometries can be used for CPFE simulations :
+Currently the following geometries can be used for CPFE simulations:
     * `cono-spherical indenter <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_conospherical_indenter.m>`_ ;
     * `Berkovich indenter <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_polygon_indenter.m>`_ ;
     * `Vickers indenter <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_polygon_indenter.m>`_ ;
@@ -229,7 +229,7 @@ Adjusting the configuration settings
 To write out the necessary files for finite element simulations it is likely that 
 the user wants to adjust some settings such as the used python installation or the 
 path where the files are written to. 
-This can be achieved in the custom menu of the preCPFE GUis : ``Edit CPFEM config file``.
+This can be achieved in the custom menu of the preCPFE GUis: ``Edit CPFEM config file``.
 A user specific copy of the default configuration YAML file is created and 
 opened in the |matlab| editor. 
 To benefit from later changes in the default settings, all
