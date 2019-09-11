@@ -388,4 +388,6 @@ of Cu bicrystals and Cu–Al bicrystals", J. Mater. Res., (2015). <https://doi.o
 
 Zhao Z. et al., "Temperature dependent constitutive parameters from nanoindentation", poster for Chems Forum 2019, MSU.
 
-Wang Q. et al., "Orientation-dependent irradiation hardening in pure Zr studied by nanoindentation, electron microscopies, and crystal plasticity finite element modeling", International Journal of Plasticity, (2019). <https://doi.org/10.1016/j.ijplas.2019.08.007>`_
+`Wang Q. et al., "Orientation-dependent irradiation hardening in pure Zr studied by nanoindentation, electron microscopies, and crystal plasticity finite element modeling", International Journal of Plasticity, (2019). <https://doi.org/10.1016/j.ijplas.2019.08.007>`_
+
+`Das S. et al., "Orientation-dependent indentation response of helium-implanted tungsten", Appl. Phys. Lett., (2019). <https://doi.org/0.1063/1.5097403>`_
