@@ -391,3 +391,5 @@ Zhao Z. et al., "Temperature dependent constitutive parameters from nanoindentat
 `Wang Q. et al., "Orientation-dependent irradiation hardening in pure Zr studied by nanoindentation, electron microscopies, and crystal plasticity finite element modeling", International Journal of Plasticity, (2019). <https://doi.org/10.1016/j.ijplas.2019.08.007>`_
 
 `Das S. et al., "Orientation-dependent indentation response of helium-implanted tungsten", Appl. Phys. Lett., (2019). <https://doi.org/0.1063/1.5097403>`_
+
+`Zhou Y. et al., "Experimental study and crystal plasticity finite element simulations of nano-indentation-induced lattice rotation and the underlying mechanism in TC6 single α-grain", Materials and Design, (2019). <https://doi.org/10.1016/j.matdes.2019.108423>`_
