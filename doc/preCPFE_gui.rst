@@ -393,3 +393,6 @@ Zhao Z. et al., "Temperature dependent constitutive parameters from nanoindentat
 `Das S. et al., "Orientation-dependent indentation response of helium-implanted tungsten", Appl. Phys. Lett., (2019). <https://doi.org/0.1063/1.5097403>`_
 
 `Zhou Y. et al., "Experimental study and crystal plasticity finite element simulations of nano-indentation-induced lattice rotation and the underlying mechanism in TC6 single α-grain", Materials and Design, (2019). <https://doi.org/10.1016/j.matdes.2019.108423>`_
+
+`Terentyev D. et al., "High temperature nanoindentation of tungsten: Modelling and experimental validation", International
+Journal of Refractory Metals and Hard Materials, (2020). <https://doi.org/10.1016/j.ijrmhm.2020.105222>`_
