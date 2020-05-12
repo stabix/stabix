@@ -57,7 +57,7 @@ if gui.config.CPFEM.python.scipy_version
     [x, y] = sscanf(v, '%i.%i.%i');
     if length(x) > 2
         if x(2) > 16
-            error('Version of scipy is higher than 0.16 ! You have to downgrade scipy...');
+            warning('Version of scipy is higher than 0.16 ! You should downgrade scipy...');
         end
     else
         disp('Check scipy installation...');
