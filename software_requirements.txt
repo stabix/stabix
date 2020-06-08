@@ -2,4 +2,4 @@ Matlab >= 2014
 Python == 2.x
 numpy <= 1.10.4
 scipy <= 0.16.0 (works fine with 1.2.3)
-MTEX
+MTEX = 5.3

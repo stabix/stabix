@@ -26,7 +26,7 @@ ebsd = ebsd('indexed');
 if max(ebsd.phase) < 3
     %% Grains definition
     if ~strcmp(GrainCalc, 'unitcell')
-        grains = calcGrains(ebsd, 'angle', GrainCalc * degree);
+        grains = calcGrains(ebsd, 'angle', char(GrainCalc) * degree);
     else
         grains = calcGrains(ebsd, 'unitcell');
     end

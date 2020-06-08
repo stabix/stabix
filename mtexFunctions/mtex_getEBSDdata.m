@@ -81,7 +81,7 @@ if p
     dname = [pname fname];
     
     % create an EBSD variable containing the data
-    ebsd = loadEBSD(dname,CS,'interface',ext,specimenRefFrame);
+    ebsd = EBSD.load(dname,CS,'interface',ext,specimenRefFrame);
     
 else
     ebsd = '';
