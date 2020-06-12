@@ -14,13 +14,13 @@ license_msg = ['Sorry, no license found for the Matlab ', ...
 if  license('checkout', 'Image_Toolbox') == 0
     helpdlg(license_msg, ' Error');
     gui.flag.licenceFlag = 0;
-    errordlg('No Image Processing Toolbox!');
+    %errordlg('No Image Processing Toolbox!');
 else
     gui.flag.licenceFlag = 1;
-    if strcmp(gui.config.matlab_version, '2014a');
+    if strcmp(gui.config.matlab_version, '2014a')
         gui.flag.licenceFlag = 0;
+        errordlg('Matlab version is 2014a and some functions of Image Processing Toolbox don''t work!');
     end
-    errordlg('Matlab version is 2014a and some functions of Image Processing Toolbox don''t work!');
 end
 
 if gui.flag.licenceFlag
