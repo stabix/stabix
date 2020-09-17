@@ -396,3 +396,6 @@ Zhao Z. et al., "Temperature dependent constitutive parameters from nanoindentat
 
 `Terentyev D. et al., "High temperature nanoindentation of tungsten: Modelling and experimental validation", International
 Journal of Refractory Metals and Hard Materials, (2020). <https://doi.org/10.1016/j.ijrmhm.2020.105222>`_
+
+`Li Y. et al., "Crystal plasticity assessment of the effect of material parameters on contact depth during spherical indentation", International
+S.I. : Computational Mechanics of Materials, (2020). <https://doi.org/10.1007/s00161-020-00901-4>`_
