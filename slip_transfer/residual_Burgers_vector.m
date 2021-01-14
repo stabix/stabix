@@ -52,7 +52,11 @@ elseif nargin < 2
 end
 
 try
-    rbv = rotated_b_in - rotated_b_out;
+    if cosFromVectors(rotated_b_in,rotated_b_out) > 0
+        rbv = rotated_b_in - rotated_b_out;
+    else
+        rbv = rotated_b_in + rotated_b_out;
+    end
     rbv_norm = norm(rbv);
 catch err
     commandwindow;

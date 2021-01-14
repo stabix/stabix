@@ -21,7 +21,7 @@ eulerB: [286.41, 32.46, 2.24]
 SlipA_norm: [2, -1, 1]
 SlipA_dir: [1, 1, -1]
 SlipB_norm: [3, 2, -1]
-SlipB_dir: [1, -1, 1]
+SlipB_dir: [-1, 1, -1]
 
 # Residual Burgers Value
 rbv: 0.94

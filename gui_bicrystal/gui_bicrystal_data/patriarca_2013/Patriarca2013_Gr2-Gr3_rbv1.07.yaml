@@ -19,7 +19,7 @@ eulerB: [314.95, 49.86, 52.21]
 
 #Specific slips for RBV calculation
 SlipA_norm: [1, -1, 0]
-SlipA_dir: [-1, -1, 1]
+SlipA_dir: [1, 1, -1]
 SlipB_norm: [-2, 3, 1]
 SlipB_dir: [1, 1, -1]
 
