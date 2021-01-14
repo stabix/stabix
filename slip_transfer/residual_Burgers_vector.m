@@ -1,4 +1,4 @@
-% Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
+% Copyright 2013 Max-Planck-Institut fÃ¼r Eisenforschung GmbH
 function rbv_norm = ...
     residual_Burgers_vector(rotated_b_in, rotated_b_out, varargin)
 %% Function used to calculate the norm of the residual Burgers vector
@@ -8,8 +8,12 @@ function rbv_norm = ...
 % from Lee T.C. et al. - Scripta Metall. 23,799 (1989).
 % DOI ==> 10.1080/01418619008244340
 %
-% and de Koning et al. - Journal of Nuclear Materials 323 (2003) pp 281–289
+% and de Koning et al. - Journal of Nuclear Materials 323 (2003) pp 281â€“289
 % DOI ==> 10.1016/j.jnucmat.2003.08.008
+%
+% Check of inner product sign implemented following discussion with Adrien Berger and thanks to 
+% Abuzaid et al., "Slip transfer and plastic strain accumulation across grain boundaries in Hastelloy X.", 
+% DOI ==> 10.1016/j.jmps.2012.02.001
 %
 % b1 = Burgers vector of first slip system in grain 1
 % b2 = Burgers vector of 2nd slip system in grain 2
@@ -52,7 +56,7 @@ elseif nargin < 2
 end
 
 try
-    if cosFromVectors(rotated_b_in,rotated_b_out) > 0
+    if cosFromVectors(rotated_b_in,rotated_b_out) > 0 % Transmission of slip plane
         rbv = rotated_b_in - rotated_b_out;
     else
         rbv = rotated_b_in + rotated_b_out;
