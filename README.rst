@@ -58,8 +58,8 @@ B. Dunlap, PhD thesis, Michigan State University (2018).
 Contributors
 =============
 
-- Raúl Sánchez Martín (`IMDEA <http://www.materials.imdea.org/>`_, Madrid) contributed Python code to generate *Abaqus* indentation models.
-
+- Raúl Sánchez Martín (`IMDEA <http://www.materials.imdea.org/>`_, Madrid, Spain) contributed Python code to generate *Abaqus* indentation models.
+- Adrien Berger (`LML <http://mecanique.univ-lille1.fr/Recherche/LML/>`_, Lille, France) contributed the residual Burgers vector calculation.
 
 Acknowledgements
 =================
