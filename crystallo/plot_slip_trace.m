@@ -3,7 +3,7 @@ function h = plot_slip_trace(slip_plane_normal, plot_plane_normal, ...
     shiftXYZ, length_trace, trace_frac, varargin)
 %% Function to plot the slip trace
 % slip_plane_normal : Normal of the slip
-% plot_plane_normal : Normal of the plane whre to plot the trace (surface of the sample --> [0;0;1])
+% plot_plane_normal : Normal of the plane where to plot the trace (surface of the sample --> [0;0;1])
 % shiftXYZ : coordinates of the point where to plot the slip trace (-->
 % correspond to the middle of the segment plotted for the slip traces).
 % length_trace : Length of the trace (factor)
