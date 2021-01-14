@@ -149,13 +149,16 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   Shirokoff et al., Kehagias et al., and Kacher et al. used the |rbv| as a criterion to analyse slip transmission in cp-Ti (HCP)
   [#Shirokoff_1993]_, [#Kehagias_1995]_, [#Kehagias_1996]_ and [#KacherRobertson_2014]_,
   Lagow et al. in Mo (BCC) [#Lagow_2001]_, Gemperle et al. and Gemperlova et al. in FeSi (BCC) [#Gemperle_2004]_ and [#Gemperlova_2004]_,
-  Kacher et al. in 304 stainless steel (FCC) [#KacherRobertson_2012]_,
-  and Jacques et al. for semiconductors [#Jacques_1990]_.
+  Kacher et al. in 304 stainless steel (FCC) [#KacherRobertson_2012]_, and Jacques et al. for semiconductors [#Jacques_1990]_.
+  
+  Misra and Gibala used the |rbv| to analyze slip across a FCC/BCC interphase boundary [#MisraGibala_1999]_.
   
   Patriarca et al. demonstrated for BCC material the role of the |rbv| in predicting slip transmission,
   by analysing strain field across GBs determined by digital image correlation [#Patriarca_2013]_. 
   
-  Misra and Gibala used the |rbv| to analyze slip across a FCC/BCC interphase boundary [#MisraGibala_1999]_.
+  As explained by Abuzaid et al., to give a physical meaning of the |rbv| calculation, it is important to check the sign of the inner product between the slip 
+  direction and the vector defining the normal to the grain boundary plane. A positive result for such inner product indicates that the slip direction is incident 
+  relative to the grain boundary and a negative inner product indicates that transmission occurs [#Abuzaid_2012]_.
   
   The |matlab| function used to calculate the |rbv| is:
   `residual_Burgers_vector.m <https://github.com/stabix/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_
