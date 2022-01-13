@@ -25,6 +25,9 @@ Currently the following models can be written:
 Please find here the `Python package used to generate the SX and BX indentation models
 <https://github.com/stabix/stabix/tree/master/third_party_code/python>`_.
 
+.. note::
+    From 2022, DAMASK is not working anymore with Abaqus, check here for more information: https://damask.mpie.de/index.html
+
 How to load crystallographic properties of the SX or of the BX?
 ------------------------------------------------------------------
 
@@ -239,8 +242,10 @@ from the user's CPFE configuration file.
 Installing DAMASK
 ------------------
 
+From 2022, DAMASK is not working anymore with Abaqus, but for a usage with older DAMASK and FE softwares (before 2021 at least), follow the next steps.
+
 For instructions on how to set up the DAMASK constitutive simulation code please visit
-http://DAMASK.mpie.de.
+https://damask.mpie.de/index.html.
 
 Writing the CPFE input files
 -----------------------------
@@ -287,15 +292,13 @@ Using the CPFE input files
 Running a job with DAMASK
 ---------------------------
 
+Find the full documentation for the use of DAMASK here : https://damask.mpie.de/index.html
+
 * *MSC.Mentat*
     - In the JOB RUN menu choose USER SUBROUTINE FILE and select the interface routine DAMASK_marc.f90.
 
-Find the full documentation for the use of DAMASK with Marc here : http://damask.mpie.de/Usage/Marc.
-
 * *Abaqus*
     - In the Job Manager > Create... specify the User subroutine file (either DAMASK_abaqus_std.f or DAMASK_abaqus_exp.f).
-
-Find the full documentation for the use of DAMASK with Abaqus here : http://damask.mpie.de/Usage/Abaqus.
 
 .. note::
     For Abaqus, you may have to modify the extension of the subroutine:
