@@ -375,7 +375,7 @@ Slip and twin systems implemented in the STABiX toolbox
 Effects of number of slip systems on slip transmission
 --------------------------------------------------------------
 
-The effects of the number of slip systems on the transmission criteria can be plotted and analyzed to discuss plastic deformation occuring in metals and alloys. Such approach has been discuess by Ogasawar et al. [#Ogasawara_2022] and some plots in parallel of this work using the STABIX toolbox are given :numref:`mprime_values` and :numref:`mprime_values_vs_misorientation`.
+The effects of the number of slip systems on the transmission criteria can be plotted and analyzed to discuss plastic deformation occuring in metals and alloys. Such approach has been discuess by Ogasawar et al. [#Ogasawara_2022]_ and a plot in parallel of this work using the STABIX toolbox is given as a an example with :numref:`mprime_values_vs_misorientation`.
 
 References
 -----------
