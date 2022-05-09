@@ -372,6 +372,11 @@ Slip and twin systems implemented in the STABiX toolbox
 * List of slip and twin systems for HCP phase material used in `STABiX <https://github.com/stabix/stabix/blob/master/crystallo/slip_systems.m>`_
   and `DAMASK - HCP <http://damask.mpie.de/Documentation/Hex>`_.
 
+Effects of number of slip systems on slip transmission
+--------------------------------------------------------------
+
+The effects of the number of slip systems on the transmission criteria can be plotted and analyzed to discuss plastic deformation occuring in metals and alloys. Such approach has been discuess by Ogasawar et al. [#Ogasawara_2022] and some plots in parallel of this work using the STABIX toolbox are given :numref:`mprime_values` and :numref:`mprime_values_vs_misorientation`.
+
 References
 -----------
 .. [#Abuzaid_2012] `W.Z. Abuzaid et al., "Slip transfer and plastic strain accumulation across grain boundaries in Hastelloy X.", J. of the Mech. and Phys. of Sol. (2012), 60(6) ,pp. 1201–1220. <https://doi.org/10.1016/j.jmps.2012.02.001>`_
@@ -433,6 +438,7 @@ References
 .. [#MisraGibala_1999] `A. Misra and R. Gibala, "Slip Transfer and Dislocation Nucleation Processes in Multiphase Ordered Ni-Fe-Al Alloys", Metallurgical and Materials Trans. A (1999), 30A, pp. 991-1001. <https://doi.org/10.1007/s11661-999-0152-3>`_
 .. [#Nervo_2016] `L. Nervo et al., "A study of deformation twinning in a titanium alloy by X-ray diffraction contrast tomography", Acta Materialia (2016), 105, pp. 417-428. <https://doi.org/10.1016/j.actamat.2015.12.032>`_
 .. [#Nibur_2003] `K.A. Nibur and D.F. Bahr, "Indentation Techniques for the Study of Deformation Across Grain Boundaries.", Mat. Res. Soc. Symp. Proc. (2003), 778, pp. 129-134. <https://doi.org/10.1557/PROC-778-U4.10>`_
+.. [#Ogasawara_2022] `T. Ogasawara et al., "Effects of number of slip systems on slip transmission between neighbouring grains", Phil. Mag. (2022), <https://doi.org/10.1080/14786435.2022.2068808>`_
 .. [#Ohmura_2005] `T. Ohmura et al., "Nanoindentation-Induced Deformation Behavior in the Vicinity of Single Grain Boundary of Interstitial-Free Steel.", Materials Transactions (2005), 46(9), pp. 2026-2029. <https://doi.org/10.2320/matertrans.46.2026>`_
 .. [#Pathak_2009] `S. Pathak et al., "Measurement of the local mechanical properties in polycrystalline samples using spherical nanoindentation and orientation imaging microscopy.", Acta Materialia (2009), 57, pp. 3020–3028. <https://doi.org/10.1016/j.actamat.2009.03.008>`_
 .. [#Pathak_2012] `S. Pathak et al., "Studying grain boundary regions in polycrystalline materials using spherical nano-indentation and orientation imaging microscopy.", J. Mater. Sci. (2012), 47, pp. 815–823. <https://doi.org/10.1007/s10853-011-5859-z>`_
