@@ -65,7 +65,8 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   
   The |matlab| function used to calculate the N factor is:
   `N_factor.m <https://github.com/stabix/stabix/tree/master/slip_transfer/N_factor.m>`_
-  
+
+
 * :math:`LRB` **factor from Shen et al. in 1986** [#Shen_1986]_ and [#Shen_1988]_
 
     .. math:: LRB = (\vec l_\text{in} \cdot \vec l_\text{out})(\vec d_\text{in} \cdot \vec d_\text{out})
@@ -88,6 +89,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   
   The |matlab| function used to calculate the LRB factor is:
   `LRB_parameter.m <https://github.com/stabix/stabix/tree/master/slip_transfer/LRB_parameter.m>`_
+
 
 * :math:`m'` **parameter from Luster and Morris in 1995** [#LusterMorris_1995]_
         
@@ -139,7 +141,8 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
    
   The |matlab| function used to calculate the m' parameter is;
   `mprime.m <https://github.com/stabix/stabix/tree/master/slip_transfer/mprime.m>`_
-     
+
+
 * :math:`\vec b_\text r` **the residual Burgers vector** [#Marcinkowski_1970]_, [#Bollmann_1970]_, [#LimRaj_1985_1]_, [#LimRaj_1985_2]_, [#Clark_1989]_, [#Lee_1990_2]_ and [#Clark_1992]_.
     .. math:: \vec b_\text{r} = \vec g_\text{in}\cdot\vec b_\text{in} - \vec g_\text{out}\cdot\vec b_\text{out}
         :label: residual_burgers_vector
@@ -162,7 +165,8 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   
   The |matlab| function used to calculate the |rbv| is:
   `residual_Burgers_vector.m <https://github.com/stabix/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_
- 
+
+
 * **The misorientation or disorientation** (:math:`\Delta g` or :math:`\Delta g_\text d`)  [#AustChen_1954]_, [#ClarkChalmers_1954]_ and [#WoNgan_2004]_
 
   It has been observed during first experiments of bicrystals deformation in 1954, that the yield stress and the rate of work hardening
@@ -260,7 +264,8 @@ Stress Criteria
   
   The |matlab| function used to calculate the Schmid factor is:
   `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_
-  
+
+
 * **Generalized Schmid Factor** (:math:`GSF`) [#Reid_1973]_ and [#Bieler_2014]_
 
   The generalized Schmid factor, which describes the shear stress on a given slip system, can be
@@ -274,7 +279,8 @@ Stress Criteria
         
   The |matlab| function used to calculate the generalized Schmid factor is:
   `generalized_schmid_factor.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/generalized_schmid_factor.m>`_
-        
+
+
 * **Resolved Shear Stress** (:math:`\tau`) [#Lee_1989]_, [#Lee_1990_1]_, [#Lee_1990_2]_, [#Clark_1992]_, [#Lagow_2001]_, [#Bieler_2009]_,  [#Dewald1_2007]_, [#Dewald2_2007]_ and [#Dewald3_2011]_
   
   The resolved shear stress :math:`\tau` acting on the outgoing slip system from the piled-up dislocations should be maximized.
@@ -337,13 +343,13 @@ Combination of Criteria
     .. math:: m_{GSF}^{'} = \frac{\sum_{\alpha} \sum_{\beta} m_{\alpha\beta}^{'} \left(m^{\alpha} m^{\beta} \right)}{\sum_{\alpha} \sum_{\beta} \left(m^{\alpha} m^{\beta} \right)}
         :label: SchmidFactor_weighting_mprime
         
-  In 2016, Tsuru et al. proposed a new criterion, based on the :math:`N` factor, for the transferability of dislocations through  a  GB that  considers  both  the intergranular  crystallographic  orientation  of slip systems and the applied stress condition [#Tsuru_2016]_   .
+  In 2016, Tsuru et al. proposed a new criterion, based on the :math:`N` factor, for the transferability of dislocations through  a  GB that  considers  both  the intergranular  crystallographic  orientation  of slip systems and the applied stress condition [#Tsuru_2016]_.
         
 Relationships between slip transmission criteria
 -----------------------------------------------------------------------
 
   Some authors proposed to study relationships between slip transmission criteria [#Guo_2014]_ and [#Wang_2016]_.
-  Thus, it is possible to find in the literature the :math:`m'` parameter plotted in function of the Schmid factor or the misorientation angle.
+  Thus, it is possible to find in the literature the :math:`m'` parameter plotted as a function of the Schmid factor or the misorientation angle.
   Such plots based on experimental values allow to map slip transmissivity at grain boundaries for a given material.
 		
 Slip transmission parameters implemented in the STABiX toolbox
@@ -375,7 +381,7 @@ Slip and twin systems implemented in the STABiX toolbox
 Effects of number of slip systems on slip transmission
 --------------------------------------------------------------
 
-The effects of the number of slip systems on the transmission criteria can be plotted and analyzed to discuss plastic deformation occuring in metals and alloys. Such approach has been discuess by Ogasawar et al. [#Ogasawara_2022]_ and a plot in parallel of this work using the STABIX toolbox is given as a an example with :numref:`mprime_values_vs_misorientation`.
+The effects of the number of slip systems on the transmission criteria can be plotted and analyzed to discuss plastic deformation occuring in metals and alloys. Such approach has been discussed by Ogasawar et al. [#Ogasawara_2022]_ and a plot in parallel of this work using the STABIX toolbox is given as an example with :numref:`mprime_values_vs_misorientation`.
 
 References
 -----------
