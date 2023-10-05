@@ -117,7 +117,8 @@ First, download and install the `MTEX Toolbox <http://mtex-toolbox.github.io/>`_
 
 Then, import your EBSD data, by pressing the dedicated button on the main GUI.
 Please, set up carefully parameters for grain calculation (minimum misorientation, minimum grain size, grain boundary length...).
-In the case of too many grains (>100) or too many grain boundaries (>1000), which is usually linked and due to low quality EBSD map or not enough crystallized samples, the loading of the data + and plotting into the GUI can take some time.
+In the case of too many grains (more than 100) or too many grain boundaries (more than 1000),
+which is usually linked and due to low quality EBSD map or not enough crystallized samples, the loading of the data + and plotting into the GUI can take some time.
 Please check the warnings in the 'Command window' of Matlab.
 Set the crystal symmetry by selecting the .cif file corresponding to your material, set the coordinate system and set the reference frame.
 
