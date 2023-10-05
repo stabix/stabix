@@ -30,18 +30,30 @@ if p
     
     CS = loadCIF(char(listCS(indCS)));
     
-    %% Set graind calculation  
+    %% Set grains calculation  
     ebsdParam.calcgrain = questdlg('Which method to apply for grain calculation?', ...
 	'MTEX grains calculation', ...
 	'Misorientation angle','Unit cell','Misorientation angle');
     
     if strcmp(ebsdParam.calcgrain, 'Misorientation angle')
-        prompt = {'Enter angle value:'};
-        title = 'Input';
-        dims = [1 35];
-        definput = {'5'};
+        prompt = {'Enter minimum misorientation angle value:'};
+        title = 'Input to reconstruct the grain structure';
+        dims = [2 70];
+        definput = {'10'};
         ebsdParam.calcgrain = inputdlg(prompt,title,dims,definput);
     end
+
+    prompt = {'Enter minimum grain size value (number of pixels per grain):'};
+    title = 'Input to smooth grains';
+    dims = [2 70];
+    definput = {'200'};
+    ebsdParam.grainSize = inputdlg(prompt,title,dims,definput);
+
+    prompt = {'Enter minimum grain boundary length:'};
+    title = 'Input to smooth grains';
+    dims = [2 70];
+    definput = {'20'};
+    ebsdParam.grainBoundarySize = inputdlg(prompt,title,dims,definput);
     
     %% Set coordinate system
     list_coordsys = listCoordSys;
