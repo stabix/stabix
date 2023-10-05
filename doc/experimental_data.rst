@@ -116,6 +116,9 @@ It is possible to load other type of EBSD data files (e.g. : .ang files, .ctf fi
 First, download and install the `MTEX Toolbox <http://mtex-toolbox.github.io/>`_.
 
 Then, import your EBSD data, by pressing the dedicated button on the main GUI.
+Please, set up carefully parameters for grain calculation (minimum misorientation, minimum grain size, grain boundary length...).
+In the case of too many grains (>100) or too many grain boundaries (>1000), which is usually linked and due to low quality EBSD map or not enough crystallized samples, the loading of the data + and plotting into the GUI can take some time.
+Please check the warnings in the 'Command window' of Matlab.
 Set the crystal symmetry by selecting the .cif file corresponding to your material, set the coordinate system and set the reference frame.
 
 The 'import_wizard' tool from the MTEX toolbox can be alternatively used to import your EBSD data (see comments in the `function <https://github.com/stabix/stabix/blob/master/mtexFunctions/mtex_getEBSDdata.m>`_). In this case, you have to save the EBSD dataset in the |matlab| workspace as a variable named 'ebsd', and press 'Finish'.

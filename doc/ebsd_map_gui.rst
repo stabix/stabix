@@ -40,6 +40,7 @@ Smoothing GBs segments
 
 The smoothing algorithm allows to decrease the total number of
 grains boundaries in order to speed up calculations and plots.
+Move the slicer in the right direction to decrease the total number of grains boundaries (i.e. segmentation reduction).
 
 .. figure:: ./_pictures/gui/EBSD_map_loading_smoothing.png
    :scale: 40 %
