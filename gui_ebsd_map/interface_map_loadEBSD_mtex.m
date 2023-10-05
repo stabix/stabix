@@ -12,7 +12,7 @@ if gui.flag.installation_mtex == 1
     try
         [gui.ebsdMTEX, gui.ebsdMTEXParam] = mtex_getEBSDdata;
     catch
-        warndlg("Eror during EBSD data loading step using MTEX wizard!")
+        warndlg("Error during EBSD data loading step using MTEX wizard!")
     end
 
     if ~isempty(gui.ebsdMTEX)
