@@ -20,21 +20,35 @@ end
 if p
     [filepath,fnameNoext,ext] = fileparts(fname);
     ext(1)=''; % Remove the dot for loadEBSD MTEX function
-    
+
+    %% Number of phases
+    prompt = {'Enter the number of phase:'};
+    title = 'Input';
+    dims = [2 70];
+    definput = {'1'};
+    ebsdParam.phaseNum = inputdlg(prompt,title,dims,definput);
+
     %% Select CS
     warning('If your .cif file is missing, find it on the web or write it by yourself, then save it in the dedicated folder in the MTEX repository.');
-    
     listCS = listCIFFile;
-    
-    [indCS,tf] = listdlg('ListString',listCS,'SelectionMode','single');
-    
-    CS = loadCIF(char(listCS(indCS)));
-    
-    %% Set grains calculation  
+    if str2num(char(ebsdParam.phaseNum)) == 1
+        [indCS,tf] = listdlg('ListString',listCS,'SelectionMode','single');
+        CS = loadCIF(char(listCS(indCS)));
+    elseif str2num(char(ebsdParam.phaseNum)) == 2
+        [indCS1,tf1] = listdlg('ListString',listCS,'SelectionMode','single');
+        [indCS2,tf2] = listdlg('ListString',listCS,'SelectionMode','single');
+        CS1 = loadCIF(char(listCS(indCS1)));
+        CS2 = loadCIF(char(listCS(indCS2)));
+        CS = {CS1, CS2};
+    else
+        errordlg('Phase number should be between 1 and 2!')
+    end
+
+    %% Set grains calculation
     ebsdParam.calcgrain = questdlg('Which method to apply for grain calculation?', ...
-	'MTEX grains calculation', ...
-	'Misorientation angle','Unit cell','Misorientation angle');
-    
+        'MTEX grains calculation', ...
+        'Misorientation angle','Unit cell','Misorientation angle');
+
     if strcmp(ebsdParam.calcgrain, 'Misorientation angle')
         prompt = {'Enter minimum misorientation angle value:'};
         title = 'Input to reconstruct the grain structure';
@@ -54,12 +68,12 @@ if p
     dims = [2 70];
     definput = {'20'};
     ebsdParam.grainBoundarySize = inputdlg(prompt,title,dims,definput);
-    
+
     %% Set coordinate system
     list_coordsys = listCoordSys;
     [CoordSysVal,tf] = listdlg('ListString',list_coordsys,'SelectionMode','single');
-    
-    
+
+
     if CoordSysVal == 1
         xAxisDirection = 'east'; zAxisDirection = 'outOfPlane';
     elseif CoordSysVal == 2
@@ -77,27 +91,35 @@ if p
     elseif CoordSysVal == 8
         xAxisDirection = 'south'; zAxisDirection = 'intoPlane';
     end
-    
+
     % plotting convention
     setMTEXpref('xAxisDirection',xAxisDirection);
     setMTEXpref('zAxisDirection',zAxisDirection);
-    
+
     %% Set Reference Frame
     specimenRefFrame = questdlg('Which specimen reference frame?', ...
         'Specimen reference frame - Use CRC interface flag', ...
         'convertSpatial2EulerReferenceFrame',...
         'convertEuler2SpatialReferenceFrame','convertEuler2SpatialReferenceFrame');
-    
+
     %% Import the Data using MTEX wizard
-    
+
     dname = [pname fname];
-    
-    % create an EBSD variable containing the data
-    ebsd = EBSD.load(dname,CS,'interface',ext,specimenRefFrame);
-    
+    try
+        % create an EBSD variable containing the data
+        ebsd = EBSD.load(dname,CS,'interface',ext,specimenRefFrame);
+    catch
+        try
+            % create an EBSD variable containing the data
+            ebsd = EBSD.load(dname,CS,'interface','ctf',specimenRefFrame);
+        catch
+
+        end
+    end
+
 else
     ebsd = '';
-    
+
 end
 
 %% Using import wizard (alternative loading solution, but bug for .crc file)

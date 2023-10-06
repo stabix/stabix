@@ -63,7 +63,7 @@ if max(ebsd.phase) < 3
     if max(ebsd.phase) == 0 || max(ebsd.phase) == 1
         fdata.eul_ang = (grains.meanOrientation.Euler) * 180/pi;
         grain_position = grains.centroid;
-        fdata.phase = grains.phase;
+        fdata.phase = 0; %grains.phase is 1 for 1 phase in MTEX, but should be equal to 0 in TSL
     else
         eul_ang_1 = (grains(grains.phase==1).meanOrientation.Euler)*180/pi;
         eul_ang_2 = (grains(grains.phase==2).meanOrientation.Euler)*180/pi;
