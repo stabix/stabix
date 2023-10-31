@@ -108,8 +108,8 @@ numfig_format = {'figure': 'Figure %s', 'table': 'Table %s', 'code-block': 'Code
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 # See http://sphinx-doc.org/theming.html
-html_theme = 'default'
-#html_theme = 'classic'
+#html_theme = 'default'
+html_theme = 'classic'
 #html_theme = 'alabaster'
 #html_theme = 'agogo'
 #html_theme =  'traditional'
@@ -133,13 +133,13 @@ on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 #        app.add_stylesheet('theme_overrides.css')                                
 #else:                                                                            
     # Override default css to get a larger width for ReadTheDoc build            
-html_context = {                                                             
-    'css_files': [                                                           
-        'https://media.readthedocs.org/css/sphinx_rtd_theme.css',            
-        'https://media.readthedocs.org/css/readthedocs-doc-embed.css',       
-        '_static/theme_overrides.css',                                       
-    ],                                                                       
-}
+# html_context = {                                                             
+    # 'css_files': [                                                           
+        # 'https://media.readthedocs.org/css/sphinx_rtd_theme.css',            
+        # 'https://media.readthedocs.org/css/readthedocs-doc-embed.css',       
+        # '_static/theme_overrides.css',                                       
+    # ],                                                                       
+# }
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
