@@ -5,13 +5,13 @@ from setuptools import setup
 
 
 setup(
-    name='PopIn_doc-build',
-    version='3.0',
+    name='STABiX_doc-build',
+    version='2.0',
     author='David Mercier',
     author_email='david9684@gmail.com',
-    url='https://popin.readthedocs.io',
+    url='https://stabix.readthedocs.io',
     license='GPL',
-    description='Build infrastructure for PopIn toolbox',
+    description='Build infrastructure for STABiX toolbox',
     packages=find_packages(),
     include_package_data=True,
     long_description=codecs.open("README.rst", "r", "utf-8").read(),
