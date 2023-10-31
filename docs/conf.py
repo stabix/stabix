@@ -14,6 +14,7 @@
 
 import sys
 import os
+import shlex
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -30,6 +31,7 @@ import os
 # ones.
 extensions = [
     'sphinx.ext.mathjax',
+    'sphinx.ext.doctest',
 ]
 #    'sphinxcontrib.bibtex', #http://sphinxcontrib-bibtex.readthedocs.org/en/latest/
 
@@ -48,6 +50,7 @@ master_doc = 'index'
 # General information about the project.
 project = u'Slip transfer analysis toolbox'
 copyright = u'2013, MPI fuer Eisenforschung, www.mpie.de'
+author = u'David Mercier and Claudio Zambaldi'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -213,7 +216,7 @@ html_context = {
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'MWN2_matlabdoc'
+htmlhelp_basename = 'STABiX_matlabdoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
