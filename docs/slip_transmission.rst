@@ -118,13 +118,13 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
       :name: mprime_values_vs_misorientation
       :scale: 50 %
       :align: center
-
-  The |matlab| functions used to calculate all slip transmission parameters values as a function of bicrystal misorientation, are in the following folder:
-  `N_factor.m <https://github.com/stabix/stabix/tree/master/slip_transfer/plots/>`_
       
       *Distributions of m' parameter calculated for a) basal vs basal slip systems,
       b) basal vs prismatic <a> slip systems and c) prismatic <a> vs prismatic <a>
       slip systems in function of misorientation angle.*
+
+  The |matlab| functions used to calculate all slip transmission parameters values as a function of bicrystal misorientation, are in the following folder:
+  `Plots <https://github.com/stabix/stabix/tree/master/slip_transfer/plots/>`_
       
    .. figure:: ./_pictures/schemes_slip_transmission/specialSlipAlignment.png
       :name: specialSlipAlignment
