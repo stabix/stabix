@@ -101,7 +101,6 @@ Contents
 
    motivation
    getting_started
-     applications
    bicrystal_definition
    slip_transmission
    experimental_data
@@ -109,6 +108,7 @@ Contents
    bicrystal_gui
    preCPFE_gui
    data_from_paper
+   applications
    gui_gbinc
    references
 
