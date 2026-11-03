@@ -7,18 +7,18 @@ ways to use the toolbox and point to related research. Tutorial videos show
 hands-on workflows; the papers are research context and should not be read as
 evidence that STABiX was used in their analyses.
 
+Related research
+----------------
+
+The following papers cite the original STABiX toolbox publication,
+`A Matlab toolbox to analyze slip transfer through grain boundaries
+<https://doi.org/10.1088/1757-899X/82/1/012090>`_. They address related
+microstructure and crystal-plasticity problems, but their abstracts describe
+their own methods; the citations alone do not establish that STABiX was used
+to produce their results.
+
 Tutorials
 ---------
-
-Statistical slip-trace analysis at grain boundaries
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-`Slip Trace Analysis Using Stabix, Mtex and Matlab from EBSD Data
-<https://www.youtube.com/watch?v=zn53WGQSmXs>`_ demonstrates statistical slip
-trace analysis at grain boundaries using STABiX, MTEX, and MATLAB. This is a
-practical example of combining EBSD-derived crystallographic information with
-slip-trace observations to examine slip activity in relation to grain
-boundaries.
 
 Importing EBSD experimental data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -31,15 +31,15 @@ the supported import routes and file requirements, see :doc:`experimental_data`.
 The documentation describes importing EBSD data through MTEX or using the
 TSL-OIM grain and reconstructed-boundary files.
 
-Related research
-----------------
+Statistical slip-trace analysis at grain boundaries
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following papers cite the original STABiX toolbox publication,
-`A Matlab toolbox to analyze slip transfer through grain boundaries
-<https://doi.org/10.1088/1757-899X/82/1/012090>`_. They address related
-microstructure and crystal-plasticity problems, but their abstracts describe
-their own methods; the citations alone do not establish that STABiX was used
-to produce their results.
+`Slip Trace Analysis Using Stabix, Mtex and Matlab from EBSD Data
+<https://www.youtube.com/watch?v=zn53WGQSmXs>`_ demonstrates statistical slip
+trace analysis at grain boundaries using STABiX, MTEX, and MATLAB. This is a
+practical example of combining EBSD-derived crystallographic information with
+slip-trace observations to examine slip activity in relation to grain
+boundaries.
 
 Fatigue indicator parameters and interpretable machine learning
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
