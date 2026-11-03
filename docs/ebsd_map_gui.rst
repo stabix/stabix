@@ -28,7 +28,7 @@ For more details about the format of the EBSD data, see also the page:
    :scale: 40 %
    :align: center
    
-   *The different steps to load data into tge EBSD map GUI.*
+   *The different steps for loading data into the EBSD map GUI.*
    
 .. warning::
     Be careful when importing datasets with high number of grains (e.g. > 300 grains), the loading and plotting steps may take few minutes...
@@ -63,7 +63,7 @@ Misorientation angle
    :align: center
    
    *Screenshot of the EBSD map GUI with an EBSD map of near alpha phase Ti alloy
-   (GBs color-coded in function of the maximum misorientation angle value).*
+   (GBs are color-coded according to the maximum misorientation angle).*
 
 .. _mp_parameter:
 
@@ -75,14 +75,14 @@ m' parameter
    :align: center
    
    *Screenshot of the EBSD map GUI with an EBSD map of near alpha phase Ti alloy
-   (GBs color-coded in function of the maximum m' value).*
+   (GBs are color-coded according to the maximum m' value).*
 
 .. figure:: ./_pictures/gui/EBSD_map_mprime_GSF.png
    :scale: 40 %
    :align: center
    
    *Screenshot of the EBSD map GUI with an EBSD map of near alpha phase Ti alloy
-   (GBs color-coded in function of the maximum m' value obtained for slips with the highest generalized Schmid factor).*
+   (GBs are color-coded according to the maximum m' value for slip systems with the highest generalized Schmid factor).*
 
 .. _residual_Burgers_vector:
 
@@ -94,7 +94,7 @@ Residual Burgers vector
    :align: center
    
    *Screenshot of the EBSD map GUI with an EBSD map of near alpha phase Ti alloy
-   (GBs color-coded in function of the maximum residual Burgers vector value).*
+   (GBs are color-coded according to the maximum residual Burgers vector magnitude).*
 
 .. _Schmid_factor_slip_traces:
 
@@ -106,12 +106,12 @@ Schmid factor and slip trace analysis
    :align: center
    
    *Screenshot of the EBSD map GUI with an EBSD map of near alpha phase Ti alloy (slip plane plotted inside grain and 
-   slip trace plotted around unit cells, both in function of the maximum Schmid factor calculated with a given stress tensor).*
+   slip trace plotted around the unit cells; both are selected according to the maximum Schmid factor for a given stress tensor).*
    
 Plot options
 -------------------------------------
 
-The |matlab| function used to plot cell lattice is : `vis_lattice.m <https://github.com/stabix/stabix/tree/master/crystallo/vis_lattice.m>`_
+The |matlab| function used to plot the cell lattice is `vis_lattice.m <https://github.com/stabix/stabix/tree/master/crystallo/vis_lattice.m>`_.
 
 It is also possible to plot the structure of octahedral and tetrahedral interstitial defects.
 

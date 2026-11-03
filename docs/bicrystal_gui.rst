@@ -3,7 +3,7 @@
 
 .. include:: includes.rst
 
-This GUI allows to analyze quantitatively slip transmission across grain boundaries for a single bicrystal.
+This GUI supports quantitative analysis of slip transmission across the grain boundary in a bicrystal.
 
 The |matlab| function used to run the Bicrystal GUI is : `A_gui_plotGB_Bicrystal.m <https://github.com/stabix/stabix/tree/master/gui_bicrystal/A_gui_plotGB_Bicrystal.m>`_
 
@@ -41,7 +41,7 @@ Plotting and analyzing a bicrystal
 Distribution of all slip transmission parameters
 --------------------------------------------------
 
-It is possible to generate a new window, in which all values of the selected slip transmission parameter are plotted in function of selected slip families.
+You can open a new window to plot all values of the selected slip-transmission parameter for the selected slip families.
 
 .. figure:: ./_pictures/gui/all_mprime_values.png
    :scale: 40 %

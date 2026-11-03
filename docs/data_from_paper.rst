@@ -5,7 +5,7 @@
 
 Please, find `here <https://github.com/stabix/stabix/tree/master/gui_bicrystal/gui_bicrystal_data>`_ the |matlab| functions to analyze results and to plot data from the following papers.
 
-The small differences between values given in the litterature and values found with STABiX toolbox may come from the rounding of Euler angles and the rounding of slip transmission criteria.
+Small differences between values reported in the literature and values calculated with the STABiX toolbox may result from rounding the Euler angles and slip-transmission criteria.
 
 Residual Burgers vector
 ------------------------
@@ -57,7 +57,7 @@ using in situ TEM deformation [#KacherRobertson_2014]_. In this work,
 a bicrystal with a misorientation angle of 32° and misorientation axis of
 [1, 5, -6, 16] is characterized. Dislocation/grain boundary interactions
 are analysed and knowing the incoming system, the magnitude of residual
-dislocation Burgers vector is plotted in function of possible outgoing systems.
+dislocation Burgers vector is plotted as a function of the possible outgoing systems.
 Calculations are reproduced using the |matlab| toolbox and obtained values
 are compared to Kacher's results (see :numref:`kacher2014_barcharts`).
 
@@ -75,11 +75,11 @@ Cui et al. (2014)
 
 Cui et al. analyzed slip transfer in proton-irradiated 13Cr15Ni stainless
 steel (fcc structure), using in situ TEM deformation [#Cui_2014]_.
-In this work, two bicrystals with respectively a misorientation angles
-of 60° and 40° and a misorientation axis of [1, 1, -1] and [1, 0, 1]
-are characterized. Dislocation/grain boundary interactions are analysed
-and knowing the incoming system, the magnitude of residual dislocation
-Burgers vector is plotted in function of possible outgoing systems.
+In this work, two bicrystals are characterized: one with a misorientation
+angle of 60° and axis [1, 1, -1], and another with a misorientation angle of
+40° and axis [1, 0, 1]. Dislocation/grain-boundary interactions are analyzed.
+For each incoming slip system, the magnitude of the residual dislocation
+Burgers vector is plotted as a function of the possible outgoing systems.
 Calculations are reproduced using the |matlab| toolbox and obtained
 values are compared to Cui's results (see :numref:`cui2014_barcharts`).
 

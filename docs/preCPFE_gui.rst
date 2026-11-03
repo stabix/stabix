@@ -219,12 +219,12 @@ Python setup
 -------------
 
 For the generation of the CPFE preprocessing scripts an installation of Python 
-is required together with the *Numpy 1.10.4* ans *Scipy 0.16.0* packages.
+is required together with the *NumPy 1.10.4* and *SciPy 0.16.0* packages.
 Often one of the `scientific Python distributions <http://www.scipy.org/install.html#scientific-python-distributions>`_
 is the easiest way to get up and running (use a Python 2.x distribution).
 To make sure that |stabix| can find the installed Python you will have to either 
 put it on the system's `PATH <http://en.wikipedia.org/wiki/PATH_%28variable%29>`_
-or put it's exact location in the user configuration as detailed below.
+or enter its exact location in the user configuration, as detailed below.
 
 Adjusting the configuration settings 
 -------------------------------------
@@ -242,7 +242,7 @@ from the user's CPFE configuration file.
 Installing DAMASK
 ------------------
 
-From 2022, DAMASK is not working anymore with Abaqus, but for a usage with older DAMASK and FE softwares (before 2021 at least), follow the next steps.
+Since 2022, DAMASK has no longer supported Abaqus. To use older versions of DAMASK with finite element software released before 2021, follow these steps.
 
 For instructions on how to set up the DAMASK constitutive simulation code please visit
 https://damask.mpie.de/index.html.

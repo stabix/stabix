@@ -4,21 +4,19 @@
 .. include:: includes.rst
 
 The micromechanical behavior of grain boundaries is one of the key components in the understanding of heterogeneous deformation of metals [#Bieler_2014]_.
-To investigate the nature of the strengthening effect of grain boundaries, slip transmission across interfaces has been investigated through
-bicrystal deformation experiments during the sixty past decades [#Aust_1968]_, [#LivingstonChalmers_1957]_, [#Shen_1986]_, [#Shen_1988]_, [#LusterMorris_1995]_,
+To investigate how grain boundaries strengthen materials, researchers have studied slip transmission across interfaces in
+bicrystal deformation experiments over the past six decades [#Aust_1968]_, [#LivingstonChalmers_1957]_, [#Shen_1986]_, [#Shen_1988]_, [#LusterMorris_1995]_,
 [#Marcinkowski_1970]_, [#Bollmann_1970]_, [#LimRaj_1985]_, [#Lee_1989]_, [#Lee_1990_2]_, [#Clark_1992]_, [#Abuzaid_2012]_, [#Seal_2012]_ and [#Kacher_2014]_.
-Originally, interactions between dislocations and grain boundaries
-have been observed in the transmission electron microscope (TEM) after strain test or in situ [#Shen_1986]_, [#Shen_1988]_ and [#Kacher_2014]_. Some authors observed as
-well slip transmission during indentation tests performed close to grain boundaries [#WoNgan_2004]_, [#Soer_2005]_, [#Britton_2009]_, [#Pathak_2012]_ and [#Lawrence_2014]_.
+Dislocation interactions with grain boundaries have been observed using transmission electron microscopy (TEM), both after deformation tests and in situ [#Shen_1986]_, [#Shen_1988]_ and [#Kacher_2014]_. Slip transmission has also been observed during indentation near grain boundaries [#WoNgan_2004]_, [#Soer_2005]_, [#Britton_2009]_, [#Pathak_2012]_ and [#Lawrence_2014]_.
 
-To better understand the role played by the grain boundaries, we developed a |matlab| toolbox with Graphical User Interfaces (GUI),
-to analyze and to quantify the micromechanics of grain boundaries.
+To better understand the role of grain boundaries, we developed a |matlab| toolbox with graphical user interfaces (GUIs)
+to analyze and quantify grain-boundary micromechanics.
 This toolbox aims to link experimental results to crystal plasticity finite element (CPFE) simulations [#DAMASK]_.
 
 Strategy
 --------
 
-Comparison of topographies of indentations at grain boundaries to simulated indentations as predicted by 3D CPFE modelling.
+Compare the topographies of indentations near grain boundaries with topographies predicted by three-dimensional CPFE simulations.
 
 The goals of this research are:
 

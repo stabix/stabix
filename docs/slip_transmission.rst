@@ -59,7 +59,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
     .. math:: N = \cos(\psi) \cdot \cos(\kappa) + \cos(\gamma) \cdot \cos(\delta)
         :label: n_factor_angle
         
-  Many authors referred to this criterion to analyze slip transmission [#HauserChamlers_1961]_, [#Davis_1966]_, [#HookHirth_1967_1]_,
+  Many authors have used this criterion to analyze slip transmission [#HauserChalmers_1961]_, [#Davis_1966]_, [#HookHirth_1967_1]_,
   [#HookHirth_1967_2]_, [#Shen_1986]_, [#Shen_1988]_, [#Lee_1990_1]_, [#Lee_1990_2]_, [#Clark_1992]_ and [#Ueda_2002]_.
   Pond et al. proposed to compute this geometric criteria for hexagonal metals using Frank's method [#Pond_1986]_.
   
@@ -112,7 +112,7 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
       :scale: 30 %
       :align: center
       
-      *Distribution of m' parameter in function of angles values.*
+      *Distribution of the m' parameter as a function of angle values.*
 
    .. figure:: ./_pictures/schemes_slip_transmission/mprime_values_vs_misorientation.png
       :name: mprime_values_vs_misorientation
@@ -301,7 +301,7 @@ Stress Criteria
   and strain energy of GB dislocation debris, it is possible that the incoming
   dislocation can penetrate through the GB [#Li_2009]_ and [#Gao_2011]_.
   
-  It is possible to assess the shear stress from the geometrical factor :math:`N` (Livingston and Chamlers):
+  It is possible to estimate the shear stress from the geometric factor :math:`N` (Livingston and Chalmers):
     
     .. math:: \tau_{\text{in}} = \tau_{\text{out}} * N
         :label: shear_stress_n_factor
@@ -363,7 +363,7 @@ Slip transmission parameters implemented in the STABiX toolbox
 
    "Misorientation angle (FCC and BCC materials) (:math:`\omega`)", ":math:`\omega = cos^{-1}((tr(\Delta g)-1)/2)`", `misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/misorientation.m>`_, [#SuttonBalluffi_1995]_
    "C-axis misorientation angle (HCP material) (:math:`\omega`)", , `c-axis misorientation.m <https://github.com/stabix/stabix/tree/master/crystallo/eul2Caxismisor.m>`_, [#SuttonBalluffi_1995]_
-   ":math:`N` factor from Livingston and Chamlers", ":math:`N = \cos(\psi)\cdot\cos(\kappa) + \cos(\gamma)\cdot\cos(\delta)`", `N_factor.m <https://github.com/stabix/stabix/tree/master/slip_transfer/N_factor.m>`_, [#LivingstonChalmers_1957]_
+  ":math:`N` factor from Livingston and Chalmers", ":math:`N = \cos(\psi)\cdot\cos(\kappa) + \cos(\gamma)\cdot\cos(\delta)`", `N_factor.m <https://github.com/stabix/stabix/tree/master/slip_transfer/N_factor.m>`_, [#LivingstonChalmers_1957]_
    ":math:`LRB` factor from Shen et al.", ":math:`LRB = \cos(\theta)\cdot\cos(\kappa)`", `LRB_parameter.m <https://github.com/stabix/stabix/tree/master/slip_transfer/LRB_parameter.m>`_, [#Shen_1986]_ / [#Shen_1988]_
    ":math:`m'` parameter from Luster and Morris", ":math:`m' = \cos(\psi)\cdot\cos(\kappa)`", `mprime.m <https://github.com/stabix/stabix/tree/master/slip_transfer/mprime.m>`_, [#LusterMorris_1995]_
    "|rbv| (:math:`\vec b_\text{r}`)", ":math:`\vec b_\text{r} = g_\text{in}\cdot\vec b_\text{in} - g_\text{out}\cdot\vec b_\text{out}`", `residual_Burgers_vector.m <https://github.com/stabix/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_, [#Marcinkowski_1970]_
@@ -384,7 +384,7 @@ Slip and twin systems implemented in the STABiX toolbox
 Effects of number of slip systems on slip transmission
 --------------------------------------------------------------
 
-The effects of the number of slip systems on the transmission criteria can be plotted and analyzed to discuss plastic deformation occuring in metals and alloys. Such approach has been discussed by Ogasawar et al. [#Ogasawara_2022]_ and a plot in parallel of this work using the STABIX toolbox is given as an example with :numref:`mprime_values_vs_misorientation`.
+The effect of the number of slip systems on transmission criteria can be plotted and analyzed to study plastic deformation in metals and alloys. Ogasawara et al. [#Ogasawara_2022]_ discuss this approach. A related plot generated with the STABiX toolbox is shown in :numref:`mprime_values_vs_misorientation`.
 
 References
 -----------
@@ -419,7 +419,7 @@ References
 .. [#Gemperlova_2004] `J. Gemperlova et al., "Slip transfer across grain boundaries in Fe–Si bicrystals.", Journal of Alloys and Compounds (2004), 378(1-2), pp. 97-101. <https://doi.org/10.1016/j.jallcom.2003.10.086>`_
 .. [#Guo_2014] `Y. Guo et al., "Slip band–grain boundary interactions in commercial-purity titanium.", Acta Materialia (2014), 76, pp. 1-12. <https://doi.org/10.1016/j.actamat.2014.05.015>`_
 .. [#Guo_2015] `Y. Guo et al., "Measurements of stress fields near a grain boundary: Exploring blocked arrays of dislocations in 3D.", Acta Materialia (2015), 96, pp. 229-236. <https://doi.org/10.1016/j.actamat.2015.05.041>`_
-.. [#HauserChamlers_1961] `J.J. Hauser and B. Chamlers, "The plastic deformation of bicrystals of f.c.c. metals.", Acta Metallurgica (1961), 9(9), pp. 802-818. <https://doi.org/10.1016/0001-6160(61)90183-3>`_
+.. [#HauserChalmers_1961] `J.J. Hauser and B. Chalmers, "The plastic deformation of bicrystals of f.c.c. metals.", Acta Metallurgica (1961), 9(9), pp. 802-818. <https://doi.org/10.1016/0001-6160(61)90183-3>`_
 .. [#Herbert_2011] `F.W. Herbert et al., "Nanoindentation Induced Deformation Near Grain Boundaries of Corrosion Resistant Nickel Alloys.", Mater. Res. Soc. Symp. Proc., (2011), 1297. <https://doi.org/10.1557/opl.2011.463>`_
 .. [#HookHirth_1967_1] `R.E. Hook and J.P. Hirth, "The deformation behavior of isoaxial bicrystals of Fe-3%Si.", Acta Metallurgica (1967), 15(3), pp. 535-551. <https://doi.org/10.1016/0001-6160(67)90087-9>`_
 .. [#HookHirth_1967_2] `R.E. Hook and J.P. Hirth, "The deformation behavior of non-isoaxial bicrystals of Fe-3% Si.", Acta Metallurgica (1967), 15(7), pp. 1099-1110. <https://doi.org/10.1016/0001-6160(67)90383-5>`_

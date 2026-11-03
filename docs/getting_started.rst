@@ -11,11 +11,11 @@ Source Code
 READ ME
 ********
 
-To have more details about the use of the toolbox, please have a look to :
+For more details about using the toolbox, see:
 
 .. code-block:: matlab
 
-   README.txt
+   README.rst
    
 Path management
 *****************
@@ -77,7 +77,7 @@ You have to set your own YAML configuration files, by following instructions giv
 .. warning::
     If you create your own YAML configuration files after running STABiX, you have to run again the path_management.m |matlab| function.
 
-`Visit the YAML website for more informations <http://www.yaml.org/>`_.
+`Visit the YAML website for more information <http://www.yaml.org/>`_.
 
 `Visit the YAML code for Matlab <http://code.google.com/p/yamlmatlab/>`_.
 

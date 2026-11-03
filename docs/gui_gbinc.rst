@@ -16,33 +16,32 @@ this README file. Then add the package path to the Matlab search path by typing 
 Finally you can start the launcher by typing `demo <https://github.com/stabix/stabix/blob/master/demo.m>`_ or
 `A_gui_gbinc <https://github.com/stabix/stabix/blob/master/gui_gbinc/A_gui_gbinc.m>`_ at the Matlab command prompt.
 
-How to use the toolbox ?
+How to use the toolbox?
 --------------------------
 
-1) Run the function `A_gui_gbinc.m. <https://github.com/stabix/stabix/blob/master/gui_gbinc/A_gui_gbinc.m>`_
+1) Run the function `A_gui_gbinc.m <https://github.com/stabix/stabix/blob/master/gui_gbinc/A_gui_gbinc.m>`_.
 2) Select your first image before serial polishing.
 3) Do the calibration to get the factor scale.
 4) Do the edge detection.
 5) Repeat the same operation for the second image obtained after serial polishing.
 6) Do the overlay :
 
-- If control points don't exist (it's the case for the 1st time),
-  a window appears and it is possible to define control points.
+- If control points do not exist (as on the first run), a window appears so you can define them.
 
-- Define 3 control points per images.
+- Define three control points per image.
 
 - Select a point on the figure on the left, then on the figure on the right,
   and repeat this operation 2 times.
   
 - Close the window for the selection of control points (Ctrl+W).
 
-- Control points are saved in .mat file (in the same folder than the 1st picture loaded).
+- Control points are saved in a .mat file in the same folder as the first image loaded.
 
 7) If the control points are not satisfying, delete them and redo the step 6 to set new control points and to get a new overlay.
-8) Save the overlay in the same folder than the 1st picture loaded (as a screenshot.png) (optional).
-9) Do the measurement of the distance between edges (Vickers faces) or ridges of a unique Vickers indent (see :numref:`vickers_indent`).
-10) Do the measurement of the distance between edges of a unique grain boundary.
-11) The value of the grain boundary inclination is finally given in degrees.
+8) Optionally, save the overlay as ``screenshot.png`` in the same folder as the first image loaded.
+9) Measure the distance between the edges (Vickers faces) or ridges of a single Vickers indent (see :numref:`vickers_indent`).
+10) Measure the distance between the grain-boundary edges.
+11) The grain-boundary inclination is reported in degrees.
 
 * Calculation of the thickness of removed material after polishing
 

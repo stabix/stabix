@@ -24,7 +24,7 @@ either parallel or perpendicular to the surface of the sample.
 EBSD map GUI
 ***************
 
-To plot EBSD map in the EBSD map GUI, two types of TSL-OIM files are required:
+To plot an EBSD map in the EBSD map GUI, two types of TSL-OIM files are required:
 
 - Reconstructed Boundaries File;
 
@@ -33,7 +33,7 @@ To plot EBSD map in the EBSD map GUI, two types of TSL-OIM files are required:
 TSL-OIM data preparation
 --------------------------
 
-Open you .osc (or your .ctf) file in the TSL-OIM Analysis Software.
+Open your .osc or .ctf file in the TSL-OIM Analysis Software.
 
 .. warning::
     Set the TSL coordinates system !
@@ -42,7 +42,7 @@ Change data properties for the detection of grain boundaries (All data --> Prope
 
 Clean up your dataset (Filename --> Cleanup).
 
-Reference : OIM ANALYSIS 6.0 (user manual) and OIM ANALYSIS 7.0 (user manual) / `EDAX website <http://www.edax.com/Products/EBSD/OIM-Data-Analysis-Microstructure-Analysis.aspx>`_
+References: the OIM Analysis 6.0 and 7.0 user manuals and the `EDAX website <http://www.edax.com/Products/EBSD/OIM-Data-Analysis-Microstructure-Analysis.aspx>`_.
 	
 Reconstructed Boundaries File (RB)
 ----------------------------------
@@ -102,10 +102,10 @@ Grain File Type 2 (GF2)
 .. note::
     Export the "Grain File Type 2" in the same location as the corresponding "Reconstructed Boundary File".
 
-Example of "Grain Gile Type 2":
+Example of "Grain File Type 2":
 `MPIE_cpTi_grain_file_type2_2013.txt <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/ebsd_dataExamples/MPIE_cpTi_grain_file_type2_2013.txt>`_
 
-The |matlab| function used to read "Grain File Type 2" is :
+The |matlab| function used to read "Grain File Type 2" is:
 `read_oim_grain_file_type2.m <https://github.com/stabix/stabix/blob/master/read_write_ebsd_files/read_oim_grain_file_type2.m>`_
 
 Loading other type of EBSD data files...
@@ -167,8 +167,7 @@ Possible errors introduced during files exportation from TSL-OIM
 Issues with plot of EBSD maps
 ---------------------------------
 
-Sometimes, grain boundaries coordinates are too big compared to the grain size, because of
-the Voronoi tesselation for example. Thus, the following plot can be obtained:
+Sometimes, grain-boundary coordinates appear too large relative to the grain size, for example because of Voronoi tessellation. This can produce the following plot:
 
 .. figure:: ./_pictures/gui/error_axis_limits.png
    :scale: 40 %
@@ -177,7 +176,7 @@ the Voronoi tesselation for example. Thus, the following plot can be obtained:
    *Screenshot of the EBSD map GUI with a problem of axis limits.*
    
 In this case, it is advised to use the `'zoom' function of Matlab <http://de.mathworks.com/help/matlab/creating_plots/enlarging-the-view.html>`_
-to zoom in and zoom out in the center of the EBSD map, to vizualize the grains. It is also possible to set directly the limits of axis (e.g.: xlim([0 1500]); ylim([-1000 0]);) in the command window of Matlab.
+to zoom in and out at the center of the EBSD map to visualize the grains. You can also set the axis limits directly (e.g., ``xlim([0 1500]); ylim([-1000 0]);``) in the MATLAB Command Window.
 
 Bicrystal GUI 
 **************
@@ -194,9 +193,9 @@ Copy this example file and modify it with your data. Be careful to put a space a
 
 Load your YAML bicrystal configuration file via the menu in the bicrystal GUI. You may have to run again the path_management.m |matlab| function, if your YAML bicrystal configuration file is not found by |matlab|.
 
-`Visit the YAML website for more informations. <http://www.yaml.org/>`_
+`Visit the YAML website for more information. <http://www.yaml.org/>`_
 
-`Visit the YAML code for Matlab. <http://code.google.com/p/yamlmatlab/>`_
+`Visit the YAML code for MATLAB. <http://code.google.com/p/yamlmatlab/>`_
 
 Convention for bicrystal EBSD/indentation experiments
 *******************************************************

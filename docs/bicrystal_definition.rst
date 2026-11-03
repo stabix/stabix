@@ -9,8 +9,8 @@ Crystallographic properties of a bicrystal
 A bicrystal is formed by two adjacent crystals separated by a grain boundary.
 
 **Five macroscopic degrees of freedom are required to characterize a grain boundary** [#Priester_2013]_, [#Randle_2001]_, [#Randle_2005]_ and [#SuttonBalluffi_1995]_ :
-    • 3 for the rotation between the two crystals;
-    • 2 for the orientation of the grain boundary plane defined by its normal :math:`n`.
+      * 3 for the rotation between the two crystals;
+      * 2 for the orientation of the grain-boundary plane, defined by its normal :math:`n`.
 
 The rotation between the two crystals is defined by the rotation angle :math:`\omega` and the rotation axis common to both crystals :math:`[uvw]`.
 
