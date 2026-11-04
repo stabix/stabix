@@ -41,8 +41,11 @@ practical example of combining EBSD-derived crystallographic information with
 slip-trace observations to examine slip activity in relation to grain
 boundaries.
 
+Other academic research
+~~~~~~~~~~~~~~~~~~~~~~~
+
 Fatigue indicator parameters and interpretable machine learning
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `Interpretable machine learning for microstructure-dependent models of fatigue
 indicator parameters <https://doi.org/10.1016/j.ijfatigue.2023.108019>`_
@@ -54,7 +57,7 @@ the paper's described focus is fatigue modeling, not a documented STABiX
 workflow.
 
 Nanoindentation-based parameter identification for BCC metals
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `Application of a nanoindentation-based approach for parameter identification
 to a crystal plasticity model for bcc metals
