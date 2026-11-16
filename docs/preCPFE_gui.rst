@@ -246,6 +246,11 @@ To make sure that |stabix| can find the installed Python you will have to either
 put it on the system's `PATH <http://en.wikipedia.org/wiki/PATH_%28variable%29>`_
 or enter its exact location in the user configuration, as detailed below.
 
+The Abaqus single-crystal model-script generator also accepts Python 3 when
+material configuration generation is disabled. This does not update the legacy
+material generator or the Mentat backend, which still require Python 2. The
+generated model script must be run in a compatible Abaqus version.
+
 Adjusting the configuration settings 
 -------------------------------------
 

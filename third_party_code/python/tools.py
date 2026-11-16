@@ -6,7 +6,6 @@ class Tools():
                        filename='commands.proc',
                        caller='msc.tools.Tools.printCommands',
                        addLineBreaks=1, run=0):
-        fid = file(filename, 'w')
         with open(filename, 'w') as fid:
             if self.FEMSOFTWARE == 'Mentat':
                 fid.write('| File written by %s' % caller)
@@ -32,7 +31,7 @@ def mkdir_p(path):
     try:
         os.makedirs(path)
         print('Created directory: %s' % path)
-    except OSError, exc:  # as exc: # "as" needs Python >2.5
+    except OSError as exc:
         if exc.errno == errno.EEXIST and os.path.isdir(path):
             pass
         else:

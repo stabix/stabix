@@ -2,6 +2,8 @@
 """
 @authors: R. Sanchez-Martin / C.Zambaldi / D. Mercier
 """
+from __future__ import print_function
+
 import os, sys
 import math
 
@@ -72,7 +74,7 @@ class Proc(Tools):
 #|                 %s""" % affiliation + """
 #|+++++++++++++++++++++++++++++++++++++++++++++
 #| USAGE IN ABAQUS:
-#|   /!\ Save current model /!\, then
+#|   /!\\ Save current model /!\\, then
 #|   FILE > RUN SCRIPT
 #|+++++++++++++++++++++++++++++++++++++++++++++""")
 
@@ -519,23 +521,23 @@ mdb.jobs['Indentation_Job'].writeInput(consistencyChecking=OFF)''')
         #self.setPostname=self.post_dummy
         #print postname
         # Read element sets
-        print 'getNodeSets: Trying to open dummy', os.getcwd(), '/', postname, ' ...'
+        print('getNodeSets: Trying to open dummy', os.getcwd(), '/', postname, ' ...')
         self.p = opent16(self.post_dummy)
         if self.p == None:
             self.p = post_open(postname[0:-1] + '9') # is it *.t19 file?
             if self.p == None:
-                print 'Could not open %s. run make_post' % postname
+                print('Could not open %s. run make_post' % postname)
                 sys.exit(1)
         self.p.moveto(0)
         nnds = self.p.nodes()
-        print  nnds
+        print(nnds)
 
         nSets = self.p.sets()
-        print nSets
+        print(nSets)
         self.nodeSets = {}
         for i in range(0, nSets - 1):
             s = self.p.set(i)
-            print 'Set: ', s.name, ', Type: ', s.type, '\n', s.items
+            print('Set: ', s.name, ', Type: ', s.type, '\n', s.items)
             exec ('self.nodeSets[''%s'']=s.items' % s.name)
             #print 'xmin: ',xmin_nds,'\nxmax: ',xmax_nds
 

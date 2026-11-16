@@ -3,7 +3,7 @@
 @authors: R. Sanchez-Martin / C. Zambaldi / D. Mercier
 """
 
-from base import Proc
+from .base import Proc
 
 class Indenter(Proc):
     '''Abaqus file writer for Indenter geometries.

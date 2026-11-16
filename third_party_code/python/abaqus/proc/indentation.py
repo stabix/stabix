@@ -78,7 +78,7 @@ class Indentation(Indenter, Tools):
         else:
             xLength_scratchTest = 0
             yLength_scratchTest = 0
-        if r_center_frac is not 0 and sample_rep not in [8, 16, 24, 32, 40, 48, 56]:
+        if r_center_frac != 0 and sample_rep not in [8, 16, 24, 32, 40, 48, 56]:
             print('For r_center_frac not 0, sample_rep needs to be dividable by 8')
             sample_rep = 24
             print('sample_rep=', sample_rep)
@@ -214,7 +214,7 @@ smv = %f''' % (self.IndentParameters['smv']) + '''
 radial_divi = %i # number of horizontal elements between the big sample and the box''' % (self.IndentParameters['radial_divi']) + '''
 c_divi = 2 # subdivisions of the core sample in the radial direction
 sample_rep = %i # 24 No of Sample Sectors...''' % (self.IndentParameters['sample_rep']) + '''
-sectors_45 = sample_rep/8
+sectors_45 = sample_rep//8
 # Sector Angle is 360/sample_rep...
 # 12=>30 deg, 16=>22.5 deg, 18=>20 deg, 24=>15 deg, 36=>10 deg, 72=>5 deg
 linear_elements = 1
@@ -273,7 +273,7 @@ g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
 s.setPrimaryObject(option=STANDALONE)
 
 number_points_base_sample_large = 8*sectors_45
-points_base_sample_large = [[0for i in range(2)] for j in 
+points_base_sample_large = [[0 for i in range(2)] for j in
     range(number_points_base_sample_large)]
 
 for i in range(number_points_base_sample_large):
@@ -312,7 +312,7 @@ g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
 s.setPrimaryObject(option=STANDALONE)
 
 number_points_base_sample_small = 8*sectors_45
-points_base_sample_small = [[0for i in range(2)] for j in 
+points_base_sample_small = [[0 for i in range(2)] for j in
     range(number_points_base_sample_small)]
 
 for i in range(number_points_base_sample_small):
@@ -347,7 +347,7 @@ g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
 s.setPrimaryObject(option=STANDALONE)
 
 number_points_base_core_sample_top = 8*sectors_45
-points_base_core_sample_top = [[0for i in range(2)] for j in 
+points_base_core_sample_top = [[0 for i in range(2)] for j in
     range(number_points_base_core_sample_top)]
 
 for i in range(number_points_base_core_sample_top):
@@ -382,7 +382,7 @@ g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
 s.setPrimaryObject(option=STANDALONE)
 
 number_points_base_core_sample_top_inner = 8
-points_base_core_sample_top_inner = [[0for i in range(2)] for j in 
+points_base_core_sample_top_inner = [[0 for i in range(2)] for j in
     range(number_points_base_core_sample_top_inner)]
 
 for i in range(number_points_base_core_sample_top_inner):
@@ -425,7 +425,7 @@ g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
 s.setPrimaryObject(option=STANDALONE)
 
 number_points_base_core_sample_bottom = 8*sectors_45
-points_base_core_sample_bottom = [[0for i in range(2)] for j in 
+points_base_core_sample_bottom = [[0 for i in range(2)] for j in
     range(number_points_base_core_sample_bottom)]
 
 for i in range(number_points_base_core_sample_bottom):
@@ -460,7 +460,7 @@ g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
 s.setPrimaryObject(option=STANDALONE)
 
 number_points_base_core_sample_bottom_inner = 8
-points_base_core_sample_bottom_inner = [[0for i in range(2)] for j in 
+points_base_core_sample_bottom_inner = [[0 for i in range(2)] for j in
     range(number_points_base_core_sample_bottom_inner)]
 
 for i in range(number_points_base_core_sample_bottom_inner):

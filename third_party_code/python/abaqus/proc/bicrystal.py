@@ -2,8 +2,8 @@
 """
 @authors: D. Mercier / R. Sanchez-Martin / C. Zambaldi
 """
+from __future__ import print_function
 
-from .base import Proc
 from .indenter import Indenter
 
 #import numpy as N # old
@@ -13,7 +13,7 @@ import logging
 logger = logging.getLogger('root')
 logger.info('logger says : proc.bicrystal_indent')
 
-class BicrystalIndent(Proc, Indenter):
+class BicrystalIndent(Indenter):
     def __init__(self,
                  modelname = 'Bicrystal_indentation',
                  label = '',  # informative label
@@ -324,8 +324,8 @@ final_sample_name = 'Bicrystal-1'
                       scratchDirection = None,
                       ori_list = None):
         print('trace_ang: ', trace_ang)
-        print 'inclination: ', inclination, '(in degrees)'
-        print 'd: ', d, '(Distance between indent and GB in um)'
+        print('inclination: ', inclination, '(in degrees)')
+        print('d: ', d, '(Distance between indent and GB in um)')
         self.proc.append('''
 #+++++++++++++++++++++++++++++++++++++++++++++
 # PARAMETERS DEFINITION
@@ -336,8 +336,8 @@ final_sample_name = 'Bicrystal-1'
 #                distGB
 #    d_box       |    |     d_box
 #  ______________|____|________________
-# |           \  /   /|                |
-# |inclination \/   / |                |
+# |           \\  /   /|                |
+# |inclination \\/   / |                |
 # |            /   /  |                |
 # | GrA       /   /   |        GrB     | height
 # |          /   /    |                |
