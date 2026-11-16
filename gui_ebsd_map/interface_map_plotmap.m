@@ -493,8 +493,8 @@ if gui.flag.flag_lattice == 1
             else
                 slip_legend = get_slip_legend(structure_legend, 100);
             end
-            h_slip = zeros(1,length(slip_color));
-            for ii = 1:length(slip_color)
+            h_slip = zeros(1,size(slip_color, 1));
+            for ii = 1:size(slip_color, 1)
                 h_slip(ii) = plot(0,0, 'Color', ...
                     slip_color(ii,:), 'Linewidth', 5);
             end
