@@ -5,6 +5,14 @@ To get started with STABiX, clone the repository, then run Matlab, and cd into t
 Finally you can start the launcher by typing "demo" at the Matlab command prompt.
 See the full documentation at http://stabix.readthedocs.org.
 
+Python example
+==============
+
+The `python/ <python/>`_ folder contains a standalone EBSD map example that colors
+grain boundaries by maximum Luster-Morris m-prime, with a synthetic demo and
+cubic-phase CTF input. Its notebook imports reconstructed Ti-alloy GF2/RB data
+with HCP/BCC slip systems. See `the Python instructions <python/README.md>`_.
+
 
 Authors
 ========

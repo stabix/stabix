@@ -1,0 +1,8 @@
+numpy>=1.24
+scipy>=1.11
+matplotlib>=3.7
+PyYAML>=6.0
+pandas>=2.0
+statsmodels>=0.14.6
+shapely>=2.0
+gwyddionpy[converter]>=0.1.0

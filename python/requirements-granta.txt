@@ -1,0 +1,2 @@
+-r requirements.txt
+ansys-grantami-core>=5.0
