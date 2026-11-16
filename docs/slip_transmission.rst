@@ -25,6 +25,10 @@ A non-exhaustive list of those criteria is given in the next part of this work, 
 stress and energetic functions, and recent combinations of the previous parameters.
 
 .. note::
+    The parameters on this page describe **plasticity transmission** across grain boundaries.
+    Their use to rank potential **crack paths** (e.g. the :math:`\chi` factor, fatigue indicator parameters) is covered in :doc:`fatigue_crack`.
+
+.. note::
     Most of the time, following criteria are used to quantify slip transmission across grain boundaries in monophasic bicrystals. But in case of bimetal interfaces, it sounds that stress-based criteria are more relevant than geometrical criteria, given much higher stresses required for slip transmission [#Hunter_2017]_.
 
 Geometrical Criteria
@@ -89,6 +93,10 @@ The subscripts :math:`\text{in}` and :math:`\text{out}` refer to the incoming an
   
   The |matlab| function used to calculate the LRB factor is:
   `LRB_parameter.m <https://github.com/stabix/stabix/tree/master/slip_transfer/LRB_parameter.m>`_
+
+
+* The :math:`\chi` **factor from Jiménez et al.** [#Jimenez_2019]_ is a crack-path ranking parameter
+  rather than a plasticity-transmission criterion; it is described in :doc:`fatigue_crack`.
 
 
 * :math:`m'` **parameter from Luster and Morris in 1995** [#LusterMorris_1995]_
@@ -368,6 +376,7 @@ Slip transmission parameters implemented in the STABiX toolbox
    ":math:`m'` parameter from Luster and Morris", ":math:`m' = \cos(\psi)\cdot\cos(\kappa)`", `mprime.m <https://github.com/stabix/stabix/tree/master/slip_transfer/mprime.m>`_, [#LusterMorris_1995]_
    "|rbv| (:math:`\vec b_\text{r}`)", ":math:`\vec b_\text{r} = g_\text{in}\cdot\vec b_\text{in} - g_\text{out}\cdot\vec b_\text{out}`", `residual_Burgers_vector.m <https://github.com/stabix/stabix/tree/master/slip_transfer/residual_Burgers_vector.m>`_, [#Marcinkowski_1970]_
    ":math:`\lambda` function from Werner and Prantl", ":math:`\lambda = \cos(\frac{90° \psi}{\psi_c})\cos(\frac{90° \kappa}{\kappa_c})`", `lambda.m <https://github.com/stabix/stabix/tree/master/slip_transfer/lambda.m>`_, [#Werner_1990]_
+   ":math:`\chi` factor from Jiménez et al. (crack-path ranking, see :doc:`fatigue_crack`)", ":math:`\chi = \cos(\hat{\alpha})\cdot\cos(\hat{\delta})`", `chi_factor.m <https://github.com/stabix/stabix/tree/master/slip_transfer/chi_factor.m>`_, [#Jimenez_2019]_
    "Resolved Shear Stress (:math:`\tau^{i}`) / Schmid Factor", ":math:`\tau^{i} = \sigma : {S_0}^{i}` with :math:`{S_0}^{i} = d \otimes n`", `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_, [#Reid_1973]_
    "Grain boundary Schmid factor", ":math:`m_\text{GB} = m_\text{in} + m_\text{out}`", `resolved_shear_stress.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/resolved_shear_stress.m>`_, [#Abuzaid_2012]_
    "Generalized Schmid Factor (:math:`GSF`)", ":math:`GSF = d \cdot g \sigma g \cdot n`", `generalized_schmid_factor.m <https://github.com/stabix/stabix/tree/master/crystal_plasticity/generalized_schmid_factor.m>`_, [#Reid_1973]_
@@ -475,6 +484,7 @@ References
 .. [#Wang_2014] `Wang F. et al., "In situ observation of collective grain-scale mechanics in Mg and Mg–rare earth alloys.", Acta Materialia, (2014), 80, pp. 77–93. <https://doi.org/10.1016/j.actamat.2014.07.048>`_
 .. [#Wang_2016] `Wang H. et al., "In situ analysis of the slip activity during tensile deformation of cast and extruded Mg-10Gd-3Y-0.Zr(wt.%) at 250°C", Materials characterization, (2016), 116, pp. 8-17. <https://doi.org/10.1016/j.matchar.2016.04.001>`_
 .. [#WangNgan_2004] `M.G. Wang and A.H.W. Ngan, "Indentation strain burst phenomenon induced by grain boundaries in niobium.", Journal of Materials Research (2004), 19(08), pp. 2478-2486. <https://doi.org/10.1557/JMR.2004.0316>`_
+.. [#Jimenez_2019] `J.A. Jiménez, W. Ludwig, C. Gonzalez and J.M. Molina-Aldareguia, "The role of slip transfer at grain boundaries in the propagation of microstructurally short fatigue cracks in Ni-based superalloys.", Scripta Materialia (2019), 162, pp. 261-265. <https://doi.org/10.1016/j.scriptamat.2018.11.014>`_
 .. [#Werner_1990] `E. Werner and W. Prantl, "Slip transfer across grain and phase boundaries.", Acta Metallurgica et Materialia (1990), 38(3), pp. 533-537. <https://doi.org/10.1016/0956-7151(90)90159-E>`_
 .. [#WestWas_2013] `E.A. West and G.S. Was, "Strain incompatibilities and their role in intergranular cracking of irradiated 316L stainless steel.", J. of Nucl. Mater. (2013), 441(1-3), pp. 623–632. <https://doi.org/10.1016/j.jnucmat.2012.10.021>`_
 .. [#WoNgan_2004] `P.C. Wo and A.H.W. Ngan, "Investigation of slip transmission behavior across grain boundaries in polycrystalline Ni3Al using nanoindentation.", J. Mater. Res. (2004), 19(1), pp. 189-201. <https://doi.org/10.1557/jmr.2004.19.1.189>`_

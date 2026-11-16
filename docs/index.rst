@@ -103,6 +103,7 @@ Contents
    getting_started
    bicrystal_definition
    slip_transmission
+   fatigue_crack
    experimental_data
    ebsd_map_gui
    bicrystal_gui
