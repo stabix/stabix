@@ -224,7 +224,8 @@ def slip_pair_descriptors(euler_a, euler_b, systems_a, systems_b, burgers_a_nm=N
         second = np.broadcast_to(np.asarray(burgers_b_nm, dtype=float), (len(direction_b),))
         if np.any(first <= 0) or np.any(second <= 0) or not np.all(np.isfinite(first)) or not np.all(np.isfinite(second)):
             raise ValueError("Burgers-vector magnitudes must be finite and positive.")
-        residual = np.sqrt(np.maximum(first[:, None]**2 + second[None, :]**2 - 2 * first[:, None] * second[None, :] * np.abs(direction_dot), 0))
+        abs_direction_dot = np.abs(direction_dot)
+        residual = np.sqrt(np.maximum(first[:, None]**2 + second[None, :]**2 - 2 * first[:, None] * second[None, :] * abs_direction_dot, 0))
         result.update({"residual_burgers_matrix_nm": residual, "min_residual_burgers_nm": float(residual.min()),
                        "residual_at_max_mprime_nm": float(residual[maximum_pair])})
     if boundary_normal_sample is not None:
