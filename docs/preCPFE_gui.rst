@@ -16,6 +16,21 @@ A parametrized visualization of the bicrystal indentation model through the GUI
 allows tuning the geometry and finite element discretization and the size of the 
 sample and the indenter.
 
+External Python is optional for opening these GUIs, previewing meshes, and
+saving or loading YAML mesh settings. If no runnable external interpreter is
+available (for example, in a MATLAB Online session without external Python),
+STABiX issues a warning and disables **Write CPFE input files**. Selecting a
+working interpreter with NumPy enables that button again. ANSYS script export
+also requires external Python 3 and reports an error if it is unavailable.
+The NumPy/SciPy checks are performed for the selected interpreter, not merely
+to initialize the GUI.
+
+Mesh previews use bundled MATLAB helpers, not an installed solver. Keep the
+``marc_mentat`` and ``abaqus`` subfolders when copying ``gui_preCPFE`` to
+MATLAB Drive. The mesh-bias dispatcher adds the needed helper folder to the
+MATLAB path automatically. An incomplete copy raises
+``STABiX:MissingMeshBiasHelper`` with the missing file's location.
+
 Currently the following models can be written:
 
     * :ref:`single_crystal_indentation` (MSC.Mentat and Abaqus)

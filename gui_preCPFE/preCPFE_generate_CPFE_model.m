@@ -6,6 +6,12 @@ function preCPFE_generate_CPFE_model()
 
 gui = guidata(gcf);
 
+if ~gui.config.CPFEM.python.works
+    error('STABiX:PythonUnavailable', ...
+        ['CPFE file generation requires an external Python with NumPy. ' ...
+        'Mesh previews and YAML mesh settings do not require Python.']);
+end
+
 % Withdraw indenter for getting the faces in the correct height
 set(gui.handles.indenter.h_indent_str, 'Value', 0);
 preCPFE_set_indenter;

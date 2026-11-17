@@ -13,8 +13,9 @@ python_executable = ...
 
 python_executable = python_executable{:};
 
-python_checked = python_check(python_executable);
+python_checked = preCPFE_check_python(python_executable);
 
+gui.config.CPFEM.python_executable = python_executable;
 gui.config.CPFEM.python = python_checked;
 guidata(gcf, gui);
 

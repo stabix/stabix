@@ -1,4 +1,4 @@
-% Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
+% Copyright 2013 Max-Planck-Institut fÃ¼r Eisenforschung GmbH
 function d_opengl = set_opengl(matlab_opengl, varargin)
 %% Importation of data from YAML config file (Matlab settings)
 % See in http://de.mathworks.com/help/matlab/ref/opengl.html.
@@ -6,7 +6,6 @@ function d_opengl = set_opengl(matlab_opengl, varargin)
 
 % author : d.mercier@mpie.de
 
-% R2025a replaced OpenGL; renderer selection and OpenGL data are unavailable.
 if ~verLessThan('matlab', '25.1')
     d_opengl = struct([]);
     return;

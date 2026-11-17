@@ -2,6 +2,12 @@ function preCPFE_export_ansys_geometry
 %% Export a geometry-only SpaceClaim script from the current GUI settings.
 gui = guidata(gcf);
 
+if ~gui.config.CPFEM.python.exists
+    error('STABiX:PythonUnavailable', ...
+        ['ANSYS script export requires an external Python 3 executable. ' ...
+        'Mesh previews and YAML mesh settings do not require Python.']);
+end
+
 if ~isempty(strfind(gui.description, 'Scratch'))
     error('ANSYS geometry export does not support scratch tests.');
 end

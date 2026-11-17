@@ -50,17 +50,6 @@ gui.config.CPFEM.python_executables = ...
     {gui.config.CPFEM.python_executables{:}, ...
     gui.config.CPFEM.pythons.which_all{:}};
 
-gui.config.CPFEM.python = python_check;
-
-if gui.config.CPFEM.python.scipy_version
-    v = char(gui.config.CPFEM.python.scipy_version);
-    [x, y] = sscanf(v, '%i.%i.%i');
-    if length(x) > 2
-        if x(2) > 16
-            warning('Version of scipy is higher than 0.16 ! You should downgrade scipy...');
-        end
-    else
-        disp('Check scipy installation...');
-    end
-end
+% The GUI checks the selected executable after its controls are created.
+gui.config.CPFEM.python = preCPFE_check_python('');
 end
