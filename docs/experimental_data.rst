@@ -82,6 +82,56 @@ properties in the TSL-OIM software in order to export a more realistic Reconstru
 
 - decrease/increase the maximum deviation between reconstructed boundary and corresponding boundary segments.
 
+Converting HKL square-grid scans to a hexagonal grid
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For `issue #57 <https://github.com/stabix/stabix/issues/57>`_, the standalone
+MATLAB function ``microstructure_generation/convert_ctf_square_to_hex.m``
+resamples an HKL ``.ctf`` scan and writes ``<input_name>_hex.ang`` beside it.
+After adding the STABiX paths, run:
+
+.. code-block:: matlab
+
+    convert_ctf_square_to_hex
+    % Or specify files without a selection dialog:
+    [scan, ang_file] = convert_ctf_square_to_hex('sample.ctf');
+    % Optional horizontal hex spacing, in the CTF coordinate units:
+    convert_ctf_square_to_hex('sample.ctf', 'sample_hex_fine.ang', 0.2);
+
+No Python, MTEX, external executable or additional MATLAB toolbox is needed.
+The input must be a complete regular rectangular scan with at least two
+rows and columns. Decimal commas and multiple phases are supported. Small
+coordinate rounding errors (up to 1 percent of the smaller input step) are
+accepted; missing, duplicate or irregular grid points are rejected.
+The input file and current folder are unchanged, and existing outputs are
+never overwritten.
+
+The default horizontal spacing is the CTF ``XStep``. Successive output rows
+are separated by ``sqrt(3)/2`` times this spacing and alternate between
+unshifted and half-step-offset x positions. Only points inside the input
+coordinate extent are generated. Nearest-neighbour sampling copies each
+point's phase and orientation together, including unindexed points; it never
+averages Euler angles across grain boundaries. ``scan.source_index`` gives
+the corresponding original CTF data-row indices.
+
+Phase names, lattice constants and Laue symmetries are transferred to the
+ANG header. Indexed phase IDs remain 1 through N, and 0 remains unindexed.
+Euler angles are converted from degrees to radians without reference-frame
+rotation. The output has ten standard ANG columns. CTF band contrast is used
+as IQ and MAD as Fit; these are proxies, not equivalent OIM measurements.
+CI is an availability flag (0 indexed, -1 unindexed), not a measured confidence
+index, and the unavailable SEM signal is set to 0. Other CTF columns are not
+exported. Do not apply OIM confidence-threshold cleanup as if CI were measured.
+
+.. warning::
+    Resampling cannot recover missing measurements, improve spatial resolution
+    or reconstruct measured boundaries. It can shift boundaries and remove
+    small features. This file retains the HKL sample reference frame: check
+    orientation/map alignment and phase settings on import rather than
+    assuming EDAX reference-frame defaults. Detector calibration and reflector
+    lists are unavailable. Validate the imported scan in your OIM/MTEX version,
+    reconstruct grains there, and export GF2/RB files separately for STABiX.
+
 Grain File Type 2 (GF2)
 -----------------------
 
