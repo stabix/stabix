@@ -6,7 +6,7 @@ function h_trace = plot_slip_traces(slip, euler, phase, ca_ratio, ...
 % (e.g. from 1 to 57 for hcp - see in slip_systems.m)
 % euler : Euler angles in degree of the grain
 % phase : Phase of the grain
-% ca_ratio : c/a ratio of the material if hcp phase
+% ca_ratio : c/a ratio of the material for hcp, bct or fct phases
 % shiftXYZ : coordinates of the point where to plot the slip trace (-->
 % corresponding to the middle of the segment plotted for the slip traces).
 % length_trace : Length of the trace (factor)
@@ -30,13 +30,8 @@ rotmat = eulers2g(euler);
 
 all_slips_grain = slip_systems(phase, 9);
 
-slip_norm = all_slips_grain(1,:,slip);
-
-if strcmp(phase, 'hcp') == 1
-    slip_norm_cart = millerbravaisplane2cart(slip_norm, ca_ratio)';
-else
-    slip_norm_cart = slip_norm;
-end
+slip_cart = slip_systems_to_cartesian(all_slips_grain(:,:,slip), phase, ca_ratio);
+slip_norm_cart = slip_cart(1,:);
 
 slip_norm_cart_rot = rotmat.'*slip_norm_cart';
 

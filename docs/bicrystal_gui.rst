@@ -36,6 +36,32 @@ Plotting and analyzing a bicrystal
    
    *Screenshot of the Bicrystal GUI.*
 
+Tetragonal phases
+-------------------
+
+Select ``bct`` for the existing Sn/In examples or ``fct`` for the TiAl example.
+The lattice parameters in ``listLattParam`` supply the material's c/a ratio.
+Slip calculations and surface traces use the tetragonal lattice metric:
+the Cartesian normal of (h k l) is proportional to [h, k, l/(c/a)],
+whereas the Cartesian direction [u v w] is proportional to [u, v, w*(c/a)].
+Vectors are normalized before calculating geometric slip-transfer parameters
+and Schmid factors. The cubic limit is recovered when c/a = 1.
+
+The TiAl elastic compliances are obtained by inverting the stiffness values
+already documented in ``listElasticConstants`` (Zambaldi 2010). Tetragonal
+Young's moduli use all six independent entries of that compliance matrix.
+
+.. warning::
+    BCT/FCT currently reuse the BCC/FCC slip and twin index tables.
+    These are geometric candidates, not validated material-specific
+    deformation modes. In particular, this does not add a complete
+    gamma-TiAl ordinary/superdislocation/order-twinning model, nor a
+    validated slip/twin catalogue for beta-Sn or In. Validate the selected
+    systems and material constants against appropriate experimental data.
+    Unit-cell drawings remain schematic; their displayed c/a ratio is not
+    used in the numerical slip calculations. Unnormalized direction
+    vectors use a = 1, not physical Burgers-vector lengths.
+
 .. _all_mprime_values:
 
 Distribution of all slip transmission parameters

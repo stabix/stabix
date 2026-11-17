@@ -1,10 +1,10 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function elast_const = listElasticConstants(material, structure, varargin)
-%% Function used to give the elastic stiffness constants in 1/TPa
+%% Function used to give the elastic compliance constants in 1/TPa
 % material : material to give in order to get the corresponding lattice
 % parameter and the corresponding c/a ratio
-% structure : structure of the given material (hcp, bcc, fcc, dia, tet or bct)
-% elast_const: Stiffnesses [S11 S12 S13 S33 S44 S66] in 1/TPa; 
+% structure : structure of the given material (hcp, bcc, fcc, dia, bct or fct)
+% elast_const: Compliances [S11 S12 S13 S33 S44 S66] in 1/TPa;
 
 % author: d.mercier@mpie.de
 
@@ -178,11 +178,13 @@ if ~flag_error
             S11 = 10.09; S12 = -4.00; S13 = -2.42; S33 = 7.98; S44 = 31.18; S66 = 28.17;
         end
         
-    elseif strcmp(material,'fct') == 1
+    elseif strcmp(structure,'fct') == 1
         if strcmp(material,'TiAl') == 1
-            %C11=0.19 in TPa / C12=0.105 / C23=0.0.09 / C33=0.185 /
-            %C44=0.120 / C66=0.05 from Zambaldi 2010
-            S11 = 10.09; S12 = -4.00; S13 = -2.42; S33 = 7.98; S44 = 31.18; S66 = 28.17;
+            % Stiffnesses in TPa from Zambaldi 2010; return compliances in 1/TPa.
+            C = [0.190 0.105 0.090; 0.105 0.190 0.090; 0.090 0.090 0.185];
+            S = C \ eye(3);
+            S11 = S(1,1); S12 = S(1,2); S13 = S(1,3); S33 = S(3,3);
+            S44 = 1/0.120; S66 = 1/0.050;
         end
         
     else

@@ -2,7 +2,7 @@
 function YM = youngs_modulus(material, structure, euler, varargin)
 %% Function used to calculate elastic modulus to find compliance mismatch in three principal directions
 % material: material to give in order to get the corresponding lattice
-% struct: hcp, bcc or fcc
+% structure: hcp, bcc, fcc, bct or fct
 % elast_const: [S11 S12 S13 S33 S44 S66] in 1/TPa;
 % YM: Young's modulus in GPa
 
@@ -45,10 +45,10 @@ elseif strcmp(structure, 'hcp')
             (elast_const(5) + 2*elast_const(3))*(1-rot_mat(3,ii)^2)*rot_mat(3,ii)^2 );
     end
     
-elseif strcmp(struct, 'orth')  % needs a different structure for the elast_const matrix - needs more terms, not working in this version.
+elseif strcmp(structure, 'orth')  % needs a different structure for the elast_const matrix - needs more terms, not working in this version.
     % E(orth) = ( s11*x^4 + 2s12*x^2*y^2 + 2s13*x^2*y^2 + s22*y^4 + 2s23*y^2*z^2 + s33*z^4 + s44*y^2*z^2 + s55*x^2*z^2 + s66*y^2*z^2 )^-1*100
     
-elseif strcmp(struct, 'bct') || strcmp(struct, 'fct')
+elseif strcmp(structure, 'bct') || strcmp(structure, 'fct')
     % E(tetr) = ( s11 * (x^4 + y^4) + s33 * z^4 + (s66 + 2*s12)*x^2*y^2 + (2*s13 + s44) * z^2 * (y^2* + x^2) )^-1*100
     for ii = 1:1:3
         e1 = elast_const(1)*(rot_mat(1,ii)^4 + rot_mat(2,ii)^4) + elast_const(4)*rot_mat(3,ii)^4;
