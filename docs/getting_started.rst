@@ -57,7 +57,7 @@ Run one of these Graphical User Interfaces (GUIs) to play with the toolbox.
 Exporting a transparent figure
 ******************************
 
-Each GUI, including the launcher, has an **Export transparent PNG** toolbar
+Each analysis GUI, but not the main launcher, has an **Export transparent PNG** toolbar
 button (a blue arrow on a checkerboard). Click it to choose a filename and
 folder; the suggested filename is ``export_fig_out.png`` in MATLAB's current
 folder. The button exports its own GUI using ``export_fig`` with
@@ -104,6 +104,17 @@ For some options and functions implemented in the STABiX toolbox, you have to do
 OpenGL
 *********
 
-If the OpenGL rendering is not satisfying, you can modify the corresponding option in the `config.yaml <https://github.com/stabix/stabix/blob/master/yaml_config_files/config.yaml>`_ file.
+On MATLAB releases before R2025a, if the OpenGL rendering is not satisfying,
+you can modify the ``matlab_opengl`` option in the `config.yaml <https://github.com/stabix/stabix/blob/master/yaml_config_files/config.yaml>`_ file.
+
+MATLAB R2025a and newer no longer use OpenGL for graphics. STABiX ignores
+``matlab_opengl`` on these releases and leaves renderer management to MATLAB.
+The ``config.opengl`` field is an empty structure array because OpenGL
+diagnostic data is unavailable.
+
+On MATLAB R2025a and newer, the GUIs also retain MATLAB's default window
+icon. The optional Java-based custom icon is skipped with a
+``STABiX:CustomIconUnavailable`` warning because the ``JavaFrame`` property
+has been removed. Older releases retain the existing custom icon behavior.
 
 `Visit the Matlab page about OpenGL rendering <http://mathworks.com/help/matlab/ref/opengl.html?refresh=true>`_.

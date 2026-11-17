@@ -6,6 +6,13 @@ function java_icon_gui(gui_handle, logo, varargin)
 
 % author: d.mercier@mpie.de
 
+if ~verLessThan('matlab', '25.1')
+    warning('STABiX:CustomIconUnavailable', ...
+        ['Custom icons for classic figures are unavailable in MATLAB ' ...
+        'R2025a and newer. Keeping the default figure icon.']);
+    return;
+end
+
 if nargin < 2
     logo = fullfile('doc', '_pictures', 'icon.png');
 end

@@ -6,6 +6,12 @@ function d_opengl = set_opengl(matlab_opengl, varargin)
 
 % author : d.mercier@mpie.de
 
+% R2025a replaced OpenGL; renderer selection and OpenGL data are unavailable.
+if ~verLessThan('matlab', '25.1')
+    d_opengl = struct([]);
+    return;
+end
+
 if nargin < 1
     matlab_opengl = 'software';
 end
