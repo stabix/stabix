@@ -6,7 +6,7 @@ from setuptools import setup
 
 setup(
     name='STABiX_doc-build',
-    version='2.0',
+    version='3.0',
     author='David Mercier',
     author_email='david9684@gmail.com',
     url='https://stabix.readthedocs.io',

@@ -1,6 +1,8 @@
 ﻿A Matlab toolbox to analyze slip transfer through grain boundaries
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+Current toolbox version: **3.0**.
+
 To get started with STABiX, clone the repository, then run Matlab, and cd into the folder containing this README file. Then add the package path to the Matlab search path by typing "path_management".
 Finally you can start the launcher by typing "demo" at the Matlab command prompt.
 See the full documentation at http://stabix.readthedocs.org.
