@@ -1,5 +1,37 @@
-Matlab >= 2014
-Python == 2.x
-numpy <= 1.10.4
-scipy <= 0.16.0 (works fine with 1.2.3)
-MTEX = 5.3
+MATLAB GUIs
+===========
+MATLAB is required for the GUIs; Python is not required for slip analysis.
+See docs/getting_started.rst for MATLAB R2025a-and-newer compatibility notes.
+MTEX is optional for EBSD import and MTEX-specific calculations. Choose a
+release compatible with MATLAB; the legacy STABiX adapters are not certified
+against every current MTEX release.
+YAMLMatlab and export_fig are bundled under third_party_code.
+Some export_fig vector-export workflows also require Ghostscript.
+
+Standalone Python examples and notebooks
+=======================================
+Python >= 3.10
+Install: python -m pip install -r python/requirements.txt
+These requirements are lower bounds, not a frozen environment; pip selects
+current releases compatible with the selected Python interpreter.
+MATLAB and MTEX are not needed for these standalone examples.
+
+Optional Granta MI integration
+=============================
+MI Scripting Toolkit 5.0 supports Python 3.11-3.14 and requires Granta MI
+2024 R2 or later. Obtain the SDK distribution from the vendor first.
+Install python/requirements-granta.txt with --find-links pointing to the
+SDK distribution's pip directory; see python/README.md.
+
+Documentation
+=============
+Install: python -m pip install -r docs/requirements.txt
+Build: python -m sphinx -b html docs docs/_build/html
+
+Solver-specific preprocessing
+=============================
+Some legacy MSC.Mentat/DAMASK generators still require Python 2.x.
+Keep their solver-provided environments separate from the modern examples;
+the historical NumPy/SciPy constraints do not apply to python/requirements.txt.
+The ANSYS geometry exporter uses Python 3; generated scripts run inside
+SpaceClaim with scripting API V251. Solver APIs are not pip dependencies.

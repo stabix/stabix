@@ -100,7 +100,7 @@ Residual Burgers vector
 .. _ebsd_chi_crack_ranking:
 
 Crack-path ranking with chi
---------------------------
+---------------------------
 
 Select **chi max (crack ranking; 90 deg GB)** at the end of the
 **GB parameter to plot** menu. Each boundary is colored by the maximum

@@ -1,3 +1,5 @@
+# Standalone scripts and notebooks; Python >= 3.10.
+# Lower bounds allow pip to choose newer compatible releases.
 numpy>=1.24
 scipy>=1.11
 matplotlib>=3.7
@@ -6,3 +8,4 @@ pandas>=2.0
 statsmodels>=0.14.6
 shapely>=2.0
 gwyddionpy[converter]>=0.1.0
+ipykernel>=6.29

@@ -44,7 +44,15 @@ else
     end
 
     %% Isolation of the figure from the GUI
-    if ~strcmp(get(current_figure, 'Type'), 'figure')
+    if transparent && strcmp(get(current_figure, 'Type'), 'figure')
+        plot_axes = findall(current_figure, 'Type', 'axes');
+        if isempty(plot_axes)
+            error('STABiX:NoPlotsToExport', ...
+                'The selected figure has no plot axes to export.');
+        end
+        isolated_figure = isolate_axes(plot_axes);
+        figure_cleanup = onCleanup(@() close(isolated_figure));
+    elseif ~strcmp(get(current_figure, 'Type'), 'figure')
         isolated_figure = isolate_axes(current_figure);
         figure_cleanup = onCleanup(@() close(isolated_figure));
     else

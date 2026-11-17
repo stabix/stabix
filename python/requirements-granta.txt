@@ -1,2 +1,5 @@
+# Obtain MI Scripting Toolkit 5 from the vendor (Python 3.11-3.14).
+# Install with --find-links pointing to the SDK distribution's pip directory.
+# The SDK and its companion wheels are not supplied by public PyPI.
 -r requirements.txt
 ansys-grantami-core>=5.0

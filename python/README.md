@@ -18,7 +18,7 @@ boundary maps, its distribution, and the lowest-compatibility grain pairs,
 and includes literature cross-checks. Residuals are only computed for
 alpha-alpha pairs, using an illustrative Burgers magnitude of 0.298 nm.
 Select a Python kernel with the dependencies below installed;
-VS Code also needs `ipykernel` in that environment.
+the requirements include `ipykernel` for VS Code.
 
 ## Experimental Descriptor Notebook
 
@@ -85,9 +85,19 @@ provide connection controls, schema inspection, package preview, and an
 explicit new-record upload step. Reusable functions are in
 [granta_mi_bridge.py](granta_mi_bridge.py).
 
+The SDK is not distributed on public PyPI. Download and unpack MI Scripting
+Toolkit 5 from the vendor first, then supply its complete `pip` directory:
+
 ```shell
-python -m pip install -r python/requirements-granta.txt
+python -m pip install -r python/requirements-granta.txt --find-links="C:\path\to\scripting_toolkit\pip"
 ```
+
+Replace the example path with the unpacked SDK location. Do not install an
+individual SDK wheel: companion wheels in that directory are also required.
+Toolkit 5.0 supports Python 3.11-3.14 and requires Granta MI 2024 R2 or later;
+these optional requirements are narrower than the standalone examples'
+Python 3.10 minimum. See the
+[vendor installation instructions](https://developer.synopsys.com/docs/granta-mi-scripting-toolkit-5-0/getting_started/pip.md).
 
 The installed SDK 5 API is supported through `SessionBuilder` and
 `SessionConfiguration`; the connector also supports older SDK `connect` APIs.
