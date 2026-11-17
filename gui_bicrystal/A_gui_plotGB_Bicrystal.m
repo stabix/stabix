@@ -52,6 +52,8 @@ gui.handles.Bicrystal_interface = figure('NumberTitle', 'off',...
     'toolBar', 'figure',...
     'Position', [WX WY WW WH]);
 
+custom_export_toolbar(gui.handles.Bicrystal_interface);
+
 gui.title_str = set_gui_title(gui, '');
 
 %% Creation of menus and menu items on figure window

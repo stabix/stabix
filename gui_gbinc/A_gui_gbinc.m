@@ -95,6 +95,8 @@ if gui.flag.licenceFlag
         'toolBar', 'figure',...
         'Position', [WX WY WW WH]);
     
+    custom_export_toolbar(gui.handles.main_window);
+
     gui.title_str = set_gui_title(gui, '');
     
     %% Customized menu

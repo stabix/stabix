@@ -26,6 +26,7 @@ gui_SX.handles.gui_SX_win = figure(...
     'Color', [0.9 0.9 0.9],...
     'Position', figure_position([.58, .30, fig_wid, .9]), ... % [left, bottom, width, height/width]
     'ToolBar', 'figure');
+custom_export_toolbar(gui_SX.handles.gui_SX_win);
 guidata(gcf, gui_SX);
 
 %% Set Matlab and CPFEM configurations

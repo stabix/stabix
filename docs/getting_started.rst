@@ -54,6 +54,21 @@ Run one of these Graphical User Interfaces (GUIs) to play with the toolbox.
 .. note::
     'SX' is used for single crystal and 'BX' for bicrystal.
    
+Exporting a transparent figure
+******************************
+
+Each GUI, including the launcher, has an **Export transparent PNG** toolbar
+button (a blue arrow on a checkerboard). Click it to choose a filename and
+folder; the suggested filename is ``export_fig_out.png`` in MATLAB's current
+folder. The button exports its own GUI using ``export_fig`` with
+``-transparent`` and ``-png``, without changing the GUI background color.
+PNG is required to preserve transparency. Individual controls and embedded
+images may retain their own backgrounds.
+
+The existing **SAVE FIGURE** buttons and save-menu commands remain available
+for ordinary exports. From the command window, transparent export is also
+available with ``save_figure(pwd, gcf, '-transparent', '-png')``.
+
 The YAML configuration files
 *******************************
 

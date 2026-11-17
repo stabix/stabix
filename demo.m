@@ -30,6 +30,8 @@ gui.handles.MainWindow = figure('NumberTitle', 'off',...
     'MenuBar', 'none', ...
     'ToolBar', 'none');
 
+custom_export_toolbar(gui.handles.MainWindow);
+
 gui.title_str = set_gui_title(gui);
 
 %% Title of the GUI

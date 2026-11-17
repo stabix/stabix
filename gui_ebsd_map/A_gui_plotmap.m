@@ -106,6 +106,8 @@ gui.handles.TSLinterfWindow = figure('NumberTitle', 'off',...
     'toolBar', 'figure',...
     'Position', [WX WY WW WH]);
 
+custom_export_toolbar(gui.handles.TSLinterfWindow);
+
 gui.title_str = set_gui_title(gui, '');
 
 gui.handles.gcf = gui.handles.TSLinterfWindow;
