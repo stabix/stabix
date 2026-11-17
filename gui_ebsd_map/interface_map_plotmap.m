@@ -130,6 +130,8 @@ elseif gui.flag.pmparam2plot_value4GB == 16
     gui.flag.pmparam2plot_value4GB_functype = 7;
 elseif gui.flag.pmparam2plot_value4GB == 17
     gui.flag.pmparam2plot_value4GB_functype = 8;
+elseif gui.flag.pmparam2plot_value4GB == 18
+    gui.flag.pmparam2plot_value4GB_functype = 9;
     
 end
 
@@ -159,7 +161,8 @@ if gui.flag.flag_lattice == 1
     else
         if gui.flag.CalculationFlag == 1 ...
                 || gui.flag.CalculationFlag == 2 ...
-                || gui.flag.CalculationFlag == 3
+                || gui.flag.CalculationFlag == 3 ...
+                || gui.flag.CalculationFlag == 8
             set(gui.handles.cbsliptraces, 'Visible', 'on');
         end
     end
@@ -311,6 +314,14 @@ if gui.flag.flag_lattice == 1
             Colorbar_title = 'Other function';
             gui.calculations.func2plot = [gui.results.oth_func_val];
             
+        elseif gui.flag.pmparam2plot_value4GB == 18
+            if LaTeX_flag
+                Colorbar_title = 'Maximum $\chi$ (assumed $90^\circ$ GB)';
+            else
+                Colorbar_title = 'Maximum chi (assumed 90 deg GB)';
+            end
+            gui.calculations.func2plot = [gui.results.chi_max];
+
         end
         
         %% Plot function results along GBs
@@ -381,6 +392,12 @@ if gui.flag.flag_lattice == 1
                     end
                 end
                 
+                if gui.flag.pmparam2plot_value4GB == 18
+                    minval = 0;
+                    maxval = 1;
+                    step_tot = 1;
+                end
+
                 step_Colorbar = step_tot/size(cmap(:,:),1);
                 
                 bins = round(100*linspace(minval, maxval, 5))/100;

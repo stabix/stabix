@@ -14,6 +14,7 @@ This includes:
 * :ref:`misorientation_angle`
 * :ref:`mp_parameter`
 * :ref:`residual_Burgers_vector`
+* :ref:`ebsd_chi_crack_ranking`
 * :ref:`Schmid_factor_slip_traces`
 
 .. _loading_GBs:
@@ -95,6 +96,34 @@ Residual Burgers vector
    
    *Screenshot of the EBSD map GUI with an EBSD map of near alpha phase Ti alloy
    (GBs are color-coded according to the maximum residual Burgers vector magnitude).*
+
+.. _ebsd_chi_crack_ranking:
+
+Crack-path ranking with chi
+--------------------------
+
+Select **chi max (crack ranking; 90 deg GB)** at the end of the
+**GB parameter to plot** menu. Each boundary is colored by the maximum
+:math:`\chi` over all pairs of selected slip systems in its two grains,
+on a fixed scale from 0 to 1. **Plot of Slip Traces** displays the first
+maximizing pair when several pairs tie.
+
+.. warning::
+    A 2D EBSD map does not determine the grain-boundary plane inclination.
+    This option uses the map's existing assumption that each boundary plane
+    is perpendicular to the sample surface (90 degrees), with its normal
+    derived from the boundary trace in the Euler-angle reference frame.
+    Results are an approximation, not a reconstruction of the true 3D
+    boundary geometry or a prediction of fracture.
+
+Undefined intersections (a slip plane parallel to the boundary plane) and
+padded slip-system entries are excluded. If no valid pair remains for a
+boundary, the calculation raises ``STABiX:UndefinedChi``.
+
+The maximum ranks geometric compatibility without specifying an observed
+incoming crack/slip system. See :doc:`fatigue_crack` for the definition and
+limitations of this crack-path ranking parameter. Fatigue indicator parameters
+requiring cyclic plastic strain and stress are not computed from EBSD alone.
 
 .. _Schmid_factor_slip_traces:
 

@@ -220,6 +220,35 @@ else
                             vect(:,21,grA) + vect(:,21,grB);
                         flag.CalculationFlag = 5;
                         
+                    elseif flag.pmparam2plot_value4GB == 18
+                        % The map assumes GB planes perpendicular to the surface.
+                        angle = GBs(gbnum).trace_angle;
+                        n_gb = [-sind(angle), cosd(angle), 0];
+                        chi_val = NaN(size(vect,1), size(vect,1));
+                        for kk = 1:size(vect,1)
+                            for jj = 1:size(vect,1)
+                                pair = [vect(kk,1:6,grA), vect(jj,1:6,grB)];
+                                if all(isfinite(pair)) ...
+                                        && norm(cross(pair(1:3), n_gb)) > 1e-12 ...
+                                        && norm(cross(pair(7:9), n_gb)) > 1e-12
+                                    chi_val(kk,jj) = min(1, chi_factor(...
+                                        pair(1:3), pair(4:6), ...
+                                        pair(7:9), pair(10:12), n_gb));
+                                end
+                            end
+                        end
+                        valid_chi = chi_val(isfinite(chi_val));
+                        if isempty(valid_chi)
+                            delete(h_waitbar);
+                            error('STABiX:UndefinedChi', ...
+                                'No valid slip-plane intersections for GB %i.', gbnum);
+                        end
+                        Results(gbnum).chi_max = max(valid_chi);
+                        [Results(gbnum).chi_max_slipA, ...
+                            Results(gbnum).chi_max_slipB] = ...
+                            find(chi_val == Results(gbnum).chi_max);
+                        flag.CalculationFlag = 8;
+
                     end
                     
                     %% Slip transmission functions for a 2 phases material
