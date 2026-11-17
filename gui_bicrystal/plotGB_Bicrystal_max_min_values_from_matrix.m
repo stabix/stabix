@@ -1,13 +1,8 @@
-% Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
+% Copyright 2013 Max-Planck-Institut fuer Eisenforschung GmbH
 function [p_max_min_bc] = ...
     plotGB_Bicrystal_max_min_values_from_matrix(...
     matrix, phase_A, phase_B, max_min, varargin)
-%% Function used to get maximum values of a parameter (e.g. : m' or RBV) from slip-slip matrix
-% matrix : slip-slip matrix
-% phase_A : phase of grain A
-% phase_B : phase of grain B
-% max_min: Flag to know if the user want to plot the max or the min values
-% of slip transmission parameter
+%% Get extrema for each pair of slip families (rows: grain A, columns: grain B).
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
@@ -18,144 +13,43 @@ if nargin == 0
     max_min = 'max';
 end
 
-if strcmp(max_min, 'max') == 1
-    if strcmp(phase_A,'hcp') == 1 && strcmp(phase_B,'hcp') == 1
-        
-        p_max_min_bc(1,1) = max(max(matrix(1:3,1:3))); %Basal-Basal
-        p_max_min_bc(1,2) = max(max(matrix(1:3,4:6))); %Basal-Pri1<a>
-        p_max_min_bc(1,3) = max(max(matrix(1:3,7:9))); %Basal-Pri2<a>
-        p_max_min_bc(1,4) = max(max(matrix(1:3,10:15))); %Basal-Pyr1<a>
-        p_max_min_bc(1,5) = max(max(matrix(1:3,16:27))); %Basal-Pyr1<c+a>
-        p_max_min_bc(1,6) = max(max(matrix(1:3,28:33))); %Basal-Pyr2<c+a>
-        
-        p_max_min_bc(2,1) = max(max(matrix(4:6,1:3))); %Pri1<a>-Basal
-        p_max_min_bc(2,2) = max(max(matrix(4:6,4:6))); %Pri1<a>-Pri1<a>
-        p_max_min_bc(2,3) = max(max(matrix(4:6,7:9))); %Pri1<a>-Pri2<a>
-        p_max_min_bc(2,4) = max(max(matrix(4:6,10:15))); %Pri1<a>-Pyr1<a>
-        p_max_min_bc(2,5) = max(max(matrix(4:6,16:27))); %Pri1<a>-Pyr1<c+a>
-        p_max_min_bc(2,6) = max(max(matrix(4:6,28:33))); %Pri1<a>-Pyr2<c+a>
-        
-        p_max_min_bc(3,1) = max(max(matrix(7:9,1:3))); %Pri2<a>-Basal
-        p_max_min_bc(3,2) = max(max(matrix(7:9,4:6))); %Pri2<a>-Pri1<a>
-        p_max_min_bc(3,3) = max(max(matrix(7:9,7:9))); %Pri2<a>-Pri2<a>
-        p_max_min_bc(3,4) = max(max(matrix(7:9,10:15))); %Pri2<a>-Pyr1<a>
-        p_max_min_bc(3,5) = max(max(matrix(7:9,16:27))); %Pri2<a>-Pyr1<c+a>
-        p_max_min_bc(3,6) = max(max(matrix(7:9,28:33))); %Pri2<a>-Pyr2<c+a>
-        
-        p_max_min_bc(4,1) = max(max(matrix(10:15,1:3))); %Pyr1<a>-Basal
-        p_max_min_bc(4,2) = max(max(matrix(10:15,4:6))); %Pyr1<a>-Pri1<a>
-        p_max_min_bc(4,3) = max(max(matrix(10:15,7:9))); %Pyr1<a>-Pri2<a>
-        p_max_min_bc(4,4) = max(max(matrix(10:15,10:15))); %Pyr1<a>-Pyr1<a>
-        p_max_min_bc(4,5) = max(max(matrix(10:15,16:27))); %Pyr1<a>-Pyr1<c+a>
-        p_max_min_bc(4,6) = max(max(matrix(10:15,28:33))); %Pyr1<a>-Pyr2<c+a>
-        
-        p_max_min_bc(5,1) = max(max(matrix(16:27,1:3))); %Pyr1<c+a>-Basal
-        p_max_min_bc(5,2) = max(max(matrix(16:27,4:6))); %Pyr1<c+a>-Pri1<a>
-        p_max_min_bc(5,3) = max(max(matrix(16:27,7:9))); %Pyr1<c+a>-Pri2<a>
-        p_max_min_bc(5,4) = max(max(matrix(16:27,10:15))); %Pyr1<c+a>-Pyr1<a>
-        p_max_min_bc(5,5) = max(max(matrix(16:27,16:27))); %Pyr1<c+a>-Pyr1<c+a>
-        p_max_min_bc(5,6) = max(max(matrix(16:27,28:33))); %Pyr1<c+a>-Pyr2<c+a>
-        
-        p_max_min_bc(6,1) = max(max(matrix(28:33,1:3))); %Pyr2<c+a>-Basal
-        p_max_min_bc(6,2) = max(max(matrix(28:33,4:6))); %Pyr2<c+a>-Pri1<a>
-        p_max_min_bc(6,3) = max(max(matrix(28:33,7:9))); %Pyr2<c+a>-Pri2<a>
-        p_max_min_bc(6,4) = max(max(matrix(28:33,10:15))); %Pyr2<c+a>-Pyr1<a>
-        p_max_min_bc(6,5) = max(max(matrix(28:33,16:27))); %Pyr2<c+a>-Pyr1<c+a>
-        p_max_min_bc(6,6) = max(max(matrix(28:33,28:33))); %Pyr2<c+a>-Pyr2<c+a>
-        
-    elseif (strcmp(phase_A, 'bcc') == 1 && strcmp(phase_B, 'bcc') == 1) || ...
-            (strcmp(phase_A, 'bct') == 1 && strcmp(phase_B, 'bct') == 1)
-        
-        p_max_min_bc(1,1) = max(max(matrix(1:12,1:12)));
-        p_max_min_bc(1,2) = max(max(matrix(1:12,13:24)));
-        p_max_min_bc(1,3) = max(max(matrix(1:12,25:48)));
-        
-        p_max_min_bc(2,1) = max(max(matrix(13:24,1:12)));
-        p_max_min_bc(2,2) = max(max(matrix(13:24,13:24)));
-        p_max_min_bc(2,3) = max(max(matrix(13:24,25:48)));
-        
-        p_max_min_bc(3,1) = max(max(matrix(25:48,1:12)));
-        p_max_min_bc(3,2) = max(max(matrix(25:48,13:24)));
-        p_max_min_bc(3,3) = max(max(matrix(25:48,25:48)));
-        
-    elseif (strcmp(phase_A, 'fcc') == 1 && strcmp(phase_B, 'fcc') == 1) || ...
-            (strcmp(phase_A, 'fct') == 1 && strcmp(phase_B, 'fct') == 1)
-        
-        p_max_min_bc(1,1) = max(max(matrix(1:12,1:12)));
-        
-    else
-        
-        p_max_min_bc(1,1) = NaN;
-        
+switch max_min
+    case 'max'
+        reduce = @max;
+    case 'min'
+        reduce = @min;
+    otherwise
+        error('STABiX:InvalidExtremum', 'Expected ''min'' or ''max''.');
+end
+
+families_A = slip_families(phase_A);
+families_B = slip_families(phase_B);
+if size(matrix, 1) < families_A{end}(end) || ...
+        size(matrix, 2) < families_B{end}(end)
+    error('STABiX:InvalidSlipMatrixSize', ...
+        'The slip-slip matrix must contain all slip systems for both phases.');
+end
+
+p_max_min_bc = zeros(numel(families_A), numel(families_B));
+for row = 1:numel(families_A)
+    for column = 1:numel(families_B)
+        % Ignore trailing twin systems and padding, as in the single-phase maps.
+        block = matrix(families_A{row}, families_B{column});
+        p_max_min_bc(row, column) = reduce(reduce(block));
     end
-    
-elseif strcmp(max_min, 'min') == 1
-    if strcmp(phase_A,'hcp') == 1 && strcmp(phase_B,'hcp') == 1
-        
-        p_max_min_bc(1,1) = min(min(matrix(1:3,1:3))); %Basal-Basal
-        p_max_min_bc(1,2) = min(min(matrix(1:3,4:6))); %Basal-Pri1<a>
-        p_max_min_bc(1,3) = min(min(matrix(1:3,7:9))); %Basal-Pri2<a>
-        p_max_min_bc(1,4) = min(min(matrix(1:3,10:15))); %Basal-Pyr1<a>
-        p_max_min_bc(1,5) = min(min(matrix(1:3,16:27))); %Basal-Pyr1<c+a>
-        p_max_min_bc(1,6) = min(min(matrix(1:3,28:33))); %Basal-Pyr2<c+a>
-        
-        p_max_min_bc(2,1) = min(min(matrix(4:6,1:3))); %Pri1<a>-Basal
-        p_max_min_bc(2,2) = min(min(matrix(4:6,4:6))); %Pri1<a>-Pri1<a>
-        p_max_min_bc(2,3) = min(min(matrix(4:6,7:9))); %Pri1<a>-Pri2<a>
-        p_max_min_bc(2,4) = min(min(matrix(4:6,10:15))); %Pri1<a>-Pyr1<a>
-        p_max_min_bc(2,5) = min(min(matrix(4:6,16:27))); %Pri1<a>-Pyr1<c+a>
-        p_max_min_bc(2,6) = min(min(matrix(4:6,28:33))); %Pri1<a>-Pyr2<c+a>
-        
-        p_max_min_bc(3,1) = min(min(matrix(7:9,1:3))); %Pri2<a>-Basal
-        p_max_min_bc(3,2) = min(min(matrix(7:9,4:6))); %Pri2<a>-Pri1<a>
-        p_max_min_bc(3,3) = min(min(matrix(7:9,7:9))); %Pri2<a>-Pri2<a>
-        p_max_min_bc(3,4) = min(min(matrix(7:9,10:15))); %Pri2<a>-Pyr1<a>
-        p_max_min_bc(3,5) = min(min(matrix(7:9,16:27))); %Pri2<a>-Pyr1<c+a>
-        p_max_min_bc(3,6) = min(min(matrix(7:9,28:33))); %Pri2<a>-Pyr2<c+a>
-        
-        p_max_min_bc(4,1) = min(min(matrix(10:15,1:3))); %Pyr1<a>-Basal
-        p_max_min_bc(4,2) = min(min(matrix(10:15,4:6))); %Pyr1<a>-Pri1<a>
-        p_max_min_bc(4,3) = min(min(matrix(10:15,7:9))); %Pyr1<a>-Pri2<a>
-        p_max_min_bc(4,4) = min(min(matrix(10:15,10:15))); %Pyr1<a>-Pyr1<a>
-        p_max_min_bc(4,5) = min(min(matrix(10:15,16:27))); %Pyr1<a>-Pyr1<c+a>
-        p_max_min_bc(4,6) = min(min(matrix(10:15,28:33))); %Pyr1<a>-Pyr2<c+a>
-        
-        p_max_min_bc(5,1) = min(min(matrix(16:27,1:3))); %Pyr1<c+a>-Basal
-        p_max_min_bc(5,2) = min(min(matrix(16:27,4:6))); %Pyr1<c+a>-Pri1<a>
-        p_max_min_bc(5,3) = min(min(matrix(16:27,7:9))); %Pyr1<c+a>-Pri2<a>
-        p_max_min_bc(5,4) = min(min(matrix(16:27,10:15))); %Pyr1<c+a>-Pyr1<a>
-        p_max_min_bc(5,5) = min(min(matrix(16:27,16:27))); %Pyr1<c+a>-Pyr1<c+a>
-        p_max_min_bc(5,6) = min(min(matrix(16:27,28:33))); %Pyr1<c+a>-Pyr2<c+a>
-        
-        p_max_min_bc(6,1) = min(min(matrix(28:33,1:3))); %Pyr2<c+a>-Basal
-        p_max_min_bc(6,2) = min(min(matrix(28:33,4:6))); %Pyr2<c+a>-Pri1<a>
-        p_max_min_bc(6,3) = min(min(matrix(28:33,7:9))); %Pyr2<c+a>-Pri2<a>
-        p_max_min_bc(6,4) = min(min(matrix(28:33,10:15))); %Pyr2<c+a>-Pyr1<a>
-        p_max_min_bc(6,5) = min(min(matrix(28:33,16:27))); %Pyr2<c+a>-Pyr1<c+a>
-        p_max_min_bc(6,6) = min(min(matrix(28:33,28:33))); %Pyr2<c+a>-Pyr2<c+a>
-        
-    elseif strcmp(phase_A, 'bcc') == 1 && strcmp(phase_B, 'bcc') == 1
-        
-        p_max_min_bc(1,1) = min(min(matrix(1:12,1:12)));
-        p_max_min_bc(1,2) = min(min(matrix(1:12,13:24)));
-        p_max_min_bc(1,3) = min(min(matrix(1:12,25:48)));
-        
-        p_max_min_bc(2,1) = min(min(matrix(13:24,1:12)));
-        p_max_min_bc(2,2) = min(min(matrix(13:24,13:24)));
-        p_max_min_bc(2,3) = min(min(matrix(13:24,25:48)));
-        
-        p_max_min_bc(3,1) = min(min(matrix(25:48,1:12)));
-        p_max_min_bc(3,2) = min(min(matrix(25:48,13:24)));
-        p_max_min_bc(3,3) = min(min(matrix(25:48,25:48)));
-        
-    elseif strcmp(phase_A, 'fcc') == 1 && strcmp(phase_B, 'fcc') == 1
-        
-        p_max_min_bc(1,1) = min(min(matrix(1:12,1:12)));
-        
-    else
-        
-        p_max_min_bc(1,1) = NaN;
-        
-    end
-    
+end
+end
+
+function families = slip_families(phase)
+switch phase
+    case 'hcp'
+        families = {1:3, 4:6, 7:9, 10:15, 16:27, 28:33};
+    case {'bcc', 'bct'}
+        families = {1:12, 13:24, 25:48};
+    case {'fcc', 'fct'}
+        families = {1:12};
+    otherwise
+        error('STABiX:UnsupportedSlipPhase', ...
+            'Unsupported crystal phase: %s.', phase);
+end
 end

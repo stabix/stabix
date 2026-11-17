@@ -43,6 +43,13 @@ Distribution of all slip transmission parameters
 
 You can open a new window to plot all values of the selected slip-transmission parameter for the selected slip families.
 
+The minimum/maximum map in the Bicrystal GUI supports both single-phase and
+two-phase materials (HCP, BCC/BCT and FCC/FCT). Each cell shows the selected
+extremum over one pair of slip families, with grain A on the vertical axis
+and grain B on the horizontal axis. Maps can be rectangular when the grains
+have different numbers of slip families. As for single-phase maps, twin
+systems are not included in this slip-family summary.
+
 .. figure:: ./_pictures/gui/all_mprime_values.png
    :scale: 40 %
    :align: center

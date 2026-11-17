@@ -5,9 +5,6 @@ function plotGB_Bicrystal_min_max_param_map_plot(param2plot, min_max)
 
 % authors: d.mercier@mpie.de / c.zambaldi@mpie.de
 
-%% FIXME: Plot of all min/max values for transmission slip function
-% not displayed for a 2 phases material
-
 %% Set the encapsulation of data
 gui = guidata(gcf);
 config = get_config;
@@ -19,6 +16,8 @@ if min_max == 1
 elseif min_max == 2
     param_bc = plotGB_Bicrystal_max_min_values_from_matrix(param2plot, ...
         gui.GB.Phase_A, gui.GB.Phase_B, 'max');
+else
+    error('STABiX:InvalidExtremum', 'Expected 1 (minimum) or 2 (maximum).');
 end
 
 imagesc(param_bc);
@@ -26,7 +25,7 @@ colormap(winter);
 
 textstrings = num2str(param_bc(:), '%0.2f');
 textstrings = strtrim(cellstr(textstrings));
-[x,y] = meshgrid(1:size(param_bc));
+[x,y] = meshgrid(1:size(param_bc, 2), 1:size(param_bc, 1));
 gui.handles.hstrings = text(x(:), y(:), textstrings(:),...
     'horizontalalignment', 'center');
 midvalue = mean(get(gca, 'clim'));
@@ -34,7 +33,7 @@ textcolors = repmat(param_bc(:) < midvalue,1,3);
 
 set(gui.handles.hstrings,{'color'}, num2cell(textcolors, 2));
 
-if strcmp(gui.GB.Phase_A, 'hcp') == 1
+if strcmp(gui.GB.Phase_B, 'hcp') == 1
     if gui.flag.LaTeX_flag && config.matlab_version_year > 2014
         gui.handles.legend_x = ...
             {'bas','pri1$<a>$','pri2$<a>$','pyr1$<a>$','pyr1$<a+c>$','pyr2$<a+c>$'};
@@ -44,7 +43,7 @@ if strcmp(gui.GB.Phase_A, 'hcp') == 1
     end
     tick_x = 1:6;
 end
-if strcmp(gui.GB.Phase_B, 'hcp') == 1
+if strcmp(gui.GB.Phase_A, 'hcp') == 1
     if gui.flag.LaTeX_flag && config.matlab_version_year > 2014
         gui.handles.legend_y = ...
             {'bas','pri1$<a>$','pri2$<a>$','pyr1$<a>$','pyr1$<a+c>$','pyr2$<a+c>$'};
@@ -54,7 +53,7 @@ if strcmp(gui.GB.Phase_B, 'hcp') == 1
     end
     tick_y = 1:6;
 end
-if strcmp(gui.GB.Phase_A, 'bcc') || strcmp(gui.GB.Phase_A, 'bct')
+if strcmp(gui.GB.Phase_B, 'bcc') || strcmp(gui.GB.Phase_B, 'bct')
     if gui.flag.LaTeX_flag && config.matlab_version_year > 2014
         gui.handles.legend_x = {'$\{110\}<111>$','$\{112\}<111>$','$\{123\}<111>$'};
     else
@@ -62,7 +61,7 @@ if strcmp(gui.GB.Phase_A, 'bcc') || strcmp(gui.GB.Phase_A, 'bct')
     end
     tick_x = 1:3;
 end
-if  strcmp(gui.GB.Phase_B, 'bcc') || strcmp(gui.GB.Phase_B, 'bct')
+if  strcmp(gui.GB.Phase_A, 'bcc') || strcmp(gui.GB.Phase_A, 'bct')
     if gui.flag.LaTeX_flag && config.matlab_version_year > 2014
         gui.handles.legend_y = {'$\{110\}<111>$','$\{112\}<111>$','$\{123\}<111>$'};
     else
@@ -70,7 +69,7 @@ if  strcmp(gui.GB.Phase_B, 'bcc') || strcmp(gui.GB.Phase_B, 'bct')
     end
     tick_y = 1:3;
 end
-if strcmp(gui.GB.Phase_A, 'fcc') || strcmp(gui.GB.Phase_A, 'fct')
+if strcmp(gui.GB.Phase_B, 'fcc') || strcmp(gui.GB.Phase_B, 'fct')
     if gui.flag.LaTeX_flag && config.matlab_version_year > 2014
         gui.handles.legend_x = {'$\{111\}<110>$'};
     else
@@ -78,7 +77,7 @@ if strcmp(gui.GB.Phase_A, 'fcc') || strcmp(gui.GB.Phase_A, 'fct')
     end
     tick_x = 1:1;
 end
-if strcmp(gui.GB.Phase_B, 'fcc') || strcmp(gui.GB.Phase_B, 'fct')
+if strcmp(gui.GB.Phase_A, 'fcc') || strcmp(gui.GB.Phase_A, 'fct')
     if gui.flag.LaTeX_flag && config.matlab_version_year > 2014
         gui.handles.legend_y = {'$\{111\}<110>$'};
     else
