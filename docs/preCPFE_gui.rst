@@ -25,6 +25,68 @@ Currently the following models can be written:
 Please find here the `Python package used to generate the SX and BX indentation models
 <https://github.com/stabix/stabix/tree/master/third_party_code/python>`_.
 
+Saving and loading mesh settings (YAML)
+---------------------------------------
+
+Use **Save mesh settings** and **Load mesh settings** in the preCPFE menu.
+Saving reads the current edit boxes, rather than
+cached preview variables, and excludes generated coordinates and mesh arrays.
+New files use schema version 1 with separate sample, mesh and indenter groups.
+For example, an SX configuration for Abaqus is:
+
+.. code-block:: yaml
+
+    schema_version: 1
+    model: SX
+    solver: Abaqus
+    sample:
+      D_sample: 8
+      h_sample: 4
+      r_center_frac: 0.25
+      box_xfrac: 0.3
+      box_zfrac: 0.3
+    mesh:
+      sample_rep: 24
+      box_elm_nx: 10
+      box_elm_nz: 8
+      radial_divi: 10
+      mesh_quality_lvl: 1
+      box_bias_x: 3
+      box_bias_z: 3
+      box_bias_conv_x: 3
+    indenter:
+      coneAngle: 90
+      tipRadius: 1
+      h_indent: 0.3
+      frictionCoeff: 0.3
+
+BX files use ``model: BX``, their corresponding sample dimensions and mesh
+subdivisions, and can include sample ``inclination`` and indenter
+``scratchLength`` / ``scratchDirection``. Optional indenter settings can be
+omitted from their mapping; absent optional settings retain their GUI values.
+Indenter type, AFM topography, orientations and solver selection are not saved.
+Select these separately before loading. Scratch settings require a scratch GUI.
+
+Legacy flat mesh files, including the shipped defaults, remain readable.
+Solver-suffixed legacy biases (``_abaqus`` / ``_mentat``) take precedence over
+unsuffixed values for the active solver. Unsuffixed legacy values retain their
+historical interpretation by that solver. New files record the solver explicitly
+and reject a model or solver mismatch.
+
+Missing fields, nonfinite or nonscalar numeric inputs and incompatible settings
+are rejected before controls are changed. Existing GUI geometry checks still
+apply on refresh. Cancelling either file dialog leaves the GUI unchanged.
+
+For scripts, ``read_yaml_struct(filename)`` reads a nested YAML mapping and
+``write_yaml_struct(filename, data)`` writes a scalar MATLAB structure using the
+bundled YAMLMatlab backend. Missing files and write failures raise errors.
+Writes are staged in the destination folder before replacing an existing file.
+Empty mappings remain structures, including nested empty mappings.
+``preCPFE_mesh_settings(data, interface, solver)`` converts either a legacy or
+versioned document to the current schema (``interface`` is 1 for SX or 2 for BX).
+With an active preCPFE figure, ``preCPFE_save_mesh([], filename)`` and
+``preCPFE_load_mesh(interface, filename)`` skip the file dialogs.
+
 ANSYS geometry export
 ---------------------
 

@@ -173,6 +173,7 @@ end
 % The result of import is so far stored as a content of the item named 'import'.
 %
 function result = scan_map(r)
+    result = struct();
     it = r.keySet().iterator();
     while it.hasNext()
         next = it.next();
@@ -184,9 +185,6 @@ function result = scan_map(r)
             result.(genvarname(ich)) = scan(r.get(java.lang.String(ich)));
         end;
     end;
-    if not(exist('result','var'))
-        result={};
-    end
 end
 
 %--------------------------------------------------------------------------
