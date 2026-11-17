@@ -36,6 +36,11 @@ Plotting and analyzing a bicrystal
    
    *Screenshot of the Bicrystal GUI.*
 
+The bicrystal legend shows the two selected slip-family entries only.
+Slip traces and coordinate-triad lines do not add automatic ``data1``,
+``data2``, etc. entries. Legend visibility, location, and LaTeX settings
+remain controlled by the GUI options.
+
 Tetragonal phases
 -------------------
 

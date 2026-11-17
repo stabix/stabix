@@ -129,7 +129,10 @@ elseif valplot == 4  %% Plot of Burgers vectors
     end
 end
 
-if get(gui.handles.cblegend, 'Value') == 1
+if get(gui.handles.cblegend, 'Value') == 1 && ~no_slip
+    if isprop(hLeg, 'AutoUpdate')
+        set(hLeg, 'AutoUpdate', 'off');
+    end
     set(hLeg, 'Location', legend_location_str);
     if gui.flag.LaTeX_flag
         set(hLeg, 'Interpreter', 'LaTeX');
