@@ -44,6 +44,9 @@ ii = 0;
 header = {};
 while feof(fid) ~= 1
     ln = fgetl(fid);
+    if ~ischar(ln) || isempty(strtrim(ln))
+        continue;
+    end
     if ln(1) == '#';
         %ln % plot headers
         header{end+1} = ln;

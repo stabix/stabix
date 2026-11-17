@@ -108,6 +108,46 @@ Example of "Grain File Type 2":
 The |matlab| function used to read "Grain File Type 2" is:
 `read_oim_grain_file_type2.m <https://github.com/stabix/stabix/blob/master/read_write_ebsd_files/read_oim_grain_file_type2.m>`_
 
+Generating an approximate RB file from GF2 only
+-----------------------------------------------
+
+If only a Grain File Type 2 ``.txt`` file is available, run the following
+after adding the STABiX paths:
+
+.. code-block:: matlab
+
+    generate_RB_from_GF2
+    % Or specify the input without a file selection dialog:
+    [boundaries, rb_file] = generate_RB_from_GF2('sample_GF2.txt');
+    % Optionally supply an output file and the known scan rectangle:
+    generate_RB_from_GF2('sample_GF2.txt', 'sample_RB.txt', [0 800 0 600]);
+
+The function in ``microstructure_generation`` uses grain centres as seeds for
+a 2-D Voronoi tessellation. It writes one straight segment per neighbouring
+grain pair, clipped to a finite rectangle; exterior rectangle edges are not
+exported as grain boundaries. Two-grain, collinear and cocircular seed sets
+are supported without a Statistics or Mapping Toolbox.
+
+The default output is ``<input_name>_RB_voronoi.txt`` beside the GF2 input.
+Existing files are not overwritten and the current folder is not changed.
+The original grain IDs (including zero or nonconsecutive IDs) are retained,
+and GF2 Euler angles are converted from degrees to radians in the RB file.
+Load this RB file together with the original GF2 file in the EBSD map GUI.
+
+Bounds are ``[xmin xmax ymin ymax]`` in the original GF2 coordinate system,
+in microns. Without explicit bounds, the rectangle spans the grain centres
+plus a margin of half the median positive grain diameter. If no valid
+diameters are available, the margin is 5 percent of the largest centre span.
+The function reports the chosen bounds.
+
+.. warning::
+    GF2 contains no measured boundary geometry or exact scan extent.
+    Voronoi boundaries, neighbour relationships, lengths and trace angles
+    are synthetic approximations, not recovered experimental measurements.
+    Prefer measured RB data whenever available. This construction is
+    unweighted: grain diameters affect only the default clipping margin,
+    not individual Voronoi cell sizes. Duplicate centres or IDs are rejected.
+
 Loading other type of EBSD data files...
 -----------------------------------------
 
