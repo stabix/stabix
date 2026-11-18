@@ -14,9 +14,9 @@ Related Projects
 .. figure:: ./_pictures/logos/logo_DAMASK.png
    :scale: 40%
    :align: center
-   :target: http://damask.mpie.de/
+   :target: https://damask-multiphysics.org/
    
-   `DAMASK <http://damask.mpie.de/>`_
+   `DAMASK <https://damask-multiphysics.org/>`_
 
 Institutions
 ##################
@@ -38,9 +38,9 @@ Institutions
 .. figure:: ./_pictures/logos/logo_IMDEA.png
    :scale: 80%
    :align: center
-   :target: http://www.imdea.org/
+   :target: https://materials.imdea.org/
    
-   `IMDEA Materials Institute (Madrid, Spain) <http://www.imdea.org/>`_
+   `IMDEA Materials Institute (Madrid, Spain) <https://materials.imdea.org/>`_
 
 .. figure:: ./_pictures/logos/logo_ANSTO.png
    :scale: 50%
@@ -66,16 +66,16 @@ Institutions
 .. figure:: ./_pictures/logos/SolankiResearchGroup.png
    :scale: 50%
    :align: center
-   :target: http://multiphysics.lab.asu.edu/index.html
+   :target: https://multiphysics.lab.asu.edu/
    
-   `Arizona State University, Solanki Research Group (Tempe, USA) <http://multiphysics.lab.asu.edu/index.html>`_
+   `Arizona State University, Solanki Research Group (Tempe, USA) <https://multiphysics.lab.asu.edu/>`_
    
 .. figure:: ./_pictures/logos/logo_QueensUniv.png
    :scale: 50%
    :align: center
-   :target: http://my.me.queensu.ca/Research/Nuclear/
+   :target: https://smithengineering.queensu.ca/mme/research/nuclear-materials.html
    
-   `Queen's University, NSERC Research Chair in Nuclear Materials (Kingston, Canada) <http://my.me.queensu.ca/Research/Nuclear/>`_
+   `Queen's University, NSERC Research Chair in Nuclear Materials (Kingston, Canada) <https://smithengineering.queensu.ca/mme/research/nuclear-materials.html>`_
    
 .. figure:: ./_pictures/logos/logo_NUI.png
    :scale: 50%

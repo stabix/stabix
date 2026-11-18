@@ -8,17 +8,17 @@ To use the |stabix| toolbox, some experimental data are required:
 - average grain orientations (Euler angles (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees) or
   intragranular misorientation (misorientation axis :math:`[uvw]` / angle :math:`\omega`);
 
-- grains boundaries positions (optional for the bicrystal analysis);
+- grain-boundary positions (optional for the bicrystal analysis);
 
-- grains positions (optional for the bicrystal analysis);
+- grain positions (optional for the bicrystal analysis);
 
 - geometry of grain boundaries (trace angle and grain boundary inclination) (optional).
 
 TEM experiments can provide intragranular misorientation and EBSD measurements
-can provide average grain orientations, grains boundaries and grains positions,
+can provide average grain orientations, grain-boundary and grain positions,
 and grain boundary trace angle.
 
-Inclination of the grain boundary can be evaluated by serial polishing or focused ion beam (FIB) sectioning,
+Grain-boundary inclination can be evaluated by serial polishing or focused ion beam (FIB) sectioning,
 either parallel or perpendicular to the surface of the sample.
 
 EBSD map GUI
@@ -33,16 +33,17 @@ To plot an EBSD map in the EBSD map GUI, two types of TSL-OIM files are required
 TSL-OIM data preparation
 --------------------------
 
-Open your .osc or .ctf file in the TSL-OIM Analysis Software.
+Open your ``.osc`` or ``.ctf`` file in TSL-OIM Analysis.
 
 .. warning::
-    Set the TSL coordinates system !
+    Set the TSL coordinate system!
 
 Change data properties for the detection of grain boundaries (All data --> Properties).
 
 Clean up your dataset (Filename --> Cleanup).
 
-References: the OIM Analysis 6.0 and 7.0 user manuals and the `EDAX website <http://www.edax.com/Products/EBSD/OIM-Data-Analysis-Microstructure-Analysis.aspx>`_.
+References: the OIM Analysis 6.0 and 7.0 user manuals and the
+`EDAX OIM Analysis website <https://www.gatan.com/Products/SEM-Software/EDAX-OIM-Analysis-Software>`_.
 	
 Reconstructed Boundaries File (RB)
 ----------------------------------
@@ -50,22 +51,22 @@ Reconstructed Boundaries File (RB)
 **Export "Reconstructed Boundaries File" of the cleaned dataset**
 (All data --> Export --> Reconstructed Boundaries), with the following options defined by default:
 
-- Right hand average orientation (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees;
+- Right-hand average orientation (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees;
 
-- Left hand average orientation (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees;
+- Left-hand average orientation (:math:`\phi_{1}`, :math:`\Phi`, :math:`\phi_{2}`) in degrees;
 
 - Trace angle (in degrees);
 
 - (:math:`x,y`) coordinates of endpoints (in microns);
 
-- IDs of right hand and left hand grains.
+- IDs of right-hand and left-hand grains.
 
 .. note::
     Reconstructed boundary methodology is only applied to data collected on a hexagonal grid.
-    Nevertheless, it is possible to convert a square grid into an hexagonal grid in TSL-OIM software.
+    Nevertheless, it is possible to convert a square grid into a hexagonal grid in TSL-OIM software.
 
 .. warning::
-    It is not possible to export a "Reconstructed Boundaries File", containing "opened" grain boundaries.
+    It is not possible to export a "Reconstructed Boundaries File" containing open grain boundaries.
 
 Example of "Reconstructed Boundary File": `MPIE_cpTi_reconstructed_boundaries_2013.txt
 <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/ebsd_dataExamples/MPIE_cpTi_reconstructed_boundaries_2013.txt>`_
@@ -73,8 +74,8 @@ Example of "Reconstructed Boundary File": `MPIE_cpTi_reconstructed_boundaries_20
 The |matlab| function used to read "Reconstructed Boundary File" is:
 `read_oim_reconstructed_boundaries_file.m <https://github.com/stabix/stabix/blob/master/read_write_ebsd_files/read_oim_reconstructed_boundaries_file.m>`_
 
-If some GBs segments are missing or some wrong segments are exported, play with partition
-properties in the TSL-OIM software in order to export a more realistic Reconstructed Boundaries file:
+If some GB segments are missing or incorrect segments are exported, adjust the
+partition properties in TSL-OIM to export a more realistic Reconstructed Boundaries file:
 
 - decrease/increase "Grain Tolerance Angle";
 
@@ -198,63 +199,71 @@ The function reports the chosen bounds.
     unweighted: grain diameters affect only the default clipping margin,
     not individual Voronoi cell sizes. Duplicate centres or IDs are rejected.
 
-Loading other type of EBSD data files...
+Loading other types of EBSD data files
 -----------------------------------------
 
-It is possible to load other type of EBSD data files (e.g. : .ang files, .ctf files, ...), using the 'import_wizard' of the MTEX toolbox. It is always better to process (cropping, cleaning, filling, etc...) EBSD dataset using commercial EBSD software before loading it in the STABiX toolbox.
+Other types of EBSD data files (e.g., ``.ang`` and ``.ctf`` files) can be loaded
+using the MTEX toolbox's ``import_wizard``. Preferably, process the EBSD dataset
+(cropping, cleaning, filling, etc.) using EBSD software before loading it into STABiX.
 
 First, download and install the `MTEX Toolbox <http://mtex-toolbox.github.io/>`_.
 
-Then, import your EBSD data, by pressing the dedicated button on the main GUI.
-Please, set up carefully parameters for grain calculation (minimum misorientation, minimum grain size, grain boundary length...).
-In the case of too many grains (more than 100) or too many grain boundaries (more than 1000),
-which is usually linked and due to low quality EBSD map or not enough crystallized samples, the loading of the data + and plotting into the GUI can take some time.
-Please check the warnings in the 'Command window' of Matlab.
-Set the crystal symmetry by selecting the .cif file corresponding to your material, set the coordinate system and set the reference frame.
+Then import your EBSD data by pressing the dedicated button in the main GUI.
+Carefully set the grain-reconstruction parameters (minimum misorientation,
+minimum grain size, grain-boundary length, etc.).
+Loading and plotting can take some time for datasets with many grains (more
+than 100) or grain boundaries (more than 1000), for example because of a
+low-quality EBSD map or a poorly crystallized sample.
+Check the warnings in the MATLAB Command Window.
+Set the crystal symmetry by selecting the ``.cif`` file corresponding to your material,
+then set the coordinate system and reference frame.
 
-The 'import_wizard' tool from the MTEX toolbox can be alternatively used to import your EBSD data (see comments in the `function <https://github.com/stabix/stabix/blob/master/mtexFunctions/mtex_getEBSDdata.m>`_). In this case, you have to save the EBSD dataset in the |matlab| workspace as a variable named 'ebsd', and press 'Finish'.
+Alternatively, use the MTEX ``import_wizard`` to import your EBSD data (see
+comments in the `function <https://github.com/stabix/stabix/blob/master/mtexFunctions/mtex_getEBSDdata.m>`_).
+Save the EBSD dataset in the |matlab| workspace as a variable named ``ebsd``,
+then press **Finish**.
 
 The EBSD map is automatically plotted from the imported data.
 The coordinate system and the scan unit are set from the properties of the imported data.
 
-GF2 and RB files are automatically created after this raw EBSD data loading step and saved in the main Matlab search path. The function for this step is: https://github.com/stabix/stabix/blob/master/mtexFunctions/mtex_convert2TSLdata.m
+GF2 and RB files are automatically created after this raw EBSD data loading step and saved in the main MATLAB search path. The function for this step is: https://github.com/stabix/stabix/blob/master/mtexFunctions/mtex_convert2TSLdata.m
 
 .. note::
-    For a single phase material, the phase number is 0 or 1. For a two phases material, the phase numbers are
+    For a single-phase material, the phase number is 0 or 1. For a two-phase material, the phase numbers are
     respectively 1 and 2. For non-indexed pixels, the phase is numbered as -1.
 
-How to generate a .ang file with TSL-OIM software?
+How to generate an .ang file with TSL-OIM software?
 ----------------------------------------------------
 
 **Export "Scan Data (.ang file)" of the cleaned dataset** (Filename --> Export --> Scan Data) (optional).
 
 Example of an `.ang file. <https://github.com/stabix/stabix/blob/master/gui_ebsd_map/ebsd_dataExamples/validation1_AngFile(forMTEX).ang>`_
 
-The |matlab| functions used to generate .ang file v6 and v7 are respectively:
+The |matlab| functions used to generate version 6 and version 7 ``.ang`` files are, respectively:
 
-- `write_oim_ang_file_v6.m <https://github.com/stabix/stabix/blob/master/read_write_ebsd_files/write_oim_ang_file_v6.m>`_ ;
+- `write_oim_ang_file_v6.m <https://github.com/stabix/stabix/blob/master/read_write_ebsd_files/write_oim_ang_file_v6.m>`_;
 
 - `write_oim_ang_file_v7.m <https://github.com/stabix/stabix/blob/master/read_write_ebsd_files/write_oim_ang_file_v7.m>`_.
 
-Possible errors introduced during files exportation from TSL-OIM
+Possible errors introduced during file export from TSL-OIM
 ------------------------------------------------------------------
 
 - "Grain File Type 2" --> Missing integer identifying grain
-    - Solved when file is imported via the GUI.
+    - Solved when the file is imported via the GUI.
 
 - "Reconstructed Boundary File" --> Inversion of left and right grains for a given grain boundary 
-    - Cross product performed between GB vector and center of grains to check (if cross product < 0 : no inversion, and if cross product > 0 : inversion).
+    - The cross product of the GB vector and the vector to the grain center is checked (if the cross product < 0: no inversion; if the cross product > 0: inversion).
 
-- "Reconstructed Boundary File" --> :math:`x`-axis and :math:`y`-axis not corrects…
-    - :math:`y` coordinates is multiplied by -1 when file is imported via the GUI.
+- "Reconstructed Boundary File" --> Incorrect :math:`x`-axis and :math:`y`-axis directions
+    - :math:`y` coordinates are multiplied by -1 when the file is imported via the GUI.
 
 .. note::
-    All of these issues are taken into account and corrected automatically when user is loading his data via the EBSD map GUI.
+    All of these issues are handled and corrected automatically when loading data via the EBSD map GUI.
 	
 .. warning::
-    It is required to create GF2 and RB files with grain indexation starting from 0. Be careful with cropped datasets.
+    Create GF2 and RB files with grain indexing starting from 0. Be careful with cropped datasets.
 	
-Issues with plot of EBSD maps
+Issues with EBSD map plots
 ---------------------------------
 
 Sometimes, grain-boundary coordinates appear too large relative to the grain size, for example because of Voronoi tessellation. This can produce the following plot:
@@ -265,7 +274,7 @@ Sometimes, grain-boundary coordinates appear too large relative to the grain siz
    
    *Screenshot of the EBSD map GUI with a problem of axis limits.*
    
-In this case, it is advised to use the `'zoom' function of Matlab <http://de.mathworks.com/help/matlab/creating_plots/enlarging-the-view.html>`_
+In this case, use the `MATLAB zoom function <http://de.mathworks.com/help/matlab/creating_plots/enlarging-the-view.html>`_
 to zoom in and out at the center of the EBSD map to visualize the grains. You can also set the axis limits directly (e.g., ``xlim([0 1500]); ylim([-1000 0]);``) in the MATLAB Command Window.
 
 Bicrystal GUI 
@@ -273,19 +282,20 @@ Bicrystal GUI
 
 **The YAML configuration file provides a simple way to define a bicrystal.**
 
-An example of bicrystal configuration file is given here :
+An example of a bicrystal configuration file is given here:
 `config_gui_BX_defaults.yaml <https://github.com/stabix/stabix/tree/master/yaml_config_files/config_gui_BX_defaults.yaml>`_
 
-Copy this example file and modify it with your data. Be careful to put a space after the comma in a list (e.g. [:math:`x`, :math:`y`, :math:`z`]).
+Copy this example file and modify it with your data. Put a space after each comma in a list (e.g., ``[x, y, z]``).
 
 .. warning::
     Don't change field names and don't round Euler angles. Euler angles are given in degrees.
 
-Load your YAML bicrystal configuration file via the menu in the bicrystal GUI. You may have to run again the path_management.m |matlab| function, if your YAML bicrystal configuration file is not found by |matlab|.
+Load your YAML bicrystal configuration file via the menu in the bicrystal GUI.
+If |matlab| cannot find your file, run the ``path_management`` function again.
 
 `Visit the YAML website for more information. <http://www.yaml.org/>`_
 
-`Visit the YAML code for MATLAB. <http://code.google.com/p/yamlmatlab/>`_
+`Visit the archived YAML code for MATLAB. <https://code.google.com/archive/p/yamlmatlab/>`_
 
 Convention for bicrystal EBSD/indentation experiments
 *******************************************************

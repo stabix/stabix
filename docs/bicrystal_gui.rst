@@ -5,25 +5,29 @@
 
 This GUI supports quantitative analysis of slip transmission across the grain boundary in a bicrystal.
 
-The |matlab| function used to run the Bicrystal GUI is : `A_gui_plotGB_Bicrystal.m <https://github.com/stabix/stabix/tree/master/gui_bicrystal/A_gui_plotGB_Bicrystal.m>`_
+The |matlab| function used to run the Bicrystal GUI is: `A_gui_plotGB_Bicrystal.m <https://github.com/stabix/stabix/tree/master/gui_bicrystal/A_gui_plotGB_Bicrystal.m>`_.
 
 This includes:
 
 * :ref:`bicrystal_from_map`
 * :ref:`all_mprime_values`
 
-Loading Bicrystal data
+Loading bicrystal data
 --------------------------
 
-It is possible to load bicrystal properties (material, phase, Euler angles of both grains, trace angle...) :
-    - from the `EBSD map GUI <http://stabix.readthedocs.org/en/latest/ebsd_map_gui.html>`_ (by giving GB number and pressing the button 'PLOT BICRYSTAL') ;
-    - from a `YAML config. bicrystal <https://github.com/stabix/stabix/tree/master/gui_bicrystal/gui_bicrystal_data/kacher_2012/Kacher2012_Fig.12.yaml>`_ (from the menu, by clicking on 'Bicrystal, and 'Load Bicrystal config. file').
+You can load bicrystal properties (material, phase, Euler angles of both grains,
+trace angle, etc.):
+
+- from the `EBSD map GUI <https://stabix.readthedocs.io/en/latest/ebsd_map_gui.html>`_,
+  by entering a GB number and pressing **PLOT BICRYSTAL**;
+- from a `bicrystal YAML configuration file <https://github.com/stabix/stabix/tree/master/gui_bicrystal/gui_bicrystal_data/kacher_2012/Kacher2012_Fig.12.yaml>`_,
+  by choosing **Bicrystal** and then **Load Bicrystal config. file** from the menu.
 
 .. figure:: ./_pictures/gui/ebsd2bicrystal.png
    :scale: 50 %
    :align: center
    
-   *The different steps to set the Bicrystal GUI.*
+   *Steps for configuring the Bicrystal GUI.*
 
 .. _bicrystal_from_map:
 
@@ -85,4 +89,4 @@ systems are not included in this slip-family summary.
    :scale: 40 %
    :align: center
    
-   *Screenshot of the distribution of all slip transmission parameters (e.g.: m' parameter for a single phase (HCP) bicrystal).*
+   *Screenshot of the distribution of slip-transmission parameters (e.g., the m' parameter for a single-phase HCP bicrystal).*

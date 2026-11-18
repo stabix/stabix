@@ -1,16 +1,16 @@
-﻿A Matlab toolbox to analyze grain boundary inclination from SEM images
+﻿A MATLAB toolbox to analyze grain boundary inclination from SEM images
 ======================================================================
 
-This toolbox helps to find the grain boundary inclination from two micrographs from serial polishing.
-At least three marks such as microindents are needed for registration of the images. 
+This toolbox determines grain-boundary inclination from two micrographs acquired before and after serial polishing.
+At least three markers, such as microindents, are needed to register the images.
 
-To get started with gbinc toolbox, clone the repository, then run Matlab, and cd into the folder containing this README file. 
-Then add the package path to the Matlab search path by typing "path_management".
-Finally you can start the launcher by typing "A_gui_gbinc" at the Matlab command prompt.
+To get started with the GBinc toolbox, clone the repository, start MATLAB, and change to the repository's root folder.
+Add the toolbox folders to the MATLAB search path by running ``path_management``.
+Then start the GUI by typing ``A_gui_gbinc`` at the MATLAB command prompt.
 
-`Click here for the full documentation. <http://stabix.readthedocs.org/en/latest/gui_gbinc.html>`_
+`Click here for the full documentation. <https://stabix.readthedocs.io/en/latest/gui_gbinc.html>`_
 
-`Source code is hosted at Github <https://github.com/stabix/stabix/tree/master/gui_gbinc>`_.
+`Source code is hosted on GitHub <https://github.com/stabix/stabix/tree/master/gui_gbinc>`_.
 
 Authors
 -------
@@ -24,5 +24,5 @@ Parts of this work were supported under the NSF/DFG Materials World Network prog
 
 Keywords
 --------
-Matlab; Graphical User Interface (GUI); Grain Boundaries; Polycrystalline Metals; Grain Boundary Inclination; Serial Polishing;
+MATLAB; Graphical User Interface (GUI); Grain Boundaries; Polycrystalline Metals; Grain Boundary Inclination; Serial Polishing;
 Scanning electron microscope (SEM).

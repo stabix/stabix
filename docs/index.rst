@@ -30,14 +30,14 @@ The |matlab| toolbox |stabix| provides a unique and simple way to analyse slip t
 Graphical User Interfaces (GUIs) are implemented in order to import EBSD results, and to represent and quantify grain boundary slip resistance.
 Key parameters, such as the number of phases, crystal structure (fcc, bcc, or hcp), and slip families for calculations, are set by the user.
 With this information, grain boundaries are plotted and color coded according to the :math:`m'` factor [#LusterMorris_1995]_ that quantifies the geometrical
-compatibility of the slip planes normals and Burgers vectors of incoming and outgoing slip systems.
+compatibility of the slip-plane normals and Burgers vectors of incoming and outgoing slip systems.
 Other potential functions that could assess the potential to develop damage are implemented (e.g. residual Burgers vector
 [#Marcinkowski_1970]_ and [#Bollmann_1970]_, :math:`N` factor [#LivingstonChalmers_1957]_, resolved shear stress [#Bieler_2009]_, misorientation...).
 
 Furthermore, the toolbox provides the possibility to plot and analyze the case of a bicrystal, and to model sphero-conical indentation performed
 in a single crystal or close to grain boundaries (i.e. quasi bicrystal deformation).
 All of the data linked to the bicrystal indentation (indenter properties, indentation settings, grain boundary inclination, etc.) are collected through the GUI.
-A Python\ :sup:`TM` \ file can be then exported in order to carry out a fully automatic 3D crystal plasticity finite element simulations of the indentation process
+A Python script can then be exported to carry out a fully automatic 3D crystal plasticity finite element simulation of the indentation process
 using one of the constitutive models available in DAMASK [#Roters_2010]_ and [#DAMASK]_.
 The plasticity of single crystals is quantified by a combination of crystal lattice orientation mapping,
 instrumented sphero-conical indentation, and measurement of the resulting surface topography [#Zambaldi_2012]_ and [#Zambaldi_SX]_.
@@ -61,7 +61,7 @@ How to cite STABiX in your papers?
 Reference paper
 ================
 
-`"STABiX documentation." <https://media.readthedocs.org/pdf/stabix/latest/stabix.pdf>`_
+`"STABiX documentation." <https://stabix.readthedocs.io/en/latest/>`_
 
 `"A Matlab toolbox to analyze slip transfer through grain boundaries" <https://doi.org/10.1088/1757-899X/82/1/012090>`_
 D. Mercier, C. Zambaldi, T. R. Bieler, 17th International Conference on Textures of Materials (ICOTOM17), at Dresden, Germany (2014).
@@ -124,7 +124,7 @@ References
 .. [#LivingstonChalmers_1957] `J.D. Livingston and B. Chalmers, "Multiple slip in bicrystal deformation.", Acta Metallurgica (1957), 5(6), pp. 322-327. <https://doi.org/10.1016/0001-6160(57)90044-5>`_
 .. [#Bieler_2009] `T.R. Bieler et al., "The role of heterogeneous deformation on damage nucleation at grain boundaries in single phase metals.", Int. J. of Plast. (2009), 25(9), pp. 1655–1683. <https://doi.org/10.1016/j.ijplas.2008.09.002>`_
 .. [#Roters_2010] `F. Roters et al., "Overview of constitutive laws, kinematics, homogenization and multiscale methods in crystal plasticity finite-element modeling: Theory, experiments, applications.", Acta Materialia (2010), 58(4), pp. 1152-1211. <https://doi.org/10.1016/j.actamat.2009.10.058>`_
-.. [#DAMASK] `DAMASK — the Düsseldorf Advanced Material Simulation Kit. <http://damask.mpie.de/>`_
+.. [#DAMASK] `DAMASK — the Düsseldorf Advanced Material Simulation Kit. <https://damask-multiphysics.org/>`_
 .. [#Zambaldi_2012] `C. Zambaldi et al., "Orientation informed nanoindentation of α-titanium: Indentation pileup in hexagonal metals deforming by prismatic slip", J. Mater. Res. (2012), 27(01), pp. 356-367. <https://doi.org/10.1557/jmr.2011.334>`_
 .. [#Zambaldi_SX] `C. Zambaldi, "Anisotropic indentation pile-up in single crystals". <http://zambaldi.de/sx-indent/>`_
 
@@ -132,7 +132,7 @@ References
 Contact
 ========
 
-:Author: `David Mercier <david9684@gmail.com>`_ [1] and C. Zambaldi [1], based on previous work of T. R. Bieler [2] and C. Zambaldi [1].
+:Author: `David Mercier <mailto:david9684@gmail.com>`_ [1] and C. Zambaldi [1], based on previous work of T. R. Bieler [2] and C. Zambaldi [1].
 
 [1] `Max-Planck-Institut für Eisenforschung, 40237 Düsseldorf, Germany <http://www.mpie.de/>`_
 
@@ -145,9 +145,9 @@ Contact
 Contributors
 =============
 
-- Raúl Sánchez Martín (`IMDEA <http://www.materials.imdea.org/>`_, Madrid, Spain) contributed Python code to generate *Abaqus* indentation models.
+- Raúl Sánchez Martín (`IMDEA <https://materials.imdea.org/>`_, Madrid, Spain) contributed Python code to generate *Abaqus* indentation models.
 
-- Adrien Berger (`LML <http://mecanique.univ-lille1.fr/Recherche/LML//>`_, Lille, France) contributed slip transmission models.
+- Adrien Berger (`LML <http://mecanique.univ-lille1.fr/Recherche/LML/>`_, Lille, France) contributed slip transmission models.
 
 Acknowledgements
 =================
@@ -162,4 +162,4 @@ Keywords
 =========
 
 |matlab| toolbox ; Graphical User Interface (GUI) ; Grain Boundary (GB) ; Polycrystalline Metals ; Slip Transmission ; Bi-Crystal (BX) ;
-Electron backscatter diffraction (EBSD) ; Instrumented indentation ; Crystal Plasticity Finite Element Method (CPFEM) ; python\ :sup:`TM` \ toolbox ; DAMASK.
+Electron backscatter diffraction (EBSD) ; Instrumented indentation ; Crystal Plasticity Finite Element Method (CPFEM) ; Python toolbox ; DAMASK.

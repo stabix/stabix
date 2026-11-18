@@ -7,16 +7,6 @@ ways to use the toolbox and point to related research. Tutorial videos show
 hands-on workflows; the papers are research context and should not be read as
 evidence that STABiX was used in their analyses.
 
-Related research
-----------------
-
-The following papers cite the original STABiX toolbox publication,
-`A Matlab toolbox to analyze slip transfer through grain boundaries
-<https://doi.org/10.1088/1757-899X/82/1/012090>`_. They address related
-microstructure and crystal-plasticity problems, but their abstracts describe
-their own methods; the citations alone do not establish that STABiX was used
-to produce their results.
-
 Tutorials
 ---------
 
@@ -41,11 +31,18 @@ practical example of combining EBSD-derived crystallographic information with
 slip-trace observations to examine slip activity in relation to grain
 boundaries.
 
-Other academic research
-~~~~~~~~~~~~~~~~~~~~~~~
+Related research
+----------------
+
+The following papers cite the original STABiX toolbox publication,
+`A Matlab toolbox to analyze slip transfer through grain boundaries
+<https://doi.org/10.1088/1757-899X/82/1/012090>`_. They address related
+microstructure and crystal-plasticity problems, but their abstracts describe
+their own methods; the citations alone do not establish that STABiX was used
+to produce their results.
 
 Fatigue indicator parameters and interpretable machine learning
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `Interpretable machine learning for microstructure-dependent models of fatigue
 indicator parameters <https://doi.org/10.1016/j.ijfatigue.2023.108019>`_
@@ -57,7 +54,7 @@ the paper's described focus is fatigue modeling, not a documented STABiX
 workflow.
 
 Nanoindentation-based parameter identification for BCC metals
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `Application of a nanoindentation-based approach for parameter identification
 to a crystal plasticity model for bcc metals

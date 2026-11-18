@@ -1,5 +1,5 @@
 ﻿..  |stabix| replace:: STABiX
-..  |matlab| replace:: Matlab
+..  |matlab| replace:: MATLAB
 ..  |rbv| replace:: residual Burgers vector
 
 ..  include:: <isonum.txt>

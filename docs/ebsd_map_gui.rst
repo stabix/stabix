@@ -3,9 +3,9 @@
 
 .. include:: includes.rst
  
-This GUI allows to analyze quantitatively slip transmission across grain boundaries for an EBSD map.
+This GUI supports quantitative analysis of slip transmission across grain boundaries in an EBSD map.
 
-The |matlab| function used to run the EBSD map GUI is: `A_gui_plotmap.m <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/A_gui_plotmap.m>`_
+The |matlab| function used to run the EBSD map GUI is: `A_gui_plotmap.m <https://github.com/stabix/stabix/tree/master/gui_ebsd_map/A_gui_plotmap.m>`_.
 
 This includes:
 
@@ -23,25 +23,26 @@ Loading EBSD data
 ---------------------------
 
 For more details about the format of the EBSD data, see also the page:
-`Experimental data <http://stabix.readthedocs.org/en/latest/experimental_data.html>`_.
+`Experimental data <https://stabix.readthedocs.io/en/latest/experimental_data.html>`_.
 
 .. figure:: ./_pictures/gui/EBSD_map_setting.png
    :scale: 40 %
    :align: center
    
-   *The different steps for loading data into the EBSD map GUI.*
+   *Steps for loading data into the EBSD map GUI.*
    
 .. warning::
-    Be careful when importing datasets with high number of grains (e.g. > 300 grains), the loading and plotting steps may take few minutes...
+    When importing datasets with a large number of grains (e.g., more than
+    300 grains), loading and plotting may take a few minutes.
 
 .. _smoothing_GBs:
 
-Smoothing GBs segments
+Smoothing GB segments
 ------------------------
 
-The smoothing algorithm allows to decrease the total number of
-grains boundaries in order to speed up calculations and plots.
-Move the slicer in the right direction to decrease the total number of grains boundaries (i.e. segmentation reduction).
+The smoothing algorithm reduces the number of grain-boundary segments to
+speed up calculations and plotting.
+Move the slider to the right to reduce the number of segments.
 
 .. figure:: ./_pictures/gui/EBSD_map_loading_smoothing.png
    :scale: 40 %
@@ -134,13 +135,13 @@ Schmid factor and slip trace analysis
    :scale: 40 %
    :align: center
    
-   *Screenshot of the EBSD map GUI with an EBSD map of near alpha phase Ti alloy (slip plane plotted inside grain and 
+   *Screenshot of the EBSD map GUI with an EBSD map of a near-alpha Ti alloy (slip plane plotted inside the grain and
    slip trace plotted around the unit cells; both are selected according to the maximum Schmid factor for a given stress tensor).*
    
 Plot options
 -------------------------------------
 
-The |matlab| function used to plot the cell lattice is `vis_lattice.m <https://github.com/stabix/stabix/tree/master/crystallo/vis_lattice.m>`_.
+The |matlab| function used to plot the crystal lattice is `vis_lattice.m <https://github.com/stabix/stabix/tree/master/crystallo/vis_lattice.m>`_.
 
 It is also possible to plot the structure of octahedral and tetrahedral interstitial defects.
 
@@ -148,4 +149,4 @@ It is also possible to plot the structure of octahedral and tetrahedral intersti
    :scale: 40 %
    :align: center
    
-   *Octahedral (red) and tetrahedral (blue) interstitial symmetry polyhedra in a face-centered cubic, body centered cubic and hexagonal lattices.*
+   *Octahedral (red) and tetrahedral (blue) interstitial symmetry polyhedra in face-centered cubic, body-centered cubic and hexagonal lattices.*

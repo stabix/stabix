@@ -1,11 +1,11 @@
-﻿A Matlab toolbox to analyze slip transfer through grain boundaries
+﻿A MATLAB toolbox to analyze slip transfer through grain boundaries
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Current toolbox version: **3.0**.
 
-To get started with STABiX, clone the repository, then run Matlab, and cd into the folder containing this README file. Then add the package path to the Matlab search path by typing "path_management".
-Finally you can start the launcher by typing "demo" at the Matlab command prompt.
-See the full documentation at http://stabix.readthedocs.org.
+To get started with STABiX, clone the repository, start MATLAB, and change to the folder containing this README file. Add the toolbox folders to the MATLAB search path by running ``path_management``.
+Then start the launcher by typing ``demo`` at the MATLAB command prompt.
+See the full documentation at https://stabix.readthedocs.io/en/latest/.
 
 Python example
 ==============
@@ -19,13 +19,13 @@ with HCP/BCC slip systems. See `the Python instructions <python/README.md>`_.
 Authors
 ========
 
-:Author: `David Mercier <david9684@gmail.com>`_ [1] and C. Zambaldi [1], based on previous work of T. R. Bieler [2] and C. Zambaldi [1].
+:Author: `David Mercier <mailto:david9684@gmail.com>`_ [1] and C. Zambaldi [1], based on previous work of T. R. Bieler [2] and C. Zambaldi [1].
 
 [1] `Max-Planck-Institut für Eisenforschung, 40237 Düsseldorf, Germany <http://www.mpie.de/>`_
 
 [2] `Chemical Engineering and Materials Science, Michigan State University, East Lansing 48824 MI, USA <http://www.msu.edu/>`_
 
-How to cite STABiX in your papers ?
+How to cite STABiX in your papers?
 ====================================
 
 `"STABiX v1.6" <https://doi.org/10.5281/zenodo.14854>`_ = https://doi.org/10.5281/zenodo.14854
@@ -35,7 +35,7 @@ How to cite STABiX in your papers ?
 Reference paper
 ================
 
-`"STABiX documentation." <https://media.readthedocs.org/pdf/stabix/latest/stabix.pdf>`_
+`"STABiX documentation." <https://stabix.readthedocs.io/en/latest/>`_
 
 `"A Matlab toolbox to analyze slip transfer through grain boundaries" <http://dx.doi.org/10.1088/1757-899X/82/1/012090>`_
 D. Mercier, C. Zambaldi, T. R. Bieler, 17th International Conference on Textures of Materials (ICOTOM17), at Dresden, Germany (2014).
@@ -68,17 +68,17 @@ B. Dunlap, PhD thesis, Michigan State University (2018).
 Contributors
 =============
 
-- Raúl Sánchez Martín (`IMDEA <http://www.materials.imdea.org/>`_, Madrid, Spain) contributed Python code to generate *Abaqus* indentation models.
+- Raúl Sánchez Martín (`IMDEA <https://materials.imdea.org/>`_, Madrid, Spain) contributed Python code to generate *Abaqus* indentation models.
 - Adrien Berger (`LML <http://mecanique.univ-lille1.fr/Recherche/LML/>`_, Lille, France) contributed the residual Burgers vector calculation.
 
 Acknowledgements
 =================
 
-Parts of this work were supported under the NSF/DFG Materials World Network program (DFG ZA 523/3-1 and NSF-DMR-1108211). We also acknowledge useful discussions with Y. Su, P. Eisenlohr and M. Crimp from the Michigan State University.
+Parts of this work were supported under the NSF/DFG Materials World Network program (DFG ZA 523/3-1 and NSF-DMR-1108211). We also acknowledge useful discussions with Y. Su, P. Eisenlohr and M. Crimp from Michigan State University.
 
 
 Keywords
 =========
 
 MATLAB; Graphical User Interface (GUI); Grain Boundaries; Polycrystalline Metals; Slip Transmission; Bi-Crystal (BX);
-Electron backscatter diffraction (EBSD); Instrumented indentation; Crystal Plasticity Finite Element Method (CPFEM); python Toolbox.
+Electron backscatter diffraction (EBSD); Instrumented indentation; Crystal Plasticity Finite Element Method (CPFEM); Python toolbox.

@@ -9,9 +9,9 @@ in the 'util' folder of STABiX repository, to determine your username.
 
 4) Then, change the default configuration without modifying fieldnames !
 
-Visit the STABiX documentation for more details: http://stabix.readthedocs.org/en/latest/index.html
+Visit the STABiX documentation for more details: https://stabix.readthedocs.io/en/latest/index.html
 Visit the YAML website for more informations: http://www.yaml.org/
-Visit the YAML code for Matlab: https://code.google.com/p/yamlmatlab/
+Visit the archived YAML code for Matlab: https://code.google.com/archive/p/yamlmatlab/
 
 N.B.: When changing your YAML configuration files, be careful to give only absolute paths
 and to put a space after the comma in a list (e.g. [x, y, z]) !!!

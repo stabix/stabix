@@ -37,8 +37,8 @@ Currently the following models can be written:
     * :ref:`bicrystal_indentation` (MSC.Mentat and Abaqus)
     * :ref:`scratch_test` (MSC.Mentat and Abaqus)
     
-Please find here the `Python package used to generate the SX and BX indentation models
-<https://github.com/stabix/stabix/tree/master/third_party_code/python>`_.
+The `Python package used to generate the SX and BX indentation models
+<https://github.com/stabix/stabix/tree/master/third_party_code/python>`_ is included in the repository.
 
 Saving and loading mesh settings (YAML)
 ---------------------------------------
@@ -123,15 +123,16 @@ orientations manually in Mechanical. The generated geometry is not a
 ready-to-solve CPFE model.
 
 .. note::
-    From 2022, DAMASK is not working anymore with Abaqus, check here for more information: https://damask.mpie.de/index.html
+    Since 2022, DAMASK has no longer supported Abaqus. See
+    https://damask-multiphysics.org/ for more information.
 
-How to load crystallographic properties of the SX or of the BX?
+How to load crystallographic properties of an SX or BX model?
 ------------------------------------------------------------------
 
 It is possible to set SX or BX properties (material, phase, Euler angles, trace angle...):
 
-- from the `Bicrystal GUI <http://stabix.readthedocs.org/en/latest/bicrystal_gui.html>`_ 
-  (by giving GB's number and pressing the button 'PLOT BICRYSTAL');
+- from the `Bicrystal GUI <https://stabix.readthedocs.io/en/latest/bicrystal_gui.html>`_
+  (by entering a GB number and pressing **PLOT BICRYSTAL**);
 
 - from a YAML configuration file (from the menu, by clicking on 'preCPFE-SX' or
   'preCPFE-BX', and 'Load Single Crystal config. file' or 'Load Bicrystal config. file').
@@ -140,20 +141,20 @@ It is possible to set SX or BX properties (material, phase, Euler angles, trace 
    :scale: 50 %
    :align: center
    
-   *The different steps to set the preCPFE GUIs.*
+   *Steps for configuring the preCPFE GUIs.*
 
 .. _single_crystal_indentation:
 
 Single crystal (SX) indentation
 --------------------------------
 
-Analysis of the orientation dependent pile-up topographies that are formed during 
+Analysis of the orientation-dependent pile-up topographies that are formed during
 single crystal indentation provides insight into the operating deformation mechanisms.
 CPFE simulation of single crystal indentation has an important role in clarifying
 the influence of the single-slip behaviour of different slip systems on the resulting 
 surface profiles.
 
-The function used to run the preCPFE GUI for SX indentation is :
+The function used to run the preCPFE GUI for SX indentation is:
 `A_preCPFE_windows_indentation_setting_SX.m
 <https://github.com/stabix/stabix/tree/master/gui_preCPFE/A_preCPFE_windows_indentation_setting_SX.m>`_
 
@@ -161,7 +162,7 @@ The function used to run the preCPFE GUI for SX indentation is :
    :scale: 40 %
    :align: center
    
-   *Screenshot of the preCPFE GUI for the single crystal indentation*
+   *Screenshot of the preCPFE GUI for single-crystal indentation.*
    
 .. figure:: ./_pictures/fem_models/abaqus_SX_model.png
    :scale: 40 %
@@ -213,7 +214,7 @@ Convention for the bicrystal mesh
 Scratch test on SX and BX
 --------------------------
 
-CPFE simulation of scratch test in a single crystal or close to a grain boundary is implemented into this GUI.
+CPFE simulation of scratch tests in a single crystal or close to a grain boundary is implemented in this GUI.
 Scratch length and scratch direction have to be set by the user.
 
 .. figure:: ./_pictures/gui/preCPFE_GUI_scratch.png
@@ -222,31 +223,31 @@ Scratch length and scratch direction have to be set by the user.
    
    *Screenshot of the preCPFE GUI for the scratch test.*
 
-Indenter's geometry
+Indenter geometry
 --------------------
 
 Currently the following geometries can be used for CPFE simulations:
-    * `cono-spherical indenter <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_conospherical_indenter.m>`_ ;
-    * `Berkovich indenter <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_polygon_indenter.m>`_ ;
-    * `Vickers indenter <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_polygon_indenter.m>`_ ;
-    * `cube corner indenter <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_polygon_indenter.m>`_ ;
-    * `flat punch <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_flat_punch_indenter.m>`_ ;
+    * `cono-spherical indenter <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_conospherical_indenter.m>`_;
+    * `Berkovich indenter <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_polygon_indenter.m>`_;
+    * `Vickers indenter <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_polygon_indenter.m>`_;
+    * `cube-corner indenter <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_polygon_indenter.m>`_;
+    * `flat punch <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_flat_punch_indenter.m>`_;
     * `free topography <https://github.com/stabix/stabix/blob/master/gui_preCPFE/preCPFE_3d_indenter_topo_AFM.m>`_ (from an AFM measurement for instance).
     
 For the Berkovich, Vickers, cube corner indenters and the free topography,
 the faces and vertices are saved in a structure variable from a patch object.
 For the cono-spherical and the flat punch, geometries are already implemented
 in the Python package for *MSC.Mentat* and *Abaqus*.
-It is possible as well to call the |matlab| function `surf2patch
-<http://www.mathworks.fr/help/matlab/ref/surf2patch.html>`_, to return
+You can also call the |matlab| function `surf2patch
+<https://www.mathworks.com/help/matlab/ref/surf2patch.html>`_ to return
 the faces and vertices from a surface object.
 
 Then the function `patch2inp <https://github.com/stabix/stabix/blob/master/util/patch2inp.m>`_
 is used to generate an *Abaqus .inp* file, which is used
 when the CPFE model is created in *MSC.Mentat* or *Abaqus*.
 
-It is possible to rotate directly into the GUIs, the Berkovich, Vickers,
-cube corner indenters and the free topography before the generation
+You can rotate the Berkovich, Vickers and cube-corner indenters and the free
+topography directly in the GUIs before generating
 of the *Abaqus .inp* file.
 
 .. only:: html
@@ -268,9 +269,9 @@ of the *Abaqus .inp* file.
 AFM topography
 ***************
 
-The topography from an Atomic Force Microscopy (AFM) measurement has to be saved into a .txt file in the *Gwyddion ASCII* format.
+The topography from an atomic force microscopy (AFM) measurement must be saved as a ``.txt`` file in *Gwyddion ASCII* format.
 
-The |matlab| function used to load and read Gwyddion file is : 
+The |matlab| function used to load and read a Gwyddion file is:
 `read_gwyddion_ascii.m <https://github.com/stabix/stabix/blob/master/gwyddion/read_gwyddion_ascii.m>`_
 
 `Visit the Gwyddion website for more information. <http://gwyddion.net/>`_
@@ -292,36 +293,41 @@ Contact definition
     - The indenter is modeled by a rigid body and the sample by a deformable body.
     - The external surface of the indenter is defined as the "master" region.
     - The top surface of the (multilayer) sample is defined as the "slave" region.
-    - If the coefficient friction is different from 0, the classical isotropic Coulomb friction model is used to define the contact between the indenter and the sample.
-    - If the coefficient friction is set to 0, the contact is defined by a frictionless tangential behavior and a hard normal behavior.
+    - If the friction coefficient is nonzero, the classical isotropic Coulomb friction model is used to define contact between the indenter and the sample.
+    - If the friction coefficient is set to 0, contact is defined by frictionless tangential behavior and hard normal behavior.
 
 A friction coefficient of 0.3 is set by default for every CPFE simulation.
-It is possible to modify this parameter, by changing its value in the *preCPFE* GUIs.
+You can modify this parameter by changing its value in the *preCPFE* GUIs.
     
 Mesh definition
 -------------------
 
 * *MSC.Mentat*
-    - The mesh is defined by default by hexahedral eightnode elements (hex8).
+    - The mesh uses hexahedral eight-node elements (hex8) by default.
 
 * *Abaqus*
-    - The mesh is defined by default by linear hexahedral eightnode elements (C3D8).
-    - It is possible to set quadratic elements (e.g.: C3D20), by changing in the python code the value of the "linear_elements" variable from 1 to 0.
+    - The mesh uses linear hexahedral eight-node elements (C3D8) by default.
+    - To use quadratic elements (e.g., C3D20), change ``linear_elements`` from 1 to 0 in the Python code.
 
 .. note::
-    `Note that DAMASK incorporates a limited number of different types of element geometries. <http://damask.mpie.de/Documentation/ElementType>`_
-    For a detailed information about the characteristics of each element refer to MSC.Marc and Abaqus user's manuals.
+    Consult the `DAMASK solver documentation <https://damask-multiphysics.org/documentation/usage.html#solver-features>`_
+    for current solver capabilities. The Abaqus instructions below target legacy DAMASK interfaces.
+    For detailed information about each element's characteristics, refer to the MSC.Marc and Abaqus user manuals.
 
 Python setup
 -------------
 
-For the generation of the CPFE preprocessing scripts an installation of Python 
-is required together with the *NumPy 1.10.4* and *SciPy 0.16.0* packages.
-Often one of the `scientific Python distributions <http://www.scipy.org/install.html#scientific-python-distributions>`_
-is the easiest way to get up and running (use a Python 2.x distribution).
-To make sure that |stabix| can find the installed Python you will have to either 
-put it on the system's `PATH <http://en.wikipedia.org/wiki/PATH_%28variable%29>`_
-or enter its exact location in the user configuration, as detailed below.
+Generating solver-specific CPFE preprocessing scripts requires an external
+Python interpreter with NumPy and SciPy versions compatible with the selected
+backend. Some legacy Mentat/DAMASK generators require Python 2.x; keep their
+solver-compatible environments separate from the modern standalone examples.
+The historical NumPy 1.10.4 and SciPy 0.16.0 versions are not requirements for
+the modern Python examples. See
+`software_requirements.txt <https://github.com/stabix/stabix/blob/master/software_requirements.txt>`_
+for workflow-specific requirements.
+To let |stabix| find the interpreter, put it on the system's
+`PATH <http://en.wikipedia.org/wiki/PATH_%28variable%29>`_ or enter its exact
+location in the user configuration, as detailed below.
 
 The Abaqus single-crystal model-script generator also accepts Python 3 when
 material configuration generation is disabled. This does not update the legacy
@@ -332,10 +338,10 @@ Adjusting the configuration settings
 -------------------------------------
 
 To write out the necessary files for finite element simulations it is likely that 
-the user wants to adjust some settings such as the used python installation or the 
+the user wants to adjust settings such as the Python installation or the
 path where the files are written to. 
-This can be achieved in the custom menu of the preCPFE GUis: ``Edit CPFEM config file``.
-A user specific copy of the default configuration YAML file is created and 
+This can be done in the custom menu of the preCPFE GUIs: ``Edit CPFEM config file``.
+A user-specific copy of the default configuration YAML file is created and
 opened in the |matlab| editor. 
 To benefit from later changes in the default settings, all
 configuration parameters that are not specific to the user's setup should be deleted 
@@ -344,15 +350,16 @@ from the user's CPFE configuration file.
 Installing DAMASK
 ------------------
 
-Since 2022, DAMASK has no longer supported Abaqus. To use older versions of DAMASK with finite element software released before 2021, follow these steps.
+Since 2022, DAMASK has no longer supported Abaqus. The Abaqus instructions
+below apply to older DAMASK versions used with compatible finite element software.
 
 For instructions on how to set up the DAMASK constitutive simulation code please visit
-https://damask.mpie.de/index.html.
+https://damask-multiphysics.org/documentation/index.html.
 
 Writing the CPFE input files
 -----------------------------
 
-After everything is configured and the model geometry and discretization is optimized, 
+After everything is configured and the model geometry and discretization are optimized,
 all necessary files to run a CPFE simulation can be generated by pressing the green button. 
 All information will be written to a newly created folder which also includes a timestamp
 for later reference.
@@ -364,17 +371,17 @@ Input files
     - a procedure file containing the FEM model (\*.proc)
     - a Python file containing parameters for FEM model (\*.mat_FEM_model_parameters.py)
     - a Python file containing material configuration (\*.mat_DAMASK_materialconfig.py)
-    - a MAT-file (binary |matlab| format file) storing |matlab| workspace variables(\*.mat)
+    - a MAT-file (binary |matlab| format file) storing |matlab| workspace variables (\*.mat)
     - a material configuration file (material.config)
-    - an input file for specific indenter's geometry (\*.inp) (optional)
+    - an input file for a specific indenter geometry (\*.inp) (optional)
 
 * *Abaqus*
     - a Python file containing the FEM model (\*.py)
     - a Python file containing parameters for FEM model (\*.mat_FEM_model_parameters.py)
     - a Python file containing material configuration (\*.mat_DAMASK_materialconfig.py)
-    - a MAT-file (binary |matlab| format file) storing |matlab| workspace variables(\*.mat)
+    - a MAT-file (binary |matlab| format file) storing |matlab| workspace variables (\*.mat)
     - a material configuration file (material.config)
-    - an input file for specific indenter's geometry (\*.inp) (optional)
+    - an input file for a specific indenter geometry (\*.inp) (optional)
 
 Using the CPFE input files
 -----------------------------
@@ -394,7 +401,7 @@ Using the CPFE input files
 Running a job with DAMASK
 ---------------------------
 
-Find the full documentation for the use of DAMASK here : https://damask.mpie.de/index.html
+Find the full DAMASK documentation here: https://damask-multiphysics.org/documentation/index.html.
 
 * *MSC.Mentat*
     - In the JOB RUN menu choose USER SUBROUTINE FILE and select the interface routine DAMASK_marc.f90.
@@ -495,7 +502,7 @@ Zhao Z. et al., "Temperature dependent constitutive parameters from nanoindentat
 
 `Wang Q. et al., "Orientation-dependent irradiation hardening in pure Zr studied by nanoindentation, electron microscopies, and crystal plasticity finite element modeling", International Journal of Plasticity, (2019). <https://doi.org/10.1016/j.ijplas.2019.08.007>`_
 
-`Das S. et al., "Orientation-dependent indentation response of helium-implanted tungsten", Appl. Phys. Lett., (2019). <https://doi.org/0.1063/1.5097403>`_
+`Das S. et al., "Orientation-dependent indentation response of helium-implanted tungsten", Appl. Phys. Lett., (2019). <https://doi.org/10.1063/1.5097403>`_
 
 `Zhou Y. et al., "Experimental study and crystal plasticity finite element simulations of nano-indentation-induced lattice rotation and the underlying mechanism in TC6 single α-grain", Materials and Design, (2019). <https://doi.org/10.1016/j.matdes.2019.108423>`_
 

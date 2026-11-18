@@ -20,17 +20,17 @@ Compare the topographies of indentations near grain boundaries with topographies
 
 The goals of this research are:
 
-1 - Carry out indentation within the interiors of large grains of alpha-titanium to effectively collect single crystal data coupled with extensive
-(three-dimensional) characterization of the resulting plastic defect fields surrounding the indents [#Zambaldi_2012]_. By correlating with models of the indentation,
-a precise constitutive description of the anisotropic plasticity of single-crystalline titanium shall be developed [#Roters_2010]_ and [#DAMASK]_.
+1. Carry out indentation within the interiors of large grains of alpha-titanium to collect single-crystal data coupled with extensive
+   (three-dimensional) characterization of the resulting plastic defect fields surrounding the indents [#Zambaldi_2012]_. By correlating these data with indentation models,
+   a precise constitutive description of the anisotropic plasticity of single-crystalline titanium can be developed [#Roters_2010]_ and [#DAMASK]_.
 
-2 - Extension of this methodology to indentations close to grain boundaries, i.e. quasi bi-crystal deformation.
+2. Extend this methodology to indentations close to grain boundaries, i.e., quasi-bicrystal deformation.
 
-3 - Comparison of the measured characteristics of indentations at grain boundaries to simulated indentations as predicted by a constitutive model
-calibrated using the single crystal indentations.
+3. Compare the measured characteristics of indentations at grain boundaries with simulated indentations predicted by a constitutive model
+   calibrated using single-crystal indentations.
  
-4 - Based on this qualitative understanding, a grain boundary transmissivity description will be
-developed validated against the collected indent characteristics.
+4. Based on this qualitative understanding, develop a description of grain-boundary transmissivity
+   and validate it against the collected indentation characteristics.
 
 .. [#Bieler_2014] `T.R. Bieler et al., "Grain boundaries and interfaces in slip transfer.", Current Opinion in Solid State and Materials Science (2014), 18(4), pp. 212-226. <https://doi.org/10.1016/j.cossms.2014.05.003>`_
 .. [#Aust_1968] `K.T. Aust et al., "Solute induced hardening near grain boundaries in zone refined metals.", Acta Metallurgica (1968), 16(3), pp. 291-302. <https://doi.org/10.1016/0001-6160(68)90014-X>`_
@@ -50,8 +50,8 @@ developed validated against the collected indent characteristics.
 .. [#WoNgan_2004] `P.C. Wo and A.H.W. Ngan, "Investigation of slip transmission behavior across grain boundaries in polycrystalline Ni3Al using nanoindentation.", J. Mater. Res. (2004), 19(1), pp. 189-201. <https://doi.org/10.1557/jmr.2004.19.1.189>`_
 .. [#Soer_2005] `W.A. Soer et al. ,"Incipient plasticity during nanoindentation at grain boundaries in body-centered cubic metals.", Acta Materialia (2005), 53, pp. 4665–4676. <https://doi.org/10.1016/j.actamat.2005.07.001>`_
 .. [#Britton_2009] `T.B. Britton et al., "Nanoindentation study of slip transfer phenomenon at grain boundaries.", J. Mater. Res., 2009, 24(3), pp. 607-615. <https://doi.org/10.1557/jmr.2009.0088>`_
-.. [#Pathak_2012] `S. Patthak et al., "Studying grain boundary regions in polycrystalline materials using spherical nano-indentation and orientation imaging microscopy.", J. Mater. Sci. (2012), 47, pp. 815–823. <https://doi.org/10.1007/s10853-011-5859-z>`_
+.. [#Pathak_2012] `S. Pathak et al., "Studying grain boundary regions in polycrystalline materials using spherical nano-indentation and orientation imaging microscopy.", J. Mater. Sci. (2012), 47, pp. 815–823. <https://doi.org/10.1007/s10853-011-5859-z>`_
 .. [#Lawrence_2014] `S.K. Lawrence et al., "Grain Boundary Contributions to Hydrogen-Affected Plasticity in Ni-201.", The Journal of The Minerals, Metals & Materials Society (2014), 66(8), pp. 1383-1389. <https://doi.org/10.1007/s11837-014-1062-4>`_
 .. [#Zambaldi_2012] `C. Zambaldi et al., "Orientation informed nanoindentation of α-titanium: Indentation pileup in hexagonal metals deforming by prismatic slip", J. Mater. Res. (2012), 27(01), pp. 356-367. <https://doi.org/10.1557/jmr.2011.334>`_
 .. [#Roters_2010] `F. Roters et al., "Overview of constitutive laws, kinematics, homogenization and multiscale methods in crystal plasticity finite-element modeling: Theory, experiments, applications.",  Acta Materialia (2010), 58(4), pp. 1152-1211. <https://doi.org/10.1016/j.actamat.2009.10.058>`_
-.. [#DAMASK] `DAMASK — the Düsseldorf Advanced Material Simulation Kit <http://damask.mpie.de/>`_
+.. [#DAMASK] `DAMASK — the Düsseldorf Advanced Material Simulation Kit <https://damask-multiphysics.org/>`_
