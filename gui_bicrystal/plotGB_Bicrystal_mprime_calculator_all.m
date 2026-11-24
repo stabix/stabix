@@ -113,25 +113,6 @@ if isempty(find(slip_check_1==0)) && isempty(find(slip_check_2==0)) % Check orth
                         %rbv_bc_val(4) = residual_Burgers_vector(gui.calculations.vectA(kk,10:12,GB.GrainA), gui.calculations.vectB(jj,10:12,GB.GrainB));
                         gui.calculations.residual_Burgers_vector_val_bc_all(kk,jj) = ...
                             min(rbv_bc_val);
-                        ind = find(rbv_bc_val == min(min(rbv_bc_val)));
-                        
-                        % useful for plot of slip direction in the function
-                        % 'plotGB_Bicrystal_plot_lattices'
-                        gui.flag.flag_dir_vectA = zeros(sizeA, sizeB);
-                        gui.flag.flag_dir_vectB = zeros(sizeA, sizeB);
-                        if ind == 1
-                            gui.flag.flag_dir_vectA(jj,kk) = 0;
-                            gui.flag.flag_dir_vectB(jj,kk) = 0;
-                        elseif ind == 2
-                            gui.flag.flag_dir_vectA(jj,kk) = 1;
-                            gui.flag.flag_dir_vectB(jj,kk) = 0;
-                            %                     elseif ind == 3
-                            %                         flag_dir_gui.calculations.vectA(jj,kk) = 0;
-                            %                         flag_dir_gui.calculations.vectB(jj,kk) = 1;
-                            %                     elseif ind == 4
-                            %                         flag_dir_gui.calculations.vectA(jj,kk) = 1;
-                            %                         flag_dir_gui.calculations.vectB(jj,kk) = 1;
-                        end
                     end
                 end
             case {15, 16, 17, 18, 19, 20, 21} % N factor (Livingston and Chamlers)

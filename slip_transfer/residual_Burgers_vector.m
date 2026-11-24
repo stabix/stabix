@@ -1,5 +1,5 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function rbv_norm = ...
+function [rbv_norm, rbv] = ...
     residual_Burgers_vector(rotated_b_in, rotated_b_out, varargin)
 %% Function used to calculate the norm of the residual Burgers vector
 % from Marcinkowski et al. ==> Metallurgical Transactions 1,12 (1970) pp 3397-3401
@@ -27,6 +27,8 @@ function rbv_norm = ...
 % Modified equation to be in the labs coordinate system :
 %
 %     rbv = R_in'*b_in' - R_out'*b_out'
+% rbv_norm = norm of the residual Burgers vector
+% rbv = residual Burgers vector with the sign convention used above
 %
 % with
 %     b_in  = Burgers vector of the incident slip dislocation
@@ -36,6 +38,7 @@ function rbv_norm = ...
 %
 % author: d.mercier@mpie.de
 
+rbv = [];
 if nargin == 0
     b_in  = rand(3,1)';
     b_out = rand(3,1)';

@@ -1,5 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
-function [shiftXYZA, shiftXYZB, ucgrA, ucgrB, arrow_grA, arrow_grB] = ...
+function [shiftXYZA, shiftXYZB, ucgrA, ucgrB, arrow_grA, arrow_grB, ...
+    arrow_residual] = ...
     plotGB_Bicrystal_plot_lattices(slipA, slipB, no_slip)
 %% Function to plot the lattice cells for both grains
 % slipA: indice of slip to plot in unit cell for grainA
@@ -11,6 +12,7 @@ function [shiftXYZA, shiftXYZB, ucgrA, ucgrB, arrow_grA, arrow_grB] = ...
 %% Set the encapsulation of data
 gui = guidata(gcf);
 valplot = get(gui.handles.pmchoiceplot, 'Value');
+arrow_residual = [];
 
 %% Color of arrow
 arrowcolora = plot_arrow_color(gui.GB.Phase_A, slipA);
@@ -37,19 +39,11 @@ legend_location_str = char(legend_location_str);
 slipnormalA = gui.calculations.vectA(slipA, 1:3, gui.GB.GrainA);
 slipnormalB = gui.calculations.vectB(slipB, 1:3, gui.GB.GrainB);
 
-% FIXME ==> Direction of Burgers vector ??
-% see in plotGB_Bicrystal_mprime_calculator_bc... in RBV calculations
-
-%if gui.flag.flag_dir_vectA(slipB, slipA) == 0
 slipdirectionA = gui.calculations.vectA(slipA, 4:6, gui.GB.GrainA);
-%elseif gui.flag.flag_dir_vectA(slipB, slipA) == 1
-%    slipdirectionA = -gui.calculations.vectA(slipA, 4:6, gui.GB.GrainA);
-%end
-%if gui.flag.flag_dir_vectB(slipB, slipA) == 0
 slipdirectionB = gui.calculations.vectB(slipB, 4:6, gui.GB.GrainB);
-%elseif gui.flag.flag_dir_vectB(slipB, slipA) == 1
-%    slipdirectionB = -gui.calculations.vectB(slipB, 4:6, gui.GB.GrainB);
-%end
+if dot(slipdirectionA, slipdirectionB) < 0
+    slipdirectionA = -slipdirectionA;
+end
 
 %% Plot of slip plane (unit cell) for Grain A and B
 if no_slip
@@ -100,6 +94,16 @@ elseif valplot == 3  %% Plot of slip plane (unit cell + circle) for Grains A and
     
 elseif valplot == 4  %% Plot of Burgers vectors
     radius = 1.5;
+    burgersA = gui.calculations.vectA(slipA, 7:9, gui.GB.GrainA);
+    burgersB = gui.calculations.vectB(slipB, 7:9, gui.GB.GrainB);
+    [~, residual_burgers_vector] = ...
+        residual_Burgers_vector(burgersA, burgersB);
+    if isempty(residual_burgers_vector) || ...
+            any(isnan(residual_burgers_vector)) || ...
+            any(isinf(residual_burgers_vector))
+        error('plotGB_Bicrystal_plot_lattices:InvalidResidualBurgersVector', ...
+            'Unable to calculate a finite residual Burgers vector.');
+    end
     ucgrA = vis_lattice(gui.GB.Phase_A, gui.GB.eulerA, slipA, ...
         shiftXYZA, 0.5);
     ucgrB = vis_lattice(gui.GB.Phase_B, gui.GB.eulerB, slipB, ...
@@ -124,8 +128,22 @@ elseif valplot == 4  %% Plot of Burgers vectors
             'Color', arrowcolorb, 'LineWidth',4);
         warning_commwin(err.message);
     end
+    if norm(residual_burgers_vector) > eps && ...
+            get(gui.handles.cbresidualBurgersVector, 'Value') == 1
+        arrow_residual = quiver3(0, 0, 0, ...
+            residual_burgers_vector(1), ...
+            residual_burgers_vector(2), ...
+            residual_burgers_vector(3), 0, ...
+            'Color', [0.25 0.25 0.25], 'LineWidth', 3, 'MaxHeadSize', 1);
+    end
     if get(gui.handles.cblegend, 'Value') == 1
-        hLeg = legend([ucgrA(3) ucgrB(3)], legend_slipA, legend_slipB);
+        if isempty(arrow_residual)
+            hLeg = legend([ucgrA(3) ucgrB(3)], ...
+                legend_slipA, legend_slipB);
+        else
+            hLeg = legend([ucgrA(3) ucgrB(3) arrow_residual], ...
+                legend_slipA, legend_slipB, 'Residual Burgers vector');
+        end
     end
 end
 

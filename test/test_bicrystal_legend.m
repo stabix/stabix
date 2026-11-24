@@ -6,7 +6,8 @@ function setupOnce(testCase)
 root = fileparts(fileparts(mfilename('fullpath')));
 testCase.TestData.original_path = path;
 addpath(fullfile(root, 'gui_bicrystal'), fullfile(root, 'crystallo'), ...
-    fullfile(root, 'util'), fullfile(root, 'util_gui'), fullfile(root, 'test'));
+    fullfile(root, 'slip_transfer'), fullfile(root, 'util'), ...
+    fullfile(root, 'util_gui'), fullfile(root, 'test'));
 end
 
 function teardownOnce(testCase)
@@ -19,6 +20,8 @@ testCase.TestData.figure = fig;
 gui.handles.pmchoiceplot = uicontrol(fig, 'Style', 'popupmenu', ...
     'String', {'Unit cells'}, 'Value', 1);
 gui.handles.cblegend = uicontrol(fig, 'Style', 'checkbox', 'Value', 1);
+gui.handles.cbresidualBurgersVector = uicontrol(fig, ...
+    'Style', 'checkbox', 'Value', 1);
 gui.handles.pmlegend_location = uicontrol(fig, 'Style', 'popupmenu', ...
     'String', listLocationLegend, 'Value', 1);
 testCase.TestData.axes = axes('Parent', fig);
@@ -31,10 +34,10 @@ gui.GB.GrainB = 2;
 gui.GB.eulerA = [0 0 0];
 gui.GB.eulerB = [23 41 17];
 gui.GB_geometry.perp_gb = [1;0;0];
-gui.calculations.vectA = zeros(60,6,2);
-gui.calculations.vectB = zeros(60,6,2);
-gui.calculations.vectA(25,:,1) = [0 0 1 1 0 0];
-gui.calculations.vectB(13,:,2) = [0 1 0 1 0 0];
+gui.calculations.vectA = zeros(60,12,2);
+gui.calculations.vectB = zeros(60,12,2);
+gui.calculations.vectA(25,1:6,1) = [0 0 1 1 0 0];
+gui.calculations.vectB(13,1:6,2) = [0 1 0 1 0 0];
 guidata(fig, gui);
 end
 
@@ -53,6 +56,42 @@ end
 function testNoSlipDoesNotConfigureNonexistentLegend(testCase)
 plotGB_Bicrystal_plot_lattices(25, 13, true);
 verifyEmpty(testCase, findall(testCase.TestData.figure, 'Type', 'legend'));
+end
+
+function testResidualBurgersVectorIsGreyAtBoundaryOrigin(testCase)
+fig = testCase.TestData.figure;
+gui = guidata(fig);
+set(gui.handles.pmchoiceplot, 'Value', 4);
+gui.calculations.vectA(25, 7:9, gui.GB.GrainA) = [1 0 0];
+gui.calculations.vectB(13, 7:9, gui.GB.GrainB) = [-0.5 0.5 0];
+guidata(fig, gui);
+
+[~, ~, ~, ~, ~, ~, residual_arrow] = ...
+    plotGB_Bicrystal_plot_lattices(25, 13, false);
+
+verifyTrue(testCase, isgraphics(residual_arrow));
+verifyEqual(testCase, get(residual_arrow, 'XData'), 0);
+verifyEqual(testCase, get(residual_arrow, 'YData'), 0);
+verifyEqual(testCase, get(residual_arrow, 'ZData'), 0);
+verifyEqual(testCase, get(residual_arrow, 'UData'), 0.5, 'AbsTol', 1e-12);
+verifyEqual(testCase, get(residual_arrow, 'VData'), 0.5, 'AbsTol', 1e-12);
+verifyEqual(testCase, get(residual_arrow, 'WData'), 0);
+verifyEqual(testCase, get(residual_arrow, 'Color'), [0.25 0.25 0.25]);
+end
+
+function testResidualBurgersVectorCanBeDisabled(testCase)
+fig = testCase.TestData.figure;
+gui = guidata(fig);
+set(gui.handles.pmchoiceplot, 'Value', 4);
+set(gui.handles.cbresidualBurgersVector, 'Value', 0);
+gui.calculations.vectA(25, 7:9, gui.GB.GrainA) = [1 0 0];
+gui.calculations.vectB(13, 7:9, gui.GB.GrainB) = [-0.5 0.5 0];
+guidata(fig, gui);
+
+[~, ~, ~, ~, ~, ~, residual_arrow] = ...
+    plotGB_Bicrystal_plot_lattices(25, 13, false);
+
+verifyEmpty(testCase, residual_arrow);
 end
 
 function verify_stable_legend(testCase, latex_flag)
