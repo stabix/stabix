@@ -93,6 +93,8 @@ guidata(gcf, gui_SX);
     preCPFE_buttons_indenter(x0, hu, wu, 0);
 gui_SX.defaults.variables.coneAngle = indent_parameters.coneAngle;
 gui_SX.defaults.variables.tipRadius = indent_parameters.tipRadius;
+gui_SX.defaults.variables.pyramidTipRadius = ...
+    indent_parameters.pyramidTipRadius;
 gui_SX.defaults.variables.h_indent = indent_parameters.h_indent;
 
 %% Pop-up menu to select Python executable

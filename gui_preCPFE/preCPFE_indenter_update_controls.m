@@ -18,6 +18,8 @@ set(h_ind, 'visible', 'on');
 
 %% Get tip radius
 tipRadius = [indenter.tipRadius_str, indenter.tipRadius_val];
+pyramidTipRadius = [indenter.pyramidTipRadius_str, ...
+    indenter.pyramidTipRadius_val];
 rotation = [indenter.rotate_loaded_indenter, ...
     indenter.rotate_loaded_indenter_str, ...
     indenter.rotate_loaded_indenter_box, ...
@@ -27,6 +29,7 @@ coneAngle = [indenter.coneAngle_str, ...
     indenter.trans_depth];
 set(rotation, 'visible', 'on');
 set(coneAngle, 'visible', 'off');
+set(pyramidTipRadius, 'visible', 'off');
 set(indenter.pm_indenter_mesh_quality, 'visible', 'off');
 set(indenter.load_AFM, 'visible', 'off');
 
@@ -40,6 +43,7 @@ elseif strcmpi(gui.indenter_type, 'Berkovich') || ...
         strcmpi(gui.indenter_type, 'Vickers') || ...
         strcmpi(gui.indenter_type, 'cubeCorner')
     set(tipRadius, 'visible', 'off');
+    set(pyramidTipRadius, 'visible', 'on');
 
 elseif strcmpi(gui.indenter_type, 'flatPunch')
     set(tipRadius, 'visible', 'on');

@@ -246,6 +246,13 @@ Then the function `patch2inp <https://github.com/stabix/stabix/blob/master/util/
 is used to generate an *Abaqus .inp* file, which is used
 when the CPFE model is created in *MSC.Mentat* or *Abaqus*.
 
+The Berkovich, Vickers and cube-corner tips can be rounded by setting the
+pyramidal tip radius in the GUI, directly above the friction coefficient.
+The default radius is 0.005 microns (5 nm) in both the single-crystal and
+bicrystal GUIs. A radius of zero keeps the ideal sharp tip.
+The rounded geometry is generated as a triangulated surface mesh and uses the
+same export path as the sharp pyramidal indenters.
+
 You can rotate the Berkovich, Vickers and cube-corner indenters and the free
 topography directly in the GUIs before generating
 of the *Abaqus .inp* file.

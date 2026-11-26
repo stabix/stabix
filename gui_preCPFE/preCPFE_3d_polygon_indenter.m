@@ -1,6 +1,6 @@
 % Copyright 2013 Max-Planck-Institut für Eisenforschung GmbH
 function [handle_indenter, ptc] = preCPFE_3d_polygon_indenter(...
-    N, ang, height, zShift, varargin)
+    N, ang, height, zShift, tipRadius, varargin)
 %% Function to plot a 3D polygon indenter
 % N: Number of sides of the polygon (e.g.: N = 3 ==> three-sided indenter,
 % N = 4 ==> four-sided indenter). N > 2
@@ -10,6 +10,7 @@ function [handle_indenter, ptc] = preCPFE_3d_polygon_indenter(...
 
 % height: Height of the indenter.
 % zShift: Shift of the indenter along z-axis.
+% tipRadius: Radius used to round the pyramidal tip. Zero keeps it sharp.
 
 % See A.C. Fischer-Cripps "Nanoindentation" - Springer 2nd Ed. (2004)
 % Berkovich indenter = three-sided pyramid and angle = 65.3°
@@ -20,6 +21,16 @@ function [handle_indenter, ptc] = preCPFE_3d_polygon_indenter(...
 
 if nargin < 4
     zShift = 0;
+end
+
+if nargin < 5
+    tipRadius = 0;
+end
+
+if ~isnumeric(tipRadius) || ~isscalar(tipRadius) || ...
+        ~isreal(tipRadius) || ~isfinite(tipRadius) || tipRadius < 0
+    error('preCPFE_3d_polygon_indenter:InvalidTipRadius', ...
+        'The pyramidal tip radius must be a finite, nonnegative scalar.');
 end
 
 if nargin < 3
@@ -44,38 +55,37 @@ end
     
 deg_inc = 360/N;
 
-vts(1,:) = [0,0,0];
 sz = tand(ang) / cosd(deg_inc/2);
 
-fcs = zeros(N+1, 4);
-for iN = 1:N+1
+vts = zeros(N+1, 3);
+vts(1,:) = [0,0,0];
+fcs = zeros(N, 3);
+for iN = 1:N
     vts(iN+1, :) = [cosd(iN * deg_inc) * sz, ...
         sind(iN * deg_inc) * sz, 1] * height;
-        fcs(iN, :) = [1 iN iN+1 1];
+    fcs(iN, :) = [1, iN+1, mod(iN, N)+2];
 end
-
-% FIXME: faces with 4 vertices are needed with 2 times the same vertice
-% because only rectangular elements can be converted in surfaces in Mentat.
-
-% for iF = 1:N
-%     sNd = (iF-1)*2+2
-%     vts(sNd, :) = [cosd((sNd-1) * deg_inc) * sz, ...
-%                    sind((sNd-1) * deg_inc) * sz, ...
-%                    1] * height;
-%     vts(sNd+1, :) = [cosd(sNd * deg_inc) * sz, ...
-%                      sind(sNd * deg_inc) * sz, ...
-%                      1] * height;
-%     
-%     %if iN > 2
-%     fcs(iF, :) = [1 sNd sNd+1 1];
-%     %end
-% end
 
 vts(:,3) = vts(:,3) + zShift;
 
 ptc = struct();
-ptc.vertices = vts;
-ptc.faces = fcs;
+if tipRadius == 0
+    ptc.vertices = vts;
+    ptc.faces = fcs;
+else
+    pyramidVertices = vts;
+    pyramidVertices(:,3) = pyramidVertices(:,3) + tipRadius;
+    sphereCenter = pyramidVertices(1,:);
+    % The convex hull blends a sampled sphere into the pyramid apex.
+    sphereVertices = sample_sphere(tipRadius, 800) + sphereCenter;
+    points = unique([pyramidVertices; sphereVertices], 'rows');
+    faces = convhulln(points);
+    usedVertices = unique(faces(:));
+    vertexMap = zeros(size(points, 1), 1);
+    vertexMap(usedVertices) = (1:numel(usedVertices))';
+    ptc.vertices = points(usedVertices, :);
+    ptc.faces = vertexMap(faces);
+end
 handle_indenter = patch(ptc, 'FaceColor', 'w', 'FaceAlpha', 0.75);
 
 if nargin == 0
@@ -87,4 +97,14 @@ if nargin == 0
     view(20,10);
 end
 
+end
+
+function vertices = sample_sphere(radius, sampleCount)
+index = (0:sampleCount-1)';
+z = 1 - 2*(index + 0.5)/sampleCount;
+angle = pi*(3 - sqrt(5))*index;
+radial = sqrt(1 - z.^2);
+directions = [radial .* cos(angle), radial .* sin(angle), z];
+directions = [directions; 0 0 -1; 0 0 1];
+vertices = radius * directions;
 end

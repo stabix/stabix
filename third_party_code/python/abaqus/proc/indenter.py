@@ -244,7 +244,7 @@ InstanceRoot.regenerate()
 # Setting the surface of the indenter for the contact definition
 indenter_part = model_name.parts['indenter']
 s_indenter = indenter_part.elements
-side2Elements = s_indenter[1:%i]''' % (self.IndentParameters['numFaces']) + ''' # number of points in the orphan mesh
+side2Elements = s_indenter[0:%i]''' % (self.IndentParameters['numFaces']) + ''' # number of elements in the orphan mesh
 indenter_part.Surface(side2Elements=side2Elements, name='Surf Indenter')
 ''')
 # or ANALYTIC_RIGID_SURFACE

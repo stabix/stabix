@@ -9,6 +9,8 @@ gdata = guidata(gcf);
 % Indenter parameters
 set_default_values_txtbox(gdata.handles.indenter.coneAngle_val, num2str(gdata.defaults.variables.coneAngle));
 set_default_values_txtbox(gdata.handles.indenter.tipRadius_val, num2str(gdata.defaults.variables.tipRadius));
+set_default_values_txtbox(gdata.handles.indenter.pyramidTipRadius_val, ...
+    num2str(gdata.defaults.variables.pyramidTipRadius));
 set_default_values_txtbox(gdata.handles.indenter.h_indent_val, num2str(gdata.defaults.variables.h_indent));
 % Mesh parameters
 set_default_values_txtbox(gdata.handles.mesh.box_xfrac_val, num2str(gdata.defaults.variables.box_xfrac));

@@ -104,6 +104,10 @@ invalid = settings;
 invalid.mesh.box_elm_nx = Inf;
 verifyError(testCase, @() preCPFE_mesh_settings(invalid, 1, 'Abaqus'), 'STABiX:InvalidMeshSetting');
 invalid = settings;
+invalid.indenter.pyramidTipRadius = -0.1;
+verifyError(testCase, @() preCPFE_mesh_settings(invalid, 1, 'Abaqus'), ...
+    'STABiX:InvalidMeshSetting');
+invalid = settings;
 invalid.solver = 'Mentat';
 write_yaml_struct(filename, invalid);
 verifyError(testCase, @() preCPFE_load_mesh(1, filename), 'STABiX:MeshSolverMismatch');
@@ -124,6 +128,7 @@ for interface = 1:2
     set(gui.handles.mesh.h_sample_val, 'String', '8/2');
     set(gui.handles.other_setting.mesh_quality_lvl_val, 'String', '2');
     set(gui.handles.indenter.h_indent_val, 'String', '0.123456789012345');
+    set(gui.handles.indenter.pyramidTipRadius_val, 'String', '0.125');
     if interface == 2
         set(gui.handles.mesh.ind_dist_val, 'String', '-1');
         set(gui.handles.mesh.box_bias_y2_val, 'String', '4');
@@ -137,6 +142,7 @@ for interface = 1:2
     verifyEqual(testCase, saved.mesh.mesh_quality_lvl, 2);
     verifyEqual(testCase, saved.sample.h_sample, 4);
     verifyEqual(testCase, saved.indenter.h_indent, 0.123456789012345, 'AbsTol', 1e-15);
+    verifyEqual(testCase, saved.indenter.pyramidTipRadius, 0.125);
     verifyFalse(testCase, isfield(saved, 'derived_coordinates'));
     if interface == 2
         verifyEqual(testCase, saved.mesh.box_bias_y2, 4);
@@ -146,6 +152,7 @@ for interface = 1:2
     end
     set(gui.handles.mesh.h_sample_val, 'String', '999');
     set(gui.handles.indenter.h_indent_val, 'String', '999');
+    set(gui.handles.indenter.pyramidTipRadius_val, 'String', '999');
     set(gui.handles.other_setting.mesh_quality_lvl_val, 'String', '999');
     if interface == 2
         set(gui.handles.mesh.inclination_val, 'String', '60');
@@ -159,6 +166,9 @@ for interface = 1:2
     verifyEqual(testCase, actual.variables.mesh_quality_lvl, 2);
     verifyEqual(testCase, str2double(get(actual.handles.indenter.h_indent_val, 'String')), ...
         saved.indenter.h_indent, 'AbsTol', 1e-15);
+    verifyEqual(testCase, str2double(get( ...
+        actual.handles.indenter.pyramidTipRadius_val, 'String')), ...
+        saved.indenter.pyramidTipRadius);
     if interface == 2
         verifyEqual(testCase, str2double(get(actual.handles.mesh.inclination_val, 'String')), 80);
         verifyEqual(testCase, str2double(get(actual.handles.indenter.scratchLength_val, 'String')), 3);
@@ -190,6 +200,7 @@ legacy = read_yaml_struct(fullfile(testCase.TestData.root, 'yaml_config_files', 
     ['config_mesh_' models{interface} '_defaults.yaml']));
 legacy.coneAngle = 90;
 legacy.tipRadius = 1;
+legacy.pyramidTipRadius = 0;
 legacy.h_indent = 0.3;
 legacy.frictionCoeff = 0.25;
 if interface == 2

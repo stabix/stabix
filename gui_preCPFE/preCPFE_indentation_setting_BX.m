@@ -16,6 +16,8 @@ origin = [0,0,0];
 % Indenter parameters
 set_default_values_txtbox(gdata.handles.indenter.coneAngle_val, num2str(gdata.defaults.variables.coneAngle));
 set_default_values_txtbox(gdata.handles.indenter.tipRadius_val, num2str(gdata.defaults.variables.tipRadius));
+set_default_values_txtbox(gdata.handles.indenter.pyramidTipRadius_val, ...
+    num2str(gdata.defaults.variables.pyramidTipRadius));
 set_default_values_txtbox(gdata.handles.indenter.h_indent_val, num2str(gdata.defaults.variables.h_indent));
 if scratchTest
     set_default_values_txtbox(gdata.handles.indenter.scratchLength_val, num2str(gdata.defaults.variables.scratchLength));

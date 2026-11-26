@@ -34,21 +34,24 @@ if strcmp(gui.indenter_type, 'conical') == 1
     
 elseif strcmp(gui.indenter_type, 'Berkovich') == 1
     numberFaces = 3;
-    [handle_indenter, ~] = preCPFE_3d_polygon_indenter(numberFaces, 65.3, ...
-        2*gui.variables.h_indent, -h_indent);
-    gui.indenter_faces = numberFaces + 1;
+    handle_indenter = preCPFE_3d_polygon_indenter(numberFaces, 65.3, ...
+        2*gui.variables.h_indent, -h_indent, ...
+        gui.variables.pyramidTipRadius);
+    gui.indenter_faces = size(get(handle_indenter, 'Faces'), 1);
     
 elseif strcmp(gui.indenter_type, 'Vickers') == 1
     numberFaces = 4;
-    [handle_indenter, ~] = preCPFE_3d_polygon_indenter(numberFaces, 68, ...
-        2*gui.variables.h_indent, -h_indent);
-    gui.indenter_faces = numberFaces + 1;
+    handle_indenter = preCPFE_3d_polygon_indenter(numberFaces, 68, ...
+        2*gui.variables.h_indent, -h_indent, ...
+        gui.variables.pyramidTipRadius);
+    gui.indenter_faces = size(get(handle_indenter, 'Faces'), 1);
     
 elseif strcmp(gui.indenter_type, 'cubeCorner') == 1
     numberFaces = 3;
-    [handle_indenter, ~] = preCPFE_3d_polygon_indenter(numberFaces, 35.26, ...
-        2*gui.variables.h_indent, -h_indent);
-    gui.indenter_faces = numberFaces + 1;
+    handle_indenter = preCPFE_3d_polygon_indenter(numberFaces, 35.26, ...
+        2*gui.variables.h_indent, -h_indent, ...
+        gui.variables.pyramidTipRadius);
+    gui.indenter_faces = size(get(handle_indenter, 'Faces'), 1);
     
 elseif strcmp(gui.indenter_type, 'flatPunch') == 1
     handle_indenter = preCPFE_3d_flat_punch_indenter(...
@@ -78,7 +81,7 @@ elseif strcmp(gui.indenter_type, 'AFM') == 1
             handle_indenter] =...
             preCPFE_3d_indenter_topo_AFM(gui.indenter_topo,...
             h_indent, smooth_factor);
-        gui.indenter_faces = size(fvc.faces, 1) + 1;
+        gui.indenter_faces = size(fvc.faces, 1);
     else
         handle_indenter = 0;
     end

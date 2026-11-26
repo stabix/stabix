@@ -139,6 +139,8 @@ gui_BX.handles.pm_Python = preCPFE_python_popup([2*x0 hu*2.6 wu*3 hu]);
     preCPFE_buttons_indenter(x0, hu, wu, scratchTest);
 gui_BX.defaults.variables.coneAngle = indent_parameters.coneAngle;
 gui_BX.defaults.variables.tipRadius = indent_parameters.tipRadius;
+gui_BX.defaults.variables.pyramidTipRadius = ...
+    indent_parameters.pyramidTipRadius;
 gui_BX.defaults.variables.h_indent = indent_parameters.h_indent;
 gui_BX.defaults.variables.coneAngle = indent_parameters.coneAngle;
 if scratchTest

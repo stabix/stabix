@@ -39,7 +39,7 @@ class AbaqusGeometryGeneratorTest(unittest.TestCase):
             tree = ast.parse(source)
             compile(tree, "SX.py", "exec")
         self.assertIn("mdb.ModelFromInputFile", source)
-        self.assertIn("side2Elements = s_indenter[1:3]", source)
+        self.assertIn("side2Elements = s_indenter[0:3]", source)
         assignments = [
             node for node in tree.body
             if isinstance(node, ast.Assign)

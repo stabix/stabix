@@ -25,7 +25,8 @@ else
     bias_fields = {'box_bias_x', 'box_bias_z', 'box_bias_y1', 'box_bias_y2', 'box_bias_y3'};
 end
 mesh_fields = [mesh_fields bias_fields];
-indenter_fields = {'coneAngle', 'tipRadius', 'h_indent', 'frictionCoeff'};
+indenter_fields = {'coneAngle', 'tipRadius', 'pyramidTipRadius', ...
+    'h_indent', 'frictionCoeff'};
 if interface == 2
     indenter_fields = [indenter_fields {'scratchLength', 'scratchDirection'}];
 end
@@ -70,6 +71,10 @@ else
     end
 end
 
+if ~isfield(variables, 'pyramidTipRadius')
+    variables.pyramidTipRadius = 0;
+end
+
 required = [sample_fields mesh_fields];
 required(strcmp(required, 'inclination')) = [];
 for index = 1:numel(required)
@@ -100,6 +105,10 @@ for group_index = 1:numel(groups)
             if (~isempty(strfind(name, 'box_elm_')) || ...
                     ismember(name, {'sample_rep', 'radial_divi'})) && value ~= round(value)
                 error('STABiX:InvalidMeshSetting', '%s must be an integer.', name);
+            end
+            if strcmp(name, 'pyramidTipRadius') && value < 0
+                error('STABiX:InvalidMeshSetting', ...
+                    '%s must be nonnegative.', name);
             end
             settings.(group).(name) = value;
             normalized.(name) = value;
