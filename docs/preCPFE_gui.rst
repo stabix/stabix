@@ -102,26 +102,6 @@ versioned document to the current schema (``interface`` is 1 for SX or 2 for BX)
 With an active preCPFE figure, ``preCPFE_save_mesh([], filename)`` and
 ``preCPFE_load_mesh(interface, filename)`` skip the file dialogs.
 
-ANSYS geometry export
----------------------
-
-In the SX or BX indentation GUI, select a Python 3 executable and choose
-**Export ANSYS geometry script...** from the preCPFE menu. Run the resulting
-Python script in a new, empty SpaceClaim document with scripting API V251.
-It saves an ``.scdocx`` geometry file beside the script and refuses to
-overwrite an existing geometry file. The script does not reset the document.
-
-The export supports a cono-spherical indenter and SX or BX indentation.
-BX grain-boundary trace, inclination and signed distance are used; the
-boundary must intersect both the top and bottom of the specimen. Scratch
-tests, other indenter shapes and degenerate SX subdivisions are rejected.
-
-This is **geometry only**: the GUI mesh preview and mesh settings are not
-exported. Share topology between specimen bodies as appropriate, then
-configure the mesh, contacts, loads, crystal-plasticity materials and grain
-orientations manually in Mechanical. The generated geometry is not a
-ready-to-solve CPFE model.
-
 .. note::
     Since 2022, DAMASK has no longer supported Abaqus. See
     https://damask-multiphysics.org/ for more information.
@@ -389,6 +369,26 @@ Input files
     - a MAT-file (binary |matlab| format file) storing |matlab| workspace variables (\*.mat)
     - a material configuration file (material.config)
     - an input file for a specific indenter geometry (\*.inp) (optional)
+
+ANSYS geometry export
+*********************
+
+In the SX or BX indentation GUI, select a Python 3 executable and choose
+**Export ANSYS geometry script...** from the preCPFE menu. Run the resulting
+Python script in a new, empty SpaceClaim document with scripting API V251.
+It saves an ``.scdocx`` geometry file beside the script and refuses to
+overwrite an existing geometry file. The script does not reset the document.
+
+The export supports a cono-spherical indenter and SX or BX indentation.
+BX grain-boundary trace, inclination and signed distance are used; the
+boundary must intersect both the top and bottom of the specimen. Scratch
+tests, other indenter shapes and degenerate SX subdivisions are rejected.
+
+This is **geometry only**: the GUI mesh preview and mesh settings are not
+exported. Share topology between specimen bodies as appropriate, then
+configure the mesh, contacts, loads, crystal-plasticity materials and grain
+orientations manually in Mechanical. The generated geometry is not a
+ready-to-solve CPFE model.
 
 Using the CPFE input files
 -----------------------------
