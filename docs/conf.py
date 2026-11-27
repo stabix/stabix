@@ -32,6 +32,7 @@ import shlex
 extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.doctest',
+    'sphinx_rtd_theme',
 ]
 #    'sphinxcontrib.bibtex', #http://sphinxcontrib-bibtex.readthedocs.org/en/latest/
 
@@ -109,7 +110,9 @@ numfig_format = {'figure': 'Figure %s', 'table': 'Table %s', 'code-block': 'Code
 # a list of builtin themes.
 # See http://sphinx-doc.org/theming.html
 #html_theme = 'default'
-html_theme = 'classic'
+html_theme = 'sphinx_rtd_theme'
+html_static_path = ['_static']
+html_css_files = ['theme_overrides.css']
 #html_theme = 'alabaster'
 #html_theme = 'agogo'
 #html_theme =  'traditional'

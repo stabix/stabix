@@ -1,3 +1,7 @@
 .wy-nav-content {
-   max-width: 950px
+    max-width: none;
+}
+
+.rst-content div.math {
+    overflow-x: auto;
 }
